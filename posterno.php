@@ -368,7 +368,14 @@ final class PN_Requirements_Check {
 		return $retval;
 	}
 
-	public function load_textdomain() {}
+	/**
+	 * Loads the textdomain for this plugin.
+	 *
+	 * @return void
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'posterno', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	}
 
 }
 
