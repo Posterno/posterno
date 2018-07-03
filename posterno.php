@@ -153,7 +153,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_description_text() {
-		return esc_html__( 'Requires %s (%s), but (%s) is installed.' );
+		return esc_html__( 'Requires %1$s (%2$s), but (%3$s) is installed.' );
 	}
 
 	/**
@@ -163,7 +163,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_missing_text() {
-		return esc_html__( 'Requires %s (%s), but it appears to be missing.' );
+		return esc_html__( 'Requires %1$s (%2$s), but it appears to be missing.' );
 	}
 
 	/**
@@ -212,7 +212,8 @@ final class PN_Requirements_Check {
 		<td class="column-description">
 			<?php $this->unmet_requirements_description(); ?>
 		</td>
-		</tr><?php
+		</tr>
+		<?php
 	}
 
 	/**
@@ -239,7 +240,7 @@ final class PN_Requirements_Check {
 		if ( ! empty( $requirement['exists'] ) ) {
 			$text = sprintf(
 				$this->unmet_requirements_description_text(),
-				'<strong>' . esc_html( $requirement['name']    ) . '</strong>',
+				'<strong>' . esc_html( $requirement['name'] ) . '</strong>',
 				'<strong>' . esc_html( $requirement['minimum'] ) . '</strong>',
 				'<strong>' . esc_html( $requirement['current'] ) . '</strong>'
 			);
@@ -247,7 +248,7 @@ final class PN_Requirements_Check {
 		} else {
 			$text = sprintf(
 				$this->unmet_requirements_missing_text(),
-				'<strong>' . esc_html( $requirement['name']    ) . '</strong>',
+				'<strong>' . esc_html( $requirement['name'] ) . '</strong>',
 				'<strong>' . esc_html( $requirement['minimum'] ) . '</strong>'
 			);
 		}
@@ -262,7 +263,8 @@ final class PN_Requirements_Check {
 	 */
 	public function admin_head() {
 		// Get the requirements row name
-		$name = $this->unmet_requirements_name(); ?>
+		$name = $this->unmet_requirements_name();
+		?>
 
 		<style id="<?php echo esc_attr( $name ); ?>">
 			.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th,
@@ -321,25 +323,27 @@ final class PN_Requirements_Check {
 			// Which dependency are we checking?
 			switch ( $dependency ) {
 				// PHP
-				case 'php' :
+				case 'php':
 					$version = phpversion();
 					break;
 				// WP
-				case 'wp' :
+				case 'wp':
 					$version = get_bloginfo( 'version' );
 					break;
 				// Unknown
-				default :
+				default:
 					$version = false;
 					break;
 			}
 			// Merge to original array
 			if ( ! empty( $version ) ) {
-				$this->requirements[ $dependency ] = array_merge( $this->requirements[ $dependency ], array(
-					'current' => $version,
-					'checked' => true,
-					'met'     => version_compare( $version, $properties['minimum'], '>=' )
-				) );
+				$this->requirements[ $dependency ] = array_merge(
+					$this->requirements[ $dependency ], array(
+						'current' => $version,
+						'checked' => true,
+						'met'     => version_compare( $version, $properties['minimum'], '>=' ),
+					)
+				);
 			}
 		}
 	}
