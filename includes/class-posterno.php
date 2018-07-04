@@ -170,6 +170,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_functions() {
 
+			require_once PNO_PLUGIN_DIR . 'includes/scripts.php';
 			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
 
 		}

@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<defs>
+<font id="posterno" horiz-adv-x="1000" >
+<font-face font-family="posterno" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="posterno-logo" unicode="&#xe800;" d="M253 203c-29-63-35-112-12-135 25-25 79-17 148 16-39 19-95 50-136 119z m247 647c-276 0-500-224-500-500 0-276 224-500 500-500 276 0 500 224 500 500 0 276-223 500-500 500z m203-705c-78-77-188-102-287-72-107-66-201-89-241-50-64 65 30 259 206 438 40 39 81 76 122 105-82-28-196-99-290-206 3 69 31 137 84 190 78 77 190 102 289 71 53 31 102 52 142 61-35-18-74-42-114-71 33-13 64-35 91-61 112-109 112-291-2-405z m-36 390c10-180-68-332-213-429 266-43 386 275 213 429z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
