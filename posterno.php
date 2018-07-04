@@ -119,11 +119,11 @@ final class PN_Requirements_Check {
 	 * @since 0.1.0
 	 */
 	private function load() {
-		//require_once dirname( $this->file ) . '/includes/class-edd.php';
-		//if ( class_exists( 'Easy_Digital_Downloads' ) ) {
-		//	Easy_Digital_Downloads::instance( $this->file );
-		//}
-		//do_action( 'edd_loaded' );
+		require_once dirname( $this->file ) . '/includes/class-posterno.php';
+		if ( class_exists( 'Posterno' ) ) {
+			Posterno::instance( $this->file );
+		}
+		do_action( 'posterno_loaded' );
 	}
 
 	/**
