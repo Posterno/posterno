@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-	  Here goes the options panel
+	Here goes the options panel
   </div>
 </template>
 
