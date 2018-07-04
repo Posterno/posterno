@@ -157,6 +157,21 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_files() {
 
+			$this->setup_functions();
+
+		}
+
+		/**
+		 * Include required files.
+		 *
+		 * @access private
+		 * @since 0.1.0
+		 * @return void
+		 */
+		private function setup_functions() {
+
+			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
+
 		}
 
 	}
