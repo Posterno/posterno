@@ -156,9 +156,19 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_files() {
-
+			$this->setup_options();
 			$this->setup_functions();
 
+		}
+
+		/**
+		 * Setup the admin panel and load all settings & options.
+		 *
+		 * @return void
+		 */
+		private function setup_options() {
+			//require_once PNO_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
+			//$GLOBALS['pno_options'] = pno_get_settings();
 		}
 
 		/**
