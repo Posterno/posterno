@@ -58,6 +58,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Bootstrap
 			self::$instance->setup_constants();
+			self::$instance->setup_files();
 
 			// Return the instance
 			return self::$instance;
@@ -145,6 +146,17 @@ if ( ! class_exists( 'Posterno' ) ) :
 			if ( ! defined( 'PNO_PLUGIN_URL' ) ) {
 				define( 'PNO_PLUGIN_URL', plugin_dir_url( PNO_PLUGIN_FILE ) );
 			}
+		}
+
+		/**
+		 * Include required files.
+		 *
+		 * @access private
+		 * @since 0.1.0
+		 * @return void
+		 */
+		private function setup_files() {
+
 		}
 
 	}
