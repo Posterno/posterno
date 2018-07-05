@@ -252,6 +252,12 @@ function pno_get_registered_settings() {
 					'val2' => 'label2',
 				]
 			],
+			'setting_check' => [
+				'type'        => 'checkbox',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+			],
 		],
 	];
 

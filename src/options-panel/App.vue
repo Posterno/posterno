@@ -68,6 +68,10 @@
 												</p>
 											</div>
 
+											<span v-else-if="setting.type == 'checkbox'" class="checkbox-wrapper">
+												<input :name="setting_id" :id="setting_id" v-model="settings[setting_id]" type="checkbox">
+											</span>
+
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
 										</td>
@@ -218,6 +222,11 @@ body.listings_page_posterno-settings {
 
 	.description {
 		font-style: normal;
+	}
+
+	.checkbox-wrapper ~ p.description {
+		display: inline-block;
+		position: relative;
 	}
 
 }
