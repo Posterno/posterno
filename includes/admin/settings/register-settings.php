@@ -152,3 +152,46 @@ function pno_get_settings() {
 	return apply_filters( 'pno_get_settings', $settings );
 
 }
+
+/**
+ * Handles registration of translatable strings for the javascript powered settings panel
+ * together with any other string needed for the panel.
+ *
+ * @return array
+ */
+function pno_get_settings_page_vars() {
+
+	$vars = [
+		'pluginURL' => PNO_PLUGIN_URL,
+		'labels'    => [
+			'page_title' => esc_html__( 'Posterno Settings' ),
+			'save'       => esc_html__( 'Save changes' ),
+			'readDocs'   => esc_html__( 'Documentation' ),
+		],
+	];
+
+	return $vars;
+
+}
+
+/**
+ * Retrieve the list of settings tabs for the options panel.
+ *
+ * @return array
+ */
+function pno_get_registered_settings_tabs() {
+
+	$tabs = [
+		'general' => esc_html__( 'General' )
+	];
+
+	/**
+	 * Allows developers to register or deregister new tabs for the
+	 * settings panel.
+	 *
+	 * @since 0.1.0
+	 * @param array $tabs
+	 */
+	return apply_filters( 'pno_registered_settings_tabs', $tabs );
+
+}
