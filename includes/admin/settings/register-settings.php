@@ -274,6 +274,7 @@ function pno_get_registered_settings() {
 				'label'       => 'Label goes here',
 				'description' => 'Description goes here',
 				'placeholder' => 'Placeholder',
+				'multiple' => true,
 				'options' => [
 					[
 						'label' => 'Label goes here for testing',

@@ -79,7 +79,7 @@
 												</span>
 											</div>
 
-											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="id" label="label" :placeholder="setting.placeholder"></multiselect>
+											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="id" label="label" :placeholder="setting.placeholder" :multiple="setting.multiple"></multiselect>
 
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
@@ -261,6 +261,34 @@ body.listings_page_posterno-settings {
 
 	.multiselect {
 		max-width: 500px;
+	}
+
+	.multiselect__tags {
+		border-radius: 0;
+		border-color: #ddd;
+		cursor: pointer;
+	}
+
+	.multiselect--above.multiselect--active .multiselect__input {
+		border-radius: 3px;
+	}
+
+	.multiselect__tag {
+		background: #0073aa;
+		color: #fff;
+		border-radius: 0;
+	}
+
+	.multiselect__tag-icon::after {
+		color: #fff;
+	}
+
+	.multiselect__tag-icon {
+		border-radius: 0;
+		margin-left: 5px;
+		&:hover {
+			background: red;
+		}
 	}
 
 }
