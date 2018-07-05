@@ -15,7 +15,7 @@
 						</ul>
 					</wp-col>
 					<wp-col :span="8" class="save-area">
-						<wp-spinner></wp-spinner>
+						<wp-spinner v-if="loading"></wp-spinner>
 						<wp-button type="primary">{{labels.save}}</wp-button>
 					</wp-col>
 				</wp-row>
@@ -23,6 +23,11 @@
 			<!-- end header -->
 			<!-- Options Panel Content -->
 			<wp-main>
+
+				<wp-notice type="success" dismissible v-if="success">
+					<strong>{{labels.settings_saved}}</strong>
+				</wp-notice>
+
 				<wp-tabs>
 					<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
 						Content 1
@@ -39,9 +44,17 @@ export default {
 	name: "app",
 	data() {
 		return {
+			// Visual stuff.
 			logo_url:      pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_settings_page.labels,
-			settings_tabs: pno_settings_page.settings_tabs
+			settings_tabs: pno_settings_page.settings_tabs,
+
+			// Manage the status of the app.
+			success: false,
+			error: false,
+			loading: false,
+
+			// Database stuff.
 		}
 	}
 };
@@ -111,6 +124,10 @@ body.listings_page_posterno-settings {
 			outline: none;
 			box-shadow: none;
 		}
+	}
+
+	.vue-wp-notice {
+		margin-bottom: 20px;
 	}
 
 }

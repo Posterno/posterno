@@ -165,9 +165,10 @@ function pno_get_settings_page_vars() {
 		'plugin_url'    => PNO_PLUGIN_URL,
 		'settings_tabs' => pno_get_registered_settings_tabs(),
 		'labels'        => [
-			'page_title' => esc_html__( 'Posterno Settings' ),
-			'save'       => esc_html__( 'Save changes' ),
-			'read_docs'  => esc_html__( 'Documentation' ),
+			'page_title'     => esc_html__( 'Posterno Settings' ),
+			'save'           => esc_html__( 'Save changes' ),
+			'read_docs'      => esc_html__( 'Documentation' ),
+			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
 		],
 	];
 
