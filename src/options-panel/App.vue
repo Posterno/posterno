@@ -32,12 +32,8 @@
 					<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
 
 						<!-- subsections -->
-						<WPNavBarFilter>
-							<WPNavBarFilterItem label="test">
-								asdasd
-							</WPNavBarFilterItem>
-							<WPNavBarFilterItem label="test 2">
-								asdasd 2
+						<WPNavBarFilter v-if="settings_tab_has_sections( id )">
+							<WPNavBarFilterItem v-for="( section, section_id ) in settings_sections[ id ]" :key="section_id" :label="section">
 							</WPNavBarFilterItem>
 						</WPNavBarFilter>
 						<!-- subsections -->
@@ -55,6 +51,7 @@
 <script>
 import WPNavBarFilter from '../global-components/WPNavBarFilter.vue'
 import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
+import lodash_has from 'lodash.has'
 
 export default {
 	name: "app",
@@ -75,7 +72,16 @@ export default {
 
 			// Database stuff.
 			settings_tabs: pno_settings_page.settings_tabs,
+			settings_sections: pno_settings_page.settings_sections
 
+		}
+	},
+	methods: {
+		/**
+		 * Verify if a settings tab has subsections.
+		 */
+		settings_tab_has_sections( tab_id ) {
+			return lodash_has( this.settings_sections, tab_id );
 		}
 	}
 };

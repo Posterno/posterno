@@ -162,9 +162,10 @@ function pno_get_settings() {
 function pno_get_settings_page_vars() {
 
 	$vars = [
-		'plugin_url'    => PNO_PLUGIN_URL,
-		'settings_tabs' => pno_get_registered_settings_tabs(),
-		'labels'        => [
+		'plugin_url'        => PNO_PLUGIN_URL,
+		'settings_tabs'     => pno_get_registered_settings_tabs(),
+		'settings_sections' => pno_get_registered_settings_tabs_sections(),
+		'labels'            => [
 			'page_title'     => esc_html__( 'Posterno Settings' ),
 			'save'           => esc_html__( 'Save changes' ),
 			'read_docs'      => esc_html__( 'Documentation' ),
@@ -196,5 +197,30 @@ function pno_get_registered_settings_tabs() {
 	 * @param array $tabs
 	 */
 	return apply_filters( 'pno_registered_settings_tabs', $tabs );
+
+}
+
+/**
+ * Retrieve the list of settings subsections for all tabs.
+ *
+ * @return array
+ */
+function pno_get_registered_settings_tabs_sections() {
+
+	$sections = [
+		'general' => [
+			'sub1' => 'Subsection 1',
+			'sub2' => 'Subsection 2',
+		]
+	];
+
+	/**
+	 * Allows developers to register or deregister subsections for tabs in the
+	 * settings panel.
+	 *
+	 * @since 0.1.0
+	 * @param array $sections
+	 */
+	return apply_filters( 'pno_registered_settings_tabs_sections', $sections );
 
 }
