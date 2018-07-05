@@ -1,6 +1,7 @@
 <template>
 	<div id="posterno-settings-panel">
-		ddd
+		<wp-button>asdasd dd</wp-button>
+		<wp-notice>testing</wp-notice>
   	</div>
 </template>
 
