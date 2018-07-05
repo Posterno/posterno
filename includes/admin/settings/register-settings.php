@@ -162,10 +162,11 @@ function pno_get_settings() {
 function pno_get_settings_page_vars() {
 
 	$vars = [
-		'plugin_url'        => PNO_PLUGIN_URL,
-		'settings_tabs'     => pno_get_registered_settings_tabs(),
-		'settings_sections' => pno_get_registered_settings_tabs_sections(),
-		'labels'            => [
+		'plugin_url'          => PNO_PLUGIN_URL,
+		'settings_tabs'       => pno_get_registered_settings_tabs(),
+		'settings_sections'   => pno_get_registered_settings_tabs_sections(),
+		'registered_settings' => pno_get_registered_settings(),
+		'labels'              => [
 			'page_title'     => esc_html__( 'Posterno Settings' ),
 			'save'           => esc_html__( 'Save changes' ),
 			'read_docs'      => esc_html__( 'Documentation' ),
@@ -207,12 +208,7 @@ function pno_get_registered_settings_tabs() {
  */
 function pno_get_registered_settings_tabs_sections() {
 
-	$sections = [
-		'general' => [
-			'sub1' => 'Subsection 1',
-			'sub2' => 'Subsection 2',
-		]
-	];
+	$sections = [];
 
 	/**
 	 * Allows developers to register or deregister subsections for tabs in the
@@ -233,7 +229,30 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		''
+		'general' => [
+			'setting_id' => [
+				'type'        => 'text',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+			],
+			'setting_2' => [
+				'type'        => 'textarea',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+			],
+			'setting_4' => [
+				'type'        => 'select',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+				'options' => [
+					'val' => 'label',
+					'val2' => 'label2',
+				]
+			],
+		],
 	];
 
 	/**

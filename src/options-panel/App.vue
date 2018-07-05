@@ -42,7 +42,32 @@
 							</WPNavBarFilterItem>
 						</WPNavBarFilter>
 						<div class="settings-form-wrapper no-section" v-else>
-							settings tab orig
+
+							<!-- options generator -->
+							<table class="form-table">
+								<tbody>
+									<tr v-for="( setting, setting_id ) in registered_settings[ id ]" :key="setting_id">
+										<th scope="row">
+											<label :for="setting_id">{{setting.label}}</label>
+										</th>
+										<td>
+
+											<input v-if="setting.type == 'text'" :placeholder="setting.placeholder" type="text" class="regular-text" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+
+											<textarea v-else-if="setting.type == 'textarea'" :placeholder="setting.placeholder" cols="50" rows="5" :name="setting_id" :id="setting_id" v-model="settings[setting_id]"></textarea>
+
+											<select v-else-if="setting.type == 'select'" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+												<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
+											</select>
+
+											<p class="description" v-if="setting.description">{{setting.description}}</p>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- end options generator -->
+
 						</div>
 
 					</wp-tab-item>
@@ -74,17 +99,19 @@ export default {
 	data() {
 		return {
 			// Visual stuff.
-			logo_url:      pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
-			labels:        pno_settings_page.labels,
+			logo_url:            pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
+			labels:              pno_settings_page.labels,
 
 			// Manage the status of the app.
-			success: false,
-			error: false,
-			loading: false,
+			success:             false,
+			error:               false,
+			loading:             false,
 
 			// Database stuff.
-			settings_tabs: pno_settings_page.settings_tabs,
-			settings_sections: pno_settings_page.settings_sections
+			settings_tabs:       pno_settings_page.settings_tabs,
+			settings_sections:   pno_settings_page.settings_sections,
+			registered_settings: pno_settings_page.registered_settings,
+			settings: {}
 
 		}
 	},
@@ -173,16 +200,16 @@ body.listings_page_posterno-settings {
 		margin-top: 10px;
 	}
 
-	.settings-form-wrapper.no-section {
-		margin-top: 30px;
-	}
-
 	.footer-save {
 		margin-top: 100px;
 		.spinner {
 			margin-top: 5px;
 			margin-left: 10px;
 		}
+	}
+
+	.description {
+		font-style: normal;
 	}
 
 }
