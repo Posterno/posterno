@@ -10,6 +10,9 @@
 							<span>{{labels.page_title}}</span>
 						</h1>
 						<ul class="title-links">
+							<li>
+								<a href="https://posterno.com/addons" class="page-title-action" target="_blank">{{labels.addons}}</a>
+							</li>
 							<li><a href="https://docs.posterno.com/" class="page-title-action" target="_blank">{{labels.read_docs}}</a></li>
 						</ul>
 					</wp-col>
@@ -79,7 +82,7 @@
 												</span>
 											</div>
 
-											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="id" label="label" :placeholder="setting.placeholder" :multiple="setting.multiple"></multiselect>
+											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="value" label="label" :placeholder="setting.placeholder" :multiple="setting.multiple"></multiselect>
 
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 

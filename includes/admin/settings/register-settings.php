@@ -171,6 +171,7 @@ function pno_get_settings_page_vars() {
 			'save'           => esc_html__( 'Save changes' ),
 			'read_docs'      => esc_html__( 'Documentation' ),
 			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
+			'addons'         => esc_html__( 'View Addons' ),
 		],
 	];
 
@@ -274,11 +275,18 @@ function pno_get_registered_settings() {
 				'label'       => 'Label goes here',
 				'description' => 'Description goes here',
 				'placeholder' => 'Placeholder',
-				'multiple' => true,
 				'options' => [
 					[
 						'label' => 'Label goes here for testing',
 						'value' => 'value1'
+					],
+					[
+						'label' => 'Label goes here for testing ddd',
+						'value' => 'value2'
+					],
+					[
+						'label' => 'Label goes here for testing 2',
+						'value' => 'value3'
 					]
 				]
 			],
