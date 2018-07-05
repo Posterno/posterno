@@ -162,11 +162,12 @@ function pno_get_settings() {
 function pno_get_settings_page_vars() {
 
 	$vars = [
-		'pluginURL' => PNO_PLUGIN_URL,
-		'labels'    => [
+		'plugin_url'    => PNO_PLUGIN_URL,
+		'settings_tabs' => pno_get_registered_settings_tabs(),
+		'labels'        => [
 			'page_title' => esc_html__( 'Posterno Settings' ),
 			'save'       => esc_html__( 'Save changes' ),
-			'readDocs'   => esc_html__( 'Documentation' ),
+			'read_docs'  => esc_html__( 'Documentation' ),
 		],
 	];
 
@@ -182,11 +183,12 @@ function pno_get_settings_page_vars() {
 function pno_get_registered_settings_tabs() {
 
 	$tabs = [
-		'general' => esc_html__( 'General' )
+		'general' => esc_html__( 'General' ),
+		'another' => 'Testing tab2'
 	];
 
 	/**
-	 * Allows developers to register or deregister new tabs for the
+	 * Allows developers to register or deregister tabs for the
 	 * settings panel.
 	 *
 	 * @since 0.1.0
