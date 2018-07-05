@@ -22,7 +22,7 @@ function pno_setup_post_types() {
 		'name'                  => _x( 'Listings', 'Post Type General Name', 'posterno' ),
 		'singular_name'         => _x( 'Listing', 'Post Type Singular Name', 'posterno' ),
 		'menu_name'             => __( 'Listings', 'posterno' ),
-		'name_admin_bar'        => __( 'Listings', 'posterno' ),
+		'name_admin_bar'        => __( 'Listing', 'posterno' ),
 		'archives'              => __( 'Listings Archive', 'posterno' ),
 		'attributes'            => __( 'Listing attributes', 'posterno' ),
 		'parent_item_colon'     => __( 'Parent listing:', 'posterno' ),
