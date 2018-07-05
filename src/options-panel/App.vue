@@ -10,7 +10,6 @@
 							<span>{{labels.page_title}}</span>
 						</h1>
 						<ul class="title-links">
-							<!--<li><a href="http://wpusermanager.com/addons/" class="page-title-action">View Addons</a></li>-->
 							<li><a href="https://docs.posterno.com/" class="page-title-action" target="_blank">{{labels.read_docs}}</a></li>
 						</ul>
 					</wp-col>
@@ -28,11 +27,25 @@
 					<strong>{{labels.settings_saved}}</strong>
 				</wp-notice>
 
+				<!-- navigation tabs -->
 				<wp-tabs>
 					<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
-						Content 1
+
+						<!-- subsections -->
+						<WPNavBarFilter>
+							<WPNavBarFilterItem label="test">
+								asdasd
+							</WPNavBarFilterItem>
+							<WPNavBarFilterItem label="test 2">
+								asdasd 2
+							</WPNavBarFilterItem>
+						</WPNavBarFilter>
+						<!-- subsections -->
+
 					</wp-tab-item>
 				</wp-tabs>
+				<!-- end navigation tabs -->
+
 			</wp-main>
 			<!-- end options panel content -->
 		</wp-container>
@@ -40,14 +53,20 @@
 </template>
 
 <script>
+import WPNavBarFilter from '../global-components/WPNavBarFilter.vue'
+import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
+
 export default {
 	name: "app",
+	components: {
+		WPNavBarFilter,
+		WPNavBarFilterItem
+	},
 	data() {
 		return {
 			// Visual stuff.
 			logo_url:      pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_settings_page.labels,
-			settings_tabs: pno_settings_page.settings_tabs,
 
 			// Manage the status of the app.
 			success: false,
@@ -55,6 +74,8 @@ export default {
 			loading: false,
 
 			// Database stuff.
+			settings_tabs: pno_settings_page.settings_tabs,
+
 		}
 	}
 };
