@@ -25,5 +25,19 @@ function pno_load_admin_scripts() {
 	wp_register_style( 'pno-logo', $css_dir . 'posterno-font.css', array(), $version );
 	wp_enqueue_style( 'pno-logo' );
 
+	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
+
+		// Register settings page scripts.
+		wp_register_script( 'pno-settings-page', 'http://localhost:8080/options-panel.js', [], PNO_VERSION, true );
+
+	} else {
+
+	}
+
+	// Load script for the settings page.
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
+		wp_enqueue_script( 'pno-settings-page' );
+	}
+
 }
 add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
