@@ -258,6 +258,16 @@ function pno_get_registered_settings() {
 				'description' => 'Description goes here',
 				'placeholder' => 'Placeholder',
 			],
+			'setting_m4' => [
+				'type'        => 'multicheckbox',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+				'options' => [
+					'val' => 'label',
+					'val2' => 'label2',
+				]
+			],
 		],
 	];
 
