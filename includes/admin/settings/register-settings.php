@@ -268,6 +268,19 @@ function pno_get_registered_settings() {
 					'val2' => 'label2',
 				]
 			],
+
+			'setting_m5s' => [
+				'type'        => 'multiselect',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+				'options' => [
+					[
+						'label' => 'Label goes here for testing',
+						'value' => 'value1'
+					]
+				]
+			],
 		],
 	];
 

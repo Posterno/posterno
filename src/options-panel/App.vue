@@ -79,6 +79,8 @@
 												</span>
 											</div>
 
+											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="id" label="label" :placeholder="setting.placeholder"></multiselect>
+
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
 										</td>
@@ -107,13 +109,16 @@
 <script>
 import WPNavBarFilter from '../global-components/WPNavBarFilter.vue'
 import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 import lodash_has from 'lodash.has'
 
 export default {
 	name: "app",
 	components: {
 		WPNavBarFilter,
-		WPNavBarFilterItem
+		WPNavBarFilterItem,
+		Multiselect,
 	},
 	data() {
 		return {
@@ -147,6 +152,10 @@ export default {
 
 <style lang="scss">
 body.listings_page_posterno-settings {
+
+	.update-nag {
+		display: none;
+	}
 
 	#posterno-settings-panel {
 		margin: 0;
@@ -248,6 +257,10 @@ body.listings_page_posterno-settings {
 		~ .description {
 			margin-top: 10px;
 		}
+	}
+
+	.multiselect {
+		max-width: 500px;
 	}
 
 }
