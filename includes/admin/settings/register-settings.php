@@ -224,3 +224,24 @@ function pno_get_registered_settings_tabs_sections() {
 	return apply_filters( 'pno_registered_settings_tabs_sections', $sections );
 
 }
+
+/**
+ * Retrieve the list of registered settings for the admin panel.
+ *
+ * @return array
+ */
+function pno_get_registered_settings() {
+
+	$settings = [
+		''
+	];
+
+	/**
+	 * Allows developers to register or deregister settings for the admin pnael.
+	 *
+	 * @since 0.1.0
+	 * @param array $settings
+	 */
+	return apply_filters( 'pno_registered_settings', $settings );
+
+}

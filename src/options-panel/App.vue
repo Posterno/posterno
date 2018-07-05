@@ -15,7 +15,7 @@
 					</wp-col>
 					<wp-col :span="8" class="save-area">
 						<wp-spinner v-if="loading"></wp-spinner>
-						<wp-button type="primary">{{labels.save}}</wp-button>
+						<wp-button type="primary" :disabled="loading">{{labels.save}}</wp-button>
 					</wp-col>
 				</wp-row>
 			</wp-header>
@@ -34,13 +34,25 @@
 						<!-- subsections -->
 						<WPNavBarFilter v-if="settings_tab_has_sections( id )">
 							<WPNavBarFilterItem v-for="( section, section_id ) in settings_sections[ id ]" :key="section_id" :label="section">
+
+								<div class="settings-form-wrapper in-section">
+									settings section
+								</div>
+
 							</WPNavBarFilterItem>
 						</WPNavBarFilter>
-						<!-- subsections -->
+						<div class="settings-form-wrapper no-section" v-else>
+							settings tab orig
+						</div>
 
 					</wp-tab-item>
 				</wp-tabs>
 				<!-- end navigation tabs -->
+
+				<div class="footer-save">
+					<wp-button type="primary" :disabled="loading">{{labels.save}}</wp-button>
+					<wp-spinner v-if="loading"></wp-spinner>
+				</div>
 
 			</wp-main>
 			<!-- end options panel content -->
@@ -141,10 +153,6 @@ body.listings_page_posterno-settings {
 		}
 	}
 
-	.tab-content {
-		margin-top: 30px;
-	}
-
 	.nav-tab {
 		&:focus,
 		&:active {
@@ -153,8 +161,28 @@ body.listings_page_posterno-settings {
 		}
 	}
 
+	.wp-tabs {
+		margin-top: 10px;
+	}
+
 	.vue-wp-notice {
 		margin-bottom: 20px;
+	}
+
+	.wp-filter-bar-wrapper {
+		margin-top: 10px;
+	}
+
+	.settings-form-wrapper.no-section {
+		margin-top: 30px;
+	}
+
+	.footer-save {
+		margin-top: 100px;
+		.spinner {
+			margin-top: 5px;
+			margin-left: 10px;
+		}
 	}
 
 }
