@@ -243,7 +243,7 @@ function pno_get_registered_settings() {
 				'placeholder' => 'Placeholder',
 			],
 			'setting_4' => [
-				'type'        => 'select',
+				'type'        => 'radio',
 				'label'       => 'Label goes here',
 				'description' => 'Description goes here',
 				'placeholder' => 'Placeholder',

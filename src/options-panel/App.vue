@@ -60,6 +60,14 @@
 												<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
 											</select>
 
+											<div class="radio-wrapper" v-else-if="setting.type == 'radio'">
+												<p v-for="( option_label, option_id ) in setting.options" :key="option_id">
+													<label>
+														<input :name="setting_id" :id="setting_id" :value="option_id" class="tog" type="radio" v-model="settings[setting_id]">
+													{{ option_label }}</label>
+												</p>
+											</div>
+
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
 										</td>
