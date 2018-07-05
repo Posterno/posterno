@@ -193,11 +193,14 @@ if ( ! class_exists( 'Posterno' ) ) :
 		/**
 		 * Include required files for the administration side.
 		 *
+		 * @access private
+		 * @since 0.1.0
 		 * @return void
 		 */
 		private function setup_admin() {
 
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 
 		}
 
