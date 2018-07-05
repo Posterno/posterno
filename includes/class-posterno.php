@@ -159,6 +159,11 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_options();
 			$this->setup_functions();
 
+			// Admin.
+			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+				$this->setup_admin();
+			}
+
 		}
 
 		/**
@@ -182,6 +187,17 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			require_once PNO_PLUGIN_DIR . 'includes/scripts.php';
 			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
+
+		}
+
+		/**
+		 * Include required files for the administration side.
+		 *
+		 * @return void
+		 */
+		private function setup_admin() {
+
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
 
 		}
 
