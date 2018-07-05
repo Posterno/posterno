@@ -172,6 +172,9 @@ function pno_get_settings_page_vars() {
 			'read_docs'      => esc_html__( 'Documentation' ),
 			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
 			'addons'         => esc_html__( 'View Addons' ),
+			'multiselect'    => [
+				'selected' => esc_html__( 'selected' )
+			]
 		],
 	];
 

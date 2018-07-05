@@ -82,7 +82,19 @@
 												</span>
 											</div>
 
-											<multiselect v-else-if="setting.type == 'multiselect'" v-model="settings[setting_id]" :options="setting.options" track-by="value" label="label" :placeholder="setting.placeholder" :multiple="setting.multiple"></multiselect>
+											<multiselect
+												v-else-if="setting.type == 'multiselect'"
+												v-model="settings[setting_id]"
+												:options="setting.options"
+												track-by="value"
+												label="label"
+												:placeholder="setting.placeholder"
+												:multiple="setting.multiple"
+												selectLabel=""
+												deselectLabel=""
+												:selectedLabel="labels.multiselect.selected"
+												>
+											</multiselect>
 
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
@@ -276,7 +288,8 @@ body.listings_page_posterno-settings {
 		border-radius: 3px;
 	}
 
-	.multiselect__tag {
+	.multiselect__tag,
+	.multiselect__option--selected.multiselect__option--highlight {
 		background: #0073aa;
 		color: #fff;
 		border-radius: 0;
@@ -284,6 +297,11 @@ body.listings_page_posterno-settings {
 
 	.multiselect__tag-icon::after {
 		color: #fff;
+	}
+
+	.multiselect__option--highlight {
+		background: #ddd;
+		color: #222;
 	}
 
 	.multiselect__tag-icon {
