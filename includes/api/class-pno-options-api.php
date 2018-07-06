@@ -137,7 +137,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 		}
 
 		if ( ! empty( $this->errors->get_error_codes() ) ) {
-			return new WP_REST_Response( $this->errors, 422 );
+			return new WP_REST_Response( $this->errors->get_error_message(), 422 );
 		}
 
 		update_option( 'pno_settings', $data_to_save );

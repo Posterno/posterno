@@ -31,7 +31,7 @@
 				</wp-notice>
 
 				<wp-notice type="error" v-if="error && error_message">
-					<strong>{{error_message}}</strong>
+					<span class="dashicons dashicons-warning"></span> <strong>{{error_message}}</strong>
 				</wp-notice>
 
 				<!-- navigation tabs -->
@@ -236,7 +236,7 @@ export default {
 			this.loading = true
 
 			axios.post(
-				pno_settings_page.rest + 'posterno/v1/options/savef',
+				pno_settings_page.rest + 'posterno/v1/options/save',
 				qs.stringify( {
 					settings: this.settings
 				} ),
@@ -258,9 +258,10 @@ export default {
 
 				if ( e.response.data.message ) {
 					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
 				}
 
-				console.log( e.response )
 			} );
 
 		}
@@ -415,8 +416,13 @@ body.listings_page_posterno-settings {
 		border-radius: 0;
 		margin-left: 5px;
 		&:hover {
-			background: red;
+			background: #dc3232;
 		}
+	}
+
+	.dashicons-warning {
+		margin-right: 10px;
+		color: #dc3232;
 	}
 
 }

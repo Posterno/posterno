@@ -403,3 +403,12 @@ function pno_prepare_registered_settings_vue_model() {
 	return apply_filters( 'pno_registered_settings', $model );
 
 }
+
+function test( $input, $errors, $setting ) {
+
+	$errors->add( 'nn', 'hehehehe' );
+
+	return $input;
+
+}
+add_filter( 'pn_settings_sanitize_setting_id', 'test', 10, 3 );
