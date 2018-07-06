@@ -30,6 +30,10 @@
 					<strong>{{labels.settings_saved}}</strong>
 				</wp-notice>
 
+				<wp-notice type="error" v-if="error && error_message">
+					<strong>{{error_message}}</strong>
+				</wp-notice>
+
 				<!-- navigation tabs -->
 				<wp-tabs>
 					<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
@@ -205,6 +209,7 @@ export default {
 			success:             false,
 			error:               false,
 			loading:             false,
+			error_message:       false,
 
 			// Database stuff.
 			settings_tabs:       pno_settings_page.settings_tabs,
@@ -231,7 +236,7 @@ export default {
 			this.loading = true
 
 			axios.post(
-				pno_settings_page.rest + 'posterno/v1/options/save',
+				pno_settings_page.rest + 'posterno/v1/options/savef',
 				qs.stringify( {
 					settings: this.settings
 				} ),
@@ -242,10 +247,20 @@ export default {
 				}
 			)
 			.then( response => {
-				console.log( response );
+				this.loading = false
+				this.success = true
+				this.error = false
 			})
 			.catch( e => {
-				console.log( e.response );
+				this.loading = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				}
+
+				console.log( e.response )
 			} );
 
 		}
