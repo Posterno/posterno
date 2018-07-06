@@ -166,6 +166,7 @@ function pno_get_settings_page_vars() {
 		'settings_tabs'       => pno_get_registered_settings_tabs(),
 		'settings_sections'   => pno_get_registered_settings_tabs_sections(),
 		'registered_settings' => pno_get_registered_settings(),
+		'vuejs_model'         => pno_prepare_registered_settings_vue_model(),
 		'labels'              => [
 			'page_title'     => esc_html__( 'Posterno Settings' ),
 			'save'           => esc_html__( 'Save changes' ),
@@ -173,8 +174,8 @@ function pno_get_settings_page_vars() {
 			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
 			'addons'         => esc_html__( 'View Addons' ),
 			'multiselect'    => [
-				'selected' => esc_html__( 'selected' )
-			]
+				'selected' => esc_html__( 'selected' ),
+			],
 		],
 	];
 
@@ -297,11 +298,74 @@ function pno_get_registered_settings() {
 	];
 
 	/**
-	 * Allows developers to register or deregister settings for the admin pnael.
+	 * Allows developers to register or deregister settings for the admin panel.
 	 *
 	 * @since 0.1.0
 	 * @param array $settings
 	 */
 	return apply_filters( 'pno_registered_settings', $settings );
+
+}
+
+/**
+ * Creates an object that is passed to vuejs, it prepares all
+ * registered settings to be read and modified by vuejs.
+ * This function also loads the stored settings.
+ *
+ * @return array
+ */
+function pno_prepare_registered_settings_vue_model() {
+
+	$model = [];
+
+	$registered_settings = pno_get_registered_settings();
+
+	if ( is_array( $registered_settings ) && ! empty( $registered_settings ) ) {
+		foreach ( $registered_settings as $settings_section ) {
+			if ( is_array( $settings_section ) && ! empty( $settings_section ) ) {
+				foreach ( $settings_section as $option_id => $setting ) {
+
+					$value = ! empty( pno_get_option( $option_id ) ) ? pno_get_option( $option_id ) : false;
+
+					switch ( $setting['type'] ) {
+						case 'text':
+						case 'textarea':
+						case 'select':
+						case 'radio':
+							$value = empty( $value ) ? '' : $value;
+							break;
+						case 'checkbox':
+							$value = ! empty( $value ) ? true : false;
+							break;
+						case 'multicheckbox':
+							$options = [];
+							if ( is_array( $value ) && ! empty( $value ) ) {
+								$options = $value;
+							}
+							$value = $options;
+							break;
+						case 'multiselect':
+							if ( ! is_array( $value ) || is_array( $value ) && empty( $value ) ) {
+								$value = [];
+							}
+							break;
+					}
+
+					$model[ $option_id ] = $value;
+
+				}
+			}
+		}
+	}
+
+	/**
+	 * Allows developers to modify the data settings model that is sent
+	 * to the settings panel for vuejs. The model is what the panel reads as currently
+	 * stored settings.
+	 *
+	 * @since 0.1.0
+	 * @param array $model
+	 */
+	return apply_filters( 'pno_registered_settings', $model );
 
 }

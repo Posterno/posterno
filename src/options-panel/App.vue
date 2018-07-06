@@ -150,7 +150,7 @@ export default {
 			settings_tabs:       pno_settings_page.settings_tabs,
 			settings_sections:   pno_settings_page.settings_sections,
 			registered_settings: pno_settings_page.registered_settings,
-			settings: {}
+			settings:            pno_settings_page.vuejs_model
 
 		}
 	},
