@@ -18,7 +18,7 @@
 					</wp-col>
 					<wp-col :span="8" class="save-area">
 						<wp-spinner v-if="loading"></wp-spinner>
-						<wp-button type="primary" :disabled="loading">{{labels.save}}</wp-button>
+						<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
 					</wp-col>
 				</wp-row>
 			</wp-header>
@@ -169,7 +169,7 @@
 				<!-- end navigation tabs -->
 
 				<div class="footer-save">
-					<wp-button type="primary" :disabled="loading">{{labels.save}}</wp-button>
+					<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
 					<wp-spinner v-if="loading"></wp-spinner>
 				</div>
 
@@ -185,6 +185,7 @@ import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import lodash_has from 'lodash.has'
+import axios from 'axios'
 
 export default {
 	name: "app",
@@ -218,6 +219,16 @@ export default {
 		 */
 		settings_tab_has_sections( tab_id ) {
 			return lodash_has( this.settings_sections, tab_id );
+		},
+		/**
+		 * Save the settings to the database.
+		 */
+		save() {
+
+			this.success = false
+			this.error   = false
+			this.loading = true
+
 		}
 	}
 };
