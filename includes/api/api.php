@@ -1,0 +1,27 @@
+<?php
+/**
+ * Hook into the WP's rest api and register custom controllers.
+ *
+ * @package     posterno
+ * @copyright   Copyright (c) 2018, Pressmodo, LLC
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       0.1.0
+ */
+
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Hook into the rest api and register our controllers.
+ *
+ * @return void
+ */
+function pno_register_rest_controllers() {
+
+	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-options-api.php';
+
+	$options = new PNO_Options_Api();
+	$options->register_routes();
+
+}
+add_action( 'rest_api_init', 'pno_register_rest_controllers' );

@@ -158,6 +158,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_files() {
 			$this->setup_options();
 			$this->setup_functions();
+			$this->setup_api();
 
 			// Admin.
 			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
@@ -203,6 +204,17 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 
+		}
+
+		/**
+		 * Include required files for the rest api layer.
+		 *
+		 * @access private
+		 * @since 0.1.0
+		 * @return void
+		 */
+		private function setup_api() {
+			require_once PNO_PLUGIN_DIR . 'includes/api/api.php';
 		}
 
 	}

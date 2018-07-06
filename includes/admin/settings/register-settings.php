@@ -177,6 +177,8 @@ function pno_get_settings_page_vars() {
 				'selected' => esc_html__( 'selected' ),
 			],
 		],
+		'nonce'               => wp_create_nonce( 'wp_rest' ),
+		'rest'                => esc_url_raw( rest_url() ),
 	];
 
 	return $vars;

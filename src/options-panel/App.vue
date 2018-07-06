@@ -186,6 +186,7 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import lodash_has from 'lodash.has'
 import axios from 'axios'
+import qs from 'qs'
 
 export default {
 	name: "app",
@@ -228,6 +229,24 @@ export default {
 			this.success = false
 			this.error   = false
 			this.loading = true
+
+			axios.post(
+				pno_settings_page.rest + 'posterno/v1/options/save',
+				qs.stringify( {
+					settings: this.settings
+				} ),
+				{
+					headers: {
+						'X-WP-Nonce': pno_settings_page.nonce
+					}
+				}
+			)
+			.then( response => {
+				console.log( response );
+			})
+			.catch( e => {
+				console.log( e.response );
+			} );
 
 		}
 	}
