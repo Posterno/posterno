@@ -39,7 +39,65 @@
 							<WPNavBarFilterItem v-for="( section, section_id ) in settings_sections[ id ]" :key="section_id" :label="section">
 
 								<div class="settings-form-wrapper in-section">
-									settings section
+
+									<!-- options generator -->
+										<table class="form-table">
+											<tbody>
+												<tr v-for="( setting, setting_id ) in registered_settings[ section_id ]" :key="setting_id">
+													<th scope="row">
+														<label :for="setting_id">{{setting.label}}</label>
+													</th>
+													<td>
+
+														<input v-if="setting.type == 'text'" :placeholder="setting.placeholder" type="text" class="regular-text" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+
+														<textarea v-else-if="setting.type == 'textarea'" :placeholder="setting.placeholder" cols="50" rows="5" :name="setting_id" :id="setting_id" v-model="settings[setting_id]"></textarea>
+
+														<select v-else-if="setting.type == 'select'" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+															<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
+														</select>
+
+														<div class="radio-wrapper" v-else-if="setting.type == 'radio'">
+															<p v-for="( option_label, option_id ) in setting.options" :key="option_id">
+																<label>
+																	<input :name="setting_id" :id="setting_id" :value="option_id" class="tog" type="radio" v-model="settings[setting_id]">
+																{{ option_label }}</label>
+															</p>
+														</div>
+
+														<span v-else-if="setting.type == 'checkbox'" class="checkbox-wrapper">
+															<input :name="setting_id" :id="setting_id" v-model="settings[setting_id]" type="checkbox">
+														</span>
+
+														<div class="multi-check-wrapper" v-else-if="setting.type == 'multicheckbox'">
+															<span class="checkbox-wrapper" v-for="( option_label, option_id ) in setting.options" :key="option_id">
+																<input :id="option_id" :value="option_id" v-model="settings[setting_id]" type="checkbox">
+																<label :for="option_id">{{option_label}}</label>
+															</span>
+														</div>
+
+														<multiselect
+															v-else-if="setting.type == 'multiselect'"
+															v-model="settings[setting_id]"
+															:options="setting.options"
+															track-by="value"
+															label="label"
+															:placeholder="setting.placeholder"
+															:multiple="setting.multiple"
+															selectLabel=""
+															deselectLabel=""
+															:selectedLabel="labels.multiselect.selected"
+															>
+														</multiselect>
+
+														<p class="description" v-if="setting.description">{{setting.description}}</p>
+
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<!-- end options generator -->
+
 								</div>
 
 							</WPNavBarFilterItem>
@@ -237,6 +295,10 @@ body.listings_page_posterno-settings {
 
 	.vue-wp-notice {
 		margin-bottom: 20px;
+	}
+
+	.vuewp-main {
+		overflow: initial;
 	}
 
 	.wp-filter-bar-wrapper {

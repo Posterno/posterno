@@ -213,7 +213,11 @@ function pno_get_registered_settings_tabs() {
  */
 function pno_get_registered_settings_tabs_sections() {
 
-	$sections = [];
+	$sections = [
+		'another' => [
+			'section1' => 'Sub section testing'
+		]
+	];
 
 	/**
 	 * Allows developers to register or deregister subsections for tabs in the
@@ -295,6 +299,34 @@ function pno_get_registered_settings() {
 				]
 			],
 		],
+		'section1' => [
+			'subsection_field_test' => [
+				'type'        => 'text',
+				'label'       => 'Subsection field test',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+			],
+			'setting_mffff' => [
+				'type'        => 'multiselect',
+				'label'       => 'Label goes here',
+				'description' => 'Description goes here',
+				'placeholder' => 'Placeholder',
+				'options' => [
+					[
+						'label' => 'Label goes here for testing',
+						'value' => 'value1'
+					],
+					[
+						'label' => 'Label goes here for testing ddd',
+						'value' => 'value2'
+					],
+					[
+						'label' => 'Label goes here for testing 2',
+						'value' => 'value3'
+					]
+				]
+			],
+		]
 	];
 
 	/**
