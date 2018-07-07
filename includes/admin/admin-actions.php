@@ -46,4 +46,26 @@ function pno_shortcodes_add_mce_button() {
 }
 add_action( 'admin_head', 'pno_shortcodes_add_mce_button' );
 
+/**
+ * Adds js strings to the footer so the shortcodes editor is translatable.
+ *
+ * @return void
+ */
+function pno_localize_tinymce_editor() {
 
+	$js_vars = [
+		'title' => esc_html__( 'Posterno shortcodes' ),
+		'forms' => [
+			'title' => esc_html__( 'Forms' ),
+			'login' => esc_html__( 'Login form' )
+		]
+	];
+
+	?>
+	<script type="text/javascript">
+		var pnotinymce = <?php echo json_encode( $js_vars ); ?>
+	</script>
+	<?php
+
+}
+add_action( 'admin_footer', 'pno_localize_tinymce_editor' );

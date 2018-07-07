@@ -40,20 +40,20 @@
 
 	tinymce.PluginManager.add('pno_shortcodes_mce_button', function (editor, url) {
 		editor.addButton('pno_shortcodes_mce_button', {
-			title: 'Posterno Shortcodes',
+			title: pnotinymce.title,
 			type: 'menubutton',
 			icon: 'icon pno-shortcodes-icon',
 			menu: [
 
 				/** Forms **/
 				{
-					text: 'Forms',
+					text: pnotinymce.forms.title,
 					menu: [
 
 						{
-							text: 'Login form',
+							text: pnotinymce.forms.login,
 							onclick: function () {
-								editor.insertContent('[wpum_account]');
+								editor.insertContent('[pno_login_form]');
 							}
 						},
 
