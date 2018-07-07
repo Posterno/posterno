@@ -200,6 +200,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_admin() {
 
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-footer.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-functions.php';
