@@ -31,6 +31,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private $file = '';
 
 		/**
+		 * PNO Forms object.
+		 *
+		 * @var object
+		 */
+		public $forms;
+
+		/**
 		 * Main Posterno Instance.
 		 *
 		 * Insures that only one instance of Posterno exists in memory at any one
@@ -59,6 +66,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Bootstrap
 			self::$instance->setup_constants();
 			self::$instance->setup_files();
+
+			// Api's
+			self::$instance->forms = PNO_Forms::instance();
 
 			// Return the instance
 			return self::$instance;
@@ -157,6 +167,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_files() {
 			$this->setup_options();
+			$this->setup_objects();
 			$this->setup_functions();
 			$this->setup_api();
 
@@ -217,6 +228,18 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_api() {
 			require_once PNO_PLUGIN_DIR . 'includes/api/api.php';
+		}
+
+		/**
+		 * Setup objects.
+		 *
+		 * @return void
+		 */
+		private function setup_objects() {
+
+			// Forms.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
+
 		}
 
 	}
