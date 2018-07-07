@@ -245,35 +245,35 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Login page' ),
 				'description' => esc_html__( 'Select the page where you have added the login form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => []
+				'options'     => pno_get_pages()
 			],
 			'password_page' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Password recovery page' ),
 				'description' => esc_html__( 'Select the page where you have added the password recovery form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => []
+				'options'     => pno_get_pages()
 			],
 			'registration_page' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Registration page' ),
 				'description' => esc_html__( 'Select the page where you have added the registration form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => []
+				'options'     => pno_get_pages()
 			],
 			'dashboard_page' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Dashboard page' ),
 				'description' => esc_html__( 'Select the page where you have added the dashboard shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => []
+				'options'     => pno_get_pages()
 			],
 			'profile_page' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Public profile page' ),
 				'description' => esc_html__( 'Select the page where you have added the profile shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => []
+				'options'     => pno_get_pages()
 			],
 		],
 	];
