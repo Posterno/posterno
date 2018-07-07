@@ -194,7 +194,6 @@ function pno_get_registered_settings_tabs() {
 
 	$tabs = [
 		'general' => esc_html__( 'General' ),
-		'another' => 'Testing tab2'
 	];
 
 	/**
@@ -216,8 +215,8 @@ function pno_get_registered_settings_tabs() {
 function pno_get_registered_settings_tabs_sections() {
 
 	$sections = [
-		'another' => [
-			'section1' => 'Sub section testing'
+		'general' => [
+			'pages' => esc_html__( 'Pages setup' )
 		]
 	];
 
@@ -240,95 +239,43 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		'general' => [
-			'setting_id' => [
-				'type'        => 'text',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-			],
-			'setting_2' => [
-				'type'        => 'textarea',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-			],
-			'setting_4' => [
-				'type'        => 'radio',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-				'options' => [
-					'val' => 'label',
-					'val2' => 'label2',
-				]
-			],
-			'setting_check' => [
-				'type'        => 'checkbox',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-			],
-			'setting_m4' => [
-				'type'        => 'multicheckbox',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-				'options' => [
-					'val' => 'label',
-					'val2' => 'label2',
-				]
-			],
-
-			'setting_m5s' => [
+		'pages' => [
+			'login_page' => [
 				'type'        => 'multiselect',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-				'options' => [
-					[
-						'label' => 'Label goes here for testing',
-						'value' => 'value1'
-					],
-					[
-						'label' => 'Label goes here for testing ddd',
-						'value' => 'value2'
-					],
-					[
-						'label' => 'Label goes here for testing 2',
-						'value' => 'value3'
-					]
-				]
+				'label'       => esc_html__( 'Login page' ),
+				'description' => esc_html__( 'Select the page where you have added the login form shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => []
+			],
+			'password_page' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Password recovery page' ),
+				'description' => esc_html__( 'Select the page where you have added the password recovery form shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => []
+			],
+			'registration_page' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Registration page' ),
+				'description' => esc_html__( 'Select the page where you have added the registration form shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => []
+			],
+			'dashboard_page' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Dashboard page' ),
+				'description' => esc_html__( 'Select the page where you have added the dashboard shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => []
+			],
+			'profile_page' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Public profile page' ),
+				'description' => esc_html__( 'Select the page where you have added the profile shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => []
 			],
 		],
-		'section1' => [
-			'subsection_field_test' => [
-				'type'        => 'text',
-				'label'       => 'Subsection field test',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-			],
-			'setting_mffff' => [
-				'type'        => 'multiselect',
-				'label'       => 'Label goes here',
-				'description' => 'Description goes here',
-				'placeholder' => 'Placeholder',
-				'options' => [
-					[
-						'label' => 'Label goes here for testing',
-						'value' => 'value1'
-					],
-					[
-						'label' => 'Label goes here for testing ddd',
-						'value' => 'value2'
-					],
-					[
-						'label' => 'Label goes here for testing 2',
-						'value' => 'value3'
-					]
-				]
-			],
-		]
 	];
 
 	/**
