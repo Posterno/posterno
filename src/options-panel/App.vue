@@ -392,7 +392,8 @@ body.listings_page_posterno-settings {
 		cursor: pointer;
 	}
 
-	.multiselect--above.multiselect--active .multiselect__input {
+	.multiselect--above.multiselect--active .multiselect__input,
+	.multiselect--active:not(.multiselect--above) .multiselect__input {
 		border-radius: 3px;
 	}
 
