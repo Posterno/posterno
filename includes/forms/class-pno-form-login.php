@@ -193,4 +193,37 @@ class PNO_Form_Login extends PNO_Form {
 		}
 	}
 
+	/**
+	 * Log the user in after his credentials have been verified.
+	 *
+	 * @return void
+	 */
+	public function login_handler() {
+
+		try {
+			$values   = $this->get_posted_fields();
+			$username = $values['login']['username'];
+			$password = $values['login']['password'];
+			$creds    = [
+				'user_login'    => $username,
+				'user_password' => $password,
+				'remember'      => $values['login']['remember'] ? true : false,
+			];
+
+			$user = wp_signon( $creds );
+
+			if ( is_wp_error( $user ) ) {
+				throw new Exception( $user->get_error_message() );
+			} else {
+				wp_safe_redirect( pno_get_login_redirect() );
+				exit;
+			}
+
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+			return;
+		}
+
+	}
+
 }

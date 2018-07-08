@@ -93,3 +93,33 @@ function pno_form_field_class( $field_key, $field, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element
 	echo 'class="' . join( ' ', pno_get_form_field_class( $field_key, $field, $class ) ) . '"';
 }
+
+/**
+ * Retrieve the url where to redirect the user after login.
+ *
+ * @return string
+ */
+function pno_get_login_redirect() {
+
+	$url = home_url();
+
+	$custom_page = pno_get_option( 'login_redirect' );
+
+	if ( is_array( $custom_page ) && isset( $custom_page['value'] ) ) {
+		$url = get_permalink( $custom_page['value'] );
+	}
+
+	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
+		$url = esc_url_raw( $_GET['redirect_to'] );
+	}
+
+	/**
+	 * Filter the login redirect url. This is the url where users
+	 * are redirect after they log into the website through the
+	 * posterno's login form.
+	 *
+	 * @param string $url the url.
+	 */
+	return apply_filters( 'pno_login_redirect', $url );
+
+}

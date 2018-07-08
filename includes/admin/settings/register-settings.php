@@ -194,7 +194,7 @@ function pno_get_registered_settings_tabs() {
 
 	$tabs = [
 		'general'  => esc_html__( 'General' ),
-		'accounts' => esc_html__( 'Login and registration' )
+		'accounts' => esc_html__( 'Accounts' )
 	];
 
 	/**
@@ -221,7 +221,9 @@ function pno_get_registered_settings_tabs_sections() {
 			'theme' => esc_html__( 'Theme' ),
 		],
 		'accounts' => [
-			'login' => esc_html__( 'Login' ),
+			'login'        => esc_html__( 'Login' ),
+			'registration' => esc_html__( 'Registration' ),
+			'redirects'    => esc_html__( 'Redirects' ),
 		]
 	];
 
@@ -299,6 +301,22 @@ function pno_get_registered_settings() {
 				'label'   => __( 'Allow users to login with:' ),
 				'options' => pno_get_login_methods(),
 			],
+		],
+		'redirects' => [
+			'login_redirect' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After login' ),
+				'description' => esc_html__( 'Select the page where you want to redirect users after they login.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages()
+			],
+			'logout_redirect' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After logout' ),
+				'description' => esc_html__( 'Select the page where you want to redirect users after they logout. If empty will return to your homepage.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages()
+			]
 		]
 	];
 
