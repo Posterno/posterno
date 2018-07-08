@@ -25,4 +25,4 @@ foreach ( $data->options as $option_key => $value ) : ?>
 
 <?php endforeach; ?>
 
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

@@ -19,4 +19,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <input type="password" class="input-text"<?php if ( isset( $data->autocomplete ) && false === $data->autocomplete ) { echo ' autocomplete="off"'; } ?> name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" value="<?php echo isset( $data->value ) ? esc_attr( $data->value ) : ''; ?>" maxlength="<?php echo ! empty( $data->maxlength ) ? $data->maxlength : ''; ?>" <?php if ( ! empty( $data->required ) ) echo 'required'; ?> />
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

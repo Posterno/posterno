@@ -23,4 +23,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<option value="<?php echo esc_attr( $key ); ?>" <?php if ( isset( $data->value ) || isset( $data->default ) ) selected( isset( $data->value ) ? $data->value : $data->default, $key ); ?>><?php echo esc_html( $value ); ?></option>
 	<?php endforeach; ?>
 </select>
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
-			<fieldset class="fieldset-<?php echo esc_attr( $key ); ?>">
+			<div class="form-group fieldset-<?php echo esc_attr( $key ); ?>">
 
 				<?php if ( $field['type'] == 'checkbox' ) : ?>
 
@@ -63,12 +63,13 @@ defined( 'ABSPATH' ) || exit;
 
 				<?php endif; ?>
 
-			</fieldset>
+			</div>
 		<?php endforeach; ?>
 
 		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-		<input type="submit" name="submit_<?php echo $data->form; ?>" class="button" value="<?php echo esc_html( $data->submit_label ); ?>" />
+		<input type="hidden" name="submit_<?php echo $data->form; ?>" value="<?php echo $data->form; ?>">
+		<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
 
 	</form>
 

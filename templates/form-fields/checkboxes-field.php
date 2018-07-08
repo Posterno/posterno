@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php if ( ! empty( $data->value ) && is_array( $data->value ) ) checked( in_array( $opt_key, $data->value ), true ); ?>
 		value="<?php echo esc_attr( $opt_key ); ?>"
 	/>
-	<small class="description"><?php echo esc_html( $value ); ?></small></label>
+	<small class="form-text text-muted"><?php echo esc_html( $value ); ?></small></label>
 
 <?php endforeach; ?>
 
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

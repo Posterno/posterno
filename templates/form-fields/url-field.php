@@ -29,4 +29,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	maxlength="<?php echo ! empty( $data->maxlength ) ? $data->maxlength : ''; ?>"
 	<?php if ( ! empty( $data->required ) ) echo 'required'; ?>
 />
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

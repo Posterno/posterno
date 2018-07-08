@@ -29,4 +29,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php if ( ! empty( $data->required ) ) echo 'required'; ?>
 	<?php if ( ! empty( $data->readonly ) ) echo 'readonly'; ?>
 />
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

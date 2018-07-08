@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <input
 	type="text"
-	class="input-text"
+	class="input-text form-control"
 	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
 	<?php if ( isset( $data->autocomplete ) && false === $data->autocomplete ) { echo ' autocomplete="off"'; } ?>
 	id="<?php echo esc_attr( $data->key ); ?>"
@@ -30,4 +30,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php if ( ! empty( $data->required ) ) echo 'required'; ?>
 	<?php if ( ! empty( $data->readonly ) ) echo 'readonly'; ?>
 />
-<?php if ( ! empty( $data->description ) ) : ?><small class="description"><?php echo $data->description; ?></small><?php endif; ?>
+<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>
