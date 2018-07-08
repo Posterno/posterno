@@ -68,5 +68,9 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-bootstrap-script' );
 	}
 
+	// Register pno's own stylesheet.
+	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], PNO_VERSION );
+	wp_enqueue_style( 'pno' );
+
 }
 add_action( 'wp_enqueue_scripts', 'pno_load_frontend_scripts' );

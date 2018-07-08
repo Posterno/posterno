@@ -23,9 +23,11 @@ defined( 'ABSPATH' ) || exit;
 	<?php
 
 	/**
-	 * Fires before the login form.
+	 * Action that fires before the markup of the form actually starts.
+	 *
+	 * @param string $form the name of the form.
 	 */
-	do_action( 'pno_before_login_form' );
+	do_action( "pno_before_{$data->form}_form", $data->form );
 
 	?>
 
@@ -83,9 +85,11 @@ defined( 'ABSPATH' ) || exit;
 	<?php
 
 	/**
-	 * Fires after the login form.
+	 * Fires after the markup of the for is finished.
+	 *
+	 * @param string $form the name of the form.
 	 */
-	do_action( 'pno_after_login_form' );
+	do_action( "pno_after_{$data->form}_form", $data->form );
 
 	?>
 
