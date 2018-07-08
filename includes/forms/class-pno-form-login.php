@@ -47,18 +47,18 @@ class PNO_Form_Login extends PNO_Form {
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
-			'submit'  => array(
+			'submit' => array(
 				'name'     => __( 'Login Details' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
-			'login' => array(
+			'login'  => array(
 				'name'     => false,
 				'view'     => false,
 				'handler'  => array( $this, 'login_handler' ),
 				'priority' => 20,
-			)
+			),
 		);
 
 		/**
@@ -88,12 +88,25 @@ class PNO_Form_Login extends PNO_Form {
 
 		$fields = array(
 			'login' => array(
-				'test' => array(
-					'label'       => __( 'Test' ),
+				'username' => array(
+					'label'       => pno_get_login_label(),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
+				),
+				'password' => array(
+					'label'       => __( 'Password' ),
+					'type'        => 'password',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 2,
+				),
+				'remember' => array(
+					'label'    => __( 'Remember me' ),
+					'type'     => 'checkbox',
+					'required' => false,
+					'priority' => 3,
 				),
 			),
 		);

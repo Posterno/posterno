@@ -193,7 +193,8 @@ function pno_get_settings_page_vars() {
 function pno_get_registered_settings_tabs() {
 
 	$tabs = [
-		'general' => esc_html__( 'General' ),
+		'general'  => esc_html__( 'General' ),
+		'accounts' => esc_html__( 'Login and registration' )
 	];
 
 	/**
@@ -219,6 +220,9 @@ function pno_get_registered_settings_tabs_sections() {
 			'pages' => esc_html__( 'Pages setup' ),
 			'theme' => esc_html__( 'Theme' ),
 		],
+		'accounts' => [
+			'login' => esc_html__( 'Login' ),
+		]
 	];
 
 	/**
@@ -287,6 +291,13 @@ function pno_get_registered_settings() {
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Include Bootstrap scripts' ),
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
+			],
+		],
+		'login' => [
+			'login_method' => [
+				'type'    => 'select',
+				'label'   => __( 'Allow users to login with:' ),
+				'options' => pno_get_login_methods(),
 			],
 		]
 	];

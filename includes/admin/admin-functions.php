@@ -68,3 +68,18 @@ function pno_shortcodes_register_mce_button( $buttons ) {
 	return $buttons;
 
 }
+
+/**
+ * Retrieve the options for the available login methods.
+ *
+ * @return array
+ */
+function pno_get_login_methods() {
+	return apply_filters(
+		'pno_get_login_methods', array(
+			'username'       => __( 'Username only' ),
+			'email'          => __( 'Email only' ),
+			'username_email' => __( 'Username or Email' ),
+		)
+	);
+}

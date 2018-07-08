@@ -21,3 +21,24 @@ function pno_get_form_id( $form ) {
 	$id = 'pno-form-' . $form;
 	return esc_attr( $id );
 }
+
+/**
+ * Retrieve the correct label for the login form.
+ *
+ * @return string
+ */
+function pno_get_login_label() {
+
+	$label = esc_html__( 'Username' );
+
+	$login_method = pno_get_option( 'login_method' );
+
+	if ( $login_method == 'email' ) {
+		$label = esc_html__( 'Email' );
+	} elseif ( $login_method == 'username_email' ) {
+		$label = esc_html__( 'Username or email' );
+	}
+
+	return $label;
+
+}
