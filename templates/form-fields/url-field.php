@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <input
 	type="url"
-	class="input-text"
+	class="input-text form-control"
 	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
 	<?php if ( isset( $data->autocomplete ) && false === $data->autocomplete ) { echo ' autocomplete="off"'; } ?>
 	id="<?php echo esc_attr( $data->key ); ?>"

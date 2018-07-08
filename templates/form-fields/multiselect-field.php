@@ -17,7 +17,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
-<select multiple="multiple" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>[]" id="<?php echo esc_attr( $data->key ); ?>" class="pno-multiselect" <?php if ( ! empty( $data->required ) ) echo 'required'; ?>>
+<select class="form-control" multiple="multiple" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>[]" id="<?php echo esc_attr( $data->key ); ?>" class="pno-multiselect" <?php if ( ! empty( $data->required ) ) echo 'required'; ?>>
 	<?php foreach ( $data->options as $key => $value ) : ?>
 		<option value="<?php echo esc_attr( $key ); ?>" <?php if ( ! empty( $data->value ) && is_array( $data->value ) ) selected( in_array( $key, $data->value ), true ); ?>><?php echo esc_html( $value ); ?></option>
 	<?php endforeach; ?>

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <input
 	type="text"
-	class="input-datepicker pno-datepicker"
+	class="input-datepicker pno-datepicker form-control"
 	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
 	<?php if ( isset( $data->autocomplete ) && false === $data->autocomplete ) { echo ' autocomplete="off"'; } ?>
 	id="<?php echo esc_attr( $data->key ); ?>"

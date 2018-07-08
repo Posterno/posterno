@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <textarea
 	cols="20"
 	rows="3"
-	class="input-text"
+	class="input-text form-control"
 	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
 	id="<?php echo esc_attr( $data->key ); ?>"
 	placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
