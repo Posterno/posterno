@@ -31,6 +31,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private $file = '';
 
 		/**
+		 * Templates load object
+		 *
+		 * @var object
+		 */
+		public $templates;
+
+		/**
 		 * PNO Forms object.
 		 *
 		 * @var object
@@ -68,7 +75,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->setup_files();
 
 			// Api's
-			self::$instance->forms = PNO_Forms::instance();
+			self::$instance->templates = new PNO_Templates();
+			self::$instance->forms     = PNO_Forms::instance();
 
 			// Return the instance
 			return self::$instance;
@@ -246,6 +254,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_objects() {
+
+			// Templates.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
 			// Forms.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
