@@ -166,6 +166,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_files() {
+			$this->autoload();
 			$this->setup_options();
 			$this->setup_objects();
 			$this->setup_functions();
@@ -176,6 +177,15 @@ if ( ! class_exists( 'Posterno' ) ) :
 				$this->setup_admin();
 			}
 
+		}
+
+		/**
+		 * Autoload composer's required libraries.
+		 *
+		 * @return void
+		 */
+		private function autoload() {
+			require PNO_PLUGIN_DIR . '/vendor/autoload.php';
 		}
 
 		/**
