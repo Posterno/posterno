@@ -118,10 +118,11 @@ class PNO_Form_Login extends PNO_Form {
 		$this->init_fields();
 
 		$data = [
-			'form'   => $this->form_name,
-			'action' => $this->get_action(),
-			'fields' => $this->get_fields( 'login' ),
-			'step'   => $this->get_step(),
+			'form'         => $this->form_name,
+			'action'       => $this->get_action(),
+			'fields'       => $this->get_fields( 'login' ),
+			'step'         => $this->get_step(),
+			'submit_label' => esc_html__( 'Login' ),
 		];
 
 		posterno()->templates

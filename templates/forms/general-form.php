@@ -68,7 +68,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-		<input type="submit" name="submit_<?php echo $data->form; ?>" class="button" value="<?php esc_html( $data->submit_label ); ?>" />
+		<input type="submit" name="submit_<?php echo $data->form; ?>" class="button" value="<?php echo esc_html( $data->submit_label ); ?>" />
 
 	</form>
 
