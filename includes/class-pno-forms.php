@@ -59,7 +59,7 @@ class PNO_Forms {
 	 */
 	private function load_form_class( $form_name ) {
 		if ( ! class_exists( 'PNO_Form' ) ) {
-			include PNO_PLUGIN_DIR . 'abstracts/abstract-pno-form.php';
+			include PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form.php';
 		}
 
 		// Now try to load the form_name.
