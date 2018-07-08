@@ -218,6 +218,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/scripts.php';
 			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
+			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 
 		}

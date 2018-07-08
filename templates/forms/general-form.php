@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="pno-template pno-form">
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-submit-login-form" enctype="multipart/form-data">
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 			<fieldset class="fieldset-<?php echo esc_attr( $key ); ?>">
@@ -68,8 +68,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-
-		<input type="submit" name="submit_login" class="button" value="<?php esc_html_e( 'Login', 'wp-user-manager' ); ?>" />
+		<input type="submit" name="submit_<?php echo $data->form; ?>" class="button" value="<?php esc_html( $data->submit_label ); ?>" />
 
 	</form>
 
