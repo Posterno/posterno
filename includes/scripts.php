@@ -42,3 +42,31 @@ function pno_load_admin_scripts() {
 
 }
 add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
+
+/**
+ * Load Posterno's frontend styles and scripts.
+ *
+ * @return void
+ */
+function pno_load_frontend_scripts() {
+
+	// Register the scripts
+	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], PNO_VERSION );
+	wp_register_script( 'pno-bootstrap-script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', [ 'jquery' ], PNO_VERSION, true );
+	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], PNO_VERSION, true );
+
+	wp_enqueue_script( 'jquery' );
+
+	// Load the required style only if enabled.
+	if ( pno_get_option( 'bootstrap_style' ) ) {
+		wp_enqueue_style( 'pno-bootstrap' );
+	}
+
+	// Load the required scripts only if enabled.
+	if ( pno_get_option( 'bootstrap_script' ) ) {
+		wp_enqueue_script( 'pno-bootstrap-script-popper' );
+		wp_enqueue_script( 'pno-bootstrap-script' );
+	}
+
+}
+add_action( 'wp_enqueue_scripts', 'pno_load_frontend_scripts' );

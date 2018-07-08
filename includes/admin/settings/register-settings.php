@@ -216,8 +216,9 @@ function pno_get_registered_settings_tabs_sections() {
 
 	$sections = [
 		'general' => [
-			'pages' => esc_html__( 'Pages setup' )
-		]
+			'pages' => esc_html__( 'Pages setup' ),
+			'theme' => esc_html__( 'Theme' ),
+		],
 	];
 
 	/**
@@ -276,6 +277,18 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages()
 			],
 		],
+		'theme' => [
+			'bootstrap_style' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Include Bootstrap css' ),
+				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
+			],
+			'bootstrap_script' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Include Bootstrap scripts' ),
+				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
+			],
+		]
 	];
 
 	/**
