@@ -135,7 +135,7 @@ abstract class PNO_Form {
 	 */
 	public function show_errors() {
 		foreach ( $this->errors as $error ) {
-			echo '<div class="pno-error">' . wp_kses_post( $error ) . '</div>';
+			echo '<div class="alert alert-danger" role="alert">' . wp_kses_post( $error ) . '</div>';
 		}
 	}
 

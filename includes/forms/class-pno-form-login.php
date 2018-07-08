@@ -144,6 +144,12 @@ class PNO_Form_Login extends PNO_Form {
 
 	}
 
+	/**
+	 * Handles verification of the submitted login details but
+	 * does not actually log the user in.
+	 *
+	 * @return void
+	 */
 	public function submit_handler() {
 		try {
 			// Init fields.
@@ -161,6 +167,21 @@ class PNO_Form_Login extends PNO_Form {
 
 			if ( is_wp_error( $validation_status ) ) {
 				throw new Exception( $validation_status->get_error_message() );
+			}
+
+			$username = $values['login']['username'];
+			$password = $values['login']['password'];
+
+			$authenticate = wp_authenticate( $username, $password );
+
+			if ( is_wp_error( $authenticate ) ) {
+
+				throw new Exception( $authenticate->get_error_message() );
+
+			} elseif ( $authenticate instanceof WP_User ) {
+
+				$this->user_id = $authenticate->data->ID;
+
 			}
 
 			// Successful, show next step.
