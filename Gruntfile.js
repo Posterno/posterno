@@ -27,9 +27,9 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
-						cwd: 'templates',
+						cwd: 'assets/css',
 						src: ['pno.css'],
-						dest: 'templates',
+						dest: 'assets/css',
 						ext: '.min.css'
 					}
 				],

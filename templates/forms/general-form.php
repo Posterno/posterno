@@ -20,23 +20,30 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="pno-template pno-form">
 
+	<?php
+
+	/**
+	 * Fires before the login form.
+	 */
+	do_action( 'pno_before_login_form' );
+
+	?>
+
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
-			<div class="form-group fieldset-<?php echo esc_attr( $key ); ?>">
+			<div <?php pno_form_field_class( $key, $field ); ?>>
 
 				<?php if ( $field['type'] == 'checkbox' ) : ?>
 
-					<label for="<?php echo esc_attr( $key ); ?>">
-						<span class="field <?php echo $field['required'] ? 'required-field' : ''; ?>">
-							<?php
-								// Add the key to field.
-								$field['key'] = $key;
-								posterno()->templates
-									->set_template_data( $field )
-									->get_template_part( 'form-fields/' . $field['type'], 'field' );
-							?>
-						</span>
+					<?php
+						// Add the key to field.
+						$field['key'] = $key;
+						posterno()->templates
+							->set_template_data( $field )
+							->get_template_part( 'form-fields/' . $field['type'], 'field' );
+					?>
+					<label for="<?php echo esc_attr( $key ); ?>" class="form-check-label">
 						<?php echo esc_html( $field['label'] ); ?>
 						<?php if ( isset( $field['required'] ) && $field['required'] ) : ?>
 							<span class="pno-required">*</span>
@@ -72,5 +79,14 @@ defined( 'ABSPATH' ) || exit;
 		<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
 
 	</form>
+
+	<?php
+
+	/**
+	 * Fires after the login form.
+	 */
+	do_action( 'pno_after_login_form' );
+
+	?>
 
 </div>

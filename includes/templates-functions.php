@@ -42,3 +42,54 @@ function pno_get_login_label() {
 	return $label;
 
 }
+
+/**
+ * Retrieve the classes for a given form field as an array.
+ *
+ * @param array $field
+ * @param string $class
+ * @return array
+ */
+function pno_get_form_field_class( $field_key, $field, $class = '' ) {
+
+	$classes = [ 'pno-field' ];
+
+	if ( $field_key ) {
+		$classes[] = 'pno-field-' . $field_key;
+	}
+
+	$classes[] = 'pno-field-' . $field['type'];
+
+	if ( $field['type'] == 'checkbox' ) {
+		$classes[] = 'form-check';
+	} else {
+		$classes[] = 'form-group';
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filters the list of CSS classes for the current form field.
+	 *
+	 * @param array $classes
+	 * @param array $field
+	 * @param string $class
+	 */
+	$classes = apply_filters( 'pno_form_field_classes', $classes, $field_key, $field, $class );
+
+	return array_unique( $classes );
+
+}
+
+/**
+ * Display the classes for a given form field.
+ *
+ * @param string $field_key
+ * @param array $field
+ * @param string $class
+ * @return void
+ */
+function pno_form_field_class( $field_key, $field, $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', pno_get_form_field_class( $field_key, $field, $class ) ) . '"';
+}
