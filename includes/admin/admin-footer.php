@@ -27,7 +27,7 @@ function pno_admin_rate_us( $footer_text ) {
 			'https://posterno.com',
 			'https://wordpress.org/support/plugin/posterno/reviews/?rate=5#new-post'
 		);
-		return str_replace( '</span>', '', $footer_text ) . ' | ' . $rate_text . '</span>';
+		return str_replace( '</span>', '', $footer_text ) . ' | ' . $rate_text . '</span> <span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span></span>';
 	} else {
 		return $footer_text;
 	}
