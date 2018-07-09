@@ -26,7 +26,7 @@ function pno_restrict_wp_login() {
 	// Check if we're on the login page, and ensure the action is not 'logout'
 	if ( $pagenow == 'wp-login.php' && ! defined( 'PNO_UNLOCK_WP_LOGIN' ) && ( ! $action || ( $action && ! in_array( $action, array( 'logout', 'lostpassword', 'rp', 'resetpass' ) ) ) ) ) {
 		$login_page = pno_get_login_page_id();
-		if ( $login_page ) {
+		if ( $login_page && pno_get_option( 'lock_wp_login' ) ) {
 			$page = get_permalink( $login_page );
 			wp_safe_redirect( $page );
 			exit();
