@@ -59,8 +59,8 @@ class PNO_Form_Registration extends PNO_Form {
 			),
 			'confirmation' => array(
 				'name'     => false,
-				'view'     => false,
-				'handler'  => array( $this, 'confirmation_handler' ),
+				'view'     => pno_get_registration_redirect() ? false : array( $this, 'confirmation_message' ),
+				'handler'  => pno_get_registration_redirect() ? array( $this, 'confirmation_redirect' ) : false,
 				'priority' => 20,
 			),
 		);
@@ -237,6 +237,40 @@ class PNO_Form_Registration extends PNO_Form {
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage() );
 			return;
+		}
+
+	}
+
+	/**
+	 * Displays a confirmation message after successful registration.
+	 *
+	 * @return void
+	 */
+	public function confirmation_message() {
+
+		$success_message = apply_filters( 'wpum_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
+
+		$data = [
+			'message' => $success_message,
+			'type'    => 'success',
+		];
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'message' );
+
+	}
+
+	/**
+	 * Redirect the user to another page after successful registration.
+	 *
+	 * @return void
+	 */
+	public function confirmation_redirect() {
+
+		if ( pno_get_registration_redirect() ) {
+			wp_safe_redirect( pno_get_registration_redirect() );
+			exit;
 		}
 
 	}

@@ -349,6 +349,13 @@ function pno_get_registered_settings() {
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
 			],
+			'registration_redirect'  => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After registration' ),
+				'description' => esc_html__( 'Select the page where you want to redirect users after they register. If empty a message will be displayed instead.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+			],
 		],
 	];
 

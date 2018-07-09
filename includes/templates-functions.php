@@ -123,3 +123,33 @@ function pno_get_login_redirect() {
 	return apply_filters( 'pno_login_redirect', $url );
 
 }
+
+/**
+ * Retrieve the url where to redirect users after they register.
+ *
+ * @return void
+ */
+function pno_get_registration_redirect() {
+
+	$url = false;
+
+	$registration_redirect_page = pno_get_option( 'registration_redirect' );
+
+	if ( is_array( $registration_redirect_page ) && isset( $registration_redirect_page['value'] ) ) {
+		$url = get_permalink( $registration_redirect_page['value'] );
+	}
+
+	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
+		$url = esc_url_raw( $_GET['redirect_to'] );
+	}
+
+	/**
+	 * Filter the registration redirect url. This is the url where users
+	 * are redirect after they register into the website through the
+	 * posterno's registration form.
+	 *
+	 * @param string $url the url.
+	 */
+	return apply_filters( 'pno_registration_redirect', $url );
+
+}

@@ -152,8 +152,8 @@
 												label="label"
 												:placeholder="setting.placeholder"
 												:multiple="setting.multiple"
-												selectLabel=""
-												deselectLabel=""
+												selectLabel="selectLable"
+												deselectLabel="Deslect"
 												:selectedLabel="labels.multiselect.selected"
 												>
 											</multiselect>
