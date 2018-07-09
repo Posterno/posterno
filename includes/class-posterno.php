@@ -45,6 +45,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		public $forms;
 
 		/**
+		 * The emails sender object.
+		 *
+		 * @var object
+		 */
+		public $emails;
+
+		/**
 		 * Main Posterno Instance.
 		 *
 		 * Insures that only one instance of Posterno exists in memory at any one
@@ -77,6 +84,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Api's
 			self::$instance->templates = new PNO_Templates();
 			self::$instance->forms     = PNO_Forms::instance();
+			self::$instance->emails    = new PNO_Emails();
 
 			// Return the instance
 			return self::$instance;
@@ -264,6 +272,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Forms.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
+
+			// Emails.
+			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails.php';
 
 		}
 

@@ -196,6 +196,7 @@ function pno_get_registered_settings_tabs() {
 	$tabs = [
 		'general'  => esc_html__( 'General' ),
 		'accounts' => esc_html__( 'Accounts' ),
+		'emails'   => esc_html__( 'Emails' ),
 	];
 
 	/**
@@ -226,6 +227,10 @@ function pno_get_registered_settings_tabs_sections() {
 			'login'        => esc_html__( 'Login' ),
 			'registration' => esc_html__( 'Registration' ),
 			'redirects'    => esc_html__( 'Redirects' ),
+		],
+		'emails' => [
+			'emails_settings' => esc_html__( 'Configuration' ),
+			'emails_test'     => esc_html__( 'Test Emails' )
 		],
 	];
 
