@@ -153,3 +153,28 @@ function pno_get_registration_redirect() {
 	return apply_filters( 'pno_registration_redirect', $url );
 
 }
+
+/**
+ * Programmatically log a user in given an email address or user id.
+ * This function should usually be followed by a redirect.
+ *
+ * @param mixed $email_or_id
+ * @return void
+ */
+function pno_log_user_in( $email_or_id ) {
+
+	$get_by = 'id';
+
+	if ( is_email( $email_or_id ) ) {
+		$get_by = 'email';
+	}
+
+	$user     = get_user_by( $get_by, $email_or_id );
+	$user_id  = $user->ID;
+	$username = $user->user_login;
+
+	wp_set_current_user( $user_id, $username );
+	wp_set_auth_cookie( $user_id );
+	do_action( 'wp_login', $username, $user );
+
+}

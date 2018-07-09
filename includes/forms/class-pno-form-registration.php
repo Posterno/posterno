@@ -231,6 +231,11 @@ class PNO_Form_Registration extends PNO_Form {
 			// Allow developers to extend signup process.
 			do_action( 'pno_after_registration', $new_user_id, $values );
 
+			// Automatically log a user in if enabled.
+			if ( pno_get_option( 'login_after_registration' ) ) {
+				pno_log_user_in( $new_user_id );
+			}
+
 			// Successful, show next step.
 			$this->step ++;
 
