@@ -214,10 +214,12 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_functions() {
+			require_once PNO_PLUGIN_DIR . 'includes/actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/scripts.php';
 			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
+			require_once PNO_PLUGIN_DIR . 'includes/functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}

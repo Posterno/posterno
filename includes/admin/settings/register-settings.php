@@ -218,6 +218,7 @@ function pno_get_registered_settings_tabs_sections() {
 	$sections = [
 		'general' => [
 			'pages' => esc_html__( 'Pages setup' ),
+			'misc'  => esc_html__( 'Misc settings' ),
 			'theme' => esc_html__( 'Theme' ),
 		],
 		'accounts' => [
@@ -281,6 +282,13 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the profile shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages()
+			],
+		],
+		'misc' => [
+			'lock_wp_login' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Lock access to wp-login.php:' ),
+				'description' => esc_html__( 'Enable to lock access to wp-login.php. Users will be redirected to the Posterno login page.' ),
 			],
 		],
 		'theme' => [
