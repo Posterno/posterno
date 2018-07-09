@@ -49,3 +49,21 @@ function pno_authentication( $user, $username, $password ) {
 
 }
 add_filter( 'authenticate', 'pno_authentication', 20, 3 );
+
+/**
+ * Filter the wp_login_url function by using the built-in pno's page.
+ *
+ * @param string $login_url
+ * @param string $redirect
+ * @param boolean $force_reauth
+ * @return void
+ */
+function pno_login_url( $login_url, $redirect, $force_reauth ) {
+	$pno_login_page = pno_get_login_page_id();
+	$pno_login_page = get_permalink( $pno_login_page );
+	if ( $redirect ) {
+		$pno_login_page = add_query_arg( [ 'redirect_to' => $redirect ], $pno_login_page );
+	}
+	return $pno_login_page;
+}
+add_filter( 'login_url', 'pno_login_url', 10, 3 );
