@@ -56,9 +56,10 @@ function pno_localize_tinymce_editor() {
 	$js_vars = [
 		'title' => esc_html__( 'Posterno shortcodes' ),
 		'forms' => [
-			'title' => esc_html__( 'Forms' ),
-			'login' => esc_html__( 'Login form' )
-		]
+			'title'        => esc_html__( 'Forms' ),
+			'login'        => esc_html__( 'Login form' ),
+			'registration' => esc_html__( 'Registration form' ),
+		],
 	];
 
 	?>

@@ -56,6 +56,12 @@
 								editor.insertContent('[pno_login_form]');
 							}
 						},
+						{
+							text: pnotinymce.forms.registration,
+							onclick: function () {
+								editor.insertContent('[pno_registration_form]');
+							}
+						},
 
 					]
 				}, // End forms
