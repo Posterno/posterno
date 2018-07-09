@@ -67,3 +67,19 @@ function pno_login_url( $login_url, $redirect, $force_reauth ) {
 	return $pno_login_page;
 }
 add_filter( 'login_url', 'pno_login_url', 10, 3 );
+
+/**
+ * Modify the url retrieved with wp_registration_url().
+ *
+ * @param string $url
+ * @return void
+ */
+function pno_set_registration_url( $url ) {
+	$registration_page = pno_get_registration_page_id();
+	if ( $registration_page ) {
+		return esc_url( get_permalink( $registration_page ) );
+	} else {
+		return $url;
+	}
+}
+add_filter( 'register_url', 'pno_set_registration_url' );

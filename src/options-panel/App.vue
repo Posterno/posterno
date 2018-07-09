@@ -86,7 +86,7 @@
 															:options="setting.options"
 															track-by="value"
 															label="label"
-															:placeholder="setting.placeholder"
+															placeholder=""
 															:multiple="setting.multiple"
 															selectLabel=""
 															:deselectLabel="labels.multiselect.deselected"
