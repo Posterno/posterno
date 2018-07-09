@@ -89,7 +89,7 @@
 															:placeholder="setting.placeholder"
 															:multiple="setting.multiple"
 															selectLabel=""
-															deselectLabel=""
+															:deselectLabel="labels.multiselect.deselected"
 															:selectedLabel="labels.multiselect.selected"
 															>
 														</multiselect>

@@ -174,7 +174,8 @@ function pno_get_settings_page_vars() {
 			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
 			'addons'         => esc_html__( 'View Addons' ),
 			'multiselect'    => [
-				'selected' => esc_html__( 'selected' ),
+				'selected' => esc_html__( 'Selected' ),
+				'deselected' => esc_html__( 'Click to deselect' )
 			],
 		],
 		'nonce'               => wp_create_nonce( 'wp_rest' ),
