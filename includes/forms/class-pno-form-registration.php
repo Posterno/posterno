@@ -138,6 +138,10 @@ class PNO_Form_Registration extends PNO_Form {
 	 */
 	public function init_fields() {
 
+		if ( $this->fields ) {
+			return;
+		}
+
 		$this->fields = pno_get_registration_fields();
 
 	}

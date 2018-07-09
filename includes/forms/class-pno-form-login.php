@@ -92,6 +92,10 @@ class PNO_Form_Login extends PNO_Form {
 	 */
 	public function init_fields() {
 
+		if ( $this->fields ) {
+			return;
+		}
+
 		$fields = array(
 			'login' => array(
 				'username' => array(
