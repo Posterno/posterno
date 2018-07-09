@@ -78,6 +78,7 @@ defined( 'ABSPATH' ) || exit;
 		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
 		<input type="hidden" name="submit_<?php echo $data->form; ?>" value="<?php echo $data->form; ?>">
+		<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
 		<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
 
 	</form>

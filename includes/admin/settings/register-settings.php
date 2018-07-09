@@ -316,18 +316,10 @@ function pno_get_registered_settings() {
 				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
 				'type'        => 'checkbox',
 			],
-			'allow_role_select'        => [
-				'label'       => __( 'Allow role section:' ),
-				'description' => __( 'Enable to allow users to select a user role on registration.' ),
+			'strong_passwords' => [
+				'label'       => __( 'Require strong passwords:' ),
+				'description' => __( 'Enable this option to require strong passwords during registration.' ),
 				'type'        => 'checkbox',
-			],
-			'register_roles'           => [
-				'type'        => 'multiselect',
-				'label'       => esc_html__( 'Allowed Roles:' ),
-				'description' => esc_html__( 'Select which roles can be selected upon registration.' ),
-				'placeholder' => esc_html__( 'Select on or more user roles' ),
-				'multiple'    => true,
-				'options'     => pno_get_roles(),
 			],
 			'enable_terms' => [
 				'label'       => __( 'Enable terms & conditions:' ),

@@ -77,6 +77,12 @@ class PNO_Form_Login extends PNO_Form {
 
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 
+		if ( isset( $_POST['step'] ) ) {
+			$this->step = is_numeric( $_POST['step'] ) ? max( absint( $_POST['step'] ), 0 ) : array_search( $_POST['step'], array_keys( $this->steps ) );
+		} elseif ( ! empty( $_GET['step'] ) ) {
+			$this->step = is_numeric( $_GET['step'] ) ? max( absint( $_GET['step'] ), 0 ) : array_search( $_GET['step'], array_keys( $this->steps ) );
+		}
+
 	}
 
 	/**
@@ -201,6 +207,10 @@ class PNO_Form_Login extends PNO_Form {
 	public function login_handler() {
 
 		try {
+			// Init fields.
+			$this->init_fields();
+
+			// Get posted values.
 			$values   = $this->get_posted_fields();
 			$username = $values['login']['username'];
 			$password = $values['login']['password'];

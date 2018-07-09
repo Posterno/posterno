@@ -100,3 +100,77 @@ function pno_get_profile_page_id() {
 	return $profile_page;
 
 }
+
+/**
+ * Retrieve the list of registration form fields.
+ *
+ * @return void
+ */
+function pno_get_registration_fields() {
+
+	$fields = array(
+		'registration' => array(
+			'username' => array(
+				'label'       => esc_html__( 'Username' ),
+				'type'        => 'text',
+				'required'    => true,
+				'placeholder' => '',
+				'priority'    => 1,
+			),
+			'email' => array(
+				'label'       => __( 'Email address' ),
+				'type'        => 'email',
+				'required'    => true,
+				'placeholder' => '',
+				'priority'    => 2,
+			),
+			'password' => array(
+				'label'    => __( 'Password' ),
+				'type'     => 'password',
+				'required' => true,
+				'priority' => 3,
+			),
+		),
+	);
+
+	$fields['registration']['robo'] = [
+		'label'    => esc_html__( 'If you\'re human leave this blank:' ),
+		'type'     => 'text',
+		'required' => false,
+		'priority' => 100,
+	];
+
+	// Add a terms field is enabled.
+	if ( pno_get_option( 'enable_terms' ) ) {
+		$terms_page = pno_get_option( 'terms_page' );
+		$terms_page = is_array( $terms_page ) && isset( $terms_page['value'] ) ? $terms_page['value'] : false;
+		if ( $terms_page ) {
+			$fields['registration']['terms'] = array(
+				'label'       => false,
+				'type'        => 'checkbox',
+				'description' => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.' ), get_permalink( $terms_page ) ) ),
+				'required'    => true,
+				'priority'    => 101,
+			);
+		}
+	}
+
+	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
+		$fields['registration']['privacy'] = array(
+			'label'       => false,
+			'type'        => 'checkbox',
+			'description' => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%s" target="_blank">privacy policy</a> and allow "%s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'required'    => true,
+			'priority'    => 102,
+		);
+	}
+
+	/**
+	 * Allows developers to register or deregister fields for the registration form.
+	 *
+	 * @since 0.1.0
+	 * @param array $fields array containing the list of fields for the registration form.
+	 */
+	return apply_filters( 'pno_registration_fields', $fields );
+
+}

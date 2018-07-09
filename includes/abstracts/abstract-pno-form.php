@@ -525,7 +525,7 @@ abstract class PNO_Form {
 			}
 		}
 
-		return apply_filters( 'pno_form_validate_fields', true, $this->fields, $values );
+		return apply_filters( 'pno_form_validate_fields', true, $this->fields, $values, $this->get_form_name() );
 	}
 
 }
