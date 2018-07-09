@@ -426,5 +426,12 @@ body.listings_page_posterno-settings {
 		color: #dc3232;
 	}
 
+	.multiselect__content-wrapper {
+    	box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    	border: 1px solid #ddd;
+		border-radius: 0;
+		margin-top: 5px;
+	}
+
 }
 </style>
