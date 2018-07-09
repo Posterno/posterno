@@ -83,3 +83,35 @@ function pno_get_login_methods() {
 		)
 	);
 }
+
+/**
+ * Retrieve a list of all user roles and cache them into a transient.
+ *
+ * @param boolean $force set to true if loading outside the pno settings
+ * @param boolean $admin set to true to load the admin role too
+ * @return array
+ */
+function pno_get_roles( $force = false, $admin = false ) {
+	$roles = [];
+	if ( ( ! isset( $_GET['page'] ) || 'posterno-settings' != $_GET['page'] ) && ! $force ) {
+		return $roles;
+	}
+	$transient = get_transient( 'pno_get_roles' );
+	if ( $transient && ! $force ) {
+		$roles = $transient;
+	} else {
+		global $wp_roles;
+		$available_roles = $wp_roles->get_names();
+		foreach ( $available_roles as $role_id => $role ) {
+			if ( $role_id == 'administrator' && ! $admin ) {
+				continue;
+			}
+			$roles[] = array(
+				'value' => esc_attr( $role_id ),
+				'label' => esc_html( $role ),
+			);
+		}
+		set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
+	}
+	return $roles;
+}

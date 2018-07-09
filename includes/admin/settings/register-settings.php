@@ -194,7 +194,7 @@ function pno_get_registered_settings_tabs() {
 
 	$tabs = [
 		'general'  => esc_html__( 'General' ),
-		'accounts' => esc_html__( 'Accounts' )
+		'accounts' => esc_html__( 'Accounts' ),
 	];
 
 	/**
@@ -216,7 +216,7 @@ function pno_get_registered_settings_tabs() {
 function pno_get_registered_settings_tabs_sections() {
 
 	$sections = [
-		'general' => [
+		'general'  => [
 			'pages' => esc_html__( 'Pages setup' ),
 			'misc'  => esc_html__( 'Misc settings' ),
 			'theme' => esc_html__( 'Theme' ),
@@ -225,7 +225,7 @@ function pno_get_registered_settings_tabs_sections() {
 			'login'        => esc_html__( 'Login' ),
 			'registration' => esc_html__( 'Registration' ),
 			'redirects'    => esc_html__( 'Redirects' ),
-		]
+		],
 	];
 
 	/**
@@ -247,52 +247,52 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		'pages' => [
-			'login_page' => [
+		'pages'        => [
+			'login_page'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Login page' ),
 				'description' => esc_html__( 'Select the page where you have added the login form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
-			'password_page' => [
+			'password_page'     => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Password recovery page' ),
 				'description' => esc_html__( 'Select the page where you have added the password recovery form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
 			'registration_page' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Registration page' ),
 				'description' => esc_html__( 'Select the page where you have added the registration form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
-			'dashboard_page' => [
+			'dashboard_page'    => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Dashboard page' ),
 				'description' => esc_html__( 'Select the page where you have added the dashboard shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
-			'profile_page' => [
+			'profile_page'      => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Public profile page' ),
 				'description' => esc_html__( 'Select the page where you have added the profile shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
 		],
-		'misc' => [
+		'misc'         => [
 			'lock_wp_login' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Lock access to wp-login.php:' ),
 				'description' => esc_html__( 'Enable to lock access to wp-login.php. Users will be redirected to the Posterno login page.' ),
 			],
 		],
-		'theme' => [
-			'bootstrap_style' => [
+		'theme'        => [
+			'bootstrap_style'  => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Include Bootstrap css' ),
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
@@ -303,29 +303,61 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
 			],
 		],
-		'login' => [
+		'login'        => [
 			'login_method' => [
 				'type'    => 'select',
 				'label'   => __( 'Allow users to login with:' ),
 				'options' => pno_get_login_methods(),
 			],
 		],
-		'redirects' => [
-			'login_redirect' => [
+		'registration' => [
+			'login_after_registration' => [
+				'label'       => __( 'Login after registration:' ),
+				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
+				'type'        => 'checkbox',
+			],
+			'allow_role_select'        => [
+				'label'       => __( 'Allow role section:' ),
+				'description' => __( 'Enable to allow users to select a user role on registration.' ),
+				'type'        => 'checkbox',
+			],
+			'register_roles'           => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Allowed Roles:' ),
+				'description' => esc_html__( 'Select which roles can be selected upon registration.' ),
+				'placeholder' => esc_html__( 'Select on or more user roles' ),
+				'multiple'    => true,
+				'options'     => pno_get_roles(),
+			],
+			'enable_terms' => [
+				'label'       => __( 'Enable terms & conditions:' ),
+				'description' => __( 'Enable to force users to agree to your terms before registering an account.' ),
+				'type'        => 'checkbox',
+			],
+			'terms_page'      => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Terms Page:' ),
+				'description' => esc_html__( 'Select the page that contains your terms.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+			],
+		],
+		'redirects'    => [
+			'login_redirect'  => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After login' ),
 				'description' => esc_html__( 'Select the page where you want to redirect users after they login.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
+				'options'     => pno_get_pages(),
 			],
 			'logout_redirect' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After logout' ),
 				'description' => esc_html__( 'Select the page where you want to redirect users after they logout. If empty will return to your homepage.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
-				'options'     => pno_get_pages()
-			]
-		]
+				'options'     => pno_get_pages(),
+			],
+		],
 	];
 
 	/**

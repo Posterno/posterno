@@ -390,6 +390,7 @@ body.listings_page_posterno-settings {
 		border-radius: 0;
 		border-color: #ddd;
 		cursor: pointer;
+		box-shadow: 0 0px 2px rgba(0,0,0,.2);
 	}
 
 	.multiselect--above.multiselect--active .multiselect__input,
