@@ -254,6 +254,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the login form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 			'password_page'     => [
 				'type'        => 'multiselect',
@@ -261,6 +262,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the password recovery form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 			'registration_page' => [
 				'type'        => 'multiselect',
@@ -268,6 +270,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the registration form shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 			'dashboard_page'    => [
 				'type'        => 'multiselect',
@@ -275,6 +278,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the dashboard shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 			'profile_page'      => [
 				'type'        => 'multiselect',
@@ -282,6 +286,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the page where you have added the profile shortcode.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 		],
 		'misc'         => [
@@ -316,45 +321,49 @@ function pno_get_registered_settings() {
 				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
 				'type'        => 'checkbox',
 			],
-			'strong_passwords' => [
+			'strong_passwords'         => [
 				'label'       => __( 'Require strong passwords:' ),
 				'description' => __( 'Enable this option to require strong passwords during registration.' ),
 				'type'        => 'checkbox',
 			],
-			'enable_terms' => [
+			'enable_terms'             => [
 				'label'       => __( 'Enable terms & conditions:' ),
 				'description' => __( 'Enable to force users to agree to your terms before registering an account.' ),
 				'type'        => 'checkbox',
 			],
-			'terms_page'      => [
+			'terms_page'               => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Terms Page:' ),
 				'description' => esc_html__( 'Select the page that contains your terms.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 		],
 		'redirects'    => [
-			'login_redirect'  => [
+			'login_redirect'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After login' ),
 				'description' => esc_html__( 'Select the page where you want to redirect users after they login.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
-			'logout_redirect' => [
+			'logout_redirect'       => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After logout' ),
 				'description' => esc_html__( 'Select the page where you want to redirect users after they logout. If empty will return to your homepage.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
-			'registration_redirect'  => [
+			'registration_redirect' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After registration' ),
 				'description' => esc_html__( 'Select the page where you want to redirect users after they register. If empty a message will be displayed instead.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
+				'is_page'     => true,
 			],
 		],
 	];
@@ -411,6 +420,16 @@ function pno_prepare_registered_settings_vue_model() {
 								$value = [];
 							}
 							break;
+					}
+
+					// ¯\_(ツ)_/¯ vue multiselect needs an int to recognized the stored db selected value
+					// ¯\_(ツ)_/¯ so here we force one.
+					if (
+						$setting['type'] == 'multiselect'
+						&& isset( $setting['is_page'] )
+						&& $setting['is_page'] === true
+						&& isset( $value['value'] ) ) {
+						$value['value'] = absint( $value['value'] );
 					}
 
 					$model[ $option_id ] = $value;
