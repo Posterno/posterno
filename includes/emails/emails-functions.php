@@ -85,3 +85,15 @@ function pno_email_tag_email( $user_id ) {
 	}
 	return $email;
 }
+
+/**
+ * Parse the password tag within the emails.
+ *
+ * @param boolean $user_id
+ * @param boolean $password_reset_key
+ * @param string $plain_text_password
+ * @return void
+ */
+function pno_email_tag_password( $user_id = false, $password_reset_key = false, $plain_text_password ) {
+	return sanitize_text_field( $plain_text_password );
+}
