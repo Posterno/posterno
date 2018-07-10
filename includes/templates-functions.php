@@ -232,3 +232,39 @@ function pno_send_registration_confirmation_email( $user_id, $psw = false ) {
 	posterno()->emails->send( $user->data->user_email, $subject, $message );
 
 }
+
+/**
+ * Replace during email parsing characters.
+ *
+ * @param string $str
+ * @return void
+ */
+function pno_starmid( $str ) {
+	switch ( strlen( $str ) ) {
+		case 0:
+			return false;
+		case 1:
+			return $str;
+		case 2:
+			return $str[0] . '*';
+		default:
+			return $str[0] . str_repeat( '*', strlen( $str ) - 2 ) . substr( $str, -1 );
+	}
+}
+
+/**
+ * Mask an email address.
+ *
+ * @param string $email_address
+ * @return void
+ */
+function pno_mask_email_address( $email_address ) {
+	if ( ! filter_var( $email_address, FILTER_VALIDATE_EMAIL ) ) {
+		return false;
+	}
+	list( $u, $d ) = explode( '@', $email_address );
+	$d             = explode( '.', $d );
+	$tld           = array_pop( $d );
+	$d             = implode( '.', $d );
+	return pno_starmid( $u ) . '@' . pno_starmid( $d ) . ".$tld";
+}

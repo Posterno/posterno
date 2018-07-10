@@ -235,6 +235,7 @@ function pno_get_registered_settings_tabs_sections() {
 		'emails'   => [
 			'emails_settings'           => esc_html__( 'Configuration' ),
 			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
+			'password_recovery'         => esc_html__( 'Password recovery' ),
 			'emails_test'               => esc_html__( 'Test Emails' ),
 		],
 	];
@@ -420,6 +421,23 @@ function pno_get_registered_settings() {
 				'type'        => 'textarea',
 				'label'       => esc_html__( 'Admin registration confirmation message:' ),
 				'description' => esc_html__( 'Enter the text that is sent to the administrator within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
+			],
+		],
+		'password_recovery' => [
+			'password_recovery_subject' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Password recovery subject:' ),
+				'description' => esc_html__( 'Enter the subject line for the password recovery email.' ),
+			],
+			'password_recovery_heading' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Password recovery heading:' ),
+				'description' => esc_html__( 'Enter the heading for the password recovery email.' ),
+			],
+			'password_recovery_content' => [
+				'type'        => 'textarea',
+				'label'       => esc_html__( 'Password recovery message:' ),
+				'description' => esc_html__( 'Enter the text that is sent to the user within the password recovery email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
 			],
 		],
 		'emails_test'     => [

@@ -109,3 +109,23 @@ function pno_email_tag_login_page_url( $user_id = false ) {
 	$login_page_url = get_permalink( $login_page_url );
 	return $login_page_url;
 }
+
+/**
+ * Parse the {recovery_url} tag into the email to display personalized password recovery url.
+ *
+ * @param string $user_id
+ * @return void
+ */
+function pno_email_tag_password_recovery_url( $user_id, $password_reset_key ) {
+	$reset_page = pno_get_password_recovery_page_id();
+	$reset_page = get_permalink( $reset_page );
+	$reset_page = add_query_arg(
+		[
+			'user_id' => $user_id,
+			'key'     => $password_reset_key,
+			'step'    => 'reset',
+		], $reset_page
+	);
+	$output     = $reset_page;
+	return $output;
+}
