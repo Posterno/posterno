@@ -97,3 +97,15 @@ function pno_email_tag_email( $user_id ) {
 function pno_email_tag_password( $user_id = false, $password_reset_key = false, $plain_text_password ) {
 	return sanitize_text_field( $plain_text_password );
 }
+
+/**
+ * Parse the {login_page_url} tag into the email to display the site login page url.
+ *
+ * @param string $user_id
+ * @return void
+ */
+function pno_email_tag_login_page_url( $user_id = false ) {
+	$login_page_url = pno_get_login_page_id();
+	$login_page_url = get_permalink( $login_page_url );
+	return $login_page_url;
+}
