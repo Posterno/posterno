@@ -275,6 +275,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Emails.
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails.php';
+			require_once PNO_PLUGIN_DIR . 'includes/emails/emails-functions.php';
 
 		}
 
@@ -299,3 +300,4 @@ endif;
 function posterno() {
 	return Posterno::instance();
 }
+

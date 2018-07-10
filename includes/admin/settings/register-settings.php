@@ -383,6 +383,12 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'From email:' ),
 				'description' => esc_html__( 'This will act as the "from" and "reply-to" address.' ),
 			],
+			'email_template' => [
+				'type'        => 'select',
+				'label'       => esc_html__( 'Email template:' ),
+				'description' => esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.' ),
+				'options'     => pno_get_email_templates(),
+			],
 		]
 	];
 
