@@ -259,7 +259,7 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		'pages'           => [
+		'pages'                     => [
 			'login_page'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Login page' ),
@@ -301,14 +301,14 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'misc'            => [
+		'misc'                      => [
 			'lock_wp_login' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Lock access to wp-login.php:' ),
 				'description' => esc_html__( 'Enable to lock access to wp-login.php. Users will be redirected to the Posterno login page.' ),
 			],
 		],
-		'theme'           => [
+		'theme'                     => [
 			'bootstrap_style'  => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Include Bootstrap css' ),
@@ -320,14 +320,14 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
 			],
 		],
-		'login'           => [
+		'login'                     => [
 			'login_method' => [
 				'type'    => 'select',
 				'label'   => __( 'Allow users to login with:' ),
 				'options' => pno_get_login_methods(),
 			],
 		],
-		'registration'    => [
+		'registration'              => [
 			'login_after_registration' => [
 				'label'       => __( 'Login after registration:' ),
 				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
@@ -352,7 +352,7 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'redirects'       => [
+		'redirects'                 => [
 			'login_redirect'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After login' ),
@@ -378,7 +378,7 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'emails_settings' => [
+		'emails_settings'           => [
 			'from_name'      => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'From name:' ),
@@ -397,17 +397,17 @@ function pno_get_registered_settings() {
 			],
 		],
 		'registration_confirmation' => [
-			'registration_confirmation_subject' => [
+			'registration_confirmation_subject'       => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Registration confirmation subject:' ),
 				'description' => esc_html__( 'Enter the subject line for the registration confirmation email. Leave blank to disable the email.' ),
 			],
-			'registration_confirmation_heading' => [
+			'registration_confirmation_heading'       => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Registration confirmation heading:' ),
 				'description' => esc_html__( 'Enter the heading for the registration confirmation email.' ),
 			],
-			'registration_confirmation_content' => [
+			'registration_confirmation_content'       => [
 				'type'        => 'textarea',
 				'label'       => esc_html__( 'Registration confirmation message:' ),
 				'description' => esc_html__( 'Enter the text that is sent to the user within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
@@ -423,24 +423,29 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Enter the text that is sent to the administrator within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
 			],
 		],
-		'password_recovery' => [
-			'password_recovery_subject' => [
+		'password_recovery'         => [
+			'password_recovery_subject'             => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Password recovery subject:' ),
 				'description' => esc_html__( 'Enter the subject line for the password recovery email.' ),
 			],
-			'password_recovery_heading' => [
+			'password_recovery_heading'             => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Password recovery heading:' ),
 				'description' => esc_html__( 'Enter the heading for the password recovery email.' ),
 			],
-			'password_recovery_content' => [
+			'password_recovery_content'             => [
 				'type'        => 'textarea',
 				'label'       => esc_html__( 'Password recovery message:' ),
 				'description' => esc_html__( 'Enter the text that is sent to the user within the password recovery email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
 			],
+			'disable_admin_password_recovery_email' => [
+				'label'       => __( 'Disable admin password recovery email:' ),
+				'description' => __( 'Enable this option to stop receiving notifications when a new user resets his password.' ),
+				'type'        => 'checkbox',
+			],
 		],
-		'emails_test'     => [
+		'emails_test'               => [
 			'test_mail' => [
 				'type'        => 'mail-tester',
 				'label'       => esc_html__( 'Send test email:' ),

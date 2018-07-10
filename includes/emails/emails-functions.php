@@ -129,3 +129,12 @@ function pno_email_tag_password_recovery_url( $user_id, $password_reset_key ) {
 	$output     = $reset_page;
 	return $output;
 }
+
+/**
+ * Disable the email notification sent to the admin when a user changes the password.
+ */
+if ( pno_get_option( 'disable_admin_password_recovery_email' ) && ! function_exists( 'wp_password_change_notification' ) ) {
+	function wp_password_change_notification( $user ) {
+		return;
+	}
+}
