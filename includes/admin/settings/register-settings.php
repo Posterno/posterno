@@ -233,8 +233,9 @@ function pno_get_registered_settings_tabs_sections() {
 			'redirects'    => esc_html__( 'Redirects' ),
 		],
 		'emails'   => [
-			'emails_settings' => esc_html__( 'Configuration' ),
-			'emails_test'     => esc_html__( 'Test Emails' ),
+			'emails_settings'           => esc_html__( 'Configuration' ),
+			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
+			'emails_test'               => esc_html__( 'Test Emails' ),
 		],
 	];
 
@@ -392,6 +393,33 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Email template:' ),
 				'description' => esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.' ),
 				'options'     => pno_get_email_templates(),
+			],
+		],
+		'registration_confirmation' => [
+			'registration_confirmation_subject' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Registration confirmation subject:' ),
+				'description' => esc_html__( 'Enter the subject line for the registration confirmation email. Leave blank to disable the email.' ),
+			],
+			'registration_confirmation_heading' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Registration confirmation heading:' ),
+				'description' => esc_html__( 'Enter the heading for the registration confirmation email.' ),
+			],
+			'registration_confirmation_content' => [
+				'type'        => 'textarea',
+				'label'       => esc_html__( 'Registration confirmation message:' ),
+				'description' => esc_html__( 'Enter the text that is sent to the user within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
+			],
+			'registration_confirmation_admin_subject' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Admin registration confirmation subject:' ),
+				'description' => esc_html__( 'Enter the subject line for the registration confirmation email sent to the administrator. Leave blank to disable the email.' ),
+			],
+			'registration_confirmation_admin_content' => [
+				'type'        => 'textarea',
+				'label'       => esc_html__( 'Admin registration confirmation message:' ),
+				'description' => esc_html__( 'Enter the text that is sent to the administrator within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
 			],
 		],
 		'emails_test'     => [

@@ -384,7 +384,7 @@ class PNO_Emails {
 			),
 			array(
 				'name'        => esc_html__( 'Plain text password' ),
-				'description' => esc_html__( 'Display the password randomly generated at signup.' ),
+				'description' => esc_html__( 'Display the password randomly generated at signup or the password chosen by the user.' ),
 				'tag'         => 'password',
 				'function'    => 'pno_email_tag_password',
 			),

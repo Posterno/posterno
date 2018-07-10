@@ -228,6 +228,8 @@ class PNO_Form_Registration extends PNO_Form {
 			// Allow developers to extend signup process.
 			do_action( 'pno_before_registration_end', $new_user_id, $values );
 
+			pno_send_registration_confirmation_email( $new_user_id, $password );
+
 			// Allow developers to extend signup process.
 			do_action( 'pno_after_registration', $new_user_id, $values );
 

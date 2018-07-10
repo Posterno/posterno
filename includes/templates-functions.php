@@ -178,3 +178,57 @@ function pno_log_user_in( $email_or_id ) {
 	do_action( 'wp_login', $username, $user );
 
 }
+
+/**
+ * Send a registration confirmation email to the user and administrator.
+ *
+ * @param string $user_id
+ * @param string $psw
+ * @return void
+ */
+function pno_send_registration_confirmation_email( $user_id, $psw = false ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user = get_user_by( 'id', $user_id );
+
+	// Bail if no user found.
+	if ( ! $user instanceof WP_User ) {
+		return;
+	}
+
+	// User's email details.
+	$subject = pno_get_option( 'registration_confirmation_subject' );
+	$message = pno_get_option( 'registration_confirmation_content' );
+	$heading = pno_get_option( 'registration_confirmation_heading' );
+
+	// Admin email's details.
+	$subject_admin = pno_get_option( 'registration_confirmation_admin_subject' );
+	$message_admin = pno_get_option( 'registration_confirmation_admin_content' );
+
+	// Send the email to the site's administrator.
+	if ( $subject_admin ) {
+		posterno()->emails->__set( 'user_id', $user_id );
+		posterno()->emails->send( get_option( 'admin_email' ), $subject_admin, $message_admin );
+	}
+
+	// Send the email to the end user only if a subject and content is specified.
+	if ( ! $subject || empty( $subject ) || ! $message || empty( $message ) ) {
+		return;
+	}
+
+	posterno()->emails->__set( 'user_id', $user_id );
+
+	if ( $heading ) {
+		posterno()->emails->__set( 'heading', $heading );
+	}
+
+	if ( ! empty( $psw ) ) {
+		posterno()->emails->__set( 'plain_text_password', $psw );
+	}
+
+	posterno()->emails->send( $user->data->user_email, $subject, $message );
+
+}
