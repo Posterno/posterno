@@ -174,11 +174,15 @@ function pno_get_settings_page_vars() {
 			'settings_saved' => esc_html__( 'Settings successfully saved.' ),
 			'addons'         => esc_html__( 'View Addons' ),
 			'multiselect'    => [
-				'selected' => esc_html__( 'Selected' ),
-				'deselected' => esc_html__( 'Click to deselect' )
+				'selected'   => esc_html__( 'Selected' ),
+				'deselected' => esc_html__( 'Click to deselect' ),
+			],
+			'emails'         => [
+				'success' => esc_html__( 'Test email successfully delivered.' ),
 			],
 		],
 		'nonce'               => wp_create_nonce( 'wp_rest' ),
+		'email_nonce'         => wp_create_nonce( 'wp_rest' ),
 		'rest'                => esc_url_raw( rest_url() ),
 	];
 
@@ -228,9 +232,9 @@ function pno_get_registered_settings_tabs_sections() {
 			'registration' => esc_html__( 'Registration' ),
 			'redirects'    => esc_html__( 'Redirects' ),
 		],
-		'emails' => [
+		'emails'   => [
 			'emails_settings' => esc_html__( 'Configuration' ),
-			'emails_test'     => esc_html__( 'Test Emails' )
+			'emails_test'     => esc_html__( 'Test Emails' ),
 		],
 	];
 
@@ -253,7 +257,7 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		'pages'        => [
+		'pages'           => [
 			'login_page'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Login page' ),
@@ -295,14 +299,14 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'misc'         => [
+		'misc'            => [
 			'lock_wp_login' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Lock access to wp-login.php:' ),
 				'description' => esc_html__( 'Enable to lock access to wp-login.php. Users will be redirected to the Posterno login page.' ),
 			],
 		],
-		'theme'        => [
+		'theme'           => [
 			'bootstrap_style'  => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Include Bootstrap css' ),
@@ -314,14 +318,14 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
 			],
 		],
-		'login'        => [
+		'login'           => [
 			'login_method' => [
 				'type'    => 'select',
 				'label'   => __( 'Allow users to login with:' ),
 				'options' => pno_get_login_methods(),
 			],
 		],
-		'registration' => [
+		'registration'    => [
 			'login_after_registration' => [
 				'label'       => __( 'Login after registration:' ),
 				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
@@ -346,7 +350,7 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'redirects'    => [
+		'redirects'       => [
 			'login_redirect'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After login' ),
@@ -373,12 +377,12 @@ function pno_get_registered_settings() {
 			],
 		],
 		'emails_settings' => [
-			'from_name' => [
+			'from_name'      => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'From name:' ),
 				'description' => esc_html__( 'The name emails are said to come from. This should probably be your site name.' ),
 			],
-			'from_email' => [
+			'from_email'     => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'From email:' ),
 				'description' => esc_html__( 'This will act as the "from" and "reply-to" address.' ),
@@ -389,7 +393,14 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.' ),
 				'options'     => pno_get_email_templates(),
 			],
-		]
+		],
+		'emails_test'     => [
+			'test_mail' => [
+				'type'        => 'mail-tester',
+				'label'       => esc_html__( 'Send test email:' ),
+				'description' => esc_html__( 'Click the button above to verify emails are correctly being delivered from your website.' ),
+			],
+		],
 	];
 
 	/**

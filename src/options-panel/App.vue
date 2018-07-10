@@ -94,6 +94,8 @@
 															>
 														</multiselect>
 
+														<mail-tester v-else-if="setting.type == 'mail-tester'"></mail-tester>
+
 														<p class="description" v-if="setting.description" v-html="setting.description"></p>
 
 													</td>
@@ -158,6 +160,8 @@
 												>
 											</multiselect>
 
+											<mail-tester v-else-if="setting.type == 'mail-tester'"></mail-tester>
+
 											<p class="description" v-if="setting.description">{{setting.description}}</p>
 
 										</td>
@@ -186,6 +190,7 @@
 <script>
 import WPNavBarFilter from '../global-components/WPNavBarFilter.vue'
 import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
+import MailTester from '../global-components/mail-tester.vue'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import lodash_has from 'lodash.has'
@@ -198,6 +203,7 @@ export default {
 		WPNavBarFilter,
 		WPNavBarFilterItem,
 		Multiselect,
+		MailTester
 	},
 	data() {
 		return {

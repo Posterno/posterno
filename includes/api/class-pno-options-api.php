@@ -71,13 +71,24 @@ class PNO_Options_Api extends WP_REST_Controller {
 	 * @return void
 	 */
 	public function register_routes() {
-		register_rest_route( $this->namespace, '/save', array(
-			array(
-				'methods'             => WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'save_options' ),
-				'permission_callback' => array( $this, 'get_options_permission' ),
-			),
-		) );
+		register_rest_route(
+			$this->namespace, '/save', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'save_options' ),
+					'permission_callback' => array( $this, 'get_options_permission' ),
+				),
+			)
+		);
+		register_rest_route(
+			$this->namespace, '/sendtestmail', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'send_test_mail' ),
+					'permission_callback' => array( $this, 'get_options_permission' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -101,7 +112,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 	public function save_options( WP_REST_Request $request ) {
 
 		$registered_settings = pno_get_registered_settings();
-		$settings_received   = isset( $_POST['settings'] ) && is_array( $_POST['settings'] ) ? $_POST['settings']: false;
+		$settings_received   = isset( $_POST['settings'] ) && is_array( $_POST['settings'] ) ? $_POST['settings'] : false;
 		$data_to_save        = [];
 
 		if ( is_array( $registered_settings ) && ! empty( $registered_settings ) ) {
@@ -241,6 +252,40 @@ class PNO_Options_Api extends WP_REST_Controller {
 		}
 
 		return $new_input;
+
+	}
+
+	/**
+	 * Sends a test email to the address specified within the options panel.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return array
+	 */
+	public function send_test_mail( WP_REST_Request $request ) {
+
+		$email_address = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : false;
+		$error_message = esc_html__( 'Something went wrong while sending the test email. Please verify the email address you typed is correct or check your server logs.' );
+		$sent          = false;
+
+		if ( is_email( $email_address ) ) {
+
+			$subject = esc_html__( 'Test email from Posterno' );
+			$message = esc_html__( 'The following is a simple test email to verify that emails are correctly being delivered from your website.' );
+
+			posterno()->emails->__set( 'heading', esc_html__( 'Test email' ) );
+
+			$sent = posterno()->emails->send( $email_address, $subject, $message );
+
+			if ( ! $sent ) {
+				return new WP_Error( 'wrong-address', $error_message );
+			}
+		} else {
+
+			return new WP_Error( 'wrong-address', $error_message );
+
+		}
+
+		return rest_ensure_response( $sent );
 
 	}
 
