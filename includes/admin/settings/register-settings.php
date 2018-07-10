@@ -372,6 +372,18 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
+		'emails_settings' => [
+			'from_name' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'From name:' ),
+				'description' => esc_html__( 'The name emails are said to come from. This should probably be your site name.' ),
+			],
+			'from_email' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'From email:' ),
+				'description' => esc_html__( 'This will act as the "from" and "reply-to" address.' ),
+			],
+		]
 	];
 
 	/**

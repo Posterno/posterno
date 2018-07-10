@@ -94,7 +94,7 @@
 															>
 														</multiselect>
 
-														<p class="description" v-if="setting.description">{{setting.description}}</p>
+														<p class="description" v-if="setting.description" v-html="setting.description"></p>
 
 													</td>
 												</tr>
