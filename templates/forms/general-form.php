@@ -31,6 +31,10 @@ defined( 'ABSPATH' ) || exit;
 
 	?>
 
+	<?php if ( $data->message ) : ?>
+		<p><?php echo esc_html( $data->message ); ?></p>
+	<?php endif; ?>
+
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>

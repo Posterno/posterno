@@ -66,3 +66,31 @@ function pno_registration_form() {
 
 }
 add_shortcode( 'pno_registration_form', 'pno_registration_form' );
+
+/**
+ * Displays the password recovery form to visitors and a notice to logged in users.
+ *
+ * @return void
+ */
+function pno_password_recovery_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+
+		$data = [
+			'user' => wp_get_current_user(),
+		];
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'logged-user' );
+
+	} else {
+		echo posterno()->forms->get_form( 'password-recovery', [] );
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
