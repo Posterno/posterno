@@ -18,7 +18,7 @@
 			:disabled="loading"
 		>
 		<br/><br/>
-		<wp-button :disabled="loading" @click="sendMail()">Send test email</wp-button> <wp-spinner v-if="loading"></wp-spinner>
+		<wp-button :disabled="loading" @click="sendMail()">{{btn_label}}</wp-button> <wp-spinner v-if="loading"></wp-spinner>
 		<br/><br/>
 	</div>
 </template>
@@ -31,12 +31,13 @@ export default {
 	name: 'mail-tester',
 	data() {
 		return {
-			email:   '',
+			email:   pno_settings_page.labels.emails.value,
 			loading: false,
 			success: false,
 			error:   false,
 			error_message: '',
-			success_message: pno_settings_page.labels.emails.success
+			success_message: pno_settings_page.labels.emails.success,
+			btn_label: pno_settings_page.labels.emails.button
 		}
 	},
 	methods: {
@@ -64,7 +65,6 @@ export default {
 				this.loading = false
 				this.success = true
 				this.error = false
-				this.email = ''
 			})
 			.catch( e => {
 				this.loading = false

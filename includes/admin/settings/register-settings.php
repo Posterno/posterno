@@ -179,6 +179,8 @@ function pno_get_settings_page_vars() {
 			],
 			'emails'         => [
 				'success' => esc_html__( 'Test email successfully delivered.' ),
+				'button'  => esc_html__( 'Send test email' ),
+				'value'   => get_option( 'admin_email' ),
 			],
 		],
 		'nonce'               => wp_create_nonce( 'wp_rest' ),
@@ -449,7 +451,7 @@ function pno_get_registered_settings() {
 			'test_mail' => [
 				'type'        => 'mail-tester',
 				'label'       => esc_html__( 'Send test email:' ),
-				'description' => esc_html__( 'Click the button above to verify emails are correctly being delivered from your website.' ),
+				'description' => esc_html__( 'Type an email address then click the button above to send a test email and verify emails are correctly being delivered from your website.' ),
 			],
 		],
 	];
