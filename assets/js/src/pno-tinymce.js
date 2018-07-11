@@ -72,6 +72,40 @@
 					]
 				}, // End forms
 
+				// Links.
+				{
+					text: pnotinymce.links.title,
+					menu: [
+
+						// Login link.
+						{
+							text: pnotinymce.links.login.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.links.login.title,
+									body: [{
+											type: 'textbox',
+											name: 'redirect',
+											label: pnotinymce.links.login.redirect,
+											value: ''
+										},
+										{
+											type: 'textbox',
+											name: 'label',
+											label: pnotinymce.links.login.label,
+											value: 'Login'
+										},
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_login_link redirect="' + e.data.redirect + '" label="' + e.data.label + '" ]');
+									}
+								});
+							}
+						},
+					]
+				}
+				// End links.
+
 			]
 		});
 	});

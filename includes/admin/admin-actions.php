@@ -61,6 +61,14 @@ function pno_localize_tinymce_editor() {
 			'registration' => esc_html__( 'Registration form' ),
 			'password'     => esc_html__( 'Password recovery form' ),
 		],
+		'links' => [
+			'title' => esc_html__( 'Links' ),
+			'login' => [
+				'title'    => esc_html__( 'Login link' ),
+				'redirect' => esc_html__( 'Redirect after login (optional)' ),
+				'label'    => esc_html__( 'Link Label' ),
+			],
+		],
 	];
 
 	?>
