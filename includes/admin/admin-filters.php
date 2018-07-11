@@ -27,3 +27,24 @@ function pno_add_settings_link( $links ) {
 	return $links;
 }
 add_filter( 'plugin_action_links_' . PNO_PLUGIN_BASE, 'pno_add_settings_link' );
+
+/**
+ * Highlight all pages used by Posterno into the pages list table.
+ *
+ * @param array $post_states
+ * @param object $post
+ * @return void
+ */
+function pno_highlight_pages( $post_states, $post ) {
+	$mark    = 'Posterno';
+	$post_id = $post->ID;
+	switch ( $post_id ) {
+		case pno_get_login_page_id():
+		case pno_get_registration_page_id():
+		case pno_get_password_recovery_page_id():
+			$post_states['pno_page'] = $mark;
+			break;
+	}
+	return $post_states;
+}
+add_filter( 'display_post_states', 'pno_highlight_pages', 10, 2 );
