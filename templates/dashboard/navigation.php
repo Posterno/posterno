@@ -22,6 +22,6 @@ $dashboard_tabs = pno_get_dashboard_navigation_items();
 
 <div class="list-group">
 	<?php foreach ( $dashboard_tabs as $key => $item ) : ?>
-		<a href="#" class="list-group-item list-group-item-action"><?php echo esc_html( $item['name'] ); ?></a>
+		<a href="#" <?php pno_dashboard_navigation_item_class( $key, $item ); ?>><?php echo esc_html( $item['name'] ); ?></a>
 	<?php endforeach; ?>
 </div>

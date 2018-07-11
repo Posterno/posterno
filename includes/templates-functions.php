@@ -342,3 +342,49 @@ function pno_get_dashboard_navigation_item_url( $item ) {
 	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $item );
 
 }
+
+/**
+ * Retrieve the classes for a given dashboard navigation item as an array.
+ *
+ * @param string $key
+ * @param array $item
+ * @param string $class
+ * @return array
+ */
+function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
+
+	$classes   = [ 'pno-dashboard-item' ];
+	$classes[] = 'list-group-item';
+	$classes[] = 'list-group-item-action';
+
+	if ( $key ) {
+		$classes[] = 'item-' . $key;
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filters the list of CSS classes for the current navigation item.
+	 *
+	 * @param array $classes
+	 * @param array $field
+	 * @param string $class
+	 */
+	$classes = apply_filters( 'pno_dashboard_navigation_item_classes', $classes, $field_key, $field, $class );
+
+	return array_unique( $classes );
+
+}
+
+/**
+ * Display the classes for a given dashboard navigation item.
+ *
+ * @param string $key
+ * @param array $item
+ * @param string $class
+ * @return void
+ */
+function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
+	// Separates classes with a single space, collates classes for body element
+	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
+}
