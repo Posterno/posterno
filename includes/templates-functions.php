@@ -268,3 +268,77 @@ function pno_mask_email_address( $email_address ) {
 	$d             = implode( '.', $d );
 	return pno_starmid( $u ) . '@' . pno_starmid( $d ) . ".$tld";
 }
+
+/**
+ * Sort an array by the priority key value.
+ *
+ * @param array $a
+ * @param array $b
+ * @return void
+ */
+function pno_sort_array_by_priority( $a, $b ) {
+	if ( $a['priority'] == $b['priority'] ) {
+		return 0;
+	}
+	return ( $a['priority'] < $b['priority'] ) ? -1 : 1;
+}
+
+/**
+ * Defines a list of navigation items for the dashboard page.
+ *
+ * @return array
+ */
+function pno_get_dashboard_navigation_items() {
+
+	$items = [
+		'dashboard' => [
+			'name'     => esc_html__( 'Dashboard' ),
+			'priority' => 0,
+		],
+		'edit-account' => [
+			'name'     => esc_html__( 'Account details' ),
+			'priority' => 1,
+		],
+		'view' => [
+			'name'     => esc_html__( 'View profile' ),
+			'priority' => 2,
+		],
+		'logout' => [
+			'name'     => esc_html__( 'Logout' ),
+			'priority' => 13,
+		],
+	];
+
+	/**
+	 * Allows developers to register or deregister navigation items
+	 * for the dashboard menu.
+	 *
+	 * @param array $items
+	 */
+	$items = apply_filters( 'pno_dashboard_navigation_items', $items );
+
+	uasort( $items, 'pno_sort_array_by_priority' );
+
+	return $items;
+
+}
+
+/**
+ * Retrieve the url of a given dashboard navigation item.
+ *
+ * @param string $item
+ * @return void
+ */
+function pno_get_dashboard_navigation_item_url( $item ) {
+
+	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
+
+	if ( $item == 'logout' ) {
+		$base_url = wp_logout_url();
+	} else {
+		$base_url = $base_url . '/' . $item;
+	}
+
+	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $item );
+
+}

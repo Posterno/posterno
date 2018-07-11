@@ -144,3 +144,19 @@ function pno_logout_link( $atts, $content = null ) {
 	return $output;
 }
 add_shortcode( 'pno_logout_link', 'pno_logout_link' );
+
+/**
+ * Displays the dashboard for the listings.
+ *
+ * @return void
+ */
+function pno_dashboard() {
+
+	ob_start();
+
+	posterno()->templates->get_template_part( 'dashboard' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_dashboard', 'pno_dashboard' );
