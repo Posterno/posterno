@@ -62,8 +62,8 @@ function pno_localize_tinymce_editor() {
 			'password'     => esc_html__( 'Password recovery form' ),
 		],
 		'links' => [
-			'title' => esc_html__( 'Links' ),
-			'login' => [
+			'title'  => esc_html__( 'Links' ),
+			'login'  => [
 				'title'    => esc_html__( 'Login link' ),
 				'redirect' => esc_html__( 'Redirect after login (optional)' ),
 				'label'    => esc_html__( 'Link Label' ),
@@ -73,6 +73,10 @@ function pno_localize_tinymce_editor() {
 				'redirect' => esc_html__( 'Redirect after logout (optional)' ),
 				'label'    => esc_html__( 'Link Label' ),
 			],
+		],
+		'pages' => [
+			'title'     => esc_html__( 'Pages' ),
+			'dashboard' => esc_html__( 'Dashboard' ),
 		],
 	];
 

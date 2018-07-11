@@ -130,8 +130,24 @@
 						},
 
 					]
-				}
+				},
 				// End links.
+
+				// Pages.
+				{
+					text: pnotinymce.pages.title,
+					menu: [
+
+						{
+							text: pnotinymce.pages.dashboard,
+							onclick: function () {
+								editor.insertContent('[pno_dashboard]');
+							}
+						},
+
+					]
+				},
+				// End pages.
 
 			]
 		});
