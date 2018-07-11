@@ -361,6 +361,14 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 		$classes[] = 'item-' . $key;
 	}
 
+	// Determine the currently active tab:
+	$items     = pno_get_dashboard_navigation_items();
+	$first_key = key( $items );
+
+	if ( pno_is_dashboard_navigation_item_active( $key, $first_key ) ) {
+		$classes[] = 'active';
+	}
+
 	$classes = array_map( 'esc_attr', $classes );
 
 	/**
@@ -387,4 +395,23 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element
 	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
+}
+
+/**
+ * Determine if a given navigation item is currently active.
+ *
+ * @param string $current
+ * @param string $first
+ * @return boolean
+ */
+function pno_is_dashboard_navigation_item_active( $current, $first ) {
+
+	$active = ! empty( get_query_var( 'dashboard_navigation_item' ) ) && get_query_var( 'dashboard_navigation_item' ) == $current ? true : false;
+
+	if ( ! get_query_var( 'dashboard_navigation_item' ) && $current == $first ) {
+		$active = true;
+	}
+
+	return $active;
+
 }
