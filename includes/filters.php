@@ -83,3 +83,42 @@ function pno_set_registration_url( $url ) {
 	}
 }
 add_filter( 'register_url', 'pno_set_registration_url' );
+
+/**
+ * Modify the url of the wp_lostpassword_url() function.
+ *
+ * @param string $url
+ * @param string $redirect
+ * @return void
+ */
+function pno_set_lostpassword_url( $url, $redirect ) {
+	$password_page = pno_get_password_recovery_page_id();
+	if ( $password_page ) {
+		return esc_url( get_permalink( $password_page ) );
+	} else {
+		return $url;
+	}
+}
+add_filter( 'lostpassword_url', 'pno_set_lostpassword_url', 10, 2 );
+
+/**
+ * Modify the logout url to include redirects set by WPUM - if any.
+ *
+ * @param string $logout_url
+ * @param string $redirect
+ * @return void
+ */
+function pno_set_logout_url( $logout_url, $redirect ) {
+	$logout_redirect = pno_get_option( 'logout_redirect' );
+	if ( ! empty( $logout_redirect ) && is_array( $logout_redirect ) && isset( $logout_redirect['value'] ) && ! $redirect ) {
+		$logout_redirect = get_permalink( $logout_redirect['value'] );
+		$args            = [
+			'action'      => 'logout',
+			'redirect_to' => $logout_redirect,
+		];
+		$logout_url      = add_query_arg( $args, site_url( 'wp-login.php', 'login' ) );
+		$logout_url      = wp_nonce_url( $logout_url, 'log-out' );
+	}
+	return $logout_url;
+}
+add_filter( 'logout_url', 'pno_set_logout_url', 20, 2 );
