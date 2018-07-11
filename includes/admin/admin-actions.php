@@ -68,6 +68,11 @@ function pno_localize_tinymce_editor() {
 				'redirect' => esc_html__( 'Redirect after login (optional)' ),
 				'label'    => esc_html__( 'Link Label' ),
 			],
+			'logout' => [
+				'title'    => esc_html__( 'Logout link' ),
+				'redirect' => esc_html__( 'Redirect after logout (optional)' ),
+				'label'    => esc_html__( 'Link Label' ),
+			],
 		],
 	];
 

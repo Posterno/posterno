@@ -102,6 +102,33 @@
 								});
 							}
 						},
+
+						// Logout link.
+						{
+							text: pnotinymce.links.logout.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.links.logout.title,
+									body: [{
+											type: 'textbox',
+											name: 'redirect',
+											label: pnotinymce.links.logout.redirect,
+											value: ''
+										},
+										{
+											type: 'textbox',
+											name: 'label',
+											label: pnotinymce.links.logout.label,
+											value: 'Logout'
+										},
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_logout_link redirect="' + e.data.redirect + '" label="' + e.data.label + '" ]');
+									}
+								});
+							}
+						},
+
 					]
 				}
 				// End links.
