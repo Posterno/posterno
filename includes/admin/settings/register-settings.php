@@ -230,9 +230,10 @@ function pno_get_registered_settings_tabs_sections() {
 			'theme' => esc_html__( 'Theme' ),
 		],
 		'accounts' => [
-			'login'        => esc_html__( 'Login' ),
-			'registration' => esc_html__( 'Registration' ),
-			'redirects'    => esc_html__( 'Redirects' ),
+			'login'                  => esc_html__( 'Login' ),
+			'registration'           => esc_html__( 'Registration' ),
+			'password_recovery_form' => esc_html__( 'Password recovery' ),
+			'redirects'              => esc_html__( 'Redirects' ),
 		],
 		'emails'   => [
 			'emails_settings'           => esc_html__( 'Configuration' ),
@@ -323,35 +324,67 @@ function pno_get_registered_settings() {
 			],
 		],
 		'login'                     => [
-			'login_method' => [
+			'login_method'                 => [
 				'type'    => 'select',
 				'label'   => __( 'Allow users to login with:' ),
 				'options' => pno_get_login_methods(),
 			],
+			'login_show_registration_link' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show registration page link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the registration page within the login form.' ),
+			],
+			'login_show_password_link'     => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show lost password link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the password recovery within the login form.' ),
+			],
 		],
 		'registration'              => [
-			'login_after_registration' => [
+			'login_after_registration'        => [
 				'label'       => __( 'Login after registration:' ),
 				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
 				'type'        => 'checkbox',
 			],
-			'strong_passwords'         => [
+			'strong_passwords'                => [
 				'label'       => __( 'Require strong passwords:' ),
 				'description' => __( 'Enable this option to require strong passwords during registration.' ),
 				'type'        => 'checkbox',
 			],
-			'enable_terms'             => [
+			'enable_terms'                    => [
 				'label'       => __( 'Enable terms & conditions:' ),
 				'description' => __( 'Enable to force users to agree to your terms before registering an account.' ),
 				'type'        => 'checkbox',
 			],
-			'terms_page'               => [
+			'terms_page'                      => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Terms Page:' ),
 				'description' => esc_html__( 'Select the page that contains your terms.' ),
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
+			],
+			'registration_show_login_link'    => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show login link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the login page within the registration form.' ),
+			],
+			'registration_show_password_link' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show lost password link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the password recovery within the registration form.' ),
+			],
+		],
+		'password_recovery_form'    => [
+			'recovery_show_login_link'        => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show login link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the login page within the password recovery form.' ),
+			],
+			'recovery_show_registration_link' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Show registration page link?' ),
+				'description' => esc_html__( 'Enable the option to display a link to the registration page within the password recovery form.' ),
 			],
 		],
 		'redirects'                 => [

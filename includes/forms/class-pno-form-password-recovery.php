@@ -224,6 +224,15 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 			->set_template_data( $data )
 			->get_template_part( 'forms/general', 'form' );
 
+		$action_links = [
+			'login_link'    => pno_get_option( 'recovery_show_login_link' ),
+			'register_link' => pno_get_option( 'recovery_show_registration_link' ),
+		];
+
+		posterno()->templates
+			->set_template_data( $action_links )
+			->get_template_part( 'forms/action-links' );
+
 	}
 
 	/**
@@ -359,7 +368,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 			}
 		} else {
 			$data = [
-				'type' => 'error',
+				'type'    => 'error',
 				'message' => esc_html__( 'The link you followed may be broken. Please check that you used the right reset link or request a new one.' ),
 			];
 			posterno()->templates

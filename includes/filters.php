@@ -102,7 +102,7 @@ function pno_set_lostpassword_url( $url, $redirect ) {
 add_filter( 'lostpassword_url', 'pno_set_lostpassword_url', 10, 2 );
 
 /**
- * Modify the logout url to include redirects set by WPUM - if any.
+ * Modify the logout url to include redirects set by PNO - if any.
  *
  * @param string $logout_url
  * @param string $redirect

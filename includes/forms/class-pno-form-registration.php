@@ -167,6 +167,15 @@ class PNO_Form_Registration extends PNO_Form {
 			->set_template_data( $data )
 			->get_template_part( 'forms/general', 'form' );
 
+		$action_links = [
+			'login_link' => pno_get_option( 'registration_show_login_link' ),
+			'psw_link'   => pno_get_option( 'registration_show_password_link' ),
+		];
+
+		posterno()->templates
+			->set_template_data( $action_links )
+			->get_template_part( 'forms/action-links' );
+
 	}
 
 	/**
