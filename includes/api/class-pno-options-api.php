@@ -139,6 +139,14 @@ class PNO_Options_Api extends WP_REST_Controller {
 						continue;
 					}
 
+					if ( $setting_type == 'multiselect' ) {
+						if ( isset( $output['label'] ) && $output['label'] == '' ) {
+							continue;
+						} elseif ( isset( $output['value'] ) && $output['value'] == 0 ) {
+							continue;
+						}
+					}
+
 					// Add the option to the list of ones that we need to save.
 					if ( ! empty( $output ) && ! is_wp_error( $output ) ) {
 						$data_to_save[ $setting_id ] = $output;
