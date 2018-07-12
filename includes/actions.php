@@ -52,7 +52,7 @@ function pno_restrict_dashboard_access() {
 				[
 					'redirect_to' => urlencode( get_permalink( $dashboard_page ) ),
 					'restricted'  => true,
-					'rpage_id'     => $dashboard_page,
+					'rpage_id'    => $dashboard_page,
 				],
 				get_permalink( $login_page )
 			);
@@ -93,8 +93,8 @@ function pno_display_restricted_access_message( $form ) {
 	];
 
 	posterno()->templates
-			->set_template_data( $data )
-			->get_template_part( 'message' );
+		->set_template_data( $data )
+		->get_template_part( 'message' );
 
 }
 add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10, 2 );

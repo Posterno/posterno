@@ -341,6 +341,9 @@ function pno_get_dashboard_navigation_items() {
 
 	uasort( $items, 'pno_sort_array_by_priority' );
 
+	$first                       = key( $items );
+	$items[ $first ]['is_first'] = true;
+
 	return $items;
 
 }
@@ -351,17 +354,19 @@ function pno_get_dashboard_navigation_items() {
  * @param string $item
  * @return void
  */
-function pno_get_dashboard_navigation_item_url( $item ) {
+function pno_get_dashboard_navigation_item_url( $key, $item ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
 
-	if ( $item == 'logout' ) {
+	if ( $key == 'logout' ) {
 		$base_url = wp_logout_url();
+	} elseif ( isset( $item['is_first'] ) ) {
+		$base_url = '';
 	} else {
-		$base_url = $base_url . '/' . $item;
+		$base_url = $base_url . '/' . $key;
 	}
 
-	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $item );
+	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $key, $item );
 
 }
 
@@ -384,10 +389,9 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	}
 
 	// Determine the currently active tab:
-	$items     = pno_get_dashboard_navigation_items();
-	$first_key = key( $items );
-
-	if ( pno_is_dashboard_navigation_item_active( $key, $first_key ) ) {
+	if ( pno_is_dashboard_navigation_item_active( $key ) ) {
+		$classes[] = 'active';
+	} elseif ( isset( $item['is_first'] ) && ! pno_is_dashboard_navigation_item_active( $key ) ) {
 		$classes[] = 'active';
 	}
 
@@ -423,16 +427,11 @@ function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
  * Determine if a given navigation item is currently active.
  *
  * @param string $current
- * @param string $first
  * @return boolean
  */
-function pno_is_dashboard_navigation_item_active( $current, $first ) {
+function pno_is_dashboard_navigation_item_active( $current ) {
 
 	$active = ! empty( get_query_var( 'dashboard_navigation_item' ) ) && get_query_var( 'dashboard_navigation_item' ) == $current ? true : false;
-
-	if ( ! get_query_var( 'dashboard_navigation_item' ) && $current == $first ) {
-		$active = true;
-	}
 
 	return $active;
 
