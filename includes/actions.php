@@ -52,6 +52,7 @@ function pno_restrict_dashboard_access() {
 				[
 					'redirect_to' => urlencode( get_permalink( $dashboard_page ) ),
 					'restricted'  => true,
+					'rpage_id'     => $dashboard_page,
 				],
 				get_permalink( $login_page )
 			);
@@ -62,3 +63,38 @@ function pno_restrict_dashboard_access() {
 
 }
 add_action( 'template_redirect', 'pno_restrict_dashboard_access' );
+
+/**
+ * Display a restricted access message at the top of the login form,
+ * when a "restricted" query string is available within the url.
+ *
+ * @param string $form
+ * @return void
+ */
+function pno_display_restricted_access_message( $form ) {
+
+	$page_id    = isset( $_GET['rpage_id'] ) ? absint( $_GET['rpage_id'] ) : false;
+	$restricted = isset( $_GET['restricted'] ) ? true : false;
+
+	if ( ! $page_id || ! $restricted ) {
+		return;
+	}
+
+	$page_title = get_post_field( 'post_title', $page_id );
+
+	$message = apply_filters(
+		'pno_login_form_restricted_message',
+		sprintf( __( 'You need to be logged in to access the "%1$s" page. Please login below or <a href="%2$s">register</a>.' ), $page_title, get_permalink( pno_get_registration_page_id() ) )
+	);
+
+	$data = [
+		'message' => $message,
+		'type'    => 'warning',
+	];
+
+	posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'message' );
+
+}
+add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10, 2 );
