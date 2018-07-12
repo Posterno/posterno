@@ -31,13 +31,6 @@ class PNO_Options_Api extends WP_REST_Controller {
 	protected $version;
 
 	/**
-	 * All the registered settings that we're going to parse.
-	 *
-	 * @var array
-	 */
-	protected $settings;
-
-	/**
 	 * Store errors if any.
 	 *
 	 * @var object
@@ -50,7 +43,6 @@ class PNO_Options_Api extends WP_REST_Controller {
 	public function __construct() {
 
 		$this->version   = 'v1';
-		$this->settings  = $settings;
 		$this->namespace = 'posterno/' . $this->version . '/options';
 
 		$this->errors = new WP_Error();
