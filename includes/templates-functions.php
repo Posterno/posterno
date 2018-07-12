@@ -361,7 +361,7 @@ function pno_get_dashboard_navigation_item_url( $key, $item ) {
 	if ( $key == 'logout' ) {
 		$base_url = wp_logout_url();
 	} elseif ( isset( $item['is_first'] ) ) {
-		$base_url = '';
+		$base_url = $base_url;
 	} else {
 		$base_url = $base_url . '/' . $key;
 	}
@@ -391,7 +391,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Determine the currently active tab:
 	if ( pno_is_dashboard_navigation_item_active( $key ) ) {
 		$classes[] = 'active';
-	} elseif ( isset( $item['is_first'] ) && ! pno_is_dashboard_navigation_item_active( $key ) ) {
+	} elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item['is_first'] ) ) {
 		$classes[] = 'active';
 	}
 
