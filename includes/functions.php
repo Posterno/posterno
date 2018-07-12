@@ -117,7 +117,7 @@ function pno_get_registration_fields() {
 				'placeholder' => '',
 				'priority'    => 1,
 			),
-			'email' => array(
+			'email'    => array(
 				'label'       => __( 'Email address' ),
 				'type'        => 'email',
 				'required'    => true,
@@ -132,6 +132,17 @@ function pno_get_registration_fields() {
 			),
 		),
 	);
+
+	if ( pno_get_option( 'enable_role_selection' ) ) {
+		$fields['registration']['role'] = array(
+			'label'    => __( 'Register as:' ),
+			'type'     => 'select',
+			'required' => true,
+			'options'  => pno_get_allowed_user_roles(),
+			'priority' => 99,
+			'value'    => get_option( 'default_role' ),
+		);
+	}
 
 	$fields['registration']['robo'] = [
 		'label'    => esc_html__( 'If you\'re human leave this blank:' ),
@@ -159,7 +170,7 @@ function pno_get_registration_fields() {
 		$fields['registration']['privacy'] = array(
 			'label'       => false,
 			'type'        => 'checkbox',
-			'description' => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%s" target="_blank">privacy policy</a> and allow "%s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'description' => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
 			'required'    => true,
 			'priority'    => 102,
 		);

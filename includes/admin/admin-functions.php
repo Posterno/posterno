@@ -111,7 +111,7 @@ function pno_get_roles( $force = false, $admin = false ) {
 				'label' => esc_html( $role ),
 			);
 		}
-		set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
+		//set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
 	}
 	return $roles;
 }

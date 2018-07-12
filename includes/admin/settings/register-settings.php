@@ -351,6 +351,18 @@ function pno_get_registered_settings() {
 				'description' => __( 'Enable this option to require strong passwords during registration.' ),
 				'type'        => 'checkbox',
 			],
+			'enable_role_selection'           => [
+				'label'       => __( 'Allow role section:' ),
+				'description' => __( 'Enable to allow users to select a user role on registration.' ),
+				'type'        => 'checkbox',
+			],
+			'allowed_roles'                   => [
+				'label'       => __( 'Allowed Roles:' ),
+				'description' => __( 'Select which roles can be selected upon registration.' ),
+				'type'        => 'multiselect',
+				'options'     => pno_get_roles(),
+				'multiple'    => true,
+			],
 			'enable_terms'                    => [
 				'label'       => __( 'Enable terms & conditions:' ),
 				'description' => __( 'Enable to force users to agree to your terms before registering an account.' ),

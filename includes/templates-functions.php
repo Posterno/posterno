@@ -234,6 +234,26 @@ function pno_send_registration_confirmation_email( $user_id, $psw = false ) {
 }
 
 /**
+ * Retrieve a list of allowed users role on the registration page
+ *
+ * @since 1.0.0
+ * @return array $roles An array of the roles
+ */
+function pno_get_allowed_user_roles() {
+	global $wp_roles;
+	if ( ! isset( $wp_roles ) ) {
+		$wp_roles = new WP_Roles();
+	}
+	$user_roles         = array();
+	$selected_roles     = pno_get_option( 'allowed_roles' );
+	$allowed_user_roles = is_array( $selected_roles ) ? $selected_roles : array( $selected_roles );
+	foreach ( $allowed_user_roles as $role ) {
+		$user_roles[ $role['value'] ] = $wp_roles->roles[ $role['value'] ]['name'];
+	}
+	return $user_roles;
+}
+
+/**
  * Replace during email parsing characters.
  *
  * @param string $str
@@ -291,7 +311,7 @@ function pno_sort_array_by_priority( $a, $b ) {
 function pno_get_dashboard_navigation_items() {
 
 	$items = [
-		'dashboard' => [
+		'dashboard'    => [
 			'name'     => esc_html__( 'Dashboard' ),
 			'priority' => 0,
 		],
@@ -299,11 +319,11 @@ function pno_get_dashboard_navigation_items() {
 			'name'     => esc_html__( 'Account details' ),
 			'priority' => 1,
 		],
-		'view' => [
+		'view'         => [
 			'name'     => esc_html__( 'View profile' ),
 			'priority' => 2,
 		],
-		'logout' => [
+		'logout'       => [
 			'name'     => esc_html__( 'Logout' ),
 			'priority' => 13,
 		],
@@ -393,7 +413,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
  * @return void
  */
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
-	// Separates classes with a single space, collates classes for body element
+	// Separates classes with a single space, collates classes for body element.
 	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
 }
 
