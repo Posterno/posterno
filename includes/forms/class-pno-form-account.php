@@ -135,7 +135,11 @@ class PNO_Form_Account extends PNO_Form {
 			// Get posted values.
 			$values = $this->get_posted_fields();
 
-			if ( empty( $_POST['submit_login'] ) ) {
+			if ( empty( $_POST['submit_account'] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST['account_nonce'], 'verify_account_form' ) ) {
 				return;
 			}
 
@@ -145,6 +149,44 @@ class PNO_Form_Account extends PNO_Form {
 			if ( is_wp_error( $validation_status ) ) {
 				throw new Exception( $validation_status->get_error_message() );
 			}
+
+			$user_id = get_current_user_id();
+
+			$user_data = [
+				'ID' => $user_id,
+			];
+
+			do_action( 'pno_before_user_update', $this, $values, $user_id );
+
+			// Update first name and last name.
+			if ( isset( $values['account']['first_name'] ) ) {
+				$user_data['first_name'] = $values['account']['first_name'];
+			}
+			if ( isset( $values['account']['last_name'] ) ) {
+				$user_data['last_name'] = $values['account']['last_name'];
+			}
+
+			// Update email address.
+			if ( isset( $values['account']['email'] ) ) {
+				$user_data['user_email'] = $values['account']['email'];
+			}
+
+			// Update website.
+			if ( isset( $values['account']['website'] ) ) {
+				$user_data['user_url'] = $values['account']['website'];
+			}
+
+			if ( isset( $values['account']['description'] ) ) {
+				$user_data['description'] = $values['account']['description'];
+			}
+
+			$updated_user_id = wp_update_user( $user_data );
+
+			if ( is_wp_error( $updated_user_id ) ) {
+				throw new Exception( $updated_user_id->get_error_message() );
+			}
+
+			do_action( 'pno_after_user_update', $this, $values, $updated_user_id );
 
 			// Successful, show next step.
 			$this->step ++;
