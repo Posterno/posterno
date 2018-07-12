@@ -183,3 +183,139 @@ function pno_get_registration_fields() {
 	return apply_filters( 'pno_registration_fields', $fields );
 
 }
+
+/**
+ * Defines the list of the fields for the account form.
+ * If a user id is passed through the function,
+ * the related user's value is loaded within the field.
+ *
+ * @param string $user_id
+ * @return void
+ */
+function pno_get_account_fields( $user_id = false ) {
+
+	$fields = [
+		'first_name'   => [
+			'label'       => esc_html__( 'First name' ),
+			'type'        => 'text',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 1,
+		],
+		'last_name'   => [
+			'label'       => esc_html__( 'Last name' ),
+			'type'        => 'text',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 2,
+		],
+		'email'   => [
+			'label'       => esc_html__( 'Email address' ),
+			'type'        => 'email',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 3,
+		],
+		'website'   => [
+			'label'       => esc_html__( 'Website' ),
+			'type'        => 'text',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 4,
+		],
+		'description'   => [
+			'label'       => esc_html__( 'About me' ),
+			'type'        => 'textarea',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 5,
+		],
+	];
+
+	// Load user's related values within the fields.
+	if ( $user_id ) {
+
+		$user = get_user_by( 'id', $user_id );
+
+		if ( $user instanceof WP_User ) {
+			foreach ( $fields as $key => $field ) {
+				$value = false;
+				switch ( $key ) {
+					case 'email':
+						$value = esc_attr( $user->user_email );
+						break;
+					case 'website':
+						$value = esc_url( $user->user_url );
+						break;
+					default:
+						$value = esc_html( get_user_meta( $user_id, $key, true ) );
+						break;
+				}
+				if ( $value ) {
+					$fields[ $key ]['value'] = $value;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Allows developers to register or deregister custom fields within the
+	 * user's account editing form.
+	 *
+	 * @param array $fields
+	 * @param mixed $user_id
+	 */
+	return apply_filters( 'pno_account_fields', $fields, $user_id );
+
+}
+
+/**
+ * Defines a list of navigation items for the dashboard page.
+ *
+ * @return array
+ */
+function pno_get_dashboard_navigation_items() {
+
+	$items = [
+		'dashboard'    => [
+			'name'     => esc_html__( 'Dashboard' ),
+			'priority' => 0,
+		],
+		'edit-account' => [
+			'name'     => esc_html__( 'Account details' ),
+			'priority' => 1,
+		],
+		'password' => [
+			'name'     => esc_html__( 'Password' ),
+			'priority' => 2,
+		],
+		'view'         => [
+			'name'     => esc_html__( 'View profile' ),
+			'priority' => 3,
+		],
+		'logout'       => [
+			'name'     => esc_html__( 'Logout' ),
+			'priority' => 13,
+		],
+	];
+
+	if ( ! pno_get_profile_page_id() ) {
+		unset( $items['view'] );
+	}
+
+	/**
+	 * Allows developers to register or deregister navigation items
+	 * for the dashboard menu.
+	 *
+	 * @param array $items
+	 */
+	$items = apply_filters( 'pno_dashboard_navigation_items', $items );
+
+	uasort( $items, 'pno_sort_array_by_priority' );
+
+	$first                       = key( $items );
+	$items[ $first ]['is_first'] = true;
+
+	return $items;
+
+}

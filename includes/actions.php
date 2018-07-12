@@ -100,13 +100,32 @@ function pno_display_restricted_access_message( $form ) {
 add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10, 2 );
 
 /**
- * Defines the content that needs to be loaded within a dashboard tab.
+ * Loads the content for the dashboard tab called "dashboard".
+ * By default this is the first tab.
  *
  * @return void
  */
-function pno_set_dashboard_content() {
+function pno_load_initial_dashboard_content() {
 
-	echo 'hhh';
+	$data = [
+		'user' => wp_get_current_user(),
+	];
+
+	posterno()->templates
+		->set_template_data( $data )
+		->get_template_part( 'logged-user' );
 
 }
-add_action( 'pno_dashboard_content', 'pno_set_dashboard_content' );
+add_action( 'pno_dashboard_tab_content_dashboard', 'pno_load_initial_dashboard_content' );
+
+/**
+ * Load the content for the account details tab within the dashboard page.
+ *
+ * @return void
+ */
+function pno_load_dashboard_account_details() {
+
+	echo posterno()->forms->get_form( 'account', [] );
+
+}
+add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_account_details' );

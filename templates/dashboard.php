@@ -24,7 +24,35 @@ defined( 'ABSPATH' ) || exit;
 			<?php posterno()->templates->get_template_part( 'dashboard/navigation' ); ?>
 		</div>
 		<div class="col-sm-8">
-			<?php do_action( 'pno_dashboard_content' ); ?>
+			<?php
+
+			$active_tab = get_query_var( 'dashboard_navigation_item' );
+
+			/**
+			 * Defines the key of the action that loads the content of the first
+			 * dashboard tab.
+			 *
+			 * @since 0.1.0
+			 */
+			$first_tab = apply_filters( 'pno_set_first_dashboard_tab_key', 'dashboard' );
+
+			if ( ! $active_tab || empty( $active_tab ) ) {
+
+				/**
+				 * Loads the content of the first tab for the dashboard page.
+				 * By default the first tab is called "dashboard".
+				 */
+				do_action( "pno_dashboard_tab_content_{$first_tab}" );
+
+			} else {
+
+				/**
+				 * Loads the content of the currently active dashboard tab.
+				 */
+				do_action( "pno_dashboard_tab_content_{$active_tab}" );
+			}
+
+			?>
 		</div>
 	</div>
 </div>
