@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php posterno()->templates->get_template_part( 'dashboard/navigation' ); ?>
 		</div>
 		<div class="col-sm-8">
-			One of three columns
+			<?php do_action( 'pno_dashboard_content' ); ?>
 		</div>
 	</div>
 </div>
