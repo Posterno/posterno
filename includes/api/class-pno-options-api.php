@@ -209,7 +209,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 
 		$new_input = array();
 
-		if ( isset( $setting['multiple'] ) && $setting['multiple'] === true ) {
+		if ( isset( $setting['multiple'] ) && $setting['multiple'] === true && is_array( $input ) ) {
 			foreach ( $input as $value ) {
 
 				$saved_label = sanitize_text_field( $value['label'] );
@@ -221,7 +221,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 				];
 
 			}
-		} else {
+		} elseif ( is_array( $input ) && isset( $input['value'] ) ) {
 
 			$saved_label = sanitize_text_field( $input['label'] );
 			$saved_value = sanitize_text_field( $input['value'] );
