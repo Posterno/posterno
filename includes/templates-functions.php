@@ -59,11 +59,9 @@ function pno_get_form_field_class( $field_key, $field, $class = '' ) {
 	}
 
 	$classes[] = 'pno-field-' . $field['type'];
-
+	$classes[] = 'form-group';
 	if ( $field['type'] == 'checkbox' ) {
 		$classes[] = 'form-check';
-	} else {
-		$classes[] = 'form-group';
 	}
 
 	$classes = array_map( 'esc_attr', $classes );

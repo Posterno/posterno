@@ -157,22 +157,20 @@ function pno_get_registration_fields() {
 		$terms_page = is_array( $terms_page ) && isset( $terms_page['value'] ) ? $terms_page['value'] : false;
 		if ( $terms_page ) {
 			$fields['registration']['terms'] = array(
-				'label'       => false,
-				'type'        => 'checkbox',
-				'description' => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.' ), get_permalink( $terms_page ) ) ),
-				'required'    => true,
-				'priority'    => 101,
+				'label'    => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.' ), get_permalink( $terms_page ) ) ),
+				'type'     => 'checkbox',
+				'required' => true,
+				'priority' => 101,
 			);
 		}
 	}
 
 	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
 		$fields['registration']['privacy'] = array(
-			'label'       => false,
-			'type'        => 'checkbox',
-			'description' => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
-			'required'    => true,
-			'priority'    => 102,
+			'label'    => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'type'     => 'checkbox',
+			'required' => true,
+			'priority' => 102,
 		);
 	}
 

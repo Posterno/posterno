@@ -19,6 +19,14 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <input type="checkbox" class="input-checkbox form-check-input" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" id="<?php echo esc_attr( $data->key ); ?>" <?php checked( ! empty( $data->value ), true ); ?> value="1" <?php if ( ! empty( $data->required ) ) echo 'required'; ?> />
+
+<label for="<?php echo esc_attr( $data->key ); ?>" class="form-check-label">
+	<?php echo $data->label; ?>
+	<?php if ( isset( $data->required ) && $data->required ) : ?>
+		<span class="pno-required">*</span>
+	<?php endif; ?>
+</label>
+
 <?php if ( ! empty( $data->description ) ) : ?>
 	<small class="form-text text-muted"><?php echo $data->description; ?></small>
 <?php endif; ?>

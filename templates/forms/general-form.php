@@ -49,12 +49,6 @@ defined( 'ABSPATH' ) || exit;
 							->set_template_data( $field )
 							->get_template_part( 'form-fields/' . $field['type'], 'field' );
 					?>
-					<label for="<?php echo esc_attr( $key ); ?>" class="form-check-label">
-						<?php echo esc_html( $field['label'] ); ?>
-						<?php if ( isset( $field['required'] ) && $field['required'] ) : ?>
-							<span class="pno-required">*</span>
-						<?php endif; ?>
-					</label>
 
 				<?php else : ?>
 
