@@ -35,3 +35,30 @@ function pno_restrict_wp_login() {
 
 }
 add_action( 'init', 'pno_restrict_wp_login' );
+
+/**
+ * Restrict access to the dashboard page only to logged in users.
+ *
+ * @return void
+ */
+function pno_restrict_dashboard_access() {
+
+	$dashboard_page = pno_get_dashboard_page_id();
+
+	if ( $dashboard_page && is_int( $dashboard_page ) && is_page( $dashboard_page ) && ! is_user_logged_in() ) {
+		$login_page = pno_get_login_page_id();
+		if ( $login_page && is_int( $login_page ) ) {
+			$login_page = add_query_arg(
+				[
+					'redirect_to' => urlencode( get_permalink( $dashboard_page ) ),
+					'restricted'  => true,
+				],
+				get_permalink( $login_page )
+			);
+			wp_safe_redirect( $login_page );
+			exit;
+		}
+	}
+
+}
+add_action( 'template_redirect', 'pno_restrict_dashboard_access' );

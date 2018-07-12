@@ -327,6 +327,10 @@ function pno_get_dashboard_navigation_items() {
 		],
 	];
 
+	if ( ! pno_get_profile_page_id() ) {
+		unset( $items['view'] );
+	}
+
 	/**
 	 * Allows developers to register or deregister navigation items
 	 * for the dashboard menu.
