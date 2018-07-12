@@ -396,7 +396,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	 * @param array $field
 	 * @param string $class
 	 */
-	$classes = apply_filters( 'pno_dashboard_navigation_item_classes', $classes, $field_key, $field, $class );
+	$classes = apply_filters( 'pno_dashboard_navigation_item_classes', $classes, $key, $item, $class );
 
 	return array_unique( $classes );
 

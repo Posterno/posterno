@@ -7,4 +7,9 @@
 .pno-field-robo {
   display: none; }
 
+.pno-action-links {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
 /*# sourceMappingURL=pno.css.map */
