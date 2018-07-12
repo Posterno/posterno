@@ -264,6 +264,15 @@ class PNO_Form_Registration extends PNO_Form {
 				throw new Exception( $new_user_id->get_error_message() );
 			}
 
+			// Assign the role set into the registration form.
+			if ( pno_get_option( 'allowed_roles' ) && isset( $values['registration']['role'] ) ) {
+				$user = new WP_User( $new_user_id );
+				$user->set_role( $values['registration']['role'] );
+			} else {
+				$user = new WP_User( $new_user_id );
+				$user->set_role( $this->role );
+			}
+
 			// Allow developers to extend signup process.
 			do_action( 'pno_before_registration_end', $new_user_id, $values );
 
