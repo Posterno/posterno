@@ -436,3 +436,24 @@ function pno_is_dashboard_navigation_item_active( $current ) {
 	return $active;
 
 }
+
+/**
+ * Retrieve the full hierarchy of a given page or post.
+ *
+ * @param int $page_id
+ * @return void
+ */
+function pno_get_full_page_hierarchy( $page_id ) {
+	$page = get_post( $page_id );
+	if ( empty( $page ) || is_wp_error( $page ) ) {
+		return [];
+	}
+	$return         = [];
+	$page_obj       = [];
+	$page_obj['id'] = $page_id;
+	$return[]       = $page_obj;
+	if ( $page->post_parent > 0 ) {
+		$return = array_merge( $return, pno_get_full_page_hierarchy( $page->post_parent ) );
+	}
+	return $return;
+}

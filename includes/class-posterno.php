@@ -81,6 +81,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->setup_constants();
 			self::$instance->setup_files();
 
+			// Boot composer's classes.
+			Brain\Cortex::boot();
+
 			// Api's
 			self::$instance->templates = new PNO_Templates();
 			self::$instance->forms     = PNO_Forms::instance();
@@ -229,6 +232,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/post-types.php';
 			require_once PNO_PLUGIN_DIR . 'includes/functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
 			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}
 
