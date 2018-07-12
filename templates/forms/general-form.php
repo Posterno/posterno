@@ -31,7 +31,7 @@ defined( 'ABSPATH' ) || exit;
 
 	?>
 
-	<?php if ( $data->message ) : ?>
+	<?php if ( isset( $data->message ) && ! empty( $data->message ) ) : ?>
 		<p><?php echo esc_html( $data->message ); ?></p>
 	<?php endif; ?>
 

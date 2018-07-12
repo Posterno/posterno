@@ -50,6 +50,10 @@ class PNO_Form_Registration extends PNO_Form {
 		add_filter( 'pno_form_validate_fields', [ $this, 'validate_password' ], 10, 4 );
 		add_filter( 'pno_form_validate_fields', [ $this, 'validate_honeypot' ], 10, 4 );
 
+		if ( pno_get_option( 'enable_role_selection' ) ) {
+			add_filter( 'pno_form_validate_fields', [ $this, 'validate_role' ], 10, 4 );
+		}
+
 		$steps = array(
 			'submit'       => array(
 				'name'     => false,
@@ -126,6 +130,32 @@ class PNO_Form_Registration extends PNO_Form {
 		if ( $form == $this->form_name && isset( $values['registration']['robo'] ) ) {
 			if ( ! empty( $values['registration']['robo'] ) ) {
 				return new WP_Error( 'honeypot-validation-error', esc_html__( 'Failed honeypot validation.' ) );
+			}
+		}
+		return $pass;
+	}
+
+	/**
+	 * Validate role on submission.
+	 *
+	 * @param boolean $pass
+	 * @param array $fields
+	 * @param array $values
+	 * @param string $form
+	 * @return mixed
+	 */
+	public function validate_role( $pass, $fields, $values, $form ) {
+		if ( $form == $this->form_name && isset( $values['registration']['role'] ) ) {
+
+			$role_field      = $values['registration']['role'];
+			$selected_roles  = pno_get_option( 'allowed_roles' );
+			$available_roles = [];
+			foreach ( $selected_roles as $role ) {
+				$available_roles[] = $role['value'];
+			}
+
+			if ( is_array( $available_roles ) && ! in_array( $role_field, $available_roles ) ) {
+				return new WP_Error( 'role-validation-error', __( 'Select a valid role from the list.', 'wp-user-manager' ) );
 			}
 		}
 		return $pass;
