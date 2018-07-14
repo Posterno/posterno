@@ -131,6 +131,16 @@ function pno_load_dashboard_account_details() {
 add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_account_details' );
 
 /**
+ * Add plugin's version to header.
+ *
+ * @return void
+ */
+function pno_version_in_header() {
+	echo '<meta name="generator" content="Posterno v' . PNO_VERSION . '" />' . "\n";
+}
+add_action( 'wp_head', 'pno_version_in_header' );
+
+/**
  * Adds markup to form fields for the account page so we can make the
  * first and last name fields on 2 columns layout.
  *

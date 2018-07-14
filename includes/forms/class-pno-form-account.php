@@ -53,6 +53,12 @@ class PNO_Form_Account extends PNO_Form {
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
+			'updated' => array(
+				'name'     => __( 'Account details' ),
+				'view'     => array( $this, 'updated' ),
+				'handler'  => false,
+				'priority' => 11,
+			),
 		);
 
 		/**
@@ -195,6 +201,26 @@ class PNO_Form_Account extends PNO_Form {
 			$this->add_error( $e->getMessage() );
 			return;
 		}
+	}
+
+	/**
+	 * Display a success message after details have been updated.
+	 *
+	 * @return void
+	 */
+	public function updated() {
+
+		$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.' ) );
+
+		$data = [
+			'type'    => 'success',
+			'message' => $message,
+		];
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'message' );
+
 	}
 
 }
