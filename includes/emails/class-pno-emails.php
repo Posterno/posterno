@@ -127,6 +127,12 @@ class PNO_Emails {
 		if ( ! $this->from_name ) {
 			$this->from_name = pno_get_option( 'from_name', get_bloginfo( 'name' ) );
 		}
+
+		/**
+		 * Allows filtering of the "from name" option used within emails sent by PNO.
+		 *
+		 * @param string $from_name the name set in the options panel or the site's name.
+		 */
 		return apply_filters( 'pno_email_from_name', wp_specialchars_decode( $this->from_name ), $this );
 	}
 
@@ -139,6 +145,12 @@ class PNO_Emails {
 		if ( ! $this->from_address ) {
 			$this->from_address = pno_get_option( 'from_email', get_option( 'admin_email' ) );
 		}
+
+		/**
+		 * Allows filtering of the "from address" email used to send emails via PNO.
+		 *
+		 * @param string $from_address the email address specified into the options panel or the site's admin email.
+		 */
 		return apply_filters( 'pno_email_from_address', $this->from_address, $this );
 	}
 
@@ -167,6 +179,12 @@ class PNO_Emails {
 			$this->headers .= "Reply-To: {$this->get_from_address()}\r\n";
 			$this->headers .= "Content-Type: {$this->get_content_type()}; charset=utf-8\r\n";
 		}
+
+		/**
+		 * Allows filtering of the email's headers. The headers are for emails sent through PNO.
+		 *
+		 * @param string $headers
+		 */
 		return apply_filters( 'pno_email_headers', $this->headers, $this );
 	}
 
@@ -402,6 +420,18 @@ class PNO_Emails {
 			),
 		);
 
+		/**
+		 * Allows developers to register or deregister custom email dynamic tags.
+		 *
+		 * Each new tag takes the following parameter:
+		 *
+		 * name: the title that will be displayed within the settings panel,
+		 * description: explanation of what the tag is,
+		 * tag: the actual tag to use into the email's content,
+		 * function: php function that parses the content of the tag.
+		 *
+		 * @param array $email_tags all currently registered tags.
+		 */
 		return apply_filters( 'pno_email_tags', $email_tags, $this );
 
 	}
