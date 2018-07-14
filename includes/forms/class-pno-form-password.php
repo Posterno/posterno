@@ -45,16 +45,17 @@ class PNO_Form_Password extends PNO_Form {
 	 */
 	public function __construct() {
 		add_action( 'wp', array( $this, 'process' ) );
+		add_filter( 'pno_form_validate_fields', [ $this, 'validate_password' ], 10, 4 );
 
 		$steps = array(
 			'submit'  => array(
-				'name'     => false,
+				'name'     => esc_html__( 'Change password' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
 			'updated' => array(
-				'name'     => false,
+				'name'     => esc_html__( 'Change password' ),
 				'view'     => array( $this, 'updated' ),
 				'handler'  => false,
 				'priority' => 11,
@@ -92,19 +93,26 @@ class PNO_Form_Password extends PNO_Form {
 
 		$fields = array(
 			'password' => array(
-				'password'        => array(
-					'label'       => esc_html__( 'Password' ),
+				'password_current'    => array(
+					'label'       => esc_html__( 'Current password' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 0,
 				),
-				'password_repeat' => array(
-					'label'       => esc_html__( 'Repeat password' ),
+				'password_new'        => array(
+					'label'       => esc_html__( 'New password' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
+				),
+				'password_new_repeat' => array(
+					'label'       => esc_html__( 'Repeat new password' ),
+					'type'        => 'password',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 2,
 				),
 			),
 		);
@@ -117,6 +125,38 @@ class PNO_Form_Password extends PNO_Form {
 		 */
 		$this->fields = apply_filters( 'pno_password_form_fields', $fields );
 
+	}
+
+	/**
+	 * Make sure the password is a strong one and matches the confirmation.
+	 *
+	 * @param boolean $pass
+	 * @param array $fields
+	 * @param array $values
+	 * @param string $form
+	 * @return mixed
+	 */
+	public function validate_password( $pass, $fields, $values, $form ) {
+		if ( $form == $this->form_name && isset( $values['password']['password_new'] ) ) {
+
+			$password_1      = $values['password']['password_new'];
+			$password_2      = $values['password']['password_new_repeat'];
+
+			if ( pno_get_option( 'strong_passwords' ) ) {
+				$containsLetter  = preg_match( '/[A-Z]/', $password_1 );
+				$containsDigit   = preg_match( '/\d/', $password_1 );
+				$containsSpecial = preg_match( '/[^a-zA-Z\d]/', $password_1 );
+
+				if ( ! $containsLetter || ! $containsDigit || ! $containsSpecial || strlen( $password_1 ) < 8 ) {
+					return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.' ) );
+				}
+			}
+
+			if ( $password_1 !== $password_2 ) {
+				return new WP_Error( 'password-validation-nomatch', esc_html__( 'Error: passwords do not match.' ) );
+			}
+		}
+		return $pass;
 	}
 
 	/**
@@ -133,7 +173,8 @@ class PNO_Form_Password extends PNO_Form {
 			'action'       => $this->get_action(),
 			'fields'       => $this->get_fields( 'password' ),
 			'step'         => $this->get_step(),
-			'submit_label' => esc_html__( 'Update password' ),
+			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
+			'submit_label' => esc_html__( 'Change password' ),
 		];
 
 		posterno()->templates
@@ -171,6 +212,26 @@ class PNO_Form_Password extends PNO_Form {
 				throw new Exception( $validation_status->get_error_message() );
 			}
 
+			$user = wp_get_current_user();
+
+			$submitted_password = $values['password']['password_current'];
+
+			if ( $user instanceof WP_User && wp_check_password( $submitted_password, $user->data->user_pass, $user->ID ) && is_user_logged_in() ) {
+
+				$updated_user_id = wp_update_user(
+					[
+						'ID'        => $user->ID,
+						'user_pass' => $values['password']['password_new'],
+					]
+				);
+
+				if ( is_wp_error( $updated_user_id ) ) {
+					throw new Exception( $updated_user_id->get_error_message() );
+				}
+			} else {
+				throw new Exception( __( 'The password you entered is incorrect.' ) );
+			}
+
 			// Successful, show next step.
 			$this->step ++;
 
@@ -187,7 +248,7 @@ class PNO_Form_Password extends PNO_Form {
 	 */
 	public function updated() {
 
-		$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.' ) );
+		$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Password successfully updated.' ) );
 
 		$data = [
 			'type'    => 'success',

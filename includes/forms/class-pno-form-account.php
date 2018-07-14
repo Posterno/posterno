@@ -48,13 +48,13 @@ class PNO_Form_Account extends PNO_Form {
 
 		$steps = array(
 			'submit' => array(
-				'name'     => __( 'Account details' ),
+				'name'     => __( 'Account settings' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
 			'updated' => array(
-				'name'     => __( 'Account details' ),
+				'name'     => __( 'Account settings' ),
 				'view'     => array( $this, 'updated' ),
 				'handler'  => false,
 				'priority' => 11,
@@ -118,6 +118,7 @@ class PNO_Form_Account extends PNO_Form {
 			'action'       => $this->get_action(),
 			'fields'       => $this->get_fields( 'account' ),
 			'step'         => $this->get_step(),
+			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 			'submit_label' => esc_html__( 'Save changes' ),
 		];
 
