@@ -40,6 +40,20 @@ defined( 'ABSPATH' ) || exit;
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 			<div <?php pno_form_field_class( $key, $field ); ?>>
 
+				<?php
+
+				/**
+				 * Action that triggers before displaying a field within a form.
+				 *
+				 * @param string $key the id key of the current field.
+				 * @param array $field the settings of the current field.
+				 * @param string $form the name of the current form.
+				 * @param string $step the current step of the form.
+				 */
+				do_action( 'pno_form_before_field', $key, $field, $data->form, $data->step );
+
+				?>
+
 				<?php if ( $field['type'] == 'checkbox' ) : ?>
 
 					<?php
@@ -69,6 +83,20 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 
 				<?php endif; ?>
+
+				<?php
+
+				/**
+				 * Action that triggers after displaying a field within a form.
+				 *
+				 * @param string $key the id key of the current field.
+				 * @param array $field the settings of the current field.
+				 * @param string $form the name of the current form.
+				 * @param string $step the current step of the form.
+				 */
+				do_action( 'pno_form_after_field', $key, $field, $data->form, $data->step );
+
+				?>
 
 			</div>
 		<?php endforeach; ?>
