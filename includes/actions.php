@@ -131,6 +131,18 @@ function pno_load_dashboard_account_details() {
 add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_account_details' );
 
 /**
+ * Load the content for the password tab within the dashboard page.
+ *
+ * @return void
+ */
+function pno_load_dashboard_password_details() {
+
+	echo posterno()->forms->get_form( 'password', [] );
+
+}
+add_action( 'pno_dashboard_tab_content_password', 'pno_load_dashboard_password_details' );
+
+/**
  * Add plugin's version to header.
  *
  * @return void
