@@ -129,3 +129,41 @@ function pno_load_dashboard_account_details() {
 
 }
 add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_account_details' );
+
+/**
+ * Adds markup to form fields for the account page so we can make the
+ * first and last name fields on 2 columns layout.
+ *
+ * @param string $key
+ * @param array $field
+ * @param string $form
+ * @param string $step
+ * @return void
+ */
+function pno_account_form_make_row_opening( $key, $field, $form, $step ) {
+
+	if ( $form == 'account' && $key == 'first_name' ) {
+		echo '<div class="row">';
+	}
+
+}
+add_action( 'pno_form_before_field', 'pno_account_form_make_row_opening', 10, 4 );
+
+/**
+ * Adds markup to form fields for the account page so we can make the
+ * first and last name fields on 2 columns layout.
+ *
+ * @param string $key
+ * @param array $field
+ * @param string $form
+ * @param string $step
+ * @return void
+ */
+function pno_account_form_make_row_closing( $key, $field, $form, $step ) {
+
+	if ( $form == 'account' && $key == 'last_name' ) {
+		echo '</div>';
+	}
+
+}
+add_action( 'pno_form_after_field', 'pno_account_form_make_row_closing', 10, 4 );

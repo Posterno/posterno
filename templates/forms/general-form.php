@@ -38,9 +38,8 @@ defined( 'ABSPATH' ) || exit;
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
-			<div <?php pno_form_field_class( $key, $field ); ?>>
 
-				<?php
+			<?php
 
 				/**
 				 * Action that triggers before displaying a field within a form.
@@ -52,8 +51,9 @@ defined( 'ABSPATH' ) || exit;
 				 */
 				do_action( 'pno_form_before_field', $key, $field, $data->form, $data->step );
 
-				?>
+			?>
 
+			<div <?php pno_form_field_class( $key, $field ); ?>>
 				<?php if ( $field['type'] == 'checkbox' ) : ?>
 
 					<?php
@@ -83,8 +83,9 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 
 				<?php endif; ?>
+			</div>
 
-				<?php
+			<?php
 
 				/**
 				 * Action that triggers after displaying a field within a form.
@@ -96,9 +97,8 @@ defined( 'ABSPATH' ) || exit;
 				 */
 				do_action( 'pno_form_after_field', $key, $field, $data->form, $data->step );
 
-				?>
+			?>
 
-			</div>
 		<?php endforeach; ?>
 
 		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
