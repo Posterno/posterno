@@ -425,6 +425,14 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
 			],
+			'cancellation_redirect' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After account cancellation' ),
+				'description' => esc_html__( 'Select the page where you want to redirect users after they delete their account. If empty will return to your homepage.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+				'is_page'     => true,
+			],
 		],
 		'privacy' => [
 			'allow_account_delete' => [

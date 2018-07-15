@@ -143,6 +143,20 @@ function pno_load_dashboard_password_details() {
 add_action( 'pno_dashboard_tab_content_password', 'pno_load_dashboard_password_details' );
 
 /**
+ * Load the content for the privacy tab within the dashboard page.
+ *
+ * @return void
+ */
+function pno_load_dashboard_privacy() {
+
+	if ( pno_get_option( 'allow_account_delete' ) ) {
+		echo posterno()->forms->get_form( 'account-delete', [] );
+	}
+
+}
+add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
+
+/**
  * Add plugin's version to header.
  *
  * @return void
