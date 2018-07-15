@@ -20,10 +20,10 @@ defined( 'ABSPATH' ) || exit;
 
 <div id="posterno-dashboard-wrapper">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<?php posterno()->templates->get_template_part( 'dashboard/navigation' ); ?>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-9">
 			<?php
 
 			$active_tab = get_query_var( 'dashboard_navigation_item' );

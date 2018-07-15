@@ -20,5 +20,14 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="alert alert-info" role="alert">
 	<p><?php printf( __( 'Hello %1$s ( not %1$s? <a href="%2$s" class="alert-link">Log out</a> )' ), '<strong>' . $data->user->display_name . '</strong>', wp_logout_url() ); ?></p>
-	<p class="mb-0">From your account dashboard you can manage your listings, edit your password and account details.</p>
+	<p class="mb-0">
+		<?php
+		printf(
+			__( 'From your account dashboard you can <a href="%1$s">manage your listings</a>, <a href="%2$s">edit your password</a> and <a href="%3$s">customize your account details</a>.' ),
+			pno_get_dashboard_navigation_item_url( 'manage-listings' ),
+			pno_get_dashboard_navigation_item_url( 'password' ),
+			pno_get_dashboard_navigation_item_url( 'edit-account' )
+		);
+		?>
+	</p>
 </div>

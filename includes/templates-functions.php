@@ -307,7 +307,7 @@ function pno_sort_array_by_priority( $a, $b ) {
  * @param string $item
  * @return void
  */
-function pno_get_dashboard_navigation_item_url( $key, $item ) {
+function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
 
