@@ -32,11 +32,11 @@ defined( 'ABSPATH' ) || exit;
 	?>
 
 	<?php if ( isset( $data->title ) && ! empty( $data->title ) ) : ?>
-		<h2><?php echo esc_html( $data->title ); ?></h2>
+		<h2><?php echo $data->title; ?></h2>
 	<?php endif; ?>
 
 	<?php if ( isset( $data->message ) && ! empty( $data->message ) ) : ?>
-		<p><?php echo esc_html( $data->message ); ?></p>
+		<p><?php echo $data->message; ?></p>
 	<?php endif; ?>
 
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
