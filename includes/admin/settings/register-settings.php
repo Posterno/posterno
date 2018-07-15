@@ -234,6 +234,7 @@ function pno_get_registered_settings_tabs_sections() {
 			'registration'           => esc_html__( 'Registration' ),
 			'password_recovery_form' => esc_html__( 'Password recovery' ),
 			'redirects'              => esc_html__( 'Redirects' ),
+			'privacy'                => esc_html__( 'Privacy' ),
 		],
 		'emails'   => [
 			'emails_settings'           => esc_html__( 'Configuration' ),
@@ -423,6 +424,23 @@ function pno_get_registered_settings() {
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
+			],
+		],
+		'privacy' => [
+			'allow_account_delete' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow users to delete their own account?' ),
+				'description' => esc_html__( 'Enable the option to display a section within the dashboard for users to delete their own account.' ),
+			],
+			'allow_data_request' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow users to request a copy of their own data?' ),
+				'description' => esc_html__( 'Enable the option to allow the user to request an export of personal data from the dashboard page.' ),
+			],
+			'allow_data_erasure' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow users to request erasure of their own data?' ),
+				'description' => esc_html__( 'Enable the option to allow the user to request erasure of personal data from the dashboard page.' ),
 			],
 		],
 		'emails_settings'           => [

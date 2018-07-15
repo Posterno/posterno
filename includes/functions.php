@@ -286,11 +286,11 @@ function pno_get_dashboard_navigation_items() {
 			'priority' => 1,
 		],
 		'password' => [
-			'name'     => esc_html__( 'Password' ),
+			'name'     => esc_html__( 'Change password' ),
 			'priority' => 2,
 		],
-		'view'         => [
-			'name'     => esc_html__( 'View profile' ),
+		'privacy' => [
+			'name'     => esc_html__( 'Privacy settings' ),
 			'priority' => 3,
 		],
 		'logout'       => [
@@ -298,10 +298,6 @@ function pno_get_dashboard_navigation_items() {
 			'priority' => 13,
 		],
 	];
-
-	if ( ! pno_get_profile_page_id() ) {
-		unset( $items['view'] );
-	}
 
 	/**
 	 * Allows developers to register or deregister navigation items
