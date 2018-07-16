@@ -45,6 +45,7 @@ function pno_load_admin_scripts() {
 	// Load script for the custom fields page.
 	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-custom-fields' ) {
 		wp_enqueue_script( 'pno-custom-fields-page' );
+		wp_localize_script( 'pno-custom-fields-page', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
 }

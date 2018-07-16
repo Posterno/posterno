@@ -12,6 +12,30 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Defines the list of js variables passed to vuejs for the custom fields editor.
+ *
+ * @return array
+ */
+function pno_get_custom_fields_editor_js_vars() {
+
+	$js_vars = [
+		'plugin_url' => PNO_PLUGIN_URL,
+		'labels'     => [
+			'documentation' => esc_html__( 'Documentation' ),
+			'addons'        => esc_html__( 'View Addons' ),
+			'title'         => esc_html__( 'Posterno custom fields' ),
+			'custom_users'  => esc_html__( 'Customize profile fields' ),
+			'users'         => [
+				'title' => esc_html__( 'Posterno profile fields editor' )
+			],
+		],
+	];
+
+	return $js_vars;
+
+}
+
+/**
  * Function responsible of displaying the custom fields page.
  * Actual output handled by vuejs.
  *
