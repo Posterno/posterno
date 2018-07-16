@@ -187,6 +187,11 @@ class PNO_Form_Account extends PNO_Form {
 				$user_data['description'] = $values['account']['description'];
 			}
 
+			if ( isset( $values['account']['avatar'] ) && pno_get_option( 'allow_avatars' ) ) {
+				print_r( $values['account']['avatar'] );
+				exit;
+			}
+
 			$updated_user_id = wp_update_user( $user_data );
 
 			if ( is_wp_error( $updated_user_id ) ) {
