@@ -34,7 +34,7 @@ function pno_restrict_wp_login() {
 	}
 
 }
-add_action( 'init', 'pno_restrict_wp_login' );
+//add_action( 'init', 'pno_restrict_wp_login' );
 
 /**
  * Restrict access to the dashboard page only to logged in users.
@@ -151,6 +151,10 @@ function pno_load_dashboard_privacy() {
 
 	if ( pno_get_option( 'allow_data_request' ) ) {
 		echo posterno()->forms->get_form( 'data-request', [] );
+	}
+
+	if ( pno_get_option( 'allow_data_erasure' ) ) {
+		echo posterno()->forms->get_form( 'data-erasure', [] );
 	}
 
 	if ( pno_get_option( 'allow_account_delete' ) ) {
