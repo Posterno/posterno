@@ -16,6 +16,14 @@
 		<div class="theme-browser rendered">
 			<div class="themes wp-clearfix">
 				<div class="theme add-new-theme">
+					<router-link to="/listings-fields">
+						<div class="theme-screenshot pno-customize-listings">
+							<span></span>
+						</div>
+						<h2 class="theme-name">{{labels.custom_listings}}</h2>
+					</router-link>
+				</div>
+				<div class="theme add-new-theme">
 					<router-link to="/profile-fields">
 						<div class="theme-screenshot pno-customize-users">
 							<span></span>
@@ -63,6 +71,13 @@ export default {
 	.pno-customize-users {
 		span:after {
 			content: '\f110';
+			background: none;
+		}
+	}
+
+	.pno-customize-listings {
+		span:after {
+			content: "\f163";
 			background: none;
 		}
 	}

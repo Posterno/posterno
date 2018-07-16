@@ -19,6 +19,14 @@ export default new Router({
 			props: {
 				type: 'users'
 			}
+		},
+		{
+			path: '/listings-fields',
+			name: 'listings-fields',
+			component: Editor,
+			props: {
+				type: 'listings'
+			}
 		}
 	]
 })

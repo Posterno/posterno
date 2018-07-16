@@ -21,12 +21,13 @@ function pno_get_custom_fields_editor_js_vars() {
 	$js_vars = [
 		'plugin_url' => PNO_PLUGIN_URL,
 		'labels'     => [
-			'documentation' => esc_html__( 'Documentation' ),
-			'addons'        => esc_html__( 'View Addons' ),
-			'title'         => esc_html__( 'Posterno custom fields' ),
-			'custom_users'  => esc_html__( 'Customize profile fields' ),
-			'users'         => [
-				'title' => esc_html__( 'Posterno profile fields editor' )
+			'documentation'   => esc_html__( 'Documentation' ),
+			'addons'          => esc_html__( 'View Addons' ),
+			'title'           => esc_html__( 'Posterno custom fields' ),
+			'custom_users'    => esc_html__( 'Customize profile fields' ),
+			'custom_listings' => esc_html__( 'Customize listings fields' ),
+			'users'           => [
+				'title' => esc_html__( 'Posterno profile fields editor' ),
 			],
 		],
 	];
