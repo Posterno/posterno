@@ -145,3 +145,31 @@ function pno_make_account_form_fields_two_columns( $classes, $field_key, $field,
 
 }
 add_filter( 'pno_form_field_classes', 'pno_make_account_form_fields_two_columns', 10, 4 );
+
+/**
+ * Filters the upload dir when $pno_upload is true.
+ *
+ * @since 0.1.0
+ * @param  array $pathdata
+ * @return array
+ */
+function pno_upload_dir( $pathdata ) {
+
+	global $pno_upload, $pno_uploading_file;
+
+	if ( ! empty( $pno_upload ) ) {
+		$dir = untrailingslashit( apply_filters( 'pno_upload_dir', 'pno-uploads/' . sanitize_key( $pno_uploading_file ), sanitize_key( $pno_uploading_file ) ) );
+		if ( empty( $pathdata['subdir'] ) ) {
+			$pathdata['path']   = $pathdata['path'] . '/' . $dir;
+			$pathdata['url']    = $pathdata['url'] . '/' . $dir;
+			$pathdata['subdir'] = '/' . $dir;
+		} else {
+			$new_subdir         = '/' . $dir . $pathdata['subdir'];
+			$pathdata['path']   = str_replace( $pathdata['subdir'], $new_subdir, $pathdata['path'] );
+			$pathdata['url']    = str_replace( $pathdata['subdir'], $new_subdir, $pathdata['url'] );
+			$pathdata['subdir'] = $new_subdir;
+		}
+	}
+	return $pathdata;
+}
+add_filter( 'upload_dir', 'pno_upload_dir' );
