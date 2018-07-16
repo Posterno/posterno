@@ -4,8 +4,12 @@ module.exports = {
 		// If you wish to remove the standard entry point
 		config.entryPoints.delete('app')
 		// then add your own
-		config.entry('options-panel')
-			.add('./src/options-panel/main.js')
-			.end()
+		config
+			.entry('options-panel')
+				.add('./src/options-panel/main.js')
+				.end()
+			.entry('custom-fields-editor')
+				.add('./src/custom-fields-editor/main.js')
+				.end()
 	}
 }

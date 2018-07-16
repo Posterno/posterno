@@ -29,6 +29,8 @@ function pno_load_admin_scripts() {
 
 		// Register settings page scripts.
 		wp_register_script( 'pno-settings-page', 'http://localhost:8080/options-panel.js', [], PNO_VERSION, true );
+		// Register the custom fields page scripts.
+		wp_register_script( 'pno-custom-fields-page', 'http://localhost:8080/custom-fields-editor.js', [], PNO_VERSION, true );
 
 	} else {
 
@@ -38,6 +40,11 @@ function pno_load_admin_scripts() {
 	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
 		wp_enqueue_script( 'pno-settings-page' );
 		wp_localize_script( 'pno-settings-page', 'pno_settings_page', pno_get_settings_page_vars() );
+	}
+
+	// Load script for the custom fields page.
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-custom-fields' ) {
+		wp_enqueue_script( 'pno-custom-fields-page' );
 	}
 
 }
