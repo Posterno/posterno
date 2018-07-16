@@ -83,6 +83,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Boot composer's classes.
 			Brain\Cortex::boot();
+			\Carbon_Fields\Carbon_Fields::boot();
 
 			// Api's
 			self::$instance->templates = new PNO_Templates();
@@ -280,6 +281,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Emails.
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails.php';
 			require_once PNO_PLUGIN_DIR . 'includes/emails/emails-functions.php';
+
+			// Avatars.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-avatars.php';
 
 		}
 
