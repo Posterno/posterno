@@ -47,7 +47,7 @@ class PNO_Form_Account extends PNO_Form {
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
-			'submit' => array(
+			'submit'  => array(
 				'name'     => __( 'Account settings' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
@@ -187,15 +187,28 @@ class PNO_Form_Account extends PNO_Form {
 				$user_data['description'] = $values['account']['description'];
 			}
 
-			if ( isset( $values['account']['avatar'] ) && pno_get_option( 'allow_avatars' ) ) {
-				print_r( $values['account']['avatar'] );
-				exit;
-			}
-
 			$updated_user_id = wp_update_user( $user_data );
 
 			if ( is_wp_error( $updated_user_id ) ) {
 				throw new Exception( $updated_user_id->get_error_message() );
+			}
+
+			// Update the avatar.
+			if ( pno_get_option( 'allow_avatars' ) ) {
+				$currently_uploaded_file   = isset( $_POST['current_avatar'] ) && ! empty( $_POST['current_avatar'] ) ? esc_url_raw( $_POST['current_avatar'] ) : false;
+				$existing_avatar_file_path = get_user_meta( $updated_user_id, 'current_user_avatar_path', true );
+				if ( $currently_uploaded_file && $existing_avatar_file_path && isset( $values['account']['avatar']['url'] ) && $values['account']['avatar']['url'] !== $currently_uploaded_file ) {
+					wp_delete_file( $existing_avatar_file_path );
+				}
+				if ( isset( $values['account']['avatar']['url'] ) && $currently_uploaded_file !== $values['account']['avatar']['url'] ) {
+					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $values['account']['avatar']['url'] );
+					update_user_meta( $updated_user_id, 'current_user_avatar_path', $values['account']['avatar']['path'] );
+				}
+				if ( ! $currently_uploaded_file && file_exists( $existing_avatar_file_path ) ) {
+					wp_delete_file( $existing_avatar_file_path );
+					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', false );
+					delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
+				}
 			}
 
 			do_action( 'pno_after_user_update', $this, $values, $updated_user_id );

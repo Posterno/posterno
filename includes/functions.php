@@ -260,6 +260,9 @@ function pno_get_account_fields( $user_id = false ) {
 					case 'website':
 						$value = esc_url( $user->user_url );
 						break;
+					case 'avatar':
+						$value = esc_url( carbon_get_user_meta( $user_id, 'current_user_avatar' ) );
+						break;
 					default:
 						$value = esc_html( get_user_meta( $user_id, $key, true ) );
 						break;
