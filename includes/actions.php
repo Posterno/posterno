@@ -12,6 +12,16 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Load carbon fields.
+ *
+ * @return void
+ */
+function pno_carbon_fields_load() {
+	\Carbon_Fields\Carbon_Fields::boot();
+}
+add_action( 'after_setup_theme', 'pno_carbon_fields_load' );
+
+/**
  * Lock access to wp-login.php and redirect users to the pno's login page.
  *
  * @return void
