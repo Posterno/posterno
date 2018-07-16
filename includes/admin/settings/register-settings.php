@@ -226,7 +226,6 @@ function pno_get_registered_settings_tabs_sections() {
 	$sections = [
 		'general'  => [
 			'pages' => esc_html__( 'Pages setup' ),
-			'misc'  => esc_html__( 'Misc settings' ),
 			'theme' => esc_html__( 'Theme' ),
 		],
 		'accounts' => [
@@ -303,13 +302,6 @@ function pno_get_registered_settings() {
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
-			],
-		],
-		'misc'                      => [
-			'lock_wp_login' => [
-				'type'        => 'checkbox',
-				'label'       => esc_html__( 'Lock access to wp-login.php:' ),
-				'description' => esc_html__( 'Enable to lock access to wp-login.php. Users will be redirected to the Posterno login page.' ),
 			],
 		],
 		'theme'                     => [
@@ -434,18 +426,18 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'privacy' => [
+		'privacy'                   => [
 			'allow_account_delete' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow users to delete their own account?' ),
 				'description' => esc_html__( 'Enable the option to display a section within the dashboard for users to delete their own account.' ),
 			],
-			'allow_data_request' => [
+			'allow_data_request'   => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow users to request a copy of their own data?' ),
 				'description' => esc_html__( 'Enable the option to allow the user to request an export of personal data from the dashboard page.' ),
 			],
-			'allow_data_erasure' => [
+			'allow_data_erasure'   => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow users to request erasure of their own data?' ),
 				'description' => esc_html__( 'Enable the option to allow the user to request erasure of personal data from the dashboard page.' ),
