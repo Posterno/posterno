@@ -69,3 +69,63 @@ function pno_setup_post_types() {
 
 }
 add_action( 'init', 'pno_setup_post_types', 0 );
+
+/**
+ * Registers a new post type to store listings custom fields.
+ *
+ * @return void
+ */
+function pno_setup_listings_custom_fields_post_type() {
+
+	$labels = array(
+		'name'                  => esc_html__( 'Listings custom fields' ),
+		'singular_name'         => esc_html__( 'Listings custom field' ),
+		'menu_name'             => esc_html__( 'Listings custom fields' ),
+		'name_admin_bar'        => esc_html__( 'Listings custom fields' ),
+		'archives'              => esc_html__( 'Listings custom fields' ),
+		'attributes'            => esc_html__( 'Item Attributes' ),
+		'parent_item_colon'     => esc_html__( 'Parent Item:' ),
+		'all_items'             => esc_html__( 'All listings custom fields' ),
+		'add_new_item'          => esc_html__( 'Add new custom field' ),
+		'add_new'               => esc_html__( 'Add new custom field' ),
+		'new_item'              => esc_html__( 'New custom field' ),
+		'edit_item'             => esc_html__( 'Edit custom field' ),
+		'update_item'           => esc_html__( 'Update custom field' ),
+		'view_item'             => esc_html__( 'View custom field' ),
+		'view_items'            => esc_html__( 'View custom fields' ),
+		'search_items'          => esc_html__( 'Search custom fields' ),
+		'not_found'             => esc_html__( 'Not found' ),
+		'not_found_in_trash'    => esc_html__( 'Not found in Trash' ),
+		'featured_image'        => esc_html__( 'Featured Image' ),
+		'set_featured_image'    => esc_html__( 'Set featured image' ),
+		'remove_featured_image' => esc_html__( 'Remove featured image' ),
+		'use_featured_image'    => esc_html__( 'Use as featured image' ),
+		'insert_into_item'      => esc_html__( 'Insert into item' ),
+		'uploaded_to_this_item' => esc_html__( 'Uploaded to this item' ),
+		'items_list'            => esc_html__( 'Items list' ),
+		'items_list_navigation' => esc_html__( 'Items list navigation' ),
+		'filter_items_list'     => esc_html__( 'Filter items list' ),
+	);
+	$args = array(
+		'label'               => esc_html__( 'Listings custom field' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title' ),
+		'hierarchical'        => false,
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_menu'        => false,
+		'menu_position'       => 5,
+		'show_in_admin_bar'   => false,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'rewrite'             => false,
+		'capability_type'     => 'page',
+		'show_in_rest'        => false,
+	);
+	register_post_type( 'pno_listings_fields', $args );
+
+}
+add_action( 'init', 'pno_setup_listings_custom_fields_post_type', 0 );
