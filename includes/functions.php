@@ -195,6 +195,13 @@ function pno_get_registration_fields() {
 function pno_get_account_fields( $user_id = false ) {
 
 	$fields = [
+		'avatar' => [
+			'label'       => esc_html__( 'Profile picture' ),
+			'type'        => 'file',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 0,
+		],
 		'first_name'   => [
 			'label'       => esc_html__( 'First name' ),
 			'type'        => 'text',

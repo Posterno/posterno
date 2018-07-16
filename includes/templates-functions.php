@@ -410,3 +410,20 @@ function pno_get_full_page_hierarchy( $page_id ) {
 	}
 	return $return;
 }
+
+/**
+ * Wrapper function for size_format - checks the max size for file fields.
+ *
+ * @param array   $field
+ * @param string  $size  in bytes
+ * @return string
+ */
+function pno_max_upload_size( $field_name = '', $custom_size = false ) {
+	// Default max upload size.
+	$output = size_format( wp_max_upload_size() );
+
+	if ( $custom_size ) {
+		$output = size_format( intval( $custom_size ), 0 );
+	}
+	return $output;
+}
