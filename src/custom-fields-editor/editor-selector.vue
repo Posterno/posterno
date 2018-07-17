@@ -31,6 +31,14 @@
 						<h2 class="theme-name">{{labels.custom_users}}</h2>
 					</router-link>
 				</div>
+				<div class="theme add-new-theme">
+					<router-link to="/registration-form">
+						<div class="theme-screenshot pno-customize-registration">
+							<span></span>
+						</div>
+						<h2 class="theme-name">{{labels.custom_registration}}</h2>
+					</router-link>
+				</div>
 			</div>
 		</div>
 
@@ -82,8 +90,22 @@ export default {
 		}
 	}
 
+	.pno-customize-registration {
+		span:after {
+			content: "\f175";
+			background: none;
+		}
+	}
+
 	.theme-browser .theme.add-new-theme {
 		width: 25%;
+		border: 1px solid #e5e5e5;
+		box-shadow: 0 1px 1px rgba(0,0,0,.04);
+		background: #fff;
+	}
+
+	.theme-browser .theme.add-new-theme a::after {
+		border:none;
 	}
 
 	.theme-browser .theme.add-new-theme a:hover span::after,
@@ -114,6 +136,24 @@ export default {
 			position: relative;
 			top: 3px;
 		}
+	}
+
+	.tables-wrapper {
+		margin-top: 30px;
+
+		table {
+			margin-top: 20px;
+		}
+	}
+
+	.move-col {
+		width: 30px;
+		border-right: 1px solid #e1e1e1;
+		text-align: center !important;
+	}
+
+	.vue-wp-notice {
+		margin-bottom: 20px;
 	}
 
 }

@@ -21,14 +21,26 @@ function pno_get_custom_fields_editor_js_vars() {
 	$js_vars = [
 		'plugin_url' => PNO_PLUGIN_URL,
 		'labels'     => [
-			'documentation'   => esc_html__( 'Documentation' ),
-			'addons'          => esc_html__( 'View Addons' ),
-			'title'           => esc_html__( 'Posterno custom fields' ),
-			'custom_users'    => esc_html__( 'Customize profile fields' ),
-			'custom_listings' => esc_html__( 'Customize listings fields' ),
-			'users'           => [
-				'title' => esc_html__( 'Posterno profile fields editor' ),
+			'documentation'       => esc_html__( 'Documentation' ),
+			'addons'              => esc_html__( 'View Addons' ),
+			'title'               => esc_html__( 'Posterno custom fields' ),
+			'custom_users'        => esc_html__( 'Customize profile fields' ),
+			'custom_listings'     => esc_html__( 'Customize listings fields' ),
+			'custom_registration' => esc_html__( 'Customize registration form' ),
+			'users'               => [
+				'title'   => esc_html__( 'Posterno profile fields editor' ),
+				'add_new' => esc_html__( 'Add new profile field' ),
 			],
+			'table'               => [
+				'title'     => esc_html__( 'Field title' ),
+				'type'      => esc_html__( 'Type' ),
+				'required'  => esc_html__( 'Required' ),
+				'privacy'   => esc_html__( 'Privacy' ),
+				'editable'  => esc_html__( 'Editable' ),
+				'actions'   => esc_html__( 'Actions' ),
+				'not_found' => esc_html__( 'No fields yet, click the button above to add fields.' ),
+			],
+			'success'             => esc_html__( 'Changes successfully saved.' ),
 		],
 	];
 
