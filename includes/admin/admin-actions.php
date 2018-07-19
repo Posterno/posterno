@@ -88,3 +88,30 @@ function pno_localize_tinymce_editor() {
 
 }
 add_action( 'admin_footer', 'pno_localize_tinymce_editor' );
+
+/**
+ * Hides certain settings of custom fields post type.
+ *
+ * @return void
+ */
+function pno_hide_custom_fields_pt_settings() {
+
+	global $post_type;
+
+	$post_types = array(
+		'pno_users_fields',
+	);
+
+	if ( in_array( $post_type, $post_types ) ) {
+		echo '
+		<style type="text/css">
+			#post-preview, #view-post-btn,
+			#misc-publishing-actions #visibility,
+			#misc-publishing-actions .misc-pub-curtime {
+				display: none;
+			}
+		</style>';
+	}
+}
+add_action( 'admin_head-post-new.php', 'pno_hide_custom_fields_pt_settings' );
+add_action( 'admin_head-post.php', 'pno_hide_custom_fields_pt_settings' );

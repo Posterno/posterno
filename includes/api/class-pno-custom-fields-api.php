@@ -80,6 +80,9 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 
 		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
 			foreach ( $registered_fields as $field_key => $field ) {
+
+				$field_in_db = $this->maybe_create_user_field( $field_key );
+
 				$fields[ $field_key ] = [
 					'title'    => esc_html( $field['label'] ),
 					'type'     => esc_html( $field['type'] ),
@@ -87,6 +90,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					'priority' => absint( $field['priority'] ),
 					'default'  => $this->is_default_profile_field( $field_key ),
 				];
+
 			}
 		}
 
@@ -127,6 +131,37 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		return $default;
+
+	}
+
+	/**
+	 * Determine if we're going to create a field into the database or not.
+	 * Each field is a post registered within the pno_users_fields post type.
+	 *
+	 * @param string $field_key
+	 * @return void
+	 */
+	private function maybe_create_user_field( $field_key ) {
+
+		if ( ! $field_key ) {
+			return;
+		}
+
+		$args = [
+			'post_type'      => 'pno_users_fields',
+			'posts_per_page' => 1,
+			'nopaging'       => true,
+			'no_found_rows'  => true,
+			'meta_query'     => array(
+				'relation'    => 'AND',
+				'type_clause' => array(
+					'key'   => 'field_type',
+					'value' => $field_key,
+				),
+			),
+		];
+
+		$field_query = new WP_Query( $args );
 
 	}
 

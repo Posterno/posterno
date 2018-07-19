@@ -584,7 +584,7 @@ function pno_prepare_registered_settings_vue_model() {
 							break;
 					}
 
-					// ¯\_(ツ)_/¯ vue multiselect needs an int to recognized the stored db selected value
+					// ¯\_(ツ)_/¯ vue multiselect needs an int to recognize the stored db selected value
 					// ¯\_(ツ)_/¯ so here we force one.
 					if (
 						$setting['type'] == 'multiselect'
