@@ -85,6 +85,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					'type'     => esc_html( $field['type'] ),
 					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
 					'priority' => absint( $field['priority'] ),
+					'default'  => $this->is_default_profile_field( $field_key ),
 				];
 			}
 		}
@@ -96,6 +97,36 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		return rest_ensure_response( $fields );
+
+	}
+
+	/**
+	 * Determine if a given field type is a default field or not.
+	 * Default fields can't be deleted through the UI.
+	 *
+	 * @param string $key
+	 * @return boolean
+	 */
+	private function is_default_profile_field( $key ) {
+
+		if ( ! $key ) {
+			return;
+		}
+
+		$default = false;
+
+		switch ( $key ) {
+			case 'avatar':
+			case 'first_name':
+			case 'last_name':
+			case 'email':
+			case 'website':
+			case 'description':
+				$default = true;
+				break;
+		}
+
+		return $default;
 
 	}
 

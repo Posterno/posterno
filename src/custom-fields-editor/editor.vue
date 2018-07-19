@@ -49,7 +49,7 @@
 							<strong>{{field.title}}</strong>
 						</td>
 						<td>
-							{{field.type}}
+							<code>{{field.type}}</code>
 						</td>
 						<td>
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
@@ -58,7 +58,7 @@
 						<td></td>
 						<td>
 							<a href="#" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#" class="button error"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+							<a href="#" class="button error" v-if="! field.default"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
