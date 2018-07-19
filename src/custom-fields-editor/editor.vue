@@ -60,6 +60,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'qs'
+
 export default {
 	name: 'editor',
 	props: {
@@ -71,7 +74,7 @@ export default {
 			labels:        pno_fields_editor.labels,
 
 			// App status.
-			loading:       false,
+			loading:       true,
 			success:       false,
 			error:         false,
 			error_message: '',
@@ -80,7 +83,50 @@ export default {
 			fields:        []
 		}
 	},
+	/**
+	 * On page load, retrieve the registered fields.
+	 */
+	mounted() {
+		this.load_fields()
+	},
 	methods: {
+
+		/**
+		 * Load registered fields for the enquired type.
+		 */
+		load_fields() {
+
+			this.loading = true
+			this.success = false
+			this.error   = false
+
+			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/profile', {
+				headers: {
+					'X-WP-Nonce': pno_fields_editor.nonce
+				},
+				params: {
+					nonce:  pno_fields_editor.nonce,
+				}
+			})
+			.then( response => {
+				console.log( response )
+			})
+			.catch( e => {
+
+				this.loading = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
+				}
+
+			})
+
+		}
+
 	}
 }
 </script>

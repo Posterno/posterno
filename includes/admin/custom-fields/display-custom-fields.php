@@ -20,6 +20,8 @@ function pno_get_custom_fields_editor_js_vars() {
 
 	$js_vars = [
 		'plugin_url' => PNO_PLUGIN_URL,
+		'rest'       => esc_url_raw( rest_url() ),
+		'nonce'      => wp_create_nonce( 'wp_rest' ),
 		'labels'     => [
 			'documentation'       => esc_html__( 'Documentation' ),
 			'addons'              => esc_html__( 'View Addons' ),

@@ -31,14 +31,6 @@
 						<h2 class="theme-name">{{labels.custom_users}}</h2>
 					</router-link>
 				</div>
-				<div class="theme add-new-theme">
-					<router-link to="/registration-form">
-						<div class="theme-screenshot pno-customize-registration">
-							<span></span>
-						</div>
-						<h2 class="theme-name">{{labels.custom_registration}}</h2>
-					</router-link>
-				</div>
 			</div>
 		</div>
 
