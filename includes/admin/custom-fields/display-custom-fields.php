@@ -29,7 +29,7 @@ function pno_get_custom_fields_editor_js_vars() {
 			'custom_users'        => esc_html__( 'Customize profile fields' ),
 			'custom_listings'     => esc_html__( 'Customize listings fields' ),
 			'custom_registration' => esc_html__( 'Customize registration form' ),
-			'users'               => [
+			'profile'             => [
 				'title'   => esc_html__( 'Posterno profile fields editor' ),
 				'add_new' => esc_html__( 'Add new profile field' ),
 			],
@@ -41,6 +41,8 @@ function pno_get_custom_fields_editor_js_vars() {
 				'editable'  => esc_html__( 'Editable' ),
 				'actions'   => esc_html__( 'Actions' ),
 				'not_found' => esc_html__( 'No fields yet, click the button above to add fields.' ),
+				'edit'      => esc_html__( 'Edit field' ),
+				'delete'    => esc_html__( 'Delete field' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 		],

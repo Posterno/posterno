@@ -274,6 +274,8 @@ function pno_get_account_fields( $user_id = false ) {
 		}
 	}
 
+	uasort( $fields, 'pno_sort_array_by_priority' );
+
 	/**
 	 * Allows developers to register or deregister custom fields within the
 	 * user's account editing form.

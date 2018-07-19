@@ -17,7 +17,7 @@ export default new Router({
 			name: 'profile-fields',
 			component: Editor,
 			props: {
-				type: 'users'
+				type: 'profile'
 			}
 		},
 		{

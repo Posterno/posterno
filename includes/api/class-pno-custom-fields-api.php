@@ -75,9 +75,27 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 	 */
 	public function get_profile_fields( WP_REST_Request $request ) {
 
-		$fields = [];
+		$fields            = [];
+		$registered_fields = pno_get_account_fields();
 
-		return rest_ensure_response( [ 'test' => 'ddd' ] );
+		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
+			foreach ( $registered_fields as $field_key => $field ) {
+				$fields[ $field_key ] = [
+					'title'    => esc_html( $field['label'] ),
+					'type'     => esc_html( $field['type'] ),
+					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
+					'priority' => absint( $field['priority'] ),
+				];
+			}
+		}
+
+		if ( is_array( $fields ) && ! empty( $fields ) ) {
+			uasort( $fields, 'pno_sort_array_by_priority' );
+		} else {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while retrieving the fields, please contact support.' ), 422 );
+		}
+
+		return rest_ensure_response( $fields );
 
 	}
 

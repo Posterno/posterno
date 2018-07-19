@@ -30,17 +30,37 @@
 				<thead>
 					<tr>
 						<th scope="col" class="move-col">
-							<span class="dashicons dashicons-move"></span>
+							<span class="dashicons dashicons-menu"></span>
 						</th>
 						<th scope="col" class="column-primary">{{labels.table.title}}</th>
 						<th scope="col">{{labels.table.type}}</th>
-						<th scope="col">{{labels.table.required}}</th>
-						<th scope="col">{{labels.table.privacy}}</th>
-						<th scope="col">{{labels.table.editable}}</th>
+						<th scope="col" class="icon-col">{{labels.table.required}}</th>
+						<th scope="col" class="icon-col">{{labels.table.privacy}}</th>
+						<th scope="col" class="icon-col">{{labels.table.editable}}</th>
 						<th scope="col">{{labels.table.actions}}</th>
 					</tr>
 				</thead>
 				<tbody>
+					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
+						<td class="order-anchor align-middle">
+							<span class="dashicons dashicons-menu"></span>
+						</td>
+						<td class="column-primary">
+							<strong>{{field.title}}</strong>
+						</td>
+						<td>
+							{{field.type}}
+						</td>
+						<td>
+							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
+						</td>
+						<td></td>
+						<td></td>
+						<td>
+							<a href="#" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
+							<a href="#" class="button error"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+						</td>
+					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
 						<td class="colspanchange" colspan="7">
 							<strong>{{labels.table.not_found}}</strong>
@@ -100,7 +120,7 @@ export default {
 			this.success = false
 			this.error   = false
 
-			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/profile', {
+			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type , {
 				headers: {
 					'X-WP-Nonce': pno_fields_editor.nonce
 				},
@@ -109,7 +129,13 @@ export default {
 				}
 			})
 			.then( response => {
-				console.log( response )
+
+				if ( typeof response.data === 'object' ) {
+					this.fields = response.data
+				}
+
+				this.loading = false
+
 			})
 			.catch( e => {
 
@@ -125,7 +151,14 @@ export default {
 
 			})
 
-		}
+		},
+
+		/**
+		 * Determine if the field is a required one or not.
+		 */
+		isRequired( is_required ) {
+			return is_required === true ? true : false
+		},
 
 	}
 }

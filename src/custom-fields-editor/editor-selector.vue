@@ -135,6 +135,31 @@ export default {
 
 		table {
 			margin-top: 20px;
+
+			td {
+				vertical-align: middle;
+			}
+
+			a.button {
+				margin-right: 5px;
+				span {
+					margin-top: 3px;
+				}
+				&.error:hover {
+					span {
+						color: #dc3232;
+					}
+				}
+			}
+
+			.icon-col {
+				width: 100px;
+			}
+
+			.dashicons-yes {
+				color: #46b450;
+			}
+
 		}
 	}
 
@@ -146,6 +171,11 @@ export default {
 
 	.vue-wp-notice {
 		margin-bottom: 20px;
+	}
+
+	.order-anchor {
+		border-right: 1px solid #e1e1e1;
+		text-align: center !important;
 	}
 
 }
