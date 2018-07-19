@@ -275,6 +275,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Templates.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
+			// Fields settings.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';
+
 			// Forms.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
 
