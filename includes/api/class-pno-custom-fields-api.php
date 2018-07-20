@@ -82,6 +82,11 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
 			foreach ( $registered_fields as $field_key => $field ) {
 
+				// Skip fields if defined.
+				if ( isset( $field['show_in_ui'] ) && $field['show_in_ui'] === false ) {
+					continue;
+				}
+
 				$field_in_db = $this->maybe_create_user_field( $field_key, $field );
 
 				$fields[ $field_key ] = [
@@ -214,7 +219,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				}
 
 				/**
-				 * Allow developers to extend the default profile field's creation
+				 * Allow developers to extend the profile field's creation
 				 * into the database when the field is first registered.
 				 *
 				 * @param string $field_id the id of the post into the db.
