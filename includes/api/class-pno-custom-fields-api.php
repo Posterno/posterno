@@ -95,6 +95,14 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
 					'priority' => absint( $field['priority'] ),
 					'default'  => $this->is_default_profile_field( $field_key ),
+					'url'      => is_int( $field_in_db ) ? esc_url_raw(
+						add_query_arg(
+							[
+								'post'   => $field_in_db,
+								'action' => 'edit',
+							], admin_url( 'post.php' )
+						)
+					) : false,
 				];
 
 			}
@@ -173,6 +181,14 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		// If we've found the field, we return the field's object.
 		// If not, we create the field into the database.
 		if ( $field_query->have_posts() ) {
+
+			while ( $field_query->have_posts() ) :
+
+				$field_query->the_post();
+
+				return get_the_ID();
+
+			endwhile;
 
 		} else {
 

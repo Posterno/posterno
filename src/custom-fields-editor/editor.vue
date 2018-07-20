@@ -57,7 +57,7 @@
 						<td></td>
 						<td></td>
 						<td>
-							<a href="#" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
+							<a :href="field.url" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
 							<a href="#" class="button error" v-if="! field.default"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
 						</td>
 					</tr>
