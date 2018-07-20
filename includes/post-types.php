@@ -106,7 +106,7 @@ function pno_setup_listings_custom_fields_post_type() {
 		'items_list_navigation' => esc_html__( 'Items list navigation' ),
 		'filter_items_list'     => esc_html__( 'Filter items list' ),
 	);
-	$args = array(
+	$args   = array(
 		'label'               => esc_html__( 'Listings custom field' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
@@ -138,16 +138,16 @@ add_action( 'init', 'pno_setup_listings_custom_fields_post_type', 0 );
 function pno_setup_users_custom_fields_post_type() {
 
 	$labels = array(
-		'name'                  => esc_html__( 'Users custom fields' ),
-		'singular_name'         => esc_html__( 'Users custom field' ),
-		'menu_name'             => esc_html__( 'Users custom fields' ),
-		'name_admin_bar'        => esc_html__( 'Users custom fields' ),
-		'archives'              => esc_html__( 'Users custom fields' ),
+		'name'                  => esc_html__( 'Profile custom fields' ),
+		'singular_name'         => esc_html__( 'Profile custom field' ),
+		'menu_name'             => esc_html__( 'Profile custom fields' ),
+		'name_admin_bar'        => esc_html__( 'Profile custom fields' ),
+		'archives'              => esc_html__( 'Profile custom fields' ),
 		'attributes'            => esc_html__( 'Item Attributes' ),
 		'parent_item_colon'     => esc_html__( 'Parent Item:' ),
 		'all_items'             => esc_html__( 'All users custom fields' ),
-		'add_new_item'          => esc_html__( 'Add new custom field' ),
-		'add_new'               => esc_html__( 'Add new custom field' ),
+		'add_new_item'          => esc_html__( 'Add new profile field' ),
+		'add_new'               => esc_html__( 'Add new profile field' ),
 		'new_item'              => esc_html__( 'New custom field' ),
 		'edit_item'             => esc_html__( 'Edit custom field' ),
 		'update_item'           => esc_html__( 'Update custom field' ),
@@ -166,7 +166,7 @@ function pno_setup_users_custom_fields_post_type() {
 		'items_list_navigation' => esc_html__( 'Items list navigation' ),
 		'filter_items_list'     => esc_html__( 'Filter items list' ),
 	);
-	$args = array(
+	$args   = array(
 		'label'               => esc_html__( 'Users custom field' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
@@ -189,3 +189,22 @@ function pno_setup_users_custom_fields_post_type() {
 
 }
 add_action( 'init', 'pno_setup_users_custom_fields_post_type', 0 );
+
+/**
+ * Change default "Enter title here" input for the profile fields post type.
+ *
+ * @param string $title
+ * @return string
+ */
+function pno_user_fields_change_default_title( $title ) {
+
+	$screen = get_current_screen();
+
+	if ( 'pno_users_fields' == $screen->post_type ) {
+		$title = esc_html__( 'Enter profile field title here' );
+	}
+
+	return $title;
+
+}
+add_filter( 'enter_title_here', 'pno_user_fields_change_default_title' );
