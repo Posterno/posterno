@@ -213,6 +213,16 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					update_post_meta( $field_id, 'is_default_field', true );
 				}
 
+				/**
+				 * Allow developers to extend the default profile field's creation
+				 * into the database when the field is first registered.
+				 *
+				 * @param string $field_id the id of the post into the db.
+				 * @param string $field_key the unique key for the field.
+				 * @param array $field the default settings of the field.
+				 */
+				do_action( 'pno_after_profile_field_is_created', $field_id, $field_key, $field );
+
 				return $field_id;
 
 			}
