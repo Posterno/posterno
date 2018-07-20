@@ -145,6 +145,10 @@ function pno_get_registered_field_types() {
 	 * @since 0.1.0
 	 * @param array $types all registered field types.
 	 */
-	return apply_filters( 'pno_registered_field_types', $types );
+	$types = apply_filters( 'pno_registered_field_types', $types );
+
+	asort( $types );
+
+	return $types;
 
 }
