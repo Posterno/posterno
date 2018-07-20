@@ -208,3 +208,28 @@ function pno_user_fields_change_default_title( $title ) {
 
 }
 add_filter( 'enter_title_here', 'pno_user_fields_change_default_title' );
+
+/**
+ * Updated Messages
+ *
+ * Returns an array of with all updated messages.
+ *
+ * @since 0.1.0
+ * @param array $messages Post updated message
+ * @return array $messages New post updated messages
+ */
+function pno_updated_messages( $messages ) {
+	global $post, $post_ID;
+
+	$messages['pno_users_fields'] = array(
+		1 => esc_html__( 'Profile custom field updated.' ),
+		4 => esc_html__( 'Profile custom field updated.' ),
+		6 => esc_html__( 'Profile custom field published.' ),
+		7 => esc_html__( 'Profile custom field saved.' ),
+		8 => esc_html__( 'Profile custom field submitted.' ),
+	);
+
+	return $messages;
+
+}
+add_filter( 'post_updated_messages', 'pno_updated_messages' );
