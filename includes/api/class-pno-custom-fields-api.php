@@ -82,7 +82,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
 			foreach ( $registered_fields as $field_key => $field ) {
 
-				$field_in_db = $this->maybe_create_user_field( $field_key );
+				$field_in_db = $this->maybe_create_user_field( $field_key, $field );
 
 				$fields[ $field_key ] = [
 					'title'    => esc_html( $field['label'] ),
@@ -140,9 +140,10 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 	 * Each field is a post registered within the pno_users_fields post type.
 	 *
 	 * @param string $field_key
+	 * @param array $field
 	 * @return void
 	 */
-	private function maybe_create_user_field( $field_key ) {
+	private function maybe_create_user_field( $field_key, $field ) {
 
 		if ( ! $field_key ) {
 			return;
@@ -156,13 +157,66 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 			'meta_query'     => array(
 				'relation'    => 'AND',
 				'type_clause' => array(
-					'key'   => 'field_type',
+					'key'   => 'field_meta_key',
 					'value' => $field_key,
 				),
 			),
 		];
 
 		$field_query = new WP_Query( $args );
+
+		// If we've found the field, we return the field's object.
+		// If not, we create the field into the database.
+		if ( $field_query->have_posts() ) {
+
+		} else {
+
+			$new_field = [
+				'post_type'   => 'pno_users_fields',
+				'post_title'  => $field['label'],
+				'post_status' => 'publish',
+			];
+
+			$field_id = wp_insert_post( $new_field );
+
+			if ( is_wp_error( $field_id ) ) {
+				return new WP_REST_Response( $field_id->get_error_message(), 422 );
+			} else {
+
+				// Setup the field's meta key.
+				carbon_set_post_meta( $field_id, 'field_meta_key', $field_key );
+
+				// Setup the field's type.
+				$registered_field_types = pno_get_registered_field_types();
+
+				if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
+					carbon_set_post_meta( $field_id, 'field_type', esc_attr( $field['type'] ) );
+				}
+
+				// Assign a description if one is given.
+				if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
+					carbon_set_post_meta( $field_id, 'field_description', esc_html( $field['description'] ) );
+				}
+
+				// Assign a placeholder if one is given.
+				if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
+					carbon_set_post_meta( $field_id, 'field_placeholder', esc_html( $field['placeholder'] ) );
+				}
+
+				// Make field required if defined.
+				if ( isset( $field['required'] ) && $field['required'] === true ) {
+					carbon_set_post_meta( $field_id, 'field_is_required', true );
+				}
+
+				// Mark the field as a default one.
+				if ( $this->is_default_profile_field( $field_key ) ) {
+					update_post_meta( $field_id, 'is_default_field', true );
+				}
+
+				return $field_id;
+
+			}
+		}
 
 	}
 
