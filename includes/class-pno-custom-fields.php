@@ -48,7 +48,7 @@ class PNO_Custom_Fields {
 			esc_html__( 'General' ), array(
 
 				Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder (optional)' ) )
-						->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
+					->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
 
 				Field::make( 'textarea', 'field_description', esc_html__( 'Field description (optional)' ) )
 					->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
@@ -71,13 +71,7 @@ class PNO_Custom_Fields {
 			->add_fields(
 				array(
 					Field::make( 'select', 'field_type', esc_html__( 'Field type' ) )
-						->add_options(
-							array(
-								'left'   => 'Left',
-								'center' => 'Center',
-								'right'  => 'Right',
-							)
-						),
+						->add_options( pno_get_registered_field_types() ),
 					Field::make( 'html', 'crb_field_type_info' )
 						->set_html( '<div class="pno-field-type-notice">' . esc_html__( 'The selected field type determines how the field will look onto the account and registration forms.' ) . '<br/><br/>' . esc_html__( 'When the field type is changed, save the field to display settings related to the new field type if any available.' ) . '</div>' ),
 				)

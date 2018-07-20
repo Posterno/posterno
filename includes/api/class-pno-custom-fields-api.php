@@ -77,6 +77,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 
 		$fields            = [];
 		$registered_fields = pno_get_account_fields();
+		$registered_types  = pno_get_registered_field_types();
 
 		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
 			foreach ( $registered_fields as $field_key => $field ) {
@@ -85,7 +86,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 
 				$fields[ $field_key ] = [
 					'title'    => esc_html( $field['label'] ),
-					'type'     => esc_html( $field['type'] ),
+					'type'     => isset( $registered_types[ $field['type'] ] ) ? $registered_types[ $field['type'] ] : esc_html__( 'Unknown field type' ),
 					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
 					'priority' => absint( $field['priority'] ),
 					'default'  => $this->is_default_profile_field( $field_key ),
