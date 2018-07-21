@@ -31,6 +31,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private $file = '';
 
 		/**
+		 * Admin notices handler.
+		 *
+		 * @var object
+		 */
+		private $admin_notices;
+
+		/**
 		 * Templates load object
 		 *
 		 * @var object
@@ -85,9 +92,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			Brain\Cortex::boot();
 
 			// Api's
-			self::$instance->templates = new PNO_Templates();
-			self::$instance->forms     = PNO_Forms::instance();
-			self::$instance->emails    = new PNO_Emails();
+			self::$instance->admin_notices = TDP\WP_Notice::instance();
+			self::$instance->templates     = new PNO_Templates();
+			self::$instance->forms         = PNO_Forms::instance();
+			self::$instance->emails        = new PNO_Emails();
 
 			// Return the instance
 			return self::$instance;
