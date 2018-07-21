@@ -48,3 +48,31 @@ function pno_highlight_pages( $post_states, $post ) {
 	return $post_states;
 }
 add_filter( 'display_post_states', 'pno_highlight_pages', 10, 2 );
+
+/**
+ * Prevents cancellation of default custom fields.
+ *
+ * @param array $caps
+ * @param string $cap
+ * @param string $user_id
+ * @param array $args
+ * @return array
+ */
+function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args ) {
+
+	if ( 'delete_post' !== $cap || empty( $args[0] ) ) {
+		return $caps;
+	}
+
+	// Target the payment and transaction post types.
+	if ( in_array( get_post_type( $args[0] ), [ 'pno_users_fields' ], true ) ) {
+		$is_default = get_post_meta( $args[0], 'is_default_field', true );
+		if ( $is_default ) {
+			$caps[] = 'do_not_allow';
+		}
+	}
+
+	return $caps;
+}
+add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
+
