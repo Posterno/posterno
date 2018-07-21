@@ -194,6 +194,8 @@ function pno_get_registration_fields() {
  */
 function pno_get_account_fields( $user_id = false ) {
 
+	print_r( new PNO_Profile_Field( 173 ) );
+
 	$fields = [
 		'avatar'      => [
 			'label'              => esc_html__( 'Profile picture' ),

@@ -94,7 +94,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					'type'     => isset( $registered_types[ $field['type'] ] ) ? $registered_types[ $field['type'] ] : esc_html__( 'Unknown field type' ),
 					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
 					'priority' => absint( $field['priority'] ),
-					'default'  => $this->is_default_profile_field( $field_key ),
+					'default'  => pno_is_default_profile_field( $field_key ),
 					'url'      => is_int( $field_in_db ) ? esc_url_raw(
 						add_query_arg(
 							[
@@ -119,36 +119,6 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 	}
 
 	/**
-	 * Determine if a given field type is a default field or not.
-	 * Default fields can't be deleted through the UI.
-	 *
-	 * @param string $key
-	 * @return boolean
-	 */
-	private function is_default_profile_field( $key ) {
-
-		if ( ! $key ) {
-			return;
-		}
-
-		$default = false;
-
-		switch ( $key ) {
-			case 'avatar':
-			case 'first_name':
-			case 'last_name':
-			case 'email':
-			case 'website':
-			case 'description':
-				$default = true;
-				break;
-		}
-
-		return $default;
-
-	}
-
-	/**
 	 * Determine if we're going to create a field into the database or not.
 	 * Each field is a post registered within the pno_users_fields post type.
 	 *
@@ -163,11 +133,12 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		$args = [
-			'post_type'      => 'pno_users_fields',
-			'posts_per_page' => 1,
-			'nopaging'       => true,
-			'no_found_rows'  => true,
-			'meta_query'     => array(
+			'post_type'              => 'pno_users_fields',
+			'posts_per_page'         => 1,
+			'nopaging'               => true,
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+			'meta_query'             => array(
 				'relation'    => 'AND',
 				'type_clause' => array(
 					'key'   => 'field_meta_key',
@@ -230,7 +201,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				}
 
 				// Mark the field as a default one.
-				if ( $this->is_default_profile_field( $field_key ) ) {
+				if ( pno_is_default_profile_field( $field_key ) ) {
 					update_post_meta( $field_id, 'is_default_field', true );
 				}
 
@@ -244,9 +215,12 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				 */
 				do_action( 'pno_after_profile_field_is_created', $field_id, $field_key, $field );
 
-				return $field_id;
-
 			}
+
+			wp_reset_postdata();
+
+			return $field_id;
+
 		}
 
 	}

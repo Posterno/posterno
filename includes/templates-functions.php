@@ -427,3 +427,69 @@ function pno_max_upload_size( $field_name = '', $custom_size = false ) {
 	}
 	return $output;
 }
+
+/**
+ * Determine default profile fields.
+ *
+ * @param string $key
+ * @return boolean
+ */
+function pno_is_default_profile_field( $key ) {
+
+	if ( ! $key ) {
+		return;
+	}
+
+	$default = false;
+
+	switch ( $key ) {
+		case 'avatar':
+		case 'first_name':
+		case 'last_name':
+		case 'email':
+		case 'website':
+		case 'description':
+			$default = true;
+			break;
+	}
+
+	return apply_filters( 'pno_is_default_field', (bool) $default );
+
+}
+
+/**
+ * Retrieve the list of registered field types and their labels.
+ *
+ * @return array
+ */
+function pno_get_registered_field_types() {
+
+	$types = [
+		'text'          => esc_html__( 'Single text line' ),
+		'textarea'      => esc_html__( 'Textarea' ),
+		'checkbox'      => esc_html__( 'Checkbox' ),
+		'email'         => esc_html__( 'Email address' ),
+		'password'      => esc_html__( 'Password' ),
+		'url'           => esc_html__( 'Website' ),
+		'select'        => esc_html__( 'Dropdown' ),
+		'radio'         => esc_html__( 'Radio' ),
+		'number'        => esc_html__( 'Number' ),
+		'multiselect'   => esc_html__( 'Multiselect' ),
+		'multicheckbox' => esc_html__( 'Multiple checkboxes' ),
+		'file'          => esc_html__( 'File' ),
+		'datepicker'    => esc_html__( 'Date picker' ),
+	];
+
+	/**
+	 * Allows developers to register a new field type.
+	 *
+	 * @since 0.1.0
+	 * @param array $types all registered field types.
+	 */
+	$types = apply_filters( 'pno_registered_field_types', $types );
+
+	asort( $types );
+
+	return $types;
+
+}
