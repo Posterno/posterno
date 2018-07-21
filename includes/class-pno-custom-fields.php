@@ -80,6 +80,7 @@ class PNO_Custom_Fields {
 		->add_tab(
 			esc_html__( 'User meta key' ), array(
 				Field::make( 'text', 'field_meta_key', esc_html__( 'Unique meta key' ) )
+					->set_required( true )
 					->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.' ) ),
 			)
 		);
@@ -91,6 +92,7 @@ class PNO_Custom_Fields {
 			->add_fields(
 				array(
 					Field::make( 'select', 'field_type', esc_html__( 'Field type' ) )
+						->set_required()
 						->add_options( pno_get_registered_field_types() ),
 					Field::make( 'html', 'crb_field_type_info' )
 						->set_html( '<div class="pno-field-type-notice">' . esc_html__( 'The selected field type determines how the field will look onto the account and registration forms.' ) . '<br/><br/>' . esc_html__( 'When the field type is changed, save the field to display settings related to the new field type if any available.' ) . '</div>' ),
