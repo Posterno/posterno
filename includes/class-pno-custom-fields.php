@@ -47,13 +47,13 @@ class PNO_Custom_Fields {
 		->add_tab(
 			esc_html__( 'General' ), array(
 
-				Field::make( 'text', 'field_label', esc_html__( 'Custom form label (optional)' ) )
+				Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
 					->set_help_text( esc_html__( 'This text will be used as label within the registration and account settings forms. Leave blank to use the field title.' ) ),
 
-				Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder (optional)' ) )
+				Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder' ) )
 					->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
 
-				Field::make( 'textarea', 'field_description', esc_html__( 'Field description (optional)' ) )
+				Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
 					->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
 
 			)
