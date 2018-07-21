@@ -194,8 +194,6 @@ function pno_get_registration_fields() {
  */
 function pno_get_account_fields( $user_id = false ) {
 
-	print_r( new PNO_Profile_Field( 173 ) );
-
 	$fields = [
 		'avatar'      => [
 			'label'              => esc_html__( 'Profile picture' ),
@@ -246,6 +244,38 @@ function pno_get_account_fields( $user_id = false ) {
 			'priority'    => 5,
 		],
 	];
+
+	// Load fields from the database and merge it with the default settings.
+	$fields_query_args = [
+		'post_type'              => 'pno_users_fields',
+		'posts_per_page'         => 100,
+		'nopaging'               => true,
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+	];
+
+	$fields_query = new WP_Query( $fields_query_args );
+
+	if ( $fields_query->have_posts() ) {
+
+		while ( $fields_query->have_posts() ) {
+
+			$fields_query->the_post();
+
+			$field = new PNO_Profile_Field( get_the_ID() );
+
+			if ( $field instanceof PNO_Profile_Field && ! empty( $field->get_meta() ) ) {
+
+				// Determine if the field is a default one so we can just merge it
+				// to the existing default array.
+				if ( isset( $fields[ $field->get_meta() ] ) ) {
+					$fields[ $field->get_meta() ]['label']       = $field->get_label();
+					$fields[ $field->get_meta() ]['description'] = $field->get_description();
+					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
+				}
+			}
+		}
+	}
 
 	// Load user's related values within the fields.
 	if ( $user_id ) {

@@ -163,6 +163,8 @@ class PNO_Profile_Field {
 		$field       = new WP_Query( $field_args );
 		$found_field = $field->get_posts();
 
+		wp_reset_postdata();
+
 		if ( is_array( $found_field ) && ! empty( $found_field ) && isset( $found_field[0] ) ) {
 			return $field_id;
 		} else {
