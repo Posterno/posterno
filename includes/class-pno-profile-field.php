@@ -100,6 +100,13 @@ class PNO_Profile_Field {
 	protected $required = false;
 
 	/**
+	 * Determine wether the field is read only or not.
+	 *
+	 * @var boolean
+	 */
+	protected $read_only = false;
+
+	/**
 	 * Holds the value of the field if a user ID is given for this field.
 	 *
 	 * @var mixed
@@ -212,6 +219,7 @@ class PNO_Profile_Field {
 		$this->description = carbon_get_post_meta( $this->id, 'field_description' );
 		$this->placeholder = carbon_get_post_meta( $this->id, 'field_placeholder' );
 		$this->required    = carbon_get_post_meta( $this->id, 'field_is_required' );
+		$this->read_only   = carbon_get_post_meta( $this->id, 'field_is_read_only' );
 
 	}
 
@@ -303,6 +311,15 @@ class PNO_Profile_Field {
 	 */
 	public function is_required() {
 		return (bool) $this->required;
+	}
+
+	/**
+	 * Flag to detect if the field is read only or not.
+	 *
+	 * @return boolean
+	 */
+	public function is_read_only() {
+		return (bool) $this->read_only;
 	}
 
 }

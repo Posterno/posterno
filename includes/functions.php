@@ -252,6 +252,7 @@ function pno_get_account_fields( $user_id = false ) {
 		'nopaging'               => true,
 		'no_found_rows'          => true,
 		'update_post_term_cache' => false,
+		'post_status'            => 'publish',
 	];
 
 	$fields_query = new WP_Query( $fields_query_args );
@@ -272,6 +273,11 @@ function pno_get_account_fields( $user_id = false ) {
 					$fields[ $field->get_meta() ]['label']       = $field->get_label();
 					$fields[ $field->get_meta() ]['description'] = $field->get_description();
 					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
+					$fields[ $field->get_meta() ]['readonly']    = $field->is_read_only();
+
+					if ( $field->get_meta() !== 'email' ) {
+						$fields[ $field->get_meta() ]['required'] = $field->is_required();
+					}
 				}
 			}
 		}
