@@ -51,6 +51,8 @@ function pno_load_admin_scripts() {
 
 	if ( $screen->id == 'pno_users_fields' ) {
 		wp_enqueue_style( 'pnocf', PNO_PLUGIN_URL . '/assets/css/pno-custom-fields-cpt.min.css', [], PNO_VERSION );
+		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/pno-profile-custom-fields-admin-validation.min.js', [], PNO_VERSION, true );
+		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
 	}
 
 }

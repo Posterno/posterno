@@ -40,6 +40,7 @@ module.exports = function (grunt) {
 			all: {
 				files: {
 					'assets/js/pno-tinymce.min.js': ['assets/js/src/pno-tinymce.js'],
+					'assets/js/pno-profile-custom-fields-admin-validation.min.js': ['assets/js/src/pno-profile-custom-fields-admin-validation.js'],
 				},
 				options: {
 					mangle: false

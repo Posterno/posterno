@@ -53,6 +53,27 @@ function pno_get_custom_fields_editor_js_vars() {
 }
 
 /**
+ * Undocumented function
+ *
+ * @return void
+ */
+function pno_get_users_custom_fields_page_vars() {
+
+	global $post;
+
+	$js_vars = [
+		'field_id'   => carbon_get_post_meta( $post->ID, 'field_meta_key' ),
+		'is_default' => (bool) get_post_meta( $post->ID, 'is_default_field', true ),
+		'messages' => [
+			'no_meta_key_changes' => esc_html__( 'You are not allowed to change the reserved meta key for default fields.' ),
+		]
+	];
+
+	return $js_vars;
+
+}
+
+/**
  * Function responsible of displaying the custom fields page.
  * Actual output handled by vuejs.
  *
