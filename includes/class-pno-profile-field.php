@@ -107,6 +107,13 @@ class PNO_Profile_Field {
 	protected $read_only = false;
 
 	/**
+	 * Determine wether the field is admin only or not.
+	 *
+	 * @var boolean
+	 */
+	protected $admin_only = false;
+
+	/**
 	 * Holds the value of the field if a user ID is given for this field.
 	 *
 	 * @var mixed
@@ -220,6 +227,7 @@ class PNO_Profile_Field {
 		$this->placeholder = carbon_get_post_meta( $this->id, 'field_placeholder' );
 		$this->required    = carbon_get_post_meta( $this->id, 'field_is_required' );
 		$this->read_only   = carbon_get_post_meta( $this->id, 'field_is_read_only' );
+		$this->admin_only  = carbon_get_post_meta( $this->id, 'field_is_hidden' );
 
 	}
 
@@ -320,6 +328,15 @@ class PNO_Profile_Field {
 	 */
 	public function is_read_only() {
 		return (bool) $this->read_only;
+	}
+
+	/**
+	 * Flag to detect if the field is admin only or not.
+	 *
+	 * @return boolean
+	 */
+	public function is_admin_only() {
+		return (bool) $this->admin_only;
 	}
 
 }

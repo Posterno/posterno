@@ -270,6 +270,12 @@ function pno_get_account_fields( $user_id = false ) {
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
 				if ( isset( $fields[ $field->get_meta() ] ) ) {
+
+					if ( $field->is_admin_only() === true ) {
+						unset( $fields[ $field->get_meta() ] );
+						continue;
+					}
+
 					$fields[ $field->get_meta() ]['label']       = $field->get_label();
 					$fields[ $field->get_meta() ]['description'] = $field->get_description();
 					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
