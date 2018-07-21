@@ -10,12 +10,20 @@ $(document).on('carbonFields.apiLoaded', function (e, api) {
 
 		// This example will raise an error if the field's value is not an even number
 		// If the value is even, it will proceed with validation as usual
-		if (fieldName === 'field_meta_key') {
+		if (fieldName === 'field_meta_key' && pno_user_cf.is_default ) {
 			var value = api.getFieldValue(fieldName);
 			if ( value !== pno_user_cf.field_id ) {
 				return pno_user_cf.messages.no_meta_key_changes;
 			}
 		}
+
+		if (fieldName === 'field_type' && pno_user_cf.is_default) {
+			var value = api.getFieldValue(fieldName);
+			if (value !== pno_user_cf.field_type) {
+				return pno_user_cf.messages.no_type_changes;
+			}
+		}
+
 		return error;
 	});
 });
