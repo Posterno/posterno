@@ -190,9 +190,10 @@ function pno_get_registration_fields() {
  * the related user's value is loaded within the field.
  *
  * @param string $user_id
+ * @param boolean $admin_request flag to determine if the function is an admin request or not.
  * @return void
  */
-function pno_get_account_fields( $user_id = false ) {
+function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 
 	$fields = [
 		'avatar'      => [
@@ -271,7 +272,7 @@ function pno_get_account_fields( $user_id = false ) {
 				// to the existing default array.
 				if ( isset( $fields[ $field->get_meta() ] ) ) {
 
-					if ( $field->is_admin_only() === true ) {
+					if ( $field->is_admin_only() === true && ! $admin_request ) {
 						unset( $fields[ $field->get_meta() ] );
 						continue;
 					}

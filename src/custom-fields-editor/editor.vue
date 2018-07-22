@@ -55,7 +55,10 @@
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
 						</td>
 						<td></td>
-						<td></td>
+						<td>
+							<span class="dashicons dashicons-lock" v-if="isAdminOnly(field.editable)"></span>
+							<span class="dashicons dashicons-yes" v-else></span>
+						</td>
 						<td>
 							<a :href="field.url" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
 							<a href="#" class="button error" v-if="! field.default"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
@@ -158,6 +161,13 @@ export default {
 		 */
 		isRequired( is_required ) {
 			return is_required === true ? true : false
+		},
+
+		/**
+		 * Determine if the field is admin only field or not.
+		 */
+		isAdminOnly( editability ) {
+			return editability === 'admin_only' ? true : false
 		},
 
 	}

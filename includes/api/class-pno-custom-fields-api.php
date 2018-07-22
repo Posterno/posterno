@@ -76,7 +76,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 	public function get_profile_fields( WP_REST_Request $request ) {
 
 		$fields            = [];
-		$registered_fields = pno_get_account_fields();
+		$registered_fields = pno_get_account_fields( false, true );
 		$registered_types  = pno_get_registered_field_types();
 
 		if ( is_array( $registered_fields ) && ! empty( $registered_fields ) ) {
@@ -95,6 +95,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
 					'priority' => absint( $field['priority'] ),
 					'default'  => pno_is_default_profile_field( $field_key ),
+					'editable' => $this->profile_field_is_editable( $field_in_db ),
 					'url'      => is_int( $field_in_db ) ? esc_url_raw(
 						add_query_arg(
 							[
@@ -222,6 +223,27 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 			return $field_id;
 
 		}
+
+	}
+
+	/**
+	 * Determines the editability level of a given profile field.
+	 *
+	 * @return void
+	 */
+	private function profile_field_is_editable( $field_id ) {
+
+		if ( ! $field_id ) {
+			return;
+		}
+
+		$editable = true;
+
+		if ( carbon_get_post_meta( $field_id, 'field_is_hidden' ) ) {
+			$editable = 'admin_only';
+		}
+
+		return $editable;
 
 	}
 
