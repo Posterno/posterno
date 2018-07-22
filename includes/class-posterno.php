@@ -35,7 +35,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 *
 		 * @var object
 		 */
-		private $admin_notices;
+		public $admin_notices;
 
 		/**
 		 * Templates load object
@@ -253,6 +253,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_admin() {
 
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-notices.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-footer.php';
