@@ -56,7 +56,10 @@
 						</td>
 						<td></td>
 						<td>
-							<span class="dashicons dashicons-lock" v-if="isAdminOnly(field.editable)"></span>
+							<span :data-balloon="labels.profile.field_admin_only" data-balloon-pos="down" v-if="isAdminOnly(field.editable)">
+								<span class="dashicons dashicons-lock"></span>
+							</span>
+
 							<span class="dashicons dashicons-yes" v-else></span>
 						</td>
 						<td>
@@ -85,6 +88,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import balloon from 'balloon-css'
 
 export default {
 	name: 'editor',

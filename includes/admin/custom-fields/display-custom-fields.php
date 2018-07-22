@@ -30,8 +30,9 @@ function pno_get_custom_fields_editor_js_vars() {
 			'custom_listings'     => esc_html__( 'Customize listings fields' ),
 			'custom_registration' => esc_html__( 'Customize registration form' ),
 			'profile'             => [
-				'title'   => esc_html__( 'Posterno profile fields editor' ),
-				'add_new' => esc_html__( 'Add new profile field' ),
+				'title'            => esc_html__( 'Posterno profile fields editor' ),
+				'add_new'          => esc_html__( 'Add new profile field' ),
+				'field_admin_only' => esc_html__( 'This field is editable only by an administrator.' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),
