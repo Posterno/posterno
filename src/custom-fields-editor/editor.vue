@@ -40,7 +40,7 @@
 						<th scope="col">{{labels.table.actions}}</th>
 					</tr>
 				</thead>
-				<tbody>
+				<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
 					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
 						<td class="order-anchor align-middle">
 							<span class="dashicons dashicons-menu"></span>
@@ -77,7 +77,7 @@
 							<wp-spinner></wp-spinner>
 						</td>
 					</tr>
-				</tbody>
+				</draggable>
 			</table>
 
 		</div>
@@ -89,11 +89,15 @@
 import axios from 'axios'
 import qs from 'qs'
 import balloon from 'balloon-css'
+import draggable from 'vuedraggable'
 
 export default {
 	name: 'editor',
 	props: {
 		type: '',
+	},
+	components: {
+		draggable,
 	},
 	data() {
 		return {
@@ -138,7 +142,11 @@ export default {
 			.then( response => {
 
 				if ( typeof response.data === 'object' ) {
-					this.fields = response.data
+					let new_fields = []
+					var result = Object.keys(response.data).map( function(key) {
+						new_fields.push( response.data[key] )
+					})
+					this.fields = new_fields
 				}
 
 				this.loading = false
@@ -173,6 +181,10 @@ export default {
 		isAdminOnly( editability ) {
 			return editability === 'admin_only' ? true : false
 		},
+
+		onSortingEnd( event ) {
+			console.log(event)
+		}
 
 	}
 }
