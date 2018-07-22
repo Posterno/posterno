@@ -141,6 +141,8 @@ export default {
 			})
 			.then( response => {
 
+				// Convert the object retrieved from the api,
+				// to an array so it can be made sortable by the script.
 				if ( typeof response.data === 'object' ) {
 					let new_fields = []
 					var result = Object.keys(response.data).map( function(key) {
@@ -182,8 +184,11 @@ export default {
 			return editability === 'admin_only' ? true : false
 		},
 
+		/**
+		 * Process saving of the priority for the fields.
+		 */
 		onSortingEnd( event ) {
-			console.log(event)
+
 		}
 
 	}

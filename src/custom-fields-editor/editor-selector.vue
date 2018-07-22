@@ -161,6 +161,15 @@ export default {
 			}
 
 		}
+
+		.sortable-ghost {
+			background: #fffecc;
+		}
+
+		.sortable-chosen {
+			background: #fffecc;
+		}
+
 	}
 
 	.move-col {
