@@ -133,6 +133,10 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 			return;
 		}
 
+		if ( ! pno_is_default_profile_field( $field_key ) ) {
+			return;
+		}
+
 		$args = [
 			'post_type'              => 'pno_users_fields',
 			'posts_per_page'         => 1,
