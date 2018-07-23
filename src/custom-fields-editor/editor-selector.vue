@@ -202,4 +202,33 @@ export default {
 
 }
 
+.pno-modal {
+
+	.media-modal-content {
+		background: #efefef;
+	}
+	.media-frame-content {
+		top: 50px;
+		padding: 20px 16px;
+		label {
+			display: inline-block;
+			font-weight: bold;
+			color: #000;
+			margin-bottom: 5px;
+			font-size: 13px;
+		}
+		input,
+		textarea,
+		select {
+			display: block;
+			width: 100%;
+			margin-bottom: 15px;
+			font-size: 13px !important;
+		}
+	}
+	.spinner {
+		margin-top:20px;
+	}
+}
+
 </style>
