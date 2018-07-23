@@ -285,6 +285,10 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 					if ( $field->get_meta() !== 'email' ) {
 						$fields[ $field->get_meta() ]['required'] = $field->is_required();
 					}
+
+					if ( $field->get_priority() ) {
+						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+					}
 				}
 			}
 		}

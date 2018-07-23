@@ -24,7 +24,7 @@
 			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
 			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-			<wp-button type="primary">{{labels[type].add_new}}</wp-button>
+			<wp-button type="primary">{{labels[type].add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
@@ -106,6 +106,7 @@ export default {
 
 			// App status.
 			loading:       true,
+			sorting:       false,
 			success:       false,
 			error:         false,
 			error_message: '',
@@ -188,6 +189,41 @@ export default {
 		 * Process saving of the priority for the fields.
 		 */
 		onSortingEnd( event ) {
+
+			this.success = false
+			this.error   = false
+			this.loading = false
+			this.sorting = true
+
+			axios.post(
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type + '/save-fields-order',
+				qs.stringify( {
+					fields: this.fields
+				} ),
+				{
+					headers: {
+						'X-WP-Nonce': pno_fields_editor.nonce
+					}
+				}
+			)
+			.then( response => {
+				this.success = true
+				this.error   = false
+				this.sorting = false
+			})
+			.catch( e => {
+				this.loading = false
+				this.sorting = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
+				}
+
+			} );
 
 		}
 

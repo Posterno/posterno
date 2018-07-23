@@ -170,6 +170,11 @@ export default {
 			background: #fffecc;
 		}
 
+		.sorting-spinner {
+			margin-left:10px;
+			margin-top: 4px;
+		}
+
 	}
 
 	.move-col {

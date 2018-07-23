@@ -53,6 +53,15 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				),
 			)
 		);
+		register_rest_route(
+			$this->namespace, '/profile/save-fields-order', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'update_profile_fields_order' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -90,13 +99,14 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				$field_in_db = $this->maybe_create_user_field( $field_key, $field );
 
 				$fields[ $field_key ] = [
-					'title'    => esc_html( $field['label'] ),
-					'type'     => isset( $registered_types[ $field['type'] ] ) ? $registered_types[ $field['type'] ] : esc_html__( 'Unknown field type' ),
-					'required' => isset( $field['required'] ) && $field['required'] === true ? true : false,
-					'priority' => absint( $field['priority'] ),
-					'default'  => pno_is_default_profile_field( $field_key ),
-					'editable' => $this->profile_field_is_editable( $field_in_db ),
-					'url'      => is_int( $field_in_db ) ? esc_url_raw(
+					'title'       => esc_html( $field['label'] ),
+					'type'        => isset( $registered_types[ $field['type'] ] ) ? $registered_types[ $field['type'] ] : esc_html__( 'Unknown field type' ),
+					'required'    => isset( $field['required'] ) && $field['required'] === true ? true : false,
+					'priority'    => absint( $field['priority'] ),
+					'default'     => pno_is_default_profile_field( $field_key ),
+					'editable'    => $this->profile_field_is_editable( $field_in_db ),
+					'field_db_id' => $field_in_db,
+					'url'         => is_int( $field_in_db ) ? esc_url_raw(
 						add_query_arg(
 							[
 								'post'   => $field_in_db,
@@ -248,6 +258,33 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		return $editable;
+
+	}
+
+	/**
+	 * Save the order of the fields when updated in the admin panel.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return void
+	 */
+	public function update_profile_fields_order( WP_REST_Request $request ) {
+
+		$fields = isset( $_POST['fields'] ) && is_array( $_POST['fields'] ) ? $_POST['fields'] : false;
+
+		if ( ! $fields ) {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while updating the order of the fields, please contact support.' ), 422 );
+		}
+
+		foreach ( $fields as $key => $field ) {
+
+			$field_id = isset( $field['field_db_id'] ) ? absint( $field['field_db_id'] ) : false;
+
+			if ( $field_id ) {
+				update_post_meta( $field_id, 'field_priority', $key );
+			}
+		}
+
+		return rest_ensure_response( $fields );
 
 	}
 

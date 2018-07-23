@@ -228,6 +228,7 @@ class PNO_Profile_Field {
 		$this->required    = carbon_get_post_meta( $this->id, 'field_is_required' );
 		$this->read_only   = carbon_get_post_meta( $this->id, 'field_is_read_only' );
 		$this->admin_only  = carbon_get_post_meta( $this->id, 'field_is_hidden' );
+		$this->priority    = get_post_meta( $this->id, 'field_priority', true );
 
 	}
 
@@ -337,6 +338,15 @@ class PNO_Profile_Field {
 	 */
 	public function is_admin_only() {
 		return (bool) $this->admin_only;
+	}
+
+	/**
+	 * Get the priority set for the field.
+	 *
+	 * @return void
+	 */
+	public function get_priority() {
+		return absint( $this->priority );
 	}
 
 }
