@@ -40,3 +40,28 @@ function pno_is_default_field_notice() {
 
 }
 add_action( 'admin_head', 'pno_is_default_field_notice' );
+
+/**
+ * Display a notice when the avatar field is disabled and the user is editing the field.
+ *
+ * @return void
+ */
+function pno_avatar_field_is_disabled_notice() {
+
+	$screen = get_current_screen();
+
+	if ( $screen instanceof WP_Screen && $screen->id == 'pno_users_fields' ) {
+
+		global $post;
+
+		if ( $post instanceof WP_Post && isset( $post->ID ) && get_post_meta( $post->ID, '_field_meta_key', true ) == 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
+
+			$message = esc_html__( 'The avatar field is currently disabled. If needed, you can enable it through the plugin\'s settings.' );
+
+			posterno()->admin_notices->register_notice( 'avatar_disabled', 'info', $message, [ 'dismissible' => false ] );
+
+		}
+	}
+
+}
+add_action( 'admin_head', 'pno_avatar_field_is_disabled_notice' );
