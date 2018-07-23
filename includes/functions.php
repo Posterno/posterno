@@ -293,6 +293,20 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
 					}
+				} else {
+
+					// The field does not exist so we now add it to the list of fields.
+					$fields[ $field->get_meta() ] = [
+						'label'       => $field->get_label(),
+						'type'        => $field->get_type(),
+						'description' => $field->get_description(),
+						'placeholder' => $field->get_placeholder(),
+						'readonly'    => $field->is_read_only(),
+						'required'    => $field->is_required(),
+						'css_class'   => $field->get_custom_classes(),
+						'priority'    => $field->get_priority(),
+					];
+
 				}
 			}
 		}
