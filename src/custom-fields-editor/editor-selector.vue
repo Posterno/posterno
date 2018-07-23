@@ -206,6 +206,8 @@ export default {
 
 	.media-modal-content {
 		background: #efefef;
+		min-height: auto;
+		height: auto;
 	}
 	.media-frame-content {
 		top: 50px;

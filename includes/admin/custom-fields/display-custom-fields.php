@@ -23,6 +23,7 @@ function pno_get_custom_fields_editor_js_vars() {
 		'rest'               => esc_url_raw( rest_url() ),
 		'nonce'              => wp_create_nonce( 'wp_rest' ),
 		'create_field_nonce' => wp_create_nonce( 'wp_rest' ),
+		'delete_field_nonce' => wp_create_nonce( 'wp_rest' ),
 		'field_types'        => pno_get_registered_field_types(),
 		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),
@@ -49,8 +50,10 @@ function pno_get_custom_fields_editor_js_vars() {
 				'delete'    => esc_html__( 'Delete field' ),
 			],
 			'modal'               => [
-				'field_name' => esc_html__( 'New field name:' ),
-				'field_type' => esc_html__( 'Select field type:' ),
+				'field_name'      => esc_html__( 'New field name:' ),
+				'field_type'      => esc_html__( 'Select field type:' ),
+				'about_to_delete' => esc_html__( 'You are about to delete the field:' ),
+				'delete_message'  => esc_html__( 'Are you sure you want to delete this field? This action is irreversible.' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 		],

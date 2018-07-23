@@ -71,6 +71,15 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				),
 			)
 		);
+		register_rest_route(
+			$this->namespace, '/profile/delete', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'delete_profile_field' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -354,6 +363,32 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		return rest_ensure_response( urlencode( $return ) );
+
+	}
+
+	/**
+	 * Delete a profile field from the database.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return void
+	 */
+	public function delete_profile_field( WP_REST_Request $request ) {
+
+		$field_id = isset( $_POST['field_id'] ) && ! empty( $_POST['field_id'] ) ? absint( $_POST['field_id'] ) : false;
+
+		if ( ! $field_id ) {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
+		}
+
+		$field_meta = carbon_get_post_meta( $field_id, 'field_meta_key' );
+
+		if ( $field_meta && in_array( $field_meta, pno_get_registered_default_meta_keys() ) ) {
+			return new WP_REST_Response( esc_html__( 'Default fields cannnot be deleted.' ), 422 );
+		}
+
+		wp_delete_post( $field_id, true );
+
+		return rest_ensure_response();
 
 	}
 
