@@ -19,10 +19,12 @@ defined( 'ABSPATH' ) || exit;
 function pno_get_custom_fields_editor_js_vars() {
 
 	$js_vars = [
-		'plugin_url' => PNO_PLUGIN_URL,
-		'rest'       => esc_url_raw( rest_url() ),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'labels'     => [
+		'plugin_url'         => PNO_PLUGIN_URL,
+		'rest'               => esc_url_raw( rest_url() ),
+		'nonce'              => wp_create_nonce( 'wp_rest' ),
+		'create_field_nonce' => wp_create_nonce( 'wp_rest' ),
+		'field_types'        => pno_get_registered_field_types(),
+		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),
 			'addons'              => esc_html__( 'View Addons' ),
 			'title'               => esc_html__( 'Posterno custom fields' ),
@@ -45,6 +47,10 @@ function pno_get_custom_fields_editor_js_vars() {
 				'not_found' => esc_html__( 'No fields yet, click the button above to add fields.' ),
 				'edit'      => esc_html__( 'Edit field' ),
 				'delete'    => esc_html__( 'Delete field' ),
+			],
+			'modal'               => [
+				'field_name' => esc_html__( 'New field name:' ),
+				'field_type' => esc_html__( 'Select field type:' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 		],

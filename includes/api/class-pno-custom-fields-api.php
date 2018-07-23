@@ -62,6 +62,15 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 				),
 			)
 		);
+		register_rest_route(
+			$this->namespace, '/profile/create', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'create_profile_field' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -285,6 +294,70 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 		}
 
 		return rest_ensure_response( $fields );
+
+	}
+
+	/**
+	 * Create a new profile field through the api.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return void
+	 */
+	public function create_profile_field( WP_REST_Request $request ) {
+
+		$field_name     = isset( $_POST['field_name'] ) && ! empty( $_POST['field_name'] ) ? sanitize_text_field( $_POST['field_name'] ) : false;
+		$field_priority = isset( $_POST['priority'] ) && ! empty( $_POST['priority'] ) ? absint( $_POST['priority'] ) : false;
+
+		$registered_field_types = pno_get_registered_field_types();
+		$field_type             = isset( $_POST['field_type'] ) && ! empty( $_POST['field_type'] ) && isset( $registered_field_types[ $_POST['field_type'] ] ) ? sanitize_text_field( $_POST['field_type'] ) : false;
+
+		if ( ! $field_name ) {
+			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.' ), 422 );
+		}
+
+		if ( ! $field_type ) {
+			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
+		}
+
+		if ( ! $field_priority ) {
+			return new WP_REST_Response( esc_html__( 'Invalid priority.' ), 422 );
+		}
+
+		$new_field = [
+			'post_type'   => 'pno_users_fields',
+			'post_title'  => $field_name,
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $new_field );
+		$return   = '';
+
+		if ( is_wp_error( $field_id ) ) {
+				return new WP_REST_Response( $field_id->get_error_message(), 422 );
+		} else {
+
+			// Set the type of the field.
+			carbon_set_post_meta( $field_id, 'field_type', $field_type );
+
+			// Set the order priority for this new field.
+			update_post_meta( $field_id, 'field_priority', $field_priority + 1 );
+
+			// Setup the user meta key for the field.
+			$meta = sanitize_title( $field_name );
+			$meta = str_replace( '-', '_', $meta );
+
+			carbon_set_post_meta( $field_id, 'field_meta_key', $meta );
+
+			$return = add_query_arg(
+				[
+					'post'   => $field_id,
+					'action' => 'edit',
+				], admin_url( 'post.php' )
+			);
+
+		}
+
+		return rest_ensure_response( $return );
 
 	}
 

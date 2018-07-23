@@ -195,6 +195,11 @@ export default {
 		}
 	}
 
+	.v--modal-overlay {
+		background: rgba(0, 0, 0, 0.7);
+		z-index: 99999;
+	}
+
 }
 
 </style>

@@ -19,12 +19,15 @@
 			</ul>
 		</h1>
 
+		<v-dialog/>
+		<modals-container/>
+
 		<div class="tables-wrapper">
 
 			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
 			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-			<wp-button type="primary">{{labels[type].add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
+			<wp-button type="primary" @click="showAddNewModal()">{{labels[type].add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
@@ -92,6 +95,7 @@ import axios from 'axios'
 import qs from 'qs'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
+import AddNewModal from '../modals/add-new-field'
 
 export default {
 	name: 'editor',
@@ -230,6 +234,18 @@ export default {
 				}
 
 			} );
+
+		},
+
+		/**
+		 * Displays the add new profile field modal.
+		 */
+		showAddNewModal() {
+
+			this.$modal.show( AddNewModal, {
+				type: this.type,
+				priority: this.fields.length
+			},{ height: '300px' })
 
 		}
 
