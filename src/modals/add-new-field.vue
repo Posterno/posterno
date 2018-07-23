@@ -16,7 +16,7 @@
 
 					<wp-notice type="error" alternative v-if="error">{{error_message}}</wp-notice>
 
-					<form action="#" method="post">
+					<form action="#" method="post" @submit.prevent="createField">
 						<label for="field-name"><span>{{labels.modal.field_name}}</span></label>
 						<input type="text" name="field-name" id="field-name" value="" v-model="field_name">
 						<label for="field-type"><span>{{labels.modal.field_type}}</span></label>
