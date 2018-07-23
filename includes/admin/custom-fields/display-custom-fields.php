@@ -24,6 +24,7 @@ function pno_get_custom_fields_editor_js_vars() {
 		'nonce'              => wp_create_nonce( 'wp_rest' ),
 		'create_field_nonce' => wp_create_nonce( 'wp_rest' ),
 		'delete_field_nonce' => wp_create_nonce( 'wp_rest' ),
+		'trashed'            => isset( $_GET['trashed'] ) ? true : false,
 		'field_types'        => pno_get_registered_field_types(),
 		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),

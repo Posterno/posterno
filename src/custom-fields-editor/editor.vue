@@ -128,6 +128,11 @@ export default {
 	 */
 	mounted() {
 		this.load_fields()
+
+		if ( pno_fields_editor.trashed ) {
+			this.success = true
+		}
+
 	},
 	methods: {
 

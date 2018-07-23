@@ -145,6 +145,9 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 
 	if ( get_post_type( $post_id ) == 'pno_users_fields' ) {
 		wp_delete_post( $post_id, true );
+
+		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&trashed=true&page=posterno-custom-fields#/profile-fields' ) );
+		exit;
 	}
 
 }
