@@ -190,6 +190,9 @@ export default {
 	.order-anchor {
 		border-right: 1px solid #e1e1e1;
 		text-align: center !important;
+		&:hover {
+			cursor: move;
+		}
 	}
 
 }

@@ -29,7 +29,7 @@
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
 					<tr>
-						<th scope="col" class="move-col">
+						<th scope="col" class="move-col" :data-balloon="labels.profile.field_order" data-balloon-pos="right">
 							<span class="dashicons dashicons-menu"></span>
 						</th>
 						<th scope="col" class="column-primary">{{labels.table.title}}</th>

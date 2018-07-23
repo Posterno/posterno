@@ -33,6 +33,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'title'            => esc_html__( 'Posterno profile fields editor' ),
 				'add_new'          => esc_html__( 'Add new profile field' ),
 				'field_admin_only' => esc_html__( 'This field is editable only by an administrator.' ),
+				'field_order'      => esc_html__( 'Drag and drop the rows below to change the order of the fields.' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),
