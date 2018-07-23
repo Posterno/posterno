@@ -353,7 +353,7 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 
 		}
 
-		return rest_ensure_response( $return );
+		return rest_ensure_response( urlencode( $return ) );
 
 	}
 

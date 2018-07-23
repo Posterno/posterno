@@ -87,7 +87,7 @@ export default {
 				}
 			)
 			.then( response => {
-				window.location.replace( response.data )
+				window.location.replace( decodeURIComponent( response.data ) )
 			})
 			.catch( e => {
 
