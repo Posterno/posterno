@@ -47,6 +47,29 @@ class PNO_Custom_Fields {
 		->add_tab(
 			esc_html__( 'General' ), array(
 
+				Field::make( 'select', 'field_type', esc_html__( 'Field type' ) )
+					->set_required()
+					->add_options( pno_get_registered_field_types() )
+					->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the account and registration forms.' ) ),
+
+				Field::make( 'complex', 'field_selectable_options', esc_html__( 'Field selectable options' ) )
+					->set_conditional_logic(
+						array(
+							'relation' => 'AND', // Optional, defaults to "AND"
+							array(
+								'field'   => 'field_type',
+								'value'   => pno_get_multi_options_field_types(), // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
+								'compare' => 'IN', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+							),
+						)
+					)
+					->add_fields(
+						array(
+							Field::make( 'text', 'option_title', esc_html__( 'Option title' ) ),
+							Field::make( 'text', 'option_value', esc_html__( 'Option value' ) ),
+						)
+					),
+
 				Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
 					->set_help_text( esc_html__( 'This text will be used as label within the registration and account settings forms. Leave blank to use the field title.' ) ),
 
@@ -76,28 +99,7 @@ class PNO_Custom_Fields {
 					->set_help_text( esc_html__( 'Enable to prevent users from editing this field but still make it visible within the account settings page.' ) ),
 
 			)
-		)
-		->add_tab(
-			esc_html__( 'User meta key' ), array(
-				Field::make( 'text', 'field_meta_key', esc_html__( 'Unique meta key' ) )
-					->set_required( true )
-					->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.' ) ),
-			)
 		);
-
-		Container::make( 'post_meta', '<span class="dashicons dashicons-admin-settings"></span>' )
-		->where( 'post_type', '=', 'pno_users_fields' )
-		->set_context( 'side' )
-		->set_priority( 'default' )
-			->add_fields(
-				array(
-					Field::make( 'select', 'field_type', esc_html__( 'Field type' ) )
-						->set_required()
-						->add_options( pno_get_registered_field_types() ),
-					Field::make( 'html', 'crb_field_type_info' )
-						->set_html( '<div class="pno-field-type-notice">' . esc_html__( 'The selected field type determines how the field will look onto the account and registration forms.' ) . '<br/><br/>' . esc_html__( 'When the field type is changed, save the field to display settings related to the new field type if any available.' ) . '</div>' ),
-				)
-			);
 
 		Container::make( 'post_meta', esc_html__( 'Advanced' ) )
 		->where( 'post_type', '=', 'pno_users_fields' )
@@ -105,8 +107,11 @@ class PNO_Custom_Fields {
 		->set_priority( 'default' )
 			->add_fields(
 				array(
+					Field::make( 'text', 'field_meta_key', esc_html__( 'Unique meta key' ) )
+						->set_required( true )
+						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.' ) ),
 					Field::make( 'text', 'field_custom_classes', esc_html__( 'Custom css classes' ) )
-					->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
+						->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
 				)
 			);
 

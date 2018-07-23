@@ -115,3 +115,21 @@ function pno_get_roles( $force = false, $admin = false ) {
 	}
 	return $roles;
 }
+
+/**
+ * Mark specific field types as "multi options". The custom fields
+ * editor will allow generation of options for those field types.
+ *
+ * @return array
+ */
+function pno_get_multi_options_field_types() {
+
+	$types = [
+		'select',
+		'multiselect',
+		'multicheckbox',
+	];
+
+	return apply_filters( 'pno_multi_options_field_types', $types );
+
+}
