@@ -35,7 +35,7 @@
 						<th scope="col" class="column-primary">{{labels.table.title}}</th>
 						<th scope="col">{{labels.table.type}}</th>
 						<th scope="col" class="icon-col">{{labels.table.required}}</th>
-						<th scope="col" class="icon-col">{{labels.table.privacy}}</th>
+						<th scope="col" class="icon-col" v-if="privacy">{{labels.table.privacy}}</th>
 						<th scope="col" class="icon-col">{{labels.table.editable}}</th>
 						<th scope="col">{{labels.table.actions}}</th>
 					</tr>
@@ -54,7 +54,9 @@
 						<td>
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
 						</td>
-						<td></td>
+						<td v-if="privacy">
+
+						</td>
 						<td>
 							<span :data-balloon="labels.profile.field_admin_only" data-balloon-pos="down" v-if="isAdminOnly(field.editable)">
 								<span class="dashicons dashicons-lock"></span>
@@ -103,6 +105,7 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
+			privacy:       false,
 
 			// App status.
 			loading:       true,
