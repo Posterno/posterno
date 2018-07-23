@@ -63,10 +63,11 @@ class PNO_Custom_Fields {
 							),
 						)
 					)
+					->set_layout( 'tabbed-vertical' )
+					->set_help_text( esc_html__( 'Add options for this field type.' ) )
 					->add_fields(
 						array(
-							Field::make( 'text', 'option_title', esc_html__( 'Option title' ) ),
-							Field::make( 'text', 'option_value', esc_html__( 'Option value' ) ),
+							Field::make( 'text', 'option_title', esc_html__( 'Option title' ) )->set_help_text( esc_html__( 'Enter the title of this option.' ) ),
 						)
 					),
 

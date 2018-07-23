@@ -121,6 +121,13 @@ class PNO_Profile_Field {
 	protected $custom_classes = false;
 
 	/**
+	 * Selectable options for dropdown fields.
+	 *
+	 * @var mixed
+	 */
+	protected $selectable_options = false;
+
+	/**
 	 * Holds the value of the field if a user ID is given for this field.
 	 *
 	 * @var mixed
@@ -237,6 +244,10 @@ class PNO_Profile_Field {
 		$this->admin_only     = carbon_get_post_meta( $this->id, 'field_is_hidden' );
 		$this->custom_classes = carbon_get_post_meta( $this->id, 'field_custom_classes' );
 		$this->priority       = get_post_meta( $this->id, 'field_priority', true );
+
+		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
+			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'field_selectable_options' ) );
+		}
 
 	}
 
@@ -364,6 +375,15 @@ class PNO_Profile_Field {
 	 */
 	public function get_custom_classes() {
 		return $this->custom_classes;
+	}
+
+	/**
+	 * Retrieve selectable options for this field if needed.
+	 *
+	 * @return mixed
+	 */
+	public function get_selectable_options() {
+		return $this->selectable_options;
 	}
 
 }

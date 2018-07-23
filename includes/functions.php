@@ -307,6 +307,9 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 						'priority'    => $field->get_priority(),
 					];
 
+					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
+					}
 				}
 			}
 		}

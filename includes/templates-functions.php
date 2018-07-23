@@ -520,3 +520,48 @@ function pno_get_registered_field_types() {
 	return $types;
 
 }
+
+/**
+ * Mark specific field types as "multi options". The custom fields
+ * editor will allow generation of options for those field types.
+ *
+ * @return array
+ */
+function pno_get_multi_options_field_types() {
+
+	$types = [
+		'select',
+		'multiselect',
+		'multicheckbox',
+	];
+
+	return apply_filters( 'pno_multi_options_field_types', $types );
+
+}
+
+/**
+ * Create an array of the selectable options of a field.
+ *
+ * @param array $options
+ * @return array
+ */
+function pno_parse_selectable_options( $options = [] ) {
+
+	$formatted_options = [];
+
+	if ( is_array( $options ) && ! empty( $options ) ) {
+		foreach ( $options as $key => $value ) {
+
+			$option_title = $value[ 'option_title' ];
+			$meta         = sanitize_title( $option_title );
+			$meta         = str_replace( '-', '_', $meta );
+			$option_value = $meta;
+
+			$formatted_options[ $option_value ] = $option_title;
+
+		}
+	}
+
+	return $formatted_options;
+
+}
