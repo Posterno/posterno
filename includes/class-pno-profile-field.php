@@ -363,7 +363,7 @@ class PNO_Profile_Field {
 	 * @return string
 	 */
 	public function get_custom_classes() {
-		return esc_attr( $this->custom_classes );
+		return $this->custom_classes;
 	}
 
 }

@@ -286,6 +286,10 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 						$fields[ $field->get_meta() ]['required'] = $field->is_required();
 					}
 
+					if ( $field->get_custom_classes() ) {
+						$fields[ $field->get_meta() ]['css_class'] = $field->get_custom_classes();
+					}
+
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
 					}

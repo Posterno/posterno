@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php echo $data->message; ?></p>
 	<?php endif; ?>
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data">
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data" class="row">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 
@@ -109,8 +109,10 @@ defined( 'ABSPATH' ) || exit;
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
 		<input type="hidden" name="submit_<?php echo $data->form; ?>" value="<?php echo $data->form; ?>">
 		<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
-		<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
 
+		<div class="col-sm-12">
+			<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
+		</div>
 	</form>
 
 	<?php
