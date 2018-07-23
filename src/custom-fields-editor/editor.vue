@@ -210,6 +210,9 @@ export default {
 				this.success = true
 				this.error   = false
 				this.sorting = false
+
+				this.load_fields()
+
 			})
 			.catch( e => {
 				this.loading = false

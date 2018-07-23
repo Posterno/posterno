@@ -150,3 +150,26 @@ function pno_upload_dir( $pathdata ) {
 	return $pathdata;
 }
 add_filter( 'upload_dir', 'pno_upload_dir' );
+
+/**
+ * Adds a class to the first name and last name fields on the account page
+ * to make those two fields on 2 columns.
+ *
+ * @param string $classes
+ * @param string $field_key
+ * @param string $field
+ * @param string $class
+ * @return void
+ */
+function pno_make_account_form_fields_two_columns( $classes, $field_key, $field, $class ) {
+
+	$dashboard_page = pno_get_dashboard_page_id();
+
+	if ( $dashboard_page && is_page( $dashboard_page ) && $field_key == 'first_name' || $field_key == 'last_name' ) {
+		$classes[] = 'col-sm-12 col-md-6';
+	}
+
+	return $classes;
+
+}
+add_filter( 'pno_form_field_classes', 'pno_make_account_form_fields_two_columns', 10, 4 );
