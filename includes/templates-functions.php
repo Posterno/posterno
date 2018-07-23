@@ -431,6 +431,31 @@ function pno_max_upload_size( $field_name = '', $custom_size = false ) {
 }
 
 /**
+ * Defines a list of reserved meta keys for custom fields.
+ *
+ * @return array
+ */
+function pno_get_registered_default_meta_keys() {
+
+	$keys = [
+		'avatar',
+		'first_name',
+		'last_name',
+		'email',
+		'website',
+		'description',
+	];
+
+	/**
+	 * Allows developers to register additional default meta keys if needed.
+	 *
+	 * @param array $keys the list of registered default meta keys.
+	 */
+	return apply_filters( 'pno_registered_default_meta_keys', $keys );
+
+}
+
+/**
  * Determine default profile fields.
  *
  * @param string $key

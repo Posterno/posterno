@@ -70,12 +70,14 @@ function pno_get_users_custom_fields_page_vars() {
 	global $post;
 
 	$js_vars = [
-		'field_id'   => carbon_get_post_meta( $post->ID, 'field_meta_key' ),
-		'field_type' => carbon_get_post_meta( $post->ID, 'field_type' ),
-		'is_default' => (bool) get_post_meta( $post->ID, 'is_default_field', true ),
-		'messages'   => [
+		'field_id'        => carbon_get_post_meta( $post->ID, 'field_meta_key' ),
+		'field_type'      => carbon_get_post_meta( $post->ID, 'field_type' ),
+		'is_default'      => (bool) get_post_meta( $post->ID, 'is_default_field', true ),
+		'restricted_keys' => pno_get_registered_default_meta_keys(),
+		'messages'        => [
 			'no_meta_key_changes' => esc_html__( 'You are not allowed to change the reserved meta key for default fields.' ),
 			'no_type_changes'     => esc_html__( 'The field type for default fields cannot be changed.' ),
+			'reserved_key'        => esc_html__( 'This is a reserved meta key, please select a different key.' ),
 		],
 	];
 

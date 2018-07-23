@@ -6,6 +6,11 @@ $(document).on('carbonFields.apiLoaded', function (e, api) {
 			if (value !== pno_user_cf.field_id) {
 				return pno_user_cf.messages.no_meta_key_changes;
 			}
+		} else if (fieldName === 'field_meta_key' && ! pno_user_cf.is_default ) {
+			var value = api.getFieldValue(fieldName);
+			if ($.inArray(value, pno_user_cf.restricted_keys) !== -1) {
+				return pno_user_cf.messages.reserved_key;
+			}
 		}
 
 		if (fieldName === 'field_type' && pno_user_cf.is_default) {
