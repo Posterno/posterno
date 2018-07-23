@@ -114,6 +114,13 @@ class PNO_Profile_Field {
 	protected $admin_only = false;
 
 	/**
+	 * Custom css classes.
+	 *
+	 * @var mixed
+	 */
+	protected $custom_classes = false;
+
+	/**
 	 * Holds the value of the field if a user ID is given for this field.
 	 *
 	 * @var mixed
@@ -223,12 +230,13 @@ class PNO_Profile_Field {
 			$this->label = $this->name;
 		}
 
-		$this->description = carbon_get_post_meta( $this->id, 'field_description' );
-		$this->placeholder = carbon_get_post_meta( $this->id, 'field_placeholder' );
-		$this->required    = carbon_get_post_meta( $this->id, 'field_is_required' );
-		$this->read_only   = carbon_get_post_meta( $this->id, 'field_is_read_only' );
-		$this->admin_only  = carbon_get_post_meta( $this->id, 'field_is_hidden' );
-		$this->priority    = get_post_meta( $this->id, 'field_priority', true );
+		$this->description    = carbon_get_post_meta( $this->id, 'field_description' );
+		$this->placeholder    = carbon_get_post_meta( $this->id, 'field_placeholder' );
+		$this->required       = carbon_get_post_meta( $this->id, 'field_is_required' );
+		$this->read_only      = carbon_get_post_meta( $this->id, 'field_is_read_only' );
+		$this->admin_only     = carbon_get_post_meta( $this->id, 'field_is_hidden' );
+		$this->custom_classes = carbon_get_post_meta( $this->id, 'field_custom_classes' );
+		$this->priority       = get_post_meta( $this->id, 'field_priority', true );
 
 	}
 
@@ -347,6 +355,15 @@ class PNO_Profile_Field {
 	 */
 	public function get_priority() {
 		return absint( $this->priority );
+	}
+
+	/**
+	 * Retrieve custom css classes applied to the field if any.
+	 *
+	 * @return string
+	 */
+	public function get_custom_classes() {
+		return esc_attr( $this->custom_classes );
 	}
 
 }

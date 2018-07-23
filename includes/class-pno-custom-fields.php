@@ -99,6 +99,17 @@ class PNO_Custom_Fields {
 				)
 			);
 
+		Container::make( 'post_meta', esc_html__( 'Advanced' ) )
+		->where( 'post_type', '=', 'pno_users_fields' )
+		->set_context( 'side' )
+		->set_priority( 'default' )
+			->add_fields(
+				array(
+					Field::make( 'text', 'field_custom_classes', esc_html__( 'Custom css classes' ) )
+					->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
+				)
+			);
+
 	}
 
 }
