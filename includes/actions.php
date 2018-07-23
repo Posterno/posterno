@@ -201,7 +201,7 @@ function pno_account_form_make_row_opening( $key, $field, $form, $step ) {
 	}
 
 }
-add_action( 'pno_form_before_field', 'pno_account_form_make_row_opening', 10, 4 );
+//add_action( 'pno_form_before_field', 'pno_account_form_make_row_opening', 10, 4 );
 
 /**
  * Adds markup to form fields for the account page so we can make the
@@ -220,4 +220,4 @@ function pno_account_form_make_row_closing( $key, $field, $form, $step ) {
 	}
 
 }
-add_action( 'pno_form_after_field', 'pno_account_form_make_row_closing', 10, 4 );
+//add_action( 'pno_form_after_field', 'pno_account_form_make_row_closing', 10, 4 );

@@ -172,4 +172,4 @@ function pno_make_account_form_fields_two_columns( $classes, $field_key, $field,
 	return $classes;
 
 }
-add_filter( 'pno_form_field_classes', 'pno_make_account_form_fields_two_columns', 10, 4 );
+//add_filter( 'pno_form_field_classes', 'pno_make_account_form_fields_two_columns', 10, 4 );
