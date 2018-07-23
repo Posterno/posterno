@@ -115,3 +115,22 @@ function pno_hide_custom_fields_pt_settings() {
 }
 add_action( 'admin_head-post-new.php', 'pno_hide_custom_fields_pt_settings' );
 add_action( 'admin_head-post.php', 'pno_hide_custom_fields_pt_settings' );
+
+/**
+ * Add link back to the fields list table within the post type editing screen.
+ *
+ * @return void
+ */
+function pno_after_custom_fields_post_title() {
+
+	global $post;
+
+	if ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_users_fields' ) {
+
+		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields#/profile-fields' );
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . $admin_url . '">' . esc_html__( 'All profile fields' ) . '</a>';
+
+	}
+
+}
+add_action( 'edit_form_before_permalink', 'pno_after_custom_fields_post_title' );
