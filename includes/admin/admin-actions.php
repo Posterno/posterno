@@ -134,3 +134,18 @@ function pno_after_custom_fields_post_title() {
 
 }
 add_action( 'edit_form_before_permalink', 'pno_after_custom_fields_post_title' );
+
+/**
+ * Force wipe of custom field when trashed.
+ *
+ * @param string $post_id
+ * @return void
+ */
+function pno_force_delete_on_custom_fields_trash( $post_id ) {
+
+	if ( get_post_type( $post_id ) == 'pno_users_fields' ) {
+		wp_delete_post( $post_id, true );
+	}
+
+}
+add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
