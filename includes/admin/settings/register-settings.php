@@ -397,6 +397,11 @@ function pno_get_registered_settings() {
 			],
 		],
 		'redirects'                 => [
+			'redirect_wp_login' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Redirect wp-login to frontend' ),
+				'description' => esc_html__( 'Enable the option to redirect wp-login/wp-admin to the frontend login form.' ),
+			],
 			'login_redirect'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After login' ),
