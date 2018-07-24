@@ -14,18 +14,15 @@
  */
 
  // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $classes            = array( 'input-text' );
 $allowed_mime_types = array_values( ! empty( $data->allowed_mime_types ) ? $data->allowed_mime_types : get_allowed_mime_types() );
 $field_name         = isset( $data->name ) ? $data->name : $data->key;
-$field_name         .= ! empty( $data->multiple ) ? '[]' : '';
-$file_size = isset( $data->max_file_size ) ? $data->max_file_size : false;
-
-if ( ! empty( $data->ajax ) && pno_user_can_upload_file_via_ajax() ) {
-	wp_enqueue_script( 'pno-ajax-file-upload' );
-	$classes[] = 'pno-file-upload';
-}
+$field_name        .= ! empty( $data->multiple ) ? '[]' : '';
+$file_size          = isset( $data->max_size ) ? $data->max_size : false;
 
 ?>
 
@@ -35,31 +32,45 @@ if ( ! empty( $data->ajax ) && pno_user_can_upload_file_via_ajax() ) {
 			<?php foreach ( $data->value as $value ) : ?>
 				<?php
 					posterno()->templates
-						->set_template_data( [
-							'key' => $data->key,
-							'name' => 'current_' . $field_name,
-							'value' => $value,
-							'field' => []
-						] )
+						->set_template_data(
+							[
+								'key'   => $data->key,
+								'name'  => 'current_' . $field_name,
+								'value' => $value,
+								'field' => [],
+							]
+						)
 						->get_template_part( 'form-fields/file', 'uploaded' );
 				?>
 			<?php endforeach; ?>
 		<?php elseif ( $value = $data->value ) : ?>
 			<?php
 				posterno()->templates
-					->set_template_data( [
-						'key' => $data->key,
-						'name' => 'current_' . $field_name,
-						'value' => $value,
-						'field' => []
-					] )
+					->set_template_data(
+						[
+							'key'   => $data->key,
+							'name'  => 'current_' . $field_name,
+							'value' => $value,
+							'field' => [],
+						]
+					)
 					->get_template_part( 'form-fields/file', 'uploaded' );
 			?>
 		<?php endif; ?>
 	<?php endif; ?>
 </div>
 
-<input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>" <?php if ( ! empty( $data->multiple ) ) echo 'multiple'; ?> name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?><?php if ( ! empty( $data->multiple ) ) echo '[]'; ?>" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" />
+<input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>"
+										<?php
+										if ( ! empty( $data->multiple ) ) {
+											echo 'multiple';}
+?>
+ name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>
+					<?php
+					if ( ! empty( $data->multiple ) ) {
+						echo '[]';}
+?>
+" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" />
 <small class="form-text text-muted">
 	<?php if ( ! empty( $data->description ) ) : ?>
 		<?php echo $data->description; ?>
