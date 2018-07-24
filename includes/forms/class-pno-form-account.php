@@ -217,8 +217,17 @@ class PNO_Form_Account extends PNO_Form {
 					if ( $value == '1' ) {
 						carbon_set_user_meta( $updated_user_id, $key, true );
 					} elseif ( is_array( $value ) && isset( $value['url'] ) && isset( $value['path'] ) ) {
+
+						$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
+						$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
+
+						if ( $currently_uploaded_file && $existing_file_path && isset( $values['account'][ $key ]['url'] ) && $values['account'][ $key ]['url'] !== $currently_uploaded_file ) {
+							wp_delete_file( $existing_file_path );
+						}
+
 						carbon_set_user_meta( $updated_user_id, $key, $value['url'] );
-						update_post_meta( $updated_user_id, $key, $value['path'] );
+						update_user_meta( $updated_user_id, "current_{$key}", $value['path'] );
+
 					} else {
 						carbon_set_user_meta( $updated_user_id, $key, $value );
 					}
