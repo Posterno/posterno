@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import EditorSelector from './editor-selector.vue'
 import Editor from './editor.vue'
+import RegistrationEditor from './registration-editor.vue'
 
 Vue.use(Router)
 
@@ -31,7 +32,7 @@ export default new Router({
 		{
 			path: '/registration-form',
 			name: 'registration-form',
-			component: Editor,
+			component: RegistrationEditor,
 			props: {
 				type: 'registration'
 			}

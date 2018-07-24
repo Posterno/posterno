@@ -37,9 +37,14 @@ function pno_get_custom_fields_editor_js_vars() {
 			'custom_form'         => esc_html__( 'Customize form' ),
 			'profile'             => [
 				'title'            => esc_html__( 'Posterno profile fields editor' ),
+				'description'      => sprintf( __( 'Customize the profile fields for your members and create new fields to collect more information. Use the %s extension to restrict fields by user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
 				'add_new'          => esc_html__( 'Add new profile field' ),
 				'field_admin_only' => esc_html__( 'This field is editable only by an administrator.' ),
 				'field_order'      => esc_html__( 'Drag and drop the rows below to change the order of the fields.' ),
+			],
+			'registration'        => [
+				'title'       => esc_html__( 'Posterno registration form editor' ),
+				'description' => sprintf( __( 'Customize the registration form to collect information about your members during signup. Use the %s extension to create different forms per user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),

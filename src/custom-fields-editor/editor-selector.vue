@@ -35,6 +35,7 @@
 				</wp-col>
 				<wp-col :span="20">
 					<h2>{{labels.custom_users}}</h2>
+					<p v-html="labels.profile.description"></p>
 					<router-link to="/profile-fields" class="button">
 						{{labels.custom_fields}}
 					</router-link>
@@ -50,6 +51,7 @@
 				</wp-col>
 				<wp-col :span="20">
 					<h2>{{labels.custom_registration}}</h2>
+					<p v-html="labels.registration.description"></p>
 					<router-link to="/registration-form" class="button">
 						{{labels.custom_form}}
 					</router-link>
