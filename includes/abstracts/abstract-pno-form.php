@@ -454,6 +454,15 @@ abstract class PNO_Form {
 			$files_to_upload = pno_prepare_uploaded_files( $_FILES[ $field_key ] );
 
 			foreach ( $files_to_upload as $file_to_upload ) {
+
+				if ( isset( $field['max_size'] ) && ! empty( $field['max_size'] ) && isset( $file_to_upload['size'] ) ) {
+					$uploaded_file_size = $file_to_upload['size'];
+					if ( $uploaded_file_size > $field['max_size'] ) {
+						$error = sprintf( esc_html__( '%s exceeds the maximum upload size.' ), '<strong>' . $file_to_upload['name'] . '</strong>' );
+						throw new Exception( $error );
+					}
+				}
+
 				$uploaded_file = pno_upload_file(
 					$file_to_upload,
 					array(

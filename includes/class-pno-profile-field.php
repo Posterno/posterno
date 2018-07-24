@@ -128,6 +128,13 @@ class PNO_Profile_Field {
 	protected $selectable_options = false;
 
 	/**
+	 * Max file size for files uploaded through this field.
+	 *
+	 * @var mixed
+	 */
+	protected $file_size = false;
+
+	/**
 	 * Holds the value of the field if a user ID is given for this field.
 	 *
 	 * @var mixed
@@ -247,6 +254,10 @@ class PNO_Profile_Field {
 
 		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
 			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'field_selectable_options' ) );
+		}
+
+		if ( $this->type == 'file' ) {
+			$this->file_size = carbon_get_post_meta( $this->id, 'field_file_max_size' );
 		}
 
 	}
@@ -384,6 +395,15 @@ class PNO_Profile_Field {
 	 */
 	public function get_selectable_options() {
 		return $this->selectable_options;
+	}
+
+	/**
+	 * Retrieve the defined max file size for files uploaded through this field.
+	 *
+	 * @return mixed
+	 */
+	public function get_file_size() {
+		return $this->file_size;
 	}
 
 }

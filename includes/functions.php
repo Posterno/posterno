@@ -310,6 +310,10 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
 						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
 					}
+
+					if ( $field->get_type() == 'file' && ! empty( $field->get_file_size() ) ) {
+						$fields[ $field->get_meta() ]['max_size'] = $field->get_file_size();
+					}
 				}
 			}
 		}

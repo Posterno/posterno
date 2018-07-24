@@ -81,6 +81,19 @@ class PNO_Custom_Fields {
 				Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
 					->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
 
+				Field::make( 'text', 'field_file_max_size', esc_html__( 'Upload max size:' ) )
+					->set_conditional_logic(
+						array(
+							'relation' => 'AND', // Optional, defaults to "AND"
+							array(
+								'field'   => 'field_type',
+								'value'   => 'file', // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
+								'compare' => '=', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+							),
+						)
+					)
+					->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.' ) ),
+
 			)
 		)
 		->add_tab(
