@@ -13,16 +13,24 @@
  * @version 1.0.0
  */
 
- // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$data->default = empty( $data->default ) ? current( array_keys( $data->options ) ): $data->default;
+$data->default = empty( $data->default ) ? current( array_keys( $data->options ) ) : $data->default;
 $default       = ! empty( $data->value ) ? $data->value : $data->default;
 
 foreach ( $data->options as $option_key => $value ) : ?>
 
-	<label><input type="radio" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $default, $option_key ); ?> /> <?php echo esc_html( $value ); ?></label>
+	<div class="form-check">
+		<input type="radio" class="form-check-input" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $default, $option_key ); ?> />
+		<label class="form-check-label" for="<?php echo esc_attr( $option_key ); ?>"><?php echo esc_html( $value ); ?></label>
+	</div>
 
 <?php endforeach; ?>
 
-<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>
+<?php
+if ( ! empty( $data->description ) ) :
+?>
+<small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>
