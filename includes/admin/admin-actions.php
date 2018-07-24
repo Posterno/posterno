@@ -107,7 +107,8 @@ function pno_hide_custom_fields_pt_settings() {
 		<style type="text/css">
 			#post-preview, #view-post-btn,
 			#misc-publishing-actions #visibility,
-			#misc-publishing-actions .misc-pub-curtime {
+			#misc-publishing-actions .misc-pub-curtime,
+			.page-title-action {
 				display: none;
 			}
 		</style>';
