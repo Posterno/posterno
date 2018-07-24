@@ -32,7 +32,8 @@ class PNO_Custom_Fields {
 	 * @return void
 	 */
 	public function init() {
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_fields_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields' ] );
 	}
 
 	/**
@@ -40,7 +41,7 @@ class PNO_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public function register_fields_settings() {
+	public function register_profile_fields_settings() {
 		Container::make( 'post_meta', esc_html__( 'Main field settings' ) )
 		->where( 'post_type', '=', 'pno_users_fields' )
 
@@ -115,6 +116,78 @@ class PNO_Custom_Fields {
 						->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
 				)
 			);
+
+	}
+
+	/**
+	 * Register profile fields in the admin panel.
+	 *
+	 * @return void
+	 */
+	public function register_profile_fields() {
+
+		$fields_query = [
+			'post_type'              => 'pno_users_fields',
+			'posts_per_page'         => 100,
+			'nopaging'               => true,
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+			'fields'                 => 'ids',
+			'post_status'            => 'publish',
+			'meta_query'             => array(
+				array(
+					'key'     => 'is_default_field',
+					'compare' => 'NOT EXISTS',
+				),
+			),
+		];
+
+		$fields       = new WP_Query( $fields_query );
+		$admin_fields = [];
+
+		if ( $fields->have_posts() ) {
+
+			while ( $fields->have_posts() ) {
+
+				$fields->the_post();
+
+				$custom_field = new PNO_Profile_Field( get_the_id() );
+
+				if ( $custom_field instanceof PNO_Profile_Field && ! empty( $custom_field->get_meta() ) ) {
+
+					$type = $custom_field->get_type();
+
+					switch ( $type ) {
+						case 'url':
+						case 'email':
+						case 'number':
+						case 'password':
+							$type = 'text';
+							break;
+						case 'multicheckbox':
+							$type = 'set';
+							break;
+					}
+
+					if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
+						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->add_options( $custom_field->get_selectable_options() );
+					} elseif ( $type == 'file' ) {
+						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_value_type( 'url' );
+					} elseif ( $custom_field->get_type() == 'number' ) {
+						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'number' );
+					} elseif ( $custom_field->get_type() == 'password' ) {
+						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'password' );
+					} else {
+						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() );
+					}
+				}
+			}
+		}
+
+		wp_reset_postdata();
+
+		Container::make( 'user_meta', esc_html__( 'Additional details' ) )
+			->add_fields( $admin_fields );
 
 	}
 

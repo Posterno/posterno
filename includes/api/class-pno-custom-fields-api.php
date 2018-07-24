@@ -348,7 +348,8 @@ class PNO_Custom_Fields_Api extends WP_REST_Controller {
 			update_post_meta( $field_id, 'field_priority', $field_priority + 1 );
 
 			// Setup the user meta key for the field.
-			$meta = sanitize_title( $field_name );
+			$meta = get_post_field( 'post_name', $field_id );
+			$meta = sanitize_title( $meta );
 			$meta = str_replace( '-', '_', $meta );
 
 			carbon_set_post_meta( $field_id, 'field_meta_key', $meta );

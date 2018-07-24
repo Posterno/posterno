@@ -504,7 +504,6 @@ function pno_get_registered_field_types() {
 		'multiselect'   => esc_html__( 'Multiselect' ),
 		'multicheckbox' => esc_html__( 'Multiple checkboxes' ),
 		'file'          => esc_html__( 'File' ),
-		'datepicker'    => esc_html__( 'Date picker' ),
 	];
 
 	/**
@@ -533,6 +532,7 @@ function pno_get_multi_options_field_types() {
 		'select',
 		'multiselect',
 		'multicheckbox',
+		'radio',
 	];
 
 	return apply_filters( 'pno_multi_options_field_types', $types );
