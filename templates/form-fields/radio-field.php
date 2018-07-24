@@ -24,7 +24,7 @@ $default       = ! empty( $data->value ) ? $data->value : $data->default;
 foreach ( $data->options as $option_key => $value ) : ?>
 
 	<div class="form-check">
-		<input type="radio" class="form-check-input" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $default, $option_key ); ?> />
+		<input type="radio" class="form-check-input" id="<?php echo esc_attr( $option_key ); ?>" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $default, $option_key ); ?> />
 		<label class="form-check-label" for="<?php echo esc_attr( $option_key ); ?>"><?php echo esc_html( $value ); ?></label>
 	</div>
 
