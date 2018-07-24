@@ -27,6 +27,14 @@ export default new Router({
 			props: {
 				type: 'listings'
 			}
+		},
+		{
+			path: '/registration-form',
+			name: 'registration-form',
+			component: Editor,
+			props: {
+				type: 'registration'
+			}
 		}
 	]
 })

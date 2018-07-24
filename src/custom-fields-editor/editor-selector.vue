@@ -13,33 +13,49 @@
 			</ul>
 		</h1>
 
-		<div class="theme-browser rendered">
-			<div class="themes wp-clearfix">
-				<div class="theme add-new-theme">
-					<router-link to="/listings-fields">
-						<div class="theme-screenshot pno-customize-listings">
-							<span></span>
-						</div>
-						<h2 class="theme-name">{{labels.custom_listings}}</h2>
+		<div class="card">
+			 <wp-row :gutter="20">
+				<wp-col :span="4">
+					<h2><span class="dashicons dashicons-list-view"></span></h2>
+				</wp-col>
+				<wp-col :span="20">
+					<h2>{{labels.custom_listings}}</h2>
+					<router-link to="/listings-fields" class="button">
+						{{labels.custom_fields}}
 					</router-link>
-				</div>
-				<div class="theme add-new-theme">
-					<router-link to="/profile-fields">
-						<div class="theme-screenshot pno-customize-users">
-							<span></span>
-						</div>
-						<h2 class="theme-name">{{labels.custom_users}}</h2>
+					<br/><br/>
+				</wp-col>
+			</wp-row>
+		</div>
+
+		<div class="card">
+			 <wp-row :gutter="20">
+				<wp-col :span="4">
+					<h2><span class="dashicons dashicons-id-alt"></span></h2>
+				</wp-col>
+				<wp-col :span="20">
+					<h2>{{labels.custom_users}}</h2>
+					<router-link to="/profile-fields" class="button">
+						{{labels.custom_fields}}
 					</router-link>
-				</div>
-				<div class="theme add-new-theme">
-					<router-link to="/registration-form">
-						<div class="theme-screenshot pno-customize-registration">
-							<span></span>
-						</div>
-						<h2 class="theme-name">{{labels.custom_registration}}</h2>
+					<br/><br/>
+				</wp-col>
+			</wp-row>
+		</div>
+
+		<div class="card">
+			 <wp-row :gutter="20">
+				<wp-col :span="4">
+					<h2><span class="dashicons dashicons-admin-users"></span></h2>
+				</wp-col>
+				<wp-col :span="20">
+					<h2>{{labels.custom_registration}}</h2>
+					<router-link to="/registration-form" class="button">
+						{{labels.custom_form}}
 					</router-link>
-				</div>
-			</div>
+					<br/><br/>
+				</wp-col>
+			</wp-row>
 		</div>
 
 	</div>
@@ -69,6 +85,17 @@ export default {
 			height: 28px;
 			margin-right: 10px;
 			margin-top: 10px;
+		}
+	}
+
+	.card {
+		&:hover {
+			.dashicons {
+				color: #0073aa;
+			}
+		}
+		.dashicons {
+			font-size: 70px;
 		}
 	}
 
@@ -201,6 +228,11 @@ export default {
 		&:hover {
 			cursor: move;
 		}
+	}
+
+	.v--modal {
+		box-shadow: 0 5px 15px rgba(0,0,0,.7);
+		border-radius: 0;
 	}
 
 	.v--modal-overlay {
