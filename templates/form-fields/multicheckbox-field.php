@@ -22,14 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php foreach ( $data->options as $opt_key => $value ) : ?>
 
-	<label><input
-		type="checkbox"
-		class="input-checkbox"
-		name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>[]"
-		<?php if ( ! empty( $data->value ) && is_array( $data->value ) ) checked( in_array( $opt_key, $data->value ), true ); ?>
-		value="<?php echo esc_attr( $opt_key ); ?>"
-	/>
-	<small class="form-text text-muted"><?php echo esc_html( $value ); ?></small></label>
+	<div class="form-check">
+		<input
+			type="checkbox"
+			class="input-checkbox form-check-input"
+			name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>[]"
+			<?php if ( ! empty( $data->value ) && is_array( $data->value ) ) checked( in_array( $opt_key, $data->value ), true ); ?>
+			value="<?php echo esc_attr( $opt_key ); ?>"
+			id="<?php echo esc_attr( $opt_key ); ?>"
+		/>
+		<label class="form-check-label" for="<?php echo esc_attr( $opt_key ); ?>">
+			<?php echo esc_html( $value ); ?>
+		</label>
+	</div>
 
 <?php endforeach; ?>
 
