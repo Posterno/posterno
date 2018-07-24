@@ -211,6 +211,20 @@ class PNO_Form_Account extends PNO_Form {
 				}
 			}
 
+			// Now update the custom fields that are not marked as default profile fields.
+			foreach ( $values['account'] as $key => $value ) {
+				if ( ! pno_is_default_profile_field( $key ) ) {
+					if ( $value == '1' ) {
+						carbon_set_user_meta( $updated_user_id, $key, true );
+					} elseif ( is_array( $value ) && isset( $value['url'] ) && isset( $value['path'] ) ) {
+						carbon_set_user_meta( $updated_user_id, $key, $value['url'] );
+						update_post_meta( $updated_user_id, $key, $value['path'] );
+					} else {
+						carbon_set_user_meta( $updated_user_id, $key, $value );
+					}
+				}
+			}
+
 			do_action( 'pno_after_user_update', $this, $values, $updated_user_id );
 
 			// Successful, show next step.

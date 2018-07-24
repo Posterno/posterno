@@ -323,19 +323,23 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		if ( $user instanceof WP_User ) {
 			foreach ( $fields as $key => $field ) {
 				$value = false;
-				switch ( $key ) {
-					case 'email':
-						$value = esc_attr( $user->user_email );
-						break;
-					case 'website':
-						$value = esc_url( $user->user_url );
-						break;
-					case 'avatar':
-						$value = esc_url( carbon_get_user_meta( $user_id, 'current_user_avatar' ) );
-						break;
-					default:
-						$value = esc_html( get_user_meta( $user_id, $key, true ) );
-						break;
+				if ( pno_is_default_profile_field( $key ) ) {
+					switch ( $key ) {
+						case 'email':
+							$value = esc_attr( $user->user_email );
+							break;
+						case 'website':
+							$value = esc_url( $user->user_url );
+							break;
+						case 'avatar':
+							$value = esc_url( carbon_get_user_meta( $user_id, 'current_user_avatar' ) );
+							break;
+						default:
+							$value = esc_html( get_user_meta( $user_id, $key, true ) );
+							break;
+					}
+				} else {
+					$value = carbon_get_user_meta( $user_id, $key );
 				}
 				if ( $value ) {
 					$fields[ $key ]['value'] = $value;
