@@ -220,12 +220,10 @@ export default {
 				}
 			)
 			.then( response => {
-				this.success = true
 				this.error   = false
 				this.sorting = false
-
 				this.load_fields()
-
+				this.success = true
 			})
 			.catch( e => {
 				this.loading = false
