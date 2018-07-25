@@ -172,7 +172,7 @@ class PNO_Form_Registration extends PNO_Form {
 			return;
 		}
 
-		$this->fields = pno_get_registration_fields();
+		$this->fields = [ 'registration' => pno_get_registration_fields() ];
 
 	}
 

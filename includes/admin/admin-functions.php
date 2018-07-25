@@ -115,3 +115,30 @@ function pno_get_roles( $force = false, $admin = false ) {
 	}
 	return $roles;
 }
+
+/**
+ * Install the registration fields within the database.
+ * This function is usually used within the plugin's activation.
+ *
+ * @return void
+ */
+function pno_install_registration_fields() {
+
+	$registered_fields = pno_get_registration_fields();
+
+	if ( is_array( $registered_fields ) ) {
+		if ( isset( $registered_fields['robo'] ) ) {
+			unset( $registered_fields['robo'] );
+		}
+		if ( isset( $registered_fields['role'] ) ) {
+			unset( $registered_fields['role'] );
+		}
+		if ( isset( $registered_fields['terms'] ) ) {
+			unset( $registered_fields['terms'] );
+		}
+		if ( isset( $registered_fields['privacy'] ) ) {
+			unset( $registered_fields['privacy'] );
+		}
+	}
+
+}

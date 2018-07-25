@@ -109,32 +109,30 @@ function pno_get_profile_page_id() {
 function pno_get_registration_fields() {
 
 	$fields = array(
-		'registration' => array(
-			'username' => array(
-				'label'       => esc_html__( 'Username' ),
-				'type'        => 'text',
-				'required'    => true,
-				'placeholder' => '',
-				'priority'    => 1,
-			),
-			'email'    => array(
-				'label'       => __( 'Email address' ),
-				'type'        => 'email',
-				'required'    => true,
-				'placeholder' => '',
-				'priority'    => 2,
-			),
-			'password' => array(
-				'label'    => __( 'Password' ),
-				'type'     => 'password',
-				'required' => true,
-				'priority' => 3,
-			),
+		'username' => array(
+			'label'       => esc_html__( 'Username' ),
+			'type'        => 'text',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 1,
+		),
+		'email'    => array(
+			'label'       => __( 'Email address' ),
+			'type'        => 'email',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 2,
+		),
+		'password' => array(
+			'label'    => __( 'Password' ),
+			'type'     => 'password',
+			'required' => true,
+			'priority' => 3,
 		),
 	);
 
 	if ( pno_get_option( 'enable_role_selection' ) ) {
-		$fields['registration']['role'] = array(
+		$fields['role'] = array(
 			'label'    => __( 'Register as:' ),
 			'type'     => 'select',
 			'required' => true,
@@ -144,7 +142,7 @@ function pno_get_registration_fields() {
 		);
 	}
 
-	$fields['registration']['robo'] = [
+	$fields['robo'] = [
 		'label'    => esc_html__( 'If you\'re human leave this blank:' ),
 		'type'     => 'text',
 		'required' => false,
@@ -156,7 +154,7 @@ function pno_get_registration_fields() {
 		$terms_page = pno_get_option( 'terms_page' );
 		$terms_page = is_array( $terms_page ) && isset( $terms_page['value'] ) ? $terms_page['value'] : false;
 		if ( $terms_page ) {
-			$fields['registration']['terms'] = array(
+			$fields['terms'] = array(
 				'label'    => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.' ), get_permalink( $terms_page ) ) ),
 				'type'     => 'checkbox',
 				'required' => true,
@@ -166,7 +164,7 @@ function pno_get_registration_fields() {
 	}
 
 	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
-		$fields['registration']['privacy'] = array(
+		$fields['privacy'] = array(
 			'label'    => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
 			'type'     => 'checkbox',
 			'required' => true,
