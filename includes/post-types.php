@@ -251,6 +251,8 @@ function pno_user_fields_change_default_title( $title ) {
 
 	if ( 'pno_users_fields' == $screen->post_type ) {
 		$title = esc_html__( 'Enter profile field title here' );
+	} else if( 'pno_signup_fields' == $screen->post_type ) {
+		$title = esc_html__( 'Enter registration field title here' );
 	}
 
 	return $title;
@@ -271,11 +273,19 @@ function pno_updated_messages( $messages ) {
 	global $post, $post_ID;
 
 	$messages['pno_users_fields'] = array(
-		1 => esc_html__( 'Profile custom field updated.' ),
-		4 => esc_html__( 'Profile custom field updated.' ),
-		6 => esc_html__( 'Profile custom field published.' ),
-		7 => esc_html__( 'Profile custom field saved.' ),
-		8 => esc_html__( 'Profile custom field submitted.' ),
+		1 => esc_html__( 'Profile field updated.' ),
+		4 => esc_html__( 'Profile field updated.' ),
+		6 => esc_html__( 'Profile field published.' ),
+		7 => esc_html__( 'Profile field saved.' ),
+		8 => esc_html__( 'Profile field submitted.' ),
+	);
+
+	$messages['pno_signup_fields'] = array(
+		1 => esc_html__( 'Registration field updated.' ),
+		4 => esc_html__( 'Registration field updated.' ),
+		6 => esc_html__( 'Registration field published.' ),
+		7 => esc_html__( 'Registration field saved.' ),
+		8 => esc_html__( 'Registration field submitted.' ),
 	);
 
 	return $messages;
