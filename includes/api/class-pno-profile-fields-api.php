@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers a custom rest api controller for the custom fields editor in the admin panel.
+ * Registers a custom rest api controller for the profile fields editor in the admin panel.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -12,9 +12,9 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class that register a new rest api controller to handle custom fields.
+ * The class that register a new rest api controller to handle profile fields.
  */
-class PNO_Custom_Fields_Api extends WP_REST_Controller {
+class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 	/**
 	 * Declared namespace for the api.

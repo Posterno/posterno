@@ -23,10 +23,10 @@ function pno_register_rest_controllers() {
 	$options = new PNO_Options_Api();
 	$options->register_routes();
 
-	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-custom-fields-api.php';
+	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-profile-fields-api.php';
 
-	$custom_fields_editor = new PNO_Custom_Fields_Api();
-	$custom_fields_editor->register_routes();
+	$profile_fields_editor = new PNO_Profile_Fields_Api();
+	$profile_fields_editor->register_routes();
 
 }
 add_action( 'rest_api_init', 'pno_register_rest_controllers' );
