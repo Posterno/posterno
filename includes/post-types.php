@@ -191,6 +191,55 @@ function pno_setup_users_custom_fields_post_type() {
 add_action( 'init', 'pno_setup_users_custom_fields_post_type', 0 );
 
 /**
+ * Registers a new post type to store registration fields.
+ *
+ * @return void
+ */
+function pno_setup_registration_fields_post_type() {
+
+	$labels = array(
+		'name'              => esc_html__( 'Registration fields' ),
+		'singular_name'     => esc_html__( 'Registration field' ),
+		'menu_name'         => esc_html__( 'Registration fields' ),
+		'name_admin_bar'    => esc_html__( 'Registration fields' ),
+		'archives'          => esc_html__( 'Registration fields' ),
+		'attributes'        => esc_html__( 'Item Attributes' ),
+		'parent_item_colon' => esc_html__( 'Parent Item:' ),
+		'all_items'         => esc_html__( 'All registration fields' ),
+		'add_new_item'      => esc_html__( 'Add new registration field' ),
+		'add_new'           => esc_html__( 'Add new registration field' ),
+		'new_item'          => esc_html__( 'New custom field' ),
+		'edit_item'         => esc_html__( 'Edit custom field' ),
+		'update_item'       => esc_html__( 'Update custom field' ),
+		'view_item'         => esc_html__( 'View custom field' ),
+		'view_items'        => esc_html__( 'View custom fields' ),
+		'search_items'      => esc_html__( 'Search custom fields' ),
+	);
+	$args   = array(
+		'label'               => esc_html__( 'Registration custom field' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title' ),
+		'hierarchical'        => false,
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_menu'        => false,
+		'menu_position'       => 5,
+		'show_in_admin_bar'   => false,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'rewrite'             => false,
+		'capability_type'     => 'page',
+		'show_in_rest'        => false,
+	);
+	register_post_type( 'pno_signup_fields', $args );
+
+}
+add_action( 'init', 'pno_setup_registration_fields_post_type', 0 );
+
+/**
  * Change default "Enter title here" input for the profile fields post type.
  *
  * @param string $title
