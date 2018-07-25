@@ -57,7 +57,7 @@ defined( 'ABSPATH' ) || exit;
 
 			?>
 
-			<div <?php pno_form_field_class( $key, $field ); ?>>
+			<div <?php pno_form_field_class( $key, $field, $data->form ); ?>>
 				<?php if ( $field['type'] == 'checkbox' ) : ?>
 
 					<?php

@@ -4,7 +4,7 @@
 		<h1>
 			<img :src="logo_url">
 			{{labels[type].title}}
-			<ul class="title-links">
+			<ul class="title-links hidden-xs-only">
 				<li>
 					<a href="#" class="page-title-action back-link" @click="$router.go(-1)">
 						<span class="dashicons dashicons-arrow-left-alt"></span>

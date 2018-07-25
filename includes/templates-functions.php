@@ -50,7 +50,7 @@ function pno_get_login_label() {
  * @param string $class
  * @return array
  */
-function pno_get_form_field_class( $field_key, $field, $class = '' ) {
+function pno_get_form_field_class( $field_key, $field, $form = false, $class = '' ) {
 
 	$classes = [ 'pno-field' ];
 
@@ -73,9 +73,10 @@ function pno_get_form_field_class( $field_key, $field, $class = '' ) {
 	 *
 	 * @param array $classes
 	 * @param array $field
+	 * @param string $form
 	 * @param string $class
 	 */
-	$classes = apply_filters( 'pno_form_field_classes', $classes, $field_key, $field, $class );
+	$classes = apply_filters( 'pno_form_field_classes', $classes, $field_key, $field, $form, $class );
 
 	return array_unique( $classes );
 
@@ -89,9 +90,9 @@ function pno_get_form_field_class( $field_key, $field, $class = '' ) {
  * @param string $class
  * @return void
  */
-function pno_form_field_class( $field_key, $field, $class = '' ) {
-	// Separates classes with a single space, collates classes for body element
-	echo 'class="' . join( ' ', pno_get_form_field_class( $field_key, $field, $class ) ) . '"';
+function pno_form_field_class( $field_key, $field, $form = false, $class = '' ) {
+	// Separates classes with a single space, collates classes for body element.
+	echo 'class="' . join( ' ', pno_get_form_field_class( $field_key, $field, $form, $class ) ) . '"';
 }
 
 /**

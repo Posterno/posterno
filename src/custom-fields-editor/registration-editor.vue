@@ -5,7 +5,7 @@
 		<h1>
 			<img :src="logo_url">
 			{{labels.registration.title}}
-			<ul class="title-links">
+			<ul class="title-links hidden-xs-only">
 				<li>
 					<a href="#" class="page-title-action back-link" @click="$router.go(-1)">
 						<span class="dashicons dashicons-arrow-left-alt"></span>
@@ -19,6 +19,10 @@
 				</li>
 			</ul>
 		</h1>
+
+		<div id="registration-form-editor-wrapper">
+
+		</div>
 
 	</div>
 
@@ -43,5 +47,15 @@ export default {
 			fields:        []
 		}
 	},
+	mounted() {
+	}
 }
 </script>
+
+<style lang="scss">
+
+	#registration-form-editor-wrapper {
+		margin-top: 20px;
+	}
+
+</style>
