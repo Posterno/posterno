@@ -3,8 +3,8 @@
 
 
 "@alessandrotesoro/vuewp@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@alessandrotesoro/vuewp/-/vuewp-1.0.1.tgz#f01fee70d0ef5b75e09b65a28224ed1d950e62a5"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@alessandrotesoro/vuewp/-/vuewp-1.0.2.tgz#d8764eda9d057cf5a424366a9e53289a90c89198"
   dependencies:
     vue "^2.5.2"
 

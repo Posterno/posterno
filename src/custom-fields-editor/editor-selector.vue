@@ -3,7 +3,7 @@
 		<h1>
 			<img :src="logo_url">
 			{{labels.title}}
-			<ul class="title-links">
+			<ul class="title-links hidden-xs-only">
 				<li>
 					<a href="https://posterno.com/addons" target="_blank" class="page-title-action">{{labels.addons}}</a>
 				</li>
@@ -15,7 +15,7 @@
 
 		<div class="card">
 			 <wp-row :gutter="20">
-				<wp-col :span="4">
+				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
 					<h2><span class="dashicons dashicons-list-view"></span></h2>
 				</wp-col>
 				<wp-col :span="20">
@@ -30,7 +30,7 @@
 
 		<div class="card">
 			 <wp-row :gutter="20">
-				<wp-col :span="4">
+				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
 					<h2><span class="dashicons dashicons-id-alt"></span></h2>
 				</wp-col>
 				<wp-col :span="20">
@@ -46,10 +46,10 @@
 
 		<div class="card">
 			 <wp-row :gutter="20">
-				<wp-col :span="4">
+				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
 					<h2><span class="dashicons dashicons-admin-users"></span></h2>
 				</wp-col>
-				<wp-col :span="20">
+				<wp-col :xs="24" :md="20">
 					<h2>{{labels.custom_registration}}</h2>
 					<p v-html="labels.registration.description"></p>
 					<router-link to="/registration-form" class="button">
