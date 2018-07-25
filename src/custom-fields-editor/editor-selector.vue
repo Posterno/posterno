@@ -101,48 +101,6 @@ export default {
 		}
 	}
 
-	.theme-browser {
-		margin-top: 30px;
-	}
-
-	.pno-customize-users {
-		span:after {
-			content: '\f110';
-			background: none;
-		}
-	}
-
-	.pno-customize-listings {
-		span:after {
-			content: "\f163";
-			background: none;
-		}
-	}
-
-	.pno-customize-registration {
-		span:after {
-			content: "\f336";
-			background: none;
-		}
-	}
-
-	.theme-browser .theme.add-new-theme {
-		width: 25%;
-		border: 1px solid #e5e5e5;
-		box-shadow: 0 1px 1px rgba(0,0,0,.04);
-		background: #fff;
-	}
-
-	.theme-browser .theme.add-new-theme a::after {
-		border:none;
-	}
-
-	.theme-browser .theme.add-new-theme a:hover span::after,
-	.theme-browser .theme.add-new-theme a:focus span::after {
-		background: none;
-		color: #fff;
-	}
-
 	.title-links {
 		display: inline-block;
 		margin-bottom: 0;
