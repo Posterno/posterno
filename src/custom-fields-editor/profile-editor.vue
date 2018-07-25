@@ -3,7 +3,7 @@
 
 		<h1>
 			<img :src="logo_url">
-			{{labels[type].title}}
+			{{labels.profile.title}}
 			<ul class="title-links hidden-xs-only">
 				<li>
 					<a href="#" class="page-title-action back-link" @click="$router.go(-1)">
@@ -27,7 +27,7 @@
 			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
 			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-			<wp-button type="primary" @click="showAddNewModal()">{{labels[type].add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
+			<wp-button type="primary" @click="showAddNewModal()">{{labels.profile.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
@@ -145,7 +145,7 @@ export default {
 			this.success = false
 			this.error   = false
 
-			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type , {
+			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/profile', {
 				headers: {
 					'X-WP-Nonce': pno_fields_editor.nonce
 				},
@@ -209,7 +209,7 @@ export default {
 			this.sorting = true
 
 			axios.post(
-				pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type + '/save-fields-order',
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/profile/save-fields-order',
 				qs.stringify( {
 					fields: this.fields
 				} ),

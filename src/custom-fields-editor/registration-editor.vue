@@ -22,6 +22,38 @@
 
 		<div id="registration-form-editor-wrapper">
 
+			<table class="wp-list-table widefat fixed striped">
+				<thead>
+					<tr>
+						<th scope="col" class="hidden-xs-only">
+							<span class="dashicons dashicons-menu"></span>
+						</th>
+						<th scope="col" class="column-primary">Start Date</th>
+						<th scope="col">End Date</th>
+						<th scope="col">Location</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="hidden-xs-only">
+							<span class="dashicons dashicons-menu"></span>
+						</td>
+						<td>
+							WordCamp Metropolis
+							<button type="button" class="toggle-row">
+								<span class="screen-reader-text">Show more details</span>
+							</button>
+						</td>
+						<td class="column-primary" data-colname="Event">
+							2020-01-01
+						</td>
+						<td>
+							2020-01-04
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
 
 	</div>

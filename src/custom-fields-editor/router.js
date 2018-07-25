@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import EditorSelector from './editor-selector.vue'
-import Editor from './editor.vue'
+import ProfileEditor from './profile-editor.vue'
 import RegistrationEditor from './registration-editor.vue'
+import ListingsEditor from './listings-editor.vue'
 
 Vue.use(Router)
 
@@ -16,7 +17,7 @@ export default new Router({
 		{
 			path: '/profile-fields',
 			name: 'profile-fields',
-			component: Editor,
+			component: ProfileEditor,
 			props: {
 				type: 'profile'
 			}
@@ -24,7 +25,7 @@ export default new Router({
 		{
 			path: '/listings-fields',
 			name: 'listings-fields',
-			component: Editor,
+			component: ListingsEditor,
 			props: {
 				type: 'listings'
 			}
