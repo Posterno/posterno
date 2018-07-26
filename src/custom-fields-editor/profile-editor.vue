@@ -49,7 +49,7 @@
 							<span class="dashicons dashicons-menu"></span>
 						</td>
 						<td class="column-primary">
-							<strong>{{field.title}}</strong>
+							<strong>{{field.name}}</strong>
 						</td>
 						<td>
 							<code>{{field.type}}</code>

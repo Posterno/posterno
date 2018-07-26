@@ -17,18 +17,25 @@ defined( 'ABSPATH' ) || exit;
 class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 	/**
-	 * Declared namespace for the api.
+	 * WP REST API namespace/version.
 	 *
 	 * @var string
 	 */
-	protected $namespace;
+	protected $namespace = 'posterno/v1/custom-fields';
 
 	/**
-	 * Version of the api.
+	 * Route base.
 	 *
 	 * @var string
 	 */
-	protected $version;
+	protected $rest_base = 'profile';
+
+	/**
+	 * Post type.
+	 *
+	 * @var string
+	 */
+	protected $post_type = 'pno_users_fields';
 
 	/**
 	 * Get controller started.
@@ -44,7 +51,19 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 	 * @return void
 	 */
 	public function register_routes() {
+
 		register_rest_route(
+			$this->namespace, '/' . $this->rest_base, array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_items' ),
+					'permission_callback' => array( $this, 'get_items_permissions_check' ),
+				),
+				'schema' => array( $this, 'get_item_schema' ),
+			)
+		);
+
+		/*register_rest_route(
 			$this->namespace, '/profile', array(
 				array(
 					'methods'             => WP_REST_Server::READABLE,
@@ -79,7 +98,7 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'check_admin_permission' ),
 				),
 			)
-		);
+		);*/
 	}
 
 	/**
@@ -87,19 +106,228 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 	 *
 	 * @return mixed
 	 */
-	public function check_admin_permission() {
+	public function get_items_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'rest_forbidden', esc_html__( 'Posterno: Permission Denied.' ), array( 'status' => 401 ) );
+			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
 
 	/**
-	 * Retrieve registered profile fields.
+	 * Get registration fields.
 	 *
-	 * @param WP_REST_Request $request
 	 * @return void
 	 */
+	public function get_items( $request ) {
+
+		$args = [
+			'post_type'              => $this->post_type,
+			'posts_per_page'         => 100,
+			'nopaging'               => true,
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+		];
+
+		$fields = new WP_Query( $args );
+		$data   = [];
+
+		if ( empty( $fields ) ) {
+			return rest_ensure_response( $data );
+		}
+
+		if ( is_array( $fields->get_posts() ) && ! empty( $fields->get_posts() ) ) {
+			foreach ( $fields->get_posts() as $post ) {
+				$response = $this->prepare_item_for_response( $post, $request );
+				$data[]   = $this->prepare_response_for_collection( $response );
+			}
+		}
+
+		return rest_ensure_response( $data );
+
+	}
+
+	/**
+	 * Matches the post data to the schema we want.
+	 *
+	 * @param WP_Post $post The comment object whose response is being prepared.
+	 */
+	public function prepare_item_for_response( $post, $request ) {
+
+		$post_data = array();
+		$schema    = $this->get_item_schema();
+
+		if ( isset( $post->ID ) ) {
+
+			$field = new PNO_Profile_Field( $post->ID );
+
+			if ( isset( $schema['properties']['id'] ) ) {
+				$post_data['id'] = (int) $post->ID;
+			}
+			if ( isset( $schema['properties']['name'] ) ) {
+				$post_data['name'] = $field->get_name();
+			}
+			if ( isset( $schema['properties']['label'] ) ) {
+				$post_data['label'] = $field->get_label();
+			}
+			if ( isset( $schema['properties']['meta'] ) ) {
+				$post_data['meta'] = $field->get_meta();
+			}
+			if ( isset( $schema['properties']['priority'] ) ) {
+				$post_data['priority'] = (int) $field->get_priority();
+			}
+			if ( isset( $schema['properties']['default'] ) ) {
+				$post_data['default'] = (bool) $field->is_default_field();
+			}
+			if ( isset( $schema['properties']['type'] ) ) {
+				$post_data['type'] = $field->get_type();
+			}
+			if ( isset( $schema['properties']['description'] ) ) {
+				$post_data['description'] = $field->get_description();
+			}
+			if ( isset( $schema['properties']['placeholder'] ) ) {
+				$post_data['placeholder'] = $field->get_placeholder();
+			}
+			if ( isset( $schema['properties']['required'] ) ) {
+				$post_data['required'] = (bool) $field->is_required();
+			}
+			if ( isset( $schema['properties']['read_only'] ) ) {
+				$post_data['read_only'] = (bool) $field->is_read_only();
+			}
+			if ( isset( $schema['properties']['admin_only'] ) ) {
+				$post_data['admin_only'] = (bool) $field->is_admin_only();
+			}
+			if ( isset( $schema['properties']['selectable_options'] ) ) {
+				$post_data['selectable_options'] = (bool) $field->get_selectable_options();
+			}
+			if ( isset( $schema['properties']['file_size'] ) ) {
+				$post_data['file_size'] = (bool) $field->get_file_size();
+			}
+		}
+
+		return rest_ensure_response( $post_data );
+
+	}
+
+	/**
+	 * Get the registration field schema, conforming to JSON Schema.
+	 *
+	 * @param WP_REST_Request $request
+	 * @return array
+	 */
+	public function get_item_schema() {
+
+		$schema = array(
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => $this->post_type,
+			'type'       => 'object',
+			'properties' => array(
+				'id'                 => array(
+					'description' => __( 'Unique identifier for the object.' ),
+					'type'        => 'integer',
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+				'name'               => array(
+					'description' => __( 'The name for the profile field.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'label'              => array(
+					'description' => __( 'The optional label for the profile field used within forms.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'meta'               => array(
+					'description' => __( 'The user meta key for the field used to store users information.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'priority'           => array(
+					'description' => __( 'The priority number assigned to the field used to defined the order within forms.' ),
+					'type'        => 'integer',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'default'            => array(
+					'description' => __( 'Flag to determine if the field is a default field.' ),
+					'type'        => 'boolean',
+					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
+				'type'               => array(
+					'description' => __( 'Field type.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'description'        => array(
+					'description' => __( 'Field description.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'placeholder'        => array(
+					'description' => __( 'Field placeholder.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'required'           => array(
+					'description' => __( 'Flag to determine if the field is required when displayed within forms.' ),
+					'type'        => 'boolean',
+					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
+				'read_only'          => array(
+					'description' => __( 'Flag to determine if the field is read-only when displayed within forms.' ),
+					'type'        => 'boolean',
+					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
+				'admin_only'         => array(
+					'description' => __( 'Flag to determine if the field is admin only and hidden from forms.' ),
+					'type'        => 'boolean',
+					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
+				'selectable_options' => array(
+					'description' => __( 'Holds selectable options if the field needs them. Example: dropdown or multiselect fields.' ),
+					'type'        => 'array',
+					'items'       => array(
+						'type' => 'string',
+					),
+					'context'     => array( 'view', 'edit' ),
+				),
+				'file_size'        => array(
+					'description' => __( 'Max file size assigned to the field if the type is file.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
+		);
+
+		return $schema;
+
+	}
+
+	/**
+	 * Determines the editability level of a given profile field.
+	 *
+	 * @return void
+	 */
+	private function profile_field_is_editable( $field_id ) {
+
+		if ( ! $field_id ) {
+			return;
+		}
+
+		$editable = true;
+
+		if ( carbon_get_post_meta( $field_id, 'field_is_hidden' ) ) {
+			$editable = 'admin_only';
+		}
+
+		return $editable;
+
+	}
+
+	/*
 	public function get_profile_fields( WP_REST_Request $request ) {
 
 		$fields            = [];
@@ -147,81 +375,7 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 	}
 
-	/**
-	 * Retrieve the profile field from the database.
-	 *
-	 * @param string $field_key
-	 * @param array $field
-	 * @return mixed
-	 */
-	private function get_user_field( $field_key, $field ) {
 
-		if ( ! $field_key ) {
-			return;
-		}
-
-		$args = [
-			'post_type'              => 'pno_users_fields',
-			'posts_per_page'         => 1,
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'meta_query'             => array(
-				'relation'    => 'AND',
-				'type_clause' => array(
-					'key'   => 'field_meta_key',
-					'value' => $field_key,
-				),
-			),
-		];
-
-		$field_query = new WP_Query( $args );
-
-		// If we've found the field, we return the field's object.
-		// If not, we create the field into the database.
-		if ( $field_query->have_posts() ) {
-
-			while ( $field_query->have_posts() ) :
-
-				$field_query->the_post();
-
-				return get_the_ID();
-
-			endwhile;
-
-		}
-
-		return false;
-
-	}
-
-	/**
-	 * Determines the editability level of a given profile field.
-	 *
-	 * @return void
-	 */
-	private function profile_field_is_editable( $field_id ) {
-
-		if ( ! $field_id ) {
-			return;
-		}
-
-		$editable = true;
-
-		if ( carbon_get_post_meta( $field_id, 'field_is_hidden' ) ) {
-			$editable = 'admin_only';
-		}
-
-		return $editable;
-
-	}
-
-	/**
-	 * Save the order of the fields when updated in the admin panel.
-	 *
-	 * @param WP_REST_Request $request
-	 * @return void
-	 */
 	public function update_profile_fields_order( WP_REST_Request $request ) {
 
 		$fields = isset( $_POST['fields'] ) && is_array( $_POST['fields'] ) ? $_POST['fields'] : false;
@@ -243,12 +397,7 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 	}
 
-	/**
-	 * Create a new profile field through the api.
-	 *
-	 * @param WP_REST_Request $request
-	 * @return void
-	 */
+
 	public function create_profile_field( WP_REST_Request $request ) {
 
 		$field_name     = isset( $_POST['field_name'] ) && ! empty( $_POST['field_name'] ) ? sanitize_text_field( $_POST['field_name'] ) : false;
@@ -308,12 +457,7 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 	}
 
-	/**
-	 * Delete a profile field from the database.
-	 *
-	 * @param WP_REST_Request $request
-	 * @return void
-	 */
+
 	public function delete_profile_field( WP_REST_Request $request ) {
 
 		$field_id = isset( $_POST['field_id'] ) && ! empty( $_POST['field_id'] ) ? absint( $_POST['field_id'] ) : false;
@@ -332,6 +476,6 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 
 		return rest_ensure_response();
 
-	}
+	}*/
 
 }
