@@ -100,6 +100,7 @@ function pno_hide_custom_fields_pt_settings() {
 
 	$post_types = array(
 		'pno_users_fields',
+		'pno_signup_fields'
 	);
 
 	if ( in_array( $post_type, $post_types ) ) {
@@ -111,6 +112,13 @@ function pno_hide_custom_fields_pt_settings() {
 			.page-title-action {
 				display: none;
 			}
+
+			.pno-field-is-default-notice {
+				background: #e5f5fa;
+				padding: 10px !important;
+				margin: -10px -12px -16px !important;
+			}
+
 		</style>';
 	}
 }

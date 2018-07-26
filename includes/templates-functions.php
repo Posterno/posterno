@@ -445,6 +445,8 @@ function pno_get_registered_default_meta_keys() {
 		'email',
 		'website',
 		'description',
+		'username',
+		'password',
 	];
 
 	/**
@@ -477,6 +479,8 @@ function pno_is_default_profile_field( $key ) {
 		case 'email':
 		case 'website':
 		case 'description':
+		case 'username':
+		case 'password':
 			$default = true;
 			break;
 	}

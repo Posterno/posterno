@@ -33,6 +33,7 @@ class PNO_Custom_Fields {
 	 */
 	public function init() {
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_registration_fields_settings' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields' ] );
 	}
 
@@ -201,6 +202,74 @@ class PNO_Custom_Fields {
 
 		Container::make( 'user_meta', esc_html__( 'Additional details' ) )
 			->add_fields( $admin_fields );
+
+	}
+
+	/**
+	 * Register registration fields settigns for the post type.
+	 *
+	 * @return void
+	 */
+	public function register_registration_fields_settings() {
+
+		Container::make( 'post_meta', esc_html__( 'Main field settings' ) )
+		->where( 'post_type', '=', 'pno_signup_fields' )
+			->add_fields(
+				array(
+
+					Field::make( 'hidden', 'field_is_default' ),
+					Field::make( 'hidden', 'field_priority' ),
+
+					Field::make( 'html', 'psw_information_text' )
+						->set_conditional_logic(
+							array(
+								'relation' => 'AND',
+								array(
+									'field'   => 'field_is_default',
+									'value'   => 'password',
+									'compare' => '=',
+								),
+							)
+						)
+						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'When the password field is disabled, a randomly generated password will be sent to the user via email.' ) . '</p>' ),
+
+					Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
+						->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.' ) ),
+
+					Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder' ) )
+						->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
+
+					Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
+						->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
+
+					Field::make( 'checkbox', 'field_is_required', esc_html__( 'Set as required' ) )
+						->set_conditional_logic(
+							array(
+								'relation' => 'AND',
+								array(
+									'field'   => 'field_is_default',
+									'value'   => [ 'email', 'password' ],
+									'compare' => 'NOT IN',
+								),
+							)
+						)
+						->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) ),
+
+					Field::make( 'html', 'crb_information_text' )
+						->set_conditional_logic(
+							array(
+								'relation' => 'AND',
+								array(
+									'field'   => 'field_is_default',
+									'value'   => 'username',
+									'compare' => '=',
+								),
+							)
+						)
+						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'The email address will be used as username if during registration the username field is left blank when set as non required or the field is completely disabled.' ) . '</p>' ),
+
+				)
+			);
 
 	}
 

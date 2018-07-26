@@ -124,6 +124,11 @@ function pno_get_roles( $force = false, $admin = false ) {
  */
 function pno_install_registration_fields() {
 
+	// Bail if this was already done.
+	if ( get_option( 'pno_registration_fields_installed' ) ) {
+		return;
+	}
+
 	$registered_fields = pno_get_registration_fields();
 
 	if ( is_array( $registered_fields ) ) {
@@ -141,4 +146,38 @@ function pno_install_registration_fields() {
 		}
 	}
 
+	foreach ( $registered_fields as $key => $field ) {
+
+		$new_field = [
+			'post_type'   => 'pno_signup_fields',
+			'post_title'  => $field['label'],
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $new_field );
+
+		if ( ! is_wp_error( $field_id ) ) {
+
+			// Mark the registration field as a default field.
+			if ( pno_is_default_profile_field( $key ) ) {
+				carbon_set_post_meta( $field_id, 'field_is_default', $key );
+			}
+
+			// Setup the priority of this field.
+			if ( isset( $field['priority'] ) ) {
+				carbon_set_post_meta( $field_id, 'field_priority', $field['priority'] );
+			}
+		}
+	}
+
 }
+
+function testme() {
+
+	if ( isset( $_GET['testme'] ) ) {
+		pno_install_registration_fields();
+		wp_die();
+	}
+
+}
+add_action( 'admin_init', 'testme' );
