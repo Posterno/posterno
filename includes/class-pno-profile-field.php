@@ -1,6 +1,7 @@
 <?php
 /**
  * Abstraction layer for the profile fields.
+ *
  * By giving a post ID to the class, we retrieve an object containing
  * all the info we need about the profile field.
  *
