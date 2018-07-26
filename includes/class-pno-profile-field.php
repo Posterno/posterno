@@ -136,18 +136,11 @@ class PNO_Profile_Field {
 	protected $file_size = false;
 
 	/**
-	 * Holds the value of the field if a user ID is given for this field.
-	 *
-	 * @var mixed
-	 */
-	protected $value = null;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param mixed|boolean $_id
 	 */
-	public function __construct( $_id_or_field = false, $user_id = false ) {
+	public function __construct( $_id_or_field = false ) {
 
 		if ( empty( $_id_or_field ) ) {
 			return false;
@@ -175,6 +168,36 @@ class PNO_Profile_Field {
 		} else {
 			throw new InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), $key ) );
 		}
+	}
+
+	/**
+	 * Magic __set method to dispatch a call to update a protected property.
+	 *
+	 * @see set()
+	 *
+	 * @param string $key   Property name.
+	 * @param mixed  $value Property value.
+	 */
+	public function __set( $key, $value ) {
+
+		$key = sanitize_key( $key );
+
+		// Only real properties can be saved.
+		$keys = array_keys( get_class_vars( get_called_class() ) );
+
+		if ( ! in_array( $key, $keys ) ) {
+			return false;
+		}
+
+		$this->pending[ $key ] = $value;
+
+		// Dispatch to setter method if value needs to be sanitized.
+		if ( method_exists( $this, 'set_' . $key ) ) {
+			return call_user_func( array( $this, 'set_' . $key ), $key, $value );
+		} else {
+			$this->{$key} = $value;
+		}
+
 	}
 
 	/**
@@ -405,6 +428,93 @@ class PNO_Profile_Field {
 	 */
 	public function get_file_size() {
 		return $this->file_size;
+	}
+
+	/**
+	 * Create a new profile field and store it into the database.
+	 *
+	 * @return mixed
+	 */
+	public function create( $args = [] ) {
+
+		$defaults = array(
+			'name'        => '',
+			'meta'        => '',
+			'priority'    => false,
+			'default'     => false,
+			'type'        => 'text',
+			'label'       => '',
+			'description' => '',
+			'placeholder' => '',
+			'required'    => false,
+			'read_only'   => false,
+			'admin_only'  => false,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		if ( empty( $args['name'] ) ) {
+			return false;
+		}
+
+		if ( empty( $args['meta'] ) ) {
+			$meta         = $args['name'];
+			$meta         = sanitize_title( $meta );
+			$meta         = str_replace( '-', '_', $meta );
+			$args['meta'] = $meta;
+		}
+
+		$field_args = [
+			'post_type'   => 'pno_users_fields',
+			'post_title'  => $args['name'],
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $field_args );
+
+		if ( ! is_wp_error( $field_id ) ) {
+			$this->id = $field_id;
+			foreach ( $args as $key => $value ) {
+				if ( ! empty( $value ) ) {
+					$this->update_meta( $key, $value );
+				}
+			}
+			$this->setup_field( $this->id );
+		}
+
+		return $this;
+
+	}
+
+	/**
+	 * Update a meta setting value related to this field.
+	 *
+	 * @param string $key
+	 * @param string $value
+	 * @return void
+	 */
+	public function update_meta( $key = '', $value = '' ) {
+
+		if ( empty( $key ) || '' == $key ) {
+			return false;
+		}
+
+		switch ( $key ) {
+			case 'required':
+			case 'read_only':
+			case 'admin_only':
+				$key = 'field_is_' . $key;
+				break;
+			case 'meta':
+				$key = 'field_meta_key';
+				break;
+			default:
+				$key = 'field_' . $key;
+				break;
+		}
+
+		return carbon_set_post_meta( $this->id, $key, $value );
+
 	}
 
 }

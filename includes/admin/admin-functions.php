@@ -268,7 +268,10 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		pno_install_profile_fields();
+		$field = new PNO_Profile_Field();
+		$field->create( [ 'name' => 'asdasd' ] );
+
+		print_r( $field );
 
 		wp_die();
 	}

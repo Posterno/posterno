@@ -59,6 +59,25 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 					'callback'            => array( $this, 'get_items' ),
 					'permission_callback' => array( $this, 'get_items_permissions_check' ),
 				),
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'create_item' ),
+					'permission_callback' => array( $this, 'create_item_permissions_check' ),
+					'args'                => array_merge(
+						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ), array(
+							'name' => array(
+								'description' => __( 'Field name.' ),
+								'required'    => true,
+								'type'        => 'string',
+							),
+							'type' => array(
+								'description' => __( 'Field type.' ),
+								'required'    => true,
+								'type'        => 'string',
+							),
+						)
+					),
+				),
 				'schema' => array( $this, 'get_item_schema' ),
 			)
 		);
@@ -102,13 +121,25 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 	}
 
 	/**
-	 * Detect if the user can do stuff.
+	 * Check if a given request can read resources.
 	 *
 	 * @return mixed
 	 */
 	public function get_items_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+		return true;
+	}
+
+	/**
+	 * Check if a given request can create profile fields.
+	 *
+	 * @return mixed
+	 */
+	public function create_item_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return new WP_Error( 'posterno_rest_cannot_create', esc_html__( 'Sorry, you are not allowed to create resources.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -240,6 +271,48 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		}
 
 		return $links;
+	}
+
+	/**
+	 * Create a profile field.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 * @return mixed
+	 */
+	public function create_item( $request ) {
+
+		if ( ! empty( $request['id'] ) ) {
+			return new WP_Error( 'posterno_rest_cannot_create_exists', __( 'Cannot create existing field.' ), array( 'status' => 400 ) );
+		}
+
+		$field_name = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
+
+		$registered_field_types = pno_get_registered_field_types();
+		$field_type             = isset( $request['type'] ) && isset( $registered_field_types[ $request['type'] ] ) ? sanitize_text_field( $request['type'] ) : false;
+
+		if ( ! $field_name ) {
+			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.' ), 422 );
+		}
+
+		if ( ! $field_type ) {
+			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
+		}
+
+		$field = new PNO_Profile_Field();
+
+		$field->create(
+			[
+				'name' => $field_name,
+				'type' => $field_type,
+			]
+		);
+
+		$request->set_param( 'context', 'edit' );
+		$response = $this->prepare_item_for_response( $field, $request );
+		$response = rest_ensure_response( $response );
+
+		return $response;
+
 	}
 
 	/**

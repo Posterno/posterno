@@ -74,20 +74,26 @@ export default {
 			this.loading = true
 
 			axios.post(
-				pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type + '/create',
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type,
 				qs.stringify( {
-					field_name: this.field_name,
-					field_type: this.field_type,
 					priority: this.priority,
 				} ),
 				{
 					headers: {
 						'X-WP-Nonce': pno_fields_editor.create_field_nonce
+					},
+					params: {
+						name:  this.field_name,
+						type: this.field_type,
 					}
 				}
 			)
 			.then( response => {
-				window.location.replace( decodeURIComponent( response.data ) )
+				if ( response.data._links.admin[0].href ) {
+					window.location.replace( decodeURIComponent( response.data._links.admin[0].href ) )
+				} else {
+					console.error( response )
+				}
 			})
 			.catch( e => {
 
