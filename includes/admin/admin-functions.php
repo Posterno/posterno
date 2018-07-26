@@ -163,6 +163,11 @@ function pno_install_registration_fields() {
 				carbon_set_post_meta( $field_id, 'field_is_default', $key );
 			}
 
+			// Mark fields as required.
+			if ( isset( $field['required'] ) && $field['required'] === true ) {
+				carbon_set_post_meta( $field_id, 'field_is_required', true );
+			}
+
 			// Setup the priority of this field.
 			if ( isset( $field['priority'] ) ) {
 				carbon_set_post_meta( $field_id, 'field_priority', $field['priority'] );
