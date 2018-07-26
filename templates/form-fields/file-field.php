@@ -60,22 +60,11 @@ $file_size          = isset( $data->max_size ) ? $data->max_size : false;
 	<?php endif; ?>
 </div>
 
-<input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>"
-										<?php
-										if ( ! empty( $data->multiple ) ) {
-											echo 'multiple';}
-?>
- name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>
-					<?php
-					if ( ! empty( $data->multiple ) ) {
-						echo '[]';}
-?>
-" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" />
-<small class="form-text text-muted">
+<input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>" <?php if ( ! empty( $data->multiple ) ) echo 'multiple'; ?> name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?><?php if ( ! empty( $data->multiple ) ) echo '[]'; ?>" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" />
+<small class="description">
 	<?php if ( ! empty( $data->description ) ) : ?>
 		<?php echo $data->description; ?>
 	<?php endif ?>
 
-	<?php printf( __( 'Maximum file size: %s.', 'wp-user-manager' ), pno_max_upload_size( '', $file_size ) ); ?>
-
+	<?php printf( __( 'Maximum file size: %s.' ), pno_max_upload_size( '', $file_size ) ); ?>
 </small>
