@@ -254,7 +254,7 @@ class PNO_Custom_Fields {
 								'relation' => 'AND',
 								array(
 									'field'   => 'field_is_default',
-									'value'   => [ 'email', 'password' ],
+									'value'   => [ 'email', 'password', 'username' ],
 									'compare' => 'NOT IN',
 								),
 							)
@@ -285,7 +285,7 @@ class PNO_Custom_Fields {
 								),
 							)
 						)
-						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'The email address will be used as username if during registration the username field is left blank when set as non required or the field is completely disabled.' ) . '</p>' ),
+						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'The email address will be used as username if during registration the username field is disabled.' ) . '</p>' ),
 
 					Field::make( 'html', 'email_information_text' )
 						->set_conditional_logic(
