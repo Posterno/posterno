@@ -117,6 +117,85 @@ function pno_get_roles( $force = false, $admin = false ) {
 }
 
 /**
+ * Install the profile fields within the database.
+ * This function is usually used within the plugin's activation.
+ *
+ * @return void
+ */
+function pno_install_profile_fields() {
+
+	// Bail if this was already done.
+	if ( get_option( 'pno_profile_fields_installed' ) ) {
+		return;
+	}
+
+	$registered_fields = pno_get_account_fields( false, true );
+
+	if ( ! is_array( $registered_fields ) ) {
+		return;
+	}
+
+	if ( empty( $registered_fields ) ) {
+		return;
+	}
+
+	foreach ( $registered_fields as $field_key => $field ) {
+
+		if ( pno_is_default_profile_field( $field_key ) ) {
+
+			$new_field = [
+				'post_type'   => 'pno_users_fields',
+				'post_title'  => $field['label'],
+				'post_status' => 'publish',
+			];
+
+			$field_id = wp_insert_post( $new_field );
+
+			if ( is_wp_error( $field_id ) ) {
+				return new WP_REST_Response( $field_id->get_error_message(), 422 );
+			} else {
+
+				// Setup the field's meta key.
+				carbon_set_post_meta( $field_id, 'field_meta_key', $field_key );
+
+				// Setup the field's type.
+				$registered_field_types = pno_get_registered_field_types();
+
+				if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
+					carbon_set_post_meta( $field_id, 'field_type', esc_attr( $field['type'] ) );
+				}
+
+				// Assign a description if one is given.
+				if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
+					carbon_set_post_meta( $field_id, 'field_description', esc_html( $field['description'] ) );
+				}
+
+				// Assign a placeholder if one is given.
+				if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
+					carbon_set_post_meta( $field_id, 'field_placeholder', esc_html( $field['placeholder'] ) );
+				}
+
+				// Make field required if defined.
+				if ( isset( $field['required'] ) && $field['required'] === true ) {
+					carbon_set_post_meta( $field_id, 'field_is_required', true );
+				}
+
+				// Mark the field as a default one.
+				if ( pno_is_default_profile_field( $field_key ) ) {
+					update_post_meta( $field_id, 'is_default_field', true );
+				}
+
+			}
+
+			wp_reset_postdata();
+
+		}
+
+	}
+
+}
+
+/**
  * Install the registration fields within the database.
  * This function is usually used within the plugin's activation.
  *
@@ -130,6 +209,14 @@ function pno_install_registration_fields() {
 	}
 
 	$registered_fields = pno_get_registration_fields();
+
+	if ( ! is_array( $registered_fields ) ) {
+		return;
+	}
+
+	if ( empty( $registered_fields ) ) {
+		return;
+	}
 
 	if ( is_array( $registered_fields ) ) {
 		if ( isset( $registered_fields['robo'] ) ) {
@@ -180,7 +267,9 @@ function pno_install_registration_fields() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-		pno_install_registration_fields();
+
+		pno_install_profile_fields();
+
 		wp_die();
 	}
 
