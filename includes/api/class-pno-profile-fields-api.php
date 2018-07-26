@@ -156,56 +156,90 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		$post_data = array();
 		$schema    = $this->get_item_schema();
 
-		if ( isset( $post->ID ) ) {
+		$field = new PNO_Profile_Field( $post->ID );
 
-			$field = new PNO_Profile_Field( $post->ID );
-
-			if ( isset( $schema['properties']['id'] ) ) {
-				$post_data['id'] = (int) $post->ID;
-			}
-			if ( isset( $schema['properties']['name'] ) ) {
-				$post_data['name'] = $field->get_name();
-			}
-			if ( isset( $schema['properties']['label'] ) ) {
-				$post_data['label'] = $field->get_label();
-			}
-			if ( isset( $schema['properties']['meta'] ) ) {
-				$post_data['meta'] = $field->get_meta();
-			}
-			if ( isset( $schema['properties']['priority'] ) ) {
-				$post_data['priority'] = (int) $field->get_priority();
-			}
-			if ( isset( $schema['properties']['default'] ) ) {
-				$post_data['default'] = (bool) $field->is_default_field();
-			}
-			if ( isset( $schema['properties']['type'] ) ) {
-				$post_data['type'] = $field->get_type();
-			}
-			if ( isset( $schema['properties']['description'] ) ) {
-				$post_data['description'] = $field->get_description();
-			}
-			if ( isset( $schema['properties']['placeholder'] ) ) {
-				$post_data['placeholder'] = $field->get_placeholder();
-			}
-			if ( isset( $schema['properties']['required'] ) ) {
-				$post_data['required'] = (bool) $field->is_required();
-			}
-			if ( isset( $schema['properties']['read_only'] ) ) {
-				$post_data['read_only'] = (bool) $field->is_read_only();
-			}
-			if ( isset( $schema['properties']['admin_only'] ) ) {
-				$post_data['admin_only'] = (bool) $field->is_admin_only();
-			}
-			if ( isset( $schema['properties']['selectable_options'] ) ) {
-				$post_data['selectable_options'] = (bool) $field->get_selectable_options();
-			}
-			if ( isset( $schema['properties']['file_size'] ) ) {
-				$post_data['file_size'] = (bool) $field->get_file_size();
-			}
+		if ( isset( $schema['properties']['id'] ) ) {
+			$post_data['id'] = (int) $post->ID;
+		}
+		if ( isset( $schema['properties']['name'] ) ) {
+			$post_data['name'] = $field->get_name();
+		}
+		if ( isset( $schema['properties']['label'] ) ) {
+			$post_data['label'] = $field->get_label();
+		}
+		if ( isset( $schema['properties']['meta'] ) ) {
+			$post_data['meta'] = $field->get_meta();
+		}
+		if ( isset( $schema['properties']['priority'] ) ) {
+			$post_data['priority'] = (int) $field->get_priority();
+		}
+		if ( isset( $schema['properties']['default'] ) ) {
+			$post_data['default'] = (bool) $field->is_default_field();
+		}
+		if ( isset( $schema['properties']['type'] ) ) {
+			$post_data['type'] = $field->get_type();
+		}
+		if ( isset( $schema['properties']['description'] ) ) {
+			$post_data['description'] = $field->get_description();
+		}
+		if ( isset( $schema['properties']['placeholder'] ) ) {
+			$post_data['placeholder'] = $field->get_placeholder();
+		}
+		if ( isset( $schema['properties']['required'] ) ) {
+			$post_data['required'] = (bool) $field->is_required();
+		}
+		if ( isset( $schema['properties']['read_only'] ) ) {
+			$post_data['read_only'] = (bool) $field->is_read_only();
+		}
+		if ( isset( $schema['properties']['admin_only'] ) ) {
+			$post_data['admin_only'] = (bool) $field->is_admin_only();
+		}
+		if ( isset( $schema['properties']['selectable_options'] ) ) {
+			$post_data['selectable_options'] = (bool) $field->get_selectable_options();
+		}
+		if ( isset( $schema['properties']['file_size'] ) ) {
+			$post_data['file_size'] = (bool) $field->get_file_size();
 		}
 
-		return rest_ensure_response( $post_data );
+		$response = rest_ensure_response( $post_data );
+		$response->add_links( $this->prepare_links( $field, $request ) );
 
+		return rest_ensure_response( $response );
+
+	}
+
+	/**
+	 * Prepare links for the request.
+	 *
+	 * @param PNO_Profile_Field         $object  Object data.
+	 * @param WP_REST_Request $request Request object.
+	 * @return array                   Links for the given post.
+	 */
+	protected function prepare_links( $object, $request ) {
+		$links = array(
+			'self'       => array(
+				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_id() ) ),
+			),
+			'collection' => array(
+				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ),
+			),
+		);
+
+		if ( current_user_can( 'manage_options' ) ) {
+			$admin_url = admin_url( 'post.php' );
+			$admin_url = add_query_arg(
+				[
+					'post'   => $object->get_id(),
+					'action' => 'edit',
+				], $admin_url
+			);
+
+			$links['admin'] = array(
+				'href' => $admin_url,
+			);
+		}
+
+		return $links;
 	}
 
 	/**
@@ -294,7 +328,7 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 					),
 					'context'     => array( 'view', 'edit' ),
 				),
-				'file_size'        => array(
+				'file_size'          => array(
 					'description' => __( 'Max file size assigned to the field if the type is file.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
