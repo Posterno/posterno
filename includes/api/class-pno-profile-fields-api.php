@@ -92,52 +92,16 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			)
 		);
 
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/batch', array(
+		register_rest_route( $this->namespace, '/' . $this->rest_base . '/update-priority', array(
 			array(
 				'methods'             => WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'batch_items' ),
+				'callback'            => array( $this, 'update_priority' ),
 				'permission_callback' => array( $this, 'batch_items_permissions_check' ),
 				'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
 			),
-			'schema' => array( $this, 'get_public_batch_schema' ),
+			'schema' => array( $this, 'get_item_schema' ),
 		) );
 
-		/*register_rest_route(
-			$this->namespace, '/profile', array(
-				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_profile_fields' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
-				),
-			)
-		);
-		register_rest_route(
-			$this->namespace, '/profile/save-fields-order', array(
-				array(
-					'methods'             => WP_REST_Server::EDITABLE,
-					'callback'            => array( $this, 'update_profile_fields_order' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
-				),
-			)
-		);
-		register_rest_route(
-			$this->namespace, '/profile/create', array(
-				array(
-					'methods'             => WP_REST_Server::EDITABLE,
-					'callback'            => array( $this, 'create_profile_field' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
-				),
-			)
-		);
-		register_rest_route(
-			$this->namespace, '/profile/delete', array(
-				array(
-					'methods'             => WP_REST_Server::EDITABLE,
-					'callback'            => array( $this, 'delete_profile_field' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
-				),
-			)
-		);*/
 	}
 
 	/**
@@ -345,6 +309,33 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		}
 
 		return rest_ensure_response( $field_id );
+
+	}
+
+	/**
+	 * Updates the priority for each field.
+	 *
+	 * @param array $request
+	 * @return mixed
+	 */
+	public function update_priority( $request ) {
+
+		$fields = isset( $_POST['fields'] ) && is_array( $_POST['fields'] ) ? $_POST['fields'] : false;
+
+		if ( ! $fields ) {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while updating the order of the fields, please contact support.' ), 422 );
+		}
+
+		foreach ( $fields as $key => $field ) {
+			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
+			if ( $field_id ) {
+				$field = new PNO_Profile_Field( $field_id );
+				$field->__set( 'priority', absint( $key ) );
+				$field->save();
+			}
+		}
+
+		return rest_ensure_response( $fields );
 
 	}
 

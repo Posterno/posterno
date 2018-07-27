@@ -209,7 +209,7 @@ export default {
 			this.sorting = true
 
 			axios.post(
-				pno_fields_editor.rest + 'posterno/v1/custom-fields/profile/save-fields-order',
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/profile/update-priority',
 				qs.stringify( {
 					fields: this.fields
 				} ),
