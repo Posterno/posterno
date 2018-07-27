@@ -437,6 +437,10 @@ class PNO_Profile_Field {
 	 */
 	public function create( $args = [] ) {
 
+		if ( $this->id > 0 ) {
+			return false;
+		}
+
 		$defaults = array(
 			'name'        => '',
 			'meta'        => '',
