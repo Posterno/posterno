@@ -61,8 +61,6 @@ export default {
 
 			this.loading = true
 
-			console.log(  pno_fields_editor.delete_field_nonce)
-
 			axios.delete(
 				pno_fields_editor.rest + 'posterno/v1/custom-fields/' + this.type + '/' + this.field_id,
 				{
