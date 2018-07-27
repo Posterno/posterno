@@ -556,7 +556,7 @@ class PNO_Profile_Field {
 		if ( ! empty( $this->pending ) ) {
 			foreach ( $this->pending as $key => $value ) {
 				$this->update_meta( $key, $value );
-				if ( 'name' == $key ) {
+				if ( 'name' == $key && ! empty( $value ) ) {
 					wp_update_post(
 						array(
 							'ID'         => $this->id,
@@ -616,12 +616,14 @@ class PNO_Profile_Field {
 
 		$meta = $this->build_meta( $args );
 
-		wp_update_post(
-			array(
-				'ID'         => $this->id,
-				'post_title' => $meta['name'],
-			)
-		);
+		if( isset( $meta['name'] ) && ! empty( $meta['name'] ) ) {
+			wp_update_post(
+				array(
+					'ID'         => $this->id,
+					'post_title' => $meta['name'],
+				)
+			);
+		}
 
 		foreach ( $meta as $key => $value ) {
 			$this->update_meta( $key, $value );
