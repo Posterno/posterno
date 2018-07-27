@@ -49,6 +49,8 @@ class PNO_Custom_Fields {
 		->add_tab(
 			esc_html__( 'General' ), array(
 
+				Field::make( 'text', 'field_priority' ),
+
 				Field::make( 'select', 'field_type', esc_html__( 'Field type' ) )
 					->set_required()
 					->add_options( pno_get_registered_field_types() )

@@ -180,6 +180,11 @@ function pno_install_profile_fields() {
 					carbon_set_post_meta( $field_id, 'field_is_required', true );
 				}
 
+				// Set priority.
+				if ( isset( $field['priority'] ) && ! empty( $field['priority'] ) ) {
+					carbon_set_post_meta( $field_id, 'field_priority', absint( $field['priority'] ) );
+				}
+
 				// Mark the field as a default one.
 				if ( pno_is_default_profile_field( $field_key ) ) {
 					update_post_meta( $field_id, 'is_default_field', true );
@@ -267,6 +272,7 @@ function pno_install_registration_fields() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
+		pno_install_profile_fields();
 		wp_die();
 	}
 

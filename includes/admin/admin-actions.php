@@ -160,4 +160,4 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 	}
 
 }
-add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
+//add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );

@@ -341,7 +341,8 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 			return new WP_Error( 'posterno_rest_cannot_create_exists', __( 'Cannot create existing field.' ), array( 'status' => 400 ) );
 		}
 
-		$field_name = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
+		$field_name     = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
+		$field_priority = isset( $_POST['priority'] ) && ! empty( $_POST['priority'] ) ? absint( $_POST['priority'] ) : false;
 
 		$registered_field_types = pno_get_registered_field_types();
 		$field_type             = isset( $request['type'] ) && isset( $registered_field_types[ $request['type'] ] ) ? sanitize_text_field( $request['type'] ) : false;
@@ -357,6 +358,11 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		$field = new PNO_Profile_Field();
 		$field->__set( 'name', $field_name );
 		$field->__set( 'type', $field_type );
+
+		if ( $field_priority ) {
+			$field->__set( 'priority', $field_priority );
+		}
+
 		$field->create();
 
 		$request->set_param( 'context', 'edit' );

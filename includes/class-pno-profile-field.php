@@ -297,7 +297,7 @@ class PNO_Profile_Field {
 		$this->read_only      = carbon_get_post_meta( $this->id, 'field_is_read_only' );
 		$this->admin_only     = carbon_get_post_meta( $this->id, 'field_is_hidden' );
 		$this->custom_classes = carbon_get_post_meta( $this->id, 'field_custom_classes' );
-		$this->priority       = get_post_meta( $this->id, 'field_priority', true );
+		$this->priority       = carbon_get_post_meta( $this->id, 'field_priority' );
 
 		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
 			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'field_selectable_options' ) );
