@@ -272,7 +272,6 @@ function pno_install_registration_fields() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-		pno_install_profile_fields();
 		wp_die();
 	}
 
