@@ -82,6 +82,38 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 			)
 		);
 
+		register_rest_route(
+			$this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+				'args'   => array(
+					'id' => array(
+						'description' => __( 'Unique identifier for the resource.' ),
+						'type'        => 'integer',
+					),
+				),
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item' ),
+					'permission_callback' => array( $this, 'get_item_permissions_check' ),
+					'args'                => array(
+						'context' => $this->get_context_param( array( 'default' => 'view' ) ),
+					),
+				),
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'update_item' ),
+					'permission_callback' => array( $this, 'update_item_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+				),
+				array(
+					'methods'             => WP_REST_Server::DELETABLE,
+					'callback'            => array( $this, 'delete_item' ),
+					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::DELETABLE ),
+				),
+				'schema' => array( $this, 'get_item_schema' ),
+			)
+		);
+
 		/*register_rest_route(
 			$this->namespace, '/profile', array(
 				array(
@@ -140,6 +172,30 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 	public function create_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error( 'posterno_rest_cannot_create', esc_html__( 'Sorry, you are not allowed to create resources.' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+		return true;
+	}
+
+	/**
+	 * Check if a given request can update resources.
+	 *
+	 * @return mixed
+	 */
+	public function update_item_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return new WP_Error( 'posterno_rest_cannot_update', esc_html__( 'Sorry, you cannot update resources.' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+		return true;
+	}
+
+	/**
+	 * Check if a given request can delete resources.
+	 *
+	 * @return mixed
+	 */
+	public function delete_item_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return new WP_Error( 'posterno_rest_cannot_delete', esc_html__( 'Sorry, you cannot delete resources.' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -308,6 +364,38 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		$response = rest_ensure_response( $response );
 
 		return $response;
+
+	}
+
+	/**
+	 * Delete the selected profile field.
+	 *
+	 * @param array $request
+	 * @return boolean
+	 */
+	public function delete_item( $request ) {
+
+		$field_id = isset( $request['id'] ) && ! empty( $request['id'] ) ? absint( $request['id'] ) : false;
+
+		if ( ! $field_id ) {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
+		}
+
+		$field = new PNO_Profile_Field( $field_id );
+
+		if ( $field instanceof PNO_Profile_Field && $field->get_id() > 0 ) {
+
+			$field_meta = $field->get_meta();
+
+			if ( $field_meta && in_array( $field_meta, pno_get_registered_default_meta_keys() ) ) {
+				return new WP_REST_Response( esc_html__( 'Default fields cannnot be deleted.' ), 422 );
+			}
+
+			$field->delete();
+
+		}
+
+		return rest_ensure_response( $field_id );
 
 	}
 

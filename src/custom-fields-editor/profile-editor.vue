@@ -69,7 +69,7 @@
 						</td>
 						<td>
 							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.field_db_id, field.title )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+							<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.title )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
