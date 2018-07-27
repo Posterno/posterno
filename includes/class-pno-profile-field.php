@@ -136,6 +136,15 @@ class PNO_Profile_Field {
 	protected $file_size = false;
 
 	/**
+	 * Array of items that have changed since the last save() was run
+	 * This is for internal use, to allow fewer db calls to be run.
+	 *
+	 * @since 0.1.0
+	 * @var array
+	 */
+	private $pending;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param mixed|boolean $_id
@@ -198,6 +207,20 @@ class PNO_Profile_Field {
 			$this->{$key} = $value;
 		}
 
+	}
+
+	/**
+	 * Magic __isset method to allow empty checks on protected elements
+	 *
+	 * @param string $key The attribute to get
+	 * @return boolean If the item is set or not
+	 */
+	public function __isset( $key ) {
+		if ( property_exists( $this, $key ) ) {
+			return false === empty( $this->{$key} );
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -435,37 +458,28 @@ class PNO_Profile_Field {
 	 *
 	 * @return mixed
 	 */
-	public function create( $args = [] ) {
+	public function create() {
 
-		if ( $this->id > 0 ) {
-			return false;
-		}
-
-		$defaults = array(
-			'name'        => '',
-			'meta'        => '',
-			'priority'    => false,
-			'default'     => false,
-			'type'        => 'text',
-			'label'       => '',
-			'description' => '',
-			'placeholder' => '',
-			'required'    => false,
-			'read_only'   => false,
-			'admin_only'  => false,
+		$args = array(
+			'name'        => isset( $this->name ) ? $this->name : '',
+			'meta'        => isset( $this->meta ) ? $this->meta : '',
+			'priority'    => isset( $this->priority ) ? $this->priority : false,
+			'default'     => isset( $this->default ) ? $this->default : false,
+			'type'        => isset( $this->type ) && ! empty( $this->type ) ? $this->type : 'text',
+			'label'       => isset( $this->label ) ? $this->label : '',
+			'description' => isset( $this->description ) ? $this->description : '',
+			'placeholder' => isset( $this->placeholder ) ? $this->placeholder : '',
+			'required'    => isset( $this->required ) ? $this->required : false,
+			'read_only'   => isset( $this->read_only ) ? $this->read_only : false,
+			'admin_only'  => isset( $this->admin_only ) ? $this->admin_only : false,
 		);
 
-		$args = wp_parse_args( $args, $defaults );
-
 		if ( empty( $args['name'] ) ) {
-			return false;
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
 		}
 
 		if ( empty( $args['meta'] ) ) {
-			$meta         = $args['name'];
-			$meta         = sanitize_title( $meta );
-			$meta         = str_replace( '-', '_', $meta );
-			$args['meta'] = $meta;
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), 'meta' ) );
 		}
 
 		$field_args = [
@@ -486,7 +500,7 @@ class PNO_Profile_Field {
 			$this->setup_field( $this->id );
 		}
 
-		return $this;
+		return $this->id;
 
 	}
 
@@ -518,6 +532,119 @@ class PNO_Profile_Field {
 		}
 
 		return carbon_set_post_meta( $this->id, $key, $value );
+
+	}
+
+	/**
+	 * Once object variables has been set, an update is needed to persist them to the database.
+	 *
+	 * @return bool True if the save was successful, false if it failed or wasn't needed.
+	 */
+	public function save() {
+
+		$saved = false;
+
+		if ( empty( $this->id ) ) {
+			$field_id = $this->create();
+			if ( false === $field_id ) {
+				$saved = false;
+			} else {
+				$this->id = $field_id;
+			}
+		}
+
+		if ( ! empty( $this->pending ) ) {
+			foreach ( $this->pending as $key => $value ) {
+				$this->update_meta( $key, $value );
+				if ( 'name' == $key ) {
+					wp_update_post(
+						array(
+							'ID'         => $this->id,
+							'post_title' => $value,
+						)
+					);
+				}
+			}
+			$saved = true;
+		}
+
+		if ( true == $saved ) {
+			$this->setup_field( WP_Post::get_instance( $this->id ) );
+		}
+
+		return $saved;
+
+	}
+
+	/**
+	 * Build a profile field meta array.
+	 *
+	 * @param array $args profile field meta.
+	 * @return mixed false if something was wrong, array containing sanitized settings.
+	 */
+	private function build_meta( $args = [] ) {
+
+		if ( ! is_array( $args ) || array() === $args ) {
+			return false;
+		}
+
+		$meta = [
+			'name'        => isset( $args['name'] ) ? $args['name'] : '',
+			'meta'        => isset( $args['meta'] ) ? $args['meta'] : '',
+			'priority'    => isset( $args['priority'] ) ? $args['priority'] : 0,
+			'default'     => isset( $args['default'] ) ? $args['default'] : false,
+			'type'        => isset( $args['type'] ) ? $args['type'] : 'text',
+			'label'       => isset( $args['label'] ) ? $args['label'] : '',
+			'description' => isset( $args['description'] ) ? $args['description'] : '',
+			'placeholder' => isset( $args['placeholder'] ) ? $args['placeholder'] : '',
+			'required'    => isset( $args['required'] ) ? $args['required'] : false,
+			'read_only'   => isset( $args['read_only'] ) ? $args['read_only'] : false,
+			'admin_only'  => isset( $args['admin_only'] ) ? $args['admin_only'] : false,
+		];
+
+		return $meta;
+
+	}
+
+	/**
+	 * Update an existing profile field in the database.
+	 *
+	 * @param array $args field details.
+	 * @return void mixed bool|int false if data isn't passed and class not instantiated for creation, or post ID for the new field id.
+	 */
+	public function update( $args = [] ) {
+
+		$meta = $this->build_meta( $args );
+
+		wp_update_post(
+			array(
+				'ID'         => $this->id,
+				'post_title' => $meta['name'],
+			)
+		);
+
+		foreach ( $meta as $key => $value ) {
+			$this->update_meta( $key, $value );
+		}
+
+		$this->setup_field( WP_Post::get_instance( $this->id ) );
+
+		return $this->id;
+
+	}
+
+	/**
+	 * Delete the profile field from the database.
+	 *
+	 * @return mixed The post object (if it was deleted or moved to the trash successfully) or false (failure).
+	 */
+	public function delete() {
+
+		if ( $this->id > 0 ) {
+			return wp_delete_post( $this->id, true );
+		} else {
+			return false;
+		}
 
 	}
 

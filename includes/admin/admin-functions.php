@@ -267,12 +267,6 @@ function pno_install_registration_fields() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-
-		$field = new PNO_Profile_Field();
-		$field->create( [ 'name' => 'asdasd' ] );
-
-		print_r( $field );
-
 		wp_die();
 	}
 
