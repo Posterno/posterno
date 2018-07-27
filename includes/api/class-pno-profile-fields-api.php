@@ -299,13 +299,9 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		}
 
 		$field = new PNO_Profile_Field();
-
-		$field->create(
-			[
-				'name' => $field_name,
-				'type' => $field_type,
-			]
-		);
+		$field->__set( 'name', $field_name );
+		$field->__set( 'type', $field_type );
+		$field->create();
 
 		$request->set_param( 'context', 'edit' );
 		$response = $this->prepare_item_for_response( $field, $request );

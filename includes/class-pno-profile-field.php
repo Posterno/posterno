@@ -479,7 +479,9 @@ class PNO_Profile_Field {
 		}
 
 		if ( empty( $args['meta'] ) ) {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), 'meta' ) );
+			$meta         = sanitize_title( $args['name'] );
+			$meta         = str_replace( '-', '_', $meta );
+			$args['meta'] = $meta;
 		}
 
 		$field_args = [
@@ -616,7 +618,7 @@ class PNO_Profile_Field {
 
 		$meta = $this->build_meta( $args );
 
-		if( isset( $meta['name'] ) && ! empty( $meta['name'] ) ) {
+		if ( isset( $meta['name'] ) && ! empty( $meta['name'] ) ) {
 			wp_update_post(
 				array(
 					'ID'         => $this->id,
