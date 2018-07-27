@@ -52,7 +52,7 @@
 							<strong>{{field.name}}</strong>
 						</td>
 						<td>
-							<code>{{field.type}}</code>
+							<code>{{field.type_nicename}}</code>
 						</td>
 						<td>
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>

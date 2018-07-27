@@ -172,6 +172,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		}
 		if ( isset( $schema['properties']['type'] ) ) {
 			$post_data['type'] = $field->get_type();
+			$post_data['type_nicename'] = $field->get_type_nicename();
 		}
 		if ( isset( $schema['properties']['description'] ) ) {
 			$post_data['description'] = $field->get_description();
