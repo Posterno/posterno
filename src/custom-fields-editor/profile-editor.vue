@@ -73,12 +73,12 @@
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
-						<td class="colspanchange" colspan="7">
+						<td class="colspanchange" colspan="6">
 							<strong>{{labels.table.not_found}}</strong>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="loading">
-						<td class="colspanchange" colspan="7">
+						<td class="colspanchange" colspan="6">
 							<wp-spinner></wp-spinner>
 						</td>
 					</tr>

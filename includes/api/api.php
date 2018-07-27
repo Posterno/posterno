@@ -23,6 +23,9 @@ function pno_register_rest_controllers() {
 	$options = new PNO_Options_Api();
 	$options->register_routes();
 
+	// Include rest controller for main public api.
+	require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-rest-controller.php';
+
 	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-profile-fields-api.php';
 
 	$profile_fields_editor = new PNO_Profile_Fields_Api();

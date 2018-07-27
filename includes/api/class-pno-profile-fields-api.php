@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The class that register a new rest api controller to handle profile fields.
  */
-class PNO_Profile_Fields_Api extends WP_REST_Controller {
+class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 
 	/**
 	 * WP REST API namespace/version.
@@ -36,14 +36,6 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 	 * @var string
 	 */
 	protected $post_type = 'pno_users_fields';
-
-	/**
-	 * Get controller started.
-	 */
-	public function __construct() {
-		$this->version   = 'v1';
-		$this->namespace = 'posterno/' . $this->version . '/custom-fields';
-	}
 
 	/**
 	 * Register new routes for the custom fields editor.
@@ -91,20 +83,6 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 					),
 				),
 				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_item' ),
-					'permission_callback' => array( $this, 'get_item_permissions_check' ),
-					'args'                => array(
-						'context' => $this->get_context_param( array( 'default' => 'view' ) ),
-					),
-				),
-				array(
-					'methods'             => WP_REST_Server::EDITABLE,
-					'callback'            => array( $this, 'update_item' ),
-					'permission_callback' => array( $this, 'update_item_permissions_check' ),
-					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
-				),
-				array(
 					'methods'             => WP_REST_Server::DELETABLE,
 					'callback'            => array( $this, 'delete_item' ),
 					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
@@ -113,6 +91,16 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 				'schema' => array( $this, 'get_item_schema' ),
 			)
 		);
+
+		register_rest_route( $this->namespace, '/' . $this->rest_base . '/batch', array(
+			array(
+				'methods'             => WP_REST_Server::EDITABLE,
+				'callback'            => array( $this, 'batch_items' ),
+				'permission_callback' => array( $this, 'batch_items_permissions_check' ),
+				'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+			),
+			'schema' => array( $this, 'get_public_batch_schema' ),
+		) );
 
 		/*register_rest_route(
 			$this->namespace, '/profile', array(
@@ -150,54 +138,6 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 				),
 			)
 		);*/
-	}
-
-	/**
-	 * Check if a given request can read resources.
-	 *
-	 * @return mixed
-	 */
-	public function get_items_permissions_check( $request ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-		return true;
-	}
-
-	/**
-	 * Check if a given request can create profile fields.
-	 *
-	 * @return mixed
-	 */
-	public function create_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_create', esc_html__( 'Sorry, you are not allowed to create resources.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-		return true;
-	}
-
-	/**
-	 * Check if a given request can update resources.
-	 *
-	 * @return mixed
-	 */
-	public function update_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_update', esc_html__( 'Sorry, you cannot update resources.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-		return true;
-	}
-
-	/**
-	 * Check if a given request can delete resources.
-	 *
-	 * @return mixed
-	 */
-	public function delete_item_permissions_check( $request ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_delete', esc_html__( 'Sorry, you cannot delete resources.' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-		return true;
 	}
 
 	/**
@@ -503,27 +443,6 @@ class PNO_Profile_Fields_Api extends WP_REST_Controller {
 		);
 
 		return $schema;
-
-	}
-
-	/**
-	 * Determines the editability level of a given profile field.
-	 *
-	 * @return void
-	 */
-	private function profile_field_is_editable( $field_id ) {
-
-		if ( ! $field_id ) {
-			return;
-		}
-
-		$editable = true;
-
-		if ( carbon_get_post_meta( $field_id, 'field_is_hidden' ) ) {
-			$editable = 'admin_only';
-		}
-
-		return $editable;
 
 	}
 
