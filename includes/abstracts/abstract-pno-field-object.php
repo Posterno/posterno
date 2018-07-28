@@ -218,7 +218,16 @@ abstract class PNO_Field_Object {
 	 * @return void
 	 */
 	public function get_name() {
-		return $this->name();
+		return $this->name;
+	}
+
+	/**
+	 * Get the meta of the field.
+	 *
+	 * @return void
+	 */
+	public function get_meta() {
+		return $this->meta;
 	}
 
 	/**

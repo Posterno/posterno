@@ -114,6 +114,10 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			$this->type          = $type;
 			$this->type_nicename = isset( $types[ $this->type ] ) ? $types[ $this->type ] : false;
 
+			// Force requirement for the email field.
+			if ( $this->default == 'email' ) {
+				$this->required = true;
+			}
 		}
 
 	}

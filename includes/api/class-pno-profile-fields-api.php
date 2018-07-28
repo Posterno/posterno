@@ -92,15 +92,17 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			)
 		);
 
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/update-priority', array(
-			array(
-				'methods'             => WP_REST_Server::EDITABLE,
-				'callback'            => array( $this, 'update_priority' ),
-				'permission_callback' => array( $this, 'batch_items_permissions_check' ),
-				'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
-			),
-			'schema' => array( $this, 'get_item_schema' ),
-		) );
+		register_rest_route(
+			$this->namespace, '/' . $this->rest_base . '/update-priority', array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'update_priority' ),
+					'permission_callback' => array( $this, 'batch_items_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+				),
+				'schema' => array( $this, 'get_item_schema' ),
+			)
+		);
 
 	}
 
@@ -171,7 +173,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			$post_data['default'] = (bool) $field->is_default_field();
 		}
 		if ( isset( $schema['properties']['type'] ) ) {
-			$post_data['type'] = $field->get_type();
+			$post_data['type']          = $field->get_type();
 			$post_data['type_nicename'] = $field->get_type_nicename();
 		}
 		if ( isset( $schema['properties']['description'] ) ) {
