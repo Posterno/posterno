@@ -238,6 +238,8 @@ class PNO_Profile_Field {
 		$field_args = [
 			'post_type'              => 'pno_users_fields',
 			'p'                      => absint( $field_id ),
+			'nopaging'               => true,
+			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
 			'fields'                 => 'ids',
 		];

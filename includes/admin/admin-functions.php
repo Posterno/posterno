@@ -272,6 +272,9 @@ function pno_install_registration_fields() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
+
+		print_r( new PNO_Registration_Field( 223 ) );
+
 		wp_die();
 	}
 
