@@ -43,15 +43,17 @@
 							<span class="dashicons dashicons-menu"></span>
 						</td>
 						<td>
-							WordCamp Metropolis
+							<strong>{{field.name}}</strong>
 						</td>
-						<td></td>
+						<td>
+							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
+						</td>
 						<td class="column-primary" data-colname="Event">
 							2020-01-01
 						</td>
 						<td>
-							<a href="#" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#" class="button error"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
+							<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.title )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
@@ -148,7 +150,14 @@ export default {
 
 			})
 
-		}
+		},
+
+		/**
+		 * Determine if the field is a required one or not.
+		 */
+		isRequired( is_required ) {
+			return is_required === true ? true : false
+		},
 
 	}
 }

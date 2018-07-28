@@ -135,7 +135,44 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			$post_data['required'] = (bool) $field->is_required();
 		}
 
-		return rest_ensure_response( $post_data );
+		$response = rest_ensure_response( $post_data );
+		$response->add_links( $this->prepare_links( $field, $request ) );
+
+		return rest_ensure_response( $response );
+	}
+
+	/**
+	 * Prepare links for the request.
+	 *
+	 * @param PNO_Registration_Field         $object  Object data.
+	 * @param WP_REST_Request $request Request object.
+	 * @return array                   Links for the given post.
+	 */
+	protected function prepare_links( $object, $request ) {
+		$links = array(
+			'self'       => array(
+				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_id() ) ),
+			),
+			'collection' => array(
+				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ),
+			),
+		);
+
+		if ( current_user_can( 'manage_options' ) ) {
+			$admin_url = admin_url( 'post.php' );
+			$admin_url = add_query_arg(
+				[
+					'post'   => $object->get_id(),
+					'action' => 'edit',
+				], $admin_url
+			);
+
+			$links['admin'] = array(
+				'href' => $admin_url,
+			);
+		}
+
+		return $links;
 	}
 
 	/**

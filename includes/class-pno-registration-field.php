@@ -102,7 +102,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 
 			$type = 'text';
 
-			switch ( $this->default ) {
+			switch ( $this->meta ) {
 				case 'password':
 					$type = 'password';
 					break;
