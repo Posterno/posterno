@@ -23,6 +23,7 @@
 
 						<label for="field-profile"><span>{{labels.modal.field_profile}}</span></label>
 						<select name="field-profile" id="field-profile" v-model="profile_field_id">
+							<option value="">{{labels.modal.field_select}}</option>
 							<option v-for="(field, id) in fields" :key="id" :value="field.id">{{field.name}}</option>
 						</select>
 						<p>{{labels.modal.field_profile_description}}</p>

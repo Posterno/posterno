@@ -70,6 +70,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'delete_message'            => esc_html__( 'Are you sure you want to delete this field? This action is irreversible.' ),
 				'field_profile'             => esc_html__( 'Map registration field to profile field:' ),
 				'field_profile_description' => esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ),
+				'field_select'              => esc_html__( 'Select a field...' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 			'upsells'             => [
