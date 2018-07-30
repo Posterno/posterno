@@ -269,8 +269,8 @@ class PNO_Custom_Fields {
 								'relation' => 'AND',
 								array(
 									'field'   => 'field_is_default',
-									'value'   => [ 'email' ],
-									'compare' => 'NOT IN',
+									'value'   => [ 'username', 'password' ],
+									'compare' => 'IN',
 								),
 							)
 						)
