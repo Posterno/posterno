@@ -20,10 +20,15 @@
 			</ul>
 		</h1>
 
+		<v-dialog/>
+		<modals-container/>
+
 		<div id="registration-form-editor-wrapper" class="tables-wrapper">
 
 			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
 			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
+
+			<wp-button type="primary" @click="showAddNewModal()">{{labels.registration.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
@@ -87,6 +92,7 @@ import qs from 'qs'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
 import _find from 'lodash.find'
+import AddNewModal from '../modals/add-new-registration-field'
 
 export default {
 	name: 'registration-editor',
@@ -178,7 +184,19 @@ export default {
 				foundRole = roles.label
 			}
 			return foundRole
-		}
+		},
+
+		/**
+		 * Displays the add new profile field modal.
+		 */
+		showAddNewModal() {
+
+			this.$modal.show( AddNewModal, {
+				type: 'registration',
+				priority: this.fields.length
+			},{ height: '320px' })
+
+		},
 
 	}
 }

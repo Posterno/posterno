@@ -46,6 +46,7 @@ function pno_get_custom_fields_editor_js_vars() {
 			'registration'        => [
 				'title'       => esc_html__( 'Posterno registration form editor' ),
 				'description' => sprintf( __( 'Customize the registration form to collect information about your members during signup. Use the %s extension to create different forms per user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
+				'add_new'     => esc_html__( 'Add new registration field' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),
@@ -63,10 +64,12 @@ function pno_get_custom_fields_editor_js_vars() {
 				],
 			],
 			'modal'               => [
-				'field_name'      => esc_html__( 'New field name:' ),
-				'field_type'      => esc_html__( 'Select field type:' ),
-				'about_to_delete' => esc_html__( 'You are about to delete the field:' ),
-				'delete_message'  => esc_html__( 'Are you sure you want to delete this field? This action is irreversible.' ),
+				'field_name'                => esc_html__( 'New field name:' ),
+				'field_type'                => esc_html__( 'Select field type:' ),
+				'about_to_delete'           => esc_html__( 'You are about to delete the field:' ),
+				'delete_message'            => esc_html__( 'Are you sure you want to delete this field? This action is irreversible.' ),
+				'field_profile'             => esc_html__( 'Map registration field to profile field:' ),
+				'field_profile_description' => esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 			'upsells'             => [
