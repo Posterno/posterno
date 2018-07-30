@@ -149,4 +149,83 @@ class PNO_Registration_Field extends PNO_Field_Object {
 		return $this->role;
 	}
 
+	/**
+	 * Create a new registration field and store it into the database.
+	 *
+	 * @return mixed
+	 */
+	public function create() {
+
+		$args = array(
+			'name'             => isset( $this->name ) ? $this->name : '',
+			'meta'             => isset( $this->meta ) ? $this->meta : '',
+			'priority'         => isset( $this->priority ) ? $this->priority : false,
+			'default'          => isset( $this->default ) ? $this->default : false,
+			'type'             => isset( $this->type ) && ! empty( $this->type ) ? $this->type : 'text',
+			'label'            => isset( $this->label ) ? $this->label : '',
+			'description'      => isset( $this->description ) ? $this->description : '',
+			'placeholder'      => isset( $this->placeholder ) ? $this->placeholder : '',
+			'required'         => isset( $this->required ) ? $this->required : false,
+			'profile_field_id' => isset( $this->profile_field_id ) ? $this->profile_field_id : false,
+		);
+
+		if ( empty( $args['name'] ) ) {
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+		}
+
+		if ( empty( $args['profile_field_id'] ) ) {
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'profile_field_od' ) );
+		}
+
+		$field_args = [
+			'post_type'   => $this->post_type,
+			'post_title'  => $args['name'],
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $field_args );
+
+		if ( ! is_wp_error( $field_id ) ) {
+			$this->id = $field_id;
+			foreach ( $args as $key => $value ) {
+				if ( ! empty( $value ) ) {
+					$this->update_meta( $key, $value );
+				}
+			}
+			$this->setup_field( $this->id );
+		}
+
+		return $this->id;
+
+	}
+
+	/**
+	 * Build a registration field meta array.
+	 *
+	 * @param array $args registration field meta.
+	 * @return mixed false if something was wrong, array containing sanitized settings.
+	 */
+	private function build_meta( $args = [] ) {
+
+		if ( ! is_array( $args ) || array() === $args ) {
+			return false;
+		}
+
+		$meta = [
+			'name'             => isset( $args['name'] ) ? $args['name'] : '',
+			'meta'             => isset( $args['meta'] ) ? $args['meta'] : '',
+			'priority'         => isset( $args['priority'] ) ? $args['priority'] : 0,
+			'default'          => isset( $args['default'] ) ? $args['default'] : false,
+			'type'             => isset( $args['type'] ) ? $args['type'] : 'text',
+			'label'            => isset( $args['label'] ) ? $args['label'] : '',
+			'description'      => isset( $args['description'] ) ? $args['description'] : '',
+			'placeholder'      => isset( $args['placeholder'] ) ? $args['placeholder'] : '',
+			'required'         => isset( $args['required'] ) ? $args['required'] : false,
+			'profile_field_id' => isset( $args['profile_field_id'] ) ? $args['profile_field_id'] : false,
+		];
+
+		return $meta;
+
+	}
+
 }

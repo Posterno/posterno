@@ -14,91 +14,7 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-class PNO_Profile_Field {
-
-	/**
-	 * Field ID.
-	 *
-	 * @access protected
-	 * @var int
-	 */
-	protected $id = 0;
-
-	/**
-	 * Field meta key.
-	 *
-	 * @access protected
-	 * @var int
-	 */
-	protected $meta = null;
-
-	/**
-	 * Priority order.
-	 *
-	 * @access protected
-	 * @var int
-	 */
-	protected $priority = 0;
-
-	/**
-	 * Wether the field is a default field or not.
-	 *
-	 * @var boolean
-	 */
-	protected $default = false;
-
-	/**
-	 * The field type.
-	 *
-	 * @var boolean
-	 */
-	protected $type = false;
-
-	/**
-	 * The nicename of the field type.
-	 *
-	 * @var string
-	 */
-	protected $type_nicename = null;
-
-	/**
-	 * Field Name.
-	 *
-	 * @access protected
-	 * @var string
-	 */
-	protected $name = null;
-
-	/**
-	 * Field form label.
-	 *
-	 * @access protected
-	 * @var string
-	 */
-	protected $label = null;
-
-	/**
-	 * Field description.
-	 *
-	 * @access protected
-	 * @var string
-	 */
-	protected $description = null;
-
-	/**
-	 * Field placeholder.
-	 *
-	 * @access protected
-	 * @var string
-	 */
-	protected $placeholder = null;
-
-	/**
-	 * Determine wether the field is required or not.
-	 *
-	 * @var boolean
-	 */
-	protected $required = false;
+class PNO_Profile_Field extends PNO_Field_Object {
 
 	/**
 	 * Determine wether the field is read only or not.
@@ -136,13 +52,11 @@ class PNO_Profile_Field {
 	protected $file_size = false;
 
 	/**
-	 * Array of items that have changed since the last save() was run
-	 * This is for internal use, to allow fewer db calls to be run.
+	 * The post type for this field type.
 	 *
-	 * @since 0.1.0
-	 * @var array
+	 * @var string
 	 */
-	private $pending;
+	public $post_type = 'pno_users_fields';
 
 	/**
 	 * Constructor.
@@ -159,98 +73,6 @@ class PNO_Profile_Field {
 
 		if ( $field ) {
 			$this->setup_field( $field );
-		} else {
-			return false;
-		}
-
-	}
-
-	/**
-	 * Magic __get function to dispatch a call to retrieve a private property.
-	 *
-	 * @param string $key
-	 * @return void
-	 */
-	public function __get( $key ) {
-		if ( method_exists( $this, 'get_' . $key ) ) {
-			return call_user_func( array( $this, 'get_' . $key ) );
-		} else {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), $key ) );
-		}
-	}
-
-	/**
-	 * Magic __set method to dispatch a call to update a protected property.
-	 *
-	 * @see set()
-	 *
-	 * @param string $key   Property name.
-	 * @param mixed  $value Property value.
-	 */
-	public function __set( $key, $value ) {
-
-		$key = sanitize_key( $key );
-
-		// Only real properties can be saved.
-		$keys = array_keys( get_class_vars( get_called_class() ) );
-
-		if ( ! in_array( $key, $keys ) ) {
-			return false;
-		}
-
-		$this->pending[ $key ] = $value;
-
-		// Dispatch to setter method if value needs to be sanitized.
-		if ( method_exists( $this, 'set_' . $key ) ) {
-			return call_user_func( array( $this, 'set_' . $key ), $key, $value );
-		} else {
-			$this->{$key} = $value;
-		}
-
-	}
-
-	/**
-	 * Magic __isset method to allow empty checks on protected elements
-	 *
-	 * @param string $key The attribute to get
-	 * @return boolean If the item is set or not
-	 */
-	public function __isset( $key ) {
-		if ( property_exists( $this, $key ) ) {
-			return false === empty( $this->{$key} );
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Verify if the field exists into the database.
-	 *
-	 * @param int $field_id
-	 * @return void
-	 */
-	private function get_field( $field_id ) {
-
-		if ( ! $field_id ) {
-			return;
-		}
-
-		$field_args = [
-			'post_type'              => 'pno_users_fields',
-			'p'                      => absint( $field_id ),
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'fields'                 => 'ids',
-		];
-
-		$field       = new WP_Query( $field_args );
-		$found_field = $field->get_posts();
-
-		wp_reset_postdata();
-
-		if ( is_array( $found_field ) && ! empty( $found_field ) && isset( $found_field[0] ) ) {
-			return $field_id;
 		} else {
 			return false;
 		}
@@ -312,96 +134,6 @@ class PNO_Profile_Field {
 	}
 
 	/**
-	 * Get the ID of the field.
-	 *
-	 * @return string
-	 */
-	public function get_id() {
-		return $this->id;
-	}
-
-	/**
-	 * Get the meta key of the field. The key is used to store data for profiles.
-	 *
-	 * @return string
-	 */
-	public function get_meta() {
-		return $this->meta;
-	}
-
-	/**
-	 * Wether or not the field is a default field.
-	 *
-	 * @return boolean
-	 */
-	public function is_default_field() {
-		return (bool) $this->default;
-	}
-
-	/**
-	 * Get the field type. The type is used to load the appropriate field template within forms.
-	 *
-	 * @return string
-	 */
-	public function get_type() {
-		return $this->type;
-	}
-
-	/**
-	 * Get the localized field type human readable name.
-	 *
-	 * @return string
-	 */
-	public function get_type_nicename() {
-		return $this->type_nicename;
-	}
-
-	/**
-	 * Get the name of the field.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return $this->name;
-	}
-
-	/**
-	 * Get the label of the field. If no label is specified, then use the field title.
-	 *
-	 * @return string
-	 */
-	public function get_label() {
-		return $this->label;
-	}
-
-	/**
-	 * Get the description of the field for the forms.
-	 *
-	 * @return mixed
-	 */
-	public function get_description() {
-		return $this->description;
-	}
-
-	/**
-	 * Get a placeholder for the field within forms if specified.
-	 *
-	 * @return mixed
-	 */
-	public function get_placeholder() {
-		return $this->placeholder;
-	}
-
-	/**
-	 * Flag to detect if the field is required or not.
-	 *
-	 * @return boolean
-	 */
-	public function is_required() {
-		return (bool) $this->required;
-	}
-
-	/**
 	 * Flag to detect if the field is read only or not.
 	 *
 	 * @return boolean
@@ -417,15 +149,6 @@ class PNO_Profile_Field {
 	 */
 	public function is_admin_only() {
 		return (bool) $this->admin_only;
-	}
-
-	/**
-	 * Get the priority set for the field.
-	 *
-	 * @return void
-	 */
-	public function get_priority() {
-		return absint( $this->priority );
 	}
 
 	/**
@@ -487,7 +210,7 @@ class PNO_Profile_Field {
 		}
 
 		$field_args = [
-			'post_type'   => 'pno_users_fields',
+			'post_type'   => $this->post_type,
 			'post_title'  => $args['name'],
 			'post_status' => 'publish',
 		];
@@ -505,78 +228,6 @@ class PNO_Profile_Field {
 		}
 
 		return $this->id;
-
-	}
-
-	/**
-	 * Update a meta setting value related to this field.
-	 *
-	 * @param string $key
-	 * @param string $value
-	 * @return void
-	 */
-	public function update_meta( $key = '', $value = '' ) {
-
-		if ( empty( $key ) || '' == $key ) {
-			return false;
-		}
-
-		switch ( $key ) {
-			case 'required':
-			case 'read_only':
-			case 'admin_only':
-				$key = 'field_is_' . $key;
-				break;
-			case 'meta':
-				$key = 'field_meta_key';
-				break;
-			default:
-				$key = 'field_' . $key;
-				break;
-		}
-
-		return carbon_set_post_meta( $this->id, $key, $value );
-
-	}
-
-	/**
-	 * Once object variables has been set, an update is needed to persist them to the database.
-	 *
-	 * @return bool True if the save was successful, false if it failed or wasn't needed.
-	 */
-	public function save() {
-
-		$saved = false;
-
-		if ( empty( $this->id ) ) {
-			$field_id = $this->create();
-			if ( false === $field_id ) {
-				$saved = false;
-			} else {
-				$this->id = $field_id;
-			}
-		}
-
-		if ( ! empty( $this->pending ) ) {
-			foreach ( $this->pending as $key => $value ) {
-				$this->update_meta( $key, $value );
-				if ( 'name' == $key && ! empty( $value ) ) {
-					wp_update_post(
-						array(
-							'ID'         => $this->id,
-							'post_title' => $value,
-						)
-					);
-				}
-			}
-			$saved = true;
-		}
-
-		if ( true == $saved ) {
-			$this->setup_field( WP_Post::get_instance( $this->id ) );
-		}
-
-		return $saved;
 
 	}
 
@@ -607,50 +258,6 @@ class PNO_Profile_Field {
 		];
 
 		return $meta;
-
-	}
-
-	/**
-	 * Update an existing profile field in the database.
-	 *
-	 * @param array $args field details.
-	 * @return void mixed bool|int false if data isn't passed and class not instantiated for creation, or post ID for the new field id.
-	 */
-	public function update( $args = [] ) {
-
-		$meta = $this->build_meta( $args );
-
-		if ( isset( $meta['name'] ) && ! empty( $meta['name'] ) ) {
-			wp_update_post(
-				array(
-					'ID'         => $this->id,
-					'post_title' => $meta['name'],
-				)
-			);
-		}
-
-		foreach ( $meta as $key => $value ) {
-			$this->update_meta( $key, $value );
-		}
-
-		$this->setup_field( WP_Post::get_instance( $this->id ) );
-
-		return $this->id;
-
-	}
-
-	/**
-	 * Delete the profile field from the database.
-	 *
-	 * @return mixed The post object (if it was deleted or moved to the trash successfully) or false (failure).
-	 */
-	public function delete() {
-
-		if ( $this->id > 0 ) {
-			return wp_delete_post( $this->id, true );
-		} else {
-			return false;
-		}
 
 	}
 

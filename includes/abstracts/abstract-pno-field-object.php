@@ -302,4 +302,130 @@ abstract class PNO_Field_Object {
 		return absint( $this->priority );
 	}
 
+	/**
+	 * Sanitize the value for priority submission.
+	 *
+	 * @param integer $priority
+	 * @return void
+	 */
+	public function set_priority( $key, $value ) {
+		$this->priority = absint( $value );
+	}
+
+	/**
+	 * Once object variables has been set, an update is needed to persist them to the database.
+	 *
+	 * @return bool True if the save was successful, false if it failed or wasn't needed.
+	 */
+	public function save() {
+
+		$saved = false;
+
+		if ( empty( $this->id ) ) {
+			$field_id = $this->create();
+			if ( false === $field_id ) {
+				$saved = false;
+			} else {
+				$this->id = $field_id;
+			}
+		}
+
+		if ( ! empty( $this->pending ) ) {
+			foreach ( $this->pending as $key => $value ) {
+				$this->update_meta( $key, $value );
+				if ( 'name' == $key && ! empty( $value ) ) {
+					wp_update_post(
+						array(
+							'ID'         => $this->id,
+							'post_title' => $value,
+						)
+					);
+				}
+			}
+			$saved = true;
+		}
+
+		if ( true == $saved ) {
+			$this->setup_field( WP_Post::get_instance( $this->id ) );
+		}
+
+		return $saved;
+
+	}
+
+	/**
+	 * Update a meta setting value related to this field.
+	 *
+	 * @param string $key
+	 * @param string $value
+	 * @return void
+	 */
+	public function update_meta( $key = '', $value = '' ) {
+
+		if ( empty( $key ) || '' == $key ) {
+			return false;
+		}
+
+		switch ( $key ) {
+			case 'required':
+			case 'read_only':
+			case 'admin_only':
+				$key = 'field_is_' . $key;
+				break;
+			case 'meta':
+				$key = 'field_meta_key';
+				break;
+			default:
+				$key = 'field_' . $key;
+				break;
+		}
+
+		return carbon_set_post_meta( $this->id, $key, $value );
+
+	}
+
+	/**
+	 * Update an existing field in the database.
+	 *
+	 * @param array $args field details.
+	 * @return void mixed bool|int false if data isn't passed and class not instantiated for creation, or post ID for the new field id.
+	 */
+	public function update( $args = [] ) {
+
+		$meta = $this->build_meta( $args );
+
+		if ( isset( $meta['name'] ) && ! empty( $meta['name'] ) ) {
+			wp_update_post(
+				array(
+					'ID'         => $this->id,
+					'post_title' => $meta['name'],
+				)
+			);
+		}
+
+		foreach ( $meta as $key => $value ) {
+			$this->update_meta( $key, $value );
+		}
+
+		$this->setup_field( WP_Post::get_instance( $this->id ) );
+
+		return $this->id;
+
+	}
+
+	/**
+	 * Delete the field from the database.
+	 *
+	 * @return mixed The post object (if it was deleted or moved to the trash successfully) or false (failure).
+	 */
+	public function delete() {
+
+		if ( $this->id > 0 ) {
+			return wp_delete_post( $this->id, true );
+		} else {
+			return false;
+		}
+
+	}
+
 }
