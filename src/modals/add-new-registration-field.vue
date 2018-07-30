@@ -139,6 +139,7 @@ export default {
 					},
 					params: {
 						name:  this.field_name,
+						profile_field_id: this.profile_field_id,
 					}
 				}
 			)
