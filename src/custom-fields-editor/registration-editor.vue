@@ -49,7 +49,8 @@
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
 						</td>
 						<td class="column-primary" data-colname="Event">
-							2020-01-01
+							<code v-if="field.role" v-html="getRole( field.role )"></code>
+							<code v-else>{{labels.table.roles.all}}</code>
 						</td>
 						<td>
 							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
@@ -80,6 +81,7 @@ import axios from 'axios'
 import qs from 'qs'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
+import _find from 'lodash.find'
 
 export default {
 	name: 'registration-editor',
@@ -90,6 +92,7 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
+			roles:         pno_fields_editor.roles,
 
 			// App status.
 			loading:       true,
@@ -158,6 +161,18 @@ export default {
 		isRequired( is_required ) {
 			return is_required === true ? true : false
 		},
+
+		/**
+		 * Retrieve the role name from the stored object.
+		 */
+		getRole( role ) {
+			var roles = _find( this.roles, { 'value': role } )
+			let foundRole = ''
+			if ( roles.label !== undefined ) {
+				foundRole = roles.label
+			}
+			return foundRole
+		}
 
 	}
 }

@@ -134,6 +134,9 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 		if ( isset( $schema['properties']['required'] ) ) {
 			$post_data['required'] = (bool) $field->is_required();
 		}
+		if ( isset( $schema['properties']['role'] ) ) {
+			$post_data['role'] = (bool) $field->get_role();
+		}
 
 		$response = rest_ensure_response( $post_data );
 		$response->add_links( $this->prepare_links( $field, $request ) );
@@ -240,6 +243,11 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 					'description' => __( 'Flag to determine if the field is required when displayed within forms.' ),
 					'type'        => 'boolean',
 					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
+				'role' => array(
+					'description' => __( 'User role assigned to the field.' ),
+					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 			),

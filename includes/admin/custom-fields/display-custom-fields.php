@@ -26,6 +26,7 @@ function pno_get_custom_fields_editor_js_vars() {
 		'delete_field_nonce' => wp_create_nonce( 'wp_rest' ),
 		'trashed'            => isset( $_GET['trashed'] ) ? true : false,
 		'field_types'        => pno_get_registered_field_types(),
+		'roles'              => pno_get_roles( true ),
 		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),
 			'addons'              => esc_html__( 'View Addons' ),
@@ -57,6 +58,9 @@ function pno_get_custom_fields_editor_js_vars() {
 				'edit'      => esc_html__( 'Edit field' ),
 				'role'      => esc_html__( 'User role' ),
 				'delete'    => esc_html__( 'Delete field' ),
+				'roles'     => [
+					'all' => esc_html__( 'All user roles' ),
+				],
 			],
 			'modal'               => [
 				'field_name'      => esc_html__( 'New field name:' ),

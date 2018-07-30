@@ -28,6 +28,13 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	protected $profile_field_id = 0;
 
 	/**
+	 * Role assigned to this field.
+	 *
+	 * @var mixed
+	 */
+	protected $role = false;
+
+	/**
 	 * The post type for this field type.
 	 *
 	 * @var string
@@ -120,6 +127,26 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			}
 		}
 
+		/**
+		 * Allows developers to extend the setup process of
+		 * registration fields.
+		 *
+		 * @param object $this the current field object.
+		 */
+		do_action( 'pno_setup_registration_field', $this );
+
+	}
+
+	/**
+	 * Retrieve the role assigned to this field.
+	 *
+	 * By default in the free version,
+	 * all custom registration fields are visible to all users.
+	 *
+	 * @return mixed
+	 */
+	public function get_role() {
+		return $this->role;
 	}
 
 }
