@@ -38,9 +38,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="no-items" v-if="! loading">
+					<tr class="no-items" v-if="! loading && upsells.enabled.registration">
 						<td class="colspanchange inline-notice-container" colspan="5">
-							<wp-notice type="info" alternative class="inline-table-notice" v-html="labels.upsell.registration"></wp-notice>
+							<wp-notice type="info" alternative class="inline-table-notice" v-html="labels.upsells.registration"></wp-notice>
 						</td>
 					</tr>
 					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
@@ -98,6 +98,7 @@ export default {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
 			roles:         pno_fields_editor.roles,
+			upsells:       pno_fields_editor.upsells,
 
 			// App status.
 			loading:       true,
