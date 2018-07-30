@@ -233,4 +233,12 @@ export default {
 	}
 }
 
+.inline-notice-container {
+	padding: 0 !important;
+}
+.inline-table-notice {
+	margin: 0 !important;
+	padding: 1em 1em !important;
+}
+
 </style>

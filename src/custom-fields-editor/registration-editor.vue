@@ -38,6 +38,11 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr class="no-items" v-if="! loading">
+						<td class="colspanchange inline-notice-container" colspan="5">
+							<wp-notice type="info" alternative class="inline-table-notice" v-html="labels.upsell.registration"></wp-notice>
+						</td>
+					</tr>
 					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
 						<td class="order-anchor align-middle hidden-xs-only">
 							<span class="dashicons dashicons-menu"></span>

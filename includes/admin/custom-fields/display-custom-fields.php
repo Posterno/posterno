@@ -69,6 +69,9 @@ function pno_get_custom_fields_editor_js_vars() {
 				'delete_message'  => esc_html__( 'Are you sure you want to delete this field? This action is irreversible.' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
+			'upsell' => [
+				'registration' => sprintf( __( 'Use the %s extension to create new registration forms for each user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
+			],
 		],
 	];
 
