@@ -139,6 +139,11 @@ function pno_after_custom_fields_post_title() {
 		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields#/profile-fields' );
 		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . $admin_url . '">' . esc_html__( 'All profile fields' ) . '</a>';
 
+	} elseif ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_signup_fields' ) {
+
+		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields#/registration-form' );
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . $admin_url . '">' . esc_html__( 'All registration form fields' ) . '</a>';
+
 	}
 
 }
