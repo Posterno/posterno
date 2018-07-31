@@ -236,6 +236,8 @@ class PNO_Custom_Fields {
 
 					Field::make( 'hidden', 'field_is_default' ),
 					Field::make( 'hidden', 'field_priority' ),
+					Field::make( 'text', 'field_profile_field_id', esc_html__( 'Profile field id' ) )
+						->set_help_text( esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ) ),
 
 					Field::make( 'html', 'psw_information_text' )
 						->set_conditional_logic(
