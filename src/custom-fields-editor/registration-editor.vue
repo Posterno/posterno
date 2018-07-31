@@ -119,6 +119,10 @@ export default {
 	},
 	mounted() {
 		this.loadFields()
+
+		if ( pno_fields_editor.trashed ) {
+			this.success = true
+		}
 	},
 	methods: {
 
