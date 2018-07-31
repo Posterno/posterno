@@ -45,7 +45,7 @@ function pno_is_default_field_notice() {
 
 			if ( $is_default_field ) {
 
-				$message = esc_html__( 'This is a default field. Default fields cannot be deleted.' );
+				$message = esc_html__( 'This is a default field, default fields cannot be deleted.' );
 
 				posterno()->admin_notices->register_notice( 'field_is_default_' . $post->ID, 'info', $message );
 
