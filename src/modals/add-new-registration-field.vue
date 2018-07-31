@@ -19,10 +19,10 @@
 					<form action="#" method="post" @submit.prevent="createField">
 
 						<label for="field-name"><span>{{labels.modal.field_name}}</span></label>
-						<input type="text" name="field-name" id="field-name" value="" v-model="field_name">
+						<input type="text" name="field-name" id="field-name" value="" v-model="field_name" :disabled="loading">
 
 						<label for="field-profile"><span>{{labels.modal.field_profile}}</span></label>
-						<select name="field-profile" id="field-profile" v-model="profile_field_id">
+						<select name="field-profile" id="field-profile" v-model="profile_field_id" :disabled="loading">
 							<option value="">{{labels.modal.field_select}}</option>
 							<option v-for="(field, id) in fields" :key="id" :value="field.id">{{field.name}}</option>
 						</select>
