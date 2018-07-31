@@ -82,6 +82,46 @@ function pno_get_registration_fields() {
 		);
 	}
 
+	// Now inject fields data from the database and add new fields if any.
+	$fields_query_args = [
+		'post_type'              => 'pno_signup_fields',
+		'posts_per_page'         => 100,
+		'nopaging'               => true,
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+		'fields'                 => 'ids',
+		'post_status'            => 'publish',
+	];
+
+	$fields_query = new WP_Query( $fields_query_args );
+
+	if ( $fields_query->have_posts() ) {
+
+		while ( $fields_query->have_posts() ) {
+
+			$fields_query->the_post();
+
+			$field = new PNO_Registration_Field( get_the_ID() );
+
+			if ( $field instanceof PNO_Registration_Field && $field->get_id() > 0 ) {
+
+				if ( ! empty( $field->is_default_field() ) ) {
+
+					$fields[ $field->get_meta() ]['label']       = $field->get_label();
+					$fields[ $field->get_meta() ]['description'] = $field->get_description();
+					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
+
+					if ( $field->get_priority() ) {
+						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+					}
+				}
+			}
+		}
+
+		wp_reset_postdata();
+
+	}
+
 	/**
 	 * Allows developers to register or deregister fields for the registration form.
 	 *
@@ -225,6 +265,9 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 				}
 			}
 		}
+
+		wp_reset_postdata();
+
 	}
 
 	// Load user's related values within the fields.
