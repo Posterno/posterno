@@ -100,7 +100,7 @@ function pno_hide_custom_fields_pt_settings() {
 
 	$post_types = array(
 		'pno_users_fields',
-		'pno_signup_fields'
+		'pno_signup_fields',
 	);
 
 	if ( in_array( $post_type, $post_types ) ) {
@@ -157,7 +157,12 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 
 		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&trashed=true&page=posterno-custom-fields#/profile-fields' ) );
 		exit;
+	} elseif ( get_post_type( $post_id ) == 'pno_signup_fields' ) {
+		wp_delete_post( $post_id, true );
+
+		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&trashed=true&page=posterno-custom-fields#/registration-form' ) );
+		exit;
 	}
 
 }
-//add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
+add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
