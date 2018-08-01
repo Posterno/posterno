@@ -125,6 +125,10 @@ function pno_get_registration_fields() {
 						'required'    => $field->is_required(),
 						'priority'    => $field->get_priority(),
 					];
+
+					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
+					}
 				}
 			}
 		}
@@ -420,17 +424,8 @@ function pno_is_default_profile_field( $key ) {
 
 	$default = false;
 
-	switch ( $key ) {
-		case 'avatar':
-		case 'first_name':
-		case 'last_name':
-		case 'email':
-		case 'website':
-		case 'description':
-		case 'username':
-		case 'password':
-			$default = true;
-			break;
+	if ( in_array( $key, pno_get_registered_default_meta_keys() ) ) {
+		$default = true;
 	}
 
 	return apply_filters( 'pno_is_default_field', (bool) $default );

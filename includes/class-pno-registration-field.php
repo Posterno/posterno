@@ -134,6 +134,10 @@ class PNO_Registration_Field extends PNO_Field_Object {
 				$this->type          = $profile_field->get_type();
 				$this->type_nicename = $profile_field->get_type_nicename();
 				$this->meta          = $profile_field->get_meta();
+
+				if ( is_array( $profile_field->get_selectable_options() ) && ! empty( $profile_field->get_selectable_options() ) ) {
+					$this->selectable_options = $profile_field->get_selectable_options();
+				}
 			}
 		}
 

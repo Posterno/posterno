@@ -38,13 +38,6 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	protected $custom_classes = false;
 
 	/**
-	 * Selectable options for dropdown fields.
-	 *
-	 * @var mixed
-	 */
-	protected $selectable_options = false;
-
-	/**
 	 * Max file size for files uploaded through this field.
 	 *
 	 * @var mixed
@@ -158,15 +151,6 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	 */
 	public function get_custom_classes() {
 		return $this->custom_classes;
-	}
-
-	/**
-	 * Retrieve selectable options for this field if needed.
-	 *
-	 * @return mixed
-	 */
-	public function get_selectable_options() {
-		return $this->selectable_options;
 	}
 
 	/**

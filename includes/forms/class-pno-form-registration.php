@@ -268,9 +268,24 @@ class PNO_Form_Registration extends PNO_Form {
 			if ( pno_get_option( 'allowed_roles' ) && isset( $values['registration']['role'] ) ) {
 				$user = new WP_User( $new_user_id );
 				$user->set_role( $values['registration']['role'] );
-			} else {
-				$user = new WP_User( $new_user_id );
-				$user->set_role( $this->role );
+			}
+
+			// Now process all other custom fields.
+			foreach ( $values['registration'] as $key => $value ) {
+				if ( $key == 'email' || $key == 'password' ) {
+					continue;
+				}
+				if ( pno_is_default_profile_field( $key ) ) {
+					update_user_meta( $new_user_id, $key, $value );
+				} elseif ( $key == 'website' ) {
+					update_user_meta( $new_user_id, 'user_url', $value );
+				} else {
+					if ( $value == '1' ) {
+						carbon_set_user_meta( $new_user_id, $key, true );
+					} else {
+						carbon_set_user_meta( $new_user_id, $key, $value );
+					}
+				}
 			}
 
 			// Allow developers to extend signup process.

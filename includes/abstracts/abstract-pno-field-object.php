@@ -98,6 +98,13 @@ abstract class PNO_Field_Object {
 	protected $required = false;
 
 	/**
+	 * Selectable options for dropdown fields.
+	 *
+	 * @var mixed
+	 */
+	protected $selectable_options = false;
+
+	/**
 	 * Array of items that have changed since the last save() was run
 	 * This is for internal use, to allow fewer db calls to be run.
 	 *
@@ -300,6 +307,15 @@ abstract class PNO_Field_Object {
 	 */
 	public function get_priority() {
 		return absint( $this->priority );
+	}
+
+	/**
+	 * Retrieve selectable options for this field if needed.
+	 *
+	 * @return mixed
+	 */
+	public function get_selectable_options() {
+		return $this->selectable_options;
 	}
 
 	/**
