@@ -80,12 +80,16 @@ function pno_get_custom_fields_editor_js_vars() {
 					'description' => sprintf( __( 'Use the %s extension to create new additional forms for user registrations, each with different pre-defined fields.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Multiple registration forms"' ) . '</a>' ),
 					'url'         => 'https://posterno.com',
 				],
+				'profile' => [
+					'description' => sprintf( __( 'Use the %s extension to restrict fields by user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
+				],
 			],
 		],
 		'upsells'            => [
 			'enabled' => apply_filters(
 				'pno_custom_fields_upsells', [
 					'registration' => true,
+					'profile'      => true,
 				]
 			),
 		],
