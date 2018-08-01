@@ -83,6 +83,11 @@ function pno_get_registration_fields() {
 		);
 	}
 
+	// Remove username field if the option is enabled.
+	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
+		unset( $fields['username'] );
+	}
+
 	// Now inject fields data from the database and add new fields if any.
 	$fields_query_args = [
 		'post_type'              => 'pno_signup_fields',
