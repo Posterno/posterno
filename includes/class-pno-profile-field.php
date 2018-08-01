@@ -274,7 +274,10 @@ class PNO_Profile_Field extends PNO_Field_Object {
 
 			if ( is_array( $registration_query->get_posts() ) && ! empty( $registration_query->get_posts() ) ) {
 				foreach ( $registration_query->get_posts() as $registration_field_id ) {
-					wp_delete_post( $registration_field_id, true );
+					$registration_field = new PNO_Registration_Field( $registration_field_id );
+					if ( $registration_field instanceof PNO_Registration_Field && $registration_field->get_id() > 0 ) {
+						$registration_field->delete();
+					}
 				}
 			}
 
