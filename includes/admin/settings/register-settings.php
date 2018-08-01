@@ -348,6 +348,11 @@ function pno_get_registered_settings() {
 				'description' => __( 'Enable this option to disable passwords within the registration form. A randomly generated password will be sent to the user.' ),
 				'type'        => 'checkbox',
 			],
+			'verify_password'                 => [
+				'label'       => __( 'Enable password confirmation:' ),
+				'description' => __( 'Enable this option to add a password confirmation field within the registration form.' ),
+				'type'        => 'checkbox',
+			],
 			'strong_passwords'                => [
 				'label'       => __( 'Require strong passwords:' ),
 				'description' => __( 'Enable this option to require strong passwords during registration.' ),

@@ -103,6 +103,7 @@ class PNO_Form_Registration extends PNO_Form {
 	 * @return mixed
 	 */
 	public function validate_password( $pass, $fields, $values, $form ) {
+
 		if ( $form == $this->form_name && isset( $values['registration']['password'] ) && pno_get_option( 'strong_passwords' ) ) {
 
 			$password_1      = $values['registration']['password'];
@@ -114,6 +115,17 @@ class PNO_Form_Registration extends PNO_Form {
 				return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.' ) );
 			}
 		}
+
+		if ( $form == $this->form_name && isset( $values['registration']['password'] ) && isset( $values['registration']['password_confirm'] ) && pno_get_option( 'verify_password' ) ) {
+
+			$password_1 = $values['registration']['password'];
+			$password_2 = $values['registration']['password_confirm'];
+
+			if ( $password_1 !== $password_2 ) {
+				return new WP_Error( 'password-validation-error', esc_html__( 'Passwords do not match.' ) );
+			}
+		}
+
 		return $pass;
 	}
 

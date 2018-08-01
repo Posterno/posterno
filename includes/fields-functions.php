@@ -83,6 +83,16 @@ function pno_get_registration_fields() {
 		);
 	}
 
+	// Add a password confirmation field.
+	if ( pno_get_option( 'verify_password' ) && ! pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
+		$fields['password_confirm'] = array(
+			'label'    => esc_html__( 'Confirm password' ),
+			'type'     => 'password',
+			'required' => true,
+			'priority' => $fields['password']['priority'] + 1,
+		);
+	}
+
 	// Remove username field if the option is enabled.
 	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
 		unset( $fields['username'] );
