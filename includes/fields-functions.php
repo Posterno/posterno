@@ -88,6 +88,11 @@ function pno_get_registration_fields() {
 		unset( $fields['username'] );
 	}
 
+	// Remove the password field if option enabled.
+	if ( pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
+		unset( $fields['password'] );
+	}
+
 	// Now inject fields data from the database and add new fields if any.
 	$fields_query_args = [
 		'post_type'              => 'pno_signup_fields',

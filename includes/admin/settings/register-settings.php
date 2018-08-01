@@ -343,6 +343,11 @@ function pno_get_registered_settings() {
 				'description' => __( 'Enable this option to disable the username field within the registration form. The email address will be used as username for the new user.' ),
 				'type'        => 'checkbox',
 			],
+			'disable_password'                => [
+				'label'       => __( 'Disable custom passwords during registration:' ),
+				'description' => __( 'Enable this option to disable passwords within the registration form. A randomly generated password will be sent to the user.' ),
+				'type'        => 'checkbox',
+			],
 			'strong_passwords'                => [
 				'label'       => __( 'Require strong passwords:' ),
 				'description' => __( 'Enable this option to require strong passwords during registration.' ),
@@ -402,7 +407,7 @@ function pno_get_registered_settings() {
 			],
 		],
 		'redirects'                 => [
-			'redirect_wp_login' => [
+			'redirect_wp_login'     => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Redirect wp-login to frontend' ),
 				'description' => esc_html__( 'Enable the option to redirect wp-login/wp-admin to the frontend login form.' ),
