@@ -72,7 +72,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	 * @param int $field_id
 	 * @return void
 	 */
-	private function setup_field( $field_id ) {
+	protected function setup_field( $field_id ) {
 
 		if ( null == $field_id ) {
 			return false;

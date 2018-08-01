@@ -298,6 +298,33 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 	}
 
 	/**
+	 * Updates the priority for each field.
+	 *
+	 * @param array $request
+	 * @return mixed
+	 */
+	public function update_priority( $request ) {
+
+		$fields = isset( $_POST['fields'] ) && is_array( $_POST['fields'] ) ? $_POST['fields'] : false;
+
+		if ( ! $fields ) {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while updating the order of the fields, please contact support.' ), 422 );
+		}
+
+		foreach ( $fields as $key => $field ) {
+			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
+			if ( $field_id ) {
+				$field = new PNO_Registration_Field( $field_id );
+				$field->__set( 'priority', absint( $key ) );
+				$field->save();
+			}
+		}
+
+		return rest_ensure_response( $fields );
+
+	}
+
+	/**
 	 * Get the registration field schema, conforming to JSON Schema.
 	 *
 	 * @param WP_REST_Request $request

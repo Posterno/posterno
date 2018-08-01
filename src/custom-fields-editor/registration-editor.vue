@@ -42,12 +42,7 @@
 						<th scope="col">{{labels.table.actions}}</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr class="no-items" v-if="! loading && upsells.enabled.registration">
-						<td class="colspanchange inline-notice-container" colspan="5">
-							<wp-notice type="info" alternative class="inline-table-notice" v-html="labels.upsells.registration"></wp-notice>
-						</td>
-					</tr>
+				<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
 					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
 						<td class="order-anchor align-middle hidden-xs-only">
 							<span class="dashicons dashicons-menu"></span>
@@ -77,7 +72,7 @@
 							<wp-spinner></wp-spinner>
 						</td>
 					</tr>
-				</tbody>
+				</draggable>
 			</table>
 
 		</div>
@@ -220,6 +215,46 @@ export default {
 					this.success = true
 				}
 			},{ height: '230px', width: '450px' })
+
+		},
+
+		onSortingEnd( event ) {
+
+			this.success = false
+			this.error   = false
+			this.loading = false
+			this.sorting = true
+
+			axios.post(
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/registration/update-priority',
+				qs.stringify( {
+					fields: this.fields
+				} ),
+				{
+					headers: {
+						'X-WP-Nonce': pno_fields_editor.nonce
+					}
+				}
+			)
+			.then( response => {
+				this.error   = false
+				this.sorting = false
+				this.loadFields()
+				this.success = true
+			})
+			.catch( e => {
+				this.loading = false
+				this.sorting = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
+				}
+
+			} );
 
 		}
 
