@@ -24,8 +24,11 @@
 		<modals-container/>
 
 		<div id="poststuff">
+
 			<wp-row :gutter="20">
+
 				<wp-col :span="18">
+
 					<div id="registration-form-editor-wrapper" class="tables-wrapper">
 
 						<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
@@ -74,13 +77,20 @@
 						</table>
 
 					</div>
+
 				</wp-col>
+
 				<wp-col :span="6">
-					<wp-metabox title="testing" closable>
-						<p>asdasdasdasd </p>
+
+					<wp-metabox :title="labels.upsells.registration.title" v-if="upsells.enabled.registration">
+						<p v-html="labels.upsells.registration.description"></p>
+						<a :href="labels.upsells.registration.url" class="button upsell-btn" target="_blank">{{labels.purchase_extension}}</a>
 					</wp-metabox>
+
 				</wp-col>
+
 			</wp-row>
+
 		</div>
 
 	</div>
@@ -253,11 +263,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-
-	#registration-form-editor-wrapper {
-		margin-top: 20px;
-	}
-
-</style>

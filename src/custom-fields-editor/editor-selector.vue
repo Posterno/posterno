@@ -241,4 +241,9 @@ export default {
 	padding: 1em 1em !important;
 }
 
+.upsell-btn {
+	display: block !important;
+	text-align: center;
+}
+
 </style>
