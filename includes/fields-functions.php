@@ -488,6 +488,23 @@ function pno_get_multi_options_field_types() {
 }
 
 /**
+ * Defines a list of default meta keys for fields that cannot be removed from the registration forms api.
+ *
+ * @return array
+ */
+function pno_get_registration_default_meta_keys() {
+
+	$keys = [
+		'username',
+		'email',
+		'password',
+	];
+
+	return apply_filters( 'pno_registration_default_meta_keys', $keys );
+
+}
+
+/**
  * Create an array of the selectable options of a field.
  *
  * @param array $options
