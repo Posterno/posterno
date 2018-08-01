@@ -82,7 +82,7 @@
 
 				<wp-col :span="6">
 
-					<wp-metabox :title="labels.upsells.registration.title" v-if="upsells.enabled.registration">
+					<wp-metabox :title="labels.upsells.registration.title" v-if="upsells.enabled.registration" class="upsell-metabox">
 						<p v-html="labels.upsells.registration.description"></p>
 						<a :href="labels.upsells.registration.url" class="button upsell-btn" target="_blank">{{labels.purchase_extension}}</a>
 					</wp-metabox>

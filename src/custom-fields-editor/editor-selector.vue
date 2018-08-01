@@ -246,4 +246,8 @@ export default {
 	text-align: center;
 }
 
+.upsell-metabox {
+	margin-top: 30px;
+}
+
 </style>
