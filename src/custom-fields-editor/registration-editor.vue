@@ -27,7 +27,7 @@
 
 			<wp-row :gutter="20">
 
-				<wp-col :span="18">
+				<wp-col :md="18" :xs="24">
 
 					<div id="registration-form-editor-wrapper" class="tables-wrapper">
 
@@ -80,7 +80,7 @@
 
 				</wp-col>
 
-				<wp-col :span="6">
+				<wp-col :span="6" class="hidden-sm-and-down">
 
 					<wp-metabox :title="labels.upsells.registration.title" v-if="upsells.enabled.registration" class="upsell-metabox">
 						<p v-html="labels.upsells.registration.description"></p>
