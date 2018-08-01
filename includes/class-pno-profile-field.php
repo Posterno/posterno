@@ -245,4 +245,44 @@ class PNO_Profile_Field extends PNO_Field_Object {
 
 	}
 
+	/**
+	 * Delete the field from the database, also delete the field from the registration form if it exists.
+	 *
+	 * @return mixed The post object (if it was deleted or moved to the trash successfully) or false (failure).
+	 */
+	public function delete() {
+
+		if ( $this->id > 0 ) {
+
+			$registration_args = [
+				'post_type'              => 'pno_signup_fields',
+				'nopaging'               => true,
+				'no_found_rows'          => true,
+				'update_post_term_cache' => false,
+				'fields'                 => 'ids',
+				'post_status'            => 'publish',
+				'meta_query'             => array(
+					array(
+						'key'     => 'field_profile_field_id',
+						'value'   => $this->id,
+						'compare' => '==',
+					),
+				),
+			];
+
+			$registration_query = new WP_Query( $registration_args );
+
+			if ( is_array( $registration_query->get_posts() ) && ! empty( $registration_query->get_posts() ) ) {
+				foreach ( $registration_query->get_posts() as $registration_field_id ) {
+					wp_delete_post( $registration_field_id, true );
+				}
+			}
+
+			return wp_delete_post( $this->id, true );
+		} else {
+			return false;
+		}
+
+	}
+
 }
