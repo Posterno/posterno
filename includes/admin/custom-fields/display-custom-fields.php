@@ -45,7 +45,7 @@ function pno_get_custom_fields_editor_js_vars() {
 			],
 			'registration'        => [
 				'title'       => esc_html__( 'Posterno registration form editor' ),
-				'description' => sprintf( __( 'Customize the registration form to collect information about your members during signup. Use the %s extension to create different forms per user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
+				'description' => sprintf( __( 'Customize the registration form to collect information about your members during signup. Use the %s extension to create additional registration forms.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Multiple registration forms"' ) . '</a>' ),
 				'add_new'     => esc_html__( 'Add new registration field' ),
 			],
 			'table'               => [
@@ -74,7 +74,7 @@ function pno_get_custom_fields_editor_js_vars() {
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
 			'upsells'             => [
-				'registration' => sprintf( __( 'Use the %s extension to create new registration forms for each user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
+				'registration' => sprintf( __( 'Use the %s extension to create new additional forms.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Multiple registration forms"' ) . '</a>' ),
 			],
 		],
 		'upsells'            => [
