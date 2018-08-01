@@ -64,7 +64,7 @@
 						</td>
 						<td>
 							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.title )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+							<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
@@ -93,6 +93,7 @@ import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
 import _find from 'lodash.find'
 import AddNewModal from '../modals/add-new-registration-field'
+import DeleteFieldModal from '../modals/delete-field'
 
 export default {
 	name: 'registration-editor',
@@ -201,6 +202,26 @@ export default {
 			},{ height: '320px' })
 
 		},
+
+		/*
+		 * Displays the modal to delete a non default field.
+		 */
+		deleteField( id, name ) {
+			this.$modal.show( DeleteFieldModal, {
+				type: 'registration',
+				field_id: id,
+				name: name,
+				/**
+				 * Pass a function to the component so we can
+				 * then update the app status from the child component response.
+				 */
+				updateStatus: () => {
+					this.loadFields()
+					this.success = true
+				}
+			},{ height: '230px', width: '450px' })
+
+		}
 
 	}
 }
