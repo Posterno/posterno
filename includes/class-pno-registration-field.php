@@ -97,13 +97,14 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			$this->label = $this->name;
 		}
 
-		$this->description = carbon_get_post_meta( $this->id, 'field_description' );
-		$this->placeholder = carbon_get_post_meta( $this->id, 'field_placeholder' );
-		$this->required    = carbon_get_post_meta( $this->id, 'field_is_required' );
-		$this->priority    = carbon_get_post_meta( $this->id, 'field_priority' );
-		$this->meta        = carbon_get_post_meta( $this->id, 'field_is_default' );
-		$this->default     = pno_is_default_profile_field( $this->meta ) || carbon_get_post_meta( $this->id, 'field_is_default' ) ? true : false;
-		$types             = pno_get_registered_field_types();
+		$this->description      = carbon_get_post_meta( $this->id, 'field_description' );
+		$this->placeholder      = carbon_get_post_meta( $this->id, 'field_placeholder' );
+		$this->required         = carbon_get_post_meta( $this->id, 'field_is_required' );
+		$this->priority         = carbon_get_post_meta( $this->id, 'field_priority' );
+		$this->meta             = carbon_get_post_meta( $this->id, 'field_is_default' );
+		$this->profile_field_id = carbon_get_post_meta( $this->id, 'field_profile_field_id' );
+		$this->default          = pno_is_default_profile_field( $this->meta ) || carbon_get_post_meta( $this->id, 'field_is_default' ) ? true : false;
+		$types                  = pno_get_registered_field_types();
 
 		if ( ! empty( $this->default ) ) {
 
@@ -124,6 +125,15 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			// Force requirement for the email field.
 			if ( $this->default == 'email' ) {
 				$this->required = true;
+			}
+		}
+
+		if ( $this->profile_field_id ) {
+			$profile_field = new PNO_Profile_Field( absint( $this->profile_field_id ) );
+			if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
+				$this->type          = $profile_field->get_type();
+				$this->type_nicename = $profile_field->get_type_nicename();
+				$this->meta          = $profile_field->get_meta();
 			}
 		}
 

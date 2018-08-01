@@ -115,6 +115,16 @@ function pno_get_registration_fields() {
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
 					}
+				} elseif ( ! $field->is_default_field() && ! isset( $fields[ $field->get_meta() ] ) ) {
+					// The field does not exist so we now add it to the list of fields.
+					$fields[ $field->get_meta() ] = [
+						'label'       => $field->get_label(),
+						'type'        => $field->get_type(),
+						'description' => $field->get_description(),
+						'placeholder' => $field->get_placeholder(),
+						'required'    => $field->is_required(),
+						'priority'    => $field->get_priority(),
+					];
 				}
 			}
 		}
