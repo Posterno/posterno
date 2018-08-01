@@ -338,9 +338,9 @@ function pno_get_registered_settings() {
 			],
 		],
 		'registration'              => [
-			'login_after_registration'        => [
-				'label'       => __( 'Login after registration:' ),
-				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
+			'disable_username'                => [
+				'label'       => __( 'Disable username during registration:' ),
+				'description' => __( 'Enable this option to disable the username field within the registration form. The email address will be used as username for the new user.' ),
 				'type'        => 'checkbox',
 			],
 			'strong_passwords'                => [
@@ -372,6 +372,11 @@ function pno_get_registered_settings() {
 				'placeholder' => esc_html__( 'Select a page' ),
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
+			],
+			'login_after_registration'        => [
+				'label'       => __( 'Login after registration:' ),
+				'description' => __( 'Enable this option to automatically authenticate users after registration.' ),
+				'type'        => 'checkbox',
 			],
 			'registration_show_login_link'    => [
 				'type'        => 'checkbox',

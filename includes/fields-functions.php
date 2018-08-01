@@ -73,9 +73,10 @@ function pno_get_registration_fields() {
 		}
 	}
 
+	// Add privacy checkbox if privacy page is enabled.
 	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
 		$fields['privacy'] = array(
-			'label'    => apply_filters( 'wpum_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'label'    => apply_filters( 'pno_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
 			'type'     => 'checkbox',
 			'required' => true,
 			'priority' => 102,
@@ -97,20 +98,15 @@ function pno_get_registration_fields() {
 
 	if ( $fields_query->have_posts() ) {
 
-		while ( $fields_query->have_posts() ) {
+		foreach ( $fields_query->get_posts() as $field_id ) {
 
-			$fields_query->the_post();
-
-			$field = new PNO_Registration_Field( get_the_ID() );
+			$field = new PNO_Registration_Field( $field_id );
 
 			if ( $field instanceof PNO_Registration_Field && $field->get_id() > 0 ) {
-
-				if ( ! empty( $field->is_default_field() ) ) {
-
+				if ( ! empty( $field->is_default_field() ) && isset( $fields[ $field->get_meta() ] ) ) {
 					$fields[ $field->get_meta() ]['label']       = $field->get_label();
 					$fields[ $field->get_meta() ]['description'] = $field->get_description();
 					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
-
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
 					}
