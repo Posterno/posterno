@@ -23,58 +23,64 @@
 		<v-dialog/>
 		<modals-container/>
 
-		<div id="registration-form-editor-wrapper" class="tables-wrapper">
+		<div id="poststuff">
+			<wp-row :gutter="20">
+				<wp-col :span="18">
+					<div id="registration-form-editor-wrapper" class="tables-wrapper">
 
-			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
-			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
+						<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
+						<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-			<wp-button type="primary" @click="showAddNewModal()">{{labels.registration.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
+						<wp-button type="primary" @click="showAddNewModal()">{{labels.registration.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
-			<table class="wp-list-table widefat fixed striped">
-				<thead>
-					<tr>
-						<th scope="col" class="hidden-xs-only move-col">
-							<span class="dashicons dashicons-menu"></span>
-						</th>
-						<th scope="col" class="column-primary">{{labels.table.title}}</th>
-						<th scope="col">{{labels.table.required}}</th>
-						<th scope="col">{{labels.table.role}}</th>
-						<th scope="col">{{labels.table.actions}}</th>
-					</tr>
-				</thead>
-				<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
-					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
-						<td class="order-anchor align-middle hidden-xs-only">
-							<span class="dashicons dashicons-menu"></span>
-						</td>
-						<td>
-							<strong>{{field.name}}</strong>
-						</td>
-						<td>
-							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
-						</td>
-						<td class="column-primary" data-colname="Event">
-							<code v-if="field.role" v-html="getRole( field.role )"></code>
-							<code v-else>{{labels.table.roles.all}}</code>
-						</td>
-						<td>
-							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
-						</td>
-					</tr>
-					<tr class="no-items" v-if="fields < 1 && ! loading">
-						<td class="colspanchange" colspan="5">
-							<strong>{{labels.table.not_found}}</strong>
-						</td>
-					</tr>
-					<tr class="no-items" v-if="loading">
-						<td class="colspanchange" colspan="5">
-							<wp-spinner></wp-spinner>
-						</td>
-					</tr>
-				</draggable>
-			</table>
+						<table class="wp-list-table widefat fixed striped">
+							<thead>
+								<tr>
+									<th scope="col" class="hidden-xs-only move-col">
+										<span class="dashicons dashicons-menu"></span>
+									</th>
+									<th scope="col" class="column-primary">{{labels.table.title}}</th>
+									<th scope="col">{{labels.table.required}}</th>
+									<th scope="col">{{labels.table.actions}}</th>
+								</tr>
+							</thead>
+							<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
+								<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
+									<td class="order-anchor align-middle hidden-xs-only">
+										<span class="dashicons dashicons-menu"></span>
+									</td>
+									<td>
+										<strong>{{field.name}}</strong>
+									</td>
+									<td>
+										<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
+									</td>
+									<td>
+										<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
+										<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+									</td>
+								</tr>
+								<tr class="no-items" v-if="fields < 1 && ! loading">
+									<td class="colspanchange" colspan="5">
+										<strong>{{labels.table.not_found}}</strong>
+									</td>
+								</tr>
+								<tr class="no-items" v-if="loading">
+									<td class="colspanchange" colspan="5">
+										<wp-spinner></wp-spinner>
+									</td>
+								</tr>
+							</draggable>
+						</table>
 
+					</div>
+				</wp-col>
+				<wp-col :span="6">
+					<wp-metabox title="testing" closable>
+						<p>asdasdasdasd </p>
+					</wp-metabox>
+				</wp-col>
+			</wp-row>
 		</div>
 
 	</div>
@@ -86,7 +92,6 @@ import axios from 'axios'
 import qs from 'qs'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
-import _find from 'lodash.find'
 import AddNewModal from '../modals/add-new-registration-field'
 import DeleteFieldModal from '../modals/delete-field'
 
@@ -99,7 +104,6 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
-			roles:         pno_fields_editor.roles,
 			upsells:       pno_fields_editor.upsells,
 
 			// App status.
@@ -172,18 +176,6 @@ export default {
 		 */
 		isRequired( is_required ) {
 			return is_required === true ? true : false
-		},
-
-		/**
-		 * Retrieve the role name from the stored object.
-		 */
-		getRole( role ) {
-			var roles = _find( this.roles, { 'value': role } )
-			let foundRole = ''
-			if ( roles.label !== undefined ) {
-				foundRole = roles.label
-			}
-			return foundRole
 		},
 
 		/**
