@@ -355,7 +355,7 @@ function pno_get_registered_settings() {
 			],
 			'strong_passwords'                => [
 				'label'       => __( 'Require strong passwords:' ),
-				'description' => __( 'Enable this option to require strong passwords during registration.' ),
+				'description' => __( 'Enable this option to require strong passwords for accounts.' ),
 				'type'        => 'checkbox',
 			],
 			'enable_role_selection'           => [
