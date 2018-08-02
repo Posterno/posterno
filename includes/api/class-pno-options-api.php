@@ -55,7 +55,6 @@ class PNO_Options_Api extends WP_REST_Controller {
 		add_filter( 'pn_settings_sanitize_multiselect', array( $this, 'sanitize_multiselect_field' ), 3, 10 );
 		add_filter( 'pn_settings_sanitize_multicheckbox', array( $this, 'sanitize_multicheckbox_field' ), 3, 10 );
 
-		add_filter( 'pn_settings_sanitize_disable_password', [ $this, 'password_settings_error_controller' ], 3, 11 );
 	}
 
 	/**
@@ -287,24 +286,6 @@ class PNO_Options_Api extends WP_REST_Controller {
 		}
 
 		return rest_ensure_response( $sent );
-
-	}
-
-	/**
-	 * Verify the password settings are not wrong and display an error message to inform the user.
-	 *
-	 * @param string $output
-	 * @param object $errors
-	 * @param array $setting
-	 * @return mixed
-	 */
-	function password_settings_error_controller( $output, $errors, $setting ) {
-
-		if ( pno_get_option( 'disable_password' ) && pno_get_option( 'verify_password' ) ) {
-			return $errors->add( 'verify_password_error', esc_html__( 'Error: to disable the password field you also need to disable the "Enable password confirmation" option.' ) );
-		}
-
-		return $output;
 
 	}
 

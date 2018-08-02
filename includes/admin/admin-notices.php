@@ -80,3 +80,25 @@ function pno_avatar_field_is_disabled_notice() {
 
 }
 add_action( 'admin_head', 'pno_avatar_field_is_disabled_notice' );
+
+/**
+ * Display an error notice if the user has wrongly configured the password settings.
+ *
+ * @return void
+ */
+function pno_password_settings_controller_notice() {
+
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
+		return;
+	}
+
+	if ( pno_get_option( 'disable_password' ) && pno_get_option( 'verify_password' ) ) {
+
+		$message = esc_html__( 'Posterno plugin configuration error: you have enabled the "Disable custom passwords during registration" setting, please disable the "Enable password confirmation" option.' );
+
+		posterno()->admin_notices->register_notice( 'psw_setting_error', 'error', $message, [ 'dismissible' => false ] );
+
+	}
+
+}
+add_action( 'admin_head', 'pno_password_settings_controller_notice' );
