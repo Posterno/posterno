@@ -322,7 +322,7 @@ abstract class PNO_Field_Object {
 	 * @return mixed
 	 */
 	public function get_selectable_options() {
-		return $this->selectable_options;
+		return apply_filters( "pno_field_{$this->meta}_selectable_options", $this->selectable_options );
 	}
 
 	/**
