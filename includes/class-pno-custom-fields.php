@@ -218,20 +218,6 @@ class PNO_Custom_Fields {
 		->where( 'post_type', '=', 'pno_signup_fields' )
 
 			->add_tab(
-				esc_html__( 'Display' ), array(
-
-					Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
-						->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.' ) ),
-
-					Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder' ) )
-						->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
-
-					Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
-						->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
-
-				)
-			)
-			->add_tab(
 				esc_html__( 'Settings' ), array(
 
 					Field::make( 'hidden', 'field_is_default' ),
@@ -250,19 +236,6 @@ class PNO_Custom_Fields {
 						)
 						->set_help_text( esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ) ),
 
-					Field::make( 'html', 'psw_information_text' )
-						->set_conditional_logic(
-							array(
-								'relation' => 'AND',
-								array(
-									'field'   => 'field_is_default',
-									'value'   => 'password',
-									'compare' => '=',
-								),
-							)
-						)
-						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'When the password field is disabled, a randomly generated password will be sent to the user via email.' ) . '</p>' ),
-
 					Field::make( 'checkbox', 'field_is_required', esc_html__( 'Set as required' ) )
 						->set_conditional_logic(
 							array(
@@ -276,44 +249,14 @@ class PNO_Custom_Fields {
 						)
 						->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) ),
 
-					Field::make( 'checkbox', 'field_is_disabled', esc_html__( 'Disable field' ) )
-						->set_conditional_logic(
-							array(
-								'relation' => 'AND',
-								array(
-									'field'   => 'field_is_default',
-									'value'   => [ 'username', 'password' ],
-									'compare' => 'IN',
-								),
-							)
-						)
-						->set_help_text( esc_html__( 'Enable this option to remove this field from the registration form.' ) ),
+					Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
+						->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.' ) ),
 
-					Field::make( 'html', 'crb_information_text' )
-						->set_conditional_logic(
-							array(
-								'relation' => 'AND',
-								array(
-									'field'   => 'field_is_default',
-									'value'   => 'username',
-									'compare' => '=',
-								),
-							)
-						)
-						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'The email address will be used as username if during registration the username field is disabled.' ) . '</p>' ),
+					Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder' ) )
+						->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) ),
 
-					Field::make( 'html', 'email_information_text' )
-						->set_conditional_logic(
-							array(
-								'relation' => 'AND',
-								array(
-									'field'   => 'field_is_default',
-									'value'   => 'email',
-									'compare' => '=',
-								),
-							)
-						)
-						->set_html( '<p class="pno-field-is-default-notice">' . esc_html__( 'The email field does not have any settings, it\'s always required and cannot be disabled.' ) . '</p>' ),
+					Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
+						->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) ),
 
 				)
 			);
