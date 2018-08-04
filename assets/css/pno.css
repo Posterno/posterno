@@ -15,4 +15,11 @@
 .pno-check-label {
   display: inline; }
 
+.pno-field-file input {
+  width: 100%;
+  box-sizing: border-box; }
+
+.pno-field-multiselect .select2-container {
+  width: 100%; }
+
 /*# sourceMappingURL=pno.css.map */
