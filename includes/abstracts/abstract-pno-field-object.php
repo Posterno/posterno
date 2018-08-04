@@ -121,6 +121,13 @@ abstract class PNO_Field_Object {
 	public $post_type = null;
 
 	/**
+	 * Value associated to the field.
+	 *
+	 * @var mixed
+	 */
+	protected $value = false;
+
+	/**
 	 * Magic __get function to dispatch a call to retrieve a private property.
 	 *
 	 * @param string $key
@@ -316,6 +323,15 @@ abstract class PNO_Field_Object {
 	 */
 	public function get_selectable_options() {
 		return $this->selectable_options;
+	}
+
+	/**
+	 * Get the value associated with the field.
+	 *
+	 * @return mixed
+	 */
+	public function get_value() {
+		return $this->value;
 	}
 
 	/**

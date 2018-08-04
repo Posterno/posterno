@@ -64,14 +64,14 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 
 			foreach ( $fields_query->get_posts() as $field_id ) {
 
-				$profile_field = new PNO_Profile_Field( $field_id );
+				$profile_field = new PNO_Profile_Field( $field_id, $user->ID );
 
 				if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
 
 					if ( ! pno_is_default_profile_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
 						$data[] = array(
 							'name'  => $profile_field->get_name(),
-							'value' => 'hehe',
+							'value' => $profile_field->get_value(),
 						);
 					}
 				}

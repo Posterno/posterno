@@ -13,7 +13,6 @@
 
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
-
 class PNO_Profile_Field extends PNO_Field_Object {
 
 	/**
@@ -56,7 +55,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	 *
 	 * @param mixed|boolean $_id
 	 */
-	public function __construct( $_id_or_field = false ) {
+	public function __construct( $_id_or_field = false, $user_id = false ) {
 
 		if ( empty( $_id_or_field ) ) {
 			return false;
@@ -65,7 +64,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 		$field = $this->get_field( $_id_or_field );
 
 		if ( $field ) {
-			$this->setup_field( $field );
+			$this->setup_field( $field, $user_id );
 		} else {
 			return false;
 		}
@@ -78,7 +77,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	 * @param int $field_id
 	 * @return void
 	 */
-	protected function setup_field( $field_id ) {
+	protected function setup_field( $field_id, $user_id = false ) {
 
 		if ( null == $field_id ) {
 			return false;
@@ -122,6 +121,18 @@ class PNO_Profile_Field extends PNO_Field_Object {
 
 		if ( $this->type == 'file' ) {
 			$this->file_size = carbon_get_post_meta( $this->id, 'field_file_max_size' );
+		}
+
+		if ( $user_id ) {
+
+			$meta_lookup = $this->meta;
+
+			if ( $meta_lookup == 'avatar' ) {
+				$meta_lookup = 'current_user_avatar';
+			}
+
+			$this->value = carbon_get_user_meta( $user_id, $meta_lookup );
+
 		}
 
 	}
