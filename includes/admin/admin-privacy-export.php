@@ -69,10 +69,36 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 				if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
 
 					if ( ! pno_is_default_profile_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
+
+						$value = $profile_field->get_value();
+
+						if ( $profile_field->get_type() == 'checkbox' ) {
+							$value = esc_html__( 'Yes' );
+						} elseif ( $profile_field->get_type() == 'multiselect' || $profile_field->get_type() == 'multicheckbox' ) {
+
+							$stored_field_options = $profile_field->get_selectable_options();
+							$stored_options       = [];
+							$found_options_labels = [];
+
+							foreach ( $stored_field_options as $key => $stored_option ) {
+								$stored_options[ $key ] = $stored_option;
+							}
+
+							$values = [];
+
+							foreach ( $value as $user_stored_value ) {
+								$values[] = $stored_options[ $user_stored_value ];
+							}
+
+							$value = implode( ', ', $values );
+
+						}
+
 						$data[] = array(
 							'name'  => $profile_field->get_name(),
-							'value' => $profile_field->get_value(),
+							'value' => $value,
 						);
+
 					}
 				}
 			}
