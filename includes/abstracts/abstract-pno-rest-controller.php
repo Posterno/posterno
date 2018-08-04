@@ -36,7 +36,6 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 * @return mixed
 	 */
 	public function get_items_permissions_check( $request ) {
-		return true;
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.' ), array( 'status' => rest_authorization_required_code() ) );
 		}

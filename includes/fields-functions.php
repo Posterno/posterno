@@ -12,6 +12,127 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Defines a list of reserved meta keys for custom fields.
+ *
+ * @return array
+ */
+function pno_get_registered_default_meta_keys() {
+
+	$keys = [
+		'avatar',
+		'first_name',
+		'last_name',
+		'email',
+		'website',
+		'description',
+		'username',
+		'password',
+	];
+
+	/**
+	 * Allows developers to register additional default meta keys if needed.
+	 *
+	 * @param array $keys the list of registered default meta keys.
+	 */
+	return apply_filters( 'pno_registered_default_meta_keys', $keys );
+
+}
+
+/**
+ * Determine default profile fields.
+ *
+ * @param string $key
+ * @return boolean
+ */
+function pno_is_default_profile_field( $key ) {
+
+	if ( ! $key ) {
+		return;
+	}
+
+	$default = false;
+
+	if ( in_array( $key, pno_get_registered_default_meta_keys() ) ) {
+		$default = true;
+	}
+
+	return apply_filters( 'pno_is_default_field', (bool) $default );
+
+}
+
+/**
+ * Retrieve the list of registered field types and their labels.
+ *
+ * @return array
+ */
+function pno_get_registered_field_types() {
+
+	$types = [
+		'text'          => esc_html__( 'Single text line' ),
+		'textarea'      => esc_html__( 'Textarea' ),
+		'checkbox'      => esc_html__( 'Checkbox' ),
+		'email'         => esc_html__( 'Email address' ),
+		'password'      => esc_html__( 'Password' ),
+		'url'           => esc_html__( 'Website' ),
+		'select'        => esc_html__( 'Dropdown' ),
+		'radio'         => esc_html__( 'Radio' ),
+		'number'        => esc_html__( 'Number' ),
+		'multiselect'   => esc_html__( 'Multiselect' ),
+		'multicheckbox' => esc_html__( 'Multiple checkboxes' ),
+		'file'          => esc_html__( 'File' ),
+	];
+
+	/**
+	 * Allows developers to register a new field type.
+	 *
+	 * @since 0.1.0
+	 * @param array $types all registered field types.
+	 */
+	$types = apply_filters( 'pno_registered_field_types', $types );
+
+	asort( $types );
+
+	return $types;
+
+}
+
+/**
+ * Mark specific field types as "multi options". The custom fields
+ * editor will allow generation of options for those field types.
+ *
+ * @return array
+ */
+function pno_get_multi_options_field_types() {
+
+	$types = [
+		'select',
+		'multiselect',
+		'multicheckbox',
+		'radio',
+	];
+
+	return apply_filters( 'pno_multi_options_field_types', $types );
+
+}
+
+/**
+ * Defines a list of default meta keys for fields that cannot be removed from the registration forms api.
+ *
+ * @return array
+ */
+function pno_get_registration_default_meta_keys() {
+
+	$keys = [
+		'username',
+		'email',
+		'password',
+	];
+
+	return apply_filters( 'pno_registration_default_meta_keys', $keys );
+
+}
+
+/**
  * Retrieve the list of registration form fields.
  *
  * @return void
@@ -399,127 +520,6 @@ function pno_form_field_class( $field_key, $field, $form = false, $class = '' ) 
 }
 
 /**
- * Defines a list of reserved meta keys for custom fields.
- *
- * @return array
- */
-function pno_get_registered_default_meta_keys() {
-
-	$keys = [
-		'avatar',
-		'first_name',
-		'last_name',
-		'email',
-		'website',
-		'description',
-		'username',
-		'password',
-	];
-
-	/**
-	 * Allows developers to register additional default meta keys if needed.
-	 *
-	 * @param array $keys the list of registered default meta keys.
-	 */
-	return apply_filters( 'pno_registered_default_meta_keys', $keys );
-
-}
-
-/**
- * Determine default profile fields.
- *
- * @param string $key
- * @return boolean
- */
-function pno_is_default_profile_field( $key ) {
-
-	if ( ! $key ) {
-		return;
-	}
-
-	$default = false;
-
-	if ( in_array( $key, pno_get_registered_default_meta_keys() ) ) {
-		$default = true;
-	}
-
-	return apply_filters( 'pno_is_default_field', (bool) $default );
-
-}
-
-/**
- * Retrieve the list of registered field types and their labels.
- *
- * @return array
- */
-function pno_get_registered_field_types() {
-
-	$types = [
-		'text'          => esc_html__( 'Single text line' ),
-		'textarea'      => esc_html__( 'Textarea' ),
-		'checkbox'      => esc_html__( 'Checkbox' ),
-		'email'         => esc_html__( 'Email address' ),
-		'password'      => esc_html__( 'Password' ),
-		'url'           => esc_html__( 'Website' ),
-		'select'        => esc_html__( 'Dropdown' ),
-		'radio'         => esc_html__( 'Radio' ),
-		'number'        => esc_html__( 'Number' ),
-		'multiselect'   => esc_html__( 'Multiselect' ),
-		'multicheckbox' => esc_html__( 'Multiple checkboxes' ),
-		'file'          => esc_html__( 'File' ),
-	];
-
-	/**
-	 * Allows developers to register a new field type.
-	 *
-	 * @since 0.1.0
-	 * @param array $types all registered field types.
-	 */
-	$types = apply_filters( 'pno_registered_field_types', $types );
-
-	asort( $types );
-
-	return $types;
-
-}
-
-/**
- * Mark specific field types as "multi options". The custom fields
- * editor will allow generation of options for those field types.
- *
- * @return array
- */
-function pno_get_multi_options_field_types() {
-
-	$types = [
-		'select',
-		'multiselect',
-		'multicheckbox',
-		'radio',
-	];
-
-	return apply_filters( 'pno_multi_options_field_types', $types );
-
-}
-
-/**
- * Defines a list of default meta keys for fields that cannot be removed from the registration forms api.
- *
- * @return array
- */
-function pno_get_registration_default_meta_keys() {
-
-	$keys = [
-		'username',
-		'email',
-		'password',
-	];
-
-	return apply_filters( 'pno_registration_default_meta_keys', $keys );
-
-}
-
-/**
  * Create an array of the selectable options of a field.
  *
  * @param array $options
@@ -532,7 +532,7 @@ function pno_parse_selectable_options( $options = [] ) {
 	if ( is_array( $options ) && ! empty( $options ) ) {
 		foreach ( $options as $key => $value ) {
 
-			$option_title = $value[ 'option_title' ];
+			$option_title = $value['option_title'];
 			$meta         = sanitize_title( $option_title );
 			$meta         = str_replace( '-', '_', $meta );
 			$option_value = $meta;
