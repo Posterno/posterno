@@ -88,6 +88,7 @@ export default {
 				},
 				params: {
 					nonce:  pno_fields_editor.nonce,
+					exclude: [ 'avatar', 'email' ]
 				}
 			})
 			.then( response => {

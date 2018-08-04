@@ -50,6 +50,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_items' ),
 					'permission_callback' => array( $this, 'get_items_permissions_check' ),
+					'args'                => array( $this->get_collection_params() ),
 				),
 				array(
 					'methods'             => WP_REST_Server::CREATABLE,
@@ -134,7 +135,16 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		if ( is_array( $fields->get_posts() ) && ! empty( $fields->get_posts() ) ) {
 			foreach ( $fields->get_posts() as $post ) {
 				$response = $this->prepare_item_for_response( $post, $request );
-				$data[]   = $this->prepare_response_for_collection( $response );
+
+				if ( isset( $request['exclude'] ) && ! is_array( $request['exclude'] ) ) {
+					return new WP_Error( 'posterno_rest_cannot_exclude', __( 'Cannot exclude fields. Parameter must be an array.' ), array( 'status' => 400 ) );
+				}
+
+				if ( isset( $request['exclude'] ) && is_array( $request['exclude'] ) && isset( $response->data['meta'] ) && in_array( $response->data['meta'], $request['exclude'] ) ) {
+					continue;
+				}
+
+				$data[] = $this->prepare_response_for_collection( $response );
 			}
 		}
 
@@ -437,6 +447,25 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		);
 
 		return $schema;
+
+	}
+
+	/**
+	 * Retrieves the query params for the models collection.
+	 *
+	 * @return array Collection parameters.
+	 */
+	public function get_collection_params() {
+
+		$query_params = parent::get_collection_params();
+
+		$query_params['exclude'] = array(
+			'description' => esc_html__( 'Limit results by excluding fields by meta key.' ),
+			'type'        => 'array',
+			'required'    => false,
+		);
+
+		return $query_params;
 
 	}
 
