@@ -80,6 +80,7 @@ function pno_get_registered_field_types() {
 		'multiselect'   => esc_html__( 'Multiselect' ),
 		'multicheckbox' => esc_html__( 'Multiple checkboxes' ),
 		'file'          => esc_html__( 'File' ),
+		'editor'        => esc_html__( 'Text editor' ),
 	];
 
 	/**

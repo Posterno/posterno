@@ -183,6 +183,9 @@ class PNO_Custom_Fields {
 						case 'multicheckbox':
 							$type = 'set';
 							break;
+						case 'editor':
+							$type = 'rich_text';
+							break;
 					}
 
 					if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
