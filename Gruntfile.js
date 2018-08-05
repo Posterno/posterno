@@ -39,7 +39,8 @@ module.exports = function (grunt) {
 		uglify: {
 			all: {
 				files: {
-					'assets/js/pno.min.js': ['assets/js/src/pno.js'],
+					'assets/js/pno-multiselect.min.js': ['assets/js/src/pno-multiselect.js'],
+					'assets/js/pno-files-upload.min.js': ['assets/js/src/pno-files-upload.js'],
 					'assets/js/pno-tinymce.min.js': ['assets/js/src/pno-tinymce.js'],
 					'assets/js/pno-profile-custom-fields-admin-validation.min.js': ['assets/js/src/pno-profile-custom-fields-admin-validation.js'],
 				},

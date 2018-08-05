@@ -67,8 +67,14 @@ function pno_load_frontend_scripts() {
 
 	// Register the scripts
 	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], PNO_VERSION );
+	wp_register_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, PNO_VERSION );
+	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], PNO_VERSION );
+
 	wp_register_script( 'pno-bootstrap-script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', [ 'jquery' ], PNO_VERSION, true );
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], PNO_VERSION, true );
+	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), PNO_VERSION, true );
+	wp_register_script( 'pno-multiselect', PNO_PLUGIN_URL . 'assets/js/pno-multiselect.min.js', array( 'jquery' ), PNO_VERSION, true );
+	wp_register_script( 'pno-files-upload', PNO_PLUGIN_URL . 'assets/js/pno-files-upload.min.js', array( 'jquery' ), PNO_VERSION, true );
 
 	wp_enqueue_script( 'jquery' );
 
@@ -84,16 +90,14 @@ function pno_load_frontend_scripts() {
 	}
 
 	if ( is_page( pno_get_dashboard_page_id() ) ) {
-		wp_enqueue_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, PNO_VERSION );
-		wp_enqueue_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), PNO_VERSION, true );
+		wp_enqueue_style( 'pno-select2-style' );
+		wp_enqueue_script( 'pno-select2' );
+		wp_enqueue_script( 'pno-multiselect' );
+		wp_enqueue_script( 'pno-files-upload' );
 	}
 
 	// Register pno's own stylesheet.
-	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], PNO_VERSION );
 	wp_enqueue_style( 'pno' );
-
-	// Load pno's own scripts.
-	wp_enqueue_script( 'pno-frontend-js', PNO_PLUGIN_URL . 'assets/js/pno.min.js', array( 'jquery' ), PNO_VERSION, true );
 
 }
 add_action( 'wp_enqueue_scripts', 'pno_load_frontend_scripts' );
