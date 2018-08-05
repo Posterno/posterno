@@ -339,7 +339,7 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		],
 		'description' => [
 			'label'       => esc_html__( 'About me' ),
-			'type'        => 'textarea',
+			'type'        => 'editor',
 			'required'    => false,
 			'placeholder' => '',
 			'priority'    => 6,

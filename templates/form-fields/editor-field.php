@@ -39,6 +39,6 @@ $editor = apply_filters(
 		),
 	)
 );
-wp_editor( isset( $data->value ) ? wp_kses_post( $data->value ) : '', $data->key, $editor );
+wp_editor( isset( $data->value ) ? wp_kses_post( wp_specialchars_decode( $data->value ) ) : '', $data->key, $editor );
 if ( ! empty( $data->description ) ) :
 ?><small class="form-text text-muted"><?php echo wp_kses_post( $data->description ); ?></small><?php endif; ?>

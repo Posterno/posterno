@@ -393,7 +393,7 @@ abstract class PNO_Form {
 	 * @param  array  $field
 	 * @return string
 	 */
-	protected function get_posted_wp_editor_field( $key, $field ) {
+	protected function get_posted_editor_field( $key, $field ) {
 		return $this->get_posted_textarea_field( $key, $field );
 	}
 
