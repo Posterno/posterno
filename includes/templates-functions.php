@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  * Parses a form action string to create an ID for the form tag of a form.
  *
  * @param string $form form name.
- * @return void
+ * @return string
  */
 function pno_get_form_id( $form ) {
 	$id = 'pno-form-' . $form;
@@ -33,9 +33,9 @@ function pno_get_login_label() {
 
 	$login_method = pno_get_option( 'login_method' );
 
-	if ( $login_method == 'email' ) {
+	if ( $login_method === 'email' ) {
 		$label = esc_html__( 'Email' );
-	} elseif ( $login_method == 'username_email' ) {
+	} elseif ( $login_method === 'username_email' ) {
 		$label = esc_html__( 'Username or email' );
 	}
 
@@ -76,7 +76,7 @@ function pno_get_login_redirect() {
 /**
  * Retrieve the url where to redirect users after they register.
  *
- * @return void
+ * @return string
  */
 function pno_get_registration_redirect() {
 
@@ -107,7 +107,7 @@ function pno_get_registration_redirect() {
  * Programmatically log a user in given an email address or user id.
  * This function should usually be followed by a redirect.
  *
- * @param mixed $email_or_id
+ * @param mixed $email_or_id either the email address or the id of the user.
  * @return void
  */
 function pno_log_user_in( $email_or_id ) {
@@ -131,8 +131,8 @@ function pno_log_user_in( $email_or_id ) {
 /**
  * Send a registration confirmation email to the user and administrator.
  *
- * @param string $user_id
- * @param string $psw
+ * @param string $user_id id number of the user.
+ * @param string $psw optional custom password.
  * @return void
  */
 function pno_send_registration_confirmation_email( $user_id, $psw = false ) {
@@ -205,8 +205,8 @@ function pno_get_allowed_user_roles() {
 /**
  * Replace during email parsing characters.
  *
- * @param string $str
- * @return void
+ * @param string $str the string to manipulate.
+ * @return string
  */
 function pno_starmid( $str ) {
 	switch ( strlen( $str ) ) {
@@ -224,8 +224,8 @@ function pno_starmid( $str ) {
 /**
  * Mask an email address.
  *
- * @param string $email_address
- * @return void
+ * @param string $email_address email address to mask.
+ * @return string
  */
 function pno_mask_email_address( $email_address ) {
 	if ( ! filter_var( $email_address, FILTER_VALIDATE_EMAIL ) ) {
@@ -241,9 +241,9 @@ function pno_mask_email_address( $email_address ) {
 /**
  * Sort an array by the priority key value.
  *
- * @param array $a
- * @param array $b
- * @return void
+ * @param array $a first set.
+ * @param array $b second set.
+ * @return mixed
  */
 function pno_sort_array_by_priority( $a, $b ) {
 	if ( $a['priority'] == $b['priority'] ) {
@@ -255,16 +255,15 @@ function pno_sort_array_by_priority( $a, $b ) {
 /**
  * Retrieve the url of a given dashboard navigation item.
  *
- * @param string $item
- * @return void
+ * @param string $key item key.
+ * @param array  $item item definition.
+ * @return string
  */
 function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
 
-	if ( $key == 'logout' ) {
-		$base_url = wp_logout_url();
-	} elseif ( isset( $item['is_first'] ) ) {
+	if ( isset( $item['is_first'] ) ) {
 		$base_url = $base_url;
 	} else {
 		$base_url = $base_url . '/' . $key;
@@ -277,9 +276,9 @@ function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 /**
  * Retrieve the classes for a given dashboard navigation item as an array.
  *
- * @param string $key
- * @param array $item
- * @param string $class
+ * @param string $key item key.
+ * @param array  $item item definition.
+ * @param string $class optional additional class.
  * @return array
  */
 function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
@@ -292,7 +291,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 		$classes[] = 'item-' . $key;
 	}
 
-	// Determine the currently active tab:
+	// Determine the currently active tab.
 	if ( pno_is_dashboard_navigation_item_active( $key ) ) {
 		$classes[] = 'active';
 	} elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item['is_first'] ) ) {
@@ -317,20 +316,20 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 /**
  * Display the classes for a given dashboard navigation item.
  *
- * @param string $key
- * @param array $item
- * @param string $class
+ * @param string $key item key.
+ * @param array  $item item definition.
+ * @param string $class optional class.
  * @return void
  */
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element.
-	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
+	echo 'class="' . join( ' ', esc_attr( pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) ) . '"';
 }
 
 /**
  * Determine if a given navigation item is currently active.
  *
- * @param string $current
+ * @param string $current key of the item to check.
  * @return boolean
  */
 function pno_is_dashboard_navigation_item_active( $current ) {
@@ -344,8 +343,8 @@ function pno_is_dashboard_navigation_item_active( $current ) {
 /**
  * Retrieve the full hierarchy of a given page or post.
  *
- * @param int $page_id
- * @return void
+ * @param int $page_id page id number.
+ * @return mixed
  */
 function pno_get_full_page_hierarchy( $page_id ) {
 	$page = get_post( $page_id );

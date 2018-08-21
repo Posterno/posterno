@@ -264,6 +264,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/custom-fields/display-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-export.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-erase.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-dashboard-menu-editor.php';
 
 		}
 
@@ -287,6 +288,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Templates.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
+
+			// Admin menus.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-walker-menu-checklist.php';
 
 			// Fields settings.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';

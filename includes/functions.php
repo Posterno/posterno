@@ -110,24 +110,19 @@ function pno_get_dashboard_navigation_items() {
 
 	$items = [
 		'dashboard'    => [
-			'name'     => esc_html__( 'Dashboard' ),
-			'priority' => 0,
+			'name' => esc_html__( 'Dashboard' ),
 		],
 		'edit-account' => [
-			'name'     => esc_html__( 'Account details' ),
-			'priority' => 1,
+			'name' => esc_html__( 'Account details' ),
 		],
 		'password'     => [
-			'name'     => esc_html__( 'Change password' ),
-			'priority' => 2,
+			'name' => esc_html__( 'Change password' ),
 		],
 		'privacy'      => [
-			'name'     => esc_html__( 'Privacy settings' ),
-			'priority' => 3,
+			'name' => esc_html__( 'Privacy settings' ),
 		],
 		'logout'       => [
-			'name'     => esc_html__( 'Logout' ),
-			'priority' => 13,
+			'name' => esc_html__( 'Logout' ),
 		],
 	];
 
@@ -138,8 +133,6 @@ function pno_get_dashboard_navigation_items() {
 	 * @param array $items
 	 */
 	$items = apply_filters( 'pno_dashboard_navigation_items', $items );
-
-	uasort( $items, 'pno_sort_array_by_priority' );
 
 	$first                       = key( $items );
 	$items[ $first ]['is_first'] = true;
