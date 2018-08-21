@@ -12,14 +12,18 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Load carbon fields.
+ * Load stuff after theme setup.
  *
  * @return void
  */
-function pno_carbon_fields_load() {
+function pno_after_theme_setup_load() {
+
 	\Carbon_Fields\Carbon_Fields::boot();
+
+	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu' ) );
+
 }
-add_action( 'after_setup_theme', 'pno_carbon_fields_load' );
+add_action( 'after_setup_theme', 'pno_after_theme_setup_load', 20 );
 
 /**
  * Lock access to wp-login.php and redirect users to the pno's login page.
