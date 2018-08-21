@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_dashboard_menu_metabox() {
 	add_meta_box( 'add-wpum-nav-menu', esc_html__( 'Posterno' ), 'pno_dashboard_do_wp_nav_menu_metabox', 'nav-menus', 'side', 'default' );
+	add_action( 'admin_print_footer_scripts', 'pno_menu_metabox_editor_scripts' );
 }
 add_action( 'load-nav-menus.php', 'pno_dashboard_menu_metabox' );
 
@@ -80,7 +81,7 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 		<h4><?php esc_html_e( 'Logged-Out' ); ?></h4>
 		<p><?php esc_html_e( 'Logged-Out links are not visible to users who are logged in.' ); ?></p>
 
-		<div id="tabs-panel-posttype-<?php echo $post_type_name; ?>-loggedout" class="tabs-panel tabs-panel-active">
+		<div id="tabs-panel-posttype-<?php echo esc_attr( $post_type_name ); ?>-loggedout" class="tabs-panel tabs-panel-active">
 			<ul id="pno-menu-checklist-loggedout" class="categorychecklist form-no-clear">
 				<?php echo walk_nav_menu_tree( array_map( 'wp_setup_nav_menu_item', $tabs['loggedout']['pages'] ), 0, (object) $args ); ?>
 			</ul>
@@ -202,4 +203,24 @@ function pno_nav_menu_get_loggedout_pages() {
 
 	return $page_args;
 
+}
+
+/**
+ * Restrict various items from view if editing a posterno menu item.
+ *
+ * @return void
+ */
+function pno_menu_metabox_editor_scripts() {
+	?>
+	<script type="text/javascript">
+	jQuery( '#menu-to-edit').on( 'click', 'a.item-edit', function() {
+		var settings  = jQuery(this).closest( '.menu-item-bar' ).next( '.menu-item-settings' );
+		var css_class = settings.find( '.edit-menu-item-classes' );
+		if( css_class.val().match("^pno-") ) {
+			css_class.attr( 'readonly', 'readonly' );
+			settings.find( '.field-url' ).css( 'display', 'none' );
+		}
+	});
+	</script>
+	<?php
 }
