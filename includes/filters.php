@@ -14,10 +14,10 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Validate authentication with the selected login method.
  *
- * @param object $user
- * @param string $username
- * @param string $password
- * @return void
+ * @param object $user the user object.
+ * @param string $username the username.
+ * @param string $password the password.
+ * @return mixed
  */
 function pno_authentication( $user, $username, $password ) {
 
@@ -53,10 +53,10 @@ add_filter( 'authenticate', 'pno_authentication', 20, 3 );
 /**
  * Filter the wp_login_url function by using the built-in pno's page.
  *
- * @param string $login_url
- * @param string $redirect
- * @param boolean $force_reauth
- * @return void
+ * @param string  $login_url original login url.
+ * @param string  $redirect option redirect.
+ * @param boolean $force_reauth reauth.
+ * @return string
  */
 function pno_login_url( $login_url, $redirect, $force_reauth ) {
 	$pno_login_page = pno_get_login_page_id();
@@ -74,8 +74,8 @@ if ( pno_get_option( 'redirect_wp_login' ) ) {
 /**
  * Modify the url retrieved with wp_registration_url().
  *
- * @param string $url
- * @return void
+ * @param string $url original url.
+ * @return string
  */
 function pno_set_registration_url( $url ) {
 	$registration_page = pno_get_registration_page_id();
@@ -90,9 +90,9 @@ add_filter( 'register_url', 'pno_set_registration_url' );
 /**
  * Modify the url of the wp_lostpassword_url() function.
  *
- * @param string $url
- * @param string $redirect
- * @return void
+ * @param string $url original url.
+ * @param string $redirect optional redirect.
+ * @return string
  */
 function pno_set_lostpassword_url( $url, $redirect ) {
 	$password_page = pno_get_password_recovery_page_id();
@@ -107,9 +107,9 @@ add_filter( 'lostpassword_url', 'pno_set_lostpassword_url', 10, 2 );
 /**
  * Modify the logout url to include redirects set by PNO - if any.
  *
- * @param string $logout_url
- * @param string $redirect
- * @return void
+ * @param string $logout_url original url.
+ * @param string $redirect optional redirect.
+ * @return string
  */
 function pno_set_logout_url( $logout_url, $redirect ) {
 	$logout_redirect = pno_get_option( 'logout_redirect' );
@@ -130,7 +130,7 @@ add_filter( 'logout_url', 'pno_set_logout_url', 20, 2 );
  * Filters the upload dir when $pno_upload is true.
  *
  * @since 0.1.0
- * @param  array $pathdata
+ * @param  array $pathdata path settings.
  * @return array
  */
 function pno_upload_dir( $pathdata ) {
@@ -153,3 +153,83 @@ function pno_upload_dir( $pathdata ) {
 	return $pathdata;
 }
 add_filter( 'upload_dir', 'pno_upload_dir' );
+
+/**
+ * Properly setup visibility and urls of Posterno's own urls through the menu editor.
+ *
+ * @param object $menu_item the menu item object.
+ * @return object
+ */
+function pno_setup_nav_menu_item( $menu_item ) {
+
+	if ( is_admin() ) {
+		return $menu_item;
+	}
+
+	// Prevent a notice error when using the customizer.
+	$menu_classes = $menu_item->classes;
+
+	if ( is_array( $menu_classes ) ) {
+		$menu_classes = implode( ' ', $menu_item->classes );
+	}
+
+	// We use information stored in the CSS class to determine what kind of
+	// menu item this is, and how it should be treated.
+	preg_match( '/\spno-(.*)-nav/', $menu_classes, $matches );
+
+	// If this isn't a PNO menu item, we can stop here.
+	if ( empty( $matches[1] ) ) {
+		return $menu_item;
+	}
+
+	switch ( $matches[1] ) {
+		case 'login':
+			if ( is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = get_permalink( pno_get_login_page_id() );
+			}
+			break;
+		case 'lost-password':
+			if ( is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = get_permalink( pno_get_password_recovery_page_id() );
+			}
+			break;
+		case 'registration':
+			if ( is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = get_permalink( pno_get_registration_page_id() );
+			}
+			break;
+		case 'logout':
+			if ( ! is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = wp_logout_url();
+			}
+			break;
+		case 'dashboard':
+			if ( ! is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = get_permalink( pno_get_dashboard_page_id() );
+			}
+			break;
+		case 'edit-account':
+		case 'password':
+		case 'privacy':
+			if ( ! is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = pno_get_dashboard_navigation_item_url( $matches[1] );
+			}
+			break;
+	}
+
+	return $menu_item;
+
+}
+add_filter( 'wp_setup_nav_menu_item', 'pno_setup_nav_menu_item', 10, 1 );
