@@ -13,7 +13,7 @@
  * @version 1.0.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 $masked_email = pno_mask_email_address( $data->email );

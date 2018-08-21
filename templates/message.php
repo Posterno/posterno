@@ -13,7 +13,7 @@
  * @version 1.0.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 $type = isset( $data->type ) ? esc_attr( $data->type ) : 'info';

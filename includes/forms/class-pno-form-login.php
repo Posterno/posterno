@@ -8,7 +8,7 @@
  * @since       0.1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 class PNO_Form_Login extends PNO_Form {

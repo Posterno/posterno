@@ -7,7 +7,7 @@
  * @license     https://opensource.org/licenses/GPL-3.0 GNU Public License
 */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
