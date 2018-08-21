@@ -26,31 +26,6 @@ function pno_after_theme_setup_load() {
 add_action( 'after_setup_theme', 'pno_after_theme_setup_load', 20 );
 
 /**
- * Lock access to wp-login.php and redirect users to the pno's login page.
- *
- * @return void
- */
-function pno_restrict_wp_login() {
-
-	global $pagenow;
-
-	// Check if a $_GET['action'] is set, and if so, load it into $action variable
-	$action = ( isset( $_GET['action'] ) ) ? $_GET['action'] : '';
-
-	// Check if we're on the login page, and ensure the action is not 'logout'
-	if ( $pagenow == 'wp-login.php' && ! defined( 'PNO_UNLOCK_WP_LOGIN' ) && ( ! $action || ( $action && ! in_array( $action, array( 'logout', 'lostpassword', 'rp', 'resetpass' ) ) ) ) ) {
-		$login_page = pno_get_login_page_id();
-		if ( $login_page && pno_get_option( 'lock_wp_login' ) ) {
-			$page = get_permalink( $login_page );
-			wp_safe_redirect( $page );
-			exit();
-		}
-	}
-
-}
-//add_action( 'init', 'pno_restrict_wp_login' );
-
-/**
  * Restrict access to the dashboard page only to logged in users.
  *
  * @return void
@@ -82,7 +57,7 @@ add_action( 'template_redirect', 'pno_restrict_dashboard_access' );
  * Display a restricted access message at the top of the login form,
  * when a "restricted" query string is available within the url.
  *
- * @param string $form
+ * @param string $form form object.
  * @return void
  */
 function pno_display_restricted_access_message( $form ) {
@@ -184,7 +159,7 @@ add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
  * @return void
  */
 function pno_version_in_header() {
-	echo '<meta name="generator" content="Posterno v' . PNO_VERSION . '" />' . "\n";
+	echo '<meta name="generator" content="Posterno v' . esc_html( PNO_VERSION ) . '" />' . "\n";
 }
 add_action( 'wp_head', 'pno_version_in_header' );
 

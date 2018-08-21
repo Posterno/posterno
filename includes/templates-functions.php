@@ -262,12 +262,7 @@ function pno_sort_array_by_priority( $a, $b ) {
 function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
-
-	if ( isset( $item['is_first'] ) ) {
-		$base_url = $base_url;
-	} else {
-		$base_url = $base_url . '/' . $key;
-	}
+	$base_url = $base_url . '/' . $key;
 
 	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $key, $item );
 
@@ -294,9 +289,9 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Determine the currently active tab.
 	if ( pno_is_dashboard_navigation_item_active( $key ) ) {
 		$classes[] = 'active';
-	} elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item['is_first'] ) ) {
+	} /*elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item['is_first'] ) ) {
 		$classes[] = 'active';
-	}
+	}*/
 
 	$classes = array_map( 'esc_attr', $classes );
 
@@ -317,13 +312,13 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
  * Display the classes for a given dashboard navigation item.
  *
  * @param string $key item key.
- * @param array  $item item definition.
+ * @param object $item item definition.
  * @param string $class optional class.
  * @return void
  */
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element.
-	echo 'class="' . join( ' ', esc_attr( pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) ) . '"';
+	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class) ) . '"';
 }
 
 /**
@@ -359,4 +354,20 @@ function pno_get_full_page_hierarchy( $page_id ) {
 		$return = array_merge( $return, pno_get_full_page_hierarchy( $page->post_parent ) );
 	}
 	return $return;
+}
+
+/**
+ * Get nav menu items by location.
+ *
+ * @param string $location the menu location to check.
+ * @param array  $args optional settings.
+ * @return mixed
+ */
+function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
+
+	$locations  = get_nav_menu_locations();
+	$object     = wp_get_nav_menu_object( $locations[ $location ] );
+	$menu_items = wp_get_nav_menu_items( $object->name, $args );
+
+	return $menu_items;
 }
