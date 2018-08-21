@@ -8,7 +8,7 @@
  * @since       0.1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -38,18 +38,18 @@ function pno_load_admin_scripts() {
 	}
 
 	// Load script for the settings page.
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
+	if ( $screen->id === 'listings_page_posterno-settings' ) {
 		wp_enqueue_script( 'pno-settings-page' );
 		wp_localize_script( 'pno-settings-page', 'pno_settings_page', pno_get_settings_page_vars() );
 	}
 
 	// Load script for the custom fields page.
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-custom-fields' ) {
+	if ( $screen->id === 'listings_page_posterno-custom-fields' ) {
 		wp_enqueue_script( 'pno-custom-fields-page' );
 		wp_localize_script( 'pno-custom-fields-page', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
-	if ( $screen->id == 'pno_users_fields' ) {
+	if ( $screen->id === 'pno_users_fields' ) {
 		wp_enqueue_style( 'pnocf', PNO_PLUGIN_URL . '/assets/css/pno-custom-fields-cpt.min.css', [], PNO_VERSION );
 		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/pno-profile-custom-fields-admin-validation.min.js', [], PNO_VERSION, true );
 		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
@@ -65,7 +65,7 @@ add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
  */
 function pno_load_frontend_scripts() {
 
-	// Register the scripts
+	// Register the scripts.
 	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], PNO_VERSION );
 	wp_register_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, PNO_VERSION );
 	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], PNO_VERSION );
