@@ -32,9 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $image_src, '.' ), 1 );
 	if ( 'image' === wp_ext2type( $extension ) ) :
 	?>
-		<span class="pno-uploaded-file-preview"><img <?php pno_uploaded_file_field_media_class( $data->key, $data ); ?> src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file" href="#">[<?php esc_html_e( 'remove', 'wp-user-manager' ); ?>]</a></span>
+		<span class="pno-uploaded-file-preview"><img <?php pno_uploaded_file_field_media_class( $data->key, $data ); ?> src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#"><?php esc_html_e( 'Remove' ); ?></a></span>
 	<?php else : ?>
-		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file" href="#">[<?php esc_html_e( 'remove', 'wp-user-manager' ); ?>]</a></span>
+		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#"><?php esc_html_e( 'Remove' ); ?></a></span>
 	<?php endif; ?>
 
 	<input type="hidden" class="input-text" name="<?php echo esc_attr( $data->name ); ?>" value="<?php echo esc_attr( $data->value ); ?>" />
