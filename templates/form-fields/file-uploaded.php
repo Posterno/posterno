@@ -11,10 +11,13 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package posterno
  */
 
- // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 
@@ -27,8 +30,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$image_src = $data->value;
 	}
 	$extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $image_src, '.' ), 1 );
-	if ( 'image' === wp_ext2type( $extension ) ) : ?>
-		<span class="pno-uploaded-file-preview"><img src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file" href="#">[<?php esc_html_e( 'remove', 'wp-user-manager' ); ?>]</a></span>
+	if ( 'image' === wp_ext2type( $extension ) ) :
+	?>
+		<span class="pno-uploaded-file-preview"><img <?php pno_uploaded_file_field_media_class( $data->key, $data ); ?> src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file" href="#">[<?php esc_html_e( 'remove', 'wp-user-manager' ); ?>]</a></span>
 	<?php else : ?>
 		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file" href="#">[<?php esc_html_e( 'remove', 'wp-user-manager' ); ?>]</a></span>
 	<?php endif; ?>
