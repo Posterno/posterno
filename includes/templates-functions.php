@@ -406,6 +406,11 @@ function pno_get_uploaded_file_field_media_class( $key, $item, $class = '' ) {
 		$classes[] = 'pno-media-' . $key;
 	}
 
+	if ( $key == 'avatar' ) {
+		$classes[] = 'rounded-circle';
+		$classes[] = 'border';
+	}
+
 	$classes = array_map( 'esc_attr', $classes );
 
 	/**
