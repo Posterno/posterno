@@ -271,27 +271,6 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		$profile_field = new PNO_Profile_Field( 292, 1 );
-		$value         = $profile_field->get_value();
-
-		$stored_field_options = $profile_field->get_selectable_options();
-		$stored_options       = [];
-		$found_options_labels = [];
-
-		foreach ( $stored_field_options as $key => $stored_option ) {
-			$stored_options[ $key ] = $stored_option;
-		}
-
-		$values = [];
-
-		foreach ( $value as $user_stored_value ) {
-			$values[] = $stored_options[ $user_stored_value ];
-		}
-
-		$value = implode( ', ', $values );
-
-		print_r( $value );
-
 		wp_die();
 	}
 

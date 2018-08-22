@@ -1,6 +1,8 @@
-.pno-media-avatar {
+.pno-field-avatar img {
 	width: 70px;
+	height: 70px;
 	min-height: 100%;
 	object-fit: cover;
 	object-position: center;
+	border-radius: 50%;
 }

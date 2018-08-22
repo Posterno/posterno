@@ -289,6 +289,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Templates.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
+			// Ajax.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
+
 			// Menus.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-walker-menu-checklist.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-menus.php';

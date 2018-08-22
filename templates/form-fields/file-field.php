@@ -19,10 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $classes            = array( 'input-text' );
-$allowed_mime_types = array_values( ! empty( $data->allowed_mime_types ) ? $data->allowed_mime_types : get_allowed_mime_types() );
+$allowed_mime_types = array_keys( ! empty( $data->allowed_mime_types ) ? $data->allowed_mime_types : get_allowed_mime_types() );
 $field_name         = isset( $data->name ) ? $data->name : $data->key;
 $field_name        .= ! empty( $data->multiple ) ? '[]' : '';
 $file_size          = isset( $data->max_size ) ? $data->max_size : false;
+
+$classes[] = 'pno-file-upload';
+wp_enqueue_script( 'pno-files-upload' );
 
 ?>
 
@@ -63,8 +66,8 @@ $file_size          = isset( $data->max_size ) ? $data->max_size : false;
 <input type="file" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" data-file_types="<?php echo esc_attr( implode( '|', $allowed_mime_types ) ); ?>" <?php if ( ! empty( $data->multiple ) ) echo 'multiple'; ?> name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?><?php if ( ! empty( $data->multiple ) ) echo '[]'; ?>" id="<?php echo esc_attr( $data->key ); ?>" placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>" />
 <small class="description">
 	<?php if ( ! empty( $data->description ) ) : ?>
-		<?php echo $data->description; ?>
+		<?php echo esc_html( $data->description ); ?>
 	<?php endif ?>
 
-	<?php printf( __( 'Maximum file size: %s.' ), pno_max_upload_size( '', $file_size ) ); ?>
+	<?php printf( esc_html__( 'Maximum file size: %s.' ), esc_html( pno_max_upload_size( '', $file_size ) ) ); ?>
 </small>
