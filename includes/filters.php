@@ -62,7 +62,7 @@ function pno_login_url( $login_url, $redirect, $force_reauth ) {
 	$pno_login_page = pno_get_login_page_id();
 	$pno_login_page = get_permalink( $pno_login_page );
 	if ( $redirect ) {
-		$pno_login_page = add_query_arg( [ 'redirect_to' => urlencode( $redirect ) ], $pno_login_page );
+		$pno_login_page = add_query_arg( [ 'redirect_to' => rawurlencode( $redirect ) ], $pno_login_page );
 	}
 	return $pno_login_page;
 }
@@ -117,7 +117,7 @@ function pno_set_logout_url( $logout_url, $redirect ) {
 		$logout_redirect = get_permalink( $logout_redirect['value'] );
 		$args            = [
 			'action'      => 'logout',
-			'redirect_to' => urlencode( $logout_redirect ),
+			'redirect_to' => rawurlencode( $logout_redirect ),
 		];
 		$logout_url      = add_query_arg( $args, site_url( 'wp-login.php', 'login' ) );
 		$logout_url      = wp_nonce_url( $logout_url, 'log-out' );

@@ -191,7 +191,7 @@ function pno_send_registration_confirmation_email( $user_id, $psw = false ) {
 function pno_get_allowed_user_roles() {
 	global $wp_roles;
 	if ( ! isset( $wp_roles ) ) {
-		$wp_roles = new WP_Roles();
+		$wp_roles = new WP_Roles(); // phpcs:ignore
 	}
 	$user_roles         = array();
 	$selected_roles     = pno_get_option( 'allowed_roles' );
@@ -334,6 +334,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
  */
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element.
+	// phpcs:ignore
 	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
 }
 
