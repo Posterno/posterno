@@ -22,6 +22,6 @@ $dashboard_tabs = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
 
 <div class="list-group">
 	<?php foreach ( $dashboard_tabs as $item ) : ?>
-		<a href="<?php echo pno_get_dashboard_navigation_item_url( $item->post_name, $item ); ?>" <?php pno_dashboard_navigation_item_class( $item->post_name, $item ); ?>><?php echo esc_html( $item->title ); ?></a>
+		<a href="<?php echo esc_url( $item->url ); ?>" <?php pno_dashboard_navigation_item_class( $item->post_name, $item ); ?>><?php echo esc_html( $item->title ); ?></a>
 	<?php endforeach; ?>
 </div>

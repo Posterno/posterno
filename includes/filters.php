@@ -229,6 +229,8 @@ function pno_setup_nav_menu_item( $menu_item ) {
 			break;
 	}
 
+	$menu_item->pno_identifier = $matches[1];
+
 	return $menu_item;
 
 }

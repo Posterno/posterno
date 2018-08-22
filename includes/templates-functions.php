@@ -262,6 +262,22 @@ function pno_sort_array_by_priority( $a, $b ) {
 function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
+
+	// We use information stored in the CSS class to determine what kind of
+	// menu item this is, and how it should be treated.
+	if ( isset( $item->classes ) && ! empty( $item->classes ) ) {
+		$menu_classes = $item->classes;
+		if ( is_array( $menu_classes ) ) {
+			$menu_classes = implode( ' ', $item->classes );
+		}
+
+		preg_match( '/\spno-(.*)-nav/', $menu_classes, $matches );
+
+		if ( ! empty( $matches[1] ) && $matches[1] === 'dashboard' ) {
+			return $base_url;
+		}
+	}
+
 	$base_url = $base_url . '/' . $key;
 
 	return apply_filters( 'pno_dashboard_navigation_item_url', $base_url, $key, $item );
@@ -287,11 +303,11 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	}
 
 	// Determine the currently active tab.
-	if ( pno_is_dashboard_navigation_item_active( $key ) ) {
+	if ( pno_is_dashboard_navigation_item_active( $item->pno_identifier ) ) {
 		$classes[] = 'active';
-	} /*elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item['is_first'] ) ) {
+	} elseif ( empty( get_query_var( 'dashboard_navigation_item' ) ) && isset( $item->pno_identifier ) && $item->pno_identifier === 'dashboard' ) {
 		$classes[] = 'active';
-	}*/
+	}
 
 	$classes = array_map( 'esc_attr', $classes );
 
@@ -318,7 +334,7 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
  */
 function pno_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 	// Separates classes with a single space, collates classes for body element.
-	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class) ) . '"';
+	echo 'class="' . join( ' ', pno_get_dashboard_navigation_item_class( $key, $item, $class ) ) . '"';
 }
 
 /**
