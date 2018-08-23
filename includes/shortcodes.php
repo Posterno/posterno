@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Displays the login form to visitors and display a notice to logged in users.
  *
- * @return void
+ * @return string
  */
 function pno_login_form() {
 
@@ -42,7 +42,7 @@ add_shortcode( 'pno_login_form', 'pno_login_form' );
 /**
  * Displays the registration form to visitors and displays a notice to logged in users.
  *
- * @return void
+ * @return string
  */
 function pno_registration_form() {
 
@@ -70,7 +70,7 @@ add_shortcode( 'pno_registration_form', 'pno_registration_form' );
 /**
  * Displays the password recovery form to visitors and a notice to logged in users.
  *
- * @return void
+ * @return string
  */
 function pno_password_recovery_form() {
 
@@ -98,11 +98,12 @@ add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
 /**
  * Display a login link.
  *
- * @param array $atts
- * @param string $content
- * @return void
+ * @param array  $atts attributes list of the shortcode.
+ * @param string $content content added within the shortcode.
+ * @return string
  */
 function pno_login_link( $atts, $content = null ) {
+	// phpcs:ignore
 	extract(
 		shortcode_atts(
 			array(
@@ -124,11 +125,12 @@ add_shortcode( 'pno_login_link', 'pno_login_link' );
 /**
  * Display a logout link.
  *
- * @param array $atts
- * @param string $content
- * @return void
+ * @param array  $atts attributes list of the shortcode.
+ * @param string $content content added within the shortcode.
+ * @return string
  */
 function pno_logout_link( $atts, $content = null ) {
+	// phpcs:ignore
 	extract(
 		shortcode_atts(
 			array(
@@ -148,7 +150,7 @@ add_shortcode( 'pno_logout_link', 'pno_logout_link' );
 /**
  * Displays the dashboard for the listings.
  *
- * @return void
+ * @return string
  */
 function pno_dashboard() {
 
