@@ -295,6 +295,11 @@ function pno_display_post_type_tabs() {
 		);
 	}
 
+	/**
+	 * Allows developers to extend the tabs within the admin panel.
+	 *
+	 * @param array $tabs the list of registered tabs.
+	 */
 	$tabs = apply_filters( 'pno_add_ons_tabs', $tabs );
 
 	// phpcs:ignore
