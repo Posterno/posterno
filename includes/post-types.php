@@ -332,37 +332,6 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listings types' ),
-		'singular_name'              => esc_html__( 'Listings type' ),
-		'menu_name'                  => esc_html__( 'Listings types' ),
-		'all_items'                  => esc_html__( 'All listings types' ),
-		'new_item_name'              => esc_html__( 'New listings type' ),
-		'add_new_item'               => esc_html__( 'Add new listings type' ),
-		'edit_item'                  => esc_html__( 'Edit listings type' ),
-		'update_item'                => esc_html__( 'Update listings type' ),
-		'view_item'                  => esc_html__( 'View listings type' ),
-		'separate_items_with_commas' => esc_html__( 'Separate listings type with commas' ),
-		'add_or_remove_items'        => esc_html__( 'Add or remove listings type' ),
-		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
-		'popular_items'              => esc_html__( 'Popular listings types' ),
-		'search_items'               => esc_html__( 'Search listings types' ),
-		'not_found'                  => esc_html__( 'Not Found' ),
-		'no_terms'                   => esc_html__( 'No listings types' ),
-		'items_list'                 => esc_html__( 'Listings types list' ),
-		'items_list_navigation'      => esc_html__( 'Listings type list navigation' ),
-	);
-	$args   = array(
-		'labels'            => $labels,
-		'hierarchical'      => false,
-		'public'            => true,
-		'show_ui'           => true,
-		'show_in_nav_menus' => true,
-		'show_tagcloud'     => false,
-		'show_in_rest'      => true,
-	);
-	register_taxonomy( 'listings-types', array( 'listings' ), $args );
-
-	$labels = array(
 		'name'                       => esc_html__( 'Listings categories' ),
 		'singular_name'              => esc_html__( 'Listings category' ),
 		'menu_name'                  => esc_html__( 'Listings categories' ),
@@ -392,6 +361,37 @@ function pno_register_listings_taxonomies() {
 		'show_in_rest'      => true,
 	);
 	register_taxonomy( 'listings-categories', array( 'listings' ), $args );
+
+	$labels = array(
+		'name'                       => esc_html__( 'Listings tags' ),
+		'singular_name'              => esc_html__( 'Listings tag' ),
+		'menu_name'                  => esc_html__( 'Listings tags' ),
+		'all_items'                  => esc_html__( 'All listings tags' ),
+		'new_item_name'              => esc_html__( 'New listings tag' ),
+		'add_new_item'               => esc_html__( 'Add new listings tag' ),
+		'edit_item'                  => esc_html__( 'Edit listings tag' ),
+		'update_item'                => esc_html__( 'Update listings tag' ),
+		'view_item'                  => esc_html__( 'View listings tag' ),
+		'separate_items_with_commas' => esc_html__( 'Separate listings tag with commas' ),
+		'add_or_remove_items'        => esc_html__( 'Add or remove listings tag' ),
+		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
+		'popular_items'              => esc_html__( 'Popular listings tags' ),
+		'search_items'               => esc_html__( 'Search listings tags' ),
+		'not_found'                  => esc_html__( 'Not Found' ),
+		'no_terms'                   => esc_html__( 'No listings tags' ),
+		'items_list'                 => esc_html__( 'Listings tags list' ),
+		'items_list_navigation'      => esc_html__( 'Listings tag list navigation' ),
+	);
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_ui'           => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud'     => false,
+		'show_in_rest'      => true,
+	);
+	register_taxonomy( 'listings-tags', array( 'listings' ), $args );
 
 }
 add_action( 'init', 'pno_register_listings_taxonomies', 0 );
