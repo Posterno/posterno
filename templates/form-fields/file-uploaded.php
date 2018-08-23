@@ -32,9 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $image_src, '.' ), 1 );
 	if ( 'image' === wp_ext2type( $extension ) ) :
 	?>
-		<span class="pno-uploaded-file-preview"><img src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#"><?php esc_html_e( 'Remove' ); ?></a></span>
+		<span class="pno-uploaded-file-preview"><img src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#" data-dropped="dropzone-<?php echo esc_attr( $data->key ); ?>"><?php esc_html_e( 'Remove' ); ?></a></span>
 	<?php else : ?>
-		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#"><?php esc_html_e( 'Remove' ); ?></a></span>
+		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#" data-dropped="dropzone-<?php echo esc_attr( $data->key ); ?>"><?php esc_html_e( 'Remove' ); ?></a></span>
 	<?php endif; ?>
 
 	<input type="hidden" class="input-text" name="<?php echo esc_attr( $data->name ); ?>" value="<?php echo esc_attr( $data->value ); ?>" />
