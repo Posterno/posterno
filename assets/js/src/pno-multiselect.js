@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
 		return false;
 	});
 	$('.pno-field-multiselect select').select2({
-		theme: 'default'
+		theme: 'default',
+		placeholder: $(this).data('placeholder'),
 	});
 });
