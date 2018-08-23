@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
-	$(document.body).on('click', '.wpum-remove-uploaded-file', function () {
-		$(this).closest('.wpum-uploaded-file').remove();
+	$(document.body).on('click', '.pno-remove-uploaded-file', function () {
+		$(this).closest('.pno-uploaded-file').remove();
 		return false;
 	});
 
@@ -74,6 +74,7 @@ jQuery(document).ready(function ($) {
 						window.alert(file.error);
 					} else {
 						var html;
+
 						if ($.inArray(file.extension, image_types) >= 0) {
 							html = $.parseHTML(pno_ajax_file_upload.js_field_html_img);
 							$(html).find('.pno-uploaded-file-preview img').attr('src', file.url);
@@ -90,8 +91,6 @@ jQuery(document).ready(function ($) {
 						} else {
 							$uploaded_files.html(html);
 						}
-
-						console.log(html)
 					}
 				});
 

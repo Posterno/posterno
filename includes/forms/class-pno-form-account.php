@@ -195,20 +195,25 @@ class PNO_Form_Account extends PNO_Form {
 
 			// Update the avatar.
 			if ( pno_get_option( 'allow_avatars' ) ) {
-				$currently_uploaded_file   = isset( $_POST['current_avatar'] ) && ! empty( $_POST['current_avatar'] ) ? esc_url_raw( $_POST['current_avatar'] ) : false;
-				$existing_avatar_file_path = get_user_meta( $updated_user_id, 'current_user_avatar_path', true );
-				if ( $currently_uploaded_file && $existing_avatar_file_path && isset( $values['account']['avatar']['url'] ) && $values['account']['avatar']['url'] !== $currently_uploaded_file ) {
-					wp_delete_file( $existing_avatar_file_path );
+
+				$currently_uploaded_file_url  = isset( $_POST['current_avatar'] ) && ! empty( $_POST['current_avatar'] ) ? esc_url_raw( $_POST['current_avatar'] ) : false;
+				$currently_uploaded_file_path = false;
+
+				if ( ! empty( $currently_uploaded_file_url ) ) {
+					$currently_uploaded_file_path = str_replace( get_site_url(), trailingslashit( ABSPATH ), $currently_uploaded_file_url );
+				} elseif ( ! $currently_uploaded_file_url && carbon_get_user_meta( $updated_user_id, 'current_user_avatar' ) ) {
+					$currently_uploaded_file_path = str_replace( get_site_url(), trailingslashit( ABSPATH ), carbon_get_user_meta( $updated_user_id, 'current_user_avatar' ) );
+					wp_delete_file( $currently_uploaded_file_path );
 				}
-				if ( isset( $values['account']['avatar']['url'] ) && $currently_uploaded_file !== $values['account']['avatar']['url'] ) {
-					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $values['account']['avatar']['url'] );
-					update_user_meta( $updated_user_id, 'current_user_avatar_path', $values['account']['avatar']['path'] );
+
+				// Delete the existing avatar if it has been changed.
+				if ( $currently_uploaded_file_url && $currently_uploaded_file_path && isset( $values['account']['avatar'] ) && $values['account']['avatar'] !== $currently_uploaded_file_url ) {
+					wp_delete_file( $currently_uploaded_file_path );
 				}
-				if ( ! $currently_uploaded_file && file_exists( $existing_avatar_file_path ) ) {
-					wp_delete_file( $existing_avatar_file_path );
-					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', false );
-					delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
-				}
+
+				// Update the avatar.
+				carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $values['account']['avatar'] );
+
 			}
 
 			// Now update the custom fields that are not marked as default profile fields.
