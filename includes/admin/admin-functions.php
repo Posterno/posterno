@@ -267,6 +267,70 @@ function pno_install_registration_fields() {
 
 }
 
+/**
+ * Generate a list of tabs for the listings list table and taxonomies associated.
+ * The tabs are then displayed at the top of the admin page.
+ *
+ * @return void
+ */
+function pno_display_post_type_tabs() {
+
+	$tabs = array(
+		'listings' => array(
+			'name' => 'Listings',
+			'url'  => admin_url( 'edit.php?post_type=listings' ),
+		),
+	);
+
+	$taxonomies = get_object_taxonomies( 'listings', 'objects' );
+	foreach ( $taxonomies as $tax => $details ) {
+		$tabs[ $tax ] = array(
+			'name' => $details->labels->menu_name,
+			'url'  => add_query_arg(
+				array(
+					'taxonomy'  => $tax,
+					'post_type' => 'listings',
+				), admin_url( 'edit-tags.php' )
+			),
+		);
+	}
+
+	$tabs = apply_filters( 'edd_add_ons_tabs', $tabs );
+
+	// phpcs:ignore
+	if ( isset( $_GET['taxonomy'] ) && in_array( $_GET['taxonomy'], array_keys( $taxonomies ), true ) ) {
+		$active_tab = $_GET['taxonomy']; // phpcs:ignore
+	} else {
+		$active_tab = 'listings';
+	}
+
+	ob_start() ?>
+
+	<div class="clear"></div>
+	<h2 class="nav-tab-wrapper pno-nav-tab-wrapper">
+		<?php
+
+		foreach ( $tabs as $tab_id => $tab ) {
+			$active = ( $active_tab === $tab_id )
+				? ' nav-tab-active'
+				: '';
+
+			echo '<a href="' . esc_url( $tab['url'] ) . '" class="nav-tab' . esc_attr( $active ) . '">';
+			echo esc_html( $tab['name'] );
+			echo '</a>';
+		}
+		?>
+
+		<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=listings' ) ); ?>" class="page-title-action">
+			<?php esc_html_e( 'Add new listing' ); ?>
+		</a>
+	</h2>
+	<br />
+
+	<?php
+	echo ob_get_clean(); // phpcs:ignore
+}
+
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
