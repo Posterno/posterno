@@ -251,7 +251,7 @@ function pno_user_fields_change_default_title( $title ) {
 
 	if ( 'pno_users_fields' == $screen->post_type ) {
 		$title = esc_html__( 'Enter profile field title here' );
-	} else if( 'pno_signup_fields' == $screen->post_type ) {
+	} elseif ( 'pno_signup_fields' == $screen->post_type ) {
 		$title = esc_html__( 'Enter registration field title here' );
 	}
 
@@ -292,3 +292,43 @@ function pno_updated_messages( $messages ) {
 
 }
 add_filter( 'post_updated_messages', 'pno_updated_messages' );
+
+// Register Custom Taxonomy
+function pno_register_listings_taxonomies() {
+
+	$labels = array(
+		'name'                       => 'Listings types',
+		'singular_name'              => 'Listings type',
+		'menu_name'                  => 'Listings types',
+		'all_items'                  => 'All listings types',
+		'parent_item'                => '',
+		'parent_item_colon'          => '',
+		'new_item_name'              => 'New listings type',
+		'add_new_item'               => 'Add new listings type',
+		'edit_item'                  => 'Edit listings type',
+		'update_item'                => 'Update listings type',
+		'view_item'                  => 'View listings type',
+		'separate_items_with_commas' => 'Separate listings type with commas',
+		'add_or_remove_items'        => 'Add or remove listings type',
+		'choose_from_most_used'      => 'Choose from the most used',
+		'popular_items'              => 'Popular listings types',
+		'search_items'               => 'Search listings types',
+		'not_found'                  => 'Not Found',
+		'no_terms'                   => 'No listings types',
+		'items_list'                 => 'Listings types list',
+		'items_list_navigation'      => 'Listings type list navigation',
+	);
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud'     => false,
+		'show_in_rest'      => true,
+	);
+	register_taxonomy( 'listings-types', array( 'listings' ), $args );
+
+}
+add_action( 'init', 'pno_register_listings_taxonomies', 0 );
