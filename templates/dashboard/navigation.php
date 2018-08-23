@@ -21,7 +21,31 @@ $dashboard_tabs = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
 ?>
 
 <div class="list-group">
-	<?php foreach ( $dashboard_tabs as $item ) : ?>
-		<a href="<?php echo esc_url( $item->url ); ?>" <?php pno_dashboard_navigation_item_class( $item->post_name, $item ); ?>><?php echo esc_html( $item->title ); ?></a>
+	<?php
+
+	foreach ( $dashboard_tabs as $item ) :
+
+		$icon = 'home';
+
+		switch ( $item->pno_identifier ) {
+			case 'edit-account':
+				$icon = 'user-cog';
+				break;
+			case 'password':
+				$icon = 'key';
+				break;
+			case 'privacy':
+				$icon = 'user-lock';
+				break;
+			case 'logout':
+				$icon = 'sign-out-alt';
+				break;
+		}
+
+		?>
+		<a href="<?php echo esc_url( $item->url ); ?>" <?php pno_dashboard_navigation_item_class( $item->post_name, $item ); ?>>
+			<i class="fas fa-<?php echo esc_attr( $icon ); ?> mr-2"></i>
+			<?php echo esc_html( $item->title ); ?>
+		</a>
 	<?php endforeach; ?>
 </div>
