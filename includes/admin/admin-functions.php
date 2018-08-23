@@ -295,7 +295,7 @@ function pno_display_post_type_tabs() {
 		);
 	}
 
-	$tabs = apply_filters( 'edd_add_ons_tabs', $tabs );
+	$tabs = apply_filters( 'pno_add_ons_tabs', $tabs );
 
 	// phpcs:ignore
 	if ( isset( $_GET['taxonomy'] ) && in_array( $_GET['taxonomy'], array_keys( $taxonomies ), true ) ) {
