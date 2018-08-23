@@ -235,3 +235,15 @@ function pno_setup_nav_menu_item( $menu_item ) {
 
 }
 add_filter( 'wp_setup_nav_menu_item', 'pno_setup_nav_menu_item', 10, 1 );
+
+/**
+ * When deleting a user, delete all listings assigned to him.
+ *
+ * @param array $types list of post types.
+ * @return array
+ */
+function pno_delete_listings_on_user_delete( $types ) {
+	$types[] = 'listings';
+	return $types;
+}
+add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delete', 10 );
