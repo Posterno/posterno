@@ -35,13 +35,17 @@ jQuery(document).ready(function ($) {
 					window.alert(uploadErrors.join('\n'));
 				} else {
 					$form.find(':input[type="submit"]').attr('disabled', 'disabled');
-					data.context = $('<progress value="" max="100"></progress>').appendTo($uploaded_files);
+					$file_field.parent().find( '.progress' ).removeClass('d-none');
 					data.submit();
 				}
 			},
 			progress: function (e, data) {
 				var progress = parseInt(data.loaded / data.total * 100, 10);
-				data.context.val(progress);
+				var $file_field = $(this);
+				$file_field.parent().find('.progress-bar').css(
+					'width',
+					progress + '%'
+        		);
 			},
 			fail: function (e, data) {
 				var $file_field = $(this);
@@ -51,7 +55,7 @@ jQuery(document).ready(function ($) {
 					window.alert(data.errorThrown);
 				}
 
-				data.context.remove();
+				$file_field.parent().find('.progress').addClass('d-none');
 
 				$form.find(':input[type="submit"]').removeAttr('disabled');
 			},
@@ -62,7 +66,7 @@ jQuery(document).ready(function ($) {
 				var multiple = $file_field.attr('multiple') ? 1 : 0;
 				var image_types = ['jpg', 'gif', 'png', 'jpeg', 'jpe'];
 
-				data.context.remove();
+				$file_field.parent().find('.progress').addClass('d-none');
 
 				// Handle JSON errors when success is false
 				if (typeof data.result.success !== 'undefined' && !data.result.success) {
