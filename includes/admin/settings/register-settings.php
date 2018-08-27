@@ -200,10 +200,9 @@ function pno_get_settings_page_vars() {
 function pno_get_registered_settings_tabs() {
 
 	$tabs = [
-		'general'         => esc_html__( 'General' ),
-		'accounts'        => esc_html__( 'Accounts' ),
-		'emails'          => esc_html__( 'Emails' ),
-		'public_profiles' => esc_html__( 'Public profiles' ),
+		'general'  => esc_html__( 'General' ),
+		'accounts' => esc_html__( 'Accounts' ),
+		'emails'   => esc_html__( 'Emails' ),
 	];
 
 	/**
@@ -225,25 +224,23 @@ function pno_get_registered_settings_tabs() {
 function pno_get_registered_settings_tabs_sections() {
 
 	$sections = [
-		'general'         => [
+		'general'  => [
 			'pages' => esc_html__( 'Pages setup' ),
 			'theme' => esc_html__( 'Theme' ),
 		],
-		'accounts'        => [
+		'accounts' => [
 			'login'                  => esc_html__( 'Login' ),
 			'registration'           => esc_html__( 'Registration' ),
 			'password_recovery_form' => esc_html__( 'Password recovery' ),
 			'redirects'              => esc_html__( 'Redirects' ),
 			'privacy'                => esc_html__( 'Privacy' ),
+			'profiles_settings'      => esc_html__( 'Profile settings' ),
 		],
-		'emails'          => [
+		'emails'   => [
 			'emails_settings'           => esc_html__( 'Configuration' ),
 			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
 			'password_recovery'         => esc_html__( 'Password recovery' ),
 			'emails_test'               => esc_html__( 'Test Emails' ),
-		],
-		'public_profiles' => [
-			'profiles_settings' => esc_html__( 'Profile settings' ),
 		],
 	];
 
