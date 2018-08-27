@@ -100,9 +100,9 @@ function pno_get_custom_fields_editor_js_vars() {
 }
 
 /**
- * Undocumented function
+ * JS Settings for the custom fields editor (users fields).
  *
- * @return void
+ * @return array
  */
 function pno_get_users_custom_fields_page_vars() {
 
