@@ -247,3 +247,4 @@ function pno_delete_listings_on_user_delete( $types ) {
 	return $types;
 }
 add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delete', 10 );
+

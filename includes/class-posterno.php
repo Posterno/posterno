@@ -59,6 +59,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		public $emails;
 
 		/**
+		 * Posterno Components array
+		 *
+		 * @var array
+		 */
+		public $components = array();
+
+		/**
 		 * Main Posterno Instance.
 		 *
 		 * Insures that only one instance of Posterno exists in memory at any one
@@ -195,6 +202,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_files() {
 			$this->autoload();
 			$this->setup_options();
+			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
 			$this->setup_api();
@@ -277,6 +285,20 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_api() {
 			require_once PNO_PLUGIN_DIR . 'includes/api/api.php';
+		}
+
+		/**
+		 * Setup all of the custom database tables.
+		 *
+		 * @return void
+		 */
+		private function setup_components() {
+
+			// Component helpers are loaded before everything.
+			require_once PNO_PLUGIN_DIR . 'includes/interface-pno-exception.php';
+			require_once PNO_PLUGIN_DIR . 'includes/class-component.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-base.php';
+
 		}
 
 		/**
