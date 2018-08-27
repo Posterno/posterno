@@ -90,6 +90,13 @@ class PNO_Menus {
 	 * @return void
 	 */
 	public function cssjs() {
+
+		$screen = get_current_screen();
+
+		if ( $screen->id !== 'nav-menus' ) {
+			return;
+		}
+
 		?>
 		<style>
 			.carbon-field.carbon-checkbox {padding-left:0px !important;}
