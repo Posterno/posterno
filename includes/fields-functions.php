@@ -136,7 +136,7 @@ function pno_get_registration_default_meta_keys() {
 /**
  * Retrieve the list of registration form fields.
  *
- * @return void
+ * @return array
  */
 function pno_get_registration_fields() {
 
@@ -456,6 +456,11 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 	}
 
 	uasort( $fields, 'pno_sort_array_by_priority' );
+
+	// Remove the avatar field when option disabled.
+	if( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) ) {
+		unset( $fields['avatar'] );
+	}
 
 	/**
 	 * Allows developers to register or deregister custom fields within the
