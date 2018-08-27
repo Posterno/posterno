@@ -144,8 +144,6 @@ function pno_get_allowed_mime_types( $field = '' ) {
 	 *
 	 * Default is image, pdf, and doc(x) files.
 	 *
-	 * @since 1.25.1
-	 *
 	 * @param array  {
 	 *     Array of allowed file extensions and mime types.
 	 *     Key is pipe-separated file extensions. Value is mime type.
@@ -158,8 +156,8 @@ function pno_get_allowed_mime_types( $field = '' ) {
 /**
  * Wrapper function for size_format - checks the max size for file fields.
  *
- * @param array   $field
- * @param string  $size  in bytes
+ * @param array  $field_name field name.
+ * @param string $custom_size in bytes.
  * @return string
  */
 function pno_max_upload_size( $field_name = '', $custom_size = false ) {
