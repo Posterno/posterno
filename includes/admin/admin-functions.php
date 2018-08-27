@@ -326,7 +326,7 @@ function pno_display_post_type_tabs() {
 		}
 		?>
 
-		<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=listings' ) ); ?>" class="page-title-action">
+		<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=listings' ) ); ?>" class="page-title-action pno-title-action">
 			<?php esc_html_e( 'Add new listing' ); ?>
 		</a>
 	</h2>

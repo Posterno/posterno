@@ -55,6 +55,10 @@ function pno_load_admin_scripts() {
 		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
 	}
 
+	if ( $screen->id === 'edit-listings' ) {
+		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . '/assets/css/pno-admin-listings.min.css', [], PNO_VERSION );
+	}
+
 }
 add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
 

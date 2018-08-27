@@ -152,7 +152,7 @@ add_action( 'edit_form_before_permalink', 'pno_after_custom_fields_post_title' )
 /**
  * Force wipe of custom field when trashed.
  *
- * @param string $post_id
+ * @param string $post_id post id.
  * @return void
  */
 function pno_force_delete_on_custom_fields_trash( $post_id ) {
