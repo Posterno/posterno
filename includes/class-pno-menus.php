@@ -122,12 +122,11 @@ class PNO_Menus {
 						// Add the admin role for admins too.
 						array_push( $roles, 'administrator' );
 
-						$user         = wp_get_current_user();
-						$role         = (array) $user->roles;
-						$current_role = $role[0];
+						$user = wp_get_current_user();
+						$role = (array) $user->roles;
 
 						// phpcs:ignore
-						if ( ! in_array( $current_role, $roles ) ) {
+						if ( ! array_intersect( (array)$user->roles, $roles ) ) {
 							$visible = false;
 						}
 					}
