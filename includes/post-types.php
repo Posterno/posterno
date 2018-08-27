@@ -35,7 +35,7 @@ function pno_setup_post_types() {
 		'view_item'             => __( 'View listing', 'posterno' ),
 		'view_items'            => __( 'View listings', 'posterno' ),
 		'search_items'          => __( 'Search listing', 'posterno' ),
-		'not_found'             => __( 'Not found', 'posterno' ),
+		'not_found'             => __( 'No listings found.', 'posterno' ),
 		'not_found_in_trash'    => __( 'Not found in Trash', 'posterno' ),
 		'featured_image'        => __( 'Featured Image', 'posterno' ),
 		'set_featured_image'    => __( 'Set featured image', 'posterno' ),
