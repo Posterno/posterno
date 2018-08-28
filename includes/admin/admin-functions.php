@@ -344,7 +344,7 @@ function pno_display_post_type_tabs() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-		pno_setup_components();
+		pno_install_component_database_tables();
 		wp_die();
 	}
 
