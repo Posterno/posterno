@@ -88,23 +88,24 @@ if ( ! class_exists( 'Posterno' ) ) :
 				return self::$instance;
 			}
 
-			// Setup the singleton
+			// Setup the singleton.
 			self::setup_instance( $file );
 
-			// Bootstrap
+			// Bootstrap.
 			self::$instance->setup_constants();
 			self::$instance->setup_files();
+			self::$instance->setup_application();
 
 			// Boot composer's classes.
 			Brain\Cortex::boot();
 
-			// Api's
+			// Api's.
 			self::$instance->admin_notices = TDP\WP_Notice::instance();
 			self::$instance->templates     = new PNO_Templates();
 			self::$instance->forms         = PNO_Forms::instance();
 			self::$instance->emails        = new PNO_Emails();
 
-			// Return the instance
+			// Return the instance.
 			return self::$instance;
 
 		}
@@ -234,6 +235,15 @@ if ( ! class_exists( 'Posterno' ) ) :
 		}
 
 		/**
+		 * Setup the rest of the app.
+		 *
+		 * @return void
+		 */
+		public function setup_application() {
+			pno_setup_components();
+		}
+
+		/**
 		 * Include required files.
 		 *
 		 * @access private
@@ -296,9 +306,30 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Component helpers are loaded before everything.
 			require_once PNO_PLUGIN_DIR . 'includes/interface-pno-exception.php';
+			require_once PNO_PLUGIN_DIR . 'includes/component-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-component.php';
 			require_once PNO_PLUGIN_DIR . 'includes/database/class-base.php';
 
+			// Database Resources.
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-column.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-schema.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-query.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-row.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/class-table.php';
+
+			// Database Schemas.
+			require_once PNO_PLUGIN_DIR . 'includes/database/schemas/class-adjustments.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/schemas/class-notes.php';
+
+			// Database Objects.
+			require_once PNO_PLUGIN_DIR . 'includes/database/rows/class-adjustment.php';
+			require_once PNO_PLUGIN_DIR . 'includes/database/rows/class-note.php';
+
+			// Database Tables.
+			require_once PNO_PLUGIN_DIR . 'includes/database/tables/class-notes.php';
+
+			// Database Table Query Interfaces.
+			require_once PNO_PLUGIN_DIR . 'includes/database/queries/class-note.php';
 		}
 
 		/**
