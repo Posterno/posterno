@@ -345,8 +345,11 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
+		//$orders = new PNO\Database\Queries\Profile_Field();
+		//print_r( $orders->add_item( [ 'type' => 'dd' ] ) );
+
 		$orders = new PNO\Database\Queries\Profile_Field();
-		print_r( $orders->add_item( [ 'type' => 'dd' ] ) );
+		print_r( $orders->get_item_by('id', 2) );
 
 		wp_die();
 	}

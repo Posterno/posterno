@@ -1457,15 +1457,15 @@ class Query extends Base {
 	 */
 	private function shape_items( $items = array() ) {
 
-		// Force to stdClass if querying for fields
+		// Force to stdClass if querying for fields.
 		if ( ! empty( $this->query_vars['fields'] ) ) {
 			$this->item_shape = 'stdClass';
 		}
 
-		// Default return value
+		// Default return value.
 		$retval = array();
 
-		// Use foreach because it's faster than array_map()
+		// Use foreach because it's faster than array_map().
 		if ( ! empty( $items ) ) {
 			foreach ( $items as $item ) {
 				$retval[] = $this->get_item( $item );
@@ -1484,7 +1484,6 @@ class Query extends Base {
 		 */
 		$retval = (array) apply_filters_ref_array( $this->apply_prefix( "the_{$this->item_name_plural}" ), array( $retval, &$this ) );
 
-		// Return filtered results
 		return ! empty( $this->query_vars['fields'] )
 			? $this->get_item_fields( $retval )
 			: $retval;
@@ -1495,38 +1494,38 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $items
+	 * @param array $items fields of an item.
 	 * @return array
 	 */
 	private function get_item_fields( $items = array() ) {
 
-		// Get the primary column
+		// Get the primary column.
 		$primary = $this->get_primary_column_name();
 		$fields  = $this->query_vars['fields'];
 
-		// Strings need to be single columns
+		// Strings need to be single columns.
 		if ( is_string( $fields ) ) {
 			$field = sanitize_key( $fields );
 			$items = ( 'ids' === $fields )
 				? wp_list_pluck( $items, $primary )
 				: wp_list_pluck( $items, $field, $primary );
 
-			// Arrays could be anything
+			// Arrays could be anything.
 		} elseif ( is_array( $fields ) ) {
 			$new_items = array();
 			$fields    = array_flip( $fields );
 
-			// Loop through items and pluck out the fields
+			// Loop through items and pluck out the fields.
 			foreach ( $items as $item_id => $item ) {
 				$new_items[ $item_id ] = (object) array_intersect_key( (array) $item, $fields );
 			}
 
-			// Set the items and unset the new items
+			// Set the items and unset the new items.
 			$items = $new_items;
 			unset( $new_items );
 		}
 
-		// Return the item, possibly reduced
+		// Return the item, possibly reduced.
 		return $items;
 	}
 
@@ -1535,14 +1534,13 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param  mixed $item
+	 * @param  mixed $item item to shape.
 	 * @return int
 	 */
 	private function shape_item_id( $item = 0 ) {
 		$retval  = 0;
 		$primary = $this->get_primary_column_name();
 
-		// Item ID
 		if ( is_numeric( $item ) ) {
 			$retval = $item;
 		} elseif ( is_object( $item ) && isset( $item->{$primary} ) ) {
@@ -1551,7 +1549,6 @@ class Query extends Base {
 			$retval = $item[ $primary ];
 		}
 
-		// Return the item ID
 		return absint( $retval );
 	}
 
@@ -1562,18 +1559,16 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param int $item_id
+	 * @param int $item_id item to get.
 	 * @return mixed False if empty/error, Object if successful
 	 */
 	public function get_item( $item_id = 0 ) {
 
-		// Bail if no item to get by
 		$item_id = $this->shape_item_id( $item_id );
 		if ( empty( $item_id ) ) {
 			return false;
 		}
 
-		// Get item by ID
 		return $this->get_item_by( $this->get_primary_column_name(), $item_id );
 	}
 
@@ -1582,55 +1577,55 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $column_name  Name of database column
-	 * @param string $column_value Value to query for
+	 * @param string $column_name  Name of database column.
+	 * @param string $column_value Value to query for.
 	 * @return mixed False if empty/error, Object if successful
 	 */
 	public function get_item_by( $column_name = '', $column_value = '' ) {
 
-		// Default return value
+		// Default return value.
 		$retval = false;
 
-		// Bail if no key or value
+		// Bail if no key or value.
 		if ( empty( $column_name ) || empty( $column_value ) ) {
 			return $retval;
 		}
 
-		// Get column names
+		// Get column names.
 		$columns = $this->get_column_names();
 
-		// Bail if column does not exist
+		// Bail if column does not exist.
 		if ( ! isset( $columns[ $column_name ] ) ) {
 			return $retval;
 		}
 
-		// Cache groups
+		// Cache groups.
 		$groups = $this->get_cache_groups();
 
-		// Check cache
+		// Check cache.
 		if ( ! empty( $groups[ $column_name ] ) ) {
 			$retval = $this->cache_get( $column_value, $groups[ $column_name ] );
 		}
 
-		// Item not cached
+		// Item not cached.
 		if ( false === $retval ) {
 
-			// Try to get item directly from DB
+			// Try to get item directly from DB.
 			$retval = $this->get_item_raw( $column_name, $column_value );
 
-			// Bail on failure
+			// Bail on failure.
 			if ( $this->failed( $retval ) ) {
 				return false;
 			}
 
-			// Cache
+			// Cache.
 			$this->update_item_cache( $retval );
 		}
 
-		// Reduce the item
+		// Reduce the item.
 		$retval = $this->reduce_item( 'select', $retval );
 
-		// Return result
+		// Return result.
 		return $this->shape_item( $retval );
 	}
 
@@ -1639,7 +1634,7 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $data
+	 * @param array $data data to add.
 	 * @return boolean
 	 */
 	public function add_item( $data = array() ) {
@@ -1716,56 +1711,56 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param int   $item_id
-	 * @param array $data
+	 * @param int   $item_id item to update.
+	 * @param array $data data to update.
 	 * @return boolean
 	 */
 	public function update_item( $item_id = 0, $data = array() ) {
 
-		// Bail if no item ID
+		// Bail if no item ID.
 		$item_id = $this->shape_item_id( $item_id );
 		if ( empty( $item_id ) ) {
 			return false;
 		}
 
-		// Get primary column
+		// Get primary column.
 		$primary = $this->get_primary_column_name();
 
-		// Get item to update (from database, not cache)
+		// Get item to update (from database, not cache).
 		$item = $this->get_item_raw( $primary, $item_id );
 
-		// Bail if item does not exist to update
+		// Bail if item does not exist to update.
 		if ( empty( $item ) ) {
 			return false;
 		}
 
-		// Cast as an array for easier manipulation
+		// Cast as an array for easier manipulation.
 		$item = (array) $item;
 
-		// Unset the primary key from data to parse
+		// Unset the primary key from data to parse.
 		unset( $data[ $primary ] );
 
-		// Splice new data into item, and cut out non-keys for meta
+		// Splice new data into item, and cut out non-keys for meta.
 		$columns = $this->get_column_names();
 		$data    = array_merge( $item, $data );
 		$meta    = array_diff_key( $data, $columns );
 		$save    = array_intersect_key( $data, $columns );
 
-		// Bail if no change
+		// Bail if no change.
 		if ( (array) $save === (array) $item ) {
 			return true;
 		}
 
-		// Unset the primary key from data to save
+		// Unset the primary key from data to save.
 		unset( $save[ $primary ] );
 
-		// If date-modified is empty, use the current time
+		// If date-modified is empty, use the current time.
 		$modified = $this->get_column_by( array( 'modified' => true ) );
 		if ( ! empty( $modified ) ) {
 			$save[ $modified->name ] = $this->get_current_time();
 		}
 
-		// Try to update
+		// Try to update.
 		$where  = array( $primary => $item_id );
 		$table  = $this->get_table_name();
 		$reduce = $this->reduce_item( 'update', $save );
@@ -1774,23 +1769,23 @@ class Query extends Base {
 			? $this->get_db()->update( $table, $save, $where )
 			: false;
 
-		// Bail on failure
+		// Bail on failure.
 		if ( $this->failed( $result ) ) {
 			return false;
 		}
 
-		// Maybe save meta keys
+		// Maybe save meta keys.
 		if ( ! empty( $meta ) ) {
 			$this->save_extra_item_meta( $item_id, $meta );
 		}
 
-		// Use get item to prime caches
+		// Use get item to prime caches.
 		$this->update_item_cache( $item_id );
 
-		// Transition item data
+		// Transition item data.
 		$this->transition_item( $save, $item );
 
-		// Return result
+		// Return result.
 		return $result;
 	}
 
@@ -1799,51 +1794,51 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param int $item_id
+	 * @param int $item_id item to deleted.
 	 * @return boolean
 	 */
 	public function delete_item( $item_id = 0 ) {
 
-		// Bail if no item ID
+		// Bail if no item ID.
 		$item_id = $this->shape_item_id( $item_id );
 		if ( empty( $item_id ) ) {
 			return false;
 		}
 
-		// Get vars
+		// Get vars.
 		$primary = $this->get_primary_column_name();
 
-		// Get item (before it's deleted)
+		// Get item (before it's deleted).
 		$item = $this->get_item_raw( $primary, $item_id );
 
-		// Bail if item does not exist to delete
+		// Bail if item does not exist to delete.
 		if ( empty( $item ) ) {
 			return false;
 		}
 
-		// Attempt to reduce this item
+		// Attempt to reduce this item.
 		$item = $this->reduce_item( 'delete', $item );
 
-		// Bail if item was reduced to nothing
+		// Bail if item was reduced to nothing.
 		if ( empty( $item ) ) {
 			return false;
 		}
 
-		// Try to delete
+		// Try to delete.
 		$table  = $this->get_table_name();
 		$where  = array( $primary => $item_id );
 		$result = $this->get_db()->delete( $table, $where );
 
-		// Bail on failure
+		// Bail on failure.
 		if ( $this->failed( $result ) ) {
 			return false;
 		}
 
-		// Clean caches on successful delete
+		// Clean caches on successful delete.
 		$this->delete_all_item_meta( $item_id );
 		$this->clean_item_cache( $item );
 
-		// Return result
+		// Return result.
 		return $result;
 	}
 
@@ -1855,7 +1850,7 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $item
+	 * @param array $item item to filter.
 	 * @return array
 	 */
 	public function filter_item( $item = array() ) {
@@ -1864,31 +1859,31 @@ class Query extends Base {
 
 	/**
 	 * Shape an item from the database into the type of object it always wanted
-	 * to be when it grew up (EDD_Customer, EDD_Discount, EDD_Payment, etc...)
+	 * to be when it grew up (PNO_Customer, PNO_Discount, PNO_Payment, etc...)
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param mixed ID of item, or row from database
+	 * @param mixed $item ID of item, or row from database.
 	 * @return mixed False on error, Object of single-object class type on success
 	 */
 	private function shape_item( $item = 0 ) {
 
-		// Get the item from an ID
+		// Get the item from an ID.
 		if ( is_numeric( $item ) ) {
 			$item = $this->get_item( $item );
 		}
 
-		// Return the item if it's already shaped
+		// Return the item if it's already shaped.
 		if ( $item instanceof $this->item_shape ) {
 			return $item;
 		}
 
-		// Shape the item as needed
+		// Shape the item as needed.
 		$item = ! empty( $this->item_shape )
 			? new $this->item_shape( $item )
 			: (object) $item;
 
-		// Return the item object
+		// Return the item object.
 		return $item;
 	}
 
@@ -1897,44 +1892,44 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $item
+	 * @param array $item item to validate.
 	 * @return mixed False on error, Array of validated values on success
 	 */
 	private function validate_item( $item = array() ) {
 
-		// Bail if item is empty
+		// Bail if item is empty.
 		if ( empty( $item ) ) {
 			return $item;
 		}
 
-		// Loop through item attributes
+		// Loop through item attributes.
 		foreach ( $item as $key => $value ) {
 
-			// Always strip slashes from all values
+			// Always strip slashes from all values.
 			$value = stripslashes( $value );
 
-			// Get callback for column
+			// Get callback for column.
 			$callback = $this->get_column_field( array( 'name' => $key ), 'validate' );
 
-			// Attempt to validate
+			// Attempt to validate.
 			if ( ! empty( $callback ) && is_callable( $callback ) ) {
 				$validated = call_user_func( $callback, $value );
 
-				// Bail if error
+				// Bail if error.
 				if ( is_wp_error( $validated ) ) {
 					return false;
 				}
 
-				// Update the value
+				// Update the value.
 				$item[ $key ] = $validated;
 
-				// Include basic stripslashes() call
+				// Include basic stripslashes() call.
 			} else {
 				$item[ $key ] = $value;
 			}
 		}
 
-		// Return the validated item
+		// Return the validated item.
 		return $this->filter_item( $item );
 	}
 
@@ -1948,25 +1943,25 @@ class Query extends Base {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $method select|insert|update|delete
-	 * @param mixed  $item   Object|Array of keys/values to reduce
+	 * @param string $method select|insert|update|delete.
+	 * @param mixed  $item   Object|Array of keys/values to reduce.
 	 *
 	 * @return mixed Object|Array without keys the current user does not have caps for
 	 */
 	private function reduce_item( $method = 'update', $item = array() ) {
 
-		// Bail if item is empty
+		// Bail if item is empty.
 		if ( empty( $item ) ) {
 			return $item;
 		}
 
-		// Loop through item attributes
+		// Loop through item attributes.
 		foreach ( $item as $key => $value ) {
 
-			// Get callback for column
+			// Get callback for column.
 			$caps = $this->get_column_field( array( 'name' => $key ), 'caps' );
 
-			// Unset if not explicitly allowed
+			// Unset if not explicitly allowed.
 			if ( empty( $caps[ $method ] ) || ! current_user_can( $caps[ $method ] ) ) {
 				if ( is_array( $item ) ) {
 					unset( $item[ $key ] );
@@ -1974,7 +1969,7 @@ class Query extends Base {
 					$item->{$key} = null;
 				}
 
-				// Set if explicitly allowed
+				// Set if explicitly allowed.
 			} elseif ( is_array( $item ) ) {
 				$item[ $key ] = $value;
 			} elseif ( is_object( $item ) ) {
@@ -1982,7 +1977,7 @@ class Query extends Base {
 			}
 		}
 
-		// Return the reduced item
+		// Return the reduced item.
 		return $item;
 	}
 

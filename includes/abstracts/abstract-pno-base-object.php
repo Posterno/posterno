@@ -129,4 +129,5 @@ abstract class Base_Object {
 			$this->{$key} = $value;
 		}
 	}
+
 }
