@@ -1,6 +1,6 @@
 <?php
 /**
- * Profile field object.
+ * Global fields object.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -8,14 +8,14 @@
  * @since       0.1.0
  */
 
-namespace PNO\Fields;
+namespace PNO;
 
-use PNO\Field;
+use PNO\Base_Object;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-class Profile_Field extends Field {
+class Field extends Base_Object {
 
 	/**
 	 * Comment type.
@@ -23,6 +23,6 @@ class Profile_Field extends Field {
 	 * @since 3.0
 	 * @var string
 	 */
-	public $comment_type = '';
+	public $heheheh = '';
 
 }
