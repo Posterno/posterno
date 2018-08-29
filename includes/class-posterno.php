@@ -203,6 +203,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_files() {
 			$this->autoload();
 			$this->setup_options();
+			$this->setup_utilities();
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
@@ -232,6 +233,15 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_options() {
 			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
 			$GLOBALS['pno_options'] = pno_get_settings();
+		}
+
+		/**
+		 * Setup utilities used by the plugin.
+		 *
+		 * @return void
+		 */
+		private function setup_utilities() {
+			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
 		}
 
 		/**
