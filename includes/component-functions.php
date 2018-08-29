@@ -88,12 +88,12 @@ function pno_setup_components() {
 
 	// Register note.
 	pno_register_component(
-		'note', array(
-			'schema' => '\\PNO\\Database\\Schema\\Notes',
-			'table'  => '\\PNO\\Database\\Tables\\Notes',
+		'profile_field', array(
+			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
+			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
 			'meta'   => false,
-			'query'  => '\\PNO\\Database\\Queries\\Note',
-			'object' => '\\PNO\\Notes\\Note',
+			'query'  => false,
+			'object' => '\\PNO\\Profile_Fields\\Profile_Field',
 		)
 	);
 

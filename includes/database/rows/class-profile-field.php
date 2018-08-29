@@ -1,6 +1,6 @@
 <?php
 /**
- * Adjustment Database Object Class.
+ * Profile fields database object class.
  *
  * @package     PNO
  * @subpackage  Database\Rows
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 use PNO\Database\Row;
 
 /**
- * Adjustment database row class.
+ * Profile field database row class.
  *
  * This class exists solely to encapsulate database schema changes, to help
  * separate the needs of the application layer from the requirements of the
@@ -29,6 +29,7 @@ use PNO\Database\Row;
  *
  * @since 1.0.0
  */
-class Adjustment extends Row {
+class Profile_Field extends Row {
+
 
 }
