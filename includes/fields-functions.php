@@ -41,7 +41,7 @@ function pno_get_registered_default_meta_keys() {
 /**
  * Determine default profile fields.
  *
- * @param string $key
+ * @param string $key field key.
  * @return boolean
  */
 function pno_is_default_profile_field( $key ) {
@@ -289,9 +289,9 @@ function pno_get_registration_fields() {
  * If a user id is passed through the function,
  * the related user's value is loaded within the field.
  *
- * @param string $user_id
+ * @param string  $user_id user id.
  * @param boolean $admin_request flag to determine if the function is an admin request or not.
- * @return void
+ * @return array
  */
 function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 
@@ -458,7 +458,7 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 	uasort( $fields, 'pno_sort_array_by_priority' );
 
 	// Remove the avatar field when option disabled.
-	if( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) ) {
+	if ( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) ) {
 		unset( $fields['avatar'] );
 	}
 
@@ -476,8 +476,10 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 /**
  * Retrieve the classes for a given form field as an array.
  *
- * @param array $field
- * @param string $class
+ * @param string  $field_key field key.
+ * @param object  $field field object.
+ * @param boolean $form form name.
+ * @param string  $class optional classes.
  * @return array
  */
 function pno_get_form_field_class( $field_key, $field, $form = false, $class = '' ) {
@@ -515,9 +517,10 @@ function pno_get_form_field_class( $field_key, $field, $form = false, $class = '
 /**
  * Display the classes for a given form field.
  *
- * @param string $field_key
- * @param array $field
- * @param string $class
+ * @param string  $field_key field key.
+ * @param object  $field field object.
+ * @param boolean $form form name.
+ * @param string  $class optional classes.
  * @return void
  */
 function pno_form_field_class( $field_key, $field, $form = false, $class = '' ) {
@@ -528,7 +531,7 @@ function pno_form_field_class( $field_key, $field, $form = false, $class = '' ) 
 /**
  * Create an array of the selectable options of a field.
  *
- * @param array $options
+ * @param array $options options for the field.
  * @return array
  */
 function pno_parse_selectable_options( $options = [] ) {
