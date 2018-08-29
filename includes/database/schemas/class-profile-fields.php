@@ -114,9 +114,5 @@ class Profile_Fields extends Schema {
 			'type'    => 'bool',
 			'default' => '0',
 		),
-
-		array(
-			'uuid' => false,
-		),
 	);
 }

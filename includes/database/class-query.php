@@ -1644,69 +1644,70 @@ class Query extends Base {
 	 */
 	public function add_item( $data = array() ) {
 
-		// Get primary column
+		// Get primary column.
 		$primary = $this->get_primary_column_name();
 
-		// Bail if data to add includes the primary column
+		// Bail if data to add includes the primary column.
 		if ( isset( $data[ $primary ] ) ) {
 			return false;
 		}
 
-		// Get default values for item (from columns)
+		// Get default values for item (from columns).
 		$item = $this->default_item();
 
-		// Unset the primary key value from defaults
+		// Unset the primary key value from defaults.
 		unset( $item[ $primary ] );
 
-		// Cut out non-keys for meta
+		// Cut out non-keys for meta.
 		$columns = $this->get_column_names();
 		$data    = array_merge( $item, $data );
 		$meta    = array_diff_key( $data, $columns );
 		$save    = array_intersect_key( $data, $columns );
 
-		// Get the current time (maybe used by created/modified)
+		// Get the current time (maybe used by created/modified).
 		$time = $this->get_current_time();
 
-		// If date-created exists, but is empty or default, use the current time
+		// If date-created exists, but is empty or default, use the current time.
 		$created = $this->get_column_by( array( 'created' => true ) );
 		if ( ! empty( $created ) && ( empty( $save[ $created->name ] ) || ( $save[ $created->name ] === $created->default ) ) ) {
 			$save[ $created->name ] = $time;
 		}
 
-		// If date-modified exists, but is empty or default, use the current time
+		// If date-modified exists, but is empty or default, use the current time.
 		$modified = $this->get_column_by( array( 'modified' => true ) );
 		if ( ! empty( $modified ) && ( empty( $save[ $modified->name ] ) || ( $save[ $modified->name ] === $modified->default ) ) ) {
 			$save[ $modified->name ] = $time;
 		}
 
-		// Try to add
+		// Try to add.
 		$table  = $this->get_table_name();
 		$reduce = $this->reduce_item( 'insert', $save );
 		$save   = $this->validate_item( $reduce );
+
 		$result = ! empty( $save )
 			? $this->get_db()->insert( $table, $save )
 			: false;
 
-		// Bail on failure
+		// Bail on failure.
 		if ( $this->failed( $result ) ) {
 			return false;
 		}
 
-		// Get the new item ID
+		// Get the new item ID.
 		$item_id = $this->get_db()->insert_id;
 
-		// Maybe save meta keys
+		// Maybe save meta keys.
 		if ( ! empty( $meta ) ) {
 			$this->save_extra_item_meta( $item_id, $meta );
 		}
 
-		// Use get item to prime caches
+		// Use get item to prime caches.
 		$this->update_item_cache( $item_id );
 
-		// Transition item data
+		// Transition item data.
 		$this->transition_item( $save, $item_id );
 
-		// Return result
+		// Return result.
 		return $item_id;
 	}
 
