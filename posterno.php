@@ -23,7 +23,7 @@
  * along with Posterno. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package Posterno
- * @author Alessandro Tesoro
+ * @author Alessandro Tesoro, Pressmodo LLC.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -383,4 +383,4 @@ final class PN_Requirements_Check {
 
 }
 
-new PN_Requirements_Check;
+new PN_Requirements_Check();

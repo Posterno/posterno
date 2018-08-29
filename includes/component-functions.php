@@ -92,7 +92,7 @@ function pno_setup_components() {
 			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
 			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
 			'meta'   => false,
-			'query'  => false,
+			'query'  => '\\PNO\\Database\\Queries\\Profile_Field',
 			'object' => '\\PNO\\Profile_Fields\\Profile_Field',
 		)
 	);
