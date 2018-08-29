@@ -344,7 +344,10 @@ function pno_display_post_type_tabs() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-		pno_install_component_database_tables();
+
+		$orders = new PNO\Database\Queries\Profile_Field();
+		print_r( $orders->add_item( [ 'type' => 'dd' ] ) );
+
 		wp_die();
 	}
 
