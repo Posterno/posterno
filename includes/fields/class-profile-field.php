@@ -17,12 +17,4 @@ defined( 'ABSPATH' ) || exit;
 
 class Profile_Field extends Field {
 
-	/**
-	 * Comment type.
-	 *
-	 * @since 3.0
-	 * @var string
-	 */
-	public $comment_type = '';
-
 }
