@@ -94,7 +94,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Bootstrap.
 			self::$instance->setup_constants();
 			self::$instance->setup_files();
-			self::$instance->setup_application();
 
 			// Boot composer's classes.
 			Brain\Cortex::boot();
@@ -203,8 +202,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_files() {
 			$this->autoload();
 			$this->setup_options();
-			$this->setup_utilities();
-			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
 			$this->setup_api();
@@ -233,24 +230,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_options() {
 			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
 			$GLOBALS['pno_options'] = pno_get_settings();
-		}
-
-		/**
-		 * Setup utilities used by the plugin.
-		 *
-		 * @return void
-		 */
-		private function setup_utilities() {
-			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
-		}
-
-		/**
-		 * Setup the rest of the app.
-		 *
-		 * @return void
-		 */
-		public function setup_application() {
-			pno_setup_components();
 		}
 
 		/**
@@ -308,39 +287,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		}
 
 		/**
-		 * Setup all of the custom database tables.
-		 *
-		 * @return void
-		 */
-		private function setup_components() {
-
-			// Component helpers are loaded before everything.
-			require_once PNO_PLUGIN_DIR . 'includes/interface-pno-exception.php';
-			require_once PNO_PLUGIN_DIR . 'includes/component-functions.php';
-			require_once PNO_PLUGIN_DIR . 'includes/class-component.php';
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-base.php';
-
-			// Database Resources.
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-column.php';
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-schema.php';
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-query.php';
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-row.php';
-			require_once PNO_PLUGIN_DIR . 'includes/database/class-table.php';
-
-			// Database Schemas.
-			require_once PNO_PLUGIN_DIR . 'includes/database/schemas/class-profile-fields.php';
-
-			// Database Objects.
-			require_once PNO_PLUGIN_DIR . 'includes/database/rows/class-profile-field.php';
-
-			// Database Tables.
-			require_once PNO_PLUGIN_DIR . 'includes/database/tables/class-profile-fields.php';
-
-			// Database Table Query Interfaces.
-			require_once PNO_PLUGIN_DIR . 'includes/database/queries/class-profile-field.php';
-		}
-
-		/**
 		 * Setup objects.
 		 *
 		 * @return void
@@ -361,9 +307,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';
 
 			// Fields.
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile-field.php';
-
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-profile-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-registration-field.php';

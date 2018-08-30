@@ -354,6 +354,15 @@ class Field extends Base_Object {
 	}
 
 	/**
+	 * Retrieve the id of the metadata assigned to this field.
+	 *
+	 * @return mixed
+	 */
+	public function get_meta_id() {
+		return $this->meta_id;
+	}
+
+	/**
 	 * Verify if the field exists into the database.
 	 *
 	 * @param int $field_id the id of the field to verify.
