@@ -162,4 +162,3 @@ function pno_version_in_header() {
 	echo '<meta name="generator" content="Posterno v' . esc_html( PNO_VERSION ) . '" />' . "\n";
 }
 add_action( 'wp_head', 'pno_version_in_header' );
-
