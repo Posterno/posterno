@@ -351,7 +351,7 @@ function testme() {
 		$orders = new PNO\Database\Queries\Profile_Field();
 		print_r( $orders->get_item_by('id', 2) );
 
-		wp_die();
+		//wp_die();
 	}
 
 }
