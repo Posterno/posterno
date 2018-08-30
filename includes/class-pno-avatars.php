@@ -30,7 +30,7 @@ class PNO_Avatars {
 			return;
 		}
 
-		add_action( 'carbon_fields_register_fields', [ __class__, 'avatar_field' ] );
+		add_filter( 'rwmb_meta_boxes', [ __class__, 'avatar_field' ] );
 		add_filter( 'get_avatar_url', [ __class__, 'set_avatar_url' ], 10, 3 );
 	}
 
@@ -73,18 +73,30 @@ class PNO_Avatars {
 	/**
 	 * Add avatar field in the WordPress backend.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function avatar_field() {
-		Container::make( 'user_meta', esc_html__( 'Profile picture & cover' ) )
-			->add_fields(
+
+		$meta_boxes[] = array(
+			'title'  => esc_html__( 'Profile picture & cover' ),
+			'id'     => 'profile-picture-cover',
+			'fields' => array(
 				array(
-					Field::make( 'image', 'current_user_avatar', esc_html__( 'Custom user avatar' ) )
-						->set_value_type( 'url' ),
-					Field::make( 'image', 'user_cover', esc_html__( 'Custom profile cover image' ) )
-						->set_value_type( 'url' ),
-				)
-			);
+					'id'   => 'current_user_avatar',
+					'type' => 'file_input',
+					'name' => esc_html__( 'Custom user avatar' ),
+				),
+
+				array(
+					'id'   => 'current_user_cover',
+					'type' => 'file_input',
+					'name' => esc_html__( 'Custom profile cover image' ),
+				),
+			),
+			'type'   => 'user',
+		);
+		return $meta_boxes;
+
 	}
 
 	/**
@@ -107,7 +119,7 @@ class PNO_Avatars {
 			return $url;
 		}
 
-		$custom_avatar = carbon_get_user_meta( self::get_user_id( $id_or_email ), 'current_user_avatar' );
+		$custom_avatar = rwmb_meta( 'current_user_avatar', array( 'object_type' => 'user' ), self::get_user_id( $id_or_email ) );
 
 		if ( $custom_avatar && $custom_avatar !== 'false' ) {
 			$url = $custom_avatar;
