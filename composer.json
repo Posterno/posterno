@@ -6,7 +6,7 @@
     },
     {
       "type": "composer",
-      "url": "https://packages.metabox.io/"
+      "url": "https://packages.metabox.io/API_KEY"
     }
   ],
   "extra": {
