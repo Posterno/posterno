@@ -20,26 +20,18 @@ use Carbon_Fields\Field;
 class PNO_Avatars {
 
 	/**
-	 * The user ID.
+	 * Hook into WordPress.
 	 *
-	 * @var string
+	 * @return void
 	 */
-	private $user_id;
-
-	/**
-	 * Get things started.
-	 */
-	public function __construct() {
-
-		global $pagenow;
+	public static function init() {
 
 		if ( ! pno_get_option( 'allow_avatars' ) ) {
 			return;
 		}
 
-		add_action( 'carbon_fields_register_fields', [ $this, 'avatar_field' ] );
-		add_filter( 'get_avatar_url', [ $this, 'set_avatar_url' ], 10, 3 );
-
+		add_action( 'carbon_fields_register_fields', [ __class__, 'avatar_field' ] );
+		add_filter( 'get_avatar_url', [ __class__, 'set_avatar_url' ], 10, 3 );
 	}
 
 	/**
@@ -49,7 +41,6 @@ class PNO_Avatars {
 	 */
 	private function get_user_id( $id_or_email ) {
 
-		// Default
 		$retval = 0;
 
 		if ( is_numeric( $id_or_email ) ) {
@@ -99,10 +90,10 @@ class PNO_Avatars {
 	/**
 	 * Override WordPress default avatar URL with the custom one.
 	 *
-	 * @param string $url
-	 * @param mixed $id_or_email
-	 * @param array $args
-	 * @return void
+	 * @param string $url url of the avatar.
+	 * @param mixed  $id_or_email id or email of the user.
+	 * @param array  $args additional args.
+	 * @return mixed
 	 */
 	public function set_avatar_url( $url, $id_or_email, $args ) {
 
@@ -116,7 +107,7 @@ class PNO_Avatars {
 			return $url;
 		}
 
-		$custom_avatar = carbon_get_user_meta( $this->get_user_id( $id_or_email ), 'current_user_avatar' );
+		$custom_avatar = carbon_get_user_meta( self::get_user_id( $id_or_email ), 'current_user_avatar' );
 
 		if ( $custom_avatar && $custom_avatar !== 'false' ) {
 			$url = $custom_avatar;
@@ -128,4 +119,4 @@ class PNO_Avatars {
 
 }
 
-new PNO_Avatars;
+PNO_Avatars::init();
