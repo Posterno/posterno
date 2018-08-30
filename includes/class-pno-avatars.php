@@ -39,7 +39,7 @@ class PNO_Avatars {
 	 *
 	 * @return int
 	 */
-	private function get_user_id( $id_or_email ) {
+	private static function get_user_id( $id_or_email ) {
 
 		$retval = 0;
 
@@ -75,7 +75,7 @@ class PNO_Avatars {
 	 *
 	 * @return void
 	 */
-	public function avatar_field() {
+	public static function avatar_field() {
 		Container::make( 'user_meta', esc_html__( 'Profile picture & cover' ) )
 			->add_fields(
 				array(
@@ -95,7 +95,7 @@ class PNO_Avatars {
 	 * @param array  $args additional args.
 	 * @return mixed
 	 */
-	public function set_avatar_url( $url, $id_or_email, $args ) {
+	public static function set_avatar_url( $url, $id_or_email, $args ) {
 
 		// Bail if forcing default.
 		if ( ! empty( $args['force_default'] ) ) {

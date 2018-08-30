@@ -3,7 +3,8 @@
         "gamajo/template-loader": "^1.3",
         "brain/cortex": "~1.0.0",
         "htmlburger/carbon-fields": "^2.2",
-        "alessandrotesoro/wp-notices": "^1.0"
+        "alessandrotesoro/wp-notices": "^1.0",
+        "wpmetabox/meta-box": "^4.15"
     },
     "minimum-stability": "dev"
 }
