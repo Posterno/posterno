@@ -242,6 +242,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_utilities() {
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
+			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
 		}
 
 		/**
@@ -328,16 +329,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/database/class-table.php';
 
 			// Database Schemas.
-			require_once PNO_PLUGIN_DIR . 'includes/database/schemas/class-profile-fields.php';
-
 			// Database Objects.
-			require_once PNO_PLUGIN_DIR . 'includes/database/rows/class-profile-field.php';
-
 			// Database Tables.
-			require_once PNO_PLUGIN_DIR . 'includes/database/tables/class-profile-fields.php';
-
 			// Database Table Query Interfaces.
-			require_once PNO_PLUGIN_DIR . 'includes/database/queries/class-profile-field.php';
 		}
 
 		/**
@@ -350,21 +344,12 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Templates.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
-			// Ajax.
-			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
-
 			// Menus.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-walker-menu-checklist.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-menus.php';
 
-			// Fields settings.
-			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';
-
 			// Fields.
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile-field.php';
-
-			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-profile-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-registration-field.php';
 

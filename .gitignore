@@ -116,3 +116,5 @@ vendor
 # composer.lock
 
 .sass-cache
+
+!/**/.gitkeep

@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles ajax integration with WordPress.
+ * Handles ajax integration with WordPress, not currently in use.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC

@@ -44,8 +44,8 @@ class PNO_Custom_Fields {
 	 */
 	public function register_profile_fields_settings() {
 		Container::make( 'post_meta', esc_html__( 'Main field settings' ) )
+		->set_datastore( new PNO\Datastores\Profile_Field() )
 		->where( 'post_type', '=', 'pno_users_fields' )
-
 		->add_tab(
 			esc_html__( 'General' ), array(
 
