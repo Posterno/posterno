@@ -22,13 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 class PNO_Menus {
 
 	/**
-	 * Get things started.
+	 * Hook into WordPress.
+	 *
+	 * @return void
 	 */
-	public function __construct() {
-		add_action( 'carbon_fields_register_fields', [ $this, 'menu_settings' ] );
-		add_action( 'admin_head', [ $this, 'cssjs' ] );
+	public static function init() {
+		add_action( 'carbon_fields_register_fields', [ __class__, 'menu_settings' ] );
+		add_action( 'admin_head', [ __class__, 'cssjs' ] );
 		if ( ! is_admin() ) {
-			add_filter( 'wp_get_nav_menu_items', [ $this, 'exclude_menu_items' ], 10, 3 );
+			add_filter( 'wp_get_nav_menu_items', [ __class__, 'exclude_menu_items' ], 10, 3 );
 		}
 	}
 
@@ -37,7 +39,7 @@ class PNO_Menus {
 	 *
 	 * @return void
 	 */
-	public function menu_settings() {
+	public static function menu_settings() {
 		Container::make( 'nav_menu_item', 'Menu Settings' )
 			->add_fields(
 				array(
@@ -61,7 +63,7 @@ class PNO_Menus {
 								),
 							)
 						)
-						->add_options( $this->get_roles() )
+						->add_options( self::get_roles() )
 						->set_help_text( esc_html__( 'Select the roles that should see this menu item. Leave blank for all roles.', 'wp-user-manager' ) ),
 				)
 			);
@@ -72,7 +74,7 @@ class PNO_Menus {
 	 *
 	 * @return array
 	 */
-	private function get_roles() {
+	private static function get_roles() {
 
 		$roles = [];
 
@@ -89,7 +91,7 @@ class PNO_Menus {
 	 *
 	 * @return void
 	 */
-	public function cssjs() {
+	public static function cssjs() {
 
 		$screen = get_current_screen();
 
@@ -113,7 +115,7 @@ class PNO_Menus {
 	 * @param array $args optional args.
 	 * @return array
 	 */
-	public function exclude_menu_items( $items, $menu, $args ) {
+	public static function exclude_menu_items( $items, $menu, $args ) {
 
 		foreach ( $items as $key => $item ) {
 
@@ -158,4 +160,4 @@ class PNO_Menus {
 
 }
 
-new PNO_Menus();
+( new PNO_Menus() )->init();
