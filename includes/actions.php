@@ -172,12 +172,12 @@ add_action( 'wp_head', 'pno_version_in_header' );
 function pno_adjust_wplogin_form_labels() {
 
 	$login_method    = pno_get_option( 'login_method' );
-	$translated_text = __( 'Username or email address' );
+	$translated_text = esc_html__( 'Username or email address' );
 
 	if ( $login_method === 'username' ) {
 		$translated_text = esc_html__( 'Username' );
 	} elseif ( $login_method === 'email' ) {
-		$translated_text = __( 'Email' );
+		$translated_text = esc_html__( 'Email' );
 	}
 
 	add_filter(
