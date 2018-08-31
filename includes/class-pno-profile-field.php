@@ -13,6 +13,10 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * PNO Profile field object class.
+ */
 class PNO_Profile_Field extends PNO_Field_Object {
 
 	/**
@@ -53,7 +57,8 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	/**
 	 * Constructor.
 	 *
-	 * @param mixed|boolean $_id
+	 * @param mixed|boolean $_id_or_field id of the field.
+	 * @param string        $user_id optional user id to load value of the field from the db.
 	 */
 	public function __construct( $_id_or_field = false, $user_id = false ) {
 
@@ -74,8 +79,9 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	/**
 	 * Setup the properties for the field by retrieving it's data.
 	 *
-	 * @param int $field_id
-	 * @return void
+	 * @param int    $field_id field id.
+	 * @param string $user_id optional user id to load value of the field from the db.
+	 * @return mixed
 	 */
 	protected function setup_field( $field_id, $user_id = false ) {
 
