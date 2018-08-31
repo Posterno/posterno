@@ -201,12 +201,12 @@ class PNO_Form_Account extends PNO_Form {
 					wp_delete_file( $existing_avatar_file_path );
 				}
 				if ( isset( $values['account']['avatar']['url'] ) && $currently_uploaded_file !== $values['account']['avatar']['url'] ) {
-					update_user_meta( $updated_user_id, 'current_user_avatar', $values['account']['avatar']['url'] );
+					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $values['account']['avatar']['url'] );
 					update_user_meta( $updated_user_id, 'current_user_avatar_path', $values['account']['avatar']['path'] );
 				}
 				if ( ! $currently_uploaded_file && file_exists( $existing_avatar_file_path ) ) {
 					wp_delete_file( $existing_avatar_file_path );
-					update_user_meta( $updated_user_id, 'current_user_avatar' );
+					carbon_set_user_meta( $updated_user_id, 'current_user_avatar', false );
 					delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
 				}
 			}
