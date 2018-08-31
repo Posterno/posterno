@@ -162,3 +162,32 @@ function pno_version_in_header() {
 	echo '<meta name="generator" content="Posterno v' . esc_html( PNO_VERSION ) . '" />' . "\n";
 }
 add_action( 'wp_head', 'pno_version_in_header' );
+
+/**
+ * Adjust labels within the wp-login.php form to match
+ * the type of login method selected in PNO.
+ *
+ * @return void
+ */
+function pno_adjust_wplogin_form_labels() {
+
+	$login_method    = pno_get_option( 'login_method' );
+	$translated_text = __( 'Username or email address' );
+
+	if ( $login_method === 'username' ) {
+		$translated_text = esc_html__( 'Username' );
+	} elseif ( $login_method === 'email' ) {
+		$translated_text = __( 'Email' );
+	}
+
+	add_filter(
+		'gettext', function ( $t, $text, $domain ) use ( $translated_text ) {
+			if ( 'Username or Email Address' === $text || 'Username' === $text ) {
+				return $translated_text;
+			}
+			return $t;
+		}, 20, 3
+	);
+
+}
+add_action( 'login_head', 'pno_adjust_wplogin_form_labels' );
