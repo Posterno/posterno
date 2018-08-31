@@ -20,21 +20,14 @@ use Carbon_Fields\Field;
 class PNO_Custom_Fields {
 
 	/**
-	 * Get things started.
-	 */
-	public function __construct() {
-		$this->init();
-	}
-
-	/**
 	 * Hook into WordPress.
 	 *
 	 * @return void
 	 */
-	public function init() {
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_registration_fields_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields' ] );
+	public static function init() {
+		add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ __class__, 'register_registration_fields_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields' ] );
 	}
 
 	/**
@@ -42,7 +35,7 @@ class PNO_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public function register_profile_fields_settings() {
+	public static function register_profile_fields_settings() {
 		Container::make( 'post_meta', esc_html__( 'Main field settings' ) )
 		->where( 'post_type', '=', 'pno_users_fields' )
 		->add_tab(
@@ -139,7 +132,7 @@ class PNO_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public function register_profile_fields() {
+	public static function register_profile_fields() {
 
 		$fields_query = [
 			'post_type'              => 'pno_users_fields',
@@ -214,7 +207,7 @@ class PNO_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public function register_registration_fields_settings() {
+	public static function register_registration_fields_settings() {
 
 		Container::make( 'post_meta', esc_html__( 'Main field settings' ) )
 		->where( 'post_type', '=', 'pno_signup_fields' )
@@ -267,4 +260,4 @@ class PNO_Custom_Fields {
 
 }
 
-new PNO_Custom_Fields;
+( new PNO_Custom_Fields() )->init();
