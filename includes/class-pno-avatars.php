@@ -30,7 +30,9 @@ class PNO_Avatars {
 			return;
 		}
 
-		add_filter( 'rwmb_meta_boxes', [ __class__, 'avatar_field' ] );
+		if ( is_admin() ) {
+			add_filter( 'rwmb_meta_boxes', [ __class__, 'avatar_field' ] );
+		}
 		add_filter( 'get_avatar_url', [ __class__, 'set_avatar_url' ], 10, 3 );
 	}
 
