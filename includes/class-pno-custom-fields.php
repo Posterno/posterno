@@ -158,10 +158,9 @@ class PNO_Custom_Fields {
 
 		if ( $fields->have_posts() ) {
 
-			while ( $fields->have_posts() ) {
+			$found_fields = $fields->get_posts();
 
-				$fields->the_post();
-
+			foreach ( $found_fields as $field_id ) {
 				$custom_field = new PNO_Profile_Field( get_the_id() );
 
 				if ( $custom_field instanceof PNO_Profile_Field && ! empty( $custom_field->get_meta() ) ) {
