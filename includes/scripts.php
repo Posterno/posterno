@@ -55,7 +55,15 @@ function pno_load_admin_scripts() {
 		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
 	}
 
-	if ( $screen->id === 'edit-listings' ) {
+	$admin_style_screens = [
+		'edit-listings',
+		'edit-listings-types',
+		'edit-listings-categories',
+		'edit-listings-locations',
+		'edit-listings-tags',
+	];
+
+	if ( in_array( $screen->id, $admin_style_screens ) ) {
 		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . '/assets/css/pno-admin-listings.min.css', [], PNO_VERSION );
 	}
 

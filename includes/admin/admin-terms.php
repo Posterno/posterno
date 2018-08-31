@@ -1,6 +1,6 @@
 <?php
 /**
- * Adjust terms metaboxes in the admin panel to be a radio selector only.
+ * Adjust terms metaboxes in the admin panel to be a radio or dropdown selector only.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
