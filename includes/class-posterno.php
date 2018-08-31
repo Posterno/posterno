@@ -204,6 +204,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->autoload();
 			$this->setup_options();
 			$this->setup_utilities();
+			$this->setup_externals();
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
@@ -243,6 +244,15 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_utilities() {
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
+		}
+
+		/**
+		 * Setup utilities that for some reason had not been setup with composer it's author.
+		 *
+		 * @return void
+		 */
+		private function setup_externals() {
+			require_once PNO_PLUGIN_DIR . 'includes/third-party/taxonomy-single-term/class.taxonomy-single-term.php';
 		}
 
 		/**
@@ -294,6 +304,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-export.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-erase.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-dashboard-menu-editor.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-terms.php';
 
 		}
 
