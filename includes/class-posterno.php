@@ -122,7 +122,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), '0.1.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?' ), '0.1.0' );
 		}
 		/**
 		 * Disable un-serializing of the class.
@@ -133,7 +133,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden.
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?' ), '0.1.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?' ), '0.1.0' );
 		}
 
 		/**
@@ -144,11 +144,11 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return boolean True if instantiated. False if not.
 		 */
 		private static function is_instantiated() {
-			// Return true if instance is correct class
+			// Return true if instance is correct class.
 			if ( ! empty( self::$instance ) && ( self::$instance instanceof Posterno ) ) {
 				return true;
 			}
-			// Return false if not instantiated correctly
+			// Return false if not instantiated correctly.
 			return false;
 		}
 
@@ -159,7 +159,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @param string $file
 		 */
 		private static function setup_instance( $file = '' ) {
-			self::$instance       = new Posterno;
+			self::$instance       = new Posterno();
 			self::$instance->file = $file;
 		}
 
@@ -280,6 +280,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/upload-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields-functions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/listings-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
 			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';

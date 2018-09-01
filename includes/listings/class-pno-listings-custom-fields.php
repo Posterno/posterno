@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Handles integration of custom fields for listings.
  *
@@ -18,6 +19,7 @@ use Carbon_Fields\Field;
  * The class that handles custom fields integration.
  */
 class PNO_Listings_Custom_Fields {
+
 
 	/**
 	 * Hook into WordPress and register custom fields.
@@ -42,9 +44,18 @@ class PNO_Listings_Custom_Fields {
 			->add_tab(
 				esc_html__( 'Details' ),
 				array(
-					Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number' ) ),
-					Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) ),
-					Field::make( 'text', 'listing_website', esc_html__( 'Website' ) ),
+					Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number' ) )->set_width( 33.33 ),
+					Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 ),
+					Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 ),
+					Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles' ) )
+						->add_fields(
+							array(
+								Field::make( 'select', 'social_id', esc_html__( 'Network' ) )
+									->add_options( 'pno_get_listings_registered_social_media' )
+									->set_width( 50 ),
+								Field::make( 'text', 'social_url', esc_html__( 'Profile url' ) )->set_width( 50 ),
+							)
+						),
 				)
 			)
 			->add_tab(
@@ -74,4 +85,4 @@ class PNO_Listings_Custom_Fields {
 
 }
 
-( new PNO_Listings_Custom_Fields() )->init();
+(new PNO_Listings_Custom_Fields())->init();
