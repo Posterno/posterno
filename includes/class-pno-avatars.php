@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handles avatar functionalities.
  *
@@ -121,4 +120,4 @@ class PNO_Avatars {
 
 }
 
-PNO_Avatars::init();
+( new PNO_Avatars() )->init();

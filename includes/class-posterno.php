@@ -374,6 +374,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Avatars.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-avatars.php';
 
+			// Listings.
+			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-custom-fields.php';
+
 		}
 
 	}
