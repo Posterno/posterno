@@ -436,17 +436,6 @@ function pno_get_listings_categories_for_association() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
-
-		$terms = get_terms(
-			'listings-types',
-			array(
-				'hide_empty' => false,
-				'number'     => 999,
-				'orderby'    => 'name',
-				'order'      => 'ASC',
-			)
-		);
-
 		//wp_die();
 	}
 

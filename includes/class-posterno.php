@@ -244,6 +244,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_utilities() {
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 		}
 
 		/**

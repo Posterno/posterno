@@ -67,6 +67,7 @@ class PNO_Listings_Custom_Fields {
 		);
 
 		Container::make( 'post_meta', esc_html__( 'Listing settings' ) )
+			//->set_datastore( new PNO\Datastores\Listings() )
 			->where( 'post_type', '=', 'listings' )
 			->add_tab(
 				esc_html__( 'Details' ),
