@@ -36,6 +36,7 @@ function pno_get_listings_registered_social_media() {
 		'behance'        => esc_html__( 'Behance' ),
 		'soundcloud'     => esc_html__( 'SoundCloud' ),
 		'stack-overflow' => esc_html__( 'Stack Overflow' ),
+		'whatsapp'       => esc_html__( 'Whatsapp' ),
 	];
 
 	/**
