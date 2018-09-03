@@ -20,6 +20,29 @@ use Carbon_Fields\Field;
  */
 class PNO_Listings_Custom_Fields {
 
+	/**
+	 * Contains translatable text.
+	 *
+	 * @var string
+	 */
+	public static $opening_at = '';
+
+	/**
+	 * Contains translatable text.
+	 *
+	 * @var string
+	 */
+	public static $closing_at = '';
+
+	/**
+	 * Get the class started.
+	 */
+	public function __construct() {
+
+		self::$opening_at = esc_html__( 'Opening at:' );
+		self::$closing_at = esc_html__( 'Closing at:' );
+
+	}
 
 	/**
 	 * Hook into WordPress and register custom fields.
@@ -39,6 +62,11 @@ class PNO_Listings_Custom_Fields {
 	 */
 	public static function register_listings_settings() {
 
+		$social_profiles_labels = array(
+			'plural_name'   => esc_html__( 'Profiles' ),
+			'singular_name' => esc_html__( 'Profile' ),
+		);
+
 		Container::make( 'post_meta', esc_html__( 'Listing settings' ) )
 			->where( 'post_type', '=', 'listings' )
 			->add_tab(
@@ -48,6 +76,8 @@ class PNO_Listings_Custom_Fields {
 					Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 ),
 					Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 ),
 					Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles' ) )
+						->setup_labels( $social_profiles_labels )
+						->set_collapsed( true )
 						->add_fields(
 							array(
 								Field::make( 'select', 'social_id', esc_html__( 'Network' ) )
@@ -79,10 +109,83 @@ class PNO_Listings_Custom_Fields {
 							)
 						),
 				)
+			)
+			->add_tab(
+				esc_html__( 'Opening Hours' ),
+				self::get_days_fields()
 			);
+
+	}
+
+	/**
+	 * Generates custom fields for all days of the week.
+	 *
+	 * @return array
+	 */
+	private static function get_days_fields() {
+
+		$days = [
+			'monday'    => esc_html__( 'Monday' ),
+			'tuesday'   => esc_html__( 'Tuesday' ),
+			'wednesday' => esc_html__( 'Wednesday' ),
+			'thursday'  => esc_html__( 'Thursday' ),
+			'friday'    => esc_html__( 'Friday' ),
+			'saturday'  => esc_html__( 'Saturday' ),
+			'sunday'    => esc_html__( 'Sunday' ),
+		];
+
+		$fields = [];
+
+		foreach ( $days as $day_string => $day_name ) {
+
+			$fields[] = Field::make( 'html', $day_string )
+				->set_html( '<h4>' . ucfirst( esc_html( $day_name ) ) . '</h4>' )
+				->set_classes( 'inline-metabox-message' );
+
+			$fields[] = Field::make( 'time', $day_string . '_opening', false )
+				->set_attribute( 'placeholder', self::$opening_at )
+				->set_picker_options( self::get_timepicker_config() )
+				->set_width( 50 );
+
+			$fields[] = Field::make( 'time', $day_string . '_closing', false )
+				->set_attribute( 'placeholder', self::$closing_at )
+				->set_picker_options( self::get_timepicker_config() )
+				->set_width( 50 );
+
+			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings' ) )
+				->set_collapsed( true )
+				->add_fields(
+					array(
+						Field::make( 'time', $day_string . '_opening', false )
+							->set_attribute( 'placeholder', self::$opening_at )
+							->set_picker_options( self::get_timepicker_config() )
+							->set_width( 50 ),
+						Field::make( 'time', $day_string . '_closing', false )
+						->set_attribute( 'placeholder', self::$closing_at )
+						->set_picker_options( self::get_timepicker_config() )
+						->set_width( 50 ),
+					)
+				);
+
+		}
+
+		return $fields;
+
+	}
+
+	/**
+	 * Additional settings for timepickers within the listings settings.
+	 *
+	 * @return array
+	 */
+	private static function get_timepicker_config() {
+
+		return [
+			'enableSeconds' => false,
+		];
 
 	}
 
 }
 
-(new PNO_Listings_Custom_Fields())->init();
+( new PNO_Listings_Custom_Fields() )->init();

@@ -51,3 +51,18 @@ function pno_get_listings_registered_social_media() {
 	return $socials;
 
 }
+
+/**
+ * Get timings for the opening hours selector.
+ *
+ * @return array
+ */
+function pno_get_am_pm_declaration() {
+
+	$timings = [
+		'am' => esc_html__( 'AM' ),
+		'pm' => esc_html__( 'PM' ),
+	];
+
+	return $timings;
+}

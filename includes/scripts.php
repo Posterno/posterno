@@ -61,6 +61,7 @@ function pno_load_admin_scripts() {
 		'edit-listings-categories',
 		'edit-listings-locations',
 		'edit-listings-tags',
+		'listings',
 	];
 
 	if ( in_array( $screen->id, $admin_style_screens ) ) {
