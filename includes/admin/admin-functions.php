@@ -341,9 +341,77 @@ function pno_display_post_type_tabs() {
 	echo ob_get_clean(); // phpcs:ignore
 }
 
+/**
+ * Retrieve a list of listings terms when within the listings categories panel.
+ * This function is used only within the admin panel.
+ *
+ * @return array
+ */
+function pno_get_listings_types_for_association() {
+
+	$types = [];
+
+	//phpcs:ignore
+	if ( ! isset( $_GET['taxonomy'] ) || isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] !== 'listings-categories' ) {
+		return $types;
+	}
+
+	$terms = get_terms(
+		'listings-types', array(
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $listing_type ) {
+			$types[ absint( $listing_type->term_id ) ] = esc_html( $listing_type->name );
+		}
+	}
+
+	return $types;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
+
+		$terms = get_terms(
+			'listings-types',
+			array(
+				'hide_empty' => false,
+				'number'     => 999,
+				'orderby'    => 'name',
+				'order'      => 'ASC',
+			)
+		);
 
 		//wp_die();
 	}

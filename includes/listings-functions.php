@@ -67,3 +67,4 @@ function pno_get_am_pm_declaration() {
 
 	return $timings;
 }
+
