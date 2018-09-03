@@ -16,36 +16,36 @@ use Carbon_Fields\Datastore\Post_Meta_Datastore;
 use Carbon_Fields\Field\Field;
 use Carbon_Fields\Toolset\Key_Toolset;
 
-final class KeyValuePair {
-
-	public $key;
-	public $value;
-
-	public function __construct( string $key, string $value ) {
-		$this->key   = $key;
-		$this->value = $value;
-	}
-}
-
+/**
+ * Responsible of loading metadata.
+ */
 trait EagerLoadingMetaDatastore {
 
 	protected function get_storage_array( Field $field, $storage_key_patterns ) {
+
 		$storage = [];
 		$meta    = get_metadata( $this->get_meta_type(), $this->get_object_id() );
 		if ( ! $meta ) {
-			return $storage; // new object
+			return $storage;
 		}
+
 		foreach ( $storage_key_patterns as $storage_key => $type ) {
 			switch ( $type ) {
 				case Key_Toolset::PATTERN_COMPARISON_EQUAL:
 					if ( isset( $meta[ $storage_key ] ) ) {
-						$storage[] = new KeyValuePair( $storage_key, $meta[ $storage_key ][0] );
+						$obj        = new \stdClass();
+						$obj->key   = $storage_key;
+						$obj->value = $meta[ $storage_key ][0];
+						$storage[]  = $obj;
 					}
 					break;
 				case Key_Toolset::PATTERN_COMPARISON_STARTS_WITH:
 					foreach ( $meta as $key => $value ) {
 						if ( strpos( $key, $storage_key ) === 0 ) {
-							$storage[] = new KeyValuePair( $key, $meta[ $key ][0] );
+							$obj        = new \stdClass();
+							$obj->key   = $key;
+							$obj->value = $meta[ $key ][0];
+							$storage[]  = $obj;
 						}
 					}
 					break;
@@ -61,10 +61,16 @@ trait EagerLoadingMetaDatastore {
 	}
 }
 
+/**
+ * Class that hooks into carbon fields storage system.
+ */
 final class EagerLoadingPostMetaDatastore extends Post_Meta_Datastore {
 	use EagerLoadingMetaDatastore;
 }
 
+/**
+ * Add caching to all containers that make use of the post meta datastore.
+ */
 add_action(
 	'carbon_fields_fields_registered', function () {
 		$repo = Carbon_Fields::resolve( 'container_repository' );
