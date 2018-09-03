@@ -87,8 +87,8 @@ function pno_get_login_methods() {
 /**
  * Retrieve a list of all user roles and cache them into a transient.
  *
- * @param boolean $force set to true if loading outside the pno settings
- * @param boolean $admin set to true to load the admin role too
+ * @param boolean $force set to true if loading outside the pno settings.
+ * @param boolean $admin set to true to load the admin role too.
  * @return array
  */
 function pno_get_roles( $force = false, $admin = false ) {

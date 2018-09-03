@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles ajax integration with WordPress, not currently in use.
+ * Handles ajax integration with WordPress.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -11,23 +11,24 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Integration with WordPress Ajax.
+ */
 class PNO_Ajax {
 
-	public function __construct() {
-		$this->init();
-	}
-
-	public function init() {
-		add_action( 'wp_ajax_nopriv_pno_upload_file', array( $this, 'upload_file' ) );
-		add_action( 'wp_ajax_pno_upload_file', array( $this, 'upload_file' ) );
-	}
+	/**
+	 * Hook into WordPress.
+	 *
+	 * @return void
+	 */
+	public static function init() {}
 
 	/**
 	 * Uploads file from an Ajax request.
 	 *
 	 * No nonce field since the form may be statically cached.
 	 */
-	public function upload_file() {
+	public static function upload_file() {
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( esc_html__( 'You must be logged in to upload files using this method.' ) );
 			return;
@@ -60,4 +61,4 @@ class PNO_Ajax {
 
 }
 
-new PNO_Ajax();
+( new PNO_Ajax() )->init();

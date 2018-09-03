@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handles integration of custom fields for listings.
  *

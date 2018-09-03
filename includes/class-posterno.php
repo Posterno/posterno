@@ -377,6 +377,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Listings.
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-custom-fields.php';
+			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-terms-custom-fields.php';
 
 		}
 
