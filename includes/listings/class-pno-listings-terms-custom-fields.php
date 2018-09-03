@@ -27,6 +27,7 @@ class PNO_Listing_Terms_Custom_Fields {
 	public static function init() {
 
 		add_action( 'carbon_fields_register_fields', [ __class__, 'register_categories_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ __class__, 'register_tags_settings' ] );
 
 	}
 
@@ -44,6 +45,25 @@ class PNO_Listing_Terms_Custom_Fields {
 					Field::make( 'multiselect', 'associated_types', esc_html__( 'Associated listing types' ) )
 						->set_help_text( esc_html__( 'Select one or more listings types if you wish to restrict this category to the selected types.' ) )
 						->add_options( 'pno_get_listings_types_for_association' ),
+				)
+			);
+
+	}
+
+	/**
+	 * Add settings to the listings tags taxonomy.
+	 *
+	 * @return void
+	 */
+	public static function register_tags_settings() {
+
+		Container::make( 'term_meta', esc_html__( 'Listing tag settings' ) )
+			->where( 'term_taxonomy', '=', 'listings-tags' )
+			->add_fields(
+				array(
+					Field::make( 'multiselect', 'associated_categories', esc_html__( 'Associated listing categories' ) )
+						->set_help_text( esc_html__( 'Select one or more listings categories if you wish to restrict this tag to the selected categories.' ) )
+						->add_options( 'pno_get_listings_categories_for_association' ),
 				)
 			);
 
