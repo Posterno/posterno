@@ -121,4 +121,16 @@ class OpeningHours extends Post_Meta_Datastore {
 
 	}
 
+	/**
+	 * Delete the field for the specified object id.
+	 *
+	 * @param Field $field field to deleted.
+	 * @return void
+	 */
+	public function delete( Field $field ) {
+
+		delete_post_meta( $this->get_object_id(), '_listing_opening_hours' );
+
+	}
+
 }
