@@ -21,6 +21,13 @@ use Carbon_Fields\Toolset\Key_Toolset;
  */
 trait EagerLoadingMetaDatastore {
 
+	/**
+	 * Retrieve storage array through native metadatas.
+	 *
+	 * @param Field $field field object.
+	 * @param array $storage_key_patterns previous patterns.
+	 * @return array
+	 */
 	protected function get_storage_array( Field $field, $storage_key_patterns ) {
 
 		$storage = [];

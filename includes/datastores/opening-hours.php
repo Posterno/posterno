@@ -21,9 +21,9 @@ use Carbon_Fields\Toolset\Key_Toolset;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Manage storage of details for listings details.
+ * Manage storage of opening hours of listings.
  */
-class Listings extends Post_Meta_Datastore {
+class OpeningHours extends Post_Meta_Datastore {
 
 	/**
 	 * Get the defined key for the field.

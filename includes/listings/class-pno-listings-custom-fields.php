@@ -67,7 +67,6 @@ class PNO_Listings_Custom_Fields {
 		);
 
 		Container::make( 'post_meta', esc_html__( 'Listing settings' ) )
-			//->set_datastore( new PNO\Datastores\Listings() )
 			->where( 'post_type', '=', 'listings' )
 			->add_tab(
 				esc_html__( 'Details' ),
@@ -76,6 +75,7 @@ class PNO_Listings_Custom_Fields {
 					Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 ),
 					Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 ),
 					Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles' ) )
+						->set_datastore( new PNO\Datastores\SerializeField() )
 						->setup_labels( $social_profiles_labels )
 						->set_collapsed( true )
 						->add_fields(
@@ -143,11 +143,13 @@ class PNO_Listings_Custom_Fields {
 				->set_classes( 'inline-metabox-message' );
 
 			$fields[] = Field::make( 'time', $day_string . '_opening', false )
+				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$opening_at )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'time', $day_string . '_closing', false )
+				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$closing_at )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
