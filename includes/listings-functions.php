@@ -68,3 +68,99 @@ function pno_get_am_pm_declaration() {
 	return $timings;
 }
 
+/**
+ * Retrieve an array with the days of the week.
+ *
+ * @return array
+ */
+function pno_get_days_of_the_week() {
+
+	$days = [
+		'monday'    => esc_html__( 'Monday' ),
+		'tuesday'   => esc_html__( 'Tuesday' ),
+		'wednesday' => esc_html__( 'Wednesday' ),
+		'thursday'  => esc_html__( 'Thursday' ),
+		'friday'    => esc_html__( 'Friday' ),
+		'saturday'  => esc_html__( 'Saturday' ),
+		'sunday'    => esc_html__( 'Sunday' ),
+	];
+
+	return $days;
+
+}
+
+/**
+ * Store opening hours of a given listing by day into the database.
+ *
+ * @param mixed  $listing_id ID of the listing to update.
+ * @param string $day string of the day we're saving @see pno_get_days_of_the_week().
+ * @param string $slot opening or closing.
+ * @param string $time submitted time.
+ * @return void
+ */
+function pno_update_listing_opening_hours_by_day( $listing_id = false, $day = '', $slot = '', $time = '' ) {
+
+	if ( ! $listing_id || empty( $day ) || empty( $time ) || empty( $slot ) ) {
+		return;
+	}
+
+	if ( ! array_key_exists( $day, pno_get_days_of_the_week() ) ) {
+		return;
+	}
+
+	$existing_timings = get_post_meta( $listing_id, '_listing_opening_hours', true );
+
+	if ( empty( $existing_timings ) || ! is_array( $existing_timings ) ) {
+		$existing_timings = [];
+	}
+
+	$slots = [
+		'opening',
+		'closing',
+	];
+
+	if ( ! in_array( $slot, $slots ) ) {
+		return;
+	}
+
+	$time = is_array( $time ) ? $time : sanitize_text_field( $time );
+
+	$existing_timings[ $day ][ $slot ] = $time;
+
+	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
+
+}
+
+/**
+ * Store additional opening hours for a specific day of the week for listings.
+ *
+ * @param mixed  $listing_id the listing id.
+ * @param string $day string of day of the week.
+ * @param array  $timings list of closing and opening times.
+ * @return void
+ */
+function pno_update_listing_additional_opening_hours_by_day( $listing_id = false, $day = '', $timings = [] ) {
+
+	if ( ! $listing_id || empty( $day ) || empty( $timings ) ) {
+		return;
+	}
+
+	if ( ! array_key_exists( $day, pno_get_days_of_the_week() ) ) {
+		return;
+	}
+
+	$existing_timings = get_post_meta( $listing_id, '_listing_opening_hours', true );
+
+	if ( empty( $existing_timings ) || ! is_array( $existing_timings ) ) {
+		return;
+	}
+
+	if ( ! isset( $existing_timings[ $day ] ) ) {
+		return;
+	}
+
+	$existing_timings[ $day ]['additional_times'] = $timings;
+
+	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
+
+}

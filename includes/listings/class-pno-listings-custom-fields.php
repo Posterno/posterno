@@ -124,15 +124,7 @@ class PNO_Listings_Custom_Fields {
 	 */
 	private static function get_days_fields() {
 
-		$days = [
-			'monday'    => esc_html__( 'Monday' ),
-			'tuesday'   => esc_html__( 'Tuesday' ),
-			'wednesday' => esc_html__( 'Wednesday' ),
-			'thursday'  => esc_html__( 'Thursday' ),
-			'friday'    => esc_html__( 'Friday' ),
-			'saturday'  => esc_html__( 'Saturday' ),
-			'sunday'    => esc_html__( 'Sunday' ),
-		];
+		$days = pno_get_days_of_the_week();
 
 		$fields = [];
 
@@ -155,6 +147,7 @@ class PNO_Listings_Custom_Fields {
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings' ) )
+				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_collapsed( true )
 				->add_fields(
 					array(
