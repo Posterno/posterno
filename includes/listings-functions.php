@@ -100,7 +100,7 @@ function pno_get_days_of_the_week() {
  */
 function pno_update_listing_opening_hours_by_day( $listing_id = false, $day = '', $slot = '', $time = '' ) {
 
-	if ( ! $listing_id || empty( $day ) || empty( $time ) || empty( $slot ) ) {
+	if ( ! $listing_id || empty( $day ) || empty( $slot ) ) {
 		return;
 	}
 
@@ -123,9 +123,18 @@ function pno_update_listing_opening_hours_by_day( $listing_id = false, $day = ''
 		return;
 	}
 
-	$time = is_array( $time ) ? $time : sanitize_text_field( $time );
+	// If we receive an empty time, then we remove the slot from the storage array.
+	if ( empty( $time ) ) {
+		if ( isset( $existing_timings[ $day ][ $slot ] ) ) {
+			unset( $existing_timings[ $day ][ $slot ] );
+		}
+	} else {
 
-	$existing_timings[ $day ][ $slot ] = $time;
+		$time = is_array( $time ) ? $time : sanitize_text_field( $time );
+
+		$existing_timings[ $day ][ $slot ] = $time;
+
+	}
 
 	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
 
@@ -141,7 +150,7 @@ function pno_update_listing_opening_hours_by_day( $listing_id = false, $day = ''
  */
 function pno_update_listing_additional_opening_hours_by_day( $listing_id = false, $day = '', $timings = [] ) {
 
-	if ( ! $listing_id || empty( $day ) || empty( $timings ) ) {
+	if ( ! $listing_id || empty( $day ) ) {
 		return;
 	}
 
@@ -159,7 +168,14 @@ function pno_update_listing_additional_opening_hours_by_day( $listing_id = false
 		return;
 	}
 
-	$existing_timings[ $day ]['additional_times'] = $timings;
+	if ( empty( $timings ) ) {
+
+		if ( isset( $existing_timings[ $day ]['additional_times'] ) ) {
+			unset( $existing_timings[ $day ]['additional_times'] );
+		}
+	} else {
+		$existing_timings[ $day ]['additional_times'] = $timings;
+	}
 
 	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
 

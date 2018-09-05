@@ -62,8 +62,8 @@ class OpeningHours extends Post_Meta_Datastore {
 					$closingstring = $day_string . '_closing';
 
 					$value[] = [
-						$openingstring => isset( $timeset['opening'] ) ? esc_html( $timeset['opening'] ) : false,
-						$closingstring => isset( $timeset['closing'] ) ? esc_html( $timeset['closing'] ) : false,
+						$openingstring => isset( $timeset['opening'] ) ? esc_html( $timeset['opening'] ) : null,
+						$closingstring => isset( $timeset['closing'] ) ? esc_html( $timeset['closing'] ) : null,
 					];
 
 				}
@@ -71,8 +71,8 @@ class OpeningHours extends Post_Meta_Datastore {
 		} else {
 
 			if ( isset( $timings[ $day_string ] ) && is_array( $timings[ $day_string ] ) ) {
-				$opening = isset( $timings[ $day_string ]['opening'] ) ? esc_html( $timings[ $day_string ]['opening'] ) : false;
-				$closing = isset( $timings[ $day_string ]['closing'] ) ? esc_html( $timings[ $day_string ]['closing'] ) : false;
+				$opening = isset( $timings[ $day_string ]['opening'] ) ? esc_html( $timings[ $day_string ]['opening'] ) : null;
+				$closing = isset( $timings[ $day_string ]['closing'] ) ? esc_html( $timings[ $day_string ]['closing'] ) : null;
 
 				if ( $opening_or_closing == 'opening' ) {
 					$value = $opening;
@@ -131,7 +131,7 @@ class OpeningHours extends Post_Meta_Datastore {
 			$opening_or_closing = $this->is_opening_or_closing( $key );
 			$submitted_time     = $field->get_formatted_value();
 
-			if ( $day_string && $opening_or_closing && $submitted_time ) {
+			if ( $day_string && $opening_or_closing ) {
 				pno_update_listing_opening_hours_by_day( $this->get_object_id(), $day_string, $opening_or_closing, $submitted_time );
 			}
 		}
@@ -168,6 +168,16 @@ class OpeningHours extends Post_Meta_Datastore {
 
 		return $opening_or_closing;
 
+	}
+
+	/**
+	 * Delete data associated with the opening hours.
+	 *
+	 * @param Field $field the field object we're working with.
+	 * @return boolean
+	 */
+	public function delete( Field $field ) {
+		return true;
 	}
 
 }
