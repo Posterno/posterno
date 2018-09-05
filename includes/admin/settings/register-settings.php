@@ -296,6 +296,14 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
 			],
+			'submission_page'   => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'Listing submission page' ),
+				'description' => esc_html__( 'Select the page where you have added the listing submission page shortcode.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+				'is_page'     => true,
+			],
 			'profile_page'      => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Public profile page' ),
