@@ -351,11 +351,6 @@ function pno_get_listings_types_for_association() {
 
 	$types = [];
 
-	//phpcs:ignore
-	if ( ! isset( $_GET['taxonomy'] ) || isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] !== 'listings-categories' ) {
-		return $types;
-	}
-
 	$terms = get_terms(
 		'listings-types', array(
 			'hide_empty' => false,

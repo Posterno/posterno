@@ -71,6 +71,11 @@ class PNO_Listings_Custom_Fields {
 			->add_tab(
 				esc_html__( 'Details' ),
 				array(
+					Field::make( 'radio', 'listing_type', esc_html__( 'Listing type' ) )
+						->set_classes( 'inline-radio-selector' )
+						->add_options(
+							'pno_get_listings_types_for_association'
+						),
 					Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number' ) )->set_width( 33.33 ),
 					Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 ),
 					Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 ),

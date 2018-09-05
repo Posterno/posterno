@@ -19,3 +19,13 @@
 		padding-top: 6px;
 	}
 }
+
+.carbon-field {
+	&.inline-radio-selector {
+		.carbon-radio-list li {
+			display: inline-block;
+			margin-right: 1em;
+			margin-bottom: 0;
+		}
+	}
+}
