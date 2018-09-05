@@ -68,6 +68,12 @@
 								editor.insertContent('[pno_password_recovery_form]');
 							}
 						},
+						{
+							text: pnotinymce.forms.submission,
+							onclick: function () {
+								editor.insertContent('[pno_listing_submission_form]');
+							}
+						},
 
 					]
 				}, // End forms

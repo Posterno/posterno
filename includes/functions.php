@@ -102,6 +102,23 @@ function pno_get_profile_page_id() {
 }
 
 /**
+ * Retrieve the id number of the selected listing submission page in the admin panel.
+ *
+ * @return mixed
+ */
+function pno_get_listing_submission_page_id() {
+
+	$listing_submission_page = false;
+	$page_option             = pno_get_option( 'submission_page' );
+
+	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
+		$listing_submission_page = absint( $page_option['value'] );
+	}
+
+	return $listing_submission_page;
+}
+
+/**
  * Defines a list of navigation items for the dashboard page.
  *
  * @return array
