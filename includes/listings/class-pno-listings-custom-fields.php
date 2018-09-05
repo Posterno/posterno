@@ -100,6 +100,7 @@ class PNO_Listings_Custom_Fields {
 				esc_html__( 'Media' ),
 				array(
 					Field::make( 'media_gallery', 'listing_gallery_images', esc_html__( 'Images' ) )
+						->set_datastore( new PNO\Datastores\SerializeField() )
 						->set_type( array( 'image' ) ),
 					Field::make( 'oembed', 'listing_media_embed', esc_html__( 'Embed' ) )
 						->set_help_text(
