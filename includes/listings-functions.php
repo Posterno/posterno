@@ -180,3 +180,20 @@ function pno_update_listing_additional_opening_hours_by_day( $listing_id = false
 	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
 
 }
+
+/**
+ * Assign a listing type to a given listing.
+ *
+ * @param string|int $listing_id the id of the listing.
+ * @param string|int $type_id the id of the taxonomy (listing type) that we're going to add.
+ * @return void
+ */
+function pno_assign_type_to_listing( $listing_id, $type_id ) {
+
+	if ( ! $listing_id || ! $type_id ) {
+		return;
+	}
+
+	wp_set_object_terms( $listing_id, $type_id, 'listings-types' );
+
+}

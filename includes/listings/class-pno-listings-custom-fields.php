@@ -72,6 +72,8 @@ class PNO_Listings_Custom_Fields {
 				esc_html__( 'Details' ),
 				array(
 					Field::make( 'radio', 'listing_type', esc_html__( 'Listing type' ) )
+						->set_datastore( new PNO\Datastores\ListingType() )
+						->set_required( true )
 						->set_classes( 'inline-radio-selector' )
 						->add_options(
 							'pno_get_listings_types_for_association'
