@@ -301,7 +301,7 @@ add_filter( 'post_updated_messages', 'pno_updated_messages' );
 function pno_register_listings_taxonomies() {
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listings types' ),
+		'name'                       => esc_html__( 'Listing types' ),
 		'singular_name'              => esc_html__( 'Listings type' ),
 		'menu_name'                  => esc_html__( 'Types' ),
 		'all_items'                  => esc_html__( 'All listings types' ),
@@ -334,7 +334,7 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listings categories' ),
+		'name'                       => esc_html__( 'Listing categories' ),
 		'singular_name'              => esc_html__( 'Listings category' ),
 		'menu_name'                  => esc_html__( 'Categories' ),
 		'all_items'                  => esc_html__( 'All listings categories' ),
@@ -365,7 +365,7 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-categories', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listings locations' ),
+		'name'                       => esc_html__( 'Listing locations' ),
 		'singular_name'              => esc_html__( 'Listings location' ),
 		'menu_name'                  => esc_html__( 'Locations' ),
 		'all_items'                  => esc_html__( 'All listings locations' ),
@@ -396,7 +396,7 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-locations', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listings tags' ),
+		'name'                       => esc_html__( 'Listing tags' ),
 		'singular_name'              => esc_html__( 'Listings tag' ),
 		'menu_name'                  => esc_html__( 'Tags' ),
 		'all_items'                  => esc_html__( 'All listings tags' ),
