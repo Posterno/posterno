@@ -321,13 +321,15 @@ function pno_register_listings_taxonomies() {
 		'items_list_navigation'      => esc_html__( 'Listings type list navigation' ),
 	);
 	$args   = array(
-		'labels'            => $labels,
-		'hierarchical'      => false,
-		'public'            => true,
-		'show_ui'           => true,
-		'show_in_nav_menus' => true,
-		'show_tagcloud'     => false,
-		'show_in_rest'      => true,
+		'labels'             => $labels,
+		'hierarchical'       => false,
+		'public'             => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => true,
+		'show_tagcloud'      => false,
+		'show_in_rest'       => true,
+		'show_in_quick_edit' => false,
+		'meta_box_cb'        => false,
 	);
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 

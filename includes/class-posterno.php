@@ -255,9 +255,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 *
 		 * @return void
 		 */
-		private function setup_externals() {
-			require_once PNO_PLUGIN_DIR . 'includes/third-party/taxonomy-single-term/class.taxonomy-single-term.php';
-		}
+		private function setup_externals() {}
 
 		/**
 		 * Setup the rest of the app.
@@ -309,7 +307,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-export.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-erase.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-dashboard-menu-editor.php';
-			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-terms.php';
+			// require_once PNO_PLUGIN_DIR . 'includes/admin/admin-terms.php';
 
 		}
 
