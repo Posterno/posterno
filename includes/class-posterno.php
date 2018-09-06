@@ -364,6 +364,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Fields.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-custom-fields.php';
+			require_once PNO_PLUGIN_DIR . 'includes/profiles/class-pno-profiles-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-profile-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-registration-field.php';
 

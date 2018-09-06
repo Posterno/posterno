@@ -27,9 +27,9 @@ class PNO_Custom_Fields {
 	public static function init() {
 
 		// Profile fields.
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields_settings' ] );
+		//add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields_settings' ] );
 		add_action( 'carbon_fields_register_fields', [ __class__, 'register_registration_fields_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields' ] );
+		//add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields' ] );
 
 	}
 

@@ -27,7 +27,7 @@ class ListingType extends Post_Meta_Datastore {
 	/**
 	 * Load the selected type for the listing.
 	 *
-	 * @param Field $field
+	 * @param Field $field the field we're working with.
 	 * @return string|int
 	 */
 	public function load( Field $field ) {
