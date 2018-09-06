@@ -59,13 +59,30 @@ class PNO_Listing_Terms_Custom_Fields {
 
 		Container::make( 'term_meta', esc_html__( 'Listing tag settings' ) )
 			->where( 'term_taxonomy', '=', 'listings-tags' )
-			->add_fields(
-				array(
-					Field::make( 'multiselect', 'associated_categories', esc_html__( 'Associated listing categories' ) )
-						->set_help_text( esc_html__( 'Select one or more listings categories if you wish to restrict this tag to the selected categories.' ) )
-						->add_options( 'pno_get_listings_categories_for_association' ),
-				)
-			);
+			->add_fields( self::get_tags_settings() );
+
+	}
+
+	/**
+	 * Retrieve the list of custom fields ( settings ) for listings tags. Powered by Carbon Fields.
+	 *
+	 * @return array
+	 */
+	public static function get_tags_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'multiselect', 'associated_categories', esc_html__( 'Associated listing categories' ) )
+			->set_help_text( esc_html__( 'Select one or more listings categories if you wish to restrict this tag to the selected categories.' ) )
+			->add_options( 'pno_get_listings_categories_for_association' );
+
+		/**
+		 * Allows developers to customize the settings for listings tags.
+		 *
+		 * @param array $settings list of Carbon Fields - fields.
+		 * @return array
+		 */
+		return apply_filters( 'pno_tags_settings', $settings );
 
 	}
 
