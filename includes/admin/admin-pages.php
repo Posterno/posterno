@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_add_admin_pages() {
 
-	global $pno_settings_page, $pno_custom_fields_page;
+	global $pno_settings_page, $pno_custom_fields_page, $pno_registration_fields_page, $pno_profile_fields_page, $pno_listings_fields_page;
 
 	$pno_custom_fields_page = add_submenu_page( 'edit.php?post_type=listings', __( 'Custom fields' ), __( 'Custom fields' ), 'manage_options', 'posterno-custom-fields', 'pno_custom_fields_page' );
 	$pno_settings_page      = add_submenu_page( 'edit.php?post_type=listings', __( 'Posterno Settings' ), __( 'Settings' ), 'manage_options', 'posterno-settings', 'pno_options_page' );

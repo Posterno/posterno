@@ -12,6 +12,7 @@ module.exports = function (grunt) {
 					'assets/css/pno.css': 'assets/css/sass/pno.scss',
 					'assets/css/pno-admin-listings.css': 'assets/css/sass/pno-admin-listings.scss',
 					'assets/css/pno-custom-fields-cpt.css': 'assets/css/sass/pno-custom-fields-cpt.scss',
+					'assets/css/pno-custom-fields-editor.css': 'assets/css/sass/pno-custom-fields-editor.scss',
 				}
 			}
 		},
@@ -32,6 +33,13 @@ module.exports = function (grunt) {
 						expand: true,
 						cwd: 'assets/css',
 						src: ['pno-custom-fields-cpt.css'],
+						dest: 'assets/css',
+						ext: '.min.css'
+					},
+					{
+						expand: true,
+						cwd: 'assets/css',
+						src: ['pno-custom-fields-editor.css'],
 						dest: 'assets/css',
 						ext: '.min.css'
 					},
