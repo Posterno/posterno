@@ -240,7 +240,6 @@ function pno_get_registered_settings_tabs_sections() {
 			'emails_settings'           => esc_html__( 'Configuration' ),
 			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
 			'password_recovery'         => esc_html__( 'Password recovery' ),
-			'emails_test'               => esc_html__( 'Test Emails' ),
 		],
 	];
 
@@ -489,6 +488,11 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.' ),
 				'options'     => pno_get_email_templates(),
 			],
+			'test_mail'      => [
+				'type'        => 'mail-tester',
+				'label'       => esc_html__( 'Send test email:' ),
+				'description' => esc_html__( 'Type an email address then click the button above to send a test email and verify emails are correctly being delivered from your website.' ),
+			],
 		],
 		'registration_confirmation' => [
 			'registration_confirmation_subject'       => [
@@ -537,13 +541,6 @@ function pno_get_registered_settings() {
 				'label'       => __( 'Disable admin password recovery email:' ),
 				'description' => __( 'Enable this option to stop receiving notifications when a new user resets his password.' ),
 				'type'        => 'checkbox',
-			],
-		],
-		'emails_test'               => [
-			'test_mail' => [
-				'type'        => 'mail-tester',
-				'label'       => esc_html__( 'Send test email:' ),
-				'description' => esc_html__( 'Type an email address then click the button above to send a test email and verify emails are correctly being delivered from your website.' ),
 			],
 		],
 		'profiles_settings'         => [
