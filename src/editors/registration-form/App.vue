@@ -97,7 +97,6 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
-			upsells:       pno_fields_editor.upsells,
 
 			// App status.
 			loading:       true,

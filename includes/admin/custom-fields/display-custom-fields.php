@@ -39,14 +39,12 @@ function pno_get_custom_fields_editor_js_vars() {
 			'purchase_extension'  => esc_html__( 'Purchase extension' ),
 			'profile'             => [
 				'title'            => esc_html__( 'Posterno profile fields editor' ),
-				'description'      => sprintf( __( 'Customize the profile fields for your members and create new fields to collect more information. Use the %s extension to restrict fields by user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
 				'add_new'          => esc_html__( 'Add new profile field' ),
 				'field_admin_only' => esc_html__( 'This field is editable only by an administrator.' ),
 				'field_order'      => esc_html__( 'Drag and drop the rows below to change the order of the fields.' ),
 			],
 			'registration'        => [
 				'title'       => esc_html__( 'Posterno registration form editor' ),
-				'description' => sprintf( __( 'Customize the registration form to collect information about your members during signup. Use the %s extension to create additional registration forms.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Multiple registration forms"' ) . '</a>' ),
 				'add_new'     => esc_html__( 'Add new registration field' ),
 			],
 			'table'               => [
@@ -74,24 +72,6 @@ function pno_get_custom_fields_editor_js_vars() {
 				'field_select'              => esc_html__( 'Select a field...' ),
 			],
 			'success'             => esc_html__( 'Changes successfully saved.' ),
-			'upsells'             => [
-				'registration' => [
-					'title'       => esc_html__( 'Add multiple registration forms' ),
-					'description' => sprintf( __( 'Use the %s extension to create new additional forms for user registrations, each with different pre-defined fields.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Multiple registration forms"' ) . '</a>' ),
-					'url'         => 'https://posterno.com',
-				],
-				'profile' => [
-					'description' => sprintf( __( 'Use the %s extension to restrict fields by user role.' ), '<a href="https://posterno.com" target="_blank">' . __( '"Advanced Fields"' ) . '</a>' ),
-				],
-			],
-		],
-		'upsells'            => [
-			'enabled' => apply_filters(
-				'pno_custom_fields_upsells', [
-					'registration' => true,
-					'profile'      => true,
-				]
-			),
 		],
 	];
 

@@ -29,8 +29,6 @@
 
 			<wp-button type="primary" @click="showAddNewModal()">{{labels.profile.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
-			<p v-html="labels.upsells.profile.description" v-if="upsells.enabled.profile"></p>
-
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
 					<tr>
@@ -112,7 +110,6 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
-			upsells:       pno_fields_editor.upsells,
 			privacy:       false,
 
 			// App status.
