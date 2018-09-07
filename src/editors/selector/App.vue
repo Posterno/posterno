@@ -13,6 +13,36 @@
 			</ul>
 		</h1>
 
+		<wp-row :gutter="24">
+			<wp-col :xs="24" :md="5">
+				<div class="editor-box">
+					<h2><span class="dashicons dashicons-list-view"></span></h2>
+					<h2>{{labels.custom_listings}}</h2>
+					<a href="#" class="button">
+						{{labels.custom_fields}}
+					</a>
+				</div>
+			</wp-col>
+			<wp-col :xs="24" :md="5">
+				<div class="editor-box">
+					<h2><span class="dashicons dashicons-id-alt"></span></h2>
+					<h2>{{labels.custom_users}}</h2>
+					<a href="#" class="button">
+						{{labels.custom_fields}}
+					</a>
+				</div>
+			</wp-col>
+			<wp-col :xs="24" :md="5">
+				<div class="editor-box">
+					<h2><span class="dashicons dashicons-admin-users"></span></h2>
+					<h2>{{labels.custom_registration}}</h2>
+					<a href="#" class="button">
+						{{labels.custom_fields}}
+					</a>
+				</div>
+			</wp-col>
+		</wp-row>
+<!--
 		<div class="card">
 			 <wp-row :gutter="20">
 				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
@@ -52,7 +82,7 @@
 					<br/><br/>
 				</wp-col>
 			</wp-row>
-		</div>
+		</div>-->
 
 	</div>
 </template>

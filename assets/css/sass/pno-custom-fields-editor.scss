@@ -10,7 +10,13 @@
 		}
 	}
 
-	.card {
+	.editor-box {
+		padding: 2em;
+		border: 1px solid #e5e5e5;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+		background: #fff;
+		text-align: center;
+		margin-top: 20px;
 		&:hover {
 			.dashicons {
 				color: #0073aa;
@@ -19,6 +25,8 @@
 
 		.dashicons {
 			font-size: 70px;
+			width: auto;
+			height: auto;
 		}
 	}
 

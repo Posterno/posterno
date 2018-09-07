@@ -5,10 +5,19 @@
     height: 28px;
     margin-right: 10px;
     margin-top: 10px; }
-  #pno-custom-fields-editor-wrapper .card:hover .dashicons {
-    color: #0073aa; }
-  #pno-custom-fields-editor-wrapper .card .dashicons {
-    font-size: 70px; }
+  #pno-custom-fields-editor-wrapper .editor-box {
+    padding: 2em;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    text-align: center;
+    margin-top: 20px; }
+    #pno-custom-fields-editor-wrapper .editor-box:hover .dashicons {
+      color: #0073aa; }
+    #pno-custom-fields-editor-wrapper .editor-box .dashicons {
+      font-size: 70px;
+      width: auto;
+      height: auto; }
   #pno-custom-fields-editor-wrapper .title-links {
     display: inline-block;
     margin-bottom: 0;
