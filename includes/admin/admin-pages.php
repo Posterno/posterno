@@ -28,7 +28,7 @@ function pno_add_admin_pages() {
 add_action( 'admin_menu', 'pno_add_admin_pages', 10 );
 
 /**
- * Remove taxonomies from the listings menu in the admin panel.
+ * Remove taxonomies and other menu items from the listings menu in the admin panel.
  *
  * @return void
  */
@@ -43,6 +43,9 @@ function pno_admin_remove_submenus() {
 	foreach ( $taxonomies as $taxonomy ) {
 		remove_submenu_page( 'edit.php?post_type=listings', 'edit-tags.php?taxonomy=' . $taxonomy . '&amp;post_type=listings' );
 	}
+
+	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-registration-form' );
+	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-profile-fields' );
 
 }
 add_action( 'admin_menu', 'pno_admin_remove_submenus', 999 );
