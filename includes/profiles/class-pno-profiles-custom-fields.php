@@ -197,7 +197,7 @@ class PNO_Profiles_Custom_Fields {
 					 * @param array $fields the array where you're going to add the fields for the custom tab.
 					 * @return array
 					 */
-					$fields = apply_filters( "pno_profile_field_{$key}_settings", $fields );
+					$fields = apply_filters( "pno_profile_fields_{$key}_settings", $fields );
 					break;
 			}
 
