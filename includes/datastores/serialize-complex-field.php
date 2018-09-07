@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Handles storage of serialized fields for listings within a single post meta instead of multiple post metas.
  */
-class SerializeField extends Post_Meta_Datastore {
+class SerializeComplexField extends Post_Meta_Datastore {
 
 	/**
 	 * Get the defined key for the field.

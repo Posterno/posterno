@@ -155,7 +155,7 @@ class PNO_Listings_Custom_Fields {
 		$settings[] = Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 );
 
 		$settings[] = Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles' ) )
-			->set_datastore( new PNO\Datastores\SerializeField() )
+			->set_datastore( new PNO\Datastores\SerializeComplexField() )
 			->setup_labels( $social_profiles_labels )
 			->set_collapsed( true )
 			->add_fields(
@@ -215,7 +215,7 @@ class PNO_Listings_Custom_Fields {
 		$settings = [];
 
 		$settings[] = Field::make( 'media_gallery', 'listing_gallery_images', esc_html__( 'Images' ) )
-			->set_datastore( new PNO\Datastores\SerializeField() )
+			->set_datastore( new PNO\Datastores\SerializeComplexField() )
 			->set_type( array( 'image' ) );
 
 		$settings[] = Field::make( 'oembed', 'listing_media_embed', esc_html__( 'Embed' ) )

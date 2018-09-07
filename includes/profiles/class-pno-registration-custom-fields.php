@@ -61,7 +61,7 @@ class PNO_Registration_Custom_Fields {
 		$settings[] = Field::make( 'hidden', 'field_is_default' );
 		$settings[] = Field::make( 'hidden', 'field_priority' );
 
-		$settings[] = Field::make( 'text', 'field_profile_field_id', esc_html__( '	' ) )
+		$settings[] = Field::make( 'text', 'field_profile_field_id', esc_html__( 'Profile field id' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
