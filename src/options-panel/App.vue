@@ -394,9 +394,9 @@ body.listings_page_posterno-settings {
 
 	.multiselect__tags {
 		border-radius: 0;
-		border-color: #ddd;
+		border-color: #cbcbcb;
 		cursor: pointer;
-		box-shadow: 0 0px 2px rgba(0,0,0,.2);
+		box-shadow: none;
 	}
 
 	.multiselect--above.multiselect--active .multiselect__input,
