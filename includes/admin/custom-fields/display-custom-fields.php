@@ -27,6 +27,11 @@ function pno_get_custom_fields_editor_js_vars() {
 		'trashed'            => isset( $_GET['trashed'] ) ? true : false,
 		'field_types'        => pno_get_registered_field_types(),
 		'roles'              => pno_get_roles( true ),
+		'pages'              => [
+			'selector'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields' ),
+			'profile'      => admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields' ),
+			'registration' => admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form' ),
+		],
 		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),
 			'addons'              => esc_html__( 'View Addons' ),
@@ -44,8 +49,8 @@ function pno_get_custom_fields_editor_js_vars() {
 				'field_order'      => esc_html__( 'Drag and drop the rows below to change the order of the fields.' ),
 			],
 			'registration'        => [
-				'title'       => esc_html__( 'Posterno registration form editor' ),
-				'add_new'     => esc_html__( 'Add new registration field' ),
+				'title'   => esc_html__( 'Posterno registration form editor' ),
+				'add_new' => esc_html__( 'Add new registration field' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),

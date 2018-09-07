@@ -27,7 +27,7 @@
 				<div class="editor-box">
 					<h2><span class="dashicons dashicons-id-alt"></span></h2>
 					<h2>{{labels.custom_users}}</h2>
-					<a href="#" class="button">
+					<a :href="pages.profile" class="button">
 						{{labels.custom_fields}}
 					</a>
 				</div>
@@ -36,53 +36,12 @@
 				<div class="editor-box">
 					<h2><span class="dashicons dashicons-admin-users"></span></h2>
 					<h2>{{labels.custom_registration}}</h2>
-					<a href="#" class="button">
+					<a :href="pages.registration" class="button">
 						{{labels.custom_fields}}
 					</a>
 				</div>
 			</wp-col>
 		</wp-row>
-<!--
-		<div class="card">
-			 <wp-row :gutter="20">
-				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
-					<h2><span class="dashicons dashicons-list-view"></span></h2>
-				</wp-col>
-				<wp-col :span="20">
-					<h2>{{labels.custom_listings}}</h2>
-
-					<br/><br/>
-				</wp-col>
-			</wp-row>
-		</div>
-
-		<div class="card">
-			 <wp-row :gutter="20">
-				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
-					<h2><span class="dashicons dashicons-id-alt"></span></h2>
-				</wp-col>
-				<wp-col :span="20">
-					<h2>{{labels.custom_users}}</h2>
-					<p v-html="labels.profile.description"></p>
-
-					<br/><br/>
-				</wp-col>
-			</wp-row>
-		</div>
-
-		<div class="card">
-			 <wp-row :gutter="20">
-				<wp-col :xs="24" :md="4" class="hidden-sm-and-down">
-					<h2><span class="dashicons dashicons-admin-users"></span></h2>
-				</wp-col>
-				<wp-col :xs="24" :md="20">
-					<h2>{{labels.custom_registration}}</h2>
-					<p v-html="labels.registration.description"></p>
-
-					<br/><br/>
-				</wp-col>
-			</wp-row>
-		</div>-->
 
 	</div>
 </template>
@@ -93,7 +52,8 @@ export default {
 	data() {
 		return {
 			logo_url: pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
-			labels:   pno_fields_editor.labels
+			labels:   pno_fields_editor.labels,
+			pages:    pno_fields_editor.pages
 		}
 	}
 }

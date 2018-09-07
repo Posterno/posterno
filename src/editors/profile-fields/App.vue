@@ -6,7 +6,7 @@
 			{{labels.profile.title}}
 			<ul class="title-links hidden-xs-only">
 				<li>
-					<a href="" class="page-title-action back-link">
+					<a :href="pages.selector" class="page-title-action back-link">
 						<span class="dashicons dashicons-arrow-left-alt"></span>
 					</a>
 				</li>
@@ -110,6 +110,7 @@ export default {
 		return {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
+			pages:         pno_fields_editor.pages,
 			privacy:       false,
 
 			// App status.
