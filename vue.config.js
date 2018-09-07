@@ -14,8 +14,8 @@ module.exports = {
 			.entry('registration-form-editor')
 				.add('./src/editors/registration-form/main.js')
 				.end()
-			.entry('custom-fields-editor')
-				.add('./src/custom-fields-editor/main.js')
+			.entry('profile-fields')
+				.add('./src/editors/profile-fields/main.js')
 				.end()
 	}
 }

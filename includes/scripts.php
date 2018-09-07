@@ -36,6 +36,8 @@ function pno_load_admin_scripts() {
 		wp_register_script( 'pno-custom-fields-page', 'http://localhost:8080/custom-fields-editor.js', [], $version, true );
 		wp_register_script( 'pno-custom-fields-editors', 'http://localhost:8080/editors-selector.js', [], $version, true );
 		wp_register_script( 'pno-registration-form-editor', 'http://localhost:8080/registration-form-editor.js', [], $version, true );
+		wp_register_script( 'pno-profile-fields-editor', 'http://localhost:8080/profile-fields.js', [], $version, true );
+
 	} else {
 
 	}
@@ -58,6 +60,12 @@ function pno_load_admin_scripts() {
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-registration-form-editor' );
 		wp_localize_script( 'pno-registration-form-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
+	}
+
+	if ( $screen->id === 'listings_page_posterno-custom-profile-fields' ) {
+		wp_enqueue_style( 'pno-editors-styling' );
+		wp_enqueue_script( 'pno-profile-fields-editor' );
+		wp_localize_script( 'pno-profile-fields-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
 	if ( $screen->id === 'pno_users_fields' ) {
