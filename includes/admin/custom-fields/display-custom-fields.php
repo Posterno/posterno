@@ -125,7 +125,7 @@ function pno_get_users_custom_fields_page_vars() {
 }
 
 /**
- * Function responsible of displaying the custom fields page.
+ * Function responsible of displaying the custom fields selector page.
  * Actual output handled by vuejs.
  *
  * @since 0.1.0
@@ -133,4 +133,22 @@ function pno_get_users_custom_fields_page_vars() {
  */
 function pno_custom_fields_page() {
 	echo '<div id="posterno-custom-fields-page"></div>';
+}
+
+/**
+ * Displays the registration form editor page. Actual output handled via Vuejs.
+ *
+ * @return void
+ */
+function pno_custom_registration_fields_page() {
+	echo '<div id="posterno-registration-form-page"></div>';
+}
+
+/**
+ * Displays the profile fields editor page. Actual output handled via Vuejs.
+ *
+ * @return void
+ */
+function pno_custom_profile_fields_page() {
+	echo '<div id="posterno-profile-fields-page"></div>';
 }
