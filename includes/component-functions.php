@@ -86,17 +86,6 @@ function pno_setup_components() {
 		return;
 	}
 
-	// Register note.
-	pno_register_component(
-		'profile_field', array(
-			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
-			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
-			'meta'   => false,
-			'query'  => '\\PNO\\Database\\Queries\\Profile_Field',
-			'object' => '\\PNO\\Profile_Fields\\Profile_Field',
-		)
-	);
-
 	// Set the locally static setup var.
 	$setup = true;
 
