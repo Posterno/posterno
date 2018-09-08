@@ -129,7 +129,50 @@ function pno_install_profile_fields() {
 		return;
 	}
 
-	$registered_fields = pno_get_account_fields( false, true );
+	$registered_fields = [
+		'avatar'      => [
+			'label'       => esc_html__( 'Profile picture' ),
+			'type'        => 'file',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 1,
+		],
+		'first_name'  => [
+			'label'       => esc_html__( 'First name' ),
+			'type'        => 'text',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 2,
+		],
+		'last_name'   => [
+			'label'       => esc_html__( 'Last name' ),
+			'type'        => 'text',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 3,
+		],
+		'email'       => [
+			'label'       => esc_html__( 'Email address' ),
+			'type'        => 'email',
+			'required'    => true,
+			'placeholder' => '',
+			'priority'    => 4,
+		],
+		'website'     => [
+			'label'       => esc_html__( 'Website' ),
+			'type'        => 'text',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 5,
+		],
+		'description' => [
+			'label'       => esc_html__( 'About me' ),
+			'type'        => 'editor',
+			'required'    => false,
+			'placeholder' => '',
+			'priority'    => 6,
+		],
+	];
 
 	if ( ! is_array( $registered_fields ) ) {
 		return;
@@ -156,38 +199,38 @@ function pno_install_profile_fields() {
 			} else {
 
 				// Setup the field's meta key.
-				carbon_set_post_meta( $field_id, 'field_meta_key', $field_key );
+				carbon_set_post_meta( $field_id, 'profile_field_meta_key', $field_key );
 
 				// Setup the field's type.
 				$registered_field_types = pno_get_registered_field_types();
 
 				if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
-					carbon_set_post_meta( $field_id, 'field_type', esc_attr( $field['type'] ) );
+					carbon_set_post_meta( $field_id, 'profile_field_type', esc_attr( $field['type'] ) );
 				}
 
 				// Assign a description if one is given.
 				if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-					carbon_set_post_meta( $field_id, 'field_description', esc_html( $field['description'] ) );
+					carbon_set_post_meta( $field_id, 'profile_field_description', esc_html( $field['description'] ) );
 				}
 
 				// Assign a placeholder if one is given.
 				if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-					carbon_set_post_meta( $field_id, 'field_placeholder', esc_html( $field['placeholder'] ) );
+					carbon_set_post_meta( $field_id, 'profile_field_placeholder', esc_html( $field['placeholder'] ) );
 				}
 
 				// Make field required if defined.
 				if ( isset( $field['required'] ) && $field['required'] === true ) {
-					carbon_set_post_meta( $field_id, 'field_is_required', true );
+					carbon_set_post_meta( $field_id, 'profile_field_is_required', true );
 				}
 
 				// Set priority.
 				if ( isset( $field['priority'] ) && ! empty( $field['priority'] ) ) {
-					carbon_set_post_meta( $field_id, 'field_priority', absint( $field['priority'] ) );
+					carbon_set_post_meta( $field_id, 'profile_field_priority', absint( $field['priority'] ) );
 				}
 
 				// Mark the field as a default one.
 				if ( pno_is_default_profile_field( $field_key ) ) {
-					update_post_meta( $field_id, 'is_default_field', true );
+					carbon_set_post_meta( $field_id, 'profile_is_default_field', true );
 				}
 			}
 
@@ -218,7 +261,7 @@ function pno_install_registration_fields() {
 			'required' => true,
 			'priority' => 1,
 		],
-		'email' => [
+		'email'    => [
 			'label'    => esc_html__( 'Email address' ),
 			'type'     => 'email',
 			'required' => true,
@@ -427,6 +470,8 @@ function pno_get_listings_categories_for_association() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
+
+		pno_install_profile_fields();
 
 		wp_die();
 	}

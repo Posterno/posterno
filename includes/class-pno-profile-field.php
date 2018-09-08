@@ -98,14 +98,14 @@ class PNO_Profile_Field extends PNO_Field_Object {
 		}
 
 		$this->id            = $field_id;
-		$this->meta          = carbon_get_post_meta( $this->id, 'field_meta_key' );
+		$this->meta          = carbon_get_post_meta( $this->id, 'profile_field_meta_key' );
 		$this->default       = pno_is_default_profile_field( $this->meta ) || get_post_meta( $this->id, 'is_default_field', true ) ? true : false;
-		$this->type          = carbon_get_post_meta( $this->id, 'field_type' );
+		$this->type          = carbon_get_post_meta( $this->id, 'profile_field_type' );
 		$types               = pno_get_registered_field_types();
 		$this->type_nicename = isset( $types[ $this->type ] ) ? $types[ $this->type ] : false;
 		$this->name          = get_the_title( $this->id );
 
-		$label = carbon_get_post_meta( $this->id, 'field_label' );
+		$label = carbon_get_post_meta( $this->id, 'profile_field_label' );
 
 		if ( $label && ! empty( $label ) ) {
 			$this->label = $label;
@@ -113,20 +113,20 @@ class PNO_Profile_Field extends PNO_Field_Object {
 			$this->label = $this->name;
 		}
 
-		$this->description    = carbon_get_post_meta( $this->id, 'field_description' );
-		$this->placeholder    = carbon_get_post_meta( $this->id, 'field_placeholder' );
-		$this->required       = carbon_get_post_meta( $this->id, 'field_is_required' );
-		$this->read_only      = carbon_get_post_meta( $this->id, 'field_is_read_only' );
-		$this->admin_only     = carbon_get_post_meta( $this->id, 'field_is_hidden' );
-		$this->custom_classes = carbon_get_post_meta( $this->id, 'field_custom_classes' );
-		$this->priority       = carbon_get_post_meta( $this->id, 'field_priority' );
+		$this->description    = carbon_get_post_meta( $this->id, 'profile_field_description' );
+		$this->placeholder    = carbon_get_post_meta( $this->id, 'profile_field_placeholder' );
+		$this->required       = carbon_get_post_meta( $this->id, 'profile_field_is_required' );
+		$this->read_only      = carbon_get_post_meta( $this->id, 'profile_field_is_read_only' );
+		$this->admin_only     = carbon_get_post_meta( $this->id, 'profile_field_is_hidden' );
+		$this->custom_classes = carbon_get_post_meta( $this->id, 'profile_field_custom_classes' );
+		$this->priority       = carbon_get_post_meta( $this->id, 'profile_field_priority' );
 
 		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
-			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'field_selectable_options' ) );
+			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'profile_field_selectable_options' ) );
 		}
 
 		if ( $this->type == 'file' ) {
-			$this->file_size = carbon_get_post_meta( $this->id, 'field_file_max_size' );
+			$this->file_size = carbon_get_post_meta( $this->id, 'profile_field_file_max_size' );
 		}
 
 		if ( $user_id ) {
@@ -280,7 +280,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 				'post_status'            => 'publish',
 				'meta_query'             => array(
 					array(
-						'key'     => 'field_profile_field_id',
+						'key'     => 'registration_field_profile_field_id',
 						'value'   => $this->id,
 						'compare' => '==',
 					),

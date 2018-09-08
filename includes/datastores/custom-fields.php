@@ -53,7 +53,7 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 
 		if ( is_a( $field, '\\Carbon_Fields\\Field\\Complex_Field' ) ) {
 
-			$value = [];
+			$value = $field_settings[ $key ];
 
 		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Checkbox_Field' ) && isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
 
@@ -94,8 +94,17 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 			}
 		} else {
 
-			if ( is_array( $value ) ) {
-				$value = array_map( 'sanitize_text_field', $value );
+			if ( is_array( $value ) && is_a( $field, '\\Carbon_Fields\\Field\\Complex_Field' ) ) {
+
+				$formatted_options = [];
+
+				foreach ( $value as $optkey => $array_of_options ) {
+					$array_of_options = array_map( 'sanitize_text_field', $array_of_options );
+					$formatted_options[ $optkey ] = $array_of_options;
+				}
+
+				$value = $formatted_options;
+
 			} else {
 				$value = sanitize_text_field( $value );
 			}

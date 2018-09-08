@@ -398,6 +398,8 @@ abstract class PNO_Field_Object {
 
 		if ( $this->post_type === 'pno_signup_fields' ) {
 			$prefix = 'registration_';
+		} elseif ( $this->post_type === 'pno_users_fields' ) {
+			$prefix = 'profile_';
 		}
 
 		if ( empty( $key ) || '' == $key ) {

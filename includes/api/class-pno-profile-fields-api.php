@@ -120,9 +120,6 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			'nopaging'               => true,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
-			'meta_key'               => '_field_priority',
-			'orderby'                => 'meta_value_num',
-			'order'                  => 'ASC',
 		];
 
 		$fields = new WP_Query( $args );

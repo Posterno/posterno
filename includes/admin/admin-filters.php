@@ -67,12 +67,12 @@ function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args )
 
 	// Target the payment and transaction post types.
 	if ( in_array( get_post_type( $args[0] ), [ 'pno_users_fields' ], true ) ) {
-		$is_default = get_post_meta( $args[0], 'is_default_field', true );
+		$is_default = carbon_get_post_meta( $args[0], 'profile_is_default_field', true );
 		if ( $is_default ) {
 			$caps[] = 'do_not_allow';
 		}
 	} elseif ( in_array( get_post_type( $args[0] ), [ 'pno_signup_fields' ], true ) ) {
-		$is_default = carbon_get_post_meta( $args[0], 'field_is_default' );
+		$is_default = carbon_get_post_meta( $args[0], 'registration_field_is_default' );
 		if ( $is_default ) {
 			$caps[] = 'do_not_allow';
 		}
@@ -80,5 +80,5 @@ function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args )
 
 	return $caps;
 }
-add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
+//add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
 

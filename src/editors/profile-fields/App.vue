@@ -93,6 +93,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import orderBy from 'lodash.orderby'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
 import AddNewModal from '../../modals/add-new-field'
@@ -101,7 +102,7 @@ import DeleteFieldModal from '../../modals/delete-field'
 export default {
 	name: 'editor',
 	props: {
-		type: '',
+		type: 'profile',
 	},
 	components: {
 		draggable,
@@ -163,6 +164,7 @@ export default {
 					var result = Object.keys(response.data).map( function(key) {
 						new_fields.push( response.data[key] )
 					})
+					new_fields = orderBy( new_fields, 'priority', 'asc');
 					this.fields = new_fields
 				}
 
@@ -248,7 +250,7 @@ export default {
 		showAddNewModal() {
 
 			this.$modal.show( AddNewModal, {
-				type: this.type,
+				type: 'profile',
 				priority: this.fields.length
 			},{ height: '300px' })
 
@@ -259,7 +261,7 @@ export default {
 		 */
 		deleteField( id, name ) {
 			this.$modal.show( DeleteFieldModal, {
-				type: this.type,
+				type: 'profile',
 				field_id: id,
 				name: name,
 				/**
