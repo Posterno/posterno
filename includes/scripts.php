@@ -97,6 +97,8 @@ add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
  */
 function pno_load_frontend_scripts() {
 
+	$version = PNO_VERSION;
+
 	// Register the scripts.
 	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], $version );
 	wp_register_style( 'pno-fa', 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', [], $version );
