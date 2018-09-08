@@ -117,9 +117,6 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			'nopaging'               => true,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
-			'meta_key'               => '_field_priority',
-			'orderby'                => 'meta_value_num',
-			'order'                  => 'ASC',
 		];
 
 		$fields = new WP_Query( $args );
@@ -135,6 +132,8 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 				$data[]   = $this->prepare_response_for_collection( $response );
 			}
 		}
+
+		uasort( $data, 'pno_sort_array_by_priority' );
 
 		return rest_ensure_response( $data );
 

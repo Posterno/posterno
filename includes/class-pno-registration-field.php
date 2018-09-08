@@ -89,7 +89,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 		$this->id   = $field_id;
 		$this->name = get_the_title( $this->id );
 
-		$label = carbon_get_post_meta( $this->id, 'field_label' );
+		$label = carbon_get_post_meta( $this->id, 'registration_field_label' );
 
 		if ( $label && ! empty( $label ) ) {
 			$this->label = $label;
@@ -97,13 +97,13 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			$this->label = $this->name;
 		}
 
-		$this->description      = carbon_get_post_meta( $this->id, 'field_description' );
-		$this->placeholder      = carbon_get_post_meta( $this->id, 'field_placeholder' );
-		$this->required         = carbon_get_post_meta( $this->id, 'field_is_required' );
-		$this->priority         = carbon_get_post_meta( $this->id, 'field_priority' );
-		$this->meta             = carbon_get_post_meta( $this->id, 'field_is_default' );
-		$this->profile_field_id = carbon_get_post_meta( $this->id, 'field_profile_field_id' );
-		$this->default          = pno_is_default_profile_field( $this->meta ) || carbon_get_post_meta( $this->id, 'field_is_default' ) ? true : false;
+		$this->description      = carbon_get_post_meta( $this->id, 'registration_field_description' );
+		$this->placeholder      = carbon_get_post_meta( $this->id, 'registration_field_placeholder' );
+		$this->required         = carbon_get_post_meta( $this->id, 'registration_field_is_required' );
+		$this->priority         = carbon_get_post_meta( $this->id, 'registration_field_priority' );
+		$this->meta             = carbon_get_post_meta( $this->id, 'registration_field_is_default' );
+		$this->profile_field_id = carbon_get_post_meta( $this->id, 'registration_field_profile_field_id' );
+		$this->default          = pno_is_default_profile_field( $this->meta ) || carbon_get_post_meta( $this->id, 'registration_field_is_default' ) ? true : false;
 		$types                  = pno_get_registered_field_types();
 
 		if ( ! empty( $this->default ) ) {

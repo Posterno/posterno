@@ -58,15 +58,15 @@ class PNO_Registration_Custom_Fields {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'hidden', 'field_is_default' );
-		$settings[] = Field::make( 'hidden', 'field_priority' );
+		$settings[] = Field::make( 'hidden', 'registration_field_is_default' );
+		$settings[] = Field::make( 'hidden', 'registration_field_priority' );
 
-		$settings[] = Field::make( 'text', 'field_profile_field_id', esc_html__( 'Profile field id' ) )
+		$settings[] = Field::make( 'text', 'registration_field_profile_field_id', esc_html__( 'Profile field id' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
 					array(
-						'field'   => 'field_is_default',
+						'field'   => 'registration_field_is_default',
 						'value'   => [ 'password', 'username', 'email' ],
 						'compare' => 'NOT IN',
 					),
@@ -74,12 +74,12 @@ class PNO_Registration_Custom_Fields {
 			)
 			->set_help_text( esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ) );
 
-		$settings[] = Field::make( 'checkbox', 'field_is_required', esc_html__( 'Set as required' ) )
+		$settings[] = Field::make( 'checkbox', 'registration_field_is_required', esc_html__( 'Set as required' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
 					array(
-						'field'   => 'field_is_default',
+						'field'   => 'registration_field_is_default',
 						'value'   => [ 'email', 'password', 'username' ],
 						'compare' => 'NOT IN',
 					),
@@ -87,13 +87,13 @@ class PNO_Registration_Custom_Fields {
 			)
 			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) );
 
-		$settings[] = Field::make( 'text', 'field_label', esc_html__( 'Custom form label' ) )
+		$settings[] = Field::make( 'text', 'registration_field_label', esc_html__( 'Custom form label' ) )
 			->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.' ) );
 
-		$settings[] = Field::make( 'text', 'field_placeholder', esc_html__( 'Placeholder' ) )
+		$settings[] = Field::make( 'text', 'registration_field_placeholder', esc_html__( 'Placeholder' ) )
 			->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) );
 
-		$settings[] = Field::make( 'textarea', 'field_description', esc_html__( 'Field description' ) )
+		$settings[] = Field::make( 'textarea', 'registration_field_description', esc_html__( 'Field description' ) )
 			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) );
 
 		/**

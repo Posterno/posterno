@@ -394,6 +394,12 @@ abstract class PNO_Field_Object {
 	 */
 	public function update_meta( $key = '', $value = '' ) {
 
+		$prefix = '';
+
+		if ( $this->post_type === 'pno_signup_fields' ) {
+			$prefix = 'registration_';
+		}
+
 		if ( empty( $key ) || '' == $key ) {
 			return false;
 		}
@@ -402,13 +408,13 @@ abstract class PNO_Field_Object {
 			case 'required':
 			case 'read_only':
 			case 'admin_only':
-				$key = 'field_is_' . $key;
+				$key = $prefix . 'field_is_' . $key;
 				break;
 			case 'meta':
-				$key = 'field_meta_key';
+				$key = $prefix . 'field_meta_key';
 				break;
 			default:
-				$key = 'field_' . $key;
+				$key = $prefix . 'field_' . $key;
 				break;
 		}
 
@@ -420,7 +426,7 @@ abstract class PNO_Field_Object {
 	 * Update an existing field in the database.
 	 *
 	 * @param array $args field details.
-	 * @return void mixed bool|int false if data isn't passed and class not instantiated for creation, or post ID for the new field id.
+	 * @return string mixed bool|int false if data isn't passed and class not instantiated for creation, or post ID for the new field id.
 	 */
 	public function update( $args = [] ) {
 

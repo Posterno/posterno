@@ -55,6 +55,10 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 
 			$value = [];
 
+		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Checkbox_Field' ) && isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
+
+			$value = $field_settings[ $key ] === '1' ? 'yes' : false;
+
 		} else {
 			if ( isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
 				$value = esc_html( $field_settings[ $key ] );

@@ -211,30 +211,26 @@ function pno_install_registration_fields() {
 		return;
 	}
 
-	$registered_fields = pno_get_registration_fields();
-
-	if ( ! is_array( $registered_fields ) ) {
-		return;
-	}
-
-	if ( empty( $registered_fields ) ) {
-		return;
-	}
-
-	if ( is_array( $registered_fields ) ) {
-		if ( isset( $registered_fields['robo'] ) ) {
-			unset( $registered_fields['robo'] );
-		}
-		if ( isset( $registered_fields['role'] ) ) {
-			unset( $registered_fields['role'] );
-		}
-		if ( isset( $registered_fields['terms'] ) ) {
-			unset( $registered_fields['terms'] );
-		}
-		if ( isset( $registered_fields['privacy'] ) ) {
-			unset( $registered_fields['privacy'] );
-		}
-	}
+	$registered_fields = [
+		'username' => [
+			'label'    => esc_html__( 'Username' ),
+			'type'     => 'text',
+			'required' => true,
+			'priority' => 1,
+		],
+		'email' => [
+			'label'    => esc_html__( 'Email address' ),
+			'type'     => 'email',
+			'required' => true,
+			'priority' => 2,
+		],
+		'password' => [
+			'label'    => esc_html__( 'Password' ),
+			'type'     => 'password',
+			'required' => true,
+			'priority' => 3,
+		],
+	];
 
 	foreach ( $registered_fields as $key => $field ) {
 
@@ -250,17 +246,17 @@ function pno_install_registration_fields() {
 
 			// Mark the registration field as a default field.
 			if ( pno_is_default_profile_field( $key ) ) {
-				carbon_set_post_meta( $field_id, 'field_is_default', $key );
+				carbon_set_post_meta( $field_id, 'registration_field_is_default', $key );
 			}
 
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
-				carbon_set_post_meta( $field_id, 'field_is_required', true );
+				carbon_set_post_meta( $field_id, 'registration_field_is_required', true );
 			}
 
 			// Setup the priority of this field.
 			if ( isset( $field['priority'] ) ) {
-				carbon_set_post_meta( $field_id, 'field_priority', $field['priority'] );
+				carbon_set_post_meta( $field_id, 'registration_field_priority', $field['priority'] );
 			}
 		}
 	}
@@ -432,7 +428,7 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		//wp_die();
+		wp_die();
 	}
 
 }
