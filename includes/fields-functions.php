@@ -274,6 +274,8 @@ function pno_get_registration_fields() {
 
 	}
 
+	uasort( $fields, 'pno_sort_array_by_priority' );
+
 	/**
 	 * Allows developers to register or deregister fields for the registration form.
 	 *
