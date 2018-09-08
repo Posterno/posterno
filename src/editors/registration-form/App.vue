@@ -83,6 +83,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import orderBy from 'lodash.orderby'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
 import AddNewModal from '../../modals/add-new-registration-field'
@@ -142,6 +143,9 @@ export default {
 					var result = Object.keys(response.data).map( function(key) {
 						new_fields.push( response.data[key] )
 					})
+
+					new_fields = orderBy( new_fields, 'priority', 'asc');
+
 					this.fields = new_fields
 				}
 
@@ -178,7 +182,7 @@ export default {
 
 			this.$modal.show( AddNewModal, {
 				type: 'registration',
-				priority: this.fields.length
+				priority: this.fields.length + 1
 			},{ height: '320px' })
 
 		},

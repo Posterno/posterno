@@ -133,8 +133,6 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			}
 		}
 
-		uasort( $data, 'pno_sort_array_by_priority' );
-
 		return rest_ensure_response( $data );
 
 	}
