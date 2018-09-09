@@ -40,6 +40,9 @@ $dashboard_tabs = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
 			case 'logout':
 				$icon = 'sign-out-alt';
 				break;
+			case 'listings':
+				$icon = 'list-ul';
+				break;
 		}
 
 		?>

@@ -129,6 +129,9 @@ function pno_get_dashboard_navigation_items() {
 		'dashboard'    => [
 			'name' => esc_html__( 'Dashboard' ),
 		],
+		'listings'     => [
+			'name' => esc_html__( 'Manage listings' ),
+		],
 		'edit-account' => [
 			'name' => esc_html__( 'Account details' ),
 		],
