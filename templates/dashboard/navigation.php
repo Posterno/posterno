@@ -27,22 +27,26 @@ $dashboard_tabs = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
 
 		$icon = 'home';
 
-		switch ( $item->pno_identifier ) {
-			case 'edit-account':
-				$icon = 'user-cog';
-				break;
-			case 'password':
-				$icon = 'key';
-				break;
-			case 'privacy':
-				$icon = 'user-lock';
-				break;
-			case 'logout':
-				$icon = 'sign-out-alt';
-				break;
-			case 'listings':
-				$icon = 'list-ul';
-				break;
+		if ( ! empty( $item->pno_identifier ) ) {
+			switch ( $item->pno_identifier ) {
+				case 'edit-account':
+					$icon = 'user-cog';
+					break;
+				case 'password':
+					$icon = 'key';
+					break;
+				case 'privacy':
+					$icon = 'user-lock';
+					break;
+				case 'logout':
+					$icon = 'sign-out-alt';
+					break;
+				case 'listings':
+					$icon = 'list-ul';
+					break;
+			}
+		} else {
+			$icon = implode( ' ', $item->classes );
 		}
 
 		?>

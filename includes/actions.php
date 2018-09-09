@@ -154,6 +154,19 @@ function pno_load_dashboard_privacy() {
 add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
 
 /**
+ * Load the content for the manage listings tab within the dashboard page.
+ *
+ * @return void
+ */
+function pno_load_manage_listings_dashboard() {
+
+	posterno()->templates
+		->get_template_part( 'dashboard/manage', 'listings' );
+
+}
+add_action( 'pno_dashboard_tab_content_listings', 'pno_load_manage_listings_dashboard' );
+
+/**
  * Add plugin's version to header.
  *
  * @return void
