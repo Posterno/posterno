@@ -16,6 +16,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$columns = pno_get_listings_table_columns();
+
 ?>
 
 <div class="pno-template manage-listings">
@@ -30,6 +32,19 @@ defined( 'ABSPATH' ) || exit;
 	do_action( 'pno_before_manage_listings' );
 
 	?>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<?php foreach ( $columns as $col_key => $col_name ) : ?>
+					<th scope="col"><?php echo esc_html( $col_name ); ?></th>
+				<?php endforeach; ?>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
 
 	<?php
 

@@ -203,6 +203,7 @@ function pno_get_registered_settings_tabs() {
 		'general'  => esc_html__( 'General' ),
 		'accounts' => esc_html__( 'Accounts' ),
 		'emails'   => esc_html__( 'Emails' ),
+		'listings' => esc_html__( 'Listings' ),
 	];
 
 	/**
@@ -234,12 +235,20 @@ function pno_get_registered_settings_tabs_sections() {
 			'password_recovery_form' => esc_html__( 'Password recovery' ),
 			'redirects'              => esc_html__( 'Redirects' ),
 			'privacy'                => esc_html__( 'Privacy' ),
-			'profiles_settings'      => esc_html__( 'Profile settings' ),
+			'profiles_settings'      => esc_html__( 'Profile' ),
 		],
 		'emails'   => [
 			'emails_settings'           => esc_html__( 'Configuration' ),
 			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
 			'password_recovery'         => esc_html__( 'Password recovery' ),
+		],
+		'listings' => [
+			'listings_settings'   => esc_html__( 'Configuration' ),
+			'listings_submission' => esc_html__( 'Submission' ),
+			'listings_management' => esc_html__( 'Management' ),
+			'listings_redirects'  => esc_html__( 'Redirects' ),
+			'listings_content'    => esc_html__( 'Content' ),
+			'listings_maps'       => esc_html__( 'Maps' ),
 		],
 	];
 
@@ -548,6 +557,21 @@ function pno_get_registered_settings() {
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Custom avatars' ),
 				'description' => esc_html__( 'Enable this option to allow users to upload custom avatars for their profiles.' ),
+			],
+		],
+		/**
+		 * Listings management settings.
+		 */
+		'listings_management'       => [
+			'listing_allow_editing' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Listings can be edited?' ),
+				'description' => esc_html__( 'Enable the option to allow users to edit their own listings.' ),
+			],
+			'listing_allow_delete'  => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Listings can be deleted?' ),
+				'description' => esc_html__( 'Enable the option to allow users to delete their own listings.' ),
 			],
 		],
 	];
