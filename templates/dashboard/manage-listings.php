@@ -48,6 +48,9 @@ $columns = pno_get_listings_table_columns();
 
 	<?php
 
+	posterno()->templates
+		->get_template_part( 'listings/pagination' );
+
 	/**
 	 * Action that fires after the markup of the listings management section starts.
 	 */

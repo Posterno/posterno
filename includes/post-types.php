@@ -67,6 +67,21 @@ function pno_setup_post_types() {
 	);
 	register_post_type( 'listings', $args );
 
+	register_post_status(
+		'expired',
+		array(
+			'label'                     => _x( 'Expired', 'post status' ),
+			'public'                    => true,
+			'protected'                 => true,
+			'exclude_from_search'       => true,
+			'show_in_admin_all_list'    => true,
+			'show_in_admin_status_list' => true,
+			'post_type'                 => array( 'listings' ),
+			// translators: Placeholder %s is the number of expired posts of this type.
+			'label_count'               => _n_noop( 'Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>' ),
+		)
+	);
+
 }
 add_action( 'init', 'pno_setup_post_types', 0 );
 
@@ -428,3 +443,21 @@ function pno_register_listings_taxonomies() {
 
 }
 add_action( 'init', 'pno_register_listings_taxonomies', 0 );
+
+/**
+ * Define the list of post statuses for listings.
+ *
+ * @return array
+ */
+function pno_get_listing_post_statuses() {
+
+	$statuses = [
+		'draft'   => _x( 'Draft', 'post status' ),
+		'expired' => _x( 'Expired', 'post status' ),
+		'pending' => _x( 'Pending approval', 'post status' ),
+		'publish' => _x( 'Published', 'post status' ),
+	];
+
+	return apply_filters( 'pno_listing_post_statuses', $statuses );
+
+}
