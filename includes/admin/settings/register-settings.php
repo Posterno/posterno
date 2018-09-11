@@ -560,6 +560,20 @@ function pno_get_registered_settings() {
 			],
 		],
 		/**
+		 * Listings configuration settings.
+		 */
+		'listings_settings'         => [
+			'listing_date_format' => [
+				'type'        => 'radio',
+				'label'       => esc_html__( 'Date format:' ),
+				'description' => esc_html__( 'Choose how you want the published date for listings to be displayed on the front-end.' ),
+				'options'     => [
+					'relative' => esc_html__( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)' ),
+					'default'  => esc_html__( 'Default date format as defined in Settings' ),
+				],
+			],
+		],
+		/**
 		 * Listings management settings.
 		 */
 		'listings_management'       => [

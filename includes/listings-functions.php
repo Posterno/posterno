@@ -197,3 +197,132 @@ function pno_assign_type_to_listing( $listing_id, $type_id ) {
 	wp_set_object_terms( $listing_id, $type_id, 'listings-types' );
 
 }
+
+/**
+ * Retrieve the listings submitted by a specific user given a user id.
+ *
+ * @param string $user_id the user for which we're going to retrieve listings.
+ * @return WP_Query
+ */
+function pno_get_user_submitted_listings( $user_id ) {
+
+	if ( ! $user_id ) {
+		return false;
+	}
+
+	$query_args = [
+		'post_type'   => 'listings',
+		'number'      => 10,
+		'author'      => absint( $user_id ),
+		'post_status' => 'publish',
+		'fields'      => 'ids',
+	];
+
+	/**
+	 * Allow developers to customize the query arguments when
+	 * retrieving listings submitted by a specific user.
+	 *
+	 * @param array $query_args WP_Query args array.
+	 * @param string $user_id the id number of the queried user.
+	 */
+	$query_args = apply_filters( 'pno_user_submitted_listings_query_args', $query_args, $user_id );
+
+	$found_listings = new WP_Query( $query_args );
+
+	return $found_listings;
+
+}
+
+/**
+ * Displays the title for the listing.
+ *
+ * @param int|WP_Post $post listing post object or post id.
+ * @return void
+ */
+function pno_the_listing_title( $post = null ) {
+	$listing_title = pno_get_the_listing_title( $post );
+	if ( $listing_title ) {
+		echo wp_kses_post( $listing_title );
+	}
+}
+
+/**
+ * Gets the title for the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ * @return string|bool|null
+ */
+function pno_get_the_listing_title( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post || 'listings' !== $post->post_type ) {
+		return null;
+	}
+	$title = wp_strip_all_tags( get_the_title( $post ) );
+	/**
+	 * Filter for the listing title.
+	 *
+	 * @param string      $title Title to be filtered.
+	 * @param int|WP_Post $post
+	 */
+	return apply_filters( 'pno_the_listing_title', $title, $post );
+}
+
+/**
+ * Displays the published date of the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ */
+function pno_the_listing_publish_date( $post = null ) {
+	$date_format = pno_get_option( 'listing_date_format' );
+	if ( 'default' === $date_format ) {
+		$display_date = date_i18n( get_option( 'date_format' ), get_post_time( 'U', false, $post ) );
+	} else {
+		// translators: Placeholder %s is the relative, human readable time since the listing listing was posted.
+		$display_date = sprintf( esc_html__( 'Posted %s ago' ), human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) ) );
+	}
+	echo '<time datetime="' . esc_attr( get_post_time( 'Y-m-d', false, $post ) ) . '">' . wp_kses_post( $display_date ) . '</time>';
+}
+
+/**
+ * Gets the published date of the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ * @return string|int|false
+ */
+function pno_get_the_listing_publish_date( $post = null ) {
+	$date_format = pno_get_option( 'listing_date_format' );
+	if ( 'default' === $date_format ) {
+		return get_post_time( get_option( 'date_format' ) );
+	} else {
+		// translators: Placeholder %s is the relative, human readable time since the listing listing was posted.
+		return sprintf( __( 'Posted %s ago' ), human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) ) );
+	}
+}
+
+/**
+ * Displays the expire date of the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ * @return void
+ */
+function pno_the_listing_expire_date( $post = null ) {
+
+	$expires = pno_get_the_listing_expire_date( $post ) ? pno_get_the_listing_expire_date( $post ) : '&ndash;';
+
+	echo '<time datetime="' . esc_attr( $expires ) . '">' . wp_kses_post( $expires ) . '</time>';
+
+}
+
+/**
+ * Gets the expire date of the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ * @return string|int|false
+ */
+function pno_get_the_listing_expire_date( $post = null ) {
+
+	$expires = get_post_meta( $post, 'listing_expires', true );
+
+	return esc_html( $expires ? date_i18n( get_option( 'date_format' ), strtotime( $expires ) ) : false );
+
+}

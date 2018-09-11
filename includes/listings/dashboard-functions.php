@@ -22,7 +22,6 @@ function pno_get_listings_table_columns() {
 		'name'    => esc_html__( 'Listing name' ),
 		'date'    => esc_html__( 'Date posted' ),
 		'expires' => esc_html__( 'Expires' ),
-		'status'  => esc_html__( 'Status' ),
 		'actions' => esc_html__( 'Actions' ),
 	];
 

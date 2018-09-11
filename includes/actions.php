@@ -160,7 +160,14 @@ add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
  */
 function pno_load_manage_listings_dashboard() {
 
+	$listings = pno_get_user_submitted_listings( get_current_user_id() );
+
 	posterno()->templates
+		->set_template_data( [
+			'columns'         => pno_get_listings_table_columns(),
+			'submission_page' => pno_get_listing_submission_page_id(),
+			'listings'        => $listings,
+		] )
 		->get_template_part( 'dashboard/manage', 'listings' );
 
 }
