@@ -61,7 +61,11 @@ defined( 'ABSPATH' ) || exit;
 					foreach ( $found_listings as $listing_id ) :
 						?>
 						<tr>
-							<td><?php pno_the_listing_title( $listing_id ); ?></td>
+							<td>
+								<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+									<?php pno_the_listing_title( $listing_id ); ?>
+								</a>
+							</td>
 							<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
 							<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
 							<td>

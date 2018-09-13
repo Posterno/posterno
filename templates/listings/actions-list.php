@@ -19,10 +19,6 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <div class="dropdown">
-	<a class="btn btn-outline-secondary btn-sm mr-1" href="#" role="button">
-		<i class="fas fa-pen mr-1"></i>
-		<?php esc_html_e( 'Edit' ); ?>
-	</a>
 	<a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		<i class="fas fa-ellipsis-v"></i>
 	</a>
