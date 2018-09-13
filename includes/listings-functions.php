@@ -218,6 +218,11 @@ function pno_get_user_submitted_listings( $user_id ) {
 		'fields'      => 'ids',
 	];
 
+	// Detect if a status has been selected within the dashboard page.
+	if ( isset( $_GET['listing_status'] ) && ! empty( $_GET['listing_status'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'verify_listings_dashboard_status' ) ) {
+		$query_args['post_status'] = pno_get_dashboard_active_listings_status();
+	}
+
 	/**
 	 * Allow developers to customize the query arguments when
 	 * retrieving listings submitted by a specific user.
@@ -379,7 +384,7 @@ function pno_get_dashboard_listing_status_filter_url( $status_key = false ) {
 		return;
 	}
 
-	$url = wp_nonce_url( pno_get_dashboard_navigation_item_url( 'listings' ) );
+	$url = wp_nonce_url( pno_get_dashboard_navigation_item_url( 'listings' ), 'verify_listings_dashboard_status' );
 	$url = add_query_arg(
 		[
 			'listing_status' => sanitize_key( $status_key ),
