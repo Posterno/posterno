@@ -79,6 +79,7 @@ defined( 'ABSPATH' ) || exit;
 						endforeach;
 				}
 				?>
+
 				<?php wp_reset_postdata(); ?>
 
 			<?php else : ?>
@@ -92,9 +93,9 @@ defined( 'ABSPATH' ) || exit;
 	</table>
 
 	<?php
-
 	// Display pagination.
 	posterno()->templates
+		->set_template_data( [ 'max_num_pages' => $data->listings->max_num_pages ] )
 		->get_template_part( 'listings/pagination' );
 
 	/**

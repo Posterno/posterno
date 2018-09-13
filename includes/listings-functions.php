@@ -210,12 +210,15 @@ function pno_get_user_submitted_listings( $user_id ) {
 		return false;
 	}
 
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
 	$query_args = [
 		'post_type'   => 'listings',
 		'number'      => 10,
 		'author'      => absint( $user_id ),
 		'post_status' => 'publish',
 		'fields'      => 'ids',
+		'paged'       => $paged,
 	];
 
 	// Detect if a status has been selected within the dashboard page.
