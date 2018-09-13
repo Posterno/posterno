@@ -577,6 +577,11 @@ function pno_get_registered_settings() {
 		 * Listings management settings.
 		 */
 		'listings_management'       => [
+			'listings_per_page_dashboard' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Listings per page in dashboard' ),
+				'description' => esc_html__( 'Enter the amount of listings you wish to display when users are managing their listings.' ),
+			],
 			'listing_allow_editing' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Listings can be edited?' ),

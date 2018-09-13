@@ -213,12 +213,12 @@ function pno_get_user_submitted_listings( $user_id ) {
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 	$query_args = [
-		'post_type'   => 'listings',
-		'number'      => 10,
-		'author'      => absint( $user_id ),
-		'post_status' => 'publish',
-		'fields'      => 'ids',
-		'paged'       => $paged,
+		'post_type'      => 'listings',
+		'posts_per_page' => absint( pno_get_listings_per_page_dashboard() ),
+		'author'         => absint( $user_id ),
+		'post_status'    => 'publish',
+		'fields'         => 'ids',
+		'paged'          => $paged,
 	];
 
 	// Detect if a status has been selected within the dashboard page.
@@ -395,5 +395,18 @@ function pno_get_dashboard_listing_status_filter_url( $status_key = false ) {
 	);
 
 	return $url;
+
+}
+
+/**
+ * Retrieve the amount of listings to display within the dashboard page.
+ *
+ * @return string
+ */
+function pno_get_listings_per_page_dashboard() {
+
+	$amount = ! empty( pno_get_option( 'listings_per_page_dashboard' ) ) ? pno_get_option( 'listings_per_page_dashboard' ) : 10;
+
+	return $amount;
 
 }
