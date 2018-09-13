@@ -16,18 +16,19 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$statuses      = pno_get_listing_post_statuses();
-$active_status = $statuses['publish'];
+$statuses            = pno_get_dashboard_listings_statuses();
+$active_status       = pno_get_dashboard_active_listings_status();
+$active_status_label = $statuses[ $active_status ];
 
 ?>
 <div class="dropdown pno-dashboard-status-filter">
 	<span><?php esc_html_e( 'Status:' ); ?></span>
 	<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<?php echo esc_html( $active_status ); ?>
+		<?php echo esc_html( $active_status_label ); ?>
 	</button>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		<?php foreach ( $statuses as $status_key => $status_label ) : ?>
-			<a class="dropdown-item" href="#"><?php echo esc_html( $status_label ); ?></a>
+			<a class="dropdown-item <?php if ( $status_key === $active_status ) : ?>active<?php endif; ?>" href="<?php echo esc_url( pno_get_dashboard_listing_status_filter_url( $status_key ) ); ?>"><?php echo esc_html( $status_label ); ?></a>
 		<?php endforeach; ?>
 	</div>
 </div>

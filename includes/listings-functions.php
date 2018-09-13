@@ -326,3 +326,66 @@ function pno_get_the_listing_expire_date( $post = null ) {
 	return esc_html( $expires ? date_i18n( get_option( 'date_format' ), strtotime( $expires ) ) : false );
 
 }
+
+/**
+ * Retrieve the list of registered post statuses for listings,
+ * minus the draft status that's not used on the fronted.
+ *
+ * @return array
+ */
+function pno_get_dashboard_listings_statuses() {
+
+	$registered_statuses = pno_get_listing_post_statuses();
+
+	if ( isset( $registered_statuses['draft'] ) ) {
+		unset( $registered_statuses['draft'] );
+	}
+
+	return $registered_statuses;
+
+}
+
+/**
+ * Detect the currently active listing status.
+ *
+ * @return string
+ */
+function pno_get_dashboard_active_listings_status() {
+
+	$statuses      = pno_get_dashboard_listings_statuses();
+	$active_status = 'publish';
+
+	if ( isset( $_GET['listing_status'] ) && ! empty( $_GET['listing_status'] ) ) { //phpcs:ignore
+		$status = sanitize_key( $_GET['listing_status'] );
+		if ( isset( $statuses[ $status ] ) ) {
+			$active_status = $status;
+		}
+	}
+
+	return $active_status;
+
+}
+
+/**
+ * Retrieve the url of a given listing status filter.
+ * This is used within the listings dashboard.
+ *
+ * @param boolean $status_key the post status we're using to filter.
+ * @return mixed
+ */
+function pno_get_dashboard_listing_status_filter_url( $status_key = false ) {
+
+	if ( ! $status_key ) {
+		return;
+	}
+
+	$url = wp_nonce_url( pno_get_dashboard_navigation_item_url( 'listings' ) );
+	$url = add_query_arg(
+		[
+			'listing_status' => sanitize_key( $status_key ),
+		], $url
+	);
+
+	return $url;
+
+}
