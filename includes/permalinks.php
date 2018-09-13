@@ -44,6 +44,19 @@ add_action(
 				)
 			);
 
+			$routes->addRoute(
+				new QueryRoute(
+					$page_slug . '{dashboard_navigation_item:[a-zA-Z0-9_.-]+}/page/{paged:[a-zA-Z0-9_.-]+}',
+					function( array $matches ) use ( $dashboard_page_id ) {
+						return [
+							'dashboard_navigation_item' => $matches['dashboard_navigation_item'],
+							'page_id'                   => $dashboard_page_id,
+							'paged'                     => $matches['paged'],
+						];
+					}
+				)
+			);
+
 		}
 	}
 );
