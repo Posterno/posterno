@@ -61,19 +61,39 @@ defined( 'ABSPATH' ) || exit;
 					foreach ( $found_listings as $listing_id ) :
 						?>
 						<tr>
-							<td>
-								<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
-									<?php pno_the_listing_title( $listing_id ); ?>
-								</a>
-							</td>
-							<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
-							<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
-							<td>
-								<?php
-									posterno()->templates
-										->get_template_part( 'listings/actions', 'list' );
-								?>
-							</td>
+							<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
+								<?php if ( $col_key == 'name' ) : ?>
+									<td>
+										<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+											<?php pno_the_listing_title( $listing_id ); ?>
+										</a>
+									</td>
+								<?php elseif ( $col_key == 'date' ) : ?>
+									<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
+								<?php elseif ( $col_key == 'expires' ) : ?>
+									<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
+								<?php elseif ( $col_key == 'actions' ) : ?>
+									<td>
+										<?php
+											posterno()->templates
+												->get_template_part( 'listings/actions', 'list' );
+										?>
+									</td>
+								<?php else : ?>
+									<td>
+										<?php
+
+										/**
+										 * Allow developers to display custom content within the dashboard listings management page.
+										 *
+										 * @param string $listing_id the id number of the current listing.
+										 */
+										do_action( "pno_listings_dashboard_table_column_{$col_key}", $listing_id );
+
+										?>
+									</td>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</tr>
 						<?php
 						endforeach;
