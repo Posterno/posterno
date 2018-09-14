@@ -429,6 +429,14 @@ function pno_get_listings_actions() {
 		],
 	];
 
+	if ( ! pno_get_option( 'listing_allow_editing' ) ) {
+		unset( $actions['edit'] );
+	}
+
+	if ( ! pno_get_option( 'listing_allow_delete' ) ) {
+		unset( $actions['delete'] );
+	}
+
 	if ( ! empty( $actions ) ) {
 		uasort( $actions, 'pno_sort_array_by_priority' );
 	}
