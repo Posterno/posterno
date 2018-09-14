@@ -174,7 +174,7 @@ function pno_submit_listing_form() {
 
 	$account_required = pno_get_option( 'submission_requires_account' );
 	$roles_required   = pno_get_option( 'submission_requires_roles' );
-	$restricted       = false;
+	$restricted       = apply_filters( 'pno_submission_form_is_restricted', false );
 
 	// Display error message if specific roles are required to access the page.
 	if ( is_user_logged_in() && $account_required && $roles_required && is_array( $roles_required ) && ! empty( $roles_required ) ) {
