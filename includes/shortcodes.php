@@ -172,7 +172,41 @@ function pno_submit_listing_form() {
 
 	ob_start();
 
-	echo posterno()->forms->get_form( 'listing-submit' );
+	$account_required = pno_get_option( 'submission_requires_account' );
+	$roles_required   = pno_get_option( 'submission_requires_roles' );
+	$restricted       = false;
+
+	// Display error message if specific roles are required to access the page.
+	if ( is_user_logged_in() && $account_required && $roles_required && is_array( $roles_required ) && ! empty( $roles_required ) ) {
+
+		$user           = wp_get_current_user();
+		$role           = (array) $user->roles;
+		$roles_selected = [ 'administrator' ];
+
+		foreach ( $roles_required as $single_role ) {
+			$roles_selected[] = $single_role['value'];
+		}
+
+		if ( ! array_intersect( (array) $user->roles, $roles_selected ) ) {
+			$restricted = 'role';
+		}
+	}
+
+	if ( $restricted ) {
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'warning',
+					'message' => apply_filters( 'pno_submission_restriction_message', esc_html__( 'Access to this page is restricted.' ), $restricted ),
+				]
+			)
+			->get_template_part( 'message' );
+
+	} else {
+
+		echo posterno()->forms->get_form( 'listing-submit' ); //phpcs:ignore
+
+	}
 
 	return ob_get_clean();
 
