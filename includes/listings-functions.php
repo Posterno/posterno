@@ -468,3 +468,17 @@ function pno_get_listing_action_url( $listing_id, $action_id ) {
 	return $url;
 
 }
+
+/**
+ * Delete a listing given an ID.
+ *
+ * @param integer $listing_id
+ * @return void
+ */
+function pno_delete_listing( $listing_id = 0 ) {
+
+	$force_delete = false;
+
+	wp_delete_post( $listing_id, $force_delete );
+
+}

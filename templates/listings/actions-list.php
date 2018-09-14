@@ -69,7 +69,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php esc_html_e( 'Close' ); ?></button>
-				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e('Delete listing'); ?></a>
+				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e( 'Delete listing' ); ?></a>
 			</div>
 		</div>
 	</div>
