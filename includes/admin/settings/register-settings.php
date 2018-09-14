@@ -592,6 +592,11 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Listings can be deleted?' ),
 				'description' => esc_html__( 'Enable the option to allow users to delete their own listings.' ),
 			],
+			'listing_permanently_delete'  => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Permanently delete listings?' ),
+				'description' => esc_html__( 'Enable the option to permanently delete listings from the database instead of trashing them.' ),
+			],
 		],
 	];
 

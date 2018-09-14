@@ -477,7 +477,7 @@ function pno_get_listing_action_url( $listing_id, $action_id ) {
  */
 function pno_delete_listing( $listing_id = 0 ) {
 
-	$force_delete = false;
+	$force_delete = pno_get_option( 'listing_permanently_delete' ) ? true : false;
 
 	/**
 	 * Allow developers to hook into the listing removal process before actual removal.
