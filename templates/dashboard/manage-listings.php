@@ -76,6 +76,7 @@ defined( 'ABSPATH' ) || exit;
 									<td>
 										<?php
 											posterno()->templates
+												->set_template_data( [ 'id' => $listing_id ] )
 												->get_template_part( 'listings/actions', 'list' );
 										?>
 									</td>

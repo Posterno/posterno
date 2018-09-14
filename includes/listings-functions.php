@@ -410,3 +410,61 @@ function pno_get_listings_per_page_dashboard() {
 	return $amount;
 
 }
+
+/**
+ * Retrieve the list of registered listings actions.
+ *
+ * @return array
+ */
+function pno_get_listings_actions() {
+
+	$actions = [
+		'edit'   => [
+			'title'    => esc_html__( 'Edit' ),
+			'priority' => 1,
+		],
+		'delete' => [
+			'title'    => esc_html__( 'Delete' ),
+			'priority' => 100,
+		],
+	];
+
+	if ( ! empty( $actions ) ) {
+		uasort( $actions, 'pno_sort_array_by_priority' );
+	}
+
+	/**
+	 * Allow developers to extend the list of actions for listings.
+	 *
+	 * @param array $actions the list of registered actions.
+	 * @return array
+	 */
+	return apply_filters( 'pno_listings_actions', $actions );
+
+}
+
+/**
+ * Retrieve the url of a given listing action.
+ *
+ * @param string|int $listing_id the listing id.
+ * @param string|int $action_id the action key.
+ * @return string
+ */
+function pno_get_listing_action_url( $listing_id, $action_id ) {
+
+	if ( ! $listing_id || ! $action_id ) {
+		return;
+	}
+
+	$url = wp_nonce_url( pno_get_dashboard_navigation_item_url( 'listings' ), 'verify_listing_action' );
+	$url = add_query_arg(
+		[
+			'listing_action' => sanitize_key( $action_id ),
+			'listing_id'     => absint( $listing_id ),
+		],
+		$url
+	);
+
+	return $url;
+
+}

@@ -23,8 +23,54 @@ defined( 'ABSPATH' ) || exit;
 		<i class="fas fa-ellipsis-v"></i>
 	</a>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-		<a class="dropdown-item" href="#">Action</a>
-		<a class="dropdown-item" href="#">Another action</a>
-		<a class="dropdown-item" href="#">Something else here</a>
+		<?php foreach ( pno_get_listings_actions() as $action_id => $action ) : ?>
+
+			<?php if ( $action_id === 'delete' ) : ?>
+				<div class="dropdown-divider"></div>
+			<?php endif; ?>
+
+			<?php
+
+			$icon = '';
+
+			switch ( $action_id ) {
+				case 'edit':
+					$icon = 'fa-pen';
+					break;
+				case 'delete':
+					$icon = 'fa-trash-alt';
+					break;
+			}
+
+			?>
+
+			<a class="dropdown-item" data-toggle="modal" data-target="#pno-delete-listing-modal-<?php echo absint( $data->id ); ?>" href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>">
+				<?php if ( $icon ) : ?>
+					<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
+				<?php endif; ?>
+				<?php echo esc_html( $action['title'] ); ?>
+			</a>
+
+		<?php endforeach; ?>
+	</div>
+</div>
+
+<div class="modal fade" id="pno-delete-listing-modal-<?php echo absint( $data->id ); ?>" tabindex="-1" role="dialog" aria-labelledby="pno-delete-listing-title-<?php echo absint( $data->id ); ?>" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="pno-delete-listing-title-<?php echo absint( $data->id ); ?>"><?php esc_html_e( 'Delete listing' ); ?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e( 'Close' ); ?>">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p><?php echo sprintf( esc_html__( 'Are you sure you want to delete the "%s" listing? This action cannot be undone.' ), '<strong>' . esc_html( pno_get_the_listing_title( $data->id ) ) . '</strong>' ); ?></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php esc_html_e( 'Close' ); ?></button>
+				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e('Delete listing'); ?></a>
+			</div>
+		</div>
 	</div>
 </div>
