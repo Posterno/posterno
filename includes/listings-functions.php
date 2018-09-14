@@ -487,7 +487,11 @@ function pno_delete_listing( $listing_id = 0 ) {
 	 */
 	do_action( 'pno_before_listing_delete', $listing_id, $force_delete );
 
-	wp_delete_post( $listing_id, $force_delete );
+	if ( $force_delete ) {
+		wp_delete_post( $listing_id, true );
+	} else {
+		wp_trash_post( $listing_id );
+	}
 
 	/**
 	 * Allow developers to hook into the listing removal process after the listing has already been removed from the database.
