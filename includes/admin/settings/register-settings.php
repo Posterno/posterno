@@ -582,12 +582,12 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Listings per page in dashboard' ),
 				'description' => esc_html__( 'Enter the amount of listings you wish to display when users are managing their listings.' ),
 			],
-			'listing_allow_editing' => [
+			'listing_allow_editing'       => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Listings can be edited?' ),
 				'description' => esc_html__( 'Enable the option to allow users to edit their own listings.' ),
 			],
-			'listing_allow_delete'  => [
+			'listing_allow_delete'        => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Listings can be deleted?' ),
 				'description' => esc_html__( 'Enable the option to allow users to delete their own listings.' ),
@@ -596,6 +596,23 @@ function pno_get_registered_settings() {
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Permanently delete listings?' ),
 				'description' => esc_html__( 'Enable the option to permanently delete listings from the database instead of trashing them.' ),
+			],
+		],
+		/**
+		 * Listings submission settings.
+		 */
+		'listings_submission'       => [
+			'submission_requires_account' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Account required' ),
+				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users.' ),
+			],
+			'submission_requires_roles'   => [
+				'label'       => __( 'Allowed roles' ),
+				'description' => __( 'Select which roles can submit listings. Leave blank if not needed.' ),
+				'type'        => 'multiselect',
+				'options'     => pno_get_roles(),
+				'multiple'    => true,
 			],
 		],
 	];

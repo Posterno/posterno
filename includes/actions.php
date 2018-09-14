@@ -211,3 +211,32 @@ function pno_adjust_wplogin_form_labels() {
 
 }
 add_action( 'login_head', 'pno_adjust_wplogin_form_labels' );
+
+/**
+ * Redirect users to the login page if they're not registered and
+ * accessing the submission page if restricted.
+ *
+ * @return void
+ */
+function pno_restrict_access_to_listings_submission_page() {
+
+	$submission_page = pno_get_listing_submission_page_id();
+	$is_restricted   = pno_get_option( 'submission_requires_account' );
+
+	if ( $is_restricted && $submission_page && is_int( $submission_page ) && is_page( $submission_page ) && ! is_user_logged_in() ) {
+		$login_page = pno_get_login_page_id();
+		if ( $login_page && is_int( $login_page ) ) {
+			$login_page = add_query_arg(
+				[
+					'redirect_to' => rawurlencode( get_permalink( $submission_page ) ),
+					'restricted'  => true,
+					'rpage_id'    => $submission_page,
+				],
+				get_permalink( $login_page )
+			);
+			wp_safe_redirect( $login_page );
+			exit;
+		}
+	}
+}
+add_action( 'template_redirect', 'pno_restrict_access_to_listings_submission_page' );

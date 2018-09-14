@@ -162,3 +162,19 @@ function pno_dashboard() {
 
 }
 add_shortcode( 'pno_dashboard', 'pno_dashboard' );
+
+/**
+ * Display the listings submission form.
+ *
+ * @return string
+ */
+function pno_submit_listing_form() {
+
+	ob_start();
+
+	echo posterno()->forms->get_form( 'listing-submit' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_listing_submission_form', 'pno_submit_listing_form' );
