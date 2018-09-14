@@ -174,7 +174,14 @@ function pno_submit_listing_form() {
 
 	$account_required = pno_get_option( 'submission_requires_account' );
 	$roles_required   = pno_get_option( 'submission_requires_roles' );
-	$restricted       = apply_filters( 'pno_submission_form_is_restricted', false );
+
+	/**
+	 * Allow developers to add custom access restrictions to the submission form.
+	 *
+	 * @param bool $restricted true or false.
+	 * @return bool|string
+	 */
+	$restricted = apply_filters( 'pno_submission_form_is_restricted', false );
 
 	// Display error message if specific roles are required to access the page.
 	if ( is_user_logged_in() && $account_required && $roles_required && is_array( $roles_required ) && ! empty( $roles_required ) ) {
@@ -193,11 +200,20 @@ function pno_submit_listing_form() {
 	}
 
 	if ( $restricted ) {
+
+		/**
+		 * Allow developers to customize the restriction message for the submission form.
+		 *
+		 * @param string $message the restriction message.
+		 * @param bool|string $restricted wether it's restricted or not and what type of restriction.
+		 */
+		$message = apply_filters( 'pno_submission_restriction_message', esc_html__( 'Access to this page is restricted.' ), $restricted );
+
 		posterno()->templates
 			->set_template_data(
 				[
 					'type'    => 'warning',
-					'message' => apply_filters( 'pno_submission_restriction_message', esc_html__( 'Access to this page is restricted.' ), $restricted ),
+					'message' => $message,
 				]
 			)
 			->get_template_part( 'message' );
