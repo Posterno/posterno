@@ -16,6 +16,12 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$actions = pno_get_listings_actions();
+
+if ( empty( $actions ) ) {
+	return;
+}
+
 ?>
 
 <div class="dropdown">
@@ -23,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 		<i class="fas fa-ellipsis-v"></i>
 	</a>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-		<?php foreach ( pno_get_listings_actions() as $action_id => $action ) : ?>
+		<?php foreach ( $actions as $action_id => $action ) : ?>
 
 			<?php if ( $action_id === 'delete' ) : ?>
 				<div class="dropdown-divider"></div>

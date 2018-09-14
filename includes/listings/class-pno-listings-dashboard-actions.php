@@ -53,6 +53,10 @@ class PNO_Listings_Dashboard_Actions {
 			return;
 		}
 
+		if ( ! pno_get_option( 'listing_allow_delete' ) ) {
+			return;
+		}
+
 		$listing_id = absint( $_GET['listing_id'] );
 		$user_id    = get_current_user_id();
 
