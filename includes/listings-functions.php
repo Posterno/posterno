@@ -472,13 +472,29 @@ function pno_get_listing_action_url( $listing_id, $action_id ) {
 /**
  * Delete a listing given an ID.
  *
- * @param integer $listing_id
+ * @param integer $listing_id the listing to remove.
  * @return void
  */
 function pno_delete_listing( $listing_id = 0 ) {
 
 	$force_delete = false;
 
+	/**
+	 * Allow developers to hook into the listing removal process before actual removal.
+	 *
+	 * @param string|int $listing_id the id of the listing being removed.
+	 * @param bool $force_delete @see https://codex.wordpress.org/Function_Reference/wp_delete_post
+	 */
+	do_action( 'pno_before_listing_delete', $listing_id, $force_delete );
+
 	wp_delete_post( $listing_id, $force_delete );
+
+	/**
+	 * Allow developers to hook into the listing removal process after the listing has already been removed from the database.
+	 *
+	 * @param string|int $listing_id the id of the listing removed.
+	 * @param bool $force_delete @see https://codex.wordpress.org/Function_Reference/wp_delete_post
+	 */
+	do_action( 'pno_after_listing_delete', $listing_id, $force_delete );
 
 }

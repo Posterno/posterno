@@ -23,6 +23,7 @@ class PNO_Listings_Dashboard_Actions {
 	 */
 	public static function init() {
 		add_action( 'init', [ __CLASS__, 'delete_listing' ] );
+		add_action( 'pno_before_manage_listings', [ __CLASS__, 'show_message' ] );
 	}
 
 	/**
@@ -67,6 +68,42 @@ class PNO_Listings_Dashboard_Actions {
 		$redirect = add_query_arg( [ 'message' => 'listing-deleted' ], $redirect );
 		wp_safe_redirect( $redirect );
 		exit;
+
+	}
+
+	/**
+	 * Display a message telling the user what happened after a specific action has been processed.
+	 *
+	 * @return void
+	 */
+	public static function show_message() {
+
+		//phpcs:ignore
+		if ( ! isset( $_GET['message'] ) || isset( $_GET['message'] ) && empty( $_GET['message'] ) ) {
+			return;
+		}
+
+		$status  = sanitize_key( $_GET['message'] );
+		$message = false;
+
+		switch ( $status ) {
+			case 'listing-deleted':
+				$message = apply_filters( 'pno_listing_deleted_message', esc_html__( 'Listing successfully deleted.' ) );
+				break;
+		}
+
+		if ( ! $message ) {
+			return;
+		}
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'success',
+					'message' => $message,
+				]
+			)
+			->get_template_part( 'message' );
 
 	}
 
