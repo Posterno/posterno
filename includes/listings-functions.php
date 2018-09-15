@@ -510,3 +510,31 @@ function pno_delete_listing( $listing_id = 0 ) {
 	do_action( 'pno_after_listing_delete', $listing_id, $force_delete );
 
 }
+
+/**
+ * Get a list of listings types.
+ *
+ * @return array
+ */
+function pno_get_listings_types() {
+
+	$types = [];
+
+	$terms = get_terms(
+		'listings-types', array(
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $listing_type ) {
+			$types[ absint( $listing_type->term_id ) ] = esc_html( $listing_type->name );
+		}
+	}
+
+	return $types;
+
+}

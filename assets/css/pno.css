@@ -42,7 +42,16 @@
   padding: 0; }
 
 #pno-listings-submission-steps {
-  margin: 0; }
+  margin: 0 0 1.5em 0; }
+
+.pno-field-listing-type label {
+  display: block; }
+  .pno-field-listing-type label:first-child {
+    font-weight: bold; }
+.pno-field-listing-type .card label:hover {
+  cursor: pointer; }
+.pno-field-listing-type .card:hover {
+  background-color: #fbfbfb; }
 
 nav .pno-pagination {
   margin: 0;

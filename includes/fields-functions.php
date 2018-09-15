@@ -598,10 +598,33 @@ function pno_get_listings_submission_form_steps() {
 
 }
 
+/**
+ * Retrieve the list of fields for the listings submission form.
+ *
+ * @return array
+ */
 function pno_get_listing_submission_fields() {
 
 	$fields = [];
 
+	$listings_types = pno_get_listings_types();
+
+	$fields['select_type'] = [
+		'listing_type' => [
+			'label'    => esc_html__( 'Listing type' ),
+			'type'     => 'listing-type',
+			'required' => true,
+			'options'  => pno_get_listings_types(),
+			'priority' => 3,
+		],
+	];
+
+	/**
+	 * Allow developers to customize the listings submission form fields.
+	 *
+	 * @param array $fields the list of fields.
+	 * @return array $fields
+	 */
 	return apply_filters( 'pno_listing_submission_fields', $fields );
 
 }
