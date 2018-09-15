@@ -556,3 +556,52 @@ function pno_parse_selectable_options( $options = [] ) {
 	return $formatted_options;
 
 }
+
+/**
+ * Retrieve the list of steps for the frontend listings submission form.
+ *
+ * @return array
+ */
+function pno_get_listings_submission_form_steps() {
+
+	$steps = [
+		'select_type' => [
+			'title'      => esc_html__( 'Select listing type' ),
+			'can_delete' => false,
+			'priority'   => 5,
+			'taxonomy'   => 'listings-types',
+		],
+		'submit'      => [
+			'title'      => esc_html__( 'Submit details' ),
+			'can_delete' => false,
+			'priority'   => 10,
+		],
+		'preview'     => [
+			'title'      => esc_html__( 'Preview' ),
+			'can_delete' => false,
+			'priority'   => 20,
+		],
+		'done'        => [
+			'title'      => esc_html__( 'Done' ),
+			'can_delete' => false,
+			'priority'   => 30,
+		],
+	];
+
+	/**
+	 * Allows developers to customize the steps for the listings submission form.
+	 *
+	 * @param array $steps
+	 * @return array
+	 */
+	return apply_filters( 'pno_listings_submission_form_steps', $steps );
+
+}
+
+function pno_get_listing_submission_fields() {
+
+	$fields = [];
+
+	return apply_filters( 'pno_listing_submission_fields', $fields );
+
+}
