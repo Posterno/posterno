@@ -20,13 +20,9 @@ defined( 'ABSPATH' ) || exit;
 
 <div id="pno-listing-type-selection">
 
-	<?php
-
-	posterno()->templates
-		->set_template_data( $data )
-		->get_template_part( 'forms/steps' );
-
-	?>
+	<?php if ( isset( $data->title ) && ! empty( $data->title ) ) : ?>
+		<h2><i class="fas fa-info-circle"></i> <?php echo esc_html( $data->title ); ?></h2>
+	<?php endif; ?>
 
 	<div class="row pno-types-container">
 		<?php foreach ( pno_get_listings_types() as $type_id => $type_name ) : ?>

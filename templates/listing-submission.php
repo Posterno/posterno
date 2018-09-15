@@ -22,11 +22,6 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php
 
-	// Display submission steps.
-	posterno()->templates
-		->set_template_data( $data )
-		->get_template_part( 'forms/steps' );
-
 	// Display related form.
 	posterno()->templates
 		->set_template_data( $data )

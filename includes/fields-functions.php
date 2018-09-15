@@ -602,24 +602,18 @@ function pno_get_listing_submission_fields() {
 
 	$fields = [];
 
-	$listings_types = pno_get_listings_types();
-
-	$fields['select_type'] = [
-		'listing_type' => [
-			'label'    => esc_html__( 'Listing type' ),
-			'type'     => 'listing-type',
-			'required' => true,
-			'options'  => pno_get_listings_types(),
-			'priority' => 3,
-		],
-	];
-
 	$fields['submit'] = [
-		'tt' => [
-			'label' => esc_html__('Listing type'),
-			'type' => 'text',
+		'listing_title' => [
+			'label'    => esc_html__( 'Listing title' ),
+			'type'     => 'text',
 			'required' => true,
-			'priority' => 3,
+			'priority' => 1,
+		],
+		'listing_description' => [
+			'label'    => esc_html__( 'Description' ),
+			'type'     => 'editor',
+			'required' => true,
+			'priority' => 2,
 		],
 	];
 

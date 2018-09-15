@@ -64,40 +64,40 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 	public function __construct() {
 		add_action( 'wp', array( $this, 'process' ) );
 
-		$steps = pno_get_listings_submission_form_steps();
+		$steps = array(
+			'select_type'  => array(
+				'name'     => esc_html__( 'Select listing type' ),
+				'view'     => array( $this, 'type_selection' ),
+				'handler'  => array( $this, 'type_selection_handler' ),
+				'priority' => 1,
+			),
+			'submit'  => array(
+				'name'     => esc_html__( 'Listing details' ),
+				'view'     => array( $this, 'submit' ),
+				'handler'  => array( $this, 'submit_handler' ),
+				'priority' => 10,
+			),
+			'preview'  => array(
+				'name'     => esc_html__( 'Preview listing' ),
+				'view'     => array( $this, 'preview' ),
+				'handler'  => array( $this, 'preview_handler' ),
+				'priority' => 20,
+			),
+			'done' => array(
+				'name'     => esc_html__( 'Listing succesfully submitted' ),
+				'view'     => array( $this, 'done' ),
+				'handler'  => false,
+				'priority' => 30,
+			),
+		);
 
-		if ( is_array( $steps ) && ! empty( $steps ) ) {
-			foreach ( $steps as $stepkey => $step_details ) {
-				if ( $stepkey === 'select_type' ) {
-					$this->steps[ sanitize_key( $stepkey ) ] = [
-						'name'     => esc_html( $step_details['title'] ),
-						'view'     => array( $this, 'type_selection' ),
-						'handler'  => array( $this, 'type_selection_handler' ),
-						'priority' => 0,
-					];
-				} elseif ( $stepkey === 'submit' ) {
-					$this->steps[ sanitize_key( $stepkey ) ] = [
-						'name'     => esc_html( $step_details['title'] ),
-						'view'     => array( $this, 'submit' ),
-						'handler'  => array( $this, 'submit_handler' ),
-						'priority' => 10,
-					];
-				} elseif ( $stepkey === 'preview' ) {
-					$this->steps[ sanitize_key( $stepkey ) ] = [
-						'name'     => esc_html( $step_details['title'] ),
-						'view'     => array( $this, 'preview' ),
-						'handler'  => array( $this, 'preview_handler' ),
-						'priority' => 20,
-					];
-				} elseif ( $stepkey === 'done' ) {
-					$this->steps[ sanitize_key( $stepkey ) ] = [
-						'name'     => esc_html( $step_details['title'] ),
-						'view'     => array( $this, 'done' ),
-						'priority' => 30,
-					];
-				}
-			}
-		}
+		/**
+		 * List of steps for the listing submission form.
+		 *
+		 * @since 0.1.0
+		 * @param array $steps the list of steps for the form.
+		 */
+		$this->steps = (array) apply_filters( 'pno_listing_submission_form_steps', $steps );
 
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 
@@ -141,6 +141,7 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 					'steps'        => $this->get_steps(),
 					'active_step'  => $this->get_step_key(),
 					'submit_label' => $this->get_submit_button_label(),
+					'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 				]
 			)
 			->get_template_part( 'forms/listing', 'type-selection' );
@@ -189,6 +190,7 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 			'steps'        => $this->get_steps(),
 			'active_step'  => $this->get_step_key(),
 			'submit_label' => $this->get_submit_button_label(),
+			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 		];
 
 		posterno()->templates
