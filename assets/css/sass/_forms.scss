@@ -75,3 +75,14 @@
 		}
 	}
 }
+
+#pno-listing-type-selection {
+	form {
+		margin: 0;
+	}
+	.card {
+		&:hover {
+			background: #fbfbfb;
+		}
+	}
+}

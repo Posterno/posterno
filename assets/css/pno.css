@@ -53,6 +53,11 @@
 .pno-field-listing-type .card:hover {
   background-color: #fbfbfb; }
 
+#pno-listing-type-selection form {
+  margin: 0; }
+#pno-listing-type-selection .card:hover {
+  background: #fbfbfb; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0; }

@@ -568,23 +568,18 @@ function pno_get_listings_submission_form_steps() {
 		'select_type' => [
 			'title'      => esc_html__( 'Select listing type' ),
 			'can_delete' => false,
-			'priority'   => 5,
-			'taxonomy'   => 'listings-types',
 		],
 		'submit'      => [
 			'title'      => esc_html__( 'Submit details' ),
 			'can_delete' => false,
-			'priority'   => 10,
 		],
 		'preview'     => [
 			'title'      => esc_html__( 'Preview' ),
 			'can_delete' => false,
-			'priority'   => 20,
 		],
 		'done'        => [
 			'title'      => esc_html__( 'Done' ),
 			'can_delete' => false,
-			'priority'   => 30,
 		],
 	];
 
@@ -606,6 +601,27 @@ function pno_get_listings_submission_form_steps() {
 function pno_get_listing_submission_fields() {
 
 	$fields = [];
+
+	$listings_types = pno_get_listings_types();
+
+	$fields['select_type'] = [
+		'listing_type' => [
+			'label'    => esc_html__( 'Listing type' ),
+			'type'     => 'listing-type',
+			'required' => true,
+			'options'  => pno_get_listings_types(),
+			'priority' => 3,
+		],
+	];
+
+	$fields['submit'] = [
+		'tt' => [
+			'label' => esc_html__('Listing type'),
+			'type' => 'text',
+			'required' => true,
+			'priority' => 3,
+		],
+	];
 
 	/**
 	 * Allow developers to customize the listings submission form fields.

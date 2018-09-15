@@ -29,7 +29,14 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 	 * @access protected
 	 * @var int
 	 */
-	protected $listing_id;
+	protected $listing_id = 0;
+
+	/**
+	 * Store the selected listing type.
+	 *
+	 * @var string
+	 */
+	protected $listing_type = '';
 
 	/**
 	 * Stores static instance of class.
@@ -57,33 +64,40 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 	public function __construct() {
 		add_action( 'wp', array( $this, 'process' ) );
 
-		$steps = array(
-			'submit'  => array(
-				'name'     => __( 'Submit Details' ),
-				'view'     => array( $this, 'submit' ),
-				'handler'  => array( $this, 'submit_handler' ),
-				'priority' => 10,
-			),
-			'preview' => array(
-				'name'     => __( 'Preview' ),
-				'view'     => array( $this, 'preview' ),
-				'handler'  => array( $this, 'preview_handler' ),
-				'priority' => 20,
-			),
-			'done'    => array(
-				'name'     => __( 'Done' ),
-				'view'     => array( $this, 'done' ),
-				'priority' => 30,
-			),
-		);
+		$steps = pno_get_listings_submission_form_steps();
 
-		/**
-		 * Allow developers to extend the submission steps for listings.
-		 *
-		 * @since 0.1.0
-		 * @param array $steps the list of steps for the form.
-		 */
-		$this->steps = (array) apply_filters( 'pno_listing_submission_steps', $steps );
+		if ( is_array( $steps ) && ! empty( $steps ) ) {
+			foreach ( $steps as $stepkey => $step_details ) {
+				if ( $stepkey === 'select_type' ) {
+					$this->steps[ sanitize_key( $stepkey ) ] = [
+						'name'     => esc_html( $step_details['title'] ),
+						'view'     => array( $this, 'type_selection' ),
+						'handler'  => array( $this, 'type_selection_handler' ),
+						'priority' => 0,
+					];
+				} elseif ( $stepkey === 'submit' ) {
+					$this->steps[ sanitize_key( $stepkey ) ] = [
+						'name'     => esc_html( $step_details['title'] ),
+						'view'     => array( $this, 'submit' ),
+						'handler'  => array( $this, 'submit_handler' ),
+						'priority' => 10,
+					];
+				} elseif ( $stepkey === 'preview' ) {
+					$this->steps[ sanitize_key( $stepkey ) ] = [
+						'name'     => esc_html( $step_details['title'] ),
+						'view'     => array( $this, 'preview' ),
+						'handler'  => array( $this, 'preview_handler' ),
+						'priority' => 20,
+					];
+				} elseif ( $stepkey === 'done' ) {
+					$this->steps[ sanitize_key( $stepkey ) ] = [
+						'name'     => esc_html( $step_details['title'] ),
+						'view'     => array( $this, 'done' ),
+						'priority' => 30,
+					];
+				}
+			}
+		}
 
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 
@@ -108,6 +122,54 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 
 		$this->fields = pno_get_listing_submission_fields();
 
+	}
+
+	/**
+	 * Display the listings type selection form.
+	 *
+	 * @return void
+	 */
+	public function type_selection() {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'form'         => $this->form_name,
+					'action'       => $this->get_action(),
+					'fields'       => $this->get_fields( $this->get_step_key() ),
+					'step'         => $this->get_step(),
+					'steps'        => $this->get_steps(),
+					'active_step'  => $this->get_step_key(),
+					'submit_label' => $this->get_submit_button_label(),
+				]
+			)
+			->get_template_part( 'forms/listing', 'type-selection' );
+
+	}
+
+	/**
+	 * Handles verification of the submitted details.
+	 *
+	 * @return void
+	 */
+	public function type_selection_handler() {
+		try {
+
+			if ( empty( $_POST['submit_listing-submit'] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST['listing-submit_nonce'], 'verify_listing-submit_form' ) ) {
+				return;
+			}
+
+			// Successful, show next step.
+			$this->step ++;
+
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+			return;
+		}
 	}
 
 	/**
@@ -184,7 +246,7 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 	 */
 	private function get_submit_button_label() {
 
-		$label = __( 'Next &raquo;' );
+		$label = __( 'Continue &rarr;' );
 
 		$keys      = array_keys( $this->steps );
 		$next_step = $keys[ array_search( $this->get_step_key(), $keys, true ) + 1 ];
