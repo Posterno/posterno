@@ -31,7 +31,7 @@ $default       = ! empty( $data->value ) ? $data->value : $data->default;
 
 <div class="row">
 	<?php foreach ( $data->options as $option_key => $value ) : ?>
-		<div class="col">
+		<div class="col-sm-12 col-md-4">
 			<div class="card">
 				<div class="card-body">
 					<div class="custom-control custom-radio">

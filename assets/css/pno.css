@@ -41,7 +41,7 @@
   margin: 0;
   padding: 0; }
 
-#pno-listings-submission-steps {
+#pno-listings-submission-steps ul {
   margin: 0 0 1.5em 0; }
 
 .pno-field-listing-type label {

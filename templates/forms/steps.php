@@ -18,10 +18,13 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<ul class="nav nav-tabs nav-fill" id="pno-listings-submission-steps">
-	<?php foreach ( $data->steps as $step_key => $step ) : ?>
-		<li class="nav-item">
-			<span class="nav-link <?php if ( $step_key === $data->active_step ) : ?>active<?php endif; ?> disabled" ><?php echo esc_html( $step['name'] ); ?></span>
-		</li>
-	<?php endforeach; ?>
-</ul>
+<div id="pno-listings-submission-steps" class="d-none d-sm-block">
+	<ul class="nav nav-tabs nav-fill" id="pno-listings-submission-steps">
+		<?php foreach ( $data->steps as $step_key => $step ) : ?>
+			<li class="nav-item">
+				<span class="nav-link <?php if ( $step_key === $data->active_step ) : ?>active<?php endif; ?> disabled" ><?php echo esc_html( $step['name'] ); ?></span>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+

@@ -51,7 +51,9 @@
 }
 
 #pno-listings-submission-steps {
-	margin: 0 0 1.5em 0;
+	ul {
+		margin: 0 0 1.5em 0;
+	}
 }
 
 .pno-field-listing-type {

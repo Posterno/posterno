@@ -57,47 +57,33 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 	public function __construct() {
 		add_action( 'wp', array( $this, 'process' ) );
 
-		$steps = pno_get_listings_submission_form_steps();
+		$steps = array(
+			'submit'  => array(
+				'name'     => __( 'Submit Details' ),
+				'view'     => array( $this, 'submit' ),
+				'handler'  => array( $this, 'submit_handler' ),
+				'priority' => 10,
+			),
+			'preview' => array(
+				'name'     => __( 'Preview' ),
+				'view'     => array( $this, 'preview' ),
+				'handler'  => array( $this, 'preview_handler' ),
+				'priority' => 20,
+			),
+			'done'    => array(
+				'name'     => __( 'Done' ),
+				'view'     => array( $this, 'done' ),
+				'priority' => 30,
+			),
+		);
 
-		if ( is_array( $steps ) && ! empty( $steps ) ) {
-			foreach ( $steps as $stepkey => $step_details ) {
-
-				$is_taxonomy_step = isset( $step_details['taxonomy'] ) && ! empty( $step_details['taxonomy'] ) ? $step_details['taxonomy'] : false;
-
-				if ( $is_taxonomy_step ) {
-					$this->steps[ sanitize_key( $stepkey ) ] = [
-						'name'     => esc_html( $step_details['title'] ),
-						'view'     => array( $this, 'submit' ),
-						'handler'  => array( $this, 'taxonomy_handler' ),
-						'priority' => absint( $step_details['priority'] ),
-						'taxonomy' => $is_taxonomy_step,
-					];
-				} else {
-
-					if ( $stepkey === 'submit' ) {
-						$this->steps[ sanitize_key( $stepkey ) ] = [
-							'name'     => esc_html( $step_details['title'] ),
-							'view'     => array( $this, 'submit' ),
-							'handler'  => array( $this, 'submit_handler' ),
-							'priority' => absint( $step_details['priority'] ),
-						];
-					} elseif ( $stepkey === 'preview' ) {
-						$this->steps[ sanitize_key( $stepkey ) ] = [
-							'name'     => esc_html( $step_details['title'] ),
-							'view'     => array( $this, 'preview' ),
-							'handler'  => array( $this, 'preview_handler' ),
-							'priority' => absint( $step_details['priority'] ),
-						];
-					} elseif ( $stepkey === 'done' ) {
-						$this->steps[ sanitize_key( $stepkey ) ] = [
-							'name'     => esc_html( $step_details['title'] ),
-							'view'     => array( $this, 'done' ),
-							'priority' => absint( $step_details['priority'] ),
-						];
-					}
-				}
-			}
-		}
+		/**
+		 * Allow developers to extend the submission steps for listings.
+		 *
+		 * @since 0.1.0
+		 * @param array $steps the list of steps for the form.
+		 */
+		$this->steps = (array) apply_filters( 'pno_listing_submission_steps', $steps );
 
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 
