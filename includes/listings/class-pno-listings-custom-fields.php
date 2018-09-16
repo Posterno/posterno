@@ -161,7 +161,7 @@ class PNO_Listings_Custom_Fields {
 			->add_fields(
 				array(
 					Field::make( 'select', 'social_id', esc_html__( 'Network' ) )
-						->add_options( 'pno_get_listings_registered_social_media' )
+						->add_options( 'pno_get_registered_social_media' )
 						->set_width( 50 ),
 					Field::make( 'text', 'social_url', esc_html__( 'Profile url' ) )->set_width( 50 ),
 				)

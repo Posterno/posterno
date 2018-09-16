@@ -567,35 +567,41 @@ function pno_get_listing_submission_fields() {
 	$fields = [];
 
 	$fields['submit'] = [
-		'listing_title'         => [
+		'listing_title'                 => [
 			'label'    => esc_html__( 'Listing title' ),
 			'type'     => 'text',
 			'required' => true,
 			'priority' => 1,
 		],
-		'listing_description'   => [
+		'listing_description'           => [
 			'label'    => esc_html__( 'Description' ),
 			'type'     => 'editor',
 			'required' => true,
 			'priority' => 2,
 		],
-		'listing_email_address' => [
+		'listing_email_address'         => [
 			'label'    => esc_html__( 'Email address' ),
 			'type'     => 'email',
 			'required' => false,
 			'priority' => 3,
 		],
-		'listing_phone_number'  => [
+		'listing_phone_number'          => [
 			'label'    => esc_html__( 'Phone number' ),
 			'type'     => 'text',
 			'required' => false,
 			'priority' => 4,
 		],
-		'listing_website'       => [
+		'listing_website'               => [
 			'label'    => esc_html__( 'Website' ),
 			'type'     => 'url',
 			'required' => false,
 			'priority' => 5,
+		],
+		'listing_social_media_profiles' => [
+			'label'    => esc_html__( 'Social media profiles' ),
+			'type'     => 'social-profiles',
+			'required' => false,
+			'priority' => 6,
 		],
 	];
 
