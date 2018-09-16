@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php echo $data->message; ?></p>
 	<?php endif; ?>
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo pno_get_form_id( $data->form ); ?>" enctype="multipart/form-data" class="row">
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo esc_attr( pno_get_form_id( $data->form ) ); ?>" enctype="multipart/form-data" class="row">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 
@@ -58,7 +58,7 @@ defined( 'ABSPATH' ) || exit;
 			?>
 
 			<div <?php pno_form_field_class( $key, $field, $data->form ); ?>>
-				<?php if ( $field['type'] == 'checkbox' ) : ?>
+				<?php if ( $field['type'] === 'checkbox' ) : ?>
 
 					<?php
 						// Add the key to field.
@@ -72,8 +72,8 @@ defined( 'ABSPATH' ) || exit;
 
 					<label for="<?php echo esc_attr( $key ); ?>">
 						<?php echo esc_html( $field['label'] ); ?>
-						<?php if ( isset( $field['required'] ) && $field['required'] ) : ?>
-							<span class="pno-required">*</span>
+						<?php if ( ! isset( $field['required'] ) || isset( $field['required'] ) && $field['required'] === false ) : ?>
+							<small class="pno-optional"><?php esc_html_e( '(optional)' ); ?></small>
 						<?php endif; ?>
 					</label>
 					<div class="field <?php echo $field['required'] ? 'required-field' : ''; ?>">

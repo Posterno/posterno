@@ -558,42 +558,6 @@ function pno_parse_selectable_options( $options = [] ) {
 }
 
 /**
- * Retrieve the list of steps for the frontend listings submission form.
- *
- * @return array
- */
-function pno_get_listings_submission_form_steps() {
-
-	$steps = [
-		'select_type' => [
-			'title'      => esc_html__( 'Select listing type' ),
-			'can_delete' => false,
-		],
-		'submit'      => [
-			'title'      => esc_html__( 'Submit details' ),
-			'can_delete' => false,
-		],
-		'preview'     => [
-			'title'      => esc_html__( 'Preview' ),
-			'can_delete' => false,
-		],
-		'done'        => [
-			'title'      => esc_html__( 'Done' ),
-			'can_delete' => false,
-		],
-	];
-
-	/**
-	 * Allows developers to customize the steps for the listings submission form.
-	 *
-	 * @param array $steps
-	 * @return array
-	 */
-	return apply_filters( 'pno_listings_submission_form_steps', $steps );
-
-}
-
-/**
  * Retrieve the list of fields for the listings submission form.
  *
  * @return array
@@ -603,17 +567,35 @@ function pno_get_listing_submission_fields() {
 	$fields = [];
 
 	$fields['submit'] = [
-		'listing_title' => [
+		'listing_title'         => [
 			'label'    => esc_html__( 'Listing title' ),
 			'type'     => 'text',
 			'required' => true,
 			'priority' => 1,
 		],
-		'listing_description' => [
+		'listing_description'   => [
 			'label'    => esc_html__( 'Description' ),
 			'type'     => 'editor',
 			'required' => true,
 			'priority' => 2,
+		],
+		'listing_email_address' => [
+			'label'    => esc_html__( 'Email address' ),
+			'type'     => 'email',
+			'required' => false,
+			'priority' => 3,
+		],
+		'listing_phone_number'  => [
+			'label'    => esc_html__( 'Phone number' ),
+			'type'     => 'text',
+			'required' => false,
+			'priority' => 4,
+		],
+		'listing_website'       => [
+			'label'    => esc_html__( 'Website' ),
+			'type'     => 'url',
+			'required' => false,
+			'priority' => 5,
 		],
 	];
 

@@ -20,6 +20,9 @@
 .pno-required {
   color: red; }
 
+.pno-optional {
+  font-style: italic; }
+
 .pno-field-remember {
   margin-bottom: 10px; }
 
