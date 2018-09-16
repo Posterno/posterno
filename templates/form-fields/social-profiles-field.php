@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$enabled_networks    = pno_get_option( 'listings_social_profiles' );
+$registered_networks = pno_get_registered_social_media();
+
 ?>
 
 <div class="pno-social-profiles-selector">
@@ -33,11 +36,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="input-group-prepend">
 			<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php esc_html_e( 'Select network' ); ?></button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Action</a>
-				<a class="dropdown-item" href="#">Another action</a>
-				<a class="dropdown-item" href="#">Something else here</a>
-				<div role="separator" class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">Separated link</a>
+				<?php if ( is_array( $enabled_networks ) && ! empty( $enabled_networks ) ) : ?>
+					<?php foreach ( $enabled_networks as $network_id ) : ?>
+						<?php if ( isset( $registered_networks[ $network_id ] ) ) : ?>
+							<a href="#" class="dropdown-item"><?php echo esc_html( $registered_networks[ $network_id ] ); ?></a>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</div>
 		</div>
 		<input

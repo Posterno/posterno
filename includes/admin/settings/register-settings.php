@@ -615,6 +615,18 @@ function pno_get_registered_settings() {
 				'multiple'    => true,
 			],
 		],
+		/**
+		 * Listings content settings.
+		 */
+		'listings_content'          => [
+			'listings_social_profiles' => [
+				'label'       => __( 'Allowed social profiles' ),
+				'description' => __( 'Select which social profiles to enable for listings.' ),
+				'type'        => 'multicheckbox',
+				'options'     => pno_get_registered_social_media(),
+				'multiple'    => true,
+			],
+		],
 	];
 
 	/**
