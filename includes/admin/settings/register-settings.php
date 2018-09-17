@@ -614,6 +614,11 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_roles(),
 				'multiple'    => true,
 			],
+			'submission_categories_associated' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Account required' ),
+				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users.' ),
+			],
 		],
 		/**
 		 * Listings content settings.
