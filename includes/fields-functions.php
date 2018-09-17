@@ -597,11 +597,17 @@ function pno_get_listing_submission_fields() {
 			'required' => false,
 			'priority' => 5,
 		],
+		'listing_video'                 => [
+			'label'    => esc_html__( 'Video' ),
+			'type'     => 'url',
+			'required' => false,
+			'priority' => 6,
+		],
 		'listing_social_media_profiles' => [
 			'label'    => esc_html__( 'Social media profiles' ),
 			'type'     => 'social-profiles',
 			'required' => false,
-			'priority' => 6,
+			'priority' => 7,
 		],
 	];
 
