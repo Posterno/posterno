@@ -143,6 +143,9 @@ function pno_load_frontend_scripts() {
 
 	// Load vuejs scripts within the listing submission page.
 	if ( is_page( pno_get_listing_submission_page_id() ) ) {
+		wp_enqueue_style( 'pno-select2-style' );
+		wp_enqueue_script( 'pno-select2' );
+		wp_enqueue_script( 'pno-multiselect' );
 		wp_enqueue_script( 'pno-vuejs' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}
