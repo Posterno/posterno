@@ -32,36 +32,43 @@ $registered_networks = pno_get_registered_social_media();
 		</small>
 	<?php endif; ?>
 
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php esc_html_e( 'Select network' ); ?></button>
-			<div class="dropdown-menu">
+	<div class="row" v-for="(option, index) in definedSocialProfiles" :key="index">
+		<div class="col-md-3">
+			<select class="custom-select" v-model="definedSocialProfiles[index].social">
 				<?php if ( is_array( $enabled_networks ) && ! empty( $enabled_networks ) ) : ?>
+					<option value=""><?php esc_html_e( 'Select network' ); ?></option>
 					<?php foreach ( $enabled_networks as $network_id ) : ?>
 						<?php if ( isset( $registered_networks[ $network_id ] ) ) : ?>
-							<a href="#" class="dropdown-item"><?php echo esc_html( $registered_networks[ $network_id ] ); ?></a>
+							<option value="<?php echo esc_attr( $network_id ); ?>"><?php echo esc_html( $registered_networks[ $network_id ] ); ?></option>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				<?php endif; ?>
+			</select>
+		</div>
+		<div class="col-md-9">
+			<div class="input-group mb-3">
+				<input
+					type="text"
+					class="form-control"
+					placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
+					aria-label="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
+					v-model="definedSocialProfiles[index].url"
+				>
+				<div class="input-group-append" v-if="index > 0">
+					<button @click="deleteSocialProfile( index )" class="btn btn-outline-secondary" type="button">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</div>
 			</div>
 		</div>
-		<input
-			type="text"
-			class="form-control"
-			placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
-			aria-label="Text input with dropdown button"
-		>
-		<div class="input-group-append">
-			<button class="btn btn-outline-secondary" type="button" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Delete profile' ); ?>">
-				<i class="fas fa-trash-alt"></i>
-			</button>
-		</div>
 	</div>
+
 	<div class="text-right">
-		<button class="btn btn-light btn-sm" type="button">
+		<button class="btn btn-light btn-sm" type="button" @click="addNewSocialProfile()">
 			<?php esc_html_e( 'Add new profile' ); ?>
 		</button>
 	</div>
+
 	<input
 		type="hidden"
 		name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"

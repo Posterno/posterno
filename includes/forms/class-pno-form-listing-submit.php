@@ -227,6 +227,9 @@ class PNO_Form_Listing_Submit extends PNO_Form {
 				throw new Exception( $validation_status->get_error_message() );
 			}
 
+			print_r( $values );
+			exit;
+
 			// Successful, show next step.
 			$this->step ++;
 

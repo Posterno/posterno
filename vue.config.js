@@ -17,5 +17,8 @@ module.exports = {
 			.entry('profile-fields')
 				.add('./src/editors/profile-fields/main.js')
 				.end()
+			.entry('listing-submission-form')
+				.add('./src/listing-submission-form/main.js')
+			.end()
 	}
 }

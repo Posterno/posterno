@@ -238,3 +238,30 @@ function pno_get_days_of_the_week() {
 	return $days;
 
 }
+
+/**
+ * Determine if a given form is a vuejs powered for that needs to trigger
+ * functionalities before submitting the form to the server.
+ *
+ * @param string $form the name of the form.
+ * @return mixed
+ */
+function pno_is_vue_form( $form ) {
+
+	if ( ! $form ) {
+		return;
+	}
+
+	$is_vue_form = false;
+
+	$vue_forms = [
+		'listing-submit',
+	];
+
+	if ( in_array( $form, $vue_forms ) ) {
+		$is_vue_form = '@click="submitListing()"';
+	}
+
+	return apply_filters( 'pno_is_vue_form', $is_vue_form, $form );
+
+}

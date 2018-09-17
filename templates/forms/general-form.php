@@ -105,14 +105,21 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php endforeach; ?>
 
-		<input type="hidden" name="pno_form" value="<?php echo $data->form; ?>" />
+		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form ); ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-		<input type="hidden" name="submit_<?php echo $data->form; ?>" value="<?php echo $data->form; ?>">
+		<input type="hidden" name="submit_<?php echo esc_attr( $data->form ); ?>" value="<?php echo esc_attr( $data->form ); ?>">
 		<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
 
-		<div class="col-sm-12">
-			<button type="submit" class="btn btn-primary"><?php echo esc_html( $data->submit_label ); ?></button>
-		</div>
+		<?php
+			posterno()->templates
+				->set_template_data(
+					[
+						'submit_label' => $data->submit_label,
+						'form'         => $data->form,
+					]
+				)
+				->get_template_part( 'forms/submit', 'button' );
+		?>
 	</form>
 
 	<?php
