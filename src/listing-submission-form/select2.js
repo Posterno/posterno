@@ -59,7 +59,8 @@ Vue.component('pno-select2', {
 			.find('select')
 			.select2({
 				...this.settings,
-				data: this.options
+				data: this.options,
+				placeholder: jQuery(this.$el).data('placeholder')
 			})
 			.on('select2:select select2:unselect', ev => {
 				const {
