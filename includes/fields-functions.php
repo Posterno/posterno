@@ -609,6 +609,12 @@ function pno_get_listing_submission_fields() {
 			'required' => false,
 			'priority' => 7,
 		],
+		'listing_categories_tags' => [
+			'label'    => esc_html__( 'Listing category' ),
+			'type'     => 'listing-category-tags',
+			'required' => false,
+			'priority' => 8,
+		],
 	];
 
 	/**

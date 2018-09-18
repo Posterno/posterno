@@ -1,4 +1,5 @@
 /*global Vue:true*/
+/*global jQuery:true*/
 Vue.component('pno-select2', {
 	data() {
 		return {

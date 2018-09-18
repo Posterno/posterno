@@ -602,12 +602,12 @@ function pno_get_registered_settings() {
 		 * Listings submission settings.
 		 */
 		'listings_submission'       => [
-			'submission_requires_account' => [
+			'submission_requires_account'      => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Account required' ),
 				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users.' ),
 			],
-			'submission_requires_roles'   => [
+			'submission_requires_roles'        => [
 				'label'       => __( 'Allowed roles' ),
 				'description' => __( 'Select which roles can submit listings. Leave blank if not needed.' ),
 				'type'        => 'multiselect',
@@ -616,8 +616,18 @@ function pno_get_registered_settings() {
 			],
 			'submission_categories_associated' => [
 				'type'        => 'checkbox',
-				'label'       => esc_html__( 'Account required' ),
-				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users.' ),
+				'label'       => esc_html__( 'Categories to type association' ),
+				'description' => esc_html__( 'Enable this option to allow selection of categories belonging to the chosen listing type during submission.' ),
+			],
+			'submission_categories_multiple'   => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow multiple categories' ),
+				'description' => esc_html__( 'Enable the option to let users select more than one category during listing submission.' ),
+			],
+			'submission_categories_amount'     => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'How many categories?' ),
+				'description' => esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
 			],
 		],
 		/**

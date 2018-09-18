@@ -41,7 +41,7 @@ $registered_networks = pno_get_registered_social_media();
 				<div class="col-md-3">
 					<pno-select2 inline-template v-model="definedSocialProfiles[index].social" data-placeholder="<?php esc_html_e( 'Select network' ); ?>">
 						<div class="pno-select2-wrapper">
-							<select class="custom-select">
+							<select class="form-control">
 								<?php if ( is_array( $enabled_networks ) && ! empty( $enabled_networks ) ) : ?>
 									<?php foreach ( $enabled_networks as $network_id ) : ?>
 										<?php if ( isset( $registered_networks[ $network_id ] ) ) : ?>
