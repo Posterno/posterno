@@ -609,9 +609,10 @@ function pno_get_listing_submission_fields() {
 			'required' => false,
 			'priority' => 7,
 		],
-		'listing_categories_tags' => [
+		'listing_categories' => [
 			'label'    => esc_html__( 'Listing category' ),
-			'type'     => 'listing-category-tags',
+			'type'     => 'term-select',
+			'taxonomy' => 'listings-categories',
 			'required' => false,
 			'priority' => 8,
 		],
