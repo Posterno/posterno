@@ -1,43 +1,9 @@
 /**
- * Enhance the frontend listing submission form.
+ * Enhance the frontend listing submission form with custom inline templates.
  */
 
 /*global Vue:true*/
-new Vue({
-	data() {
-		return {
-			definedSocialProfiles: [ { social: '', url: '' } ]
-		}
-	},
-	methods: {
-		/**
-		 * Add new social media field.
-		 */
-		addNewSocialProfile() {
-			this.definedSocialProfiles.push( {
-				social: '',
-				url: ''
-			} )
-		},
+import './select2.js'
+import './social-profiles-field.js'
 
-		/**
-		 * Delete social media field.
-		 */
-		deleteSocialProfile( index ) {
-			if (index !== -1) {
-				this.definedSocialProfiles.splice(index, 1);
-			}
-		},
-
-		/**
-		 * Last minute operations before submitting the listing to the server.
-		 */
-		submitListing() {
-
-			// "Store" social media profiles within the hidden field.
-			document.getElementById('listing_social_media_profiles').value = JSON.stringify( this.definedSocialProfiles );
-
-		}
-
-	},
-}).$mount('#pno-form-listing-submit')
+new Vue().$mount('#pno-form-listing-submit')

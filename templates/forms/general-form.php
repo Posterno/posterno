@@ -110,16 +110,11 @@ defined( 'ABSPATH' ) || exit;
 		<input type="hidden" name="submit_<?php echo esc_attr( $data->form ); ?>" value="<?php echo esc_attr( $data->form ); ?>">
 		<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
 
-		<?php
-			posterno()->templates
-				->set_template_data(
-					[
-						'submit_label' => $data->submit_label,
-						'form'         => $data->form,
-					]
-				)
-				->get_template_part( 'forms/submit', 'button' );
-		?>
+		<div class="col-sm-12">
+			<button type="submit" class="btn btn-primary">
+				<?php echo esc_html( $data->submit_label ); ?>
+			</button>
+		</div>
 	</form>
 
 	<?php
