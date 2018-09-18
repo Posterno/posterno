@@ -28,8 +28,6 @@ if ( isset( $data->value ) ) {
 	$selected = '';
 }
 
-wp_enqueue_script( 'pno-multiselect' );
-
 $args = array(
 	'taxonomy'     => $data->taxonomy,
 	'hierarchical' => 1,

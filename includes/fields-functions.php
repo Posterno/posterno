@@ -688,9 +688,8 @@ function pno_get_listing_submission_fields() {
 		],
 		'listing_categories'            => [
 			'label'    => esc_html__( 'Listing category' ),
-			'type'     => 'term-multiselect',
-			'taxonomy' => 'listings-categories',
-			'required' => false,
+			'type'     => 'listing-category-select-field',
+			'required' => true,
 			'priority' => 8,
 		],
 	];
