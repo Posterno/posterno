@@ -35,7 +35,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="col-12 col-sm-12 col-md-4">
 			<?php
 				posterno()->templates
-					->get_template_part( 'listings/filter', 'statuses' );
+					->get_template_part( 'dashboard/filter', 'statuses' );
 			?>
 		</div>
 		<div class="col-12 col-sm-12 col-md-4 text-sm-left text-md-right">
@@ -77,7 +77,7 @@ defined( 'ABSPATH' ) || exit;
 										<?php
 											posterno()->templates
 												->set_template_data( [ 'id' => $listing_id ] )
-												->get_template_part( 'listings/actions', 'list' );
+												->get_template_part( 'dashboard/actions', 'list' );
 										?>
 									</td>
 								<?php else : ?>
