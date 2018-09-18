@@ -558,6 +558,83 @@ function pno_parse_selectable_options( $options = [] ) {
 }
 
 /**
+ * Displays category select dropdown.
+ * Based on wp_dropdown_categories, with the exception of supporting multiple selected categories.
+ *
+ * @see  wp_dropdown_categories
+ * @param string|array|object $args args.
+ * @return string
+ */
+function pno_dropdown_categories( $args = '' ) {
+	$defaults = array(
+		'orderby'         => 'id',
+		'order'           => 'ASC',
+		'show_count'      => 0,
+		'hide_empty'      => 1,
+		'parent'          => '',
+		'child_of'        => 0,
+		'exclude'         => '',
+		'echo'            => 1,
+		'selected'        => 0,
+		'hierarchical'    => 0,
+		'name'            => 'cat',
+		'id'              => '',
+		'class'           => 'form-control pno-category-dropdown ' . ( is_rtl() ? 'chosen-rtl' : '' ),
+		'depth'           => 0,
+		'taxonomy'        => 'listings-categories',
+		'value'           => 'id',
+		'multiple'        => true,
+		'show_option_all' => false,
+		'placeholder'     => __( 'Choose a category&hellip;' ),
+		'no_results_text' => __( 'No results match' ),
+		'multiple_text'   => __( 'Select some options' ),
+	);
+	$r        = wp_parse_args( $args, $defaults );
+	if ( ! isset( $r['pad_counts'] ) && $r['show_count'] && $r['hierarchical'] ) {
+		$r['pad_counts'] = true;
+	}
+
+	// Store in a transient to help sites with many cats.
+	$categories_hash = 'pno_cats_' . md5( wp_json_encode( $r ) . \PNO\Cache\Helper::get_transient_version( 'pno_get_' . $r['taxonomy'] ) );
+	$categories      = get_transient( $categories_hash );
+	if ( empty( $categories ) ) {
+		$categories = get_terms(
+			array(
+				'taxonomy'     => $r['taxonomy'],
+				'orderby'      => $r['orderby'],
+				'order'        => $r['order'],
+				'hide_empty'   => $r['hide_empty'],
+				'parent'       => $r['parent'],
+				'child_of'     => $r['child_of'],
+				'exclude'      => $r['exclude'],
+				'hierarchical' => $r['hierarchical'],
+			)
+		);
+		set_transient( $categories_hash, $categories, DAY_IN_SECONDS * 7 );
+	}
+	$id     = $r['id'] ? $r['id'] : $r['name'];
+	$output = "<select name='" . esc_attr( $r['name'] ) . "[]' id='" . esc_attr( $id ) . "' class='" . esc_attr( $r['class'] ) . "' " . ( $r['multiple'] ? "multiple='multiple'" : '' ) . " data-placeholder='" . esc_attr( $r['placeholder'] ) . "' data-no_results_text='" . esc_attr( $r['no_results_text'] ) . "' data-multiple_text='" . esc_attr( $r['multiple_text'] ) . "'>\n";
+	if ( $r['show_option_all'] ) {
+		$output .= '<option value="">' . esc_html( $r['show_option_all'] ) . '</option>';
+	}
+	if ( ! empty( $categories ) ) {
+		include_once PNO_PLUGIN_DIR . '/includes/class-pno-category-walker.php';
+		$walker = new PNO_Category_Walker();
+		if ( $r['hierarchical'] ) {
+			$depth = $r['depth'];  // Walk the full depth.
+		} else {
+			$depth = -1; // Flat.
+		}
+		$output .= $walker->walk( $categories, $depth, $r );
+	}
+	$output .= "</select>\n";
+	if ( $r['echo'] ) {
+		echo $output; // WPCS: XSS ok.
+	}
+	return $output;
+}
+
+/**
  * Retrieve the list of fields for the listings submission form.
  *
  * @return array
@@ -609,9 +686,9 @@ function pno_get_listing_submission_fields() {
 			'required' => false,
 			'priority' => 7,
 		],
-		'listing_categories' => [
+		'listing_categories'            => [
 			'label'    => esc_html__( 'Listing category' ),
-			'type'     => 'term-select',
+			'type'     => 'term-multiselect',
 			'taxonomy' => 'listings-categories',
 			'required' => false,
 			'priority' => 8,
