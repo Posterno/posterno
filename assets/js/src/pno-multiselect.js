@@ -1,5 +1,6 @@
 /*global jQuery:true*/
 /*global pnoMultiselects:true*/
+/*global pno_submission:true*/
 jQuery(document).ready(function ($) {
 
 	window.pnoMultiselects = {};
@@ -37,6 +38,7 @@ jQuery(document).ready(function ($) {
 		pnoMultiselects.listingSubmissionCategory.select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
+			maximumSelectionLength: pno_submission.max_multiselect
 		});
 
 	}
