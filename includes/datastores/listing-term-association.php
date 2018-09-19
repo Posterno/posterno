@@ -8,12 +8,16 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0.0
  */
+
 namespace PNO\Datastores;
 
 use Carbon_Fields\Field\Field;
 use Carbon_Fields\Datastore\Datastore;
 use Carbon_Fields\Datastore\Meta_Datastore;
 use Carbon_Fields\Datastore\Term_Meta_Datastore;
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Store association data into a single meta data row into the database so we can query it later.

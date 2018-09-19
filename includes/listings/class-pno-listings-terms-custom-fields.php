@@ -43,7 +43,6 @@ class PNO_Listing_Terms_Custom_Fields {
 			->add_fields(
 				array(
 					Field::make( 'multiselect', 'associated_types', esc_html__( 'Associated listing types' ) )
-						->set_datastore( new PNO\Datastores\ListingTermAssociation() )
 						->set_help_text( esc_html__( 'Select one or more listings types if you wish to restrict this category to the selected types.' ) )
 						->add_options( 'pno_get_listings_types_for_association' ),
 				)

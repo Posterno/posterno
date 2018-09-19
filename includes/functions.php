@@ -270,6 +270,16 @@ function pno_get_listings_categories_for_select( $listing_type_id = false ) {
 		'parent'     => 0,
 	);
 
+	if ( $listing_type_id ) {
+		$terms_args['meta_query'] = [
+			[
+				'key'     => '_associated_types',
+				'value'   => $listing_type_id,
+				'compare' => 'IN',
+			],
+		];
+	}
+
 	if ( $show_subcategories ) {
 
 		$parent_terms = get_terms( 'listings-categories', $terms_args );

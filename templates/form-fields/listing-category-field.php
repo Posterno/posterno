@@ -18,7 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $listing_type_id     = pno_get_submission_queried_listing_type_id();
-$listings_categories = pno_get_listings_categories_for_select();
+$listings_categories = pno_get_listings_categories_for_select( $listing_type_id );
 
 ?>
 
