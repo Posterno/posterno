@@ -248,3 +248,9 @@ function pno_delete_listings_on_user_delete( $types ) {
 }
 add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delete', 10 );
 
+function pno_adjust_listings_categories_select_field( $args ) {
+
+	return $args;
+
+}
+add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_adjust_listings_categories_select_field' );

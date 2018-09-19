@@ -238,3 +238,84 @@ function pno_get_days_of_the_week() {
 	return $days;
 
 }
+
+/**
+ * Retrieve the queried listing type id during the submission process.
+ *
+ * @return mixed
+ */
+function pno_get_submission_queried_listing_type_id() {
+
+	return isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false;
+
+}
+
+/**
+ * Retrieve the list of categories for the listings submission form.
+ *
+ * @param mixed $listing_type_id query categories by associated listing type id.
+ * @return array
+ */
+function pno_get_listings_categories_for_select( $listing_type_id = false ) {
+
+	$categories = [];
+
+	$show_subcategories = pno_get_option( 'submission_categories_sublevel' ) ? true : false;
+
+	$terms_args = array(
+		'hide_empty' => false,
+		'number'     => 999,
+		'orderby'    => 'name',
+		'order'      => 'ASC',
+		'parent'     => 0,
+	);
+
+	if ( $show_subcategories ) {
+
+		$parent_terms = get_terms( 'listings-categories', $terms_args );
+
+		if ( ! empty( $parent_terms ) && is_array( $parent_terms ) ) {
+			foreach ( $parent_terms as $parent_listing_category ) {
+
+				$category_group = [
+					'parent_id'   => $parent_listing_category->term_id,
+					'parent_name' => $parent_listing_category->name,
+				];
+
+				// Now query for subcategories.
+				$sub_terms_args = array(
+					'hide_empty' => false,
+					'number'     => 999,
+					'orderby'    => 'name',
+					'order'      => 'ASC',
+					'parent'     => $parent_listing_category->term_id,
+				);
+				$subcategories  = get_terms( 'listings-categories', $sub_terms_args );
+
+				if ( ! empty( $subcategories ) && is_array( $subcategories ) ) {
+					foreach ( $subcategories as $subcategory ) {
+						$category_group['subcategories'][] = [
+							'id'   => $subcategory->term_id,
+							'name' => $subcategory->name,
+						];
+					}
+
+					$categories[] = $category_group;
+
+				}
+			}
+		}
+	} else {
+
+		$terms = get_terms( 'listings-categories', $terms_args );
+
+		if ( ! empty( $terms ) ) {
+			foreach ( $terms as $listing_category ) {
+				$categories[ absint( $listing_category->term_id ) ] = esc_html( $listing_category->name );
+			}
+		}
+	}
+
+	return $categories;
+
+}

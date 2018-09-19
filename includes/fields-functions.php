@@ -703,9 +703,10 @@ function pno_get_listing_submission_fields() {
 		],
 		'listing_categories'            => [
 			'label'    => esc_html__( 'Listing category' ),
-			'type'     => 'listing-category-select-field',
+			'type'     => 'listing-category',
 			'required' => true,
 			'priority' => 8,
+			'search'   => true,
 		],
 	];
 
