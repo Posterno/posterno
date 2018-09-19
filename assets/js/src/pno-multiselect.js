@@ -35,10 +35,11 @@ jQuery(document).ready(function ($) {
 			placeholder: $(this).data('placeholder'),
 		});
 
+		// Listing submission category field
 		pnoMultiselects.listingSubmissionCategory.select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
-			maximumSelectionLength: pno_submission.max_multiselect
+			maximumSelectionLength: pno_submission.max_multiselect > 1 ? pno_submission.max_multiselect : false,
 		});
 
 	}
