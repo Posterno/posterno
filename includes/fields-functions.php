@@ -635,6 +635,21 @@ function pno_dropdown_categories( $args = '' ) {
 }
 
 /**
+ * Get js settings for the listings submission form.
+ *
+ * @return array
+ */
+function pno_get_listings_submission_form_js_vars() {
+
+	$js_settings = [
+		'selected_listing_type' => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs:ignore
+	];
+
+	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
+
+}
+
+/**
  * Retrieve the list of fields for the listings submission form.
  *
  * @return array

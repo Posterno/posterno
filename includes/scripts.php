@@ -159,5 +159,8 @@ function pno_load_frontend_scripts() {
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 
+	// Js settings for the submission form.
+	wp_localize_script( 'pno-vue-listing-submission-form', 'pno_submission', pno_get_listings_submission_form_js_vars() );
+
 }
 add_action( 'wp_enqueue_scripts', 'pno_load_frontend_scripts' );

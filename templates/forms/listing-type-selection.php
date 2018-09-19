@@ -35,6 +35,7 @@ defined( 'ABSPATH' ) || exit;
 						<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo esc_attr( pno_get_form_id( $data->form ) ); ?>-<?php echo esc_attr( $type_id ); ?>" enctype="multipart/form-data">
 							<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form ); ?>" />
 							<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
+							<input type="hidden" name="pno_listing_type_id" value="<?php echo absint( $type_id ); ?>">
 							<input type="hidden" name="submit_<?php echo esc_attr( $data->form ); ?>" value="<?php echo esc_attr( $data->form ); ?>">
 							<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
 							<button type="submit" class="btn btn-secondary"><?php echo esc_html( $data->submit_label ); ?></button>
