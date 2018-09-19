@@ -27,17 +27,6 @@ Vue.component('pno-social-profile-field', {
 				this.definedSocialProfiles.splice(index, 1);
 			}
 		},
-
-		/**
-		 * Last minute operations before submitting the listing to the server.
-		 */
-		submitListing() {
-
-			// "Store" social media profiles within the hidden field.
-			document.getElementById('listing_social_media_profiles').value = JSON.stringify(this.definedSocialProfiles);
-
-		}
-
 	},
 	watch: {
 		/**

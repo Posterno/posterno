@@ -64,6 +64,13 @@ $max_selection = $max_selection > 1 ? $max_selection : false;
 	</div>
 </pno-listing-category-selector>
 
+<input
+	type="hidden"
+	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
+	id="<?php echo esc_attr( $data->key ); ?>"
+	value="<?php echo isset( $data->value ) ? esc_attr( $data->value ) : ''; ?>"
+>
+
 <?php if ( ! empty( $data->description ) ) : ?>
 	<small class="form-text text-muted">
 		<?php echo wp_kses( $data->description ); ?>
