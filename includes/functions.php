@@ -270,7 +270,7 @@ function pno_get_listings_categories_for_select( $listing_type_id = false ) {
 		'parent'     => 0,
 	);
 
-	if ( $listing_type_id ) {
+	if ( $listing_type_id && pno_get_option( 'submission_categories_associated' ) ) {
 		$terms_args['meta_query'] = [
 			[
 				'key'     => '_associated_types',

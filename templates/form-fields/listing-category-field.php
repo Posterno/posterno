@@ -22,7 +22,13 @@ $listings_categories = pno_get_listings_categories_for_select( $listing_type_id 
 
 ?>
 
-<select class="form-control" name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>" id="<?php echo esc_attr( $data->key ); ?>" <?php if ( ! empty( $data->required ) ) echo 'required'; ?> data-placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>">
+<select
+	class="form-control"
+	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
+	id="<?php echo esc_attr( $data->key ); ?>"
+	<?php if ( ! empty( $data->required ) ) echo 'required'; ?>
+	data-placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
+	>
 
 	<?php if ( ! empty( $listings_categories ) && is_array( $listings_categories ) && pno_get_option( 'submission_categories_sublevel' ) ) : ?>
 
