@@ -21,7 +21,6 @@ jQuery(document).ready(function ($) {
 	pnoMultiselects.cacheSelectors = function () {
 
 		pnoMultiselects.formSelectFields = $('.pno-field-multiselect select, .pno-select-searchable');
-		pnoMultiselects.listingSubmissionCategory = $('.pno-listings-category-selector');
 
 	}
 
@@ -33,13 +32,6 @@ jQuery(document).ready(function ($) {
 		pnoMultiselects.formSelectFields.select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
-		});
-
-		// Listing submission category field
-		pnoMultiselects.listingSubmissionCategory.select2({
-			theme: 'default',
-			placeholder: $(this).data('placeholder'),
-			maximumSelectionLength: pno_submission.max_multiselect > 1 ? pno_submission.max_multiselect : false,
 		});
 
 	}

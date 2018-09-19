@@ -63,3 +63,9 @@ $max_selection = $max_selection > 1 ? $max_selection : false;
 
 	</div>
 </pno-listing-category-selector>
+
+<?php if ( ! empty( $data->description ) ) : ?>
+	<small class="form-text text-muted">
+		<?php echo wp_kses( $data->description ); ?>
+	</small>
+<?php endif; ?>
