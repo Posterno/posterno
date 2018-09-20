@@ -21,27 +21,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$display_as = pno_get_option( 'submission_tags_display_as' );
-
 ?>
 
 <pno-listing-tags-selector inline-template>
 
-	<div>
+	<div class="tags-selector-wrapper">
 
-		<?php if ( $display_as === 'checkboxes' ) : ?>
-
-		<?php else : ?>
-
-			<pno-select2 inline-template v-model="selectedTags" data-placeholder="dd">
-				<div class="pno-select2-wrapper">
-					<select class="form-control" multiple>
-
-					</select>
-				</div>
-			</pno-select2>
-
-		<?php endif; ?>
+		<div class="pno-checklist-wrapper" v-if="tagsAreAvailable() && ! loading">
+			<div class="custom-control custom-checkbox col-12 col-md-4" v-for="(option, index) in availableTags" :key="index">
+				<input type="checkbox" class="custom-control-input" :id="option.slug" :value="option.term_id" v-model="selectedTags">
+				<label class="custom-control-label" :for="option.slug">{{option.name}}</label>
+			</div>
+		</div>
+		<p v-else-if="! tagsAreAvailable() && loading">
+			<i class="fas fa-spinner fa-spin"></i>
+		</p>
+		<div class="alert alert-info" role="alert" v-else-if="! tagsAreAvailable() && ! loading">
+			<?php esc_html_e( 'Select a category to display related tags.' ); ?>
+		</div>
 
 	</div>
 

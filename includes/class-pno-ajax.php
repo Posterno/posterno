@@ -21,7 +21,10 @@ class PNO_Ajax {
 	 *
 	 * @return void
 	 */
-	public static function init() {}
+	public static function init() {
+		add_action( 'wp_ajax_pno_get_tags_from_categories', [ __CLASS__, 'get_tags_from_categories' ] );
+		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ __CLASS__, 'get_tags_from_categories' ] );
+	}
 
 	/**
 	 * Uploads file from an Ajax request.
@@ -57,6 +60,44 @@ class PNO_Ajax {
 			}
 		}
 		wp_send_json( $data );
+	}
+
+	/**
+	 * Retrieve a list of tags given categories ids.
+	 *
+	 * @return void
+	 */
+	public static function get_tags_from_categories() {
+
+		check_ajax_referer( 'pno_get_tags_from_categories', 'nonce' );
+
+		$categories = isset( $_GET['categories'] ) ? (array) $_GET['categories'] : array();
+		$categories = array_map( 'esc_attr', $categories );
+
+		if ( ! empty( $categories ) ) {
+
+			$terms_args = [
+				'hide_empty' => false,
+				'number'     => 999,
+				'orderby'    => 'name',
+				'order'      => 'ASC',
+				'meta_query' => [
+					[
+						'key'     => '_associated_categories_for_tags',
+						'value'   => $categories,
+						'compare' => 'IN',
+					],
+				],
+			];
+
+			$tags = get_terms( 'listings-tags', $terms_args );
+
+			wp_send_json_success( $tags );
+
+		} else {
+			wp_send_json_error( null, 422 );
+		}
+
 	}
 
 }

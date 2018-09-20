@@ -250,6 +250,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/listing-type.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-cache-helper.php';
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
 		}
 
 		/**

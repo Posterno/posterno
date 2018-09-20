@@ -419,11 +419,6 @@ function pno_get_listings_categories_for_association() {
 
 	$categories = [];
 
-	//phpcs:ignore
-	if ( ! isset( $_GET['taxonomy'] ) || isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] !== 'listings-tags' ) {
-		return $categories;
-	}
-
 	$terms = get_terms(
 		'listings-categories', array(
 			'hide_empty' => false,
