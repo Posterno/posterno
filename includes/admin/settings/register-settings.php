@@ -634,6 +634,15 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'How many categories?' ),
 				'description' => esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
 			],
+			'submission_tags_display_as'       => [
+				'type'        => 'radio',
+				'label'       => esc_html__( 'Display tags selector as' ),
+				'description' => esc_html__( 'Display the tags selection field as a dropdown or as multiple checkboxes.' ),
+				'options'     => [
+					'dropdown'   => esc_html__( 'Dropdown' ),
+					'checkboxes' => esc_html__( 'Checkboxes' ),
+				],
+			],
 		],
 		/**
 		 * Listings content settings.

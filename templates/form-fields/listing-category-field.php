@@ -1,6 +1,8 @@
 <?php
 /**
- * The template for displaying the radio field.
+ * The template for displaying the category selection field.
+ *
+ * This is a Vuejs powered field.
  *
  * This template can be overridden by copying it to yourtheme/pno/form-fields/listing-category-field.php
  *
