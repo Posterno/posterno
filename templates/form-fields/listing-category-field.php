@@ -39,7 +39,7 @@ $max_selection = $max_selection > 1 ? $max_selection : false;
 <pno-listing-category-selector inline-template>
 	<div>
 
-		<pno-select2 inline-template v-model="selectedCategories" data-placeholder="<?php echo esc_html( $placeholder_label ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_selection ); ?> }">
+		<pno-select2 inline-template v-model="selectedCategories" data-placeholder="<?php echo esc_html( $placeholder_label ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_selection ); ?> }" data-emitterid="category-changed">
 			<div class="pno-select2-wrapper">
 				<select class="form-control" <?php echo esc_attr( $multiple ); ?>>
 					<?php if ( ! empty( $listings_categories ) && is_array( $listings_categories ) && pno_get_option( 'submission_categories_sublevel' ) ) : ?>

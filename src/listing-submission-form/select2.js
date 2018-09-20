@@ -1,9 +1,12 @@
 /*global Vue:true*/
 /*global jQuery:true*/
+import EventBus from './event-bus'
+
 Vue.component('pno-select2', {
 	data() {
 		return {
-			select2: null
+			select2: null,
+			emitterid: null,
 		}
 	},
 	model: {
@@ -30,14 +33,27 @@ Vue.component('pno-select2', {
 		value: null
 	},
 	watch: {
+		/**
+		 * Watch for changes to the select options.
+		 * @param {*} val
+		 */
 		options(val) {
 			this.setOption(val);
 		},
+
+		/**
+		 * Watch for changes to the selected value.
+		 * @param {*} val
+		 */
 		value(val) {
 			this.setValue(val);
 		}
 	},
 	methods: {
+		/**
+		 * Set new options within select2 dropdown.
+		 * @param {*} val
+		 */
 		setOption(val = []) {
 			this.select2.empty();
 			this.select2.select2({
@@ -46,6 +62,21 @@ Vue.component('pno-select2', {
 			});
 			this.setValue(this.value);
 		},
+		/**
+		 * Emit a global event so that some of our components can interact with do
+		 * and run specific functionalities.
+		 *
+		 * @param {*} payLoad
+		 */
+		emitMethod( payLoad ) {
+			if ( this.emitterid ) {
+				EventBus.$emit( this.emitterid, payLoad);
+			}
+		},
+		/**
+		 * Set the value of component when picking an option.
+		 * @param {*} val
+		 */
 		setValue(val) {
 			if (val instanceof Array) {
 				this.select2.val([...val]);
@@ -53,6 +84,7 @@ Vue.component('pno-select2', {
 				this.select2.val([val]);
 			}
 			this.select2.trigger('change');
+			this.emitMethod( val )
 		}
 	},
 	mounted() {
@@ -78,6 +110,8 @@ Vue.component('pno-select2', {
 					selected
 				});
 			});
+
+		this.emitterid = jQuery(this.$el).data('emitterid')
 		this.setValue(this.value);
 	},
 	beforeDestroy() {

@@ -1,4 +1,6 @@
 /*global Vue:true*/
+import EventBus from './event-bus'
+
 Vue.component('pno-listing-tags-selector', {
 	data() {
 		return {
@@ -6,4 +8,9 @@ Vue.component('pno-listing-tags-selector', {
 			loading: false,
 		}
 	},
+	mounted() {
+		EventBus.$on( 'category-changed', function (payLoad) {
+			console.log(payLoad)
+		});
+	}
 });
