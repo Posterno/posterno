@@ -32,7 +32,7 @@ if ( $multiple ) {
 	$placeholder_label = __( 'Select one or more categories...' );
 }
 $max_selection = absint( pno_get_option( 'submission_categories_amount' ) );
-$max_selection = $max_selection > 1 ? $max_selection : false;
+$max_selection = is_int( $max_selection ) ? $max_selection : false;
 
 ?>
 
