@@ -26,44 +26,44 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public static function init() {
 
+		add_action( 'carbon_fields_register_fields', [ __class__, 'register_type_settings' ] );
 		add_action( 'carbon_fields_register_fields', [ __class__, 'register_categories_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_tags_settings' ] );
 
 	}
 
 	/**
-	 * Adds settings to the listings categories taxonomy.
+	 * Adds settings to the listings types taxonomy.
 	 *
 	 * @return void
 	 */
-	public static function register_categories_settings() {
+	public static function register_type_settings() {
 
-		Container::make( 'term_meta', esc_html__( 'Listing category settings' ) )
-			->where( 'term_taxonomy', '=', 'listings-categories' )
+		Container::make( 'term_meta', esc_html__( 'Listing type settings' ) )
+			->where( 'term_taxonomy', '=', 'listings-types' )
 			->add_fields(
 				array(
-					Field::make( 'multiselect', 'associated_types', esc_html__( 'Associated listing types' ) )
-						->set_help_text( esc_html__( 'Select one or more listings types if you wish to restrict this category to the selected types.' ) )
-						->add_options( 'pno_get_listings_types_for_association' ),
+					Field::make( 'multiselect', 'associated_categories', esc_html__( 'Associated categories' ) )
+						->set_help_text( esc_html__( 'Select one or more listings categories that you wish to assign to this listing type.' ) )
+						->add_options( 'pno_get_listings_categories_for_association' ),
 				)
 			);
 
 	}
 
 	/**
-	 * Add settings to the listings tags taxonomy.
+	 * Add settings to the listings categories taxonomy.
 	 *
 	 * @return void
 	 */
-	public static function register_tags_settings() {
+	public static function register_categories_settings() {
 
-		Container::make( 'term_meta', esc_html__( 'Listing tag settings' ) )
-			->where( 'term_taxonomy', '=', 'listings-tags' )
+		Container::make( 'term_meta', esc_html__( 'Listing categories settings' ) )
+			->where( 'term_taxonomy', '=', 'listings-categories' )
 			->add_fields(
 				[
-					Field::make( 'multiselect', 'associated_categories_for_tags', esc_html__( 'Associated listing categories' ) )
-						->set_help_text( esc_html__( 'Select one or more listings categories if you wish to restrict this tag to the selected categories.' ) )
-						->add_options( 'pno_get_listings_categories_for_association' ),
+					Field::make( 'multiselect', 'associated_tags', esc_html__( 'Associated listing tags' ) )
+						->set_help_text( esc_html__( 'Select one or more listings tags that you wish to assign to this listing category.' ) )
+						->add_options( 'pno_get_listings_tags_for_association' ),
 				]
 			);
 

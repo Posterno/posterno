@@ -425,6 +425,7 @@ function pno_get_listings_categories_for_association() {
 			'number'     => 999,
 			'orderby'    => 'name',
 			'order'      => 'ASC',
+			'parent'     => 0,
 		)
 	);
 
@@ -435,6 +436,35 @@ function pno_get_listings_categories_for_association() {
 	}
 
 	return $categories;
+
+}
+
+/**
+ * Retrieve a list of listings tags.
+ * This function is used only within the admin panel.
+ *
+ * @return array
+ */
+function pno_get_listings_tags_for_association() {
+
+	$tags = [];
+
+	$terms = get_terms(
+		'listings-tags', array(
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $tag ) {
+			$tags[ absint( $tag->term_id ) ] = esc_html( $tag->name );
+		}
+	}
+
+	return $tags;
 
 }
 
