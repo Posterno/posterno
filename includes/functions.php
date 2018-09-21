@@ -261,7 +261,7 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 	$categories = [];
 
 	$categories_associated_to_type = carbon_get_term_meta( $listing_type_id, 'associated_categories' );
-	$show_subcategories            = pno_get_option( 'submission_categories_sublevel' ) ? true: false;
+	$show_subcategories            = pno_get_option( 'submission_categories_sublevel' ) ? true : false;
 
 	$terms_args = array(
 		'hide_empty' => false,
@@ -323,4 +323,25 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 
 	return $categories;
 
+}
+
+/**
+ * Retrieve the most parent term of a given term.
+ *
+ * @param string $term_id the id of the term to verify.
+ * @param string $taxonomy the taxonomy of the term to verify.
+ * @return mixed
+ */
+function pno_get_term_top_most_parent( $term_id, $taxonomy ) {
+
+	// start from the current term.
+	$parent = get_term_by( 'id', $term_id, $taxonomy );
+
+	// climb up the hierarchy until we reach a term with parent = '0'.
+	while ( $parent->parent != '0' ) {
+		$term_id = $parent->parent;
+		$parent = get_term_by( 'id', $term_id, $taxonomy );
+	}
+
+	return $parent;
 }

@@ -71,23 +71,42 @@ class PNO_Ajax {
 
 		check_ajax_referer( 'pno_get_tags_from_categories', 'nonce' );
 
+		$tags_ids   = [];
 		$categories = isset( $_GET['categories'] ) ? (array) $_GET['categories'] : array();
 		$categories = array_map( 'esc_attr', $categories );
 
-		if ( ! empty( $categories ) ) {
+		$subcategories_enabled = pno_get_option( 'submission_categories_sublevel' );
+
+		// With subcategories enabled, go and find the top level category where tags have been associated.
+		if ( $subcategories_enabled ) {
+			$parent_categories = [];
+			foreach ( $categories as $category_id ) {
+				$found_parent_term = pno_get_term_top_most_parent( $category_id, 'listings-categories' );
+				if ( isset( $found_parent_term->term_id ) ) {
+					$parent_categories[] = absint( $found_parent_term->term_id );
+				}
+			}
+			$categories = array_unique( $parent_categories );
+		}
+
+		// Retrieve the tags associated to the found top level categories.
+		if ( ! empty( $categories ) && is_array( $categories ) ) {
+			foreach ( $categories as $parent_category_id ) {
+				$associated_tags = carbon_get_term_meta( $parent_category_id, 'associated_tags' );
+				if ( $associated_tags ) {
+					$tags_ids = array_merge( $tags_ids, $associated_tags );
+				}
+			}
+		}
+
+		if ( ! empty( $tags_ids ) ) {
 
 			$terms_args = [
 				'hide_empty' => false,
 				'number'     => 999,
 				'orderby'    => 'name',
 				'order'      => 'ASC',
-				'meta_query' => [
-					[
-						'key'     => '_associated_categories_for_tags',
-						'value'   => $categories,
-						'compare' => 'IN',
-					],
-				],
+				'include'    => array_unique( $tags_ids ),
 			];
 
 			$tags = get_terms( 'listings-tags', $terms_args );
