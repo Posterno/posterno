@@ -27,10 +27,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="tags-selector-wrapper">
 
-		<div class="pno-checklist-wrapper" v-if="tagsAreAvailable() && ! loading">
-			<div class="custom-control custom-checkbox col-12 col-md-4" v-for="(option, index) in availableTags" :key="index">
-				<input type="checkbox" class="custom-control-input" :id="option.slug" :value="option.term_id" v-model="selectedTags">
-				<label class="custom-control-label" :for="option.slug">{{option.name}}</label>
+		<div class="col-sm-12" v-if="tagsAreAvailable() && ! loading">
+			<div class="pno-checklist-wrapper row">
+				<div class="custom-control custom-checkbox col-md-4 col-lg-4" v-for="(option, index) in availableTags" :key="index">
+					<input type="checkbox" class="custom-control-input" :id="option.slug" :value="option.term_id" v-model="selectedTags">
+					<label class="custom-control-label" :for="option.slug">{{option.name}}</label>
+				</div>
 			</div>
 		</div>
 		<p v-else-if="! tagsAreAvailable() && loading">

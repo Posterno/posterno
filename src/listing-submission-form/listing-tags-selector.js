@@ -38,6 +38,7 @@ Vue.component('pno-listing-tags-selector', {
 
 			// Load tags via ajax.
 			this.timeout = setTimeout(function () {
+				vm.loading = true
 				vm.loadTags( payLoad )
 			}, 500);
 
