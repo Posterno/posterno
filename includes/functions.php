@@ -256,11 +256,12 @@ function pno_get_submission_queried_listing_type_id() {
  * @param mixed $listing_type_id query categories by associated listing type id.
  * @return array
  */
-function pno_get_listings_categories_for_select( $listing_type_id = false ) {
+function pno_get_listings_categories_for_submission_selection( $listing_type_id = false ) {
 
 	$categories = [];
 
-	$show_subcategories = pno_get_option( 'submission_categories_sublevel' ) ? true : false;
+	$categories_associated_to_type = carbon_get_term_meta( $listing_type_id, 'associated_categories' );
+	$show_subcategories            = pno_get_option( 'submission_categories_sublevel' ) ? true: false;
 
 	$terms_args = array(
 		'hide_empty' => false,
@@ -271,13 +272,7 @@ function pno_get_listings_categories_for_select( $listing_type_id = false ) {
 	);
 
 	if ( $listing_type_id && pno_get_option( 'submission_categories_associated' ) ) {
-		$terms_args['meta_query'] = [
-			[
-				'key'     => '_associated_types',
-				'value'   => $listing_type_id,
-				'compare' => 'IN',
-			],
-		];
+		$terms_args['include'] = $categories_associated_to_type;
 	}
 
 	if ( $show_subcategories ) {

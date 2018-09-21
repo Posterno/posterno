@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Retrieve categories.
 $listing_type_id     = pno_get_submission_queried_listing_type_id();
-$listings_categories = pno_get_listings_categories_for_select( $listing_type_id );
+$listings_categories = pno_get_listings_categories_for_submission_selection( $listing_type_id );
 
 // Determine settings for the field.
 $multiple          = pno_get_option( 'submission_categories_multiple' ) ? 'multiple' : false;
