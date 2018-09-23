@@ -244,11 +244,14 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_utilities() {
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-base-object.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
+			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-field.php';
+
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/opening-hours.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/serialize-complex-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/listing-type.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/custom-fields.php';
+
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-cache-helper.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
 		}
@@ -260,6 +263,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_forms() {
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/validator.php';
 		}
 
 		/**
