@@ -26,7 +26,7 @@ class DefaultLayout extends AbstractLayout {
 	 * @param AbstractField $field the field to display.
 	 * @return string
 	 */
-	public function renderField( AbstractField $field ) {
+	public function render_field( AbstractField $field ) {
 		$html = '<div>';
 		if ( $field instanceof \PNO\Form\Field\CheckboxField ) {
 			if ( $field->has_label() ) {
