@@ -246,6 +246,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-field-group.php';
+			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-layout.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/opening-hours.php';
