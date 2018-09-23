@@ -16,6 +16,12 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$class = 'row';
+
+if ( $data->form->has_errors() ) {
+	$class .= ' was-validated';
+}
+
 ?>
 
 <div class="pno-template pno-form">
@@ -31,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
 
 	?>
 
-	<form action="<?php echo esc_url( home_url() ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="row">
+	<form action="<?php echo esc_url( home_url() ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
 
 		<?php $data->form->render(); ?>
 
