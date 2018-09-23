@@ -265,6 +265,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_forms() {
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/validator.php';
+
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/text-field.php';
 		}
 
 		/**
