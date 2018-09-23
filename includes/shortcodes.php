@@ -13,6 +13,7 @@ use PNO\Form\Field\TextField;
 use PNO\Form\Field\TextAreaField;
 use PNO\Form\Field\CheckboxField;
 use PNO\Form\Field\DropdownField;
+use PNO\Form\Field\EditorField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -26,14 +27,10 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new DropdownField(
+			new EditorField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
-					'choices' => [
-						'val' => 'label',
-						'val2' => 'label 2'
-					]
 				)
 			),
 		)
