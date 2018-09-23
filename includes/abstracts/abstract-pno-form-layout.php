@@ -12,7 +12,6 @@ namespace PNO\Form\Layout;
 
 use PNO\Form\Field\AbstractField;
 
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
