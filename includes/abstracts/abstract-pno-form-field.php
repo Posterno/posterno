@@ -309,6 +309,10 @@ abstract class AbstractField {
 	 * @param array $attributes attributes to assign to the field.
 	 * @return void
 	 */
-	abstract public function render( array $attributes = array() );
+	public function render( array $attributes = array() ) {
+		posterno()->templates
+			->set_template_data( $this )
+			->get_template_part( 'form-fields/' . $this->get_type(), 'field' );
+	}
 
 }

@@ -535,7 +535,11 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 
 	$classes = [ 'form-control' ];
 
-	$classes[] = 'input-' . $field->get_type();
+	if ( $field->get_type() === 'textarea' ) {
+		$classes[] = 'input-text';
+	} else {
+		$classes[] = 'input-' . $field->get_type();
+	}
 
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );

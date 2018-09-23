@@ -10,6 +10,7 @@
 
 use PNO\Form;
 use PNO\Form\Field\TextField;
+use PNO\Form\Field\TextAreaField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +24,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new TextField(
+			new TextAreaField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',

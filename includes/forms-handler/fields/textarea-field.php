@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of a text field.
+ * Representation of a textarea field.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -14,9 +14,9 @@ namespace PNO\Form\Field;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class responsible of handling text fields within a PNO\Form.
+ * The class responsible of handling textarea fields within a PNO\Form.
  */
-class TextField extends AbstractField {
+class TextAreaField extends TextField {
 
 	/**
 	 * Initialize the field.
@@ -24,18 +24,8 @@ class TextField extends AbstractField {
 	 * @return $this the current object.
 	 */
 	public function init() {
-		$this->set_type( 'text' );
+		$this->set_type( 'textarea' );
 		return $this->set_value( $this->get_option( 'value', '' ) );
-	}
-
-	/**
-	 * Bind the value of the field.
-	 *
-	 * @param string $value the value of the field.
-	 * @return $this the current object.
-	 */
-	public function bind( $value ) {
-		return $this->set_value( $value );
 	}
 
 }

@@ -52,13 +52,7 @@ class DefaultLayout extends AbstractLayout {
 					<?php endif; ?>
 				</label>
 
-				<?php
-
-				posterno()->templates
-					->set_template_data( $field )
-					->get_template_part( 'form-fields/' . $field->get_type(), 'field' );
-
-				?>
+				<?php $field->render(); ?>
 
 			<?php endif; ?>
 
