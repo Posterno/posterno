@@ -53,7 +53,7 @@ class Validator {
 			if ( $rule->run( $field ) ) {
 				$result = $rule->validate( $field );
 				if ( is_bool( $result ) && $result === false ) {
-					$errors[] = $rule->getInvalidMessage();
+					$errors[] = $rule->get_invalid_message();
 				} elseif ( is_array( $result ) ) {
 					self::loop( $field, $result, $errors );
 				}
