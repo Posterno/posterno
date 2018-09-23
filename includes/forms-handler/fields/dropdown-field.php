@@ -32,28 +32,13 @@ class DropdownField extends AbstractGroup {
 	/**
 	 * Bind the value of the field.
 	 *
-	 * @param string $choices the choices of the field.
+	 * @param string $value the value of the field.
 	 * @return $this the current object.
 	 */
-	public function bind( $choices ) {
-		$value   = array();
-		$choices = is_array( $choices ) ? $choices : array();
-		foreach ( $choices as $choice => $label ) {
-			if ( $this->is_valid_choice( $choice ) ) {
-				$value[] = $choice;
-			}
+	public function bind( $value ) {
+		if ( $this->is_valid_choice( $value ) ) {
+			return $this->set_value( $value );
 		}
-		return $this->set_value( $value );
-	}
-
-	/**
-	 * Verify the enabled option.
-	 *
-	 * @param  string $choice the tested choice.
-	 * @return string
-	 */
-	private function checked( $choice ) {
-		return in_array( $choice, $this->value ) ? 'checked' : '';
 	}
 
 }

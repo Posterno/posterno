@@ -35,13 +35,11 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new MultiCheckboxField(
+			new DropdownField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
-					'value' => [
-						'val2'
-					],
+					'value' => 'val2',
 					'choices' => [
 						'val' => 'val 1',
 						'val2' => 'val 2'
