@@ -537,7 +537,7 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 
 	if ( $field->get_type() === 'textarea' ) {
 		$classes[] = 'input-text';
-	} elseif ( $field->get_type() === 'checkbox' ) {
+	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' ) {
 		$classes[] = 'custom-control-input';
 	} elseif ( $field->get_type() === 'dropdown' ) {
 		$classes[] = 'custom-select';

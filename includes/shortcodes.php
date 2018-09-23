@@ -15,6 +15,7 @@ use PNO\Form\Field\CheckboxField;
 use PNO\Form\Field\DropdownField;
 use PNO\Form\Field\EditorField;
 use PNO\Form\Field\EmailField;
+use PNO\Form\Field\MultiCheckboxField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -28,10 +29,23 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new EmailField(
+			new CheckboxField(
+				'first_name_n',
+				array(
+					'label' => 'First Name:',
+				)
+			),
+			new MultiCheckboxField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
+					'value' => [
+						'val2'
+					],
+					'choices' => [
+						'val' => 'val 1',
+						'val2' => 'val 2'
+					]
 				)
 			),
 		)
