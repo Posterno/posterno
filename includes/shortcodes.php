@@ -11,6 +11,7 @@
 use PNO\Form;
 use PNO\Form\Field\TextField;
 use PNO\Form\Field\TextAreaField;
+use PNO\Form\Field\CheckboxField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +25,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new TextAreaField(
+			new CheckboxField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',

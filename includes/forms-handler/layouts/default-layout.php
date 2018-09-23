@@ -42,7 +42,9 @@ class DefaultLayout extends AbstractLayout {
 		<div <?php pno_form_field_class( $field ); ?>>
 
 			<?php if ( $field instanceof \PNO\Form\Field\CheckboxField ) : ?>
-				checkbox
+
+				<?php $field->render(); ?>
+
 			<?php else : ?>
 
 				<label for="<?php echo esc_attr( $field->get_id() ); ?>">
