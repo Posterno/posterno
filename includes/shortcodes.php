@@ -19,6 +19,7 @@ use PNO\Form\Field\MultiCheckboxField;
 use PNO\Form\Field\MultiSelectField;
 use PNO\Form\Field\NumberField;
 use PNO\Form\Field\PasswordField;
+use PNO\Form\Field\RadioField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -38,7 +39,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new PasswordField(
+			new RadioField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
