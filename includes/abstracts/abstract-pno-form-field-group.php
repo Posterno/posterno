@@ -35,16 +35,6 @@ abstract class AbstractGroup extends AbstractField {
 	}
 
 	/**
-	 * Render the field on the frontend.
-	 *
-	 * @param array $attributes attributes to assign to the field.
-	 * @return mixed
-	 */
-	public function render( array $attributes = array() ) {
-		return '';
-	}
-
-	/**
 	 * Get the choices assigned to the field.
 	 *
 	 * @return array
@@ -59,17 +49,8 @@ abstract class AbstractGroup extends AbstractField {
 	 * @param string $choice the selected choice to verify.
 	 * @return boolean
 	 */
-	protected function isValidChoice( $choice ) {
+	protected function is_valid_choice( $choice ) {
 		return array_key_exists( $choice, $this->choices );
 	}
-
-	/**
-	 * Render choices.
-	 *
-	 * @param string $choice the choice to render.
-	 * @param array  $attributes attributes to assign to the choice field.
-	 * @return mixed
-	 */
-	abstract public function renderChoice( $choice, array $attributes = array());
 
 }
