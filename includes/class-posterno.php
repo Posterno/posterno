@@ -204,7 +204,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->autoload();
 			$this->setup_options();
 			$this->setup_utilities();
-			$this->setup_externals();
+			$this->setup_forms();
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
@@ -254,11 +254,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		}
 
 		/**
-		 * Setup utilities that for some reason had not been setup with composer it's author.
+		 * Load classes related to the forms.
 		 *
 		 * @return void
 		 */
-		private function setup_externals() {}
+		private function setup_forms() {
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/form.php';
+		}
 
 		/**
 		 * Setup the rest of the app.
