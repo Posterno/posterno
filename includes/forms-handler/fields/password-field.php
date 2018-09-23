@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of a number field.
+ * Representation of a password field.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -14,9 +14,9 @@ namespace PNO\Form\Field;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class responsible of handling number fields within a PNO\Form.
+ * The class responsible of handling password fields within a PNO\Form.
  */
-class NumberField extends TextField {
+class PasswordField extends TextField {
 
 	/**
 	 * Initialize the field.
@@ -24,7 +24,7 @@ class NumberField extends TextField {
 	 * @return $this the current object.
 	 */
 	public function init() {
-		$this->set_type( 'number' );
+		$this->set_type( 'password' );
 		return $this->set_value( $this->get_option( 'value', '' ) );
 	}
 

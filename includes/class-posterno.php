@@ -280,6 +280,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/multicheckbox-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/multiselect-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/number-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/password-field.php';
 		}
 
 		/**

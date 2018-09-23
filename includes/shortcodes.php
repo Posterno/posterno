@@ -18,6 +18,7 @@ use PNO\Form\Field\EmailField;
 use PNO\Form\Field\MultiCheckboxField;
 use PNO\Form\Field\MultiSelectField;
 use PNO\Form\Field\NumberField;
+use PNO\Form\Field\PasswordField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -37,7 +38,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new NumberField(
+			new PasswordField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',

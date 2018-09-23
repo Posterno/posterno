@@ -14,7 +14,7 @@ namespace PNO\Form\Field;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class responsible of handling dropdown fields within a PNO\Form.
+ * The class responsible of handling multiple checkboxes fields within a PNO\Form.
  */
 class MultiCheckboxField extends AbstractGroup {
 
