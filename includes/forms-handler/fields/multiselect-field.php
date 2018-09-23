@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of a multicheckbox field.
+ * Representation of a multiselect field.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The class responsible of handling dropdown fields within a PNO\Form.
  */
-class MultiCheckboxField extends AbstractGroup {
+class MultiSelectField extends AbstractGroup {
 
 	/**
 	 * Initialize the field.
@@ -25,7 +25,7 @@ class MultiCheckboxField extends AbstractGroup {
 	 */
 	public function init() {
 		parent::init();
-		$this->set_type( 'multicheckbox' );
+		$this->set_type( 'multiselect' );
 		return $this->set_value( $this->get_option( 'value', [] ) );
 	}
 

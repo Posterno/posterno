@@ -16,6 +16,7 @@ use PNO\Form\Field\DropdownField;
 use PNO\Form\Field\EditorField;
 use PNO\Form\Field\EmailField;
 use PNO\Form\Field\MultiCheckboxField;
+use PNO\Form\Field\MultiSelectField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -35,11 +36,11 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new DropdownField(
+			new MultiSelectField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
-					'value' => 'val2',
+					'value' => ['val2'],
 					'choices' => [
 						'val' => 'val 1',
 						'val2' => 'val 2'

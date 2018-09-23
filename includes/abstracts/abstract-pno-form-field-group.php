@@ -53,4 +53,21 @@ abstract class AbstractGroup extends AbstractField {
 		return array_key_exists( $choice, $this->choices );
 	}
 
+	/**
+	 * Bind the value of the field.
+	 *
+	 * @param string $choices the choices of the field.
+	 * @return $this the current object.
+	 */
+	public function bind( $choices ) {
+		$value   = array();
+		$choices = is_array( $choices ) ? $choices : array();
+		foreach ( $choices as $choice => $label ) {
+			if ( $this->is_valid_choice( $choice ) ) {
+				$value[] = $choice;
+			}
+		}
+		return $this->set_value( $value );
+	}
+
 }
