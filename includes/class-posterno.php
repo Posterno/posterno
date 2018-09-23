@@ -269,6 +269,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/validator.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/layouts/default-layout.php';
 
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/not-empty.php';
+
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/text-field.php';
 		}
 
