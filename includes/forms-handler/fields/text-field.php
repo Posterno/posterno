@@ -24,7 +24,10 @@ class TextField extends AbstractField {
 	 * @return $this the current object.
 	 */
 	public function init() {
-		return $this->setValue( $this->getOption( 'value', '' ) );
+
+		$this->set_type( 'text' );
+
+		return $this->set_value( $this->get_option( 'value', '' ) );
 	}
 
 	/**
@@ -34,7 +37,7 @@ class TextField extends AbstractField {
 	 * @return $this the current object.
 	 */
 	public function bind( $value ) {
-		return $this->setValue( $value );
+		return $this->set_value( $value );
 	}
 
 	/**
@@ -44,7 +47,7 @@ class TextField extends AbstractField {
 	 * @return mixed
 	 */
 	public function render( array $attributes = array() ) {
-		return "<input type=\"text\" name=\"{$this->getName()}\" value=\"{$this->getValue()}\" {$this->getAttributes($attributes)} />";
+		return "<input type=\"text\" name=\"{$this->get_name()}\" value=\"{$this->get_value()}\" {$this->get_attributes($attributes)} />";
 	}
 
 }

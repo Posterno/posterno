@@ -8,8 +8,45 @@
  * @since       0.1.0
  */
 
+use PNO\Form;
+use PNO\Form\Field\TextField;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+function testshortcode() {
+	$form = new Form(
+		'Contact_Form', array(
+			new TextField(
+				'first_name',
+				array(
+					'label' => 'First Name:',
+				)
+			),
+			new TextField(
+				'last_name',
+				array(
+					'label' => 'Last Name:',
+				)
+			),
+		)
+	);
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'form'         => $form,
+				'submit_label' => 'submit',
+			]
+		)
+		->get_template_part( 'form' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'testshortcode', 'testshortcode' );
 
 /**
  * Displays the login form to visitors and display a notice to logged in users.
@@ -228,3 +265,4 @@ function pno_submit_listing_form() {
 
 }
 add_shortcode( 'pno_listing_submission_form', 'pno_submit_listing_form' );
+

@@ -478,26 +478,24 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 /**
  * Retrieve the classes for a given form field as an array.
  *
- * @param string  $field_key field key.
- * @param object  $field field object.
- * @param boolean $form form name.
- * @param string  $class optional classes.
+ * @param PNO\Form\Field $field field object.
+ * @param string         $class optional classes.
  * @return array
  */
-function pno_get_form_field_class( $field_key, $field, $form = false, $class = '' ) {
+function pno_get_form_field_class( $field, $class = '' ) {
 
 	$classes = [ 'pno-field' ];
 
-	if ( $field_key ) {
-		$classes[] = 'pno-field-' . $field_key;
+	if ( $field->get_id() ) {
+		$classes[] = 'pno-field-' . $field->get_id();
 	}
 
-	$classes[] = 'pno-field-' . $field['type'];
+	$classes[] = 'pno-field-' . $field->get_type();
 	$classes[] = 'form-group';
 	$classes[] = 'col-sm-12';
 
-	if ( isset( $field['css_class'] ) && ! empty( $field['css_class'] ) ) {
-		$classes[] = esc_attr( $field['css_class'] );
+	if ( isset( $class ) && ! empty( $class ) ) {
+		$classes[] = esc_attr( $class );
 	}
 
 	$classes = array_map( 'esc_attr', $classes );
@@ -505,12 +503,11 @@ function pno_get_form_field_class( $field_key, $field, $form = false, $class = '
 	/**
 	 * Filters the list of CSS classes for the current form field.
 	 *
-	 * @param array $classes
-	 * @param array $field
-	 * @param string $form
-	 * @param string $class
+	 * @param array $classes the list of classes.
+	 * @param array $field the field being processed.
+	 * @param string $class additional classes if any.
 	 */
-	$classes = apply_filters( 'pno_form_field_classes', $classes, $field_key, $field, $form, $class );
+	$classes = apply_filters( 'pno_form_field_classes', $classes, $field, $class );
 
 	return array_unique( $classes );
 
@@ -519,15 +516,59 @@ function pno_get_form_field_class( $field_key, $field, $form = false, $class = '
 /**
  * Display the classes for a given form field.
  *
- * @param string  $field_key field key.
- * @param object  $field field object.
- * @param boolean $form form name.
- * @param string  $class optional classes.
+ * @param PNO\Form\Field $field field object.
+ * @param string         $class optional classes.
  * @return void
  */
-function pno_form_field_class( $field_key, $field, $form = false, $class = '' ) {
-	// Separates classes with a single space, collates classes for body element.
-	echo 'class="' . join( ' ', pno_get_form_field_class( $field_key, $field, $form, $class ) ) . '"';
+function pno_form_field_class( $field, $class = '' ) {
+	echo 'class="' . join( ' ', pno_get_form_field_class( $field, $class ) ) . '"'; //phpcs:ignore
+}
+
+/**
+ * Retrieve classes for a PNO\Form\Field input.
+ *
+ * @param PNO\Form\Field $field field object.
+ * @param string         $class additional classes if any.
+ * @return array
+ */
+function pno_get_form_field_input_class( $field, $class = '' ) {
+
+	$classes = [ 'form-control' ];
+
+	$classes[] = 'input-' . $field->get_type();
+
+	if ( isset( $class ) && ! empty( $class ) ) {
+		$classes[] = esc_attr( $class );
+	}
+
+	if ( $field->has_errors() ) {
+		$classes[] = 'is-invalid';
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filters the list of CSS classes for the current form field input.
+	 *
+	 * @param array $classes the list of classes.
+	 * @param array $field the field being processed.
+	 * @param string $class additional classes if any.
+	 */
+	$classes = apply_filters( 'pno_form_field_input_classes', $classes, $field, $class );
+
+	return array_unique( $classes );
+
+}
+
+/**
+ * Display classes for a form field input element.
+ *
+ * @param PNO\Form\Field $field field object.
+ * @param string         $class optional classes.
+ * @return void
+ */
+function pno_form_field_input_class( $field, $class = '' ) {
+	echo 'class="' . join( ' ', pno_get_form_field_input_class( $field, $class ) ) . '"'; //phpcs:ignore
 }
 
 /**

@@ -50,6 +50,13 @@ abstract class AbstractField {
 	protected $parent;
 
 	/**
+	 * Human friendly field type string.
+	 *
+	 * @var string
+	 */
+	protected $type = '';
+
+	/**
 	 * Get things started and create the field.
 	 *
 	 * @param string $name the name of the field.
@@ -90,6 +97,25 @@ abstract class AbstractField {
 	 */
 	public function get_name() {
 		return "{$this->parent->get_name()}[{$this->name}]";
+	}
+
+	/**
+	 * Retrieve the type of the field.
+	 *
+	 * @return string
+	 */
+	public function get_type() {
+		return $this->type;
+	}
+
+	/**
+	 * Set the type of the field.
+	 *
+	 * @param string $type the type to assign to the field.
+	 * @return void
+	 */
+	public function set_type( $type ) {
+		$this->type = $type;
 	}
 
 	/**

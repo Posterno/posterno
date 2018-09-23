@@ -116,5 +116,6 @@ vendor
 # composer.lock
 
 .sass-cache
+_form-fields
 
 !/**/.gitkeep

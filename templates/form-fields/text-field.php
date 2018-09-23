@@ -13,21 +13,18 @@
  * @version 1.0.0
  */
 
- // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 
 <input
 	type="text"
-	class="input-text form-control"
-	name="<?php echo esc_attr( isset( $data->name ) ? $data->name : $data->key ); ?>"
-	<?php if ( isset( $data->autocomplete ) && false === $data->autocomplete ) { echo ' autocomplete="off"'; } ?>
-	id="<?php echo esc_attr( $data->key ); ?>"
-	placeholder="<?php echo empty( $data->placeholder ) ? '' : esc_attr( $data->placeholder ); ?>"
-	value="<?php echo isset( $data->value ) ? esc_attr( $data->value ) : ''; ?>"
-	maxlength="<?php echo ! empty( $data->maxlength ) ? $data->maxlength : ''; ?>"
-	<?php if ( ! empty( $data->required ) ) echo 'required'; ?>
-	<?php if ( ! empty( $data->readonly ) ) echo 'readonly'; ?>
+	<?php pno_form_field_input_class( $data ); ?>
+	name="<?php echo esc_attr( $data->get_name() ); ?>"
+	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 />
-<?php if ( ! empty( $data->description ) ) : ?><small class="form-text text-muted"><?php echo $data->description; ?></small><?php endif; ?>

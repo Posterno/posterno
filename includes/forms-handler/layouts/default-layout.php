@@ -27,6 +27,69 @@ class DefaultLayout extends AbstractLayout {
 	 * @return string
 	 */
 	public function render_field( AbstractField $field ) {
+
+		ob_start();
+
+		/**
+		 * Action that triggers before displaying a field within a form.
+		 *
+		 * @param AbstractField $field the field being processed.
+		 */
+		do_action( 'pno_form_before_field', $field );
+
+		?>
+
+		<div <?php pno_form_field_class( $field ); ?>>
+
+			<?php if ( $field instanceof \PNO\Form\Field\CheckboxField ) : ?>
+				checkbox
+			<?php else : ?>
+
+				<label for="<?php echo esc_attr( $field->get_id() ); ?>">
+					<?php echo esc_html( $field->get_label() ); ?>
+					<?php if ( ! $field->get_option( 'required' ) ) : ?>
+						<small class="pno-optional"><?php esc_html_e( '(optional)' ); ?></small>
+					<?php endif; ?>
+				</label>
+
+				<?php
+
+				posterno()->templates
+					->set_template_data( $field )
+					->get_template_part( 'form-fields/' . $field->get_type(), 'field' );
+
+				?>
+
+			<?php endif; ?>
+
+			<?php if ( $field->has_errors() ) : ?>
+				<div class="invalid-feedback">
+					<?php foreach ( $field->get_errors() as $error ) : ?>
+						<p><?php echo esc_html( $error ); ?></p>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $field->get_option( 'description' ) ) ) : ?>
+				<small class="form-text text-muted">
+					<?php echo esc_html( $field->get_option( 'description' ) ); ?>
+				</small>
+			<?php endif; ?>
+
+		</div>
+
+		<?php
+
+		/**
+		 * Action that triggers after displaying a field within a form.
+		 *
+		 * @param AbstractField $field the field being processed.
+		 */
+		do_action( 'pno_form_after_field', $field );
+
+		return ob_get_clean();
+
+		/*
 		$html = '<div>';
 		if ( $field instanceof \PNO\Form\Field\CheckboxField ) {
 			if ( $field->has_label() ) {
@@ -56,7 +119,7 @@ class DefaultLayout extends AbstractLayout {
 		}
 		$html .= '</div>';
 
-		return $html;
+		return $html;*/
 	}
 
 }
