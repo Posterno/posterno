@@ -24,5 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php pno_form_field_input_class( $data ); ?>
 	name="<?php echo esc_attr( $data->get_name() ); ?>"
 	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 	><?php echo ! empty( $data->get_value() ) ? esc_textarea( html_entity_decode( $data->get_value() ) ) : ''; ?>
 </textarea>

@@ -30,6 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php if ( ! empty( $data->get_value() ) && is_array( $data->get_value() ) ) checked( in_array( $opt_key, $data->get_value() ), true ); ?>
 			value="<?php echo esc_attr( $opt_key ); ?>"
 			id="<?php echo esc_attr( $opt_key ); ?>"
+			<?php echo $data->get_attributes(); //phpcs:ignore ?>
 		/>
 		<label class="custom-control-label" for="<?php echo esc_attr( $opt_key ); ?>">
 			<?php echo esc_html( $value ); ?>

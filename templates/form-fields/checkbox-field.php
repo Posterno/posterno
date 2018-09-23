@@ -26,6 +26,7 @@ defined( 'ABSPATH' ) || exit;
 		name="<?php echo esc_attr( $data->get_name() ); ?>"
 		id="<?php echo esc_attr( $data->get_id() ); ?>"
 		<?php checked( ! empty( $data->get_value() ), true ); ?>
+		<?php echo $data->get_attributes(); //phpcs:ignore ?>
 		value="1"
 	/>
 
