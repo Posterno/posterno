@@ -14,6 +14,7 @@ use PNO\Form\Field\TextAreaField;
 use PNO\Form\Field\CheckboxField;
 use PNO\Form\Field\DropdownField;
 use PNO\Form\Field\EditorField;
+use PNO\Form\Field\EmailField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -27,7 +28,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new EditorField(
+			new EmailField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
