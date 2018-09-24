@@ -20,6 +20,7 @@ use PNO\Form\Field\MultiSelectField;
 use PNO\Form\Field\NumberField;
 use PNO\Form\Field\PasswordField;
 use PNO\Form\Field\RadioField;
+use PNO\Form\Field\URLField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -39,7 +40,7 @@ function testshortcode() {
 					'label' => 'First Name:',
 				)
 			),
-			new RadioField(
+			new URLField(
 				'last_name',
 				array(
 					'label' => 'Last Name:',
