@@ -40,9 +40,6 @@ class Sanitizer {
 			$value = self::get_posted_field( $field );
 		}
 
-		var_dump( $value );
-		exit;
-
 		$field->set_value( $value );
 
 		return $field;

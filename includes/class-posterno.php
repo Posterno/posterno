@@ -204,10 +204,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->autoload();
 			$this->setup_options();
 			$this->setup_utilities();
-			$this->setup_forms();
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
+			$this->setup_forms();
 			$this->setup_api();
 
 			// Admin.
@@ -248,6 +248,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-field-group.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-layout.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-rule.php';
+			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-forms.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/opening-hours.php';
@@ -284,6 +285,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/password-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/radio-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/url-field.php';
+
+			require_once PNO_PLUGIN_DIR . 'includes/forms2/login-form.php';
+
 		}
 
 		/**

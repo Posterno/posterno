@@ -8,95 +8,8 @@
  * @since       0.1.0
  */
 
-use PNO\Form;
-use PNO\Form\Field\TextField;
-use PNO\Form\Field\TextAreaField;
-use PNO\Form\Field\CheckboxField;
-use PNO\Form\Field\DropdownField;
-use PNO\Form\Field\EditorField;
-use PNO\Form\Field\EmailField;
-use PNO\Form\Field\MultiCheckboxField;
-use PNO\Form\Field\MultiSelectField;
-use PNO\Form\Field\NumberField;
-use PNO\Form\Field\PasswordField;
-use PNO\Form\Field\RadioField;
-use PNO\Form\Field\URLField;
-use PNO\Form\Rule\NotEmpty;
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
-
-
-class testformsubmit {
-
-	public $form;
-
-	public function __construct() {
-
-		$this->form = new Form(
-			'Contact_Form', array(
-				new TextField(
-					'first_name',
-					array(
-						'label' => 'First Name:',
-						'rules' => array(
-							new NotEmpty('Please enter your first name.')
-						)
-					)
-				),
-				new CheckboxField(
-					'first_name_n',
-					array(
-						'label' => 'First Name:',
-						'rules' => array(
-							new NotEmpty('Please enter your first name.')
-						)
-					)
-				),
-			)
-		);
-
-	}
-
-	public function init() {
-		add_shortcode( 'testshortcode', [ $this, 'shortcode' ] );
-		add_action( 'wp_loaded', [ $this, 'process' ] );
-	}
-
-	public function shortcode() {
-		ob_start();
-
-		posterno()->templates
-			->set_template_data(
-				[
-					'form'         => $this->form,
-					'submit_label' => 'submit',
-				]
-			)
-			->get_template_part( 'form' );
-
-		return ob_get_clean();
-	}
-
-	public function process() {
-
-		if ( isset( $_POST[ $this->form->get_name() ] ) ) {
-
-			print_r( $_POST );
-
-			$this->form->bind( $_POST[ $this->form->get_name() ] );
-
-			if ( $this->form->is_valid() ) {
-				print_r( $this->form->get_data() );
-			}
-
-		}
-
-	}
-
-}
-
-( new testformsubmit() )->init();
 
 /**
  * Displays the login form to visitors and display a notice to logged in users.
@@ -124,7 +37,6 @@ function pno_login_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_login_form', 'pno_login_form' );
 
 /**
  * Displays the registration form to visitors and displays a notice to logged in users.
