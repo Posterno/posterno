@@ -21,49 +21,80 @@ use PNO\Form\Field\NumberField;
 use PNO\Form\Field\PasswordField;
 use PNO\Form\Field\RadioField;
 use PNO\Form\Field\URLField;
+use PNO\Form\Rule\NotEmpty;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-function testshortcode() {
-	$form = new Form(
-		'Contact_Form', array(
-			new TextField(
-				'first_name',
-				array(
-					'label' => 'First Name:',
-				)
-			),
-			new CheckboxField(
-				'first_name_n',
-				array(
-					'label' => 'First Name:',
-				)
-			),
-			new URLField(
-				'last_name',
-				array(
-					'label' => 'Last Name:',
-				)
-			),
-		)
-	);
 
-	ob_start();
+class testformsubmit {
 
-	posterno()->templates
-		->set_template_data(
-			[
-				'form'         => $form,
-				'submit_label' => 'submit',
-			]
-		)
-		->get_template_part( 'form' );
+	public $form;
 
-	return ob_get_clean();
+	public function __construct() {
+
+		$this->form = new Form(
+			'Contact_Form', array(
+				new TextField(
+					'first_name',
+					array(
+						'label' => 'First Name:',
+						'rules' => array(
+							new NotEmpty('Please enter your first name.')
+						)
+					)
+				),
+				new CheckboxField(
+					'first_name_n',
+					array(
+						'label' => 'First Name:',
+						'rules' => array(
+							new NotEmpty('Please enter your first name.')
+						)
+					)
+				),
+			)
+		);
+
+	}
+
+	public function init() {
+		add_shortcode( 'testshortcode', [ $this, 'shortcode' ] );
+		add_action( 'wp_loaded', [ $this, 'process' ] );
+	}
+
+	public function shortcode() {
+		ob_start();
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'form'         => $this->form,
+					'submit_label' => 'submit',
+				]
+			)
+			->get_template_part( 'form' );
+
+		return ob_get_clean();
+	}
+
+	public function process() {
+
+		if ( isset( $_POST[ $this->form->get_name() ] ) ) {
+
+			$this->form->bind( $_POST[ $this->form->get_name() ] );
+
+			if ( $this->form->is_valid() ) {
+				print_r( $this->form->get_data() );
+			}
+
+		}
+
+	}
 
 }
-add_shortcode( 'testshortcode', 'testshortcode' );
+
+( new testformsubmit() )->init();
 
 /**
  * Displays the login form to visitors and display a notice to logged in users.

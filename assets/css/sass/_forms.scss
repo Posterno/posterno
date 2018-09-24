@@ -90,3 +90,9 @@
 		}
 	}
 }
+
+form.pno-form-has-errors {
+	.invalid-feedback {
+		display: block;
+	}
+}
