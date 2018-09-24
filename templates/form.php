@@ -37,6 +37,21 @@ if ( $data->form->has_errors() ) {
 
 	?>
 
+	<?php if ( $data->form->has_processing_error() ) : ?>
+
+		<?php
+			posterno()->templates
+				->set_template_data(
+					[
+						'type'    => 'danger',
+						'message' => $data->form->get_processing_error(),
+					]
+				)
+				->get_template_part( 'message' );
+		?>
+
+	<?php endif; ?>
+
 	<form action="" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
 
 		<?php $data->form->render(); ?>

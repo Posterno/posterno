@@ -72,4 +72,11 @@ abstract class Forms {
 	 */
 	abstract public function hook();
 
+	/**
+	 * Process the form's submission.
+	 *
+	 * @return void
+	 */
+	abstract public function process();
+
 }

@@ -52,6 +52,13 @@ class Form {
 	private $errors;
 
 	/**
+	 * Undocumented variable
+	 *
+	 * @var [type]
+	 */
+	private $processing_error;
+
+	/**
 	 * Get things started and build the form.
 	 *
 	 * @param string $name name of the form.
@@ -172,6 +179,7 @@ class Form {
 				$this->errors[ $field->get_id() ] = $result->trace;
 			}
 		}
+		empty( $this->processing_error );
 		return empty( $this->errors );
 	}
 
@@ -191,6 +199,34 @@ class Form {
 	 */
 	public function get_errors() {
 		return $this->errors;
+	}
+
+	/**
+	 * Determine if there's a processing error within the form.
+	 *
+	 * @return boolean
+	 */
+	public function has_processing_error() {
+		return ! empty( $this->processing_error );
+	}
+
+	/**
+	 * Retrieve the processing error assigned to the form.
+	 *
+	 * @return string
+	 */
+	public function get_processing_error() {
+		return $this->processing_error;
+	}
+
+	/**
+	 * Set a processing error to the form.
+	 *
+	 * @param string $error
+	 * @return void
+	 */
+	public function set_processing_error( $error ) {
+		$this->processing_error = $error;
 	}
 
 	/**

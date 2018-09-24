@@ -14,6 +14,7 @@ use PNO\Form;
 use PNO\Forms;
 use PNO\Form\Field\TextField;
 use PNO\Form\Field\PasswordField;
+use PNO\Form\Field\CheckboxField;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -52,6 +53,12 @@ class LoginForm extends Forms {
 					'label' => esc_html__( 'Password' ),
 				)
 			),
+			new CheckboxField(
+				'remember_me',
+				array(
+					'label' => esc_html__( 'Remember me' ),
+				)
+			),
 		);
 
 		/**
@@ -71,6 +78,7 @@ class LoginForm extends Forms {
 	 * @return void
 	 */
 	public function hook() {
+		add_action( 'wp_loaded', [ $this, 'process' ] );
 		add_shortcode( 'pno_login_form', [ $this, 'shortcode' ] );
 	}
 
@@ -104,9 +112,79 @@ class LoginForm extends Forms {
 				)
 				->get_template_part( 'form' );
 
+			$action_links = [
+				'register_link' => pno_get_option( 'login_show_registration_link' ),
+				'psw_link'      => pno_get_option( 'login_show_password_link' ),
+			];
+
+			posterno()->templates
+				->set_template_data( $action_links )
+				->get_template_part( 'forms/action-links' );
+
 		}
 
 		return ob_get_clean();
+
+	}
+
+	/**
+	 * Process the form.
+	 *
+	 * @throws \Exception When authentication process fails.
+	 * @return void
+	 */
+	public function process() {
+		try {
+			//phpcs:ignore
+			if ( empty( $_POST[ 'submit_' . $this->form->get_name() ] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST[ "{$this->form->get_name()}_nonce" ], "verify_{$this->form->get_name()}_form" ) ) {
+				return;
+			}
+
+			if ( ! isset( $_POST[ $this->form->get_name() ] ) ) {
+				return;
+			}
+
+			$this->form->bind( $_POST[ $this->form->get_name() ] );
+
+			if ( $this->form->is_valid() ) {
+
+				$values = $this->form->get_data();
+
+				$username = $values['username'];
+				$password = $values['password'];
+
+				$authenticate = wp_authenticate( $username, $password );
+
+				if ( is_wp_error( $authenticate ) ) {
+					throw new \Exception( $authenticate->get_error_message() );
+				} else {
+
+					$creds = [
+						'user_login'    => $username,
+						'user_password' => $password,
+						'remember'      => $values['remember_me'] ? true : false,
+					];
+
+					$user = wp_signon( $creds );
+
+					if ( is_wp_error( $user ) ) {
+						throw new Exception( $user->get_error_message() );
+					} else {
+						wp_safe_redirect( pno_get_login_redirect() );
+						exit;
+					}
+
+				}
+
+			}
+		} catch ( \Exception $e ) {
+			$this->form->set_processing_error( $e->getMessage() );
+			return;
+		}
 
 	}
 
