@@ -82,6 +82,8 @@ class testformsubmit {
 
 		if ( isset( $_POST[ $this->form->get_name() ] ) ) {
 
+			print_r( $_POST );
+
 			$this->form->bind( $_POST[ $this->form->get_name() ] );
 
 			if ( $this->form->is_valid() ) {

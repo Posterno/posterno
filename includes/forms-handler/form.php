@@ -13,6 +13,7 @@ namespace PNO;
 use PNO\Form\Field\AbstractField;
 use PNO\Form\Layout\AbstractLayout;
 use PNO\Form\Layout\DefaultLayout;
+use PNO\Form\Sanitizer;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -165,6 +166,7 @@ class Form {
 	 */
 	public function is_valid() {
 		foreach ( $this->fields as $field ) {
+			$field  = Sanitizer::sanitize_field( $field );
 			$result = \PNO\Form\Validator::validate_field( $field );
 			if ( ! $result->valid ) {
 				$this->errors[ $field->get_id() ] = $result->trace;
