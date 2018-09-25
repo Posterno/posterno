@@ -61,7 +61,8 @@
 #pno-listing-type-selection .card:hover {
   background: #fbfbfb; }
 
-form.pno-form-has-errors .invalid-feedback {
+form.pno-form-has-errors .invalid-feedback,
+form.pno-form-has-errors .field-has-errors {
   display: block; }
 
 nav .pno-pagination {

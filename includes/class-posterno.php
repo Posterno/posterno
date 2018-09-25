@@ -275,6 +275,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/when.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/password-matches.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/strong-password.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/must-be-empty.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/text-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/textarea-field.php';

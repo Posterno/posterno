@@ -494,6 +494,10 @@ function pno_get_form_field_class( $field, $class = '' ) {
 	$classes[] = 'form-group';
 	$classes[] = 'col-sm-12';
 
+	if ( $field->has_errors() ) {
+		$classes[] = 'field-has-errors';
+	}
+
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );
 	}

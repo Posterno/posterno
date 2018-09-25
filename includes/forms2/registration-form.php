@@ -28,6 +28,7 @@ use PNO\Form\Field\URLField;
 use PNO\Form\Rule\NotEmpty;
 use PNO\Form\Rule\PasswordMatches;
 use PNO\Form\Rule\StrongPassword;
+use PNO\Form\Rule\MustBeEmpty;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -92,6 +93,11 @@ class RegistrationForm extends Forms {
 			$attributes = [];
 			if ( isset( $the_field['attributes'] ) && ! empty( $the_field['attributes'] ) && is_array( $the_field['attributes'] ) ) {
 				$attributes = $the_field['attributes'];
+			}
+
+			// Define validation rule for honeypot field.
+			if ( $field_key === 'robo' ) {
+				$validation_rules[] = new MustBeEmpty( esc_html__( 'Failed honeypot validation.' ) );
 			}
 
 			$fields[] = new $field_type_class(

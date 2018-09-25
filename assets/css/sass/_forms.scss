@@ -92,7 +92,8 @@
 }
 
 form.pno-form-has-errors {
-	.invalid-feedback {
+	.invalid-feedback,
+	.field-has-errors {
 		display: block;
 	}
 }
