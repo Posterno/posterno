@@ -29,4 +29,34 @@ class MultiSelectField extends AbstractGroup {
 		return $this->set_value( $this->get_option( 'value', [] ) );
 	}
 
+	/**
+	 * Bind the value of the field.
+	 *
+	 * @param string $value the value of the field.
+	 * @return $this the current object.
+	 */
+	public function bind( $value ) {
+		if ( $value ) {
+			$valid = array();
+			$value = ( is_array( $value ) ) ? $value : array( $value );
+			foreach ( $value as $single ) {
+				if ( $this->exists( $single ) ) {
+					$valid[] = $single;
+				}
+			}
+			return $this->set_value( $valid );
+		}
+		return $this->set_value( array() );
+	}
+
+	/**
+	 * Verify if the choice exists.
+	 *
+	 * @param string $choice the choice to check.
+	 * @return boolean
+	 */
+	private function exists( $choice ) {
+		return array_key_exists( $choice, $this->choices );
+	}
+
 }

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <select
 	multiple="multiple"
 	<?php pno_form_field_input_class( $data ); ?>
-	name="<?php echo esc_attr( $data->get_name() ); ?>"
+	name="<?php echo esc_attr( $data->get_name() ); ?>[]"
 	id="<?php echo esc_attr( $data->get_id() ); ?>"
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 	>
