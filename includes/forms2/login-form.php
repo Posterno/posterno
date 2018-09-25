@@ -41,13 +41,13 @@ class LoginForm extends Forms {
 	public function get_fields() {
 
 		$fields = array(
-			'username' => new TextField(
+			'username'    => new TextField(
 				'username',
 				[
 					'label' => \pno_get_login_label(),
 				]
 			),
-			'password' => new PasswordField(
+			'password'    => new PasswordField(
 				'password',
 				array(
 					'label' => esc_html__( 'Password' ),
@@ -173,14 +173,12 @@ class LoginForm extends Forms {
 					$user = wp_signon( $creds );
 
 					if ( is_wp_error( $user ) ) {
-						throw new Exception( $user->get_error_message() );
+						throw new \Exception( $user->get_error_message() );
 					} else {
 						wp_safe_redirect( pno_get_login_redirect() );
 						exit;
 					}
-
 				}
-
 			}
 		} catch ( \Exception $e ) {
 			$this->form->set_processing_error( $e->getMessage() );
@@ -191,6 +189,8 @@ class LoginForm extends Forms {
 
 }
 
-add_action( 'init', function () {
-	( new LoginForm() )->hook();
-}, 30 );
+add_action(
+	'init', function () {
+		( new LoginForm() )->hook();
+	}, 30
+);
