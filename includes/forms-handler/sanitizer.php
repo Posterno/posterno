@@ -75,10 +75,11 @@ class Sanitizer {
 
 		// Sanitize value.
 		if ( is_array( $value ) ) {
+			$values = [];
 			foreach ( $value as $key => $val ) {
-				$value[ $key ] = self::sanitize_posted_field( $field );
+				$values[ $key ] = sanitize_text_field( $val );
 			}
-			return $value;
+			return $values;
 		}
 
 		$value = trim( $value );
@@ -120,7 +121,7 @@ class Sanitizer {
 	 * @param AbstractField $field the field to sanitize.
 	 * @return array
 	 */
-	protected static function get_posted_multicheckbox_field( AbstractField $field ) {
+	protected static function get_posted_multicheckboxx_field( AbstractField $field ) {
 		return self::get_posted_multiselect_field( $field );
 	}
 

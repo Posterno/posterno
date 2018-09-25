@@ -198,6 +198,9 @@ class RegistrationForm extends Forms {
 
 				$email_address = $values['email'];
 
+				print_r( $values );
+				exit;
+
 				// Verify if a username has been submitted.
 				// If no username has been supplied, use the email address.
 				$has_username = isset( $values['username'] ) && ! empty( $values['username'] ) ? true : false;
