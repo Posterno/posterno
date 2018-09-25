@@ -33,8 +33,9 @@ class PasswordMatches extends AbstractRule {
 
 		if ( $password_1 !== $password_2 ) {
 			$this->set_invalid_message( esc_html__( 'Passwords do not match.' ) );
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 }

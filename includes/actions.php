@@ -39,7 +39,7 @@ function pno_restrict_dashboard_access() {
 		if ( $login_page && is_int( $login_page ) ) {
 			$login_page = add_query_arg(
 				[
-					'redirect_to' => urlencode( get_permalink( $dashboard_page ) ),
+					'redirect_to' => rawurlencode( get_permalink( $dashboard_page ) ),
 					'restricted'  => true,
 					'rpage_id'    => $dashboard_page,
 				],
@@ -86,7 +86,7 @@ function pno_display_restricted_access_message( $form ) {
 		->get_template_part( 'message' );
 
 }
-add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10, 2 );
+add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10 );
 
 /**
  * Loads the content for the dashboard tab called "dashboard".
@@ -126,7 +126,7 @@ add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_accoun
  */
 function pno_load_dashboard_password_details() {
 
-	echo posterno()->forms->get_form( 'password', [] );
+	echo do_shortcode( '[pno_change_password_form]' );
 
 }
 add_action( 'pno_dashboard_tab_content_password', 'pno_load_dashboard_password_details' );
