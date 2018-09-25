@@ -272,6 +272,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/layouts/default-layout.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/not-empty.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/when.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/password-matches.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/strong-password.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/text-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/textarea-field.php';
@@ -287,6 +290,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/url-field.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/login-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms2/registration-form.php';
 
 		}
 

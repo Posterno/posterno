@@ -131,6 +131,7 @@ class LoginForm extends Forms {
 	 * Process the form.
 	 *
 	 * @throws \Exception When authentication process fails.
+	 * @throws \Exception When login process fails.
 	 * @return void
 	 */
 	public function process() {
@@ -190,4 +191,6 @@ class LoginForm extends Forms {
 
 }
 
-( new LoginForm() )->hook();
+add_action( 'init', function () {
+	( new LoginForm() )->hook();
+}, 30 );

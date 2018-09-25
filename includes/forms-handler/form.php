@@ -52,11 +52,18 @@ class Form {
 	private $errors;
 
 	/**
-	 * Undocumented variable
+	 * Processing error message.
 	 *
-	 * @var [type]
+	 * @var string
 	 */
 	private $processing_error;
+
+	/**
+	 * Success message if any.
+	 *
+	 * @var string
+	 */
+	private $success;
 
 	/**
 	 * Get things started and build the form.
@@ -167,6 +174,18 @@ class Form {
 	}
 
 	/**
+	 * Clear all field's values from the form.
+	 *
+	 * @return PNO\Form instance of the form.
+	 */
+	public function unbind() {
+		foreach ( $this->fields as $field ) {
+			$field->bind( null );
+		}
+		return $this;
+	}
+
+	/**
 	 * Verify if the submitted for is valid.
 	 *
 	 * @return boolean
@@ -222,11 +241,41 @@ class Form {
 	/**
 	 * Set a processing error to the form.
 	 *
-	 * @param string $error
+	 * @param string $error the error message.
 	 * @return void
 	 */
 	public function set_processing_error( $error ) {
 		$this->processing_error = $error;
+	}
+
+	/**
+	 * Determine if the form has a global success status.
+	 *
+	 * @return boolean
+	 */
+	public function is_successful() {
+		return ! empty( $this->success );
+	}
+
+	/**
+	 * Get the defined success message for the form.
+	 *
+	 * @return string
+	 */
+	public function get_success_message() {
+		return $this->success;
+	}
+
+	/**
+	 * Set the success message for the form.
+	 *
+	 * @param string $message success message.
+	 * @return void
+	 */
+	public function set_success_message( $message ) {
+		$this->success = $message;
+		empty( $this->errors );
+		empty( $this->processing_error );
 	}
 
 	/**

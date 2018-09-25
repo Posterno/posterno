@@ -22,6 +22,16 @@ if ( $data->form->has_errors() ) {
 	$class .= ' pno-form-has-errors';
 }
 
+$message      = false;
+$message_type = false;
+
+if ( $data->form->has_processing_error() ) {
+	$message_type = 'danger';
+	$message      = $data->form->get_processing_error();
+} elseif ( $data->form->is_successful() ) {
+	$message_type = 'success';
+	$message      = $data->form->get_success_message();
+}
 ?>
 
 <div class="pno-template pno-form">
@@ -33,24 +43,21 @@ if ( $data->form->has_errors() ) {
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_before_{$data->form->get_name()}_form", $data->form );
+	do_action( "pno_before_{$data->form->get_name()}", $data->form );
+
+	// Display error or success message if available.
+	if ( $message_type && $message ) {
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => $message_type,
+					'message' => $message,
+				]
+			)
+			->get_template_part( 'message' );
+	}
 
 	?>
-
-	<?php if ( $data->form->has_processing_error() ) : ?>
-
-		<?php
-			posterno()->templates
-				->set_template_data(
-					[
-						'type'    => 'danger',
-						'message' => $data->form->get_processing_error(),
-					]
-				)
-				->get_template_part( 'message' );
-		?>
-
-	<?php endif; ?>
 
 	<form action="" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
 
@@ -75,7 +82,7 @@ if ( $data->form->has_errors() ) {
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_after_{$data->form->get_name()}_form", $data->form );
+	do_action( "pno_after_{$data->form->get_name()}", $data->form );
 
 	?>
 

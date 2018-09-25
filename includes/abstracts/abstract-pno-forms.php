@@ -79,4 +79,60 @@ abstract class Forms {
 	 */
 	abstract public function process();
 
+	/**
+	 * Get the class name of a given field type.
+	 *
+	 * @param string $type the defined's field type.
+	 * @return string
+	 */
+	protected function get_field_type_class_name( $type ) {
+
+		$field_type_class = '\PNO\Form\Field\TextField';
+
+		switch ( $type ) {
+			case 'password':
+				$field_type_class = '\PNO\Form\Field\PasswordField';
+				break;
+			case 'textarea':
+				$field_type_class = '\PNO\Form\Field\TextAreaField';
+				break;
+			case 'editor':
+				$field_type_class = '\PNO\Form\Field\EditorField';
+				break;
+			case 'email':
+				$field_type_class = '\PNO\Form\Field\EmailField';
+				break;
+			case 'checkbox':
+				$field_type_class = '\PNO\Form\Field\CheckboxField';
+				break;
+			case 'select':
+				$field_type_class = '\PNO\Form\Field\DropdownField';
+				break;
+			case 'multiselect':
+				$field_type_class = '\PNO\Form\Field\MultiSelectField';
+				break;
+			case 'multicheckbox':
+				$field_type_class = '\PNO\Form\Field\MultiCheckboxField';
+				break;
+			case 'number':
+				$field_type_class = '\PNO\Form\Field\NumberField';
+				break;
+			case 'radio':
+				$field_type_class = '\PNO\Form\Field\RadioField';
+				break;
+			case 'url':
+				$field_type_class = '\PNO\Form\Field\URLField';
+				break;
+		}
+
+		/**
+		 * Allow developers to define the class name of custom fields if any.
+		 *
+		 * @param string $field_type_class the class name to return in order to instantiate the field.
+		 * @param string $type retrieved field type string.
+		 */
+		return apply_filters( 'pno_forms_field_class_name', $field_type_class, $type );
+
+	}
+
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Validation rule for posterno's forms.
+ * Make sure passwords match during validation.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Verify that the submitted field is not empty.
  */
-class NotEmpty extends AbstractRule {
+class PasswordMatches extends AbstractRule {
 
 	/**
 	 * Determine if the field is empty or not.
@@ -28,14 +28,13 @@ class NotEmpty extends AbstractRule {
 	 */
 	public function is_valid( AbstractField $field ) {
 
-		if ( empty( $this->get_invalid_message() ) ) {
-			$this->set_invalid_message( sprintf( __( '%s is a required field.' ), $field->get_label() ) );
+		$password_1 = $field->get_parent()->get_data()['password'];
+		$password_2 = $field->get_parent()->get_data()['password_confirm'];
+
+		if ( $password_1 !== $password_2 ) {
+			$this->set_invalid_message( esc_html__( 'Passwords do not match.' ) );
 		}
 
-		$value = $field->get_value();
-		if ( is_string( $value ) ) {
-			$value = trim( $value );
-		}
-		return ! empty( $value );
+		return false;
 	}
 }
