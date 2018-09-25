@@ -38,8 +38,8 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 	/**
 	 * Load the value of a given setting for the field.
 	 *
-	 * @param Field $field
-	 * @return void
+	 * @param Field $field the field we're working with.
+	 * @return mixed
 	 */
 	public function load( Field $field ) {
 
