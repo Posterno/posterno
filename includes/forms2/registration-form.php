@@ -101,6 +101,7 @@ class RegistrationForm extends Forms {
 					'description' => isset( $the_field['description'] ) ? $the_field['description'] : false,
 					'choices'     => isset( $the_field['options'] ) ? $the_field['options'] : false,
 					'value'       => isset( $the_field['value'] ) ? $the_field['value'] : false,
+					'required'    => (bool) $the_field['required'],
 					'rules'       => $validation_rules,
 					'attributes'  => $attributes,
 				]
