@@ -121,7 +121,7 @@ class Sanitizer {
 	 * @param AbstractField $field the field to sanitize.
 	 * @return array
 	 */
-	protected static function get_posted_multicheckboxx_field( AbstractField $field ) {
+	protected static function get_posted_multicheckbox_field( AbstractField $field ) {
 		return self::get_posted_multiselect_field( $field );
 	}
 
