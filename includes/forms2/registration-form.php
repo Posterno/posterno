@@ -198,9 +198,6 @@ class RegistrationForm extends Forms {
 
 				$email_address = $values['email'];
 
-				print_r( $values );
-				exit;
-
 				// Verify if a username has been submitted.
 				// If no username has been supplied, use the email address.
 				$has_username = isset( $values['username'] ) && ! empty( $values['username'] ) ? true : false;
@@ -223,11 +220,10 @@ class RegistrationForm extends Forms {
 				 * Allow developers to extend the signup process before actually
 				 * registering the new user.
 				 *
-				 * @param string $new_user_id the user id.
 				 * @param array $values all the fields submitted through the form.
 				 * @param object $this the class instance managing the form.
 				 */
-				do_action( 'pno_before_registration', $new_user_id, $values, $this );
+				do_action( 'pno_before_registration', $values, $this );
 
 				$new_user_id = wp_create_user( $username, $password, $email_address );
 
