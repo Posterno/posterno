@@ -41,19 +41,19 @@ class LoginForm extends Forms {
 	public function get_fields() {
 
 		$fields = array(
-			new TextField(
+			'username' => new TextField(
 				'username',
 				[
 					'label' => \pno_get_login_label(),
 				]
 			),
-			new PasswordField(
+			'password' => new PasswordField(
 				'password',
 				array(
 					'label' => esc_html__( 'Password' ),
 				)
 			),
-			new CheckboxField(
+			'remember_me' => new CheckboxField(
 				'remember_me',
 				array(
 					'label' => esc_html__( 'Remember me' ),
