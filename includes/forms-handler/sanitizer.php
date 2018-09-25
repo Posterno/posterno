@@ -115,6 +115,16 @@ class Sanitizer {
 	}
 
 	/**
+	 * Gets the value of a posted multicheckboxes field.
+	 *
+	 * @param AbstractField $field the field to sanitize.
+	 * @return array
+	 */
+	protected static function get_posted_multicheckbox_field( AbstractField $field ) {
+		return self::get_posted_multiselect_field( $field );
+	}
+
+	/**
 	 * Gets the value of a posted textarea field.
 	 *
 	 * @param AbstractField $field the field to sanitize.
