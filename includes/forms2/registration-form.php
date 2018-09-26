@@ -293,7 +293,7 @@ class RegistrationForm extends Forms {
 					wp_safe_redirect( pno_get_registration_redirect() );
 					exit;
 				} else {
-					$success_message = apply_filters( 'wpum_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
+					$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
 					$this->form->unbind();
 					$this->form->set_success_message( $success_message );
 					return;

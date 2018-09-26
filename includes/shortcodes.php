@@ -12,60 +12,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Displays the login form to visitors and display a notice to logged in users.
- *
- * @return string
- */
-function pno_login_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-
-		$data = [
-			'user' => wp_get_current_user(),
-		];
-
-		posterno()->templates
-			->set_template_data( $data )
-			->get_template_part( 'logged-user' );
-
-	} else {
-		echo posterno()->forms->get_form( 'login', [] );
-	}
-
-	return ob_get_clean();
-
-}
-
-/**
- * Displays the registration form to visitors and displays a notice to logged in users.
- *
- * @return string
- */
-function pno_registration_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-
-		$data = [
-			'user' => wp_get_current_user(),
-		];
-
-		posterno()->templates
-			->set_template_data( $data )
-			->get_template_part( 'logged-user' );
-
-	} else {
-		echo posterno()->forms->get_form( 'registration', [] );
-	}
-
-	return ob_get_clean();
-
-}
-
-/**
  * Displays the password recovery form to visitors and a notice to logged in users.
  *
  * @return string
@@ -91,7 +37,6 @@ function pno_password_recovery_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
 
 /**
  * Display a login link.
