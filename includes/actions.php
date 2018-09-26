@@ -259,3 +259,15 @@ function pno_password_recovery_instructions() {
 
 }
 add_action( 'pno_before_password_recovery_form', 'pno_password_recovery_instructions' );
+
+/**
+ * Display a title before the password customization form within the dashboard.
+ *
+ * @return void
+ */
+function pno_password_change_form_title() {
+
+	echo '<h3>' . esc_html__( 'Change password' ) . '</h3>';
+
+}
+add_action( 'pno_before_change_password_form', 'pno_password_change_form_title' );
