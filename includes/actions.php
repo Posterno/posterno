@@ -142,11 +142,12 @@ function pno_load_dashboard_privacy() {
 		echo do_shortcode( '[pno_request_data_form]' );
 	}
 
-	/*
+
 	if ( pno_get_option( 'allow_data_erasure' ) ) {
-		echo posterno()->forms->get_form( 'data-erasure', [] );
+		echo do_shortcode( '[pno_request_data_erasure_form]' );
 	}
 
+	/*
 	if ( pno_get_option( 'allow_account_delete' ) ) {
 		echo posterno()->forms->get_form( 'account-delete', [] );
 	}*/
