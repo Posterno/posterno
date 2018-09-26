@@ -163,11 +163,13 @@ function pno_load_manage_listings_dashboard() {
 	$listings = pno_get_user_submitted_listings( get_current_user_id() );
 
 	posterno()->templates
-		->set_template_data( [
-			'columns'         => pno_get_listings_table_columns(),
-			'submission_page' => pno_get_listing_submission_page_id(),
-			'listings'        => $listings,
-		] )
+		->set_template_data(
+			[
+				'columns'         => pno_get_listings_table_columns(),
+				'submission_page' => pno_get_listing_submission_page_id(),
+				'listings'        => $listings,
+			]
+		)
 		->get_template_part( 'dashboard/manage', 'listings' );
 
 }
@@ -240,3 +242,20 @@ function pno_restrict_access_to_listings_submission_page() {
 	}
 }
 add_action( 'template_redirect', 'pno_restrict_access_to_listings_submission_page' );
+
+/**
+ * Display instructions before the password recovery form.
+ *
+ * @return void
+ */
+function pno_password_recovery_instructions() {
+
+	//phpcs:ignore
+	if ( isset( $_GET['user_id'] ) && isset( $_GET['key'] ) ) {
+		echo '<h4>' . esc_html__( 'Enter a new password below.' ) . '</h4>';
+	} else {
+		echo '<p>' . esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.' ) . '</p>';
+	}
+
+}
+add_action( 'pno_before_password_recovery_form', 'pno_password_recovery_instructions' );
