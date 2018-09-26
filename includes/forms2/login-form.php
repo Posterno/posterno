@@ -15,6 +15,7 @@ use PNO\Forms;
 use PNO\Form\Field\TextField;
 use PNO\Form\Field\PasswordField;
 use PNO\Form\Field\CheckboxField;
+use PNO\Form\Rule\NotEmpty;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -44,13 +45,21 @@ class LoginForm extends Forms {
 			'username'    => new TextField(
 				'username',
 				[
-					'label' => \pno_get_login_label(),
+					'label'    => \pno_get_login_label(),
+					'required' => true,
+					'rules' => [
+						new NotEmpty(),
+					],
 				]
 			),
 			'password'    => new PasswordField(
 				'password',
 				array(
-					'label' => esc_html__( 'Password' ),
+					'label'    => esc_html__( 'Password' ),
+					'required' => true,
+					'rules'    => [
+						new NotEmpty(),
+					],
 				)
 			),
 			'remember_me' => new CheckboxField(
