@@ -296,6 +296,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/password-recovery-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/data-request-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/data-erasure-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms2/delete-account-form.php';
 
 		}
 
