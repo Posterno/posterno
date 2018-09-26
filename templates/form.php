@@ -36,6 +36,14 @@ if ( $data->form->has_processing_error() ) {
 
 <div class="pno-template pno-form">
 
+	<?php if ( isset( $data->title ) && ! empty( $data->title ) ) : ?>
+		<h2><?php echo esc_html( $data->title ); ?></h2>
+	<?php endif; ?>
+
+	<?php if( isset( $data->message ) && ! empty( $data->message ) ) : ?>
+		<p><?php echo wp_kses_post( $data->message ); ?></p>
+	<?php endif; ?>
+
 	<?php
 
 	/**

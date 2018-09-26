@@ -139,16 +139,17 @@ add_action( 'pno_dashboard_tab_content_password', 'pno_load_dashboard_password_d
 function pno_load_dashboard_privacy() {
 
 	if ( pno_get_option( 'allow_data_request' ) ) {
-		echo posterno()->forms->get_form( 'data-request', [] );
+		echo do_shortcode( '[pno_request_data_form]' );
 	}
 
+	/*
 	if ( pno_get_option( 'allow_data_erasure' ) ) {
 		echo posterno()->forms->get_form( 'data-erasure', [] );
 	}
 
 	if ( pno_get_option( 'allow_account_delete' ) ) {
 		echo posterno()->forms->get_form( 'account-delete', [] );
-	}
+	}*/
 
 }
 add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
