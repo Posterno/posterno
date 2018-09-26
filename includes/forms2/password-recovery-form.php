@@ -207,7 +207,14 @@ class PasswordRecoveryForm extends Forms {
 
 						if ( is_wp_error( $verify_key ) ) {
 
-							$error_message = esc_html__( 'The reset key is wrong or expired. Please check that you used the right reset link or request a new one.' );
+							/**
+							 * Allow developers to customize the error message that appears
+							 * when the password reset key is invalid.
+							 *
+							 * @param string $message the error message.
+							 * @return string the new message.
+							 */
+							$error_message = apply_filters( 'pno_password_recovery_key_invalid_message', esc_html__( 'The reset key is wrong or expired. Please check that you used the right reset link or request a new one.' ) );
 
 							throw new \Exception( $error_message );
 
@@ -223,7 +230,15 @@ class PasswordRecoveryForm extends Forms {
 							$sessions = \WP_Session_Tokens::get_instance( $user_id );
 							$sessions->destroy_all();
 
-							$success_message = esc_html__( 'Password successfully reset.' ) . ' ' . '<a href="' . get_permalink( pno_get_login_page_id() ) . '">' . esc_html__( 'Login now &raquo;' ) . '</a>' ;
+							$success_message = esc_html__( 'Password successfully reset.' ) . ' ' . '<a href="' . get_permalink( pno_get_login_page_id() ) . '">' . esc_html__( 'Login now &raquo;' ) . '</a>';
+
+							/**
+							 * Allow developers to customize the password recovery success message.
+							 *
+							 * @param string $message the success message.
+							 * @return string the new message.
+							 */
+							$success_message = apply_filters( 'pno_password_recovery_success_message', $success_message );
 
 							$this->form->unbind();
 							$this->form->set_success_message( $success_message );
@@ -232,7 +247,15 @@ class PasswordRecoveryForm extends Forms {
 						}
 					} else {
 
-						throw new \Exception( esc_html__( 'The link you followed may be broken. Please check that you used the right reset link or request a new one.' ) );
+						/**
+						 * Allow developers to customize the password recovery invalid link message.
+						 *
+						 * @param string $message the error message.
+						 * @return string the new message.
+						 */
+						$invalid_link = apply_filters( 'pno_password_recovery_invalid_link_message', esc_html__( 'The link you followed may be broken. Please check that you used the right reset link or request a new one.' ) );
+
+						throw new \Exception( $invalid_link );
 
 					}
 
@@ -242,7 +265,16 @@ class PasswordRecoveryForm extends Forms {
 					$user     = false;
 
 					if ( is_email( $username ) && ! email_exists( $username ) || ! is_email( $username ) && ! username_exists( $username ) ) {
-						throw new \Exception( esc_html__( 'A user with this username or email does not exist. Please check your entry and try again.' ) );
+
+						/**
+						 * Allow developers to customize the password recovery user not found message.
+						 *
+						 * @param string $message the error message.
+						 * @return string the new message.
+						 */
+						$user_not_found_message = apply_filters( 'pno_password_recovery_invalid_user', esc_html__( 'A user with this username or email does not exist. Please check your entry and try again.' ) );
+
+						throw new \Exception( $user_not_found_message );
 					}
 
 					// Retrieve the user from the DB.
@@ -273,6 +305,15 @@ class PasswordRecoveryForm extends Forms {
 
 							$masked_email    = pno_mask_email_address( $user->data->user_email );
 							$success_message = sprintf( esc_html__( 'We\'ve sent an email to %s with password reset instructions.' ), '<strong>' . $masked_email . '</strong>' );
+
+							/**
+							 * Allow developers to customize the success message for the password
+							 * recovery form when the recovery email has been sent.
+							 *
+							 * @param string $success_message the message.
+							 * @return string the new message.
+							 */
+							$success_message = apply_filters( 'pno_password_recovery_success_mail_sent', $success_message );
 
 							$this->form->unbind();
 							$this->form->set_success_message( $success_message );
