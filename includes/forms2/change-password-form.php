@@ -119,6 +119,7 @@ class ChangePasswordForm extends Forms {
 					[
 						'form'         => $this->form,
 						'submit_label' => $this->submit_label,
+						'title'        => esc_html__( 'Change password' ),
 					]
 				)
 				->get_template_part( 'form' );

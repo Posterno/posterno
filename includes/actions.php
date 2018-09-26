@@ -244,32 +244,3 @@ function pno_restrict_access_to_listings_submission_page() {
 	}
 }
 add_action( 'template_redirect', 'pno_restrict_access_to_listings_submission_page' );
-
-/**
- * Display instructions before the password recovery form.
- *
- * @return void
- */
-function pno_password_recovery_instructions() {
-
-	//phpcs:ignore
-	if ( isset( $_GET['user_id'] ) && isset( $_GET['key'] ) ) {
-		echo '<h4>' . esc_html__( 'Enter a new password below.' ) . '</h4>';
-	} else {
-		echo '<p>' . esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.' ) . '</p>';
-	}
-
-}
-add_action( 'pno_before_password_recovery_form', 'pno_password_recovery_instructions' );
-
-/**
- * Display a title before the password customization form within the dashboard.
- *
- * @return void
- */
-function pno_password_change_form_title() {
-
-	echo '<h3>' . esc_html__( 'Change password' ) . '</h3>';
-
-}
-add_action( 'pno_before_change_password_form', 'pno_password_change_form_title' );

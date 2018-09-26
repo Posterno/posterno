@@ -147,6 +147,8 @@ class PasswordRecoveryForm extends Forms {
 					[
 						'form'         => $this->form,
 						'submit_label' => $this->submit_label,
+						'title'        => $this->is_recovery_mode() ? esc_html__( 'Enter a new password below.' ) : false,
+						'message'      => ! $this->is_recovery_mode() ? esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.' ) : false,
 					]
 				)
 				->get_template_part( 'form' );
@@ -258,7 +260,6 @@ class PasswordRecoveryForm extends Forms {
 						throw new \Exception( $invalid_link );
 
 					}
-
 				} else {
 
 					$username = $values['username_email'];
