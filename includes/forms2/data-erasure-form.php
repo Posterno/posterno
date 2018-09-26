@@ -53,7 +53,13 @@ class DataErasureForm extends Forms {
 			),
 		);
 
-		return $fields;
+		/**
+		 * Allow developers to customize the data erasure form fields.
+		 *
+		 * @param array $fields the list of fields.
+		 * @return array list of fields.
+		 */
+		return apply_filters( 'pno_data_erasure_form_fields', $fields );
 
 	}
 
