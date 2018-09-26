@@ -293,7 +293,14 @@ class RegistrationForm extends Forms {
 					wp_safe_redirect( pno_get_registration_redirect() );
 					exit;
 				} else {
+
+					/**
+					 * Allow developers to customize the message displayed after successfull registration.
+					 *
+					 * @param string $message the message that appears after registration.
+					 */
 					$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
+
 					$this->form->unbind();
 					$this->form->set_success_message( $success_message );
 					return;
@@ -312,6 +319,13 @@ class RegistrationForm extends Forms {
 	 * @return string
 	 */
 	private function get_tos_validation_error() {
+
+		/**
+		 * Allow developers to customize the tos validation error message.
+		 *
+		 * @param string $message The error message that appears when the user does not tick the box.
+		 * @return string the new message.
+		 */
 		return apply_filters( 'pno_tos_validation_error_message', esc_html__( 'You must agree to the terms and conditions before registering.' ) );
 	}
 
@@ -321,6 +335,13 @@ class RegistrationForm extends Forms {
 	 * @return string
 	 */
 	private function get_pp_validation_error() {
+
+		/**
+		 * Allow developers to customize the privacy policy checkbox validation error.
+		 *
+		 * @param string $message the error message that appears when the user does not tick the box.
+		 * @return string the new message.
+		 */
 		return apply_filters( 'pno_privacy_policy_error_message', esc_html__( 'You must agree to the privacy policy before registering.' ) );
 	}
 
