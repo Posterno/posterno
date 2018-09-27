@@ -12,6 +12,19 @@ namespace PNO\Forms;
 
 use PNO\Form;
 use PNO\Forms;
+use PNO\Form\Field\CheckboxField;
+use PNO\Form\Field\DropdownField;
+use PNO\Form\Field\EditorField;
+use PNO\Form\Field\EmailField;
+use PNO\Form\Field\MultiCheckboxField;
+use PNO\Form\Field\MultiselectField;
+use PNO\Form\Field\NumberField;
+use PNO\Form\Field\PasswordField;
+use PNO\Form\Field\RadioField;
+use PNO\Form\Field\TextField;
+use PNO\Form\Field\TextAreaField;
+use PNO\Form\Field\URLField;
+use PNO\Form\Field\FileField;
 
 use PNO\Form\Rule\NotEmpty;
 
@@ -129,8 +142,8 @@ class AccountCustomizationForm extends Forms {
 	/**
 	 * Process the form.
 	 *
-	 * @throws \Exception When authentication process fails.
-	 * @throws \Exception When login process fails.
+	 * @throws \Exception When submission process fails.
+	 * @throws \Exception When updating the user fails.
 	 * @return void
 	 */
 	public function process() {
@@ -154,8 +167,110 @@ class AccountCustomizationForm extends Forms {
 
 				$values = $this->form->get_data();
 
-				print_r( $values );
-				exit;
+				$user_id = get_current_user_id();
+
+				$user_data = [
+					'ID' => $user_id,
+				];
+
+				/**
+				 * Allow developers to customize the form data processed
+				 * before the user's account is updated.
+				 *
+				 * @param object $form the forms class.
+				 * @param array $values the form data collected.
+				 * @param string $user_id the current user's id.
+				 */
+				do_action( 'pno_before_user_update', $this, $values, $user_id );
+
+				// Update first name and last name.
+				if ( isset( $values['first_name'] ) ) {
+					$user_data['first_name'] = $values['first_name'];
+				}
+				if ( isset( $values['last_name'] ) ) {
+					$user_data['last_name'] = $values['last_name'];
+				}
+
+				// Update email address.
+				if ( isset( $values['email'] ) ) {
+					$user_data['user_email'] = $values['email'];
+				}
+
+				// Update website.
+				if ( isset( $values['website'] ) ) {
+					$user_data['user_url'] = $values['website'];
+				}
+
+				if ( isset( $values['description'] ) ) {
+					$user_data['description'] = $values['description'];
+				}
+
+				$updated_user_id = wp_update_user( $user_data );
+
+				if ( is_wp_error( $updated_user_id ) ) {
+					throw new \Exception( $updated_user_id->get_error_message() );
+				}
+
+				// Update the avatar.
+				if ( pno_get_option( 'allow_avatars' ) ) {
+					$currently_uploaded_file   = isset( $_POST['current_avatar'] ) && ! empty( $_POST['current_avatar'] ) ? esc_url_raw( $_POST['current_avatar'] ) : false;
+					$existing_avatar_file_path = get_user_meta( $updated_user_id, 'current_user_avatar_path', true );
+					if ( $currently_uploaded_file && $existing_avatar_file_path && isset( $values['avatar']['url'] ) && $values['avatar']['url'] !== $currently_uploaded_file ) {
+						wp_delete_file( $existing_avatar_file_path );
+					}
+					if ( isset( $values['avatar']['url'] ) && $currently_uploaded_file !== $values['avatar']['url'] ) {
+						carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $values['avatar']['url'] );
+						update_user_meta( $updated_user_id, 'current_user_avatar_path', $values['avatar']['path'] );
+					}
+					if ( ! $currently_uploaded_file && file_exists( $existing_avatar_file_path ) ) {
+						wp_delete_file( $existing_avatar_file_path );
+						carbon_set_user_meta( $updated_user_id, 'current_user_avatar', false );
+						delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
+					}
+				}
+
+				// Now update the custom fields that are not marked as default profile fields.
+				foreach ( $values as $key => $value ) {
+					if ( ! pno_is_default_profile_field( $key ) ) {
+						if ( $value == '1' ) {
+							carbon_set_user_meta( $updated_user_id, $key, true );
+						} elseif ( is_array( $value ) && isset( $value['url'] ) && isset( $value['path'] ) ) {
+
+							$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
+							$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
+
+							if ( $currently_uploaded_file && $existing_file_path && isset( $values[ $key ]['url'] ) && $values[ $key ]['url'] !== $currently_uploaded_file ) {
+								wp_delete_file( $existing_file_path );
+							}
+
+							carbon_set_user_meta( $updated_user_id, $key, $value['url'] );
+							update_user_meta( $updated_user_id, "current_{$key}", $value['path'] );
+
+						} else {
+							carbon_set_user_meta( $updated_user_id, $key, $value );
+						}
+					}
+				}
+
+				/**
+				 * Action that fires after the user's account has been update,
+				 * all fields values have been processed and stored within the user's account.
+				 *
+				 * @param object $form the form's object.
+				 * @param array $values the array of data submitted through the form.
+				 * @param string $user_id the current user's id being processed.
+				 */
+				do_action( 'pno_after_user_update', $this, $values, $updated_user_id );
+
+				/**
+				 * Allow developers to customize the message displayed after successfull account update.
+				 *
+				 * @param string $message the message that appears after account update.
+				 */
+				$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.' ) );
+
+				$this->form->set_success_message( $message );
+				return;
 
 			}
 		} catch ( \Exception $e ) {
