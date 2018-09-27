@@ -278,9 +278,11 @@ function pno_get_registration_fields() {
 
 	/**
 	 * Allows developers to register or deregister fields for the registration form.
+	 * Fields here are yet to be formatted for the Form object.
 	 *
 	 * @since 0.1.0
 	 * @param array $fields array containing the list of fields for the registration form.
+	 * @return array the list of fields yet to be formatted.
 	 */
 	return apply_filters( 'pno_registration_fields', $fields );
 
@@ -466,10 +468,11 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 
 	/**
 	 * Allows developers to register or deregister custom fields within the
-	 * user's account editing form.
+	 * user's account editing form. Fields here are yet to be formatted for the form functionality.
 	 *
-	 * @param array $fields
-	 * @param mixed $user_id
+	 * @param array $fields the list of fields.
+	 * @param mixed $user_id if a user id is given we load the matching user meta.
+	 * @return array list of fields yet to be formatted.
 	 */
 	return apply_filters( 'pno_account_fields', $fields, $user_id );
 

@@ -114,7 +114,7 @@ add_action( 'pno_dashboard_tab_content_dashboard', 'pno_load_initial_dashboard_c
  */
 function pno_load_dashboard_account_details() {
 
-	echo posterno()->forms->get_form( 'account', [] );
+	echo do_shortcode( '[pno_account_customization_form]' );
 
 }
 add_action( 'pno_dashboard_tab_content_edit-account', 'pno_load_dashboard_account_details' );

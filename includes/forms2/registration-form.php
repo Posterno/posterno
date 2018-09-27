@@ -115,7 +115,15 @@ class RegistrationForm extends Forms {
 
 		}
 
-		return $fields;
+		/**
+		 * Allow developers to customize the fields within the registration form.
+		 * Fields here have already been formatted as objects for the form.
+		 *
+		 * @param array $fields the list of fields formatted for the form.
+		 * @param Form $form the form object.
+		 * @return array the list of fields formatted for the form.
+		 */
+		return apply_filters( 'pno_registration_form_fields', $fields, $this->form );
 
 	}
 
