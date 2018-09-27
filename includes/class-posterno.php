@@ -289,6 +289,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/password-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/radio-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/url-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/file-field.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/login-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/registration-form.php';

@@ -548,6 +548,8 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = 'custom-control-input';
 	} elseif ( $field->get_type() === 'dropdown' ) {
 		$classes[] = 'custom-select';
+	} elseif ( $field->get_type() === 'file' ) {
+		$classes[] = 'custom-file-input';
 	} else {
 		$classes[] = 'input-' . $field->get_type();
 	}

@@ -123,6 +123,9 @@ abstract class Forms {
 			case 'url':
 				$field_type_class = '\PNO\Form\Field\URLField';
 				break;
+			case 'file':
+				$field_type_class = '\PNO\Form\Field\FileField';
+				break;
 		}
 
 		/**
