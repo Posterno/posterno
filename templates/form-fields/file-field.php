@@ -37,7 +37,7 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 					->set_template_data(
 						[
 							'key'   => $data->get_id(),
-							'name'  => 'current_' . $field_name,
+							'name'  => 'current_' . $data->get_id(),
 							'value' => $value,
 							'field' => [],
 						]
@@ -51,7 +51,7 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 					->set_template_data(
 						[
 							'key'   => $data->get_id(),
-							'name'  => 'current_' . $field_name,
+							'name'  => 'current_' . $data->get_id(),
 							'value' => $value,
 							'field' => [],
 						]
