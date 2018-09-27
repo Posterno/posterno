@@ -72,6 +72,10 @@ class DefaultLayout extends AbstractLayout {
 				</small>
 			<?php endif; ?>
 
+			<?php if ( ! empty( $field->get_option( 'max_size' ) ) ) : ?>
+				<?php printf( esc_html__( 'Maximum file size: %s.' ), esc_html( pno_max_upload_size( '', $field->get_option( 'max_size' ) ) ) ); ?>
+			<?php endif; ?>
+
 		</div>
 
 		<?php

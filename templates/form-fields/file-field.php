@@ -21,25 +21,15 @@ $field_name         = $data->get_name();
 $field_name        .= ! empty( $data->get_option( 'multiple' ) ) ? '[]' : '';
 $file_size          = $data->get_option( 'max_size' ) ? $data->get_option( 'max_size' ) : false;
 
-wp_enqueue_script( 'pno-files-upload' );
-
 ?>
 
-<div class="input-group">
-	<div class="input-group-prepend">
-		<span class="input-group-text" id="<?php echo esc_attr( $data->get_id() ); ?>"><?php esc_html_e( 'Upload' ); ?></span>
-	</div>
-	<div class="custom-file">
-		<input
-			type="file"
-			<?php pno_form_field_input_class( $data ); ?>
-			id="<?php echo esc_attr( $data->get_id() ); ?>"
-			aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
-			<?php if ( $data->get_option( 'multiple' ) ) echo 'multiple'; //phpcs:ignore ?>
-			name="<?php echo esc_attr( $data->get_name() ); ?>"
-			value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
-			<?php echo $data->get_attributes(); //phpcs:ignore ?>
-		>
-		<label class="custom-file-label" for="<?php echo esc_attr( $data->get_id() ); ?>"><?php esc_html_e( 'Choose file' ); ?></label>
-	</div>
-</div>
+<input
+	type="file"
+	<?php pno_form_field_input_class( $data ); ?>
+	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
+	<?php if ( $data->get_option( 'multiple' ) ) echo 'multiple'; //phpcs:ignore ?>
+	name="<?php echo esc_attr( $data->get_id() ); ?>"
+	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+	<?php echo $data->get_attributes(); //phpcs:ignore ?>
+>

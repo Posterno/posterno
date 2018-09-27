@@ -152,15 +152,15 @@ class Sanitizer {
 	 * @param AbstractField $field the field to sanitize.
 	 *
 	 * @return string|array
-	 * @throws Exception When the upload fails.
+	 * @throws \Exception When the upload fails.
 	 */
 	protected static function get_posted_file_field( AbstractField $field ) {
 		$file = self::upload_file( $field );
 
 		if ( ! $file ) {
-			$file = self::get_posted_field( 'current_' . $field->get_id(), $field );
+			$file = self::get_posted_field( $field );
 		} elseif ( is_array( $file ) ) {
-			$file = array_filter( array_merge( $file, (array) self::get_posted_field( 'current_' . $field->get_id(), $field ) ) );
+			$file = array_filter( array_merge( $file, (array) self::get_posted_field( $field ) ) );
 		}
 
 		return $file;
@@ -170,44 +170,41 @@ class Sanitizer {
 	 * Handles the uploading of files.
 	 *
 	 * @param AbstractField $field the field to sanitize.
-	 * @throws Exception When file upload failed.
+	 * @throws \Exception When file upload failed.
 	 * @return  string|array
 	 */
-	protected function upload_file( AbstractField $field ) {
+	protected static function upload_file( AbstractField $field ) {
 
-		print_r( $_FILES );
-		exit;
-
-		if ( isset( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ]['name'] ) ) {
-			if ( ! empty( $field['allowed_mime_types'] ) ) {
-				$allowed_mime_types = $field['allowed_mime_types'];
+		if ( isset( $_FILES[ $field->get_id() ] ) && ! empty( $_FILES[ $field->get_id() ] ) && ! empty( $_FILES[ $field->get_id() ]['name'] ) ) {
+			if ( ! empty( $field->get_option( 'allowed_mime_types' ) ) ) {
+				$allowed_mime_types = $field->get_option( 'allowed_mime_types' );
 			} else {
 				$allowed_mime_types = pno_get_allowed_mime_types();
 			}
 
 			$file_urls       = array();
-			$files_to_upload = pno_prepare_uploaded_files( $_FILES[ $field_key ] );
+			$files_to_upload = pno_prepare_uploaded_files( $_FILES[ $field->get_id() ] );
 
 			foreach ( $files_to_upload as $file_to_upload ) {
 
-				if ( isset( $field['max_size'] ) && ! empty( $field['max_size'] ) && isset( $file_to_upload['size'] ) ) {
+				if ( $field->get_option( 'max_size' ) && isset( $file_to_upload['size'] ) ) {
 					$uploaded_file_size = $file_to_upload['size'];
-					if ( $uploaded_file_size > $field['max_size'] ) {
+					if ( $uploaded_file_size > $field->get_option( 'max_size' ) ) {
 						$error = sprintf( esc_html__( '%s exceeds the maximum upload size.' ), '<strong>' . $file_to_upload['name'] . '</strong>' );
-						throw new Exception( $error );
+						throw new \Exception( $error );
 					}
 				}
 
 				$uploaded_file = pno_upload_file(
 					$file_to_upload,
 					array(
-						'file_key'           => $field_key,
+						'file_key'           => $field->get_id(),
 						'allowed_mime_types' => $allowed_mime_types,
 					)
 				);
 
 				if ( is_wp_error( $uploaded_file ) ) {
-					throw new Exception( $uploaded_file->get_error_message() );
+					throw new \Exception( $uploaded_file->get_error_message() );
 				} else {
 					$file_urls[] = [
 						'url'  => $uploaded_file->url,
@@ -216,7 +213,7 @@ class Sanitizer {
 				}
 			}
 
-			if ( ! empty( $field['multiple'] ) ) {
+			if ( ! empty( $field->get_option( 'multiple' ) ) ) {
 				return $file_urls;
 			} else {
 				return current( $file_urls );
