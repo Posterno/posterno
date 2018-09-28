@@ -26,7 +26,7 @@ if ( empty( $actions ) ) {
 
 <div class="dropdown">
 	<a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<i class="fas fa-ellipsis-v"></i>
+		<i class="fas fa-ellipsis-h"></i>
 	</a>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 		<?php foreach ( $actions as $action_id => $action ) : ?>
