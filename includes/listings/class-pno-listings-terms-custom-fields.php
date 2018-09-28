@@ -45,6 +45,9 @@ class PNO_Listing_Terms_Custom_Fields {
 					Field::make( 'multiselect', 'associated_categories', esc_html__( 'Associated categories' ) )
 						->set_help_text( esc_html__( 'Select one or more listings categories that you wish to assign to this listing type.' ) )
 						->add_options( 'pno_get_listings_categories_for_association' ),
+					Field::make( 'textarea', 'submission_description', esc_html__( 'Submission short description' ) )
+						->set_help_text( esc_html__( 'This description will be visible within the listing submission form when selecting the listing type. Leave blank if not needed.' ) )
+						->set_rows( 4 ),
 				)
 			);
 
