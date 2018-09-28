@@ -459,12 +459,20 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		}
 	}
 
-	uasort( $fields, 'pno_sort_array_by_priority' );
-
 	// Remove the avatar field when option disabled.
 	if ( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) ) {
 		unset( $fields['avatar'] );
 	}
+
+	$counter = 0;
+
+	// Make sure priority is always correct.
+	foreach ( $fields as $key => $field ) {
+		$counter ++;
+		$fields[ $key ]['priority'] = $counter;
+	}
+
+	uasort( $fields, 'pno_sort_array_by_priority' );
 
 	/**
 	 * Allows developers to register or deregister custom fields within the
