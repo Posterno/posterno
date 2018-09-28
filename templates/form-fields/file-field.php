@@ -24,7 +24,7 @@ $file_size          = $data->get_option( 'max_size' ) ? $data->get_option( 'max_
 // Determine the type of form we're working with.
 $form_type = $data->get_parent()->get_object_type();
 
-if ( $form_type == 'user_meta' ) {
+if ( $form_type === 'user_meta' ) {
 	$field_id = $data->get_id() === 'avatar' ? 'current_user_avatar' : $data->get_id();
 	$value    = carbon_get_user_meta( get_current_user_id(), $field_id );
 } else {
