@@ -21,7 +21,17 @@ $field_name         = $data->get_name();
 $field_name        .= ! empty( $data->get_option( 'multiple' ) ) ? '[]' : '';
 $file_size          = $data->get_option( 'max_size' ) ? $data->get_option( 'max_size' ) : false;
 
-$stored_value = $data->get_value();
+// Determine the type of form we're working with.
+$form_type = $data->get_parent()->get_object_type();
+
+if ( $form_type == 'user_meta' ) {
+	$field_id = $data->get_id() === 'avatar' ? 'current_user_avatar' : $data->get_id();
+	$value    = carbon_get_user_meta( get_current_user_id(), $field_id );
+} else {
+	$value = carbon_get_post_meta( get_current_user_id(), $data->get_id() );
+}
+
+$stored_value = $value;
 
 if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 	$stored_value = $stored_value['url'];
@@ -29,9 +39,9 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 
 ?>
 
-<?php if ( ! empty( $data->get_value() ) ) : ?>
-	<?php if ( is_array( $data->get_value() ) && ! isset( $data->get_value()['url'] ) ) : ?>
-		<?php foreach ( $data->get_value() as $value ) : ?>
+<?php if ( ! empty( $stored_value ) ) : ?>
+	<?php if ( is_array( $stored_value ) && ! isset( $stored_value ) ) : ?>
+		<?php foreach ( $stored_value as $value ) : ?>
 			<?php
 				posterno()->templates
 					->set_template_data(
@@ -39,21 +49,19 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 							'key'   => $data->get_id(),
 							'name'  => 'current_' . $data->get_id(),
 							'value' => $value,
-							'field' => [],
 						]
 					)
 					->get_template_part( 'form-fields/file', 'uploaded' );
 			?>
 		<?php endforeach; ?>
-	<?php elseif ( $value = $data->get_value() ) : ?>
+	<?php elseif ( $stored_value ) : ?>
 			<?php
 				posterno()->templates
 					->set_template_data(
 						[
 							'key'   => $data->get_id(),
 							'name'  => 'current_' . $data->get_id(),
-							'value' => $value,
-							'field' => [],
+							'value' => $stored_value,
 						]
 					)
 					->get_template_part( 'form-fields/file', 'uploaded' );
@@ -68,6 +76,6 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 	aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
 	<?php if ( $data->get_option( 'multiple' ) ) echo 'multiple'; //phpcs:ignore ?>
 	name="<?php echo esc_attr( $data->get_id() ); ?>"
-	value="<?php echo esc_attr( $stored_value ) ; ?>"
+	value=""
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 >

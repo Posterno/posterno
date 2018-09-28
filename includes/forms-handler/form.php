@@ -66,16 +66,25 @@ class Form {
 	private $success;
 
 	/**
+	 * Determine the type of metadata we're working with.
+	 *
+	 * @var string
+	 */
+	private $object_type;
+
+	/**
 	 * Get things started and build the form.
 	 *
 	 * @param string $name name of the form.
 	 * @param array  $fields list of fields for the form.
+	 * @param mixed  $type set the type of metadata the form works with eg: user_meta, post_meta.
 	 */
-	public function __construct( $name, array $fields = array() ) {
+	public function __construct( $name, array $fields = array(), $type = false ) {
 		$this
 			->set_name( $name )
 			->set_fields( $fields )
-			->set_layout( new DefaultLayout() );
+			->set_layout( new DefaultLayout() )
+			->set_object_type( $type );
 	}
 
 	/**
@@ -276,6 +285,25 @@ class Form {
 		$this->success = $message;
 		empty( $this->errors );
 		empty( $this->processing_error );
+	}
+
+	/**
+	 * Set the object type the form's working with. Eg: post_meta, user_meta.
+	 *
+	 * @param string $type the object type we're going to use with the form.
+	 * @return void
+	 */
+	public function set_object_type( $type ) {
+		$this->object_type = $type;
+	}
+
+	/**
+	 * Retrieve the the object type assigned to the form.
+	 *
+	 * @return string
+	 */
+	public function get_object_type() {
+		return $this->object_type;
 	}
 
 	/**

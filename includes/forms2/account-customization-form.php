@@ -42,6 +42,7 @@ class AccountCustomizationForm extends Forms {
 	public function __construct() {
 		$this->form_name    = 'account_customization_form';
 		$this->submit_label = esc_html__( 'Update account' );
+		$this->object_type  = 'user_meta';
 		parent::__construct();
 	}
 

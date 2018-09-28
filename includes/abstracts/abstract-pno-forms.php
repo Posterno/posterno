@@ -39,6 +39,13 @@ abstract class Forms {
 	public $submit_label = '';
 
 	/**
+	 * The object type the PNO\Form is going to work with.
+	 *
+	 * @var string
+	 */
+	public $object_type = '';
+
+	/**
 	 * Get things started.
 	 */
 	public function __construct() {
@@ -55,7 +62,7 @@ abstract class Forms {
 	 * @return void
 	 */
 	private function setup_form() {
-		$this->form = new Form( $this->form_name, $this->get_fields() );
+		$this->form = new Form( $this->form_name, $this->get_fields(), $this->object_type );
 	}
 
 	/**
