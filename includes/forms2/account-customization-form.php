@@ -76,6 +76,11 @@ class AccountCustomizationForm extends Forms {
 				$attributes = $the_field['attributes'];
 			}
 
+			// Attach a placeholder if available.
+			if ( isset( $the_field['placeholder'] ) && ! empty( $the_field['placeholder'] ) ) {
+				$attributes[ 'placeholder' ] = $the_field['placeholder'];
+			}
+
 			$fields[] = new $field_type_class(
 				$field_key,
 				[

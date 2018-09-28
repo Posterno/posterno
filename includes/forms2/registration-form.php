@@ -100,6 +100,11 @@ class RegistrationForm extends Forms {
 				$validation_rules[] = new MustBeEmpty( esc_html__( 'Failed honeypot validation.' ) );
 			}
 
+			// Attach a placeholder if available.
+			if ( isset( $the_field['placeholder'] ) && ! empty( $the_field['placeholder'] ) ) {
+				$attributes[ 'placeholder' ] = $the_field['placeholder'];
+			}
+
 			$fields[] = new $field_type_class(
 				$field_key,
 				[
