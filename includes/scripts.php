@@ -109,8 +109,6 @@ function pno_load_frontend_scripts() {
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/pno-general.min.js', array( 'jquery' ), $version, true );
-	wp_register_script( 'pno-multiselect', PNO_PLUGIN_URL . 'assets/js/pno-multiselect.min.js', array( 'jquery' ), $version, true );
-	wp_register_script( 'pno-files-upload', PNO_PLUGIN_URL . 'assets/js/pno-files-upload.min.js', array( 'jquery' ), $version, true );
 
 	// Register vuejs related scripts.
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
@@ -137,15 +135,12 @@ function pno_load_frontend_scripts() {
 	if ( is_page( pno_get_dashboard_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
 		wp_enqueue_script( 'pno-select2' );
-		wp_enqueue_script( 'pno-multiselect' );
-		wp_enqueue_script( 'pno-files-upload' );
 	}
 
 	// Load vuejs scripts within the listing submission page.
 	if ( is_page( pno_get_listing_submission_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
 		wp_enqueue_script( 'pno-select2' );
-		wp_enqueue_script( 'pno-multiselect' );
 		wp_enqueue_script( 'pno-vuejs' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}
