@@ -57,8 +57,6 @@ module.exports = function (grunt) {
 			all: {
 				files: {
 					'assets/js/pno-general.min.js': ['assets/js/src/pno-general.js'],
-					'assets/js/pno-multiselect.min.js': ['assets/js/src/pno-multiselect.js'],
-					'assets/js/pno-files-upload.min.js': ['assets/js/src/pno-files-upload.js'],
 					'assets/js/pno-tinymce.min.js': ['assets/js/src/pno-tinymce.js'],
 					'assets/js/pno-profile-custom-fields-admin-validation.min.js': ['assets/js/src/pno-profile-custom-fields-admin-validation.js'],
 				},
