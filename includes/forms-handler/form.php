@@ -73,6 +73,14 @@ class Form {
 	private $object_type;
 
 	/**
+	 * Form action.
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $action = '';
+
+	/**
 	 * Get things started and build the form.
 	 *
 	 * @param string $name name of the form.
@@ -304,6 +312,16 @@ class Form {
 	 */
 	public function get_object_type() {
 		return $this->object_type;
+	}
+
+	/**
+	 * Gets the action (URL for forms to post to).
+	 * This defaults to the current page permalink.
+	 *
+	 * @return string
+	 */
+	public function get_action() {
+		return esc_url_raw( $this->action ? $this->action : wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	}
 
 	/**

@@ -67,7 +67,7 @@ if ( $data->form->has_processing_error() ) {
 
 	?>
 
-	<form action="" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
+	<form action="<?php echo esc_url( $data->form->get_action() ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
 
 		<?php $data->form->render(); ?>
 
