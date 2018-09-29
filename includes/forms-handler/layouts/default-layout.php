@@ -58,18 +58,18 @@ class DefaultLayout extends AbstractLayout {
 
 			<?php endif; ?>
 
+			<?php if ( ! empty( $field->get_option( 'description' ) ) ) : ?>
+				<small class="form-text text-muted">
+					<?php echo esc_html( $field->get_option( 'description' ) ); ?>
+				</small>
+			<?php endif; ?>
+
 			<?php if ( $field->has_errors() ) : ?>
 				<div class="invalid-feedback">
 					<?php foreach ( $field->get_errors() as $error ) : ?>
 						<p><?php echo esc_html( $error ); ?></p>
 					<?php endforeach; ?>
 				</div>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $field->get_option( 'description' ) ) ) : ?>
-				<small class="form-text text-muted">
-					<?php echo esc_html( $field->get_option( 'description' ) ); ?>
-				</small>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $field->get_option( 'max_size' ) ) ) : ?>
