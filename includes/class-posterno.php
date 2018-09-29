@@ -293,15 +293,15 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/file-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/social-profiles-field.php';
 
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/login-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/registration-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/change-password-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/password-recovery-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/data-request-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/data-erasure-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/delete-account-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/account-customization-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms2/listing-submission-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/login-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/registration-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/change-password-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/password-recovery-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/data-request-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/data-erasure-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/delete-account-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/account-customization-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/listing-submission-form.php';
 
 		}
 
