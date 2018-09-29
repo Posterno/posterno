@@ -12,33 +12,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Displays the password recovery form to visitors and a notice to logged in users.
- *
- * @return string
- */
-function pno_password_recovery_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-
-		$data = [
-			'user' => wp_get_current_user(),
-		];
-
-		posterno()->templates
-			->set_template_data( $data )
-			->get_template_part( 'logged-user' );
-
-	} else {
-		echo posterno()->forms->get_form( 'password-recovery', [] );
-	}
-
-	return ob_get_clean();
-
-}
-
-/**
  * Display a login link.
  *
  * @param array  $atts attributes list of the shortcode.
