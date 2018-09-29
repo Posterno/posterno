@@ -137,6 +137,9 @@ abstract class Forms {
 			case 'social-profiles':
 				$field_type_class = '\PNO\Form\Field\SocialProfilesField';
 				break;
+			case 'listing-category':
+				$field_type_class = '\PNO\Form\Field\ListingCategoryField';
+				break;
 		}
 
 		/**
