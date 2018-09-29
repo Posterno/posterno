@@ -37,14 +37,7 @@ class SocialProfilesField extends AbstractGroup {
 	 */
 	public function bind( $value ) {
 		if ( $value ) {
-			$valid = array();
-			$value = ( is_array( $value ) ) ? $value : array( $value );
-			foreach ( $value as $single ) {
-				if ( $this->exists( $single ) ) {
-					$valid[] = $single;
-				}
-			}
-			return $this->set_value( $valid );
+			return $this->set_value( maybe_unserialize( $value ) );
 		}
 		return $this->set_value( array() );
 	}

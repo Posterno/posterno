@@ -196,6 +196,8 @@ class ListingSubmissionForm extends Forms {
 			if ( wp_verify_nonce( $_POST[ "listing_type_selection_{$type_id}_nonce" ], "verify_listing_type_selection_{$type_id}_form" ) ) {
 				$step = 'submit_listing';
 			}
+		} elseif ( ! empty( $_POST[ 'submit_' . $this->form->get_name() ] ) ) {
+			$step = 'submit_listing';
 		}
 
 		return $step;
@@ -245,6 +247,9 @@ class ListingSubmissionForm extends Forms {
 			if ( $this->form->is_valid() ) {
 
 				$values = $this->form->get_data();
+
+				print_r( $values );
+				exit;
 
 			}
 		} catch ( \Exception $e ) {
