@@ -2,7 +2,7 @@
 /**
  * The template for displaying the listing type selector part.
  *
- * This template can be overridden by copying it to yourtheme/pno/forms/listing-type-selecotr.php
+ * This template can be overridden by copying it to yourtheme/pno/forms/listing-type-selection.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -34,12 +34,9 @@ defined( 'ABSPATH' ) || exit;
 						<?php if ( $listing_type_description = carbon_get_term_meta( $type_id, 'submission_description' ) ) : ?>
 							<p class="card-text"><?php echo wp_kses_post( $listing_type_description ); ?></p>
 						<?php endif; ?>
-						<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="<?php echo esc_attr( pno_get_form_id( $data->form ) ); ?>-<?php echo esc_attr( $type_id ); ?>" enctype="multipart/form-data">
-							<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form ); ?>" />
-							<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-							<input type="hidden" name="pno_listing_type_id" value="<?php echo absint( $type_id ); ?>">
-							<input type="hidden" name="submit_<?php echo esc_attr( $data->form ); ?>" value="<?php echo esc_attr( $data->form ); ?>">
-							<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
+						<form action="<?php echo esc_url( $data->form->get_action() ); ?>" method="post" id="pno-select-listing-type-<?php echo esc_attr( $type_id ); ?>">
+							<input type="hidden" name="pno_selected_listing_type_id" value="<?php echo absint( $type_id ); ?>">
+							<?php wp_nonce_field( "verify_listing_type_selection_{$type_id}_form", "listing_type_selection_{$type_id}_nonce" ); ?>
 							<button type="submit" class="btn btn-secondary"><?php echo esc_html( $data->submit_label ); ?></button>
 						</form>
 					</div>

@@ -143,5 +143,5 @@ function pno_submit_listing_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_listing_submission_form', 'pno_submit_listing_form' );
+//add_shortcode( 'pno_listing_submission_form', 'pno_submit_listing_form' );
 

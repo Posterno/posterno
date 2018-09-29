@@ -11,6 +11,7 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package posterno
  */
 
 // Exit if accessed directly.
@@ -18,14 +19,34 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<div id="pno-listing-submission-page">
+<div id="pno-listing-submission">
 
 	<?php
 
-	// Display related form.
-	posterno()->templates
-		->set_template_data( $data )
-		->get_template_part( 'forms/general', 'form' );
+	if ( $data->step === 'submit_listing' ) {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'form'         => $data->form,
+					'submit_label' => esc_html__( 'Submit listing &rarr;' ),
+				]
+			)
+			->get_template_part( 'form' );
+
+	} else {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'title'        => 'title',
+					'form'         => $data->form,
+					'submit_label' => esc_html__( 'Continue &rarr;' ),
+				]
+			)
+			->get_template_part( 'forms/listing-type-selection' );
+
+	}
 
 	?>
 

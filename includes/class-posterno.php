@@ -299,6 +299,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/data-erasure-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/delete-account-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms2/account-customization-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms2/listing-submission-form.php';
 
 		}
 
