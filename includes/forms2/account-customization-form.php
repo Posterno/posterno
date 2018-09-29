@@ -27,6 +27,7 @@ use PNO\Form\Field\URLField;
 use PNO\Form\Field\FileField;
 
 use PNO\Form\Rule\NotEmpty;
+use PNO\Form\Rule\Email;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -68,6 +69,10 @@ class AccountCustomizationForm extends Forms {
 
 			if ( isset( $the_field['required'] ) && $the_field['required'] === true ) {
 				$validation_rules[] = new NotEmpty();
+			}
+
+			if ( $field_type === 'email' ) {
+				$validation_rules[] = new Email();
 			}
 
 			// Define additional attributes.
