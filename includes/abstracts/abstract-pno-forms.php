@@ -11,6 +11,7 @@
 namespace PNO;
 
 use PNO\Form;
+use PNO\Form\Field\AbstractField;
 
 /**
  * Abstract definition of a Posterno's frontend form.
@@ -142,6 +143,35 @@ abstract class Forms {
 		 * @param string $type retrieved field type string.
 		 */
 		return apply_filters( 'pno_forms_field_class_name', $field_type_class, $type );
+
+	}
+
+	/**
+	 * Get attributes assigned to the field.
+	 *
+	 * @param array $field the field we're going to work with.
+	 * @return array
+	 */
+	protected function get_field_attributes( $field ) {
+
+		$attributes = [];
+
+		if ( isset( $field['attributes'] ) && ! empty( $field['attributes'] ) && is_array( $field['attributes'] ) ) {
+			$attributes = $the_field['attributes'];
+		}
+
+		if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
+			$attributes['placeholder'] = $field['placeholder'];
+		}
+
+		/**
+		 * Allow developers to customize the attributes assigned to a field.
+		 *
+		 * @param array $attributes the list of attributes if any.
+		 * @param array $field the field being analyzed.
+		 * @return array
+		 */
+		return apply_filters( 'pno_field_attributes', $attributes, $field );
 
 	}
 

@@ -75,17 +75,6 @@ class AccountCustomizationForm extends Forms {
 				$validation_rules[] = new Email();
 			}
 
-			// Define additional attributes.
-			$attributes = [];
-			if ( isset( $the_field['attributes'] ) && ! empty( $the_field['attributes'] ) && is_array( $the_field['attributes'] ) ) {
-				$attributes = $the_field['attributes'];
-			}
-
-			// Attach a placeholder if available.
-			if ( isset( $the_field['placeholder'] ) && ! empty( $the_field['placeholder'] ) ) {
-				$attributes[ 'placeholder' ] = $the_field['placeholder'];
-			}
-
 			$fields[] = new $field_type_class(
 				$field_key,
 				[
@@ -95,7 +84,7 @@ class AccountCustomizationForm extends Forms {
 					'value'       => isset( $the_field['value'] ) ? $the_field['value'] : false,
 					'required'    => (bool) $the_field['required'],
 					'rules'       => $validation_rules,
-					'attributes'  => $attributes,
+					'attributes'  => $this->get_field_attributes( $the_field ),
 				]
 			);
 
