@@ -293,6 +293,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/file-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/social-profiles-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-category-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-tags-field.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms/login-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/registration-form.php';

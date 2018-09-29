@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of a listing category selector field.
+ * Representation of a listing tags selector field.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -14,9 +14,9 @@ namespace PNO\Form\Field;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class responsible of handling listings category selection within a PNO\Form.
+ * The class responsible of handling the listings tags field within a PNO\Form.
  */
-class ListingCategoryField extends AbstractGroup {
+class ListingTagsField extends AbstractGroup {
 
 	/**
 	 * Initialize the field.
@@ -25,7 +25,7 @@ class ListingCategoryField extends AbstractGroup {
 	 */
 	public function init() {
 		parent::init();
-		$this->set_type( 'listing-category' );
+		$this->set_type( 'listing-tags' );
 		return $this->set_value( $this->get_option( 'value', [] ) );
 	}
 
