@@ -12,6 +12,21 @@ namespace PNO\Forms;
 
 use PNO\Form;
 use PNO\Forms;
+use PNO\Form\Field\CheckboxField;
+use PNO\Form\Field\DropdownField;
+use PNO\Form\Field\EditorField;
+use PNO\Form\Field\EmailField;
+use PNO\Form\Field\MultiCheckboxField;
+use PNO\Form\Field\MultiselectField;
+use PNO\Form\Field\NumberField;
+use PNO\Form\Field\PasswordField;
+use PNO\Form\Field\RadioField;
+use PNO\Form\Field\TextField;
+use PNO\Form\Field\TextAreaField;
+use PNO\Form\Field\URLField;
+use PNO\Form\Field\FileField;
+use PNO\Form\Rule\NotEmpty;
+use PNO\Form\Rule\Email;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -38,6 +53,51 @@ class ListingSubmissionForm extends Forms {
 	public function get_fields() {
 
 		$fields = [];
+
+		$submission_fields = pno_get_listing_submission_fields();
+
+		foreach ( $submission_fields as $field_key => $the_field ) {
+
+			// Get the field type so we can get the class name of the field.
+			$field_type       = $the_field['type'];
+			$field_type_class = $this->get_field_type_class_name( $field_type );
+
+			// Define validation rules.
+			$validation_rules = [];
+
+			if ( isset( $the_field['required'] ) && $the_field['required'] === true ) {
+				$validation_rules[] = new NotEmpty();
+			}
+
+			if ( $field_type === 'email' ) {
+				$validation_rules[] = new Email();
+			}
+
+			// Define additional attributes.
+			$attributes = [];
+			if ( isset( $the_field['attributes'] ) && ! empty( $the_field['attributes'] ) && is_array( $the_field['attributes'] ) ) {
+				$attributes = $the_field['attributes'];
+			}
+
+			// Attach a placeholder if available.
+			if ( isset( $the_field['placeholder'] ) && ! empty( $the_field['placeholder'] ) ) {
+				$attributes[ 'placeholder' ] = $the_field['placeholder'];
+			}
+
+			$fields[] = new $field_type_class(
+				$field_key,
+				[
+					'label'       => $the_field['label'],
+					'description' => isset( $the_field['description'] ) ? $the_field['description'] : false,
+					'choices'     => isset( $the_field['options'] ) ? $the_field['options'] : false,
+					'value'       => isset( $the_field['value'] ) ? $the_field['value'] : false,
+					'required'    => (bool) $the_field['required'],
+					'rules'       => $validation_rules,
+					'attributes'  => $attributes,
+				]
+			);
+
+		}
 
 		/**
 		 * Allows developers to customize fields for the listing submission form.

@@ -723,9 +723,7 @@ function pno_get_listings_submission_form_js_vars() {
  */
 function pno_get_listing_submission_fields() {
 
-	$fields = [];
-
-	$fields['submit'] = [
+	$fields = [
 		'listing_title'                 => [
 			'label'    => esc_html__( 'Listing title' ),
 			'type'     => 'text',
@@ -782,6 +780,16 @@ function pno_get_listing_submission_fields() {
 			'priority' => 9,
 		],
 	];
+
+	$counter = 0;
+
+	// Make sure priority is always correct.
+	foreach ( $fields as $key => $field ) {
+		$counter ++;
+		$fields[ $key ]['priority'] = $counter;
+	}
+
+	uasort( $fields, 'pno_sort_array_by_priority' );
 
 	/**
 	 * Allow developers to customize the listings submission form fields.
