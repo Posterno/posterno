@@ -8,4 +8,4 @@ import './social-profiles-field.js'
 import './listing-category-selector.js'
 import './listing-tags-selector.js'
 
-new Vue().$mount('#pno-form-listing-submit')
+new Vue().$mount('#pno-form-listing_submission_form')

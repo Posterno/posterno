@@ -134,6 +134,9 @@ abstract class Forms {
 			case 'file':
 				$field_type_class = '\PNO\Form\Field\FileField';
 				break;
+			case 'social-profiles':
+				$field_type_class = '\PNO\Form\Field\SocialProfilesField';
+				break;
 		}
 
 		/**
