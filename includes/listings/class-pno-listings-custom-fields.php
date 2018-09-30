@@ -254,19 +254,53 @@ class PNO_Listings_Custom_Fields {
 				->set_html( '<h4>' . ucfirst( esc_html( $day_name ) ) . '</h4>' )
 				->set_classes( 'inline-metabox-message' );
 
+			$fields[] = Field::make( 'radio', $day_string . '_time_slots', false )
+				->set_classes( 'inline-radio-selector' )
+				->add_options( 'pno_get_listing_time_slots' );
+
 			$fields[] = Field::make( 'time', $day_string . '_opening', false )
+				->set_conditional_logic(
+					array(
+						'relation' => 'AND',
+						array(
+							'field'   => $day_string . '_time_slots',
+							'value'   => 'hours',
+							'compare' => '=',
+						),
+					)
+				)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$opening_at )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'time', $day_string . '_closing', false )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => $day_string . '_time_slots',
+						'value'   => 'hours',
+						'compare' => '=',
+					),
+				)
+			)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$closing_at )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings' ) )
+				->set_conditional_logic(
+					array(
+						'relation' => 'AND',
+						array(
+							'field'   => $day_string . '_time_slots',
+							'value'   => 'hours',
+							'compare' => '=',
+						),
+					)
+				)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_collapsed( true )
 				->add_fields(

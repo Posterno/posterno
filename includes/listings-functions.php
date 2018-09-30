@@ -481,3 +481,27 @@ function pno_get_selectable_categories_count() {
 	return $max_selection;
 
 }
+
+/**
+ * Get listing time slots options.
+ *
+ * @return array
+ */
+function pno_get_listing_time_slots() {
+
+	$time_slots = [
+		'hours'          => esc_html__( 'Enter hours' ),
+		'open_all_day'   => esc_html__( 'Open all day' ),
+		'closed_all_day' => esc_html__( 'Closed all day' ),
+		'appointment'    => esc_html__( 'Appointment only' ),
+	];
+
+	/**
+	 * Allow developers to customize the listing time slots choices.
+	 *
+	 * @param array $time_slots the slots currently registered.
+	 * @return array the new slots.
+	 */
+	return apply_filters( 'pno_listing_time_slots', $time_slots );
+
+}
