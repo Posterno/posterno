@@ -554,7 +554,7 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = 'input-text';
 	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' ) {
 		$classes[] = 'custom-control-input';
-	} elseif ( $field->get_type() === 'dropdown' ) {
+	} elseif ( $field->get_type() === 'dropdown' || $field->get_type() === 'term-select' ) {
 		$classes[] = 'custom-select';
 	} else {
 		$classes[] = 'input-' . $field->get_type();
@@ -778,6 +778,14 @@ function pno_get_listing_submission_fields() {
 			'type'     => 'listing-tags',
 			'required' => true,
 			'priority' => 9,
+		],
+		'listing_regions'               => [
+			'label'       => esc_html__( 'Listing regions' ),
+			'type'        => 'term-select',
+			'taxonomy'    => 'listings-locations',
+			'placeholder' => esc_html__( 'Select a region' ),
+			'required'    => true,
+			'priority'    => 10,
 		],
 	];
 

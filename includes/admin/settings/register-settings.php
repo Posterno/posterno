@@ -629,6 +629,11 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Allow multiple categories' ),
 				'description' => esc_html__( 'Enable the option to let users select more than one category during listing submission.' ),
 			],
+			'submission_region_sublevel'   => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow child regions' ),
+				'description' => esc_html__( 'Enable the option to display a parent to child hierarchy for the regions selector while submitting listings.' ),
+			],
 			'submission_categories_amount'     => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'How many categories?' ),

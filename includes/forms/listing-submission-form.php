@@ -25,6 +25,7 @@ use PNO\Form\Field\TextField;
 use PNO\Form\Field\TextAreaField;
 use PNO\Form\Field\URLField;
 use PNO\Form\Field\FileField;
+
 use PNO\Form\Rule\NotEmpty;
 use PNO\Form\Rule\Email;
 
@@ -83,6 +84,7 @@ class ListingSubmissionForm extends Forms {
 					'required'    => (bool) $the_field['required'],
 					'rules'       => $validation_rules,
 					'attributes'  => $this->get_field_attributes( $the_field ),
+					'taxonomy'    => isset( $the_field['taxonomy'] ) ? $the_field['taxonomy'] : false,
 				]
 			);
 

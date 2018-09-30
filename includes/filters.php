@@ -248,9 +248,19 @@ function pno_delete_listings_on_user_delete( $types ) {
 }
 add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delete', 10 );
 
-function pno_adjust_listings_categories_select_field( $args ) {
+/**
+ * Adjust some settings of the terms dropdown field.
+ *
+ * @param array $args field settings.
+ * @return array
+ */
+function pno_set_placeholder_for_term_select( $args ) {
+
+	if ( isset( $args['taxonomy'] ) && $args['taxonomy'] === 'listings-locations' ) {
+		$args['show_option_none'] = esc_html__( 'Select a region' );
+	}
 
 	return $args;
 
 }
-add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_adjust_listings_categories_select_field' );
+add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_set_placeholder_for_term_select' );

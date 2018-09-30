@@ -8,7 +8,7 @@
 	 * Cache selectors for future usage.
 	 */
 	window.Posterno.cacheSelectors = function () {
-		window.Posterno.formSelectFields = $('.pno-field-multiselect select, .pno-select-searchable');
+		window.Posterno.formSelectFields = $('.pno-field-multiselect select, .pno-select-searchable, .pno-field-term-select select');
 	}
 
 	/**

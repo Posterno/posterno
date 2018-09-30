@@ -143,6 +143,9 @@ abstract class Forms {
 			case 'listing-tags':
 				$field_type_class = '\PNO\Form\Field\ListingTagsField';
 				break;
+			case 'term-select':
+				$field_type_class = '\PNO\Form\Field\TermSelectField';
+				break;
 		}
 
 		/**
