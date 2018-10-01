@@ -39,6 +39,7 @@
 		window.Posterno.formSelectFields.select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
+			width: '100%'
 		});
 	}
 

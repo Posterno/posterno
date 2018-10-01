@@ -58,7 +58,8 @@ Vue.component('pno-select2', {
 			this.select2.empty();
 			this.select2.select2({
 				...this.settings,
-				data: val
+				data: val,
+				width: '100%'
 			});
 			this.setValue(this.value);
 		},
@@ -93,7 +94,8 @@ Vue.component('pno-select2', {
 			.select2({
 				...this.settings,
 				data: this.options,
-				placeholder: jQuery(this.$el).data('placeholder')
+				placeholder: jQuery(this.$el).data('placeholder'),
+				width: '100%'
 			})
 			.on('select2:select select2:unselect', ev => {
 				const {
