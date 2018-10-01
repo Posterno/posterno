@@ -146,6 +146,9 @@ abstract class Forms {
 			case 'term-select':
 				$field_type_class = '\PNO\Form\Field\TermSelectField';
 				break;
+			case 'opening-hours':
+				$field_type_class = '\PNO\Form\Field\ListingOpeningHoursField';
+				break;
 		}
 
 		/**

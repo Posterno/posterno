@@ -787,6 +787,12 @@ function pno_get_listing_submission_fields() {
 			'required'    => true,
 			'priority'    => 10,
 		],
+		'listing_opening_hours'         => [
+			'label'    => esc_html__( 'Hours of operation' ),
+			'type'     => 'opening-hours',
+			'required' => false,
+			'priority' => 11,
+		],
 	];
 
 	$counter = 0;

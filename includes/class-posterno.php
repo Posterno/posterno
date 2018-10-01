@@ -295,6 +295,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-category-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-tags-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/term-select-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-opening-hours-field.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/forms/login-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/registration-form.php';
