@@ -706,10 +706,11 @@ function pno_dropdown_categories( $args = '' ) {
 function pno_get_listings_submission_form_js_vars() {
 
 	$js_settings = [
-		'selected_listing_type' => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs:ignore
+		'selected_listing_type' => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ): false, //phpcs: ignore
 		'max_multiselect'       => absint( pno_get_option( 'submission_categories_amount' ) ),
 		'ajax'                  => admin_url( 'admin-ajax.php' ),
 		'get_tags_nonce'        => wp_create_nonce( 'pno_get_tags_from_categories' ),
+		'days'                  => pno_get_days_of_the_week(),
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
