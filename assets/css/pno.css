@@ -65,6 +65,10 @@ form.pno-form-has-errors .invalid-feedback,
 form.pno-form-has-errors .field-has-errors {
   display: block; }
 
+.select2,
+.select2-container {
+  width: 100% !important; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0; }
