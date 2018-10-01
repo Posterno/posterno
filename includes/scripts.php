@@ -103,11 +103,13 @@ function pno_load_frontend_scripts() {
 	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], $version );
 	wp_register_style( 'pno-fa', 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', [], $version );
 	wp_register_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, $version );
+	wp_register_style( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css', [], $version );
 	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], $version );
 
 	wp_register_script( 'pno-bootstrap-script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
+	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/pno-general.min.js', array( 'jquery' ), $version, true );
 
 	// Register vuejs related scripts.
@@ -140,7 +142,9 @@ function pno_load_frontend_scripts() {
 	// Load vuejs scripts within the listing submission page.
 	if ( is_page( pno_get_listing_submission_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
+		wp_enqueue_style( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-select2' );
+		wp_enqueue_script( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-vuejs' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}

@@ -84,6 +84,7 @@ Vue.component('pno-listing-opening-hours-selector', {
 				opening: '',
 				closing: ''
 			})
+
 		},
 		/**
 		 * Remove a timeset from a given day.
