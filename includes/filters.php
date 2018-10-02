@@ -257,10 +257,35 @@ add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delet
 function pno_set_placeholder_for_term_select( $args ) {
 
 	if ( isset( $args['taxonomy'] ) && $args['taxonomy'] === 'listings-locations' ) {
-		$args['show_option_none'] = esc_html__( 'Select a region' );
+		$args['option_none_value'] = '';
+		$args['show_option_none']  = esc_html__( 'Select a region' );
 	}
 
 	return $args;
 
 }
 add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_set_placeholder_for_term_select' );
+
+/**
+ * Allow inclusion of placeholders for terms selection fields when powered by Select2.
+ *
+ * @param string $output the dropdown output.
+ * @param array  $args the settings defined for the dropdown.
+ * @return string
+ */
+function pno_set_attributes_for_term_select( $output, $args ) {
+
+	if ( isset( $args['placeholder-select'] ) && $args['placeholder-select'] ) {
+
+		$output = preg_replace(
+			'^' . preg_quote( '<select ' ) . '^',
+			'<select data-placeholder="' . $args['placeholder-select'] . '" ',
+			$output
+		);
+
+	}
+
+	return $output;
+
+}
+add_filter( 'wp_dropdown_cats', 'pno_set_attributes_for_term_select', 10, 2 );

@@ -639,11 +639,6 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'How many categories?' ),
 				'description' => esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
 			],
-			'submission_tags_amount'           => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'How many tags?' ),
-				'description' => esc_html__( 'Specify how many tags users can select for their listings (eg: 5). Leave blank if not needed.' ),
-			],
 		],
 		/**
 		 * Listings content settings.

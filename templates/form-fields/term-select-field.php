@@ -38,15 +38,16 @@ if ( is_array( $selected ) ) {
 wp_dropdown_categories(
 	apply_filters(
 		'pno_term_select_field_wp_dropdown_categories_args', array(
-			'taxonomy'         => $data->get_option( 'taxonomy' ),
-			'hierarchical'     => 1,
-			'show_option_all'  => false,
-			'show_option_none' => $data->get_option( 'required' ) ? '' : '-',
-			'name'             => esc_attr( $data->get_name() ),
-			'orderby'          => 'name',
-			'selected'         => $selected,
-			'hide_empty'       => false,
-			'class'            => join( ' ', pno_get_form_field_input_class( $data ) ),
+			'taxonomy'           => $data->get_option( 'taxonomy' ),
+			'hierarchical'       => 1,
+			'show_option_all'    => false,
+			'show_option_none'   => $data->get_option( 'required' ) ? '' : '-',
+			'placeholder-select' => isset( $data->get_option( 'attributes' )['placeholder'] ) ? $data->get_option( 'attributes' )['placeholder'] : false,
+			'name'               => esc_attr( $data->get_name() ),
+			'orderby'            => 'name',
+			'selected'           => $selected,
+			'hide_empty'         => false,
+			'class'              => join( ' ', pno_get_form_field_input_class( $data ) ),
 		), $data
 	)
 );
