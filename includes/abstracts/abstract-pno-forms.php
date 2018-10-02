@@ -149,6 +149,9 @@ abstract class Forms {
 			case 'opening-hours':
 				$field_type_class = '\PNO\Form\Field\ListingOpeningHoursField';
 				break;
+			case 'dropzone':
+				$field_type_class = '\PNO\Form\Field\DropzoneField';
+				break;
 		}
 
 		/**
