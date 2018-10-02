@@ -32,7 +32,7 @@ $registered_networks = pno_get_registered_social_media();
 	<pno-social-profile-field inline-template>
 		<div>
 			<div class="row" v-for="(option, index) in definedSocialProfiles" :key="index">
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<pno-select2 inline-template v-model="definedSocialProfiles[index].social" data-placeholder="<?php esc_html_e( 'Select network' ); ?>">
 						<div class="pno-select2-wrapper">
 							<select class="form-control">
@@ -47,7 +47,7 @@ $registered_networks = pno_get_registered_social_media();
 						</div>
 					</pno-select2>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-6">
 					<div class="input-group mb-3">
 						<input
 							type="text"
