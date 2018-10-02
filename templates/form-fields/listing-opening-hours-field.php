@@ -57,6 +57,7 @@ $active_day       = key( $days_of_the_week );
 											id="pno_time_slot_<?php echo esc_attr( $time_id ); ?>_<?php echo esc_attr( $day ); ?>"
 											name="pno_listing_opening_hours_slot_type_<?php echo esc_attr( $day ); ?>"
 											class="custom-control-input"
+											@change="maybeResetTimeslots( '<?php echo esc_attr( $day ); ?>' )"
 										>
 										<label class="custom-control-label" for="pno_time_slot_<?php echo esc_attr( $time_id ); ?>_<?php echo esc_attr( $day ); ?>"><?php echo esc_html( $time_name ); ?></label>
 									</div>
@@ -68,7 +69,7 @@ $active_day       = key( $days_of_the_week );
 								<div class="col-sm-5">
 									<div class="form-group">
 										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].opening" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
-											<input type="text" class="form-control" name="pno_opening_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Opening time' ); ?>" @input="onInput">
+											<input type="text" class="form-control" name="pno_opening_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Opening time' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
 								</div>
@@ -76,7 +77,7 @@ $active_day       = key( $days_of_the_week );
 								<div class="col-sm-5">
 									<div class="form-group">
 										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].closing" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
-											<input type="text" class="form-control" name="pno_closing_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Closing time' ); ?>" @input="onInput">
+											<input type="text" class="form-control" name="pno_closing_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Closing time' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
 								</div>

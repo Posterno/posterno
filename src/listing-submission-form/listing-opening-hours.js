@@ -97,5 +97,30 @@ Vue.component('pno-listing-opening-hours-selector', {
 				this.timeslots[ day ].hours.splice(index, 1);
 			}
 		},
+		/**
+		 * Maybe reset timeslot hours if the selected timeslot does not allow for hours.
+		 *
+		 * @param {string} day the day we're probably going to reset timeslots for.
+		 */
+		maybeResetTimeslots( day ) {
+			if ( ! this.canEnterHours( day ) ) {
+				this.timeslots[day].hours = [{
+					opening: '',
+					closing: ''
+				}]
+			}
+		}
+	},
+	watch: {
+		/**
+		 * Watch for changes to the vue model and store changes into the frontend field
+		 * so that we can use it via php when submitting the form.
+		 */
+		timeslots: {
+			handler: function () {
+				document.getElementById('listing_opening_hours').value = JSON.stringify(this.timeslots);
+			},
+			deep: true
+		}
 	}
 });

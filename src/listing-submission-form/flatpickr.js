@@ -89,6 +89,7 @@ Vue.component('pno-flatpickr', {
 		 * @param event
 		 */
 		onBlur(event) {
+			this.fp.setDate(event.target.value, true);
 			this.$emit('blur', event.target.value);
 		}
 	},
