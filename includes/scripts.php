@@ -110,6 +110,7 @@ function pno_load_frontend_scripts() {
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
 	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
+	wp_register_script( 'pno-dropzone', 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js', false, $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/pno-general.min.js', array( 'jquery' ), $version, true );
 
 	// Register vuejs related scripts.
@@ -146,6 +147,7 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-select2' );
 		wp_enqueue_script( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-vuejs' );
+		wp_enqueue_script( 'pno-dropzone' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}
 

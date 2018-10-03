@@ -556,6 +556,8 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = 'custom-control-input';
 	} elseif ( $field->get_type() === 'dropdown' || $field->get_type() === 'term-select' ) {
 		$classes[] = 'custom-select';
+	} elseif ( $field->get_type() === 'dropzone' ) {
+		$classes[] = 'dropzone';
 	} else {
 		$classes[] = 'input-' . $field->get_type();
 	}
@@ -711,6 +713,18 @@ function pno_get_listings_submission_form_js_vars() {
 		'ajax'                  => admin_url( 'admin-ajax.php' ),
 		'get_tags_nonce'        => wp_create_nonce( 'pno_get_tags_from_categories' ),
 		'days'                  => pno_get_days_of_the_week(),
+		'dropzone'              => [
+			'dictDefaultMessage'           => esc_html__( 'Drop files here to upload' ),
+			'dictFallbackMessage'          => esc_html__( 'Your browser does not support drag& drop file uploads.' ),
+			'dictFileTooBig'               => esc_html__( 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.' ),
+			'dictInvalidFileType'          => esc_html__( 'You can\'t upload files of this type.' ),
+			'dictResponseError'            => esc_html__( 'Server responded with {{statusCode}} code.' ),
+			'dictCancelUpload'             => esc_html__( 'Cancel upload.' ),
+			'dictUploadCanceled'           => esc_html__( 'Upload canceled.' ),
+			'dictCancelUploadConfirmation' => esc_html__( 'Are you sure you want to cancel this upload?' ),
+			'dictRemoveFile'               => esc_html__( 'Remove file' ),
+			'dictMaxFilesExceeded'         => esc_html__( 'You can not upload any more files.' ),
+		],
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
