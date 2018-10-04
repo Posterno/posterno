@@ -713,6 +713,7 @@ function pno_get_listings_submission_form_js_vars() {
 		'ajax'                  => admin_url( 'admin-ajax.php' ),
 		'get_tags_nonce'        => wp_create_nonce( 'pno_get_tags_from_categories' ),
 		'days'                  => pno_get_days_of_the_week(),
+		'upload_error'          => esc_html__( 'Something went wrong during the upload.' ),
 		'dropzone'              => [
 			'dictDefaultMessage'           => esc_html__( 'Drop files here to upload' ),
 			'dictFallbackMessage'          => esc_html__( 'Your browser does not support drag& drop file uploads.' ),

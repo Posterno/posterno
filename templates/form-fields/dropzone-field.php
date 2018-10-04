@@ -18,15 +18,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$upload_url = admin_url( 'admin-ajax.php' )
+// Define the ajax url to which we're going to upload the file.
+$upload_url = wp_nonce_url(
+	add_query_arg(
+		[
+			'action'      => 'pno_dropzone_upload',
+			'dropzone_id' => $data->get_id(),
+			'multiple'    => $data->get_option( 'multiple' ),
+		], admin_url( 'admin-ajax.php' )
+	), 'pno_dropzone_upload', $data->get_id()
+);
 
 ?>
 
-<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="1">
+<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="1" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
 
 	<div class="dz-preview dz-preview-single">
 		<div class="dz-preview-cover">
-			<img class="dz-preview-img" src="..." alt="..." data-dz-thumbnail>
+			<img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
 		</div>
 	</div>
 
@@ -35,24 +44,22 @@ $upload_url = admin_url( 'admin-ajax.php' )
 <div class="pno-dropzone-components">
 	<div class="pno-dropzone-error d-none">
 		<div class="alert alert-danger" role="alert">
-			<span></span>
-			<span class="default-error d-none"><?php esc_html_e( 'Something went wrong during the upload.' ); ?></span>
+			<?php esc_html_e( 'Something went wrong during the upload.' ); ?>
 		</div>
 	</div>
 
-	<div class="progress d-none">
-		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+	<div class="pno-dropzone-progress progress d-none">
+		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 	</div>
+
+	<input
+		type="hidden"
+		<?php pno_form_field_input_class( $data ); ?>
+		id="<?php echo esc_attr( $data->get_id() ); ?>"
+		aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
+		name="<?php echo esc_attr( $data->get_id() ); ?>"
+		value=""
+		<?php echo $data->get_attributes(); //phpcs:ignore ?>
+	>
+
 </div>
-
-
-
-<input
-	type="hidden"
-	<?php pno_form_field_input_class( $data ); ?>
-	id="<?php echo esc_attr( $data->get_id() ); ?>"
-	aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
-	name="<?php echo esc_attr( $data->get_id() ); ?>"
-	value=""
-	<?php echo $data->get_attributes(); //phpcs:ignore ?>
->

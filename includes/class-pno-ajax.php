@@ -21,9 +21,12 @@ class PNO_Ajax {
 	 *
 	 * @return void
 	 */
-	public static function init() {
-		add_action( 'wp_ajax_pno_get_tags_from_categories', [ __CLASS__, 'get_tags_from_categories' ] );
-		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ __CLASS__, 'get_tags_from_categories' ] );
+	public function init() {
+		add_action( 'wp_ajax_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
+		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
+
+		add_action( 'wp_ajax_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
+		add_action( 'wp_ajax_nopriv_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
 	}
 
 	/**
@@ -31,7 +34,7 @@ class PNO_Ajax {
 	 *
 	 * No nonce field since the form may be statically cached.
 	 */
-	public static function upload_file() {
+	public function upload_file() {
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( esc_html__( 'You must be logged in to upload files using this method.' ) );
 			return;
@@ -116,6 +119,65 @@ class PNO_Ajax {
 		} else {
 			wp_send_json_error( null, 422 );
 		}
+
+	}
+
+	/**
+	 * Upload files via dropzone fields.
+	 *
+	 * @return void
+	 */
+	public function dropzone_upload() {
+
+		if ( ! isset( $_GET['dropzone_id'] ) ) { //phpcs:ignore
+			wp_send_json_error( false, 422 );
+		}
+
+		$dropzone_id = sanitize_text_field( $_GET['dropzone_id'] );
+		$multiple    = isset( $_POST['multiple'] ) && (bool) $_POST['multiple'] ? true : false;
+		$field_id    = isset( $_POST['field_id'] ) && ! empty( $_POST['field_id'] ) ? sanitize_text_field( $_POST['field_id'] ) : false;
+
+		if ( ! $field_id ) {
+			wp_send_json_error( false, 422 );
+		}
+
+		check_ajax_referer( 'pno_dropzone_upload', $dropzone_id );
+
+		$data = array(
+			'files' => array(),
+		);
+
+		if ( ! empty( $_FILES ) ) {
+			foreach ( $_FILES as $file_key => $file ) {
+				$file_key = $field_id;
+				$files_to_upload = pno_prepare_uploaded_files( $file );
+				foreach ( $files_to_upload as $file_to_upload ) {
+					$uploaded_file = pno_upload_file(
+						$file_to_upload,
+						array(
+							'file_key' => $file_key,
+						)
+					);
+					if ( is_wp_error( $uploaded_file ) ) {
+						if ( $multiple ) {
+							$data['files'][] = array(
+								'error' => $uploaded_file->get_error_message(),
+							);
+						} else {
+							wp_send_json_error( [ 'message' => $uploaded_file->get_error_message() ], 422 );
+						}
+					} else {
+						$data['files'][] = $uploaded_file;
+					}
+				}
+			}
+		}
+
+		if ( empty( $data['files'] ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong during upload' ) ], 422 );
+		}
+
+		wp_send_json_success( $data );
 
 	}
 

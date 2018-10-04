@@ -108,7 +108,7 @@ form.pno-form-has-errors {
 	transition: all .2s ease-in-out;
 	text-align: center;
 	color: #95aac9;
-	border: 1px dashed #d2ddec;
+	border: 3px dashed rgba(0, 0, 0, .125);
 	border-radius: .375rem;
 	background-color: #fff;
 	order: -1
@@ -116,7 +116,7 @@ form.pno-form-has-errors {
 
 .dz-message:hover {
 	color: #12263f;
-	border-color: #95aac9
+	border-color: rgba(0, 0, 0, .5)
 }
 
 .dz-drag-hover .dz-message {

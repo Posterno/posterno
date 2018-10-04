@@ -18,7 +18,7 @@
 	 * Enable bootstrap tooltips functionality.
 	 */
 	window.Posterno.bootstrapTooltips = function () {
-		if ( pno_settings.bootstrap ) {
+		if (pno_settings.bootstrap) {
 			$('[data-toggle="tooltip"]').tooltip()
 		}
 	}
@@ -29,7 +29,7 @@
 	window.Posterno.removeUploadedFiles = function () {
 		$(document.body).on('click', '.pno-remove-uploaded-file', function () {
 			var dropzone = $(this).data('dropped');
-			$( '.' + dropzone ).removeClass('d-none');
+			$('.' + dropzone).removeClass('d-none');
 			$(this).closest('.pno-uploaded-file').remove();
 			return false;
 		});
@@ -56,13 +56,16 @@
 
 		window.Posterno.dropzoneFields.each(function () {
 
+			var theDropzoneElement = $(this)
 			var dropzoneMaxFiles = $(this).data('max-files')
-			var dropzonePostUrl  = $(this).data('dropzone-url')
-			var dropzonePreview  = $(this).find( '.dz-preview' )
-			var dropzoneMaxSize  = $(this).data('max-size')
+			var dropzonePostUrl = $(this).data('dropzone-url')
+			var dropzonePreview = $(this).find('.dz-preview')
+			var dropzoneMaxSize = $(this).data('max-size')
+			var dropzoneMultiple = $(this).data('multiple')
+			var dropzoneFieldID = $(this).data('field-id')
 			var dropzoneComponents = $(this).next('.pno-dropzone-components')
 
-			var PosternoDropzone = new Dropzone( $(this).get(0), {
+			var PosternoDropzone = new Dropzone($(this).get(0), {
 				url: dropzonePostUrl,
 				thumbnailWidth: null,
 				thumbnailHeight: null,
@@ -70,6 +73,12 @@
 				maxFilesize: dropzoneMaxSize,
 				previewsContainer: dropzonePreview.get(0),
 				previewTemplate: dropzonePreview.html(),
+				params: {
+					max_size: dropzoneMaxSize,
+					max_files: dropzoneMaxFiles,
+					multiple: dropzoneMultiple,
+					field_id: dropzoneFieldID
+				},
 				dictDefaultMessage: pno_submission.dropzone.dictDefaultMessage, // Default: Drop files here to upload
 				dictFallbackMessage: pno_submission.dropzone.dictFallbackMessage, // Default: Your browser does not support drag'n'drop file uploads.
 				dictFileTooBig: pno_submission.dropzone.dictFileTooBig, // Default: File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.
@@ -83,19 +92,37 @@
 			});
 
 			PosternoDropzone.on('dragenter', function () {
-				$(this).addClass( 'pno-dropzone-dragging' )
+				theDropzoneElement.addClass('pno-dropzone-dragging')
 			});
 
 			PosternoDropzone.on('dragleave', function () {
-				$(this).removeClass('pno-dropzone-dragging');
+				theDropzoneElement.removeClass('pno-dropzone-dragging');
 			});
 
 			PosternoDropzone.on('drop', function () {
-				$(this).removeClass('pno-dropzone-dragging');
+				theDropzoneElement.removeClass('pno-dropzone-dragging');
+			});
+
+			PosternoDropzone.on('sending', function (file) {
+				window.Posterno.dropzoneShowProgress(dropzoneComponents)
+			});
+
+			PosternoDropzone.on('totaluploadprogress', function (progress) {
+				var progressBar = dropzoneComponents.find('.pno-dropzone-progress .progress-bar')
+				window.Posterno.dropzoneSetProgress( progressBar, progress )
+			});
+
+			PosternoDropzone.on('queuecomplete', function (progress) {
+				window.Posterno.dropzoneHideProgress(dropzoneComponents)
+			});
+
+			PosternoDropzone.on('success', function (file, response) {
+				window.Posterno.dropzoneHideError( dropzoneComponents )
+				window.Posterno.dropzoneStoreResponse( dropzoneComponents, response )
 			});
 
 			PosternoDropzone.on("error", function (file, error, xhr) {
-				window.Posterno.drozoneShowError( dropzoneComponents, file, error, xhr )
+				window.Posterno.drozoneShowError(dropzoneComponents, file, error, xhr)
 			});
 
 		});
@@ -104,25 +131,76 @@
 
 	/**
 	 * Display the error message container if anything has gone wrong during file upload.
-	 * Decide wether to display a generic error message or the one returned via ajax.
+	 * Display the error returned from the api if any
 	 */
-	window.Posterno.drozoneShowError = function( component, file, error, xhr ) {
-		component.find('.pno-dropzone-error').removeClass('d-none')
+	window.Posterno.drozoneShowError = function (component, file, error, xhr) {
+		var errorAlertContainer = component.find('.pno-dropzone-error')
+		errorAlertContainer.removeClass('d-none')
+		if ( error.data !== undefined && error.data.message !== undefined ) {
+			errorAlertContainer.find( '.alert' ).text( error.data.message )
+		} else {
+			errorAlertContainer.find( '.alert' ).text( error )
+		}
 	}
 
 	/**
 	 * Hide the error message for the given dropzone.
 	 */
-	window.Posterno.dropzoneHideError = function( component ) {
+	window.Posterno.dropzoneHideError = function (component) {
 		component.find('.pno-dropzone-error').addClass('d-none')
 	}
 
-	$( document ).ready( function() {
+	/**
+	 * Display the hidden progress bar of the dropzone.
+	 * Also set the value to 0% progress.
+	 */
+	window.Posterno.dropzoneShowProgress = function (component) {
+		var progressComponent = component.find('.pno-dropzone-progress')
+		var progressBar = component.find('.pno-dropzone-progress .progress-bar')
+		if (progressComponent.length) {
+			progressComponent.removeClass('d-none')
+			window.Posterno.dropzoneSetProgress(progressBar, '0')
+		}
+	}
+
+	/**
+	 * Updates the progress of a given progress bar element.
+	 */
+	window.Posterno.dropzoneSetProgress = function (progressBar, progress) {
+		progressBar.attr('aria-valuenow', progress)
+		progressBar.text(progress + '%')
+		progressBar.css('width', progress + '%')
+	}
+
+	/**
+	 * Hide the progress bar of a given component and reset the progress percentage.
+	 */
+	window.Posterno.dropzoneHideProgress = function (component) {
+		var progressComponent = component.find('.pno-dropzone-progress')
+		var progressBar = component.find('.pno-dropzone-progress .progress-bar')
+
+		progressComponent.addClass('d-none')
+		if (progressComponent.length) {
+			window.Posterno.dropzoneSetProgress(progressBar, '0')
+		}
+
+	}
+
+	/**
+	 * Store the response from the api into the hidden input field so it can
+	 * be processed later when submitting the form.
+	 */
+	window.Posterno.dropzoneStoreResponse = function ( component, response ) {
+		var hiddenInput = component.find( 'input[type=hidden]' )
+		hiddenInput.val(JSON.stringify(response))
+	}
+
+	$(document).ready(function () {
 		window.Posterno.cacheSelectors()
 		window.Posterno.bootstrapTooltips()
 		window.Posterno.removeUploadedFiles()
 		window.Posterno.select2()
 		window.Posterno.dropzoneInit()
-	} );
+	});
 
-} )( jQuery );
+})(jQuery);
