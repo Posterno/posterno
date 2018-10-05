@@ -129,7 +129,8 @@
 			});
 
 			PosternoDropzone.on('removedfile', function (file) {
-				console.log(file)
+				window.Posterno.dropzoneHideError( dropzoneComponents )
+				window.Posterno.dropzoneRemoveFilesFromServer( window.Posterno.dropzoneGetStoredResponse( dropzoneComponents ) )
 			});
 
 		});
@@ -200,6 +201,36 @@
 	window.Posterno.dropzoneStoreResponse = function ( component, response ) {
 		var hiddenInput = component.find( 'input[type=hidden]' )
 		hiddenInput.val(JSON.stringify(response))
+	}
+
+	/**
+	 * Retrieve the response that is stored into the hidden field after images have been uploaded.
+	 */
+	window.Posterno.dropzoneGetStoredResponse = function ( component ) {
+		var hiddenInput = component.find('input[type=hidden]')
+		return hiddenInput.val()
+	}
+
+	/**
+	 * Remove files from the server.
+	 */
+	window.Posterno.dropzoneRemoveFilesFromServer = function( files ) {
+
+		if ( files !== undefined ) {
+			$.post({
+				url: pno_submission.ajax,
+				data: {
+					'action': 'pno_remove_dropzone_file',
+					'files': files,
+					'nonce': pno_submission.dropzone_remove_file_nonce
+				},
+				//success: function (data) {},
+				//error: function (errorThrown) {
+				//	console.error(errorThrown);
+				//}
+			});
+		}
+
 	}
 
 	$(document).ready(function () {

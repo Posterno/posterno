@@ -35,6 +35,7 @@ $upload_url = wp_nonce_url(
 	<div class="dz-preview dz-preview-single">
 		<div class="dz-preview-cover">
 			<img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
+			<a href="#" class="pno-dropzone-remove-file btn btn-secondary btn-sm" data-dz-remove><i class="fas fa-trash-alt mr-1"></i> <?php esc_html_e( 'Delete image' ); ?></a>
 		</div>
 	</div>
 

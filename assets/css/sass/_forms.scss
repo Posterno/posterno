@@ -165,3 +165,10 @@ form.pno-form-has-errors {
 [data-dz-size] strong {
 	font-weight: 400
 }
+
+.pno-dropzone-remove-file {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	z-index: 999;
+}

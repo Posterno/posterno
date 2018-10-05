@@ -126,6 +126,12 @@ form.pno-form-has-errors .field-has-errors {
 [data-dz-size] strong {
   font-weight: 400; }
 
+.pno-dropzone-remove-file {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 999; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0; }
