@@ -844,3 +844,34 @@ function pno_get_listing_submission_fields() {
 	return apply_filters( 'pno_listing_submission_fields', $fields );
 
 }
+
+/**
+ * Determine the maximum amount of files that can be uploaded through a dropzone.
+ *
+ * @param \PNO\Form\Field $field the field we're working with.
+ * @return string
+ */
+function pno_dropzone_get_max_files_amount( $field ) {
+
+	$amount = 1;
+
+	if ( $field instanceof \PNO\Form\Field\AbstractField && $field->get_option( 'multiple' ) ) {
+
+		switch ( $field->get_id() ) {
+			case 'listing_gallery':
+				$amount = 3;
+				break;
+		}
+	}
+
+	/**
+	 * Allow developers to customize the max amount of files that
+	 * can be uploaded through a dropzone.
+	 *
+	 * @param string $amount the max amount of files in numeric value.
+	 * @param PNO\Form\Field $field the field to verify.
+	 * @return string
+	 */
+	return apply_filters( 'pno_dropzone_max_files_amount', $amount, $field );
+
+}

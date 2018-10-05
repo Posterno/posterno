@@ -28,9 +28,11 @@ $upload_url = wp_nonce_url(
 	), 'pno_dropzone_upload', $data->get_id()
 );
 
+$max_files = pno_dropzone_get_max_files_amount( $data );
+
 ?>
 
-<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="1" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
 
 	<div class="dz-preview dz-preview-single">
 		<div class="dz-preview-cover">

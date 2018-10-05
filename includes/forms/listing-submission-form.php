@@ -85,6 +85,7 @@ class ListingSubmissionForm extends Forms {
 					'rules'       => $validation_rules,
 					'attributes'  => $this->get_field_attributes( $the_field ),
 					'taxonomy'    => isset( $the_field['taxonomy'] ) ? $the_field['taxonomy'] : false,
+					'multiple'    => isset( $the_field['multiple'] ) ? $the_field['multiple'] : false,
 				]
 			);
 
