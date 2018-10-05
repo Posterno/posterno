@@ -133,8 +133,12 @@
 
 			PosternoDropzone.on('removedfile', function (file) {
 				window.Posterno.dropzoneHideError( dropzoneComponents )
-				window.Posterno.dropzoneRemoveFilesFromServer( window.Posterno.dropzoneGetStoredResponse( dropzoneComponents ) )
-				window.Posterno.dropzoneResetStoredResponse( dropzoneComponents )
+				window.Posterno.dropzoneRemoveFilesFromServer(
+					window.Posterno.dropzoneGetStoredResponse( dropzoneComponents ),
+					dropzoneMultiple,
+					file
+				)
+				//window.Posterno.dropzoneResetStoredResponse( dropzoneComponents )
 			});
 
 		});
@@ -228,7 +232,7 @@
 	/**
 	 * Remove files from the server.
 	 */
-	window.Posterno.dropzoneRemoveFilesFromServer = function( files ) {
+	window.Posterno.dropzoneRemoveFilesFromServer = function( files, multiple, file ) {
 
 		if ( files !== undefined ) {
 			$.post({
@@ -236,6 +240,8 @@
 				data: {
 					'action': 'pno_remove_dropzone_file',
 					'files': files,
+					'multiple': multiple,
+					'file': file,
 					'nonce': pno_submission.dropzone_remove_file_nonce
 				},
 				//success: function (data) {},
