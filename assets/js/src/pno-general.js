@@ -125,6 +125,7 @@
 			});
 
 			PosternoDropzone.on("error", function (file, error, xhr) {
+				PosternoDropzone.removeFile(file)
 				window.Posterno.drozoneShowError(dropzoneComponents, file, error, xhr)
 			});
 
