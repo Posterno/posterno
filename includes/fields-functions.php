@@ -816,6 +816,13 @@ function pno_get_listing_submission_fields() {
 			'required' => true,
 			'priority' => 12,
 		],
+		'listing_gallery'               => [
+			'label'    => esc_html__( 'Gallery images' ),
+			'type'     => 'dropzone',
+			'multiple' => true,
+			'required' => true,
+			'priority' => 13,
+		],
 	];
 
 	$counter = 0;
