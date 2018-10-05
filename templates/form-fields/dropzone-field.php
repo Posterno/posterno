@@ -24,7 +24,6 @@ $upload_url = wp_nonce_url(
 		[
 			'action'      => 'pno_dropzone_upload',
 			'dropzone_id' => $data->get_id(),
-			'multiple'    => $data->get_option( 'multiple' ),
 		], admin_url( 'admin-ajax.php' )
 	), 'pno_dropzone_upload', $data->get_id()
 );
@@ -42,16 +41,20 @@ $upload_url = wp_nonce_url(
 </div>
 
 <div class="pno-dropzone-components">
+
+	<!-- displays error messages related to the dropzone -->
 	<div class="pno-dropzone-error d-none">
 		<div class="alert alert-danger" role="alert">
 			<?php esc_html_e( 'Something went wrong during the upload.' ); ?>
 		</div>
 	</div>
 
+	<!-- displays progress of the related dropzone -->
 	<div class="pno-dropzone-progress progress d-none">
 		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 	</div>
 
+	<!-- holds data for the database -->
 	<input
 		type="hidden"
 		<?php pno_form_field_input_class( $data ); ?>

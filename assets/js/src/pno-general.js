@@ -73,6 +73,7 @@
 				maxFilesize: dropzoneMaxSize,
 				previewsContainer: dropzonePreview.get(0),
 				previewTemplate: dropzonePreview.html(),
+				addRemoveLinks: false,
 				params: {
 					max_size: dropzoneMaxSize,
 					max_files: dropzoneMaxFiles,
@@ -90,6 +91,8 @@
 				dictRemoveFile: pno_submission.dropzone.dictRemoveFile, // Default: Remove file
 				dictMaxFilesExceeded: pno_submission.dropzone.dictMaxFilesExceeded, // Default: You can not upload any more files.
 			});
+
+			dropzonePreview.html('')
 
 			PosternoDropzone.on('dragenter', function () {
 				theDropzoneElement.addClass('pno-dropzone-dragging')
@@ -123,6 +126,10 @@
 
 			PosternoDropzone.on("error", function (file, error, xhr) {
 				window.Posterno.drozoneShowError(dropzoneComponents, file, error, xhr)
+			});
+
+			PosternoDropzone.on('removedfile', function (file) {
+				console.log(file)
 			});
 
 		});
