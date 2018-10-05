@@ -32,16 +32,43 @@ $max_files = pno_dropzone_get_max_files_amount( $data );
 
 ?>
 
-<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+<?php if ( $data->get_option( 'multiple' ) && $data->get_option( 'multiple' ) ) : ?>
 
-	<div class="dz-preview dz-preview-single">
-		<div class="dz-preview-cover">
-			<img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
-			<a href="#" class="pno-dropzone-remove-file btn btn-secondary btn-sm" data-dz-remove><i class="fas fa-trash-alt mr-1"></i> <?php esc_html_e( 'Delete image' ); ?></a>
-		</div>
-	</div>
+<div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+
+	<ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush ml-0 mt-3 mb-3">
+		<li class="list-group-item px-0">
+			<div class="row align-items-center">
+				<div class="col-md-2">
+					<img class="avatar-img rounded" src="" alt="" data-dz-thumbnail>
+				</div>
+				<div class="col-md-6">
+					<h4 class="mb-1" data-dz-name></h4>
+					<p class="small text-muted mb-0" data-dz-size></p>
+				</div>
+				<div class="col-md-4 text-md-right">
+					<button type="button" class="btn btn-secondary btn-sm" data-dz-remove><?php esc_html_e( 'Delete image' ); ?></button>
+				</div>
+			</div>
+		</li>
+	</ul>
 
 </div>
+
+<?php else : ?>
+
+	<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+
+		<div class="dz-preview dz-preview-single">
+			<div class="dz-preview-cover">
+				<img class="dz-preview-img" src="" alt="" data-dz-thumbnail>
+				<a href="#" class="pno-dropzone-remove-file btn btn-secondary btn-sm" data-dz-remove><i class="fas fa-trash-alt mr-1"></i> <?php esc_html_e( 'Delete image' ); ?></a>
+			</div>
+		</div>
+
+	</div>
+
+<?php endif; ?>
 
 <div class="pno-dropzone-components">
 
