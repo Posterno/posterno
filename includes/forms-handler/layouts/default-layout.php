@@ -72,7 +72,7 @@ class DefaultLayout extends AbstractLayout {
 				</div>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $field->get_option( 'max_size' ) ) ) : ?>
+			<?php if ( $field->get_type() === 'file' || $field->get_type() === 'dropzone' ) : ?>
 				<?php printf( esc_html__( 'Maximum file size: %s.' ), esc_html( pno_max_upload_size( '', $field->get_option( 'max_size' ) ) ) ); ?>
 			<?php endif; ?>
 
