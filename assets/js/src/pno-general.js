@@ -63,6 +63,7 @@
 			var dropzoneMaxSize = $(this).data('max-size')
 			var dropzoneMultiple = $(this).data('multiple')
 			var dropzoneFieldID = $(this).data('field-id')
+			var dropzoneAcceptedFiles = $(this).data('file-types')
 			var dropzoneComponents = $(this).next('.pno-dropzone-components')
 
 			var PosternoDropzone = new Dropzone($(this).get(0), {
@@ -74,6 +75,7 @@
 				previewsContainer: dropzonePreview.get(0),
 				previewTemplate: dropzonePreview.html(),
 				addRemoveLinks: false,
+				acceptedFiles: dropzoneAcceptedFiles,
 				params: {
 					max_size: dropzoneMaxSize,
 					max_files: dropzoneMaxFiles,
