@@ -132,6 +132,7 @@
 			PosternoDropzone.on('removedfile', function (file) {
 				window.Posterno.dropzoneHideError( dropzoneComponents )
 				window.Posterno.dropzoneRemoveFilesFromServer( window.Posterno.dropzoneGetStoredResponse( dropzoneComponents ) )
+				window.Posterno.dropzoneResetStoredResponse( dropzoneComponents )
 			});
 
 		});
@@ -202,6 +203,16 @@
 	window.Posterno.dropzoneStoreResponse = function ( component, response ) {
 		var hiddenInput = component.find( 'input[type=hidden]' )
 		hiddenInput.val(JSON.stringify(response))
+	}
+
+	/**
+	 * Cleanup the value attribute of the hidden input file for the dropzone field.
+	 */
+	window.Posterno.dropzoneResetStoredResponse = function( component ) {
+		var hiddenInput = component.find('input[type=hidden]')
+		if ( hiddenInput.length ) {
+			hiddenInput.val('')
+		}
 	}
 
 	/**
