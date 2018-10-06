@@ -126,8 +126,14 @@
 			PosternoDropzone.on('success', function (file, response) {
 				file.WordPressURL = response.data.files[0].url
 				file.WordPressPATH = response.data.files[0].file
+
+				dropzoneStoredFiles.push( {
+					path: response.data.files[0].file,
+					url: response.data.files[0].url
+				} )
+
 				window.Posterno.dropzoneHideError( dropzoneComponents )
-				window.Posterno.dropzoneStoreResponse( dropzoneComponents, response )
+				window.Posterno.dropzoneStoreResponse( dropzoneComponents, dropzoneStoredFiles )
 			});
 
 			PosternoDropzone.on("error", function (file, error, xhr) {
@@ -136,11 +142,22 @@
 			});
 
 			PosternoDropzone.on('removedfile', function (file) {
+
 				window.Posterno.dropzoneHideError( dropzoneComponents )
 				window.Posterno.dropzoneRemoveFilesFromServer( file )
-				if ( ! dropzoneMultiple ) {
-					window.Posterno.dropzoneResetStoredResponse(dropzoneComponents)
-				}
+
+				// Find the the index of the file to remove from the array of uploaded files.
+				var removeFilePath = file.WordPressPATH
+
+				var index = dropzoneStoredFiles.map(function (e) {
+					return e.path;
+				}).indexOf( removeFilePath );
+
+				dropzoneStoredFiles.splice( index, 1 );
+
+				// Update the stored array of the field containing all uploaded files.
+				window.Posterno.dropzoneStoreResponse( dropzoneComponents, dropzoneStoredFiles )
+
 			});
 
 		});
