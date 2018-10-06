@@ -823,6 +823,12 @@ function pno_get_listing_submission_fields() {
 			'required' => true,
 			'priority' => 13,
 		],
+		'listing_zipcode'               => [
+			'label'    => esc_html__( 'Zipcode' ),
+			'type'     => 'text',
+			'required' => false,
+			'priority' => 14,
+		],
 	];
 
 	$counter = 0;
