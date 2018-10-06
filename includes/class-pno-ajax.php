@@ -162,13 +162,7 @@ class PNO_Ajax {
 						)
 					);
 					if ( is_wp_error( $uploaded_file ) ) {
-						if ( $multiple ) {
-							$data['files'][] = array(
-								'error' => $uploaded_file->get_error_message(),
-							);
-						} else {
-							wp_send_json_error( [ 'message' => $uploaded_file->get_error_message() ], 422 );
-						}
+						wp_send_json_error( [ 'message' => $uploaded_file->get_error_message() ], 422 );
 					} else {
 						$data['files'][] = $uploaded_file;
 					}
