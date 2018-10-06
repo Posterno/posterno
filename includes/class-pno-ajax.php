@@ -193,19 +193,13 @@ class PNO_Ajax {
 
 		check_ajax_referer( 'pno_dropzone_remove_file_nonce', 'nonce' );
 
-		if ( ! isset( $_POST['files'] ) ) {
+		if ( ! isset( $_POST['file_path'] ) || ! isset( $_POST['file_url'] ) ) {
 			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong while removing the image.' ) ], 422 );
 		}
 
-		$files = maybe_unserialize( wp_unslash( $_POST['files'] ) );
-		$files = json_decode( $files );
+		$file_path = sanitize_text_field( $_POST['file_path'] );
 
-		if ( isset( $files->data ) && isset( $files->data->files ) ) {
-			foreach ( $files->data->files as $file_to_delete ) {
-				$file_path = $file_to_delete->file;
-				wp_delete_file( $file_path );
-			}
-		}
+		wp_delete_file( $file_path );
 
 		wp_send_json_success();
 

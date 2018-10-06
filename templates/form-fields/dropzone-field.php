@@ -47,7 +47,7 @@ $max_files = pno_dropzone_get_max_files_amount( $data );
 					<p class="small text-muted mb-0" data-dz-size></p>
 				</div>
 				<div class="col-md-4 text-md-right">
-					<button type="button" class="btn btn-secondary btn-sm" data-dz-remove><?php esc_html_e( 'Delete image' ); ?></button>
+					<a href="#" class="btn btn-secondary btn-sm" data-dz-remove><?php esc_html_e( 'Delete image' ); ?></a>
 				</div>
 			</div>
 		</li>

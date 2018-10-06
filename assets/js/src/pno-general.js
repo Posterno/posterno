@@ -66,6 +66,8 @@
 			var dropzoneAcceptedFiles = $(this).data('file-types')
 			var dropzoneComponents = $(this).next('.pno-dropzone-components')
 
+			var dropzoneStoredFiles = []
+
 			var PosternoDropzone = new Dropzone($(this).get(0), {
 				url: dropzonePostUrl,
 				thumbnailWidth: null,
@@ -122,6 +124,8 @@
 			});
 
 			PosternoDropzone.on('success', function (file, response) {
+				file.WordPressURL = response.data.files[0].url
+				file.WordPressPATH = response.data.files[0].file
 				window.Posterno.dropzoneHideError( dropzoneComponents )
 				window.Posterno.dropzoneStoreResponse( dropzoneComponents, response )
 			});
@@ -133,12 +137,10 @@
 
 			PosternoDropzone.on('removedfile', function (file) {
 				window.Posterno.dropzoneHideError( dropzoneComponents )
-				window.Posterno.dropzoneRemoveFilesFromServer(
-					window.Posterno.dropzoneGetStoredResponse( dropzoneComponents ),
-					dropzoneMultiple,
-					file
-				)
-				//window.Posterno.dropzoneResetStoredResponse( dropzoneComponents )
+				window.Posterno.dropzoneRemoveFilesFromServer( file )
+				if ( ! dropzoneMultiple ) {
+					window.Posterno.dropzoneResetStoredResponse(dropzoneComponents)
+				}
 			});
 
 		});
@@ -232,16 +234,15 @@
 	/**
 	 * Remove files from the server.
 	 */
-	window.Posterno.dropzoneRemoveFilesFromServer = function( files, multiple, file ) {
+	window.Posterno.dropzoneRemoveFilesFromServer = function( file ) {
 
-		if ( files !== undefined ) {
+		if ( file.WordPressPATH && file.WordPressURL ) {
 			$.post({
 				url: pno_submission.ajax,
 				data: {
 					'action': 'pno_remove_dropzone_file',
-					'files': files,
-					'multiple': multiple,
-					'file': file,
+					'file_path': file.WordPressPATH,
+					'file_url': file.WordPressURL,
 					'nonce': pno_submission.dropzone_remove_file_nonce
 				},
 				//success: function (data) {},
