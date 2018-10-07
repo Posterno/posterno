@@ -152,6 +152,9 @@ abstract class Forms {
 			case 'dropzone':
 				$field_type_class = '\PNO\Form\Field\DropzoneField';
 				break;
+			case 'listing-location':
+				$field_type_class = '\PNO\Form\Field\ListingLocationField';
+				break;
 		}
 
 		/**

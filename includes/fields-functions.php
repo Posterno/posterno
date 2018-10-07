@@ -829,6 +829,12 @@ function pno_get_listing_submission_fields() {
 			'required' => false,
 			'priority' => 14,
 		],
+		'listing_location'              => [
+			'label'    => esc_html__( 'Location' ),
+			'type'     => 'listing-location',
+			'required' => false,
+			'priority' => 15,
+		],
 	];
 
 	$counter = 0;
