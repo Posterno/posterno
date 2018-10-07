@@ -31,7 +31,7 @@ $registered_networks = pno_get_registered_social_media();
 	<!-- start inline vue template -->
 	<pno-social-profile-field inline-template>
 		<div>
-			<div class="row" v-for="(option, index) in definedSocialProfiles" :key="index">
+			<div class="form-row" v-for="(option, index) in definedSocialProfiles" :key="index">
 				<div class="col-md-6">
 					<pno-select2 inline-template v-model="definedSocialProfiles[index].social" data-placeholder="<?php esc_html_e( 'Select network' ); ?>">
 						<div class="pno-select2-wrapper">

@@ -64,7 +64,7 @@ $active_day       = key( $days_of_the_week );
 								<?php endforeach; ?>
 							<?php endif; ?>
 
-							<div class="row" v-if="canEnterHours( '<?php echo esc_attr( $day ); ?>' )" v-for="(timeslot, index) in timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours" :key="index">
+							<div class="form-row" v-if="canEnterHours( '<?php echo esc_attr( $day ); ?>' )" v-for="(timeslot, index) in timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours" :key="index">
 
 								<div class="col-sm-5">
 									<div class="form-group">

@@ -156,7 +156,8 @@ function pno_load_frontend_scripts() {
 	wp_enqueue_script( 'pno-general' );
 
 	$js_vars = [
-		'bootstrap' => (bool) pno_get_option( 'bootstrap_style' ),
+		'bootstrap'   => (bool) pno_get_option( 'bootstrap_style' ),
+		'mapProvider' => pno_get_option( 'map_provider', 'googlemaps' ),
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 
