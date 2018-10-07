@@ -629,7 +629,7 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Allow multiple categories' ),
 				'description' => esc_html__( 'Enable the option to let users select more than one category during listing submission.' ),
 			],
-			'submission_region_sublevel'   => [
+			'submission_region_sublevel'       => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow child regions' ),
 				'description' => esc_html__( 'Enable the option to display a parent to child hierarchy for the regions selector while submitting listings.' ),
@@ -650,6 +650,18 @@ function pno_get_registered_settings() {
 				'type'        => 'multicheckbox',
 				'options'     => pno_get_registered_social_media(),
 				'multiple'    => true,
+			],
+		],
+
+		/**
+		 * Listings mapping settings.
+		 */
+		'listings_maps'              => [
+			'map_provider' => [
+				'label'       => esc_html__( 'Map provider' ),
+				'description' => esc_html__( 'Select which maps provider to use across the website.' ),
+				'type'        => 'radio',
+				'options'     => pno_get_registered_maps_providers(),
 			],
 		],
 	];

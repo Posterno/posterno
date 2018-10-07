@@ -340,8 +340,29 @@ function pno_get_term_top_most_parent( $term_id, $taxonomy ) {
 	// climb up the hierarchy until we reach a term with parent = '0'.
 	while ( $parent->parent != '0' ) {
 		$term_id = $parent->parent;
-		$parent = get_term_by( 'id', $term_id, $taxonomy );
+		$parent  = get_term_by( 'id', $term_id, $taxonomy );
 	}
 
 	return $parent;
+}
+
+/**
+ * Retrieve the list of registered map providers in Posterno.
+ *
+ * @return array
+ */
+function pno_get_registered_maps_providers() {
+
+	$providers = [
+		'googlemaps' => esc_html__( 'Google maps' ),
+	];
+
+	/**
+	 * Allow developers to customize the registered maps providers for Posterno.
+	 *
+	 * @param array $provides the list of currently registered providers.
+	 * @return array
+	 */
+	return apply_filters( 'pno_registered_maps_providers', $providers );
+
 }
