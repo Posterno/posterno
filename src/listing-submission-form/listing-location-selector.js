@@ -15,22 +15,45 @@ Vue.component('pno-listing-location-selector', {
 			pinLock: true,
 			customCoordinates: false,
 			allowCustomAddress: false,
+			mapObject: null,
+			markerObject: null
 		}
 	},
 	mounted() {
 
+		var vm = this
+
 		loadGoogleMapsApi({
 			key: pno_settings.googleMapsApiKey,
 		}).then(function (googleMaps) {
-			new googleMaps.Map(document.querySelector('.pno-listing-submission-map'), {
+
+			vm.mapObject = new googleMaps.Map(document.querySelector('.pno-listing-submission-map'), {
 				center: {
 					lat: parseFloat( pno_settings.startingLatitude ),
 					lng: parseFloat( pno_settings.startingLongitude ),
 				},
-				zoom: parseFloat( pno_settings.mapZoom )
+				zoom: parseFloat( pno_settings.mapZoom ),
+				fullscreenControl: false,
+				streetViewControl: false,
+				mapTypeControl: false,
 			})
-		}).catch(function (error) {
-			console.error(error)
+
+			var myLatLng = {
+				lat: parseFloat( pno_settings.startingLatitude ),
+				lng: parseFloat( pno_settings.startingLongitude ),
+			};
+
+			var marker = new googleMaps.Marker({
+				position: myLatLng,
+				map: vm.mapObject,
+				draggable: vm.markerIsDraggable(),
+				title: 'Hello World!'
+			});
+
+			vm.markerObject = marker
+
+		}).catch( function (error) {
+			console.error( error )
 		})
 
 	},
@@ -46,6 +69,15 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		togglePinLock() {
 			this.pinLock = !this.pinLock;
+
+			if ( this.getMapProvider() === 'googlemaps' ) {
+				if (this.markerObject.getDraggable() === true) {
+					this.markerObject.setDraggable(false)
+				} else {
+					this.markerObject.setDraggable(true)
+				}
+			}
+
 		},
 		/**
 		 * Toggle display of the custom coordinates fields.
@@ -58,6 +90,12 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		toggleCustomAddress() {
 			this.allowCustomAddress = !this.allowCustomAddress;
+		},
+		/**
+		 * Determine if the toggled status for the dragging property of the marker on the map.
+		 */
+		markerIsDraggable() {
+			return this.pinLock === false ? true : false
 		}
 	}
 });
