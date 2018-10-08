@@ -25,8 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div id="pno-listing-location-selector">
 
+		<div class="alert alert-danger" role="alert" v-if="error">
+			{{errorMessage}}
+		</div>
+
 		<div class="input-group mb-3">
-			<input type="text" class="form-control" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
+			<input type="text" class="form-control" v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<a href="#"><i class="fas fa-compass"></i></a>
