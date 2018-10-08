@@ -24,10 +24,10 @@ Vue.component('pno-listing-location-selector', {
 		}).then(function (googleMaps) {
 			new googleMaps.Map(document.querySelector('.pno-listing-submission-map'), {
 				center: {
-					lat: 40.7484405,
-					lng: -73.9944191
+					lat: parseFloat( pno_settings.startingLatitude ),
+					lng: parseFloat( pno_settings.startingLongitude ),
 				},
-				zoom: 12
+				zoom: parseFloat( pno_settings.mapZoom )
 			})
 		}).catch(function (error) {
 			console.error(error)

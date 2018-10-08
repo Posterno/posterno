@@ -145,9 +145,12 @@ function pno_load_frontend_scripts() {
 	wp_enqueue_script( 'pno-general' );
 
 	$js_vars = [
-		'bootstrap'        => (bool) pno_get_option( 'bootstrap_style' ),
-		'mapProvider'      => pno_get_option( 'map_provider', 'googlemaps' ),
-		'googleMapsApiKey' => pno_get_option( 'google_maps_api_key' ),
+		'bootstrap'         => (bool) pno_get_option( 'bootstrap_style' ),
+		'mapProvider'       => pno_get_option( 'map_provider', 'googlemaps' ),
+		'googleMapsApiKey'  => pno_get_option( 'google_maps_api_key' ),
+		'startingLatitude'  => pno_get_option( 'map_starting_lat', '40.7484405' ),
+		'startingLongitude' => pno_get_option( 'map_starting_lng', '-73.9944191' ),
+		'mapZoom'           => pno_get_option( 'map_zoom', '12' ),
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 

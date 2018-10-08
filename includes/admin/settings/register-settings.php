@@ -668,6 +668,21 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Google Maps API Key' ),
 				'description' => __( 'Google requires an API key to display maps. Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key">Google Maps API developer site.</a>' ),
 			],
+			'map_starting_lat'    => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Starting address latitude' ),
+				'description' => esc_html__( 'Pick a starting position for the map. Eg: 40.7484405' ),
+			],
+			'map_starting_lng'    => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Starting address longitude' ),
+				'description' => esc_html__( 'Pick a starting position for the map. Eg: -73.9944191' ),
+			],
+			'map_zoom'    => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Starting map zoom level' ),
+				'description' => esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ),
+			],
 		],
 	];
 
