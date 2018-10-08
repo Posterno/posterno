@@ -19,6 +19,10 @@ Vue.component('pno-listing-location-selector', {
 			markerObject: null
 		}
 	},
+	/**
+	 * One page load, instantiate the map through the selected provider.
+	 * Create a marker on the starting position selected into the admin panel.
+	 */
 	mounted() {
 
 		var vm = this
@@ -38,6 +42,7 @@ Vue.component('pno-listing-location-selector', {
 				mapTypeControl: false,
 			})
 
+			// Create coordinates for the starting marker.
 			var myLatLng = {
 				lat: parseFloat( pno_settings.startingLatitude ),
 				lng: parseFloat( pno_settings.startingLongitude ),
@@ -47,7 +52,6 @@ Vue.component('pno-listing-location-selector', {
 				position: myLatLng,
 				map: vm.mapObject,
 				draggable: vm.markerIsDraggable(),
-				title: 'Hello World!'
 			});
 
 			vm.markerObject = marker
