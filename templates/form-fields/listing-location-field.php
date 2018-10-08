@@ -34,12 +34,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 
-		<div class="form-row mb-3" v-if="customCoordinates">
+		<div class="form-row mb-3" v-show="customCoordinates">
 			<div class="col">
-				<input type="text" class="form-control" placeholder="<?php esc_html_e( 'Latitude' ); ?>">
+				<input type="text" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>">
 			</div>
 			<div class="col">
-				<input type="text" class="form-control" placeholder="<?php esc_html_e( 'Longitude' ); ?>">
+				<input type="text" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>">
 			</div>
 		</div>
 

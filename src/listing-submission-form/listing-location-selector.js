@@ -1,6 +1,10 @@
 /*global Vue:true*/
 /*global pno_settings:true*/
-const loadGoogleMapsApi = require('load-google-maps-api')
+let PosternoMapApi = null
+
+if ( pno_settings.mapProvider === 'googlemaps' ) {
+	PosternoMapApi = require('load-google-maps-api')
+}
 
 Vue.component('pno-listing-location-selector', {
 	data() {
@@ -27,7 +31,7 @@ Vue.component('pno-listing-location-selector', {
 
 		var vm = this
 
-		loadGoogleMapsApi({
+		PosternoMapApi({
 			key: pno_settings.googleMapsApiKey,
 		}).then(function (googleMaps) {
 
@@ -52,6 +56,11 @@ Vue.component('pno-listing-location-selector', {
 				position: myLatLng,
 				map: vm.mapObject,
 				draggable: vm.markerIsDraggable(),
+			});
+
+			googleMaps.event.addListener(marker, 'dragend', function (event) {
+				let position = marker.getPosition()
+				vm.setCoordinates( position.lat(), position.lng() )
 			});
 
 			vm.markerObject = marker
@@ -100,6 +109,13 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		markerIsDraggable() {
 			return this.pinLock === false ? true : false
+		},
+		/**
+		 * Update the component's coordinates and refresh the map if needed.
+		 */
+		setCoordinates( lat, lng ) {
+			this.coordinates.lat = lat
+			this.coordinates.lng = lng
 		}
 	}
 });
