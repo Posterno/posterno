@@ -140,6 +140,17 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-select2' );
 	}
 
+	// Register pno's own stylesheet.
+	wp_enqueue_style( 'pno' );
+	wp_enqueue_script( 'pno-general' );
+
+	$js_vars = [
+		'bootstrap'        => (bool) pno_get_option( 'bootstrap_style' ),
+		'mapProvider'      => pno_get_option( 'map_provider', 'googlemaps' ),
+		'googleMapsApiKey' => pno_get_option( 'google_maps_api_key' ),
+	];
+	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
+
 	// Load vuejs scripts within the listing submission page.
 	if ( is_page( pno_get_listing_submission_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
@@ -150,16 +161,6 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-dropzone' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}
-
-	// Register pno's own stylesheet.
-	wp_enqueue_style( 'pno' );
-	wp_enqueue_script( 'pno-general' );
-
-	$js_vars = [
-		'bootstrap'   => (bool) pno_get_option( 'bootstrap_style' ),
-		'mapProvider' => pno_get_option( 'map_provider', 'googlemaps' ),
-	];
-	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 
 	// Js settings for the submission form.
 	wp_localize_script( 'pno-vue-listing-submission-form', 'pno_submission', pno_get_listings_submission_form_js_vars() );

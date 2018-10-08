@@ -131,6 +131,9 @@ form.pno-form-has-errors .field-has-errors {
   left: 10px;
   z-index: 999; }
 
+.pno-listing-submission-map {
+  height: 300px; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0; }

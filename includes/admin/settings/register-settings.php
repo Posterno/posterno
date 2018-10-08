@@ -656,12 +656,17 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings mapping settings.
 		 */
-		'listings_maps'              => [
-			'map_provider' => [
+		'listings_maps'             => [
+			'map_provider'        => [
 				'label'       => esc_html__( 'Map provider' ),
 				'description' => esc_html__( 'Select which maps provider to use across the website.' ),
 				'type'        => 'radio',
 				'options'     => pno_get_registered_maps_providers(),
+			],
+			'google_maps_api_key' => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Google Maps API Key' ),
+				'description' => __( 'Google requires an API key to display maps. Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key">Google Maps API developer site.</a>' ),
 			],
 		],
 	];

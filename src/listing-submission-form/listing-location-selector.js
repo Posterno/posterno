@@ -1,5 +1,7 @@
 /*global Vue:true*/
 /*global pno_settings:true*/
+const loadGoogleMapsApi = require('load-google-maps-api')
+
 Vue.component('pno-listing-location-selector', {
 	data() {
 		return {
@@ -14,6 +16,23 @@ Vue.component('pno-listing-location-selector', {
 			customCoordinates: false,
 			allowCustomAddress: false,
 		}
+	},
+	mounted() {
+
+		loadGoogleMapsApi({
+			key: pno_settings.googleMapsApiKey,
+		}).then(function (googleMaps) {
+			new googleMaps.Map(document.querySelector('.pno-listing-submission-map'), {
+				center: {
+					lat: 40.7484405,
+					lng: -73.9944191
+				},
+				zoom: 12
+			})
+		}).catch(function (error) {
+			console.error(error)
+		})
+
 	},
 	methods: {
 		/**

@@ -82,6 +82,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</a>
 		</nav>
 
+		<div class="pno-listing-submission-map mt-3"></div>
+
 	</div>
 
 </pno-listing-location-selector>
