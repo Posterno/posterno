@@ -11,6 +11,7 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package posterno
  */
 
 // Exit if accessed directly.
@@ -31,6 +32,9 @@ if ( $data->form->has_processing_error() ) {
 } elseif ( $data->form->is_successful() ) {
 	$message_type = 'success';
 	$message      = $data->form->get_success_message();
+} elseif ( $data->form->has_errors() ) {
+	$message_type = 'danger';
+	$message      = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
 }
 ?>
 
@@ -40,7 +44,7 @@ if ( $data->form->has_processing_error() ) {
 		<h2><?php echo esc_html( $data->title ); ?></h2>
 	<?php endif; ?>
 
-	<?php if( isset( $data->message ) && ! empty( $data->message ) ) : ?>
+	<?php if ( isset( $data->message ) && ! empty( $data->message ) ) : ?>
 		<p><?php echo wp_kses_post( $data->message ); ?></p>
 	<?php endif; ?>
 
