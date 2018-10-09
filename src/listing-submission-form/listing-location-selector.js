@@ -15,10 +15,10 @@ Vue.component('pno-listing-location-selector', {
 				lat: '',
 				lng: '',
 			},
-
 			pinLock: true,
 			customCoordinates: false,
 			allowCustomAddress: false,
+
 			mapObject: null,
 			markerObject: null,
 			geocoderObject: null,
