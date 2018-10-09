@@ -27,13 +27,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="alert alert-danger" role="alert" v-if="error">
 			{{errorMessage}}
+			<button type="button" class="close" aria-label="Close" @click="clearError()">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
 
 		<div class="input-group mb-3">
 			<input type="text" class="form-control" v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
 			<div class="input-group-append">
 				<span class="input-group-text">
-					<a href="#" @click="geolocate( $event )"><i class="fas fa-compass"></i></a>
+					<div class="pno-loading" v-if="geolocationLoading === true"></div>
+					<a href="#" @click.prevent.stop="geolocate( $event )" v-else>
+						<i class="fas fa-compass"></i>
+					</a>
 				</span>
 			</div>
 		</div>
@@ -54,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<nav class="nav nav-pills nav-justified">
-			<a class="nav-item nav-link" href="javascript:void(0)" @click="togglePinLock()">
+			<a class="nav-item nav-link" href="#" @click.prevent.stop="togglePinLock()">
 				<span v-if="pinLock === true">
 					<i class="fas fa-lock mr-2"></i>
 					<?php esc_html_e( 'Unlock pin location' ); ?>
@@ -64,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php esc_html_e( 'Lock pin location' ); ?>
 				</span>
 			</a>
-			<a class="nav-item nav-link" href="javascript:void(0)" @click="toggleCustomCoordinates()">
+			<a class="nav-item nav-link" href="#" @click.prevent.stop="toggleCustomCoordinates()">
 				<span v-if="customCoordinates === true">
 					<i class="fas fa-times-circle mr-2"></i>
 					<?php esc_html_e( 'Hide coordinates' ); ?>
@@ -74,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php esc_html_e( 'Enter coordinates' ); ?>
 				</span>
 			</a>
-			<a class="nav-item nav-link" href="javascript:void(0)" @click="toggleCustomAddress()">
+			<a class="nav-item nav-link" href="#" @click.prevent.stop="toggleCustomAddress()">
 				<span v-if="allowCustomAddress === true">
 					<i class="fas fa-times-circle mr-2"></i>
 					<?php esc_html_e( 'Hide custom address' ); ?>

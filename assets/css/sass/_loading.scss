@@ -1,41 +1,64 @@
 .pno-loading {
-	display: inline-block;
-	position: relative;
-	width: 64px;
-	height: 64px;
-}
-
-.pno-loading div {
-	box-sizing: border-box;
-	display: block;
-	position: absolute;
-	width: 51px;
-	height: 51px;
-	margin: 6px;
-	border: 6px solid #000;
+	width: 40px;
+	height: 40px;
+	border: 3px solid #6c757d;
+	border-top: 3px solid white;
 	border-radius: 50%;
-	animation: pno-loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-	border-color: #000 transparent transparent transparent;
 }
 
-.pno-loading div:nth-child(1) {
-	animation-delay: -0.45s;
+.pno-loading {
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: 1.2s;
+	-webkit-animation-name: rotate;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+
+	-moz-transition-property: -moz-transform;
+	-moz-animation-name: rotate;
+	-moz-animation-duration: 1.2s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+
+	transition-property: transform;
+	animation-name: rotate;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 
-.pno-loading div:nth-child(2) {
-	animation-delay: -0.3s;
+@-webkit-keyframes rotate {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+
+	to {
+		-webkit-transform: rotate(360deg);
+	}
 }
 
-.pno-loading div:nth-child(3) {
-	animation-delay: -0.15s;
+@-moz-keyframes rotate {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+
+	to {
+		-moz-transform: rotate(360deg);
+	}
 }
 
-@keyframes pno-loading {
-	0% {
+@keyframes rotate {
+	from {
 		transform: rotate(0deg);
 	}
 
-	100% {
+	to {
 		transform: rotate(360deg);
+	}
+}
+
+#pno-listing-location-selector {
+	.pno-loading {
+		height: 22px;
+		width: 22px;
 	}
 }

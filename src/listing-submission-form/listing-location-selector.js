@@ -24,6 +24,7 @@ Vue.component('pno-listing-location-selector', {
 			geocoderObject: null,
 			error: false,
 			errorMessage: '',
+			geolocationLoading: false,
 		}
 	},
 	/**
@@ -158,30 +159,68 @@ Vue.component('pno-listing-location-selector', {
 		/**
 		 * Load user's current position from the browser.
 		 */
-		geolocate( e ) {
-
-			e.stopPropagation()
+		geolocate() {
 
 			var vm = this
 
-			if (navigator.geolocation) {
+			this.geolocationLoading = true
 
+			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function (position) {
 
-					var pos = {
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
-					};
+					vm.setCoordinates( position.coords.latitude, position.coords.longitude )
+					vm.setAddressFromCoordinates( position.coords.latitude, position.coords.longitude )
+					vm.setMapLocation( position.coords.latitude, position.coords.longitude )
+					vm.setMarkerLocation( position.coords.latitude, position.coords.longitude )
 
-					console.log( pos )
-
+					vm.geolocationLoading = false
 
 				}, function () {
+					vm.geolocationLoading = false
 					vm.setError( pno_settings.labels.geolocationFailed )
 				});
 
 			} else {
+
+				this.geolocationLoading = false
 				this.setError( pno_settings.labels.geolocationNotSupported )
+
+			}
+
+		},
+		/**
+		 * Move the center of the map to another position given coordinates.
+		 */
+		setMapLocation( lat, lng ) {
+
+			if ( lat && lng ) {
+				if (this.getMapProvider() === 'googlemaps') {
+
+					this.mapObject.setCenter({
+						lat: parseFloat(lat),
+						lng: parseFloat(lng)
+					})
+
+					this.mapObject.setZoom( parseFloat( pno_settings.mapZoom ) )
+
+				}
+			}
+
+		},
+		/**
+		 * Adjust the position of the marker on the map given coordinates.
+		 */
+		setMarkerLocation( lat, lng ) {
+
+			if ( lat && lng ) {
+				var latlng = {
+					lat: parseFloat(lat),
+					lng: parseFloat(lng)
+				};
+
+				if (this.getMapProvider() === 'googlemaps') {
+					this.markerObject.setPosition( latlng )
+				}
 			}
 
 		},
