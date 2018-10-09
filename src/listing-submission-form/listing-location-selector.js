@@ -25,6 +25,7 @@ Vue.component('pno-listing-location-selector', {
 			error: false,
 			errorMessage: '',
 			geolocationLoading: false,
+			coordinatesBtnDisabled: true,
 		}
 	},
 	/**
@@ -147,10 +148,10 @@ Vue.component('pno-listing-location-selector', {
 						if ( results[0] ) {
 							vm.address = results[0].formatted_address
 						} else {
-							this.setError( pno_settings.labels.addressNotFound )
+							vm.setError( pno_settings.labels.addressNotFound )
 						}
 					} else {
-						this.setError( status )
+						vm.setError( status )
 					}
 				});
 			}
@@ -223,6 +224,23 @@ Vue.component('pno-listing-location-selector', {
 				}
 			}
 
+		},
+		/**
+		 * Save coordinates typed through the custom fields,
+		 * verify they're valid and geocode them through the maps api.
+		 */
+		saveCustomCoordinates() {
+
+			this.setAddressFromCoordinates( this.coordinates.lat, this.coordinates.lng )
+
+		},
+		/**
+		 * Enable the "save coordinates" button when user manually types custom coordinates.
+		 */
+		toggleCoordinatesSave() {
+			if ( this.coordinatesBtnDisabled === true ) {
+				this.coordinatesBtnDisabled = false
+			}
 		},
 		/**
 		 * Trigger an error message to be displayed on the frontend.
