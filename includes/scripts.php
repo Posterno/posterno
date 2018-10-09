@@ -152,7 +152,7 @@ function pno_load_frontend_scripts() {
 		'startingLongitude' => pno_get_option( 'map_starting_lng', '-73.9944191' ),
 		'mapZoom'           => pno_get_option( 'map_zoom', '12' ),
 		'labels'            => [
-			'addressNotFound'         => esc_html__( 'Address not found' ),
+			'addressNotFound'         => esc_html__( 'Address not found, please try again.' ),
 			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.' ),
 			'geolocationNotSupported' => esc_html__( 'Your browser doesn\'t support geolocation.' ),
 		],

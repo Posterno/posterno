@@ -47,11 +47,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="form-row mb-3" v-show="customCoordinates">
 			<div class="col">
 				<label for="inputAddress2"><?php esc_html_e( 'Latitude' ); ?></label>
-				<input type="text" id="custom-" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>" @input="toggleCoordinatesSave()">
+				<input type="text" id="custom-" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col">
 				<label for="inputAddress2"><?php esc_html_e( 'Longitude' ); ?></label>
-				<input type="text" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>" @input="toggleCoordinatesSave()">
+				<input type="text" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col-md-12 mt-3">
 				<button type="button" class="btn btn-secondary btn-block" @click="saveCustomCoordinates()" :disabled="coordinatesBtnDisabled"><?php esc_html_e( 'Save coordinates' ); ?></button>

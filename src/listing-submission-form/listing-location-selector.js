@@ -151,7 +151,12 @@ Vue.component('pno-listing-location-selector', {
 							vm.setError( pno_settings.labels.addressNotFound )
 						}
 					} else {
-						vm.setError( status )
+						if ( status === 'ZERO_RESULTS' ) {
+							vm.setError( pno_settings.labels.addressNotFound )
+							vm.setCoordinates( '', '' ) // Reset coordinates value.
+						} else {
+							vm.setError( status )
+						}
 					}
 				});
 			}
@@ -163,6 +168,8 @@ Vue.component('pno-listing-location-selector', {
 		geolocate() {
 
 			var vm = this
+
+			this.clearError()
 
 			this.geolocationLoading = true
 
@@ -231,16 +238,34 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		saveCustomCoordinates() {
 
+			this.clearError()
+
 			this.setAddressFromCoordinates( this.coordinates.lat, this.coordinates.lng )
+
+			setTimeout( () => {
+				if ( this.coordinates.lat === '' || this.coordinates.lng === '' ) {
+					this.disableCoordinatesSaving()
+				} else if ( this.coordinates.lat !== '' && this.coordinates.lng !== '' ) {
+					this.setMapLocation( this.coordinates.lat, this.coordinates.lng )
+					this.setMarkerLocation( this.coordinates.lat, this.coordinates.lng )
+					this.disableCoordinatesSaving()
+				}
+			}, 500 )
 
 		},
 		/**
 		 * Enable the "save coordinates" button when user manually types custom coordinates.
 		 */
-		toggleCoordinatesSave() {
+		enableCoordinatesSave() {
 			if ( this.coordinatesBtnDisabled === true ) {
 				this.coordinatesBtnDisabled = false
 			}
+		},
+		/**
+		 * Disable the button to save custom coordinates.
+		 */
+		disableCoordinatesSaving() {
+			this.coordinatesBtnDisabled = true
 		},
 		/**
 		 * Trigger an error message to be displayed on the frontend.
