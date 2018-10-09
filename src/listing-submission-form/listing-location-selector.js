@@ -156,14 +156,41 @@ Vue.component('pno-listing-location-selector', {
 
 		},
 		/**
+		 * Load user's current position from the browser.
+		 */
+		geolocate( e ) {
+
+			e.stopPropagation()
+
+			var vm = this
+
+			if (navigator.geolocation) {
+
+				navigator.geolocation.getCurrentPosition(function (position) {
+
+					var pos = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+
+					console.log( pos )
+
+
+				}, function () {
+					vm.setError( pno_settings.labels.geolocationFailed )
+				});
+
+			} else {
+				this.setError( pno_settings.labels.geolocationNotSupported )
+			}
+
+		},
+		/**
 		 * Trigger an error message to be displayed on the frontend.
 		 */
 		setError( message ) {
 			this.error = true
 			this.errorMessage = message
-			setTimeout( () => {
-				this.clearError()
-			}, 3000)
 		},
 		/**
 		 * Remove the error message from the frontend.

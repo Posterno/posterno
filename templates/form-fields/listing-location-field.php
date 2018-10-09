@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<input type="text" class="form-control" v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
 			<div class="input-group-append">
 				<span class="input-group-text">
-					<a href="#"><i class="fas fa-compass"></i></a>
+					<a href="#" @click="geolocate( $event )"><i class="fas fa-compass"></i></a>
 				</span>
 			</div>
 		</div>
