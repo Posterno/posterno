@@ -135,6 +135,8 @@ Vue.component('pno-listing-location-selector', {
 
 			var vm = this
 
+			this.clearError()
+
 			var latlng = {
 				lat: parseFloat(lat),
 				lng: parseFloat(lng)
@@ -169,8 +171,6 @@ Vue.component('pno-listing-location-selector', {
 
 			var vm = this
 
-			this.clearError()
-
 			this.geolocationLoading = true
 
 			if (navigator.geolocation) {
@@ -201,6 +201,8 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		setMapLocation( lat, lng ) {
 
+			this.clearError()
+
 			if ( lat && lng ) {
 				if (this.getMapProvider() === 'googlemaps') {
 
@@ -220,6 +222,8 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		setMarkerLocation( lat, lng ) {
 
+			this.clearError()
+
 			if ( lat && lng ) {
 				var latlng = {
 					lat: parseFloat(lat),
@@ -237,8 +241,6 @@ Vue.component('pno-listing-location-selector', {
 		 * verify they're valid and geocode them through the maps api.
 		 */
 		saveCustomCoordinates() {
-
-			this.clearError()
 
 			this.setAddressFromCoordinates( this.coordinates.lat, this.coordinates.lng )
 
