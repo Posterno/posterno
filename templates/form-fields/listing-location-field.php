@@ -46,12 +46,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="form-row mb-3" v-show="customCoordinates">
 			<div class="col">
-				<label for="inputAddress2"><?php esc_html_e( 'Latitude' ); ?></label>
-				<input type="text" id="custom-" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>" @input="enableCoordinatesSave()">
+				<label for="custom-lat"><?php esc_html_e( 'Latitude' ); ?></label>
+				<input type="text" id="custom-lat" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col">
-				<label for="inputAddress2"><?php esc_html_e( 'Longitude' ); ?></label>
-				<input type="text" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>" @input="enableCoordinatesSave()">
+				<label for="custom-lng"><?php esc_html_e( 'Longitude' ); ?></label>
+				<input type="text" id="custom-lng" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col-md-12 mt-3">
 				<button type="button" class="btn btn-secondary btn-block" @click="saveCustomCoordinates()" :disabled="coordinatesBtnDisabled"><?php esc_html_e( 'Save coordinates' ); ?></button>
@@ -60,7 +60,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="form-row mb-3" v-if="allowCustomAddress">
 			<div class="col">
-				<input type="text" class="form-control" placeholder="<?php esc_html_e( 'Enter custom address' ); ?>">
+				<label for="custom-address"><?php esc_html_e( 'Add a custom address' ); ?></label>
+				<input type="text" class="form-control" id="custom-address" v-model="customAddress" placeholder="<?php esc_html_e( 'Enter custom address' ); ?>">
 			</div>
 		</div>
 
