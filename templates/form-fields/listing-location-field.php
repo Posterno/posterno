@@ -103,3 +103,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 </pno-listing-location-selector>
+
+<input
+	type="hidden"
+	<?php pno_form_field_input_class( $data ); ?>
+	name="<?php echo esc_attr( $data->get_name() ); ?>"
+	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+>

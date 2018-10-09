@@ -282,6 +282,39 @@ Vue.component('pno-listing-location-selector', {
 		clearError() {
 			this.error = false
 			this.errorMessage = null
+		},
+		/**
+		 * Save vue's data within the hidden input field on the
+		 */
+		saveField() {
+			var data = {
+				coordinates: this.coordinates,
+				address: this.address,
+				custom_address: this.customAddress,
+			}
+			document.getElementById('listing_location').value = JSON.stringify(data);
 		}
+	},
+	watch: {
+		/**
+		 * Watch for changes to the vue model and store changes into the frontend field
+		 * so that we can use it via php when submitting the form.
+		 */
+		address: {
+			handler: function () {
+				this.saveField()
+			},
+		},
+		customAddress: {
+			handler: function () {
+				this.saveField()
+			},
+		},
+		coordinates: {
+			handler: function () {
+				this.saveField()
+			},
+			deep: true
+		},
 	}
 });
