@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<div class="input-group mb-3">
-			<input type="text" class="form-control" v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
+			<input type="text" class="form-control" id="pno-address-autocomplete" v-on:keydown.enter.prevent v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<div class="pno-loading" v-if="geolocationLoading === true"></div>

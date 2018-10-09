@@ -22,6 +22,7 @@ Vue.component('pno-listing-location-selector', {
 			mapObject: null,
 			markerObject: null,
 			geocoderObject: null,
+			autocompleteObject: null,
 			error: false,
 			errorMessage: '',
 			geolocationLoading: false,
@@ -38,6 +39,7 @@ Vue.component('pno-listing-location-selector', {
 
 		PosternoMapApi({
 			key: pno_settings.googleMapsApiKey,
+			libraries: [ 'places' ]
 		}).then(function (googleMaps) {
 
 			vm.mapObject = new googleMaps.Map(document.querySelector('.pno-listing-submission-map'), {
@@ -74,6 +76,38 @@ Vue.component('pno-listing-location-selector', {
 			});
 
 			vm.markerObject = marker
+
+			// Initialize the autocomplete.
+			var autoCompleteInput = document.getElementById('pno-address-autocomplete')
+			vm.autocompleteObject = new googleMaps.places.Autocomplete(autoCompleteInput);
+
+			// Bind the map's bounds (viewport) property to the autocomplete object,
+			// so that the autocomplete requests use the current map bounds for the
+			// bounds option in the request.
+			vm.autocompleteObject.bindTo('bounds', vm.mapObject);
+
+			vm.autocompleteObject.addListener('place_changed', function () {
+
+				var place = vm.autocompleteObject.getPlace();
+
+				// User entered the name of a Place that was not suggested and
+				// pressed the Enter key, or the Place Details request failed.
+				if ( ! place.geometry ) {
+					return;
+				}
+
+				var lat = place.geometry.location.lat(),
+					lng = place.geometry.location.lng();
+
+				vm.setCoordinates( lat, lng )
+				vm.setMapLocation( lat, lng )
+				vm.setMarkerLocation( lat, lng )
+
+				if ( place.formatted_address !== undefined ) {
+					vm.address = place.formatted_address
+				}
+
+			});
 
 		}).catch(function (error) {
 			vm.setError( error )
