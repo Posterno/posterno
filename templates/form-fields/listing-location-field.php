@@ -58,13 +58,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 
-		<div class="form-row mb-3" v-if="allowCustomAddress">
-			<div class="col">
-				<label for="custom-address"><?php esc_html_e( 'Add a custom address' ); ?></label>
-				<input type="text" class="form-control" id="custom-address" v-model="customAddress" placeholder="<?php esc_html_e( 'Enter custom address' ); ?>">
-			</div>
-		</div>
-
 		<nav class="nav nav-pills nav-justified">
 			<a class="nav-item nav-link" href="#" @click.prevent.stop="togglePinLock()">
 				<span v-if="pinLock === true">
@@ -84,16 +77,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span v-else>
 					<i class="fas fa-map-pin mr-2"></i>
 					<?php esc_html_e( 'Enter coordinates' ); ?>
-				</span>
-			</a>
-			<a class="nav-item nav-link" href="#" @click.prevent.stop="toggleCustomAddress()">
-				<span v-if="allowCustomAddress === true">
-					<i class="fas fa-times-circle mr-2"></i>
-					<?php esc_html_e( 'Hide custom address' ); ?>
-				</span>
-				<span v-else>
-					<i class="fas fa-map-marked mr-2"></i>
-					<?php esc_html_e( 'Set custom address' ); ?>
 				</span>
 			</a>
 		</nav>

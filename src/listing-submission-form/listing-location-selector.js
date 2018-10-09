@@ -10,14 +10,12 @@ Vue.component('pno-listing-location-selector', {
 	data() {
 		return {
 			address: '',
-			customAddress: '',
 			coordinates: {
 				lat: '',
 				lng: '',
 			},
 			pinLock: true,
 			customCoordinates: false,
-			allowCustomAddress: false,
 
 			mapObject: null,
 			markerObject: null,
@@ -142,12 +140,6 @@ Vue.component('pno-listing-location-selector', {
 		 */
 		toggleCustomCoordinates() {
 			this.customCoordinates = !this.customCoordinates;
-		},
-		/**
-		 * Toggle display of the custom address fields.
-		 */
-		toggleCustomAddress() {
-			this.allowCustomAddress = !this.allowCustomAddress;
 		},
 		/**
 		 * Determine if the toggled status for the dragging property of the marker on the map.
@@ -324,7 +316,6 @@ Vue.component('pno-listing-location-selector', {
 			var data = {
 				coordinates: this.coordinates,
 				address: this.address,
-				custom_address: this.customAddress,
 			}
 			document.getElementById('listing_location').value = JSON.stringify(data);
 		}
@@ -335,11 +326,6 @@ Vue.component('pno-listing-location-selector', {
 		 * so that we can use it via php when submitting the form.
 		 */
 		address: {
-			handler: function () {
-				this.saveField()
-			},
-		},
-		customAddress: {
 			handler: function () {
 				this.saveField()
 			},
