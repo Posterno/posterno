@@ -151,6 +151,9 @@ function pno_load_frontend_scripts() {
 		'startingLatitude'  => pno_get_option( 'map_starting_lat', '40.7484405' ),
 		'startingLongitude' => pno_get_option( 'map_starting_lng', '-73.9944191' ),
 		'mapZoom'           => pno_get_option( 'map_zoom', '12' ),
+		'labels'            => [
+			'addressNotFound' => esc_html__( 'Address not found' ),
+		],
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 

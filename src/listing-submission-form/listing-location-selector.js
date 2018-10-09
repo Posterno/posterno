@@ -64,16 +64,17 @@ Vue.component('pno-listing-location-selector', {
 				draggable: vm.markerIsDraggable(),
 			});
 
+			// When the marker has been dropped, grab coordinates and geocode an address.
 			googleMaps.event.addListener(marker, 'dragend', function (event) {
 				let position = marker.getPosition()
 				vm.setCoordinates(position.lat(), position.lng())
-				vm.getAddressFromCoordinates(position.lat(), position.lng())
+				vm.setAddressFromCoordinates(position.lat(), position.lng())
 			});
 
 			vm.markerObject = marker
 
 		}).catch(function (error) {
-			console.error(error)
+			vm.setError( error )
 		})
 
 	},
@@ -128,7 +129,7 @@ Vue.component('pno-listing-location-selector', {
 		/**
 		 * Retrieve a geocoded address from given coordinates.
 		 */
-		getAddressFromCoordinates(lat, lng) {
+		setAddressFromCoordinates(lat, lng) {
 
 			var vm = this
 
@@ -145,7 +146,7 @@ Vue.component('pno-listing-location-selector', {
 						if ( results[0] ) {
 							vm.address = results[0].formatted_address
 						} else {
-							console.log( 'No results found' )
+							this.setError( pno_settings.labels.addressNotFound )
 						}
 					} else {
 						this.setError( status )
@@ -154,10 +155,19 @@ Vue.component('pno-listing-location-selector', {
 			}
 
 		},
+		/**
+		 * Trigger an error message to be displayed on the frontend.
+		 */
 		setError( message ) {
 			this.error = true
 			this.errorMessage = message
+			setTimeout( () => {
+				this.clearError()
+			}, 3000)
 		},
+		/**
+		 * Remove the error message from the frontend.
+		 */
 		clearError() {
 			this.error = false
 			this.errorMessage = null
