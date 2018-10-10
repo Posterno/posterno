@@ -88,11 +88,9 @@ $max_files = pno_dropzone_get_max_files_amount( $data );
 	<input
 		type="hidden"
 		<?php pno_form_field_input_class( $data ); ?>
+		name="<?php echo esc_attr( $data->get_name() ); ?>"
 		id="<?php echo esc_attr( $data->get_id() ); ?>"
-		aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
-		name="<?php echo esc_attr( $data->get_id() ); ?>"
-		value=""
-		<?php echo $data->get_attributes(); //phpcs:ignore ?>
+		value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
 	>
 
 </div>
