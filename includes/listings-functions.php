@@ -138,7 +138,7 @@ function pno_get_user_submitted_listings( $user_id ) {
 		'post_type'      => 'listings',
 		'posts_per_page' => absint( pno_get_listings_per_page_dashboard() ),
 		'author'         => absint( $user_id ),
-		'post_status'    => 'publish',
+		'post_status'    => [ 'publish', 'pending' ],
 		'fields'         => 'ids',
 		'paged'          => $paged,
 	];
