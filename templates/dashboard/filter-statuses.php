@@ -16,7 +16,9 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$statuses            = pno_get_dashboard_listings_statuses();
+$statuses = pno_get_dashboard_listings_statuses();
+$statuses = [ 'all' => esc_html__( 'All listings' ) ] + $statuses;
+
 $active_status       = pno_get_dashboard_active_listings_status();
 $active_status_label = $statuses[ $active_status ];
 

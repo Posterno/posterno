@@ -144,7 +144,7 @@ function pno_get_user_submitted_listings( $user_id ) {
 	];
 
 	// Detect if a status has been selected within the dashboard page.
-	if ( isset( $_GET['listing_status'] ) && ! empty( $_GET['listing_status'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'verify_listings_dashboard_status' ) ) {
+	if ( isset( $_GET['listing_status'] ) && ! empty( $_GET['listing_status'] ) && $_GET['listing_status'] !== 'all' && wp_verify_nonce( $_GET['_wpnonce'], 'verify_listings_dashboard_status' ) ) {
 		$query_args['post_status'] = pno_get_dashboard_active_listings_status();
 	}
 
@@ -283,7 +283,7 @@ function pno_get_dashboard_listings_statuses() {
 function pno_get_dashboard_active_listings_status() {
 
 	$statuses      = pno_get_dashboard_listings_statuses();
-	$active_status = 'publish';
+	$active_status = 'all';
 
 	if ( isset( $_GET['listing_status'] ) && ! empty( $_GET['listing_status'] ) ) { //phpcs:ignore
 		$status = sanitize_key( $_GET['listing_status'] );
