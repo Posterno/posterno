@@ -39,7 +39,7 @@
 	 * Transform dropdowns in select2 elements.
 	 */
 	window.Posterno.select2 = function () {
-		window.Posterno.formSelectFields.select2({
+		$( window.Posterno.formSelectFields ).select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
 			width: '100%'
