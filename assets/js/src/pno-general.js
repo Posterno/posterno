@@ -51,6 +51,10 @@
 	 */
 	window.Posterno.dropzoneInit = function () {
 
+		if ( ! window.Posterno.dropzoneFields.length && Dropzone !== undefined ) {
+			return
+		}
+
 		// Disable auto discover for all elements:
 		Dropzone.autoDiscover = false;
 
