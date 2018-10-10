@@ -639,6 +639,26 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'How many categories?' ),
 				'description' => esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
 			],
+			'submission_moderated'             => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Moderate new listings' ),
+				'description' => esc_html__( 'Enable the option to require admin approval of all new listing submissions.' ),
+			],
+			'submission_allow_pendings_edit'   => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Allow pending edits' ),
+				'description' => esc_html__( 'Enable the option to allow editing of pending listings. Users can continue to edit pending listings until they are approved by an admin.' ),
+			],
+			'submission_edit_moderated'        => [
+				'type'        => 'radio',
+				'label'       => esc_html__( 'Allow published edits' ),
+				'description' => esc_html__( 'Choose whether published listings can be edited and if edits require admin approval. When moderation is required, the original listings will be unpublished while edits await admin approval.' ),
+				'options'     => [
+					'no'            => esc_html__( 'Users cannot edit' ),
+					'yes'           => esc_html__( 'Users can edit without admin approval' ),
+					'yes_moderated' => esc_html__( 'Users can edit, but edits require admin approval' ),
+				],
+			],
 		],
 		/**
 		 * Listings content settings.
@@ -678,7 +698,7 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Starting address longitude' ),
 				'description' => esc_html__( 'Pick a starting position for the map. Eg: -73.9944191' ),
 			],
-			'map_zoom'    => [
+			'map_zoom'            => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Starting map zoom level' ),
 				'description' => esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ),
