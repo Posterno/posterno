@@ -22,4 +22,9 @@ $type = isset( $data->type ) ? esc_attr( $data->type ) : 'info';
 
 <div class="alert alert-<?php echo $type; ?>" role="alert">
 	<?php echo $data->message; ?>
+	<?php if ( isset( $data->dismiss ) && $data->dismiss === true ) : ?>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<?php endif; ?>
 </div>

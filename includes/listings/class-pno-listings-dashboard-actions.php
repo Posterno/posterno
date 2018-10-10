@@ -105,6 +105,7 @@ class PNO_Listings_Dashboard_Actions {
 				[
 					'type'    => 'success',
 					'message' => $message,
+					'dismiss' => true,
 				]
 			)
 			->get_template_part( 'message' );
