@@ -72,6 +72,23 @@ defined( 'ABSPATH' ) || exit;
 									<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
 								<?php elseif ( $col_key == 'expires' ) : ?>
 									<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
+								<?php elseif ( $col_key == 'status' ) : ?>
+									<td>
+										<?php
+										if ( array_key_exists( get_post_status( $listing_id ), pno_get_listing_post_statuses() ) ) :
+
+											$statuses       = pno_get_listing_post_statuses();
+											$status_id      = get_post_status( $listing_id );
+											$current_status = $statuses[ $status_id ];
+
+											?>
+
+											<span class="pno-listing-status-<?php echo esc_attr( $status_id ); ?>">
+												<?php echo esc_html( $current_status ); ?>
+											</span>
+
+										<?php endif; ?>
+									</td>
 								<?php elseif ( $col_key == 'actions' ) : ?>
 									<td>
 										<?php
