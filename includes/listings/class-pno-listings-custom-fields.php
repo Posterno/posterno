@@ -254,11 +254,11 @@ class PNO_Listings_Custom_Fields {
 				->set_html( '<h4>' . ucfirst( esc_html( $day_name ) ) . '</h4>' )
 				->set_classes( 'inline-metabox-message' );
 
-			$fields[] = Field::make( 'radio', $day_string . '_time_slots', false )
+			$fields[] = Field::make( 'radio', $day_string . '_time_slots', '' )
 				->set_classes( 'inline-radio-selector' )
 				->add_options( 'pno_get_listing_time_slots' );
 
-			$fields[] = Field::make( 'time', $day_string . '_opening', false )
+			$fields[] = Field::make( 'time', $day_string . '_opening', '' )
 				->set_conditional_logic(
 					array(
 						'relation' => 'AND',
@@ -274,7 +274,7 @@ class PNO_Listings_Custom_Fields {
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
-			$fields[] = Field::make( 'time', $day_string . '_closing', false )
+			$fields[] = Field::make( 'time', $day_string . '_closing', '' )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
@@ -305,11 +305,11 @@ class PNO_Listings_Custom_Fields {
 				->set_collapsed( true )
 				->add_fields(
 					array(
-						Field::make( 'time', $day_string . '_opening', false )
+						Field::make( 'time', $day_string . '_opening', '' )
 							->set_attribute( 'placeholder', self::$opening_at )
 							->set_picker_options( self::get_timepicker_config() )
 							->set_width( 50 ),
-						Field::make( 'time', $day_string . '_closing', false )
+						Field::make( 'time', $day_string . '_closing', '' )
 							->set_attribute( 'placeholder', self::$closing_at )
 							->set_picker_options( self::get_timepicker_config() )
 							->set_width( 50 ),
