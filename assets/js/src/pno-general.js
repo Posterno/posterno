@@ -39,6 +39,11 @@
 	 * Transform dropdowns in select2 elements.
 	 */
 	window.Posterno.select2 = function () {
+
+		if ( ! window.Posterno.formSelectFields.length ) {
+			return
+		}
+
 		$( window.Posterno.formSelectFields ).select2({
 			theme: 'default',
 			placeholder: $(this).data('placeholder'),
@@ -51,7 +56,7 @@
 	 */
 	window.Posterno.dropzoneInit = function () {
 
-		if ( ! window.Posterno.dropzoneFields.length && Dropzone !== undefined ) {
+		if ( ! window.Posterno.dropzoneFields.length ) {
 			return
 		}
 
