@@ -505,3 +505,12 @@ function pno_get_listing_time_slots() {
 	return apply_filters( 'pno_listing_time_slots', $time_slots );
 
 }
+
+/**
+ * Determine if new listings submissions are moderated or not.
+ *
+ * @return boolean
+ */
+function pno_listing_submission_is_moderated() {
+	return pno_get_option( 'submission_moderated', false );
+}
