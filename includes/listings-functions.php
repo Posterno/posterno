@@ -532,3 +532,56 @@ function pno_pending_listings_can_be_edited() {
 function pno_published_listings_can_be_edited() {
 	return pno_get_option( 'submission_edit_moderated', 'no' );
 }
+
+/**
+ * Store social profiles to a given listing.
+ *
+ * @param string       $listing_id the id number of the listing.
+ * @param array|string $social_profiles associative array of social profiles to save to the listing.
+ * @return void
+ */
+function pno_save_listing_social_profiles( $listing_id, $social_profiles ) {
+
+	if ( ! $social_profiles || ! $listing_id ) {
+		return;
+	}
+
+	if ( ! is_array( $social_profiles ) ) {
+		$social_profiles = json_decode( $social_profiles );
+	}
+
+	$profiles = [];
+
+	if ( is_array( $social_profiles ) && ! empty( $social_profiles ) ) {
+		foreach ( $social_profiles as $profile ) {
+			$social_id  = sanitize_text_field( $profile->social );
+			$social_url = esc_url( $profile->url );
+			$profiles[] = [
+				'social_id'  => $social_id,
+				'social_url' => $social_url,
+			];
+		}
+		carbon_set_post_meta( $listing_id, 'listing_social_profiles', $profiles );
+	}
+
+}
+
+/**
+ * Store opening hours within the given listing. This function is used only within
+ * the frontend listing submission form.
+ *
+ * @param string       $listing_id the listing id number.
+ * @param array|string $opening_hours the opening hours to store within the listing.
+ * @return void
+ */
+function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours ) {
+
+	if ( ! $opening_hours || ! $listing_id ) {
+		return;
+	}
+
+	if ( ! is_array( $opening_hours ) ) {
+		$opening_hours = json_decode( $opening_hours );
+	}
+
+}

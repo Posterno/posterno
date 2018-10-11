@@ -271,22 +271,26 @@ class PNO_Listings_Custom_Fields {
 				)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$opening_at )
+				->set_storage_format( 'H:i' )
+				->set_input_format( 'H:i', 'H:i' )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'time', $day_string . '_closing', '' )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
+				->set_conditional_logic(
 					array(
-						'field'   => $day_string . '_time_slots',
-						'value'   => 'hours',
-						'compare' => '=',
-					),
+						'relation' => 'AND',
+						array(
+							'field'   => $day_string . '_time_slots',
+							'value'   => 'hours',
+							'compare' => '=',
+						),
+					)
 				)
-			)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
 				->set_attribute( 'placeholder', self::$closing_at )
+				->set_storage_format( 'H:i' )
+				->set_input_format( 'H:i', 'H:i' )
 				->set_picker_options( self::get_timepicker_config() )
 				->set_width( 50 );
 
@@ -308,10 +312,14 @@ class PNO_Listings_Custom_Fields {
 						Field::make( 'time', $day_string . '_opening', '' )
 							->set_attribute( 'placeholder', self::$opening_at )
 							->set_picker_options( self::get_timepicker_config() )
+							->set_storage_format( 'H:i' )
+							->set_input_format( 'H:i', 'H:i' )
 							->set_width( 50 ),
 						Field::make( 'time', $day_string . '_closing', '' )
 							->set_attribute( 'placeholder', self::$closing_at )
 							->set_picker_options( self::get_timepicker_config() )
+							->set_storage_format( 'H:i' )
+							->set_input_format( 'H:i', 'H:i' )
 							->set_width( 50 ),
 					)
 				);

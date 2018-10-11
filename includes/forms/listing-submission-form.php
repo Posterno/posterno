@@ -257,9 +257,71 @@ class ListingSubmissionForm extends Forms {
 
 				$values = $this->form->get_data();
 
-				print_r( $values );
-				exit;
+				/**
+				 * Allow developers to extend the listing submisison process.
+				 * This action is fired before actually creating the new listing.
+				 *
+				 * @param array $values all the fields submitted through the form.
+				 * @param object $this the class instance managing the form.
+				 */
+				do_action( 'pno_before_listing_submission', $values, $this );
 
+				// Grab main listing details.
+				$listing_title       = $values['listing_title'];
+				$listing_description = $values['listing_description'];
+				$listing_author      = get_current_user_id();
+				$listing_status      = pno_listing_submission_is_moderated() ? 'pending' : 'publish';
+
+				$listing_data = [
+					'post_title'   => $listing_title,
+					'post_content' => $listing_description,
+					'post_status'  => $listing_status,
+					'post_author'  => $listing_author,
+					'post_type'    => 'listings',
+				];
+
+				$new_listing_id = wp_insert_post( $listing_data );
+
+				if ( is_wp_error( $new_listing_id ) ) {
+					throw new \Exception( $new_listing_id->get_error_message() );
+				} else {
+
+					// Now manipulate the default fields data and store them if necessary.
+					if ( isset( $values['listing_email_address'] ) && ! empty( $values['listing_email_address'] ) ) {
+						carbon_set_post_meta( $new_listing_id, 'listing_email', $values['listing_email_address'] );
+					}
+					if ( isset( $values['listing_phone_number'] ) && ! empty( $values['listing_phone_number'] ) ) {
+						carbon_set_post_meta( $new_listing_id, 'listing_phone_number', $values['listing_phone_number'] );
+					}
+					if ( isset( $values['listing_website'] ) && ! empty( $values['listing_website'] ) ) {
+						carbon_set_post_meta( $new_listing_id, 'listing_website', $values['listing_website'] );
+					}
+					if ( isset( $values['listing_video'] ) && ! empty( $values['listing_video'] ) ) {
+						carbon_set_post_meta( $new_listing_id, 'listing_media_embed', $values['listing_video'] );
+					}
+
+					if ( isset( $values['listing_social_media_profiles'] ) && ! empty( $values['listing_social_media_profiles'] ) ) {
+						pno_save_listing_social_profiles( $new_listing_id, $values['listing_social_media_profiles'] );
+					}
+
+					if ( isset( $values['listing_opening_hours'] ) && ! empty( $values['listing_opening_hours'] ) ) {
+						pno_save_submitted_listing_opening_hours( $new_listing_id, $values['listing_opening_hours'] );
+					}
+
+					var_dump( $new_listing_id );
+					exit;
+
+					/**
+					 * Allow developers to extend the listing submission process.
+					 * This action is fired after creating the new listing.
+					 *
+					 * @param array $values all the fields submitted through the form.
+					 * @param string $new_listing_id the id number of the newly created listing.
+					 * @param object $this the class instance managing the form.
+					 */
+					do_action( 'pno_after_listing_submission', $values, $new_listing_id, $this );
+
+				}
 			}
 		} catch ( \Exception $e ) {
 			$this->form->set_processing_error( $e->getMessage() );
