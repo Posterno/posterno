@@ -246,7 +246,7 @@ function pno_get_days_of_the_week() {
  */
 function pno_get_submission_queried_listing_type_id() {
 
-	return isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false;
+	return isset( $_GET['listing_type'] ) && ! empty( sanitize_text_field( $_GET['listing_type'] ) ) ? absint( $_GET['listing_type'] ) : false;
 
 }
 
