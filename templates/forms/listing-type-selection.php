@@ -25,23 +25,30 @@ defined( 'ABSPATH' ) || exit;
 	<?php endif; ?>
 
 	<div class="row pno-types-container">
-		<?php foreach ( pno_get_listings_types() as $type_id => $type_name ) : ?>
+		<?php
 
-			<div class="col-sm-4">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title"><?php echo esc_html( $type_name ); ?></h5>
-						<?php if ( $listing_type_description = carbon_get_term_meta( $type_id, 'submission_description' ) ) : ?>
-							<p class="card-text"><?php echo wp_kses_post( $listing_type_description ); ?></p>
-						<?php endif; ?>
-						<form action="<?php echo esc_url( $data->form->get_action() ); ?>" method="post" id="pno-select-listing-type-<?php echo esc_attr( $type_id ); ?>">
-							<input type="hidden" name="pno_selected_listing_type_id" value="<?php echo absint( $type_id ); ?>">
-							<?php wp_nonce_field( "verify_listing_type_selection_{$type_id}_form", "listing_type_selection_{$type_id}_nonce" ); ?>
-							<button type="submit" class="btn btn-secondary"><?php echo esc_html( $data->submit_label ); ?></button>
-						</form>
-					</div>
+		foreach ( pno_get_listings_types() as $type_id => $type_name ) :
+
+			$submission_url = add_query_arg(
+				[
+					'listing_type' => absint( $type_id ),
+				],
+				get_permalink()
+			);
+
+		?>
+
+		<div class="col-sm-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title"><?php echo esc_html( $type_name ); ?></h5>
+					<?php if ( $listing_type_description = carbon_get_term_meta( $type_id, 'submission_description' ) ) : ?>
+						<p class="card-text"><?php echo wp_kses_post( $listing_type_description ); ?></p>
+					<?php endif; ?>
+					<a href="<?php echo esc_url( $submission_url ); ?>" class="btn btn-secondary"><?php echo esc_html( $data->submit_label ); ?></a>
 				</div>
 			</div>
+		</div>
 
 		<?php endforeach; ?>
 	</div>
