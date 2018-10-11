@@ -523,3 +523,12 @@ function pno_listing_submission_is_moderated() {
 function pno_pending_listings_can_be_edited() {
 	return pno_get_option( 'submission_allow_pendings_edit', false );
 }
+
+/**
+ * Determine if published listings can be edited and if so, are they moderated or not.
+ *
+ * @return string
+ */
+function pno_published_listings_can_be_edited() {
+	return pno_get_option( 'submission_edit_moderated', 'no' );
+}
