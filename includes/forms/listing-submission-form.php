@@ -204,9 +204,7 @@ class ListingSubmissionForm extends Forms {
 		$type_id = $this->get_submitted_listing_type_id();
 
 		if ( $type_id ) {
-			if ( wp_verify_nonce( $_POST[ "listing_type_selection_{$type_id}_nonce" ], "verify_listing_type_selection_{$type_id}_form" ) ) {
-				$step = 'submit_listing';
-			}
+			$step = 'submit_listing';
 		} elseif ( ! empty( $_POST[ 'submit_' . $this->form->get_name() ] ) ) {
 			$step = 'submit_listing';
 		}
@@ -225,8 +223,8 @@ class ListingSubmissionForm extends Forms {
 		$id = false;
 
 		//phpcs:ignore
-		if ( isset( $_POST['pno_selected_listing_type_id'] ) && ! empty( $_POST['pno_selected_listing_type_id'] ) ) {
-			$id = absint( $_POST['pno_selected_listing_type_id'] );
+		if ( isset( $_GET['listing_type'] ) && ! empty( $_GET['listing_type'] ) ) {
+			$id = absint( $_GET['listing_type'] );
 		}
 
 		return $id;
