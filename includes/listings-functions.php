@@ -514,3 +514,12 @@ function pno_get_listing_time_slots() {
 function pno_listing_submission_is_moderated() {
 	return pno_get_option( 'submission_moderated', false );
 }
+
+/**
+ * Determine if users can continue to edit pending listings until they are approved by an admin.
+ *
+ * @return boolean
+ */
+function pno_pending_listings_can_be_edited() {
+	return pno_get_option( 'submission_allow_pendings_edit', false );
+}
