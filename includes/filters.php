@@ -251,20 +251,26 @@ add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delet
 /**
  * Adjust some settings of the terms dropdown field.
  *
- * @param array $args field settings.
+ * @param array          $args terms args.
+ * @param PNO\Form\Field $field the field's object.
  * @return array
  */
-function pno_set_placeholder_for_term_select( $args ) {
+function pno_set_placeholder_for_term_select( $args, $field ) {
 
 	if ( isset( $args['taxonomy'] ) && $args['taxonomy'] === 'listings-locations' ) {
 		$args['option_none_value'] = '';
 		$args['show_option_none']  = esc_html__( 'Select a region' );
 	}
 
+	if ( $field->get_id() === 'listing_regions' && pno_get_option( 'submission_region_sublevel' ) ) {
+		$args['hierarchical'] = true;
+		$args['walker']       = new PNO\Utils\TermsHierarchyDropdown;
+	}
+
 	return $args;
 
 }
-add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_set_placeholder_for_term_select' );
+add_filter( 'pno_term_select_field_wp_dropdown_categories_args', 'pno_set_placeholder_for_term_select', 20, 2 );
 
 /**
  * Allow inclusion of placeholders for terms selection fields when powered by Select2.

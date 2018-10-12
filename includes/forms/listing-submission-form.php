@@ -342,8 +342,6 @@ class ListingSubmissionForm extends Forms {
 						}
 					}
 
-
-
 					var_dump( $new_listing_id );
 					exit;
 
