@@ -308,6 +308,17 @@ class ListingSubmissionForm extends Forms {
 						pno_save_submitted_listing_opening_hours( $new_listing_id, $values['listing_opening_hours'] );
 					}
 
+					// Create a featured image for the listing.
+					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
+						$attachment = json_decode( $values['listing_featured_image'] );
+						if ( isset( $attachment[0] ) && isset( $attachment[0]->url ) ) {
+							$attachment_id = $this->create_attachment( $new_listing_id, $attachment[0]->url );
+							if ( $attachment_id ) {
+								set_post_thumbnail( $new_listing_id, $attachment_id );
+							}
+						}
+					}
+
 					var_dump( $new_listing_id );
 					exit;
 

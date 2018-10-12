@@ -196,4 +196,53 @@ abstract class Forms {
 
 	}
 
+	/**
+	 * Create a file attachment for a listing.
+	 *
+	 * @param string $listing_id the id number of the listing for which we're creating the attachment.
+	 * @param string $attachment_url attachment url.
+	 * @return string|boolean
+	 */
+	protected function create_attachment( $listing_id, $attachment_url ) {
+
+		include_once ABSPATH . 'wp-admin/includes/image.php';
+		include_once ABSPATH . 'wp-admin/includes/media.php';
+
+		$upload_dir     = wp_upload_dir();
+		$attachment_url = esc_url( $attachment_url, array( 'http', 'https' ) );
+
+		if ( empty( $attachment_url ) ) {
+			return false;
+		}
+
+		$attachment_url = str_replace( array( $upload_dir['baseurl'], WP_CONTENT_URL, site_url( '/' ) ), array( $upload_dir['basedir'], WP_CONTENT_DIR, ABSPATH ), $attachment_url );
+
+		if ( empty( $attachment_url ) || ! is_string( $attachment_url ) ) {
+			return false;
+		}
+
+		$attachment = array(
+			'post_title'   => pno_get_the_listing_title( $listing_id ),
+			'post_content' => '',
+			'post_status'  => 'inherit',
+			'post_parent'  => $listing_id,
+			'guid'         => $attachment_url,
+		);
+
+		$info = wp_check_filetype( $attachment_url );
+		if ( $info ) {
+			$attachment['post_mime_type'] = $info['type'];
+		}
+
+		$attachment_id = wp_insert_attachment( $attachment, $attachment_url, $listing_id );
+
+		if ( ! is_wp_error( $attachment_id ) ) {
+			wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $attachment_url ) );
+			return $attachment_id;
+		}
+
+		return false;
+
+	}
+
 }
