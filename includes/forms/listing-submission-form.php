@@ -319,6 +319,23 @@ class ListingSubmissionForm extends Forms {
 						}
 					}
 
+					// Create images for the gallery.
+					if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
+						$gallery_images = json_decode( $values['listing_gallery'] );
+						if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
+							$images_list = [];
+							foreach ( $gallery_images as $uploaded_file ) {
+								$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file->url );
+								if ( $uploaded_file_id ) {
+									$images_list[] = $uploaded_file_id;
+								}
+							}
+							if ( ! empty( $images_list ) ) {
+								carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
+							}
+						}
+					}
+
 					var_dump( $new_listing_id );
 					exit;
 

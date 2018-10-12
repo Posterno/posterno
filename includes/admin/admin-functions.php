@@ -496,7 +496,7 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		pno_install_profile_fields();
+		print_r( carbon_get_post_meta( 560, 'listing_gallery_images' ) );
 
 		wp_die();
 	}
