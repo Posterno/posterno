@@ -280,6 +280,9 @@ class ListingSubmissionForm extends Forms {
 					'post_type'    => 'listings',
 				];
 
+				print_r( $values );
+				exit;
+
 				$new_listing_id = wp_insert_post( $listing_data );
 
 				if ( is_wp_error( $new_listing_id ) ) {
@@ -298,6 +301,9 @@ class ListingSubmissionForm extends Forms {
 					}
 					if ( isset( $values['listing_video'] ) && ! empty( $values['listing_video'] ) ) {
 						carbon_set_post_meta( $new_listing_id, 'listing_media_embed', $values['listing_video'] );
+					}
+					if ( isset( $values['listing_zipcode'] ) && ! empty( $values['listing_zipcode'] ) ) {
+						carbon_set_post_meta( $new_listing_id, 'listing_zipcode', $values['listing_zipcode'] );
 					}
 
 					if ( isset( $values['listing_social_media_profiles'] ) && ! empty( $values['listing_social_media_profiles'] ) ) {
@@ -335,6 +341,8 @@ class ListingSubmissionForm extends Forms {
 							}
 						}
 					}
+
+
 
 					var_dump( $new_listing_id );
 					exit;
