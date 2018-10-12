@@ -116,7 +116,7 @@ function pno_assign_type_to_listing( $listing_id, $type_id ) {
 		return;
 	}
 
-	wp_set_object_terms( $listing_id, $type_id, 'listings-types' );
+	wp_set_object_terms( absint( $listing_id ), absint( $type_id ), 'listings-types' );
 
 }
 

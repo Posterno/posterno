@@ -280,9 +280,6 @@ class ListingSubmissionForm extends Forms {
 					'post_type'    => 'listings',
 				];
 
-				print_r( $values );
-				exit;
-
 				$new_listing_id = wp_insert_post( $listing_data );
 
 				if ( is_wp_error( $new_listing_id ) ) {
@@ -339,6 +336,19 @@ class ListingSubmissionForm extends Forms {
 							if ( ! empty( $images_list ) ) {
 								carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
 							}
+						}
+					}
+
+					// Assign terms.
+					if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
+						if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
+							$listing_region = $values['listing_regions'];
+							$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
+							if ( $assign_parent ) {
+								$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
+								wp_set_object_terms( absint( $new_listing_id ), absint( $parent_region->term_id ), 'listings-locations' );
+							}
+							wp_set_object_terms( absint( $new_listing_id ), absint( $listing_region ), 'listings-locations' );
 						}
 					}
 
