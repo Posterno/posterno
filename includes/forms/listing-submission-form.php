@@ -372,9 +372,6 @@ class ListingSubmissionForm extends Forms {
 						}
 					}
 
-					var_dump( $new_listing_id );
-					exit;
-
 					/**
 					 * Allow developers to extend the listing submission process.
 					 * This action is fired after creating the new listing.
@@ -384,6 +381,29 @@ class ListingSubmissionForm extends Forms {
 					 * @param object $this the class instance managing the form.
 					 */
 					do_action( 'pno_after_listing_submission', $values, $new_listing_id, $this );
+
+					// Redirect the user to a new page or display success message.
+					$redirect = pno_get_listing_success_redirect_page_id();
+
+					$new_page_url = add_query_arg( [ 'success' => true ], get_permalink() );
+
+					if ( $redirect ) {
+						$new_page_url = get_permalink( $redirect );
+					}
+
+					/**
+					 * Allow developers to adjust the url of the
+					 * page displayed after successful submission.
+					 *
+					 * @param string $new_page_url the url of the page to redirect to.
+					 * @param string $new_listing_id the id of the newly created listing.
+					 * @param array $values all the data submitted through the form.
+					 * @return string
+					 */
+					$new_page_url = apply_filters( 'pno_successful_listing_submission_redirect_url', $new_page_url, $new_listing_id, $values );
+
+					wp_safe_redirect( $new_page_url );
+					exit;
 
 				}
 			}

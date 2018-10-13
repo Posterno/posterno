@@ -704,6 +704,16 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ),
 			],
 		],
+		'listings_redirects' => [
+			'listing_submission_redirect'     => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After successful submission' ),
+				'description' => esc_html__( 'Select the page where you wish to redirect users after submitting a listing. Leave blank to display a message only.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+				'is_page'     => true,
+			],
+		],
 	];
 
 	/**
