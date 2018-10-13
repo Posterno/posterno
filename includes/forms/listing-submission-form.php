@@ -36,6 +36,7 @@ use PNO\Form\Field\URLField;
 
 use PNO\Form\Rule\NotEmpty;
 use PNO\Form\Rule\Email;
+use PNO\Form\Rule\When;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -76,10 +77,6 @@ class ListingSubmissionForm extends Forms {
 
 			if ( isset( $the_field['required'] ) && $the_field['required'] === true ) {
 				$validation_rules[] = new NotEmpty();
-			}
-
-			if ( $field_type === 'email' ) {
-				$validation_rules[] = new Email();
 			}
 
 			$fields[] = new $field_type_class(
