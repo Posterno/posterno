@@ -338,14 +338,30 @@ class ListingSubmissionForm extends Forms {
 
 					// Assign terms.
 					if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
-						if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
-							$listing_region = $values['listing_regions'];
-							$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
-							if ( $assign_parent ) {
-								$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
+						$listing_region = $values['listing_regions'];
+						$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
+						if ( $assign_parent ) {
+							$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
+							if ( isset( $parent_region->term_id ) ) {
 								wp_set_object_terms( absint( $new_listing_id ), absint( $parent_region->term_id ), 'listings-locations', true );
 							}
-							wp_set_object_terms( absint( $new_listing_id ), absint( $listing_region ), 'listings-locations', true );
+						}
+						wp_set_object_terms( absint( $new_listing_id ), absint( $listing_region ), 'listings-locations', true );
+					}
+
+					if ( isset( $values['listing_categories'] ) && ! empty( $values['listing_categories'] ) ) {
+						$listing_categories = json_decode( $values['listing_categories'] );
+						$use_sub_categories = pno_get_option( 'submission_categories_sublevel', false );
+						if ( $use_sub_categories ) {
+							foreach ( $listing_categories as $category ) {
+								$parent_category = pno_get_term_top_most_parent( $category, 'listings-categories' );
+								if ( isset( $parent_category->term_id ) ) {
+									wp_set_object_terms( absint( $new_listing_id ), absint( $parent_category->term_id ), 'listings-categories', true );
+								}
+							}
+						}
+						foreach ( $listing_categories as $selected_category ) {
+							wp_set_object_terms( absint( $new_listing_id ), absint( $selected_category ), 'listings-categories', true );
 						}
 					}
 
