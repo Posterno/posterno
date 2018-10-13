@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<div class="pno-loading" v-if="geolocationLoading === true"></div>
-					<a href="#" data-toggle="tooltip" data-placement="top" title="<?php esc_html_e( 'Find my location' ); ?>" @click.prevent.stop="geolocate( $event )" v-else>
+					<a href="#" @click.prevent.stop="geolocate( $event )" v-else>
 						<i class="fas fa-compass"></i>
 					</a>
 				</span>
