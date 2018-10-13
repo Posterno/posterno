@@ -346,9 +346,9 @@ class ListingSubmissionForm extends Forms {
 							$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
 							if ( $assign_parent ) {
 								$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
-								wp_set_object_terms( absint( $new_listing_id ), absint( $parent_region->term_id ), 'listings-locations' );
+								wp_set_object_terms( absint( $new_listing_id ), absint( $parent_region->term_id ), 'listings-locations', true );
 							}
-							wp_set_object_terms( absint( $new_listing_id ), absint( $listing_region ), 'listings-locations' );
+							wp_set_object_terms( absint( $new_listing_id ), absint( $listing_region ), 'listings-locations', true );
 						}
 					}
 
