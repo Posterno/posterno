@@ -365,6 +365,13 @@ class ListingSubmissionForm extends Forms {
 						}
 					}
 
+					if ( isset( $values['listing_tags'] ) && ! empty( $values['listing_tags'] ) ) {
+						$listing_tags = json_decode( $values['listing_tags'] );
+						foreach ( $listing_tags as $tag ) {
+							wp_set_object_terms( absint( $new_listing_id ), absint( $tag ), 'listings-tags', true );
+						}
+					}
+
 					var_dump( $new_listing_id );
 					exit;
 
