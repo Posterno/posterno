@@ -223,9 +223,8 @@ add_action( 'login_head', 'pno_adjust_wplogin_form_labels' );
 function pno_restrict_access_to_listings_submission_page() {
 
 	$submission_page = pno_get_listing_submission_page_id();
-	$is_restricted   = pno_get_option( 'submission_requires_account' );
 
-	if ( $is_restricted && $submission_page && is_int( $submission_page ) && is_page( $submission_page ) && ! is_user_logged_in() ) {
+	if ( $submission_page && is_int( $submission_page ) && is_page( $submission_page ) && ! is_user_logged_in() ) {
 		$login_page = pno_get_login_page_id();
 		if ( $login_page && is_int( $login_page ) ) {
 			$login_page = add_query_arg(
