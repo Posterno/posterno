@@ -24,6 +24,8 @@ class PNO_Ajax {
 	public function init() {
 		add_action( 'wp_ajax_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
 		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
+		add_action( 'wp_ajax_pno_get_tags', [ $this, 'get_tags' ] );
+		add_action( 'wp_ajax_nopriv_pno_get_tags', [ $this, 'get_tags' ] );
 
 		add_action( 'wp_ajax_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
 		add_action( 'wp_ajax_nopriv_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
@@ -126,6 +128,28 @@ class PNO_Ajax {
 	}
 
 	/**
+	 * Retrieve tags from the database.
+	 *
+	 * @return void
+	 */
+	public function get_tags() {
+
+		check_ajax_referer( 'pno_get_tags', 'nonce' );
+
+		$terms_args = [
+			'hide_empty' => false,
+			'number'     => 50,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		];
+
+		$tags = get_terms( 'listings-tags', $terms_args );
+
+		wp_send_json_success( $tags );
+
+	}
+
+	/**
 	 * Upload files via dropzone fields.
 	 *
 	 * @return void
@@ -188,7 +212,7 @@ class PNO_Ajax {
 		check_ajax_referer( 'pno_dropzone_remove_file_nonce', 'nonce' );
 
 		if ( ! isset( $_POST['file_path'] ) || ! isset( $_POST['file_url'] ) ) {
-			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong while removing the image.' ) ], 422 );
+			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong while removing the file.' ) ], 422 );
 		}
 
 		$file_path = sanitize_text_field( $_POST['file_path'] );
