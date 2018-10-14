@@ -141,7 +141,6 @@
 					url: response.data.files[0].url
 				} )
 
-				window.Posterno.dropzoneHideError( dropzoneComponents )
 				window.Posterno.dropzoneStoreResponse( dropzoneComponents, dropzoneStoredFiles )
 			});
 
