@@ -255,6 +255,7 @@ class PNO_Listings_Custom_Fields {
 				->set_classes( 'inline-metabox-message' );
 
 			$fields[] = Field::make( 'radio', $day_string . '_time_slots', '' )
+				->set_datastore( new PNO\Datastores\HoursOfOperation() )
 				->set_classes( 'inline-radio-selector' )
 				->add_options( 'pno_get_listing_time_slots' );
 

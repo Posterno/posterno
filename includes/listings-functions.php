@@ -104,6 +104,36 @@ function pno_update_listing_additional_opening_hours_by_day( $listing_id = false
 }
 
 /**
+ * Store the selected hours of operation type together with the opening hours list.
+ *
+ * @param string $listing_id the listing we're going to update.
+ * @param string $day the day that we're going to update.
+ * @param string $operation the type of operation selected.
+ * @return void
+ */
+function pno_update_listing_hours_of_operation( $listing_id, $day, $operation ) {
+
+	if ( ! $listing_id || empty( $day ) || empty( $operation ) ) {
+		return;
+	}
+
+	if ( ! array_key_exists( $day, pno_get_days_of_the_week() ) ) {
+		return;
+	}
+
+	$existing_timings = get_post_meta( $listing_id, '_listing_opening_hours', true );
+
+	if ( empty( $existing_timings ) || ! is_array( $existing_timings ) ) {
+		return;
+	}
+
+	$existing_timings[ $day ]['operation'] = sanitize_text_field( $operation );
+
+	update_post_meta( $listing_id, '_listing_opening_hours', $existing_timings );
+
+}
+
+/**
  * Assign a listing type to a given listing.
  *
  * @param string|int $listing_id the id of the listing.
@@ -591,7 +621,7 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours )
 			$slot_hours = $workday->hours;
 
 			if ( ! empty( $slot_type ) ) {
-				carbon_set_post_meta( $listing_id, $day . '_time_slots', $slot_type );
+				pno_update_listing_hours_of_operation( $listing_id, $day, $slot_type );
 			}
 
 			if ( $slot_type === 'hours' && is_array( $slot_hours ) && ! empty( $slot_hours ) ) {
