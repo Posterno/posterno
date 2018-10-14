@@ -620,7 +620,7 @@ function pno_get_registered_settings() {
 			'submission_requires_account'      => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Account required' ),
-				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users.' ),
+				'description' => esc_html__( 'Require an account to submit listings. Limits submissions to registered, logged-in users. Disable this option to let users signup through the listing submission page.' ),
 			],
 			'submission_requires_roles'        => [
 				'label'       => __( 'Allowed roles' ),
