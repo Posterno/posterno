@@ -385,26 +385,45 @@ class ListingSubmissionForm extends Forms {
 					// Redirect the user to a new page or display success message.
 					$redirect = pno_get_listing_success_redirect_page_id();
 
-					$new_page_url = add_query_arg( [ 'success' => true ], get_permalink() );
-
 					if ( $redirect ) {
+
 						$new_page_url = get_permalink( $redirect );
+
+						/**
+						 * Allow developers to adjust the url of the
+						 * page displayed after successful submission.
+						 *
+						 * @param string $new_page_url the url of the page to redirect to.
+						 * @param string $new_listing_id the id of the newly created listing.
+						 * @param array $values all the data submitted through the form.
+						 * @return string
+						 */
+						$new_page_url = apply_filters( 'pno_successful_listing_submission_redirect_url', $new_page_url, $new_listing_id, $values );
+
+						wp_safe_redirect( $new_page_url );
+						exit;
+
+					} else {
+
+						$message = sprintf( __( 'Listing successfully submitted. <a href="%s">View your listing.</a>' ), get_permalink( $new_listing_id ) );
+
+						if ( pno_listing_submission_is_moderated() ) {
+							$message = esc_html__( 'Listing successfully submitted . Your listing will be visible once approved.' );
+						}
+
+						/**
+						 * Allow developers to customize the message displayed after successfull listing submission.
+						 *
+						 * @param string $message the message that appears after listing submission.
+						 */
+						$success_message = apply_filters( 'pno_listing_submission_success_message', $message );
+
+						$this->form->unbind();
+						$this->form->set_success_message( $success_message );
+
+						return;
+
 					}
-
-					/**
-					 * Allow developers to adjust the url of the
-					 * page displayed after successful submission.
-					 *
-					 * @param string $new_page_url the url of the page to redirect to.
-					 * @param string $new_listing_id the id of the newly created listing.
-					 * @param array $values all the data submitted through the form.
-					 * @return string
-					 */
-					$new_page_url = apply_filters( 'pno_successful_listing_submission_redirect_url', $new_page_url, $new_listing_id, $values );
-
-					wp_safe_redirect( $new_page_url );
-					exit;
-
 				}
 			}
 		} catch ( \Exception $e ) {
