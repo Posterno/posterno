@@ -659,6 +659,11 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Moderate new listings' ),
 				'description' => esc_html__( 'Enable the option to require admin approval of all new listing submissions.' ),
 			],
+			'submission_images_amount'     => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'How many images?' ),
+				'description' => esc_html__( 'Specify the maximum amount of images your members can upload per listing.' ),
+			],
 		],
 		/**
 		 * Listings content settings.

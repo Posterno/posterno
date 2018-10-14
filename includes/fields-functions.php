@@ -872,7 +872,7 @@ function pno_dropzone_get_max_files_amount( $field ) {
 
 		switch ( $field->get_id() ) {
 			case 'listing_gallery':
-				$amount = 3;
+				$amount = absint( pno_get_option( 'submission_images_amount', 1 ) );
 				break;
 		}
 	}
