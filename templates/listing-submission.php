@@ -23,6 +23,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php
 
+	/**
+	 * Allow developers to extend the listing submission template.
+	 *
+	 * @param object $data all the data sent to the listing submission template.
+	 */
+	do_action( 'pno_before_listing_submission_template', $data );
+
 	if ( $data->step === 'submit_listing' ) {
 
 		posterno()->templates
@@ -34,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
 			)
 			->get_template_part( 'form' );
 
-	} else {
+	} elseif ( $data->step === 'listing_type' ) {
 
 		posterno()->templates
 			->set_template_data(
@@ -47,6 +54,13 @@ defined( 'ABSPATH' ) || exit;
 			->get_template_part( 'forms/listing-type-selection' );
 
 	}
+
+	/**
+	 * Allow developers to extend the listing submission template.
+	 *
+	 * @param object $data all the data sent to the listing submission template.
+	 */
+	do_action( 'pno_after_listing_submission_template', $data );
 
 	?>
 
