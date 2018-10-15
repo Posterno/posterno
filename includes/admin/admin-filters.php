@@ -80,5 +80,5 @@ function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args )
 
 	return $caps;
 }
-//add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
+add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
 
