@@ -29,3 +29,15 @@
 		}
 	}
 }
+
+.carbon-container-carbon_fields_container_situations {
+	div.carbon-set-list {
+		min-height: 42px;
+		max-height: 200px;
+		overflow: auto;
+		padding: .9em .9em 0 .9em;
+		border: 1px solid #ddd;
+		background-color: #fdfdfd;
+		margin-bottom: .9em;
+	}
+}

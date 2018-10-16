@@ -81,6 +81,7 @@ function pno_load_admin_scripts() {
 		'edit-listings-locations',
 		'edit-listings-tags',
 		'listings',
+		'pno_emails'
 	];
 
 	if ( in_array( $screen->id, $admin_style_screens ) ) {
