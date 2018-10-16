@@ -101,3 +101,28 @@ function pno_setup_tinymce_buttons_for_emails_editor( $settings ) {
 
 }
 add_filter( 'tiny_mce_before_init', 'pno_setup_tinymce_buttons_for_emails_editor', 10 );
+
+/**
+ * Remove the add media button for the tinymce editor of the emails editor.
+ *
+ * @param array $settings the settings defined for the editor.
+ * @return array
+ */
+function pno_remove_add_media_button_for_emails_editor( $settings ) {
+
+	$current_screen = get_current_screen();
+
+	// Post types for which the media buttons should be removed.
+	$post_types = array( 'pno_emails' );
+
+	// Bail out if media buttons should not be removed for the current post type.
+	if ( ! $current_screen || ! in_array( $current_screen->post_type, $post_types, true ) ) {
+		return $settings;
+	}
+
+	$settings['media_buttons'] = false;
+
+	return $settings;
+
+}
+add_filter( 'wp_editor_settings', 'pno_remove_add_media_button_for_emails_editor', 10 );
