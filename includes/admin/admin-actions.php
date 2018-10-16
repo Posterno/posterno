@@ -255,3 +255,31 @@ function pno_display_listings_post_statuses_list() {
 foreach ( array( 'post', 'post-new' ) as $hook ) {
 	add_action( "admin_footer-{$hook}.php", 'pno_display_listings_post_statuses_list' );
 }
+
+/**
+ * Define the content for the custom column for the pno emails post type.
+ *
+ * @param string $column the name of the column.
+ * @param string $post_id the post we're going to use.
+ * @return void
+ */
+function pno_emails_post_type_columns_content( $column, $post_id ) {
+	if ( 'situations' !== $column ) {
+		return;
+	}
+
+	// Grab email situations for the current post.
+	$terms = get_the_terms( $post_id, 'pno-email-type' );
+
+	if ( $terms ) {
+
+		$situations = wp_list_pluck( $terms, 'description' );
+
+		// Output each situation as a list item.
+		echo '<ul style="margin-top:0;"><li>';
+		echo implode( '</li><li>', $situations ); //phpcs:ignore
+		echo '</li></ul>';
+	}
+
+}
+add_action( 'manage_pno_emails_posts_custom_column', 'pno_emails_post_type_columns_content', 10, 2 );

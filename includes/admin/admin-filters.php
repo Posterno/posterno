@@ -126,3 +126,19 @@ function pno_remove_add_media_button_for_emails_editor( $settings ) {
 
 }
 add_filter( 'wp_editor_settings', 'pno_remove_add_media_button_for_emails_editor', 10 );
+
+/**
+ * Add a new column to the post type admin list table.
+ *
+ * @param array $columns already registered columns.
+ * @return array
+ */
+function pno_emails_post_type_columns( $columns ) {
+
+	unset( $columns['date'] );
+
+	$columns['situations'] = esc_html__( 'Situations' );
+
+	return $columns;
+}
+add_filter( 'manage_pno_emails_posts_columns', 'pno_emails_post_type_columns' );
