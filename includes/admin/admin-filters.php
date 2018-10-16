@@ -53,10 +53,10 @@ add_filter( 'display_post_states', 'pno_highlight_pages', 10, 2 );
 /**
  * Prevents cancellation of default custom fields.
  *
- * @param array $caps
- * @param string $cap
- * @param string $user_id
- * @param array $args
+ * @param array  $caps capabilities list.
+ * @param string $cap current capability being checked.
+ * @param string $user_id the user id being checked.
+ * @param array  $args args list of the post being checked.
  * @return array
  */
 function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args ) {
