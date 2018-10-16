@@ -490,6 +490,7 @@ function pno_email_tax_type_metabox( $post, $box ) {
 	$tax_name = esc_attr( $r['taxonomy'] );
 	$taxonomy = get_taxonomy( $r['taxonomy'] );
 	?>
+	<br/>
 	<div id="taxonomy-<?php echo esc_attr( $tax_name ); ?>" class="categorydiv">
 		<div id="<?php echo esc_attr( $tax_name ); ?>-all" class="tabs-panel">
 			<?php
@@ -502,7 +503,7 @@ function pno_email_tax_type_metabox( $post, $box ) {
 					wp_terms_checklist(
 						$post->ID, array(
 							'taxonomy' => $tax_name,
-							'walker'   => new PNO\Utils\TermsAdminChecklist,
+							'walker'   => new PNO\Utils\TermsAdminChecklist(),
 						)
 					);
 				?>
