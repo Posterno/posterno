@@ -539,7 +539,33 @@ function pno_email_tax_type_metabox( $post, $box ) {
 	<?php
 }
 
+/**
+ * Get email situations in an ordered list.
+ *
+ * @return array
+ */
+function pno_get_emails_situations() {
 
+	$types = [];
+
+	$terms = get_terms(
+		'pno-email-type', array(
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $type ) {
+			$types[ absint( $type->term_id ) ] = esc_html( $type->description );
+		}
+	}
+
+	return $types;
+
+}
 
 
 

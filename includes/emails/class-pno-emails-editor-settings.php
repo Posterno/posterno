@@ -37,10 +37,23 @@ class PNO_Emails_Editor_Settings {
 
 		Container::make( 'post_meta', esc_html__( 'Available email template tags:' ) )
 			->where( 'post_type', '=', 'pno_emails' )
+			->set_context( 'carbon_fields_after_title' )
 			->add_fields(
 				array(
 					Field::make( 'html', 'pno_email_tags_list' )
 						->set_html( pno_get_emails_tags_list() ),
+				)
+			);
+
+		Container::make( 'post_meta', esc_html__( 'Situations' ) )
+			->where( 'post_type', '=', 'pno_emails' )
+			->set_context( 'side' )
+			->set_priority( 'default' )
+			->add_fields(
+				array(
+					Field::make( 'set', 'crb_product_features', '' )
+						->set_help_text( 'Choose when this email will be sent.' )
+						->add_options( 'pno_get_emails_situations' ),
 				)
 			);
 
