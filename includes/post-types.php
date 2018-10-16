@@ -461,3 +461,53 @@ function pno_get_listing_post_statuses() {
 	return apply_filters( 'pno_listing_post_statuses', $statuses );
 
 }
+
+/**
+ * Setup the post type that holds emails for Posterno.
+ *
+ * @return void
+ */
+function pno_setup_emails_post_type() {
+
+	$labels = array(
+		'name'               => _x( 'Posterno emails', 'Post Type General Name', 'posterno' ),
+		'singular_name'      => _x( 'Email', 'Post Type Singular Name', 'posterno' ),
+		'menu_name'          => __( 'Emails', 'posterno' ),
+		'name_admin_bar'     => __( 'Email', 'posterno' ),
+		'all_items'          => __( 'All emails', 'posterno' ),
+		'add_new_item'       => __( 'Add new email', 'posterno' ),
+		'add_new'            => __( 'Add new email', 'posterno' ),
+		'new_item'           => __( 'New email', 'posterno' ),
+		'edit_item'          => __( 'Edit email', 'posterno' ),
+		'update_item'        => __( 'Update email', 'posterno' ),
+		'view_item'          => __( 'View email', 'posterno' ),
+		'view_items'         => __( 'View emails', 'posterno' ),
+		'search_items'       => __( 'Search emails', 'posterno' ),
+		'not_found'          => __( 'Not found', 'posterno' ),
+		'not_found_in_trash' => __( 'Not found in Trash', 'posterno' ),
+	);
+
+	$args = array(
+		'label'               => __( 'Email', 'posterno' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor' ),
+		'taxonomies'          => array( 'pno-email-type' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => current_user_can( 'manage_options' ),
+		'show_in_menu'        => true,
+		'menu_position'       => 70,
+		'menu_icon'           => 'dashicons-email-alt',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'rewrite'             => false,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'pno_emails', $args );
+
+}
+add_action( 'init', 'pno_setup_emails_post_type', 0 );
