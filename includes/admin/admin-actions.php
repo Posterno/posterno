@@ -102,6 +102,7 @@ function pno_hide_custom_fields_pt_settings() {
 	$post_types = array(
 		'pno_users_fields',
 		'pno_signup_fields',
+		'pno_emails',
 	);
 
 	if ( in_array( $post_type, $post_types ) ) {

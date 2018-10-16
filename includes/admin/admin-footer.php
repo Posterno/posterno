@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_admin_rate_us( $footer_text ) {
 	global $typenow;
-	if ( $typenow == 'listings' ) {
+	if ( $typenow == 'listings' || $typenow === 'pno_emails' ) {
 		$rate_text = sprintf(
 			__( 'Thank you for using <a href="%1$s" target="_blank">Posterno</a>! Please <a href="%2$s" target="_blank">rate us on WordPress.org</a>' ),
 			'https://posterno.com',
