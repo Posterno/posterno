@@ -48,5 +48,7 @@ function pno_admin_remove_submenus() {
 	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-registration-form' );
 	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-profile-fields' );
 
+	remove_submenu_page( 'edit.php?post_type=pno_emails', 'edit-tags.php?taxonomy=pno-email-type&amp;post_type=pno_emails' );
+
 }
 add_action( 'admin_menu', 'pno_admin_remove_submenus', 999 );
