@@ -511,3 +511,43 @@ function pno_setup_emails_post_type() {
 
 }
 add_action( 'init', 'pno_setup_emails_post_type', 0 );
+
+/**
+ * Register custom taxonomy for the posterno emails.
+ *
+ * @return void
+ */
+function pno_register_email_taxonomy() {
+
+	$labels = array(
+		'add_new_item'          => _x( 'New Email Situation', 'email type taxonomy label', 'posterno' ),
+		'all_items'             => _x( 'All Email Situations', 'email type taxonomy label', 'posterno' ),
+		'edit_item'             => _x( 'Edit Email Situations', 'email type taxonomy label', 'posterno' ),
+		'items_list'            => _x( 'Email list', 'email type taxonomy label', 'posterno' ),
+		'items_list_navigation' => _x( 'Email list navigation', 'email type taxonomy label', 'posterno' ),
+		'menu_name'             => _x( 'Situations', 'email type taxonomy label', 'posterno' ),
+		'name'                  => _x( 'Situation', 'email type taxonomy name', 'posterno' ),
+		'new_item_name'         => _x( 'New email situation name', 'email type taxonomy label', 'posterno' ),
+		'not_found'             => _x( 'No email situations found.', 'email type taxonomy label', 'posterno' ),
+		'no_terms'              => _x( 'No email situations', 'email type taxonomy label', 'posterno' ),
+		'popular_items'         => _x( 'Popular Email Situation', 'email type taxonomy label', 'posterno' ),
+		'search_items'          => _x( 'Search Emails', 'email type taxonomy label', 'posterno' ),
+		'singular_name'         => _x( 'Email', 'email type taxonomy singular name', 'posterno' ),
+		'update_item'           => _x( 'Update Email Situation', 'email type taxonomy label', 'posterno' ),
+		'view_item'             => _x( 'View Email Situation', 'email type taxonomy label', 'posterno' ),
+	);
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => false,
+		'public'            => false,
+		'show_ui'           => true,
+		'show_admin_column' => false,
+		'show_in_nav_menus' => false,
+		'show_tagcloud'     => false,
+		'rewrite'           => false,
+		'meta_box_cb'       => 'pno_email_tax_type_metabox',
+	);
+	register_taxonomy( 'pno-email-type', array( 'pno_emails' ), $args );
+
+}
+add_action( 'init', 'pno_register_email_taxonomy', 0 );

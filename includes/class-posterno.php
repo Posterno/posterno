@@ -260,6 +260,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-cache-helper.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
 			require_once PNO_PLUGIN_DIR . 'includes/utils/terms-hierarchy-dropdown.php';
+			require_once PNO_PLUGIN_DIR . 'includes/utils/terms-admin-checklist.php';
 
 		}
 
