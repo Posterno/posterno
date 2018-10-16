@@ -493,53 +493,6 @@ function pno_get_listings_tags_for_association() {
 }
 
 /**
- * Display metabox for email taxonomy type.
- * Shows the term description in a list, rather than the term name itself.
- *
- * Taken from BuddyPress.
- *
- * @param WP_Post $post Post object.
- * @param array   $box {
- *     Tags meta box arguments.
- *
- *     @type string   $id       Meta box ID.
- *     @type string   $title    Meta box title.
- *     @type callable $callback Meta box display callback.
- * }
- */
-function pno_email_tax_type_metabox( $post, $box ) {
-	$r        = array(
-		'taxonomy' => 'pno-email-type',
-	);
-	$tax_name = esc_attr( $r['taxonomy'] );
-	$taxonomy = get_taxonomy( $r['taxonomy'] );
-	?>
-	<br/>
-	<div id="taxonomy-<?php echo esc_attr( $tax_name ); ?>" class="categorydiv">
-		<div id="<?php echo esc_attr( $tax_name ); ?>-all" class="tabs-panel">
-			<?php
-			$name = ( $tax_name === 'category' ) ? 'post_category' : 'tax_input[' . $tax_name . ']';
-			//phpcs:ignore
-			echo "<input type='hidden' name='{$name}[]' value='0' />"; // Allows for an empty term set to be sent. 0 is an invalid Term ID and will be ignored by empty() checks.
-			?>
-			<ul id="<?php echo esc_attr( $tax_name ); ?>checklist" data-wp-lists="list:<?php echo esc_attr( $tax_name ); ?>" class="categorychecklist form-no-clear">
-				<?php
-					wp_terms_checklist(
-						$post->ID, array(
-							'taxonomy' => $tax_name,
-							'walker'   => new PNO\Utils\TermsAdminChecklist(),
-						)
-					);
-				?>
-			</ul>
-		</div>
-
-		<p><?php esc_html_e( 'Choose when this email will be sent.' ); ?></p>
-	</div>
-	<?php
-}
-
-/**
  * Get email situations in an ordered list.
  *
  * @return array

@@ -550,12 +550,11 @@ function pno_register_email_taxonomy() {
 		'labels'            => $labels,
 		'hierarchical'      => false,
 		'public'            => false,
-		'show_ui'           => true,
+		'show_ui'           => false,
 		'show_admin_column' => false,
 		'show_in_nav_menus' => false,
 		'show_tagcloud'     => false,
 		'rewrite'           => false,
-		'meta_box_cb'       => 'pno_email_tax_type_metabox',
 	);
 	register_taxonomy( 'pno-email-type', array( 'pno_emails' ), $args );
 
