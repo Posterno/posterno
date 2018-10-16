@@ -268,6 +268,8 @@ function pno_user_fields_change_default_title( $title ) {
 		$title = esc_html__( 'Enter profile field title here' );
 	} elseif ( 'pno_signup_fields' == $screen->post_type ) {
 		$title = esc_html__( 'Enter registration field title here' );
+	} elseif ( 'pno_emails' == $screen->post_type ) {
+		$title = esc_html__( 'Enter email subject' );
 	}
 
 	return $title;
@@ -281,8 +283,8 @@ add_filter( 'enter_title_here', 'pno_user_fields_change_default_title' );
  * Returns an array of with all updated messages.
  *
  * @since 0.1.0
- * @param array $messages Post updated message
- * @return array $messages New post updated messages
+ * @param array $messages Post updated message.
+ * @return array $messages New post updated messages.
  */
 function pno_updated_messages( $messages ) {
 	global $post, $post_ID;
@@ -302,6 +304,14 @@ function pno_updated_messages( $messages ) {
 		7 => esc_html__( 'Registration field saved.' ),
 		8 => esc_html__( 'Registration field submitted.' ),
 	);
+
+	$messages['pno_emails'] = [
+		1 => esc_html__( 'Email updated.' ),
+		4 => esc_html__( 'Email updated.' ),
+		6 => esc_html__( 'Email published.' ),
+		7 => esc_html__( 'Email saved.' ),
+		8 => esc_html__( 'Email submitted.' ),
+	];
 
 	return $messages;
 
@@ -475,7 +485,7 @@ function pno_setup_emails_post_type() {
 		'menu_name'          => __( 'Emails', 'posterno' ),
 		'name_admin_bar'     => __( 'Email', 'posterno' ),
 		'all_items'          => __( 'All emails', 'posterno' ),
-		'add_new_item'       => __( 'Add new email', 'posterno' ),
+		'add_new_item'       => __( 'Add new Posterno email', 'posterno' ),
 		'add_new'            => __( 'Add new email', 'posterno' ),
 		'new_item'           => __( 'New email', 'posterno' ),
 		'edit_item'          => __( 'Edit email', 'posterno' ),
