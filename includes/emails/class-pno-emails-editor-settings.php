@@ -52,6 +52,7 @@ class PNO_Emails_Editor_Settings {
 			->add_fields(
 				array(
 					Field::make( 'set', 'crb_product_features', '' )
+						->set_datastore( new PNO\Datastores\EmailSituations() )
 						->set_help_text( 'Choose when this email will be sent.' )
 						->add_options( 'pno_get_emails_situations' ),
 				)
