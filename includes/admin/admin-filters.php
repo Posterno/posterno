@@ -82,3 +82,22 @@ function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args )
 }
 add_filter( 'map_meta_cap', 'pno_prevent_default_fields_cancellation', 10, 4 );
 
+/**
+ * Setup the buttons for the tinymce editor for the emails editor post type.
+ *
+ * @param array $settings the settings defined for the editor.
+ * @return array
+ */
+function pno_setup_tinymce_buttons_for_emails_editor( $settings ) {
+
+	$screen = get_current_screen();
+
+	if ( isset( $screen->id ) && $screen->id === 'pno_emails' ) {
+		$settings['toolbar1'] = 'formatselect,bold,italic,underline,bullist,numlist,blockquote,hr,link,unlink,strikethrough,spellchecker,undo,redo,dfw,wp_help';
+		$settings['toolbar2'] = '';
+	}
+
+	return $settings;
+
+}
+add_filter( 'tiny_mce_before_init', 'pno_setup_tinymce_buttons_for_emails_editor', 10 );
