@@ -307,6 +307,30 @@ function pno_install_registration_fields() {
 }
 
 /**
+ * Install email types into the database.
+ *
+ * @return void
+ */
+function pno_install_email_types() {
+
+	$types = pno_email_get_type_schema();
+
+	foreach ( $types as $type_id => $type ) {
+		if ( ! term_exists( $type_id, 'pno-email-type' ) ) {
+			wp_insert_term(
+				$type_id,
+				'pno-email-type',
+				array(
+					'description' => $type['description'],
+					'slug'        => $type_id,
+				)
+			);
+		}
+	}
+
+}
+
+/**
  * Generate a list of tabs for the listings list table and taxonomies associated.
  * The tabs are then displayed at the top of the admin page.
  *
@@ -542,7 +566,7 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		print_r( carbon_get_post_meta( 560, 'listing_gallery_images' ) );
+		pno_install_email_types();
 
 		wp_die();
 	}

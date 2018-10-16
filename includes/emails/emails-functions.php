@@ -139,3 +139,33 @@ if ( pno_get_option( 'disable_admin_password_recovery_email' ) && ! function_exi
 		return false;
 	}
 }
+
+/**
+ * Get a list of emails for populating email type taxonomy terms.
+ *
+ * @return array {
+ *     The array of email types and their schema.
+ *
+ *     @type string $description The description of the action which causes this to trigger.
+ *     @type array  $unsubscribe {
+ *         Replacing this with false indicates that a user cannot unsubscribe from this type.
+ *
+ *         @type string $meta_key The meta_key used to toggle the email setting for this notification.
+ *         @type string $message  The message shown when the user has successfully unsubscribed.
+ *     }
+ */
+function pno_email_get_type_schema() {
+
+	$types = array(
+		'core_user_registration'      => [
+			'description' => esc_html__( 'Recipient has registered for an account.' ),
+			'unsubscribe' => false,
+		],
+		'core_user_password_recovery' => [
+			'description' => esc_html__( 'Recipient has forgotten his password.' ),
+			'unsubscribe' => false,
+		],
+	);
+
+	return $types;
+}
