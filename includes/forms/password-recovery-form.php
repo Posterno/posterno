@@ -314,12 +314,15 @@ class PasswordRecoveryForm extends Forms {
 							$message = pno_get_option( 'password_recovery_content' );
 							$heading = pno_get_option( 'password_recovery_heading' );
 
-							posterno()->emails->__set( 'user_id', $user->data->ID );
-							if ( $heading ) {
-								posterno()->emails->__set( 'heading', $heading );
-							}
-							posterno()->emails->__set( 'password_reset_key', $password_reset_key );
-							posterno()->emails->send( $user->data->user_email, $subject, $message );
+							// Send password recovery email.
+							pno_send_email(
+								'core_user_password_recovery',
+								$user->data->user_email,
+								[
+									'user_id'            => $user->data->ID,
+									'password_reset_key' => $password_reset_key,
+								]
+							);
 
 							$masked_email    = pno_mask_email_address( $user->data->user_email );
 							$success_message = sprintf( esc_html__( 'We\'ve sent an email to %s with password reset instructions.' ), '<strong>' . $masked_email . '</strong>' );
