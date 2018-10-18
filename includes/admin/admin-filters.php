@@ -146,7 +146,7 @@ add_filter( 'manage_pno_emails_posts_columns', 'pno_emails_post_type_columns' );
 /**
  * Setup bulk messages updated text for the listings post type.
  *
- * @param array $bulk_messages the list of messages.
+ * @param array  $bulk_messages the list of messages.
  * @param string $bulk_counts the count of the posts.
  * @return array
  */

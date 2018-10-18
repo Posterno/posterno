@@ -23,6 +23,7 @@ function pno_add_admin_pages() {
 	$pno_custom_fields_page       = add_submenu_page( 'edit.php?post_type=listings', __( 'Custom fields' ), __( 'Custom fields' ), 'manage_options', 'posterno-custom-fields', 'pno_custom_fields_page' );
 	$pno_profile_fields_page      = add_submenu_page( 'edit.php?post_type=listings', __( 'Custom profile fields' ), __( 'Custom profile fields' ), 'manage_options', 'posterno-custom-profile-fields', 'pno_custom_profile_fields_page' );
 	$pno_registration_fields_page = add_submenu_page( 'edit.php?post_type=listings', __( 'Customize registration form' ), __( 'Customize registration form' ), 'manage_options', 'posterno-custom-registration-form', 'pno_custom_registration_fields_page' );
+	$pno_listings_fields_page     = add_submenu_page( 'edit.php?post_type=listings', __( 'Customize listings fields' ), __( 'Customize listings fields' ), 'manage_options', 'posterno-custom-listings-fields', 'pno_custom_listings_fields_page' );
 	$pno_settings_page            = add_submenu_page( 'edit.php?post_type=listings', __( 'Posterno Settings' ), __( 'Settings' ), 'manage_options', 'posterno-settings', 'pno_options_page' );
 
 }
@@ -47,7 +48,7 @@ function pno_admin_remove_submenus() {
 
 	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-registration-form' );
 	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-profile-fields' );
-
+	remove_submenu_page( 'edit.php?post_type=listings', 'posterno-custom-listings-fields' );
 	remove_submenu_page( 'edit.php?post_type=pno_emails', 'edit-tags.php?taxonomy=pno-email-type&amp;post_type=pno_emails' );
 
 }
