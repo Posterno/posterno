@@ -313,6 +313,29 @@ function pno_updated_messages( $messages ) {
 		8 => esc_html__( 'Email submitted.' ),
 	];
 
+	$preview_url = get_preview_post_link( $post );
+	$permalink   = get_permalink( $post_ID );
+
+	$preview_listing_link_html = sprintf(
+		' <a target="_blank" href="%1$s">%2$s</a>',
+		esc_url( $preview_url ),
+		__( 'Preview listing' )
+	);
+
+	$view_listing_link_html = sprintf(
+		' <a href="%1$s">%2$s</a>',
+		esc_url( $permalink ),
+		__( 'View listing' )
+	);
+
+	$messages['listings'] = [
+		1 => esc_html__( 'Listing updated.' ) . $view_listing_link_html,
+		4 => esc_html__( 'Listing updated.' ),
+		6 => esc_html__( 'Listing published.' ) . $view_listing_link_html,
+		7 => esc_html__( 'Listing saved.' ),
+		8 => esc_html__( 'Listing submitted.' ) . $preview_listing_link_html,
+	];
+
 	return $messages;
 
 }
