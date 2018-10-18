@@ -218,6 +218,13 @@ function pno_setup_nav_menu_item( $menu_item ) {
 				$menu_item->url = get_permalink( pno_get_dashboard_page_id() );
 			}
 			break;
+		case 'listings':
+			if ( ! is_user_logged_in() || ! pno_user_has_submitted_listings( get_current_user_id() ) ) {
+				$menu_item->_invalid = true;
+			} else {
+				$menu_item->url = pno_get_dashboard_navigation_item_url( $matches[1] );
+			}
+			break;
 		case 'edit-account':
 		case 'password':
 		case 'privacy':
@@ -264,7 +271,7 @@ function pno_set_placeholder_for_term_select( $args, $field ) {
 
 	if ( $field->get_id() === 'listing_regions' && pno_get_option( 'submission_region_sublevel' ) ) {
 		$args['hierarchical'] = true;
-		$args['walker']       = new PNO\Utils\TermsHierarchyDropdown;
+		$args['walker']       = new PNO\Utils\TermsHierarchyDropdown();
 	}
 
 	return $args;

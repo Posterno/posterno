@@ -384,3 +384,24 @@ function pno_get_registered_maps_providers() {
 	return apply_filters( 'pno_registered_maps_providers', $providers );
 
 }
+
+/**
+ * Determine if a user has submitted listings.
+ *
+ * @param string $user_id the user to check.
+ * @return mixed
+ */
+function pno_user_has_submitted_listings( $user_id ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	global $wpdb;
+
+	$where = get_posts_by_author_sql( 'listings', true, $user_id );
+	$count = $wpdb->get_var( "SELECT ID FROM $wpdb->posts $where LIMIT 1" ); //phpcs:ignore
+
+	return $count;
+
+}
