@@ -38,13 +38,35 @@ class PNO_Emails_Editor_Settings {
 		$datastore = new PNO\Datastores\DataCompressor();
 		$datastore->set_storage_metakey( 'email_settings' );
 
-		Container::make( 'post_meta', esc_html__( 'Administrator notifications' ) )
+		Container::make( 'post_meta', esc_html__( 'Notification settings' ) )
+			->set_context( 'carbon_fields_after_title' )
+			->set_datastore( $datastore )
+			->where( 'post_type', '=', 'pno_emails' )
+			->add_fields( array(
+				Field::make( 'text', 'heading', esc_html__( 'Email heading title' ) ),
+			) );
+
+		Container::make( 'post_meta', esc_html__( 'Administrator notification' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_emails' )
 			->add_fields(
 				array(
+
 					Field::make( 'checkbox', 'has_admin_notification', __( 'Notify administrator' ) )
 						->set_help_text( esc_html__( 'Enable this option to send an email notification to the administrator.' ) ),
+
+					Field::make( 'text', 'administrator_notification_subject', esc_html__( 'Administrator notification subject' ) )
+						->set_conditional_logic(
+							array(
+								'relation' => 'AND',
+								array(
+									'field'   => 'has_admin_notification',
+									'value'   => true,
+									'compare' => '=',
+								),
+							)
+						)
+						->set_help_text( esc_html__( 'Enter the subject of the notification sent to the administrators.' ) ),
 
 					Field::make( 'rich_text', 'administrator_notification', esc_html__( 'Administrator notification content' ) )
 						->set_conditional_logic(

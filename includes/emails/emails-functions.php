@@ -235,7 +235,7 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 
 	if ( ! empty( $args ) ) {
 		foreach ( $args as $key => $value ) {
-			$email->{$key} = $value;
+			$email->__set( $key, $value );
 		}
 	}
 
@@ -246,6 +246,11 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 
 		$subject = $email_to_send->post_title;
 		$message = $email_to_send->post_content;
+		$heading = isset( $email_settings['_heading'] ) ? $email_settings['_heading'] : false;
+
+		if ( $heading ) {
+			$email->__set( 'heading', $heading );
+		}
 
 		// Send the email to the end user only if a subject and content is specified.
 		if ( ! $subject || empty( $subject ) || ! $message || empty( $message ) ) {
