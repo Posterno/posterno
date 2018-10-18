@@ -18,7 +18,7 @@
 				<div class="editor-box">
 					<h2><span class="dashicons dashicons-list-view"></span></h2>
 					<h2>{{labels.custom_listings}}</h2>
-					<a href="#" class="button">
+					<a :href="pages.listings" class="button">
 						{{labels.custom_fields}}
 					</a>
 				</div>

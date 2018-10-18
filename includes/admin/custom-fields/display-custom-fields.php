@@ -31,6 +31,7 @@ function pno_get_custom_fields_editor_js_vars() {
 			'selector'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields' ),
 			'profile'      => admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields' ),
 			'registration' => admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form' ),
+			'listings'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ),
 		],
 		'labels'             => [
 			'documentation'       => esc_html__( 'Documentation' ),
