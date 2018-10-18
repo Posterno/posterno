@@ -45,13 +45,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		public $templates;
 
 		/**
-		 * PNO Forms object.
-		 *
-		 * @var object
-		 */
-		public $forms;
-
-		/**
 		 * The emails sender object.
 		 *
 		 * @var object
@@ -102,7 +95,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Api's.
 			self::$instance->admin_notices = TDP\WP_Notice::instance();
 			self::$instance->templates     = new PNO_Templates();
-			self::$instance->forms         = PNO_Forms::instance();
 			self::$instance->emails        = new PNO_Emails();
 
 			// Return the instance.
@@ -425,9 +417,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/class-pno-registration-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-profile-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-registration-field.php';
-
-			// Forms.
-			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
 
 			// Emails.
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails-editor-settings.php';
