@@ -231,12 +231,10 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 		return $emails;
 	}
 
-	$email = new PNO_Emails();
-
 	if ( ! empty( $args ) ) {
 		foreach ( $args as $key => $value ) {
 			if ( $value ) {
-				$email->__set( $key, $value );
+				posterno()->emails->__set( $key, $value );
 			}
 		}
 	}
@@ -251,7 +249,7 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 		$heading = isset( $email_settings['_heading'] ) ? $email_settings['_heading'] : false;
 
 		if ( $heading ) {
-			$email->__set( 'heading', $heading );
+			posterno()->emails->__set( 'heading', $heading );
 		}
 
 		// Send the email to the end user only if a subject and content is specified.
@@ -259,7 +257,7 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 			return;
 		}
 
-		$email->send( $to, $subject, $message );
+		posterno()->emails->send( $to, $subject, $message );
 
 		if ( $has_admin_notification ) {
 
@@ -267,7 +265,7 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 			$admin_notification = isset( $email_settings['_administrator_notification'] ) ? wpautop( $email_settings['_administrator_notification'] ) : false;
 			$admin_subject      = isset( $email_settings['_administrator_notification_subject'] ) ? $email_settings['_administrator_notification_subject'] : false;
 
-			$email->send( $admin_to, $admin_subject, $admin_notification );
+			posterno()->emails->send( $admin_to, $admin_subject, $admin_notification );
 
 		}
 	}
