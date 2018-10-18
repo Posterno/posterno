@@ -142,3 +142,26 @@ function pno_emails_post_type_columns( $columns ) {
 	return $columns;
 }
 add_filter( 'manage_pno_emails_posts_columns', 'pno_emails_post_type_columns' );
+
+/**
+ * Setup bulk messages updated text for the listings post type.
+ *
+ * @param array $bulk_messages the list of messages.
+ * @param string $bulk_counts the count of the posts.
+ * @return array
+ */
+function pno_listing_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
+
+	$bulk_messages['listings'] = array(
+		'updated'   => _n( '%s listing updated.', '%s listings updated.', $bulk_counts['updated'] ),
+		'locked'    => _n( '%s listing not updated, somebody is editing it.', '%s listings not updated, somebody is editing them.', $bulk_counts['locked'] ),
+		'deleted'   => _n( '%s listing permanently deleted.', '%s listings permanently deleted.', $bulk_counts['deleted'] ),
+		'trashed'   => _n( '%s listing moved to the trash.', '%s listings moved to the trash.', $bulk_counts['trashed'] ),
+		'untrashed' => _n( '%s listing restored from the trash.', '%s listings restored from the trash.', $bulk_counts['untrashed'] ),
+	);
+
+	return $bulk_messages;
+
+}
+
+add_filter( 'bulk_post_updated_messages', 'pno_listing_bulk_updated_messages', 10, 2 );
