@@ -165,3 +165,13 @@ function pno_listing_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
 }
 
 add_filter( 'bulk_post_updated_messages', 'pno_listing_bulk_updated_messages', 10, 2 );
+
+/**
+ * Setup the api key for the google maps field of Carbon fields in the admin panel.
+ *
+ * @return mixed
+ */
+function pno_set_cb_admin_gmaps_api_key() {
+	return pno_get_option( 'google_maps_api_key' );
+}
+add_filter( 'carbon_fields_map_field_api_key', 'pno_set_cb_admin_gmaps_api_key' );
