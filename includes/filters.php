@@ -219,7 +219,7 @@ function pno_setup_nav_menu_item( $menu_item ) {
 			}
 			break;
 		case 'listings':
-			if ( ! is_user_logged_in() || ! pno_user_has_submitted_listings( get_current_user_id() ) ) {
+			if ( ! is_user_logged_in() || is_user_logged_in() && ! pno_user_has_submitted_listings( get_current_user_id() ) ) {
 				$menu_item->_invalid = true;
 			} else {
 				$menu_item->url = pno_get_dashboard_navigation_item_url( $matches[1] );

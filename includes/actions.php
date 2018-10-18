@@ -160,7 +160,13 @@ add_action( 'pno_dashboard_tab_content_privacy', 'pno_load_dashboard_privacy' );
  */
 function pno_load_manage_listings_dashboard() {
 
-	$listings = pno_get_user_submitted_listings( get_current_user_id() );
+	$user_id = get_current_user_id();
+
+	if ( ! pno_user_has_submitted_listings( $user_id ) ) {
+		return;
+	}
+
+	$listings = pno_get_user_submitted_listings( $user_id );
 
 	posterno()->templates
 		->set_template_data(
