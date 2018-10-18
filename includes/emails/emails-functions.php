@@ -169,3 +169,100 @@ function pno_email_get_type_schema() {
 
 	return $types;
 }
+
+/**
+ * Retrieve emails by email type from the database.
+ *
+ * @param string $email_type the type of situation to retrieve from the database.
+ * @return mixed
+ */
+function pno_get_emails( $email_type ) {
+
+	$args = array(
+		'no_found_rows'    => true,
+		'numberposts'      => 3,
+		'post_status'      => 'publish',
+		'post_type'        => 'pno_emails',
+		'suppress_filters' => false,
+		'tax_query'        => array(
+			array(
+				'field'    => 'slug',
+				'taxonomy' => 'pno-email-type',
+				'terms'    => $email_type,
+			),
+		),
+	);
+
+	/**
+	 * Filters arguments used to find an email post type object.
+	 *
+	 * @param array  $args       Arguments for get_posts() used to fetch a post object.
+	 * @param string $email_type Unique identifier for a particular type of email.
+	 */
+	$args = apply_filters( 'pno_send_email_args', $args, $email_type );
+
+	$emails = get_posts( $args );
+
+	if ( ! $emails ) {
+		return new WP_Error( 'missing_email', __FUNCTION__, array( $email_type, $args ) );
+	}
+
+	return $emails;
+
+}
+
+/**
+ * Send emails.
+ *
+ * @param string $email_type the type of the email to send.
+ * @param string $to the email address to which we're going to send emails.
+ * @param array  $args additional settings to pass to the PNO_Emails class.
+ * @return mixed
+ */
+function pno_send_email( $email_type, $to, $args = [] ) {
+
+	if ( ! $to ) {
+		return;
+	}
+
+	$emails = pno_get_emails( $email_type );
+
+	if ( is_wp_error( $emails ) ) {
+		return $emails;
+	}
+
+	$email = new PNO_Emails();
+
+	if ( ! empty( $args ) ) {
+		foreach ( $args as $key => $value ) {
+			$email->{$key} = $value;
+		}
+	}
+
+	foreach ( $emails as $email_to_send ) {
+
+		$email_settings         = get_post_meta( $email_to_send->ID, 'email_settings', true );
+		$has_admin_notification = isset( $email_settings['_has_admin_notification'] ) ? true : false;
+
+		$subject = $email_to_send->post_title;
+		$message = $email_to_send->post_content;
+
+		// Send the email to the end user only if a subject and content is specified.
+		if ( ! $subject || empty( $subject ) || ! $message || empty( $message ) ) {
+			return;
+		}
+
+		$email->send( $to, $subject, $message );
+
+		if ( $has_admin_notification ) {
+
+			$admin_to           = get_option( 'admin_email' );
+			$admin_notification = isset( $email_settings['_administrator_notification'] ) ? wpautop( $email_settings['_administrator_notification'] ) : false;
+			$admin_subject      = isset( $email_settings['_administrator_notification_subject'] ) ? $email_settings['_administrator_notification_subject'] : false;
+
+			$email->send( $admin_to, $admin_subject, $admin_notification );
+
+		}
+	}
+
+}

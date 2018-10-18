@@ -545,8 +545,6 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		pno_install_email_types();
-
 		wp_die();
 	}
 
