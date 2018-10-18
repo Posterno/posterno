@@ -238,9 +238,8 @@ function pno_get_registered_settings_tabs_sections() {
 			'profiles_settings'      => esc_html__( 'Profile' ),
 		],
 		'emails'   => [
-			'emails_settings'           => esc_html__( 'Configuration' ),
-			'registration_confirmation' => esc_html__( 'Registration confirmation' ),
-			'password_recovery'         => esc_html__( 'Password recovery' ),
+			'emails_settings' => esc_html__( 'Configuration' ),
+			'emails_test'     => esc_html__( 'Send test email' ),
 		],
 		'listings' => [
 			'listings_settings'   => esc_html__( 'Configuration' ),
@@ -271,7 +270,7 @@ function pno_get_registered_settings_tabs_sections() {
 function pno_get_registered_settings() {
 
 	$settings = [
-		'pages'                     => [
+		'pages'                  => [
 			'login_page'        => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Login page' ),
@@ -321,7 +320,7 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'theme'                     => [
+		'theme'                  => [
 			'bootstrap_style'  => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Include Bootstrap css' ),
@@ -333,7 +332,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Posterno uses bootstrap 4 for styling all of the elements. Disable these options if your theme already makes use of bootstrap.' ),
 			],
 		],
-		'login'                     => [
+		'login'                  => [
 			'login_method'                 => [
 				'type'    => 'select',
 				'label'   => __( 'Allow users to login with:' ),
@@ -350,7 +349,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Enable the option to display a link to the password recovery within the login form.' ),
 			],
 		],
-		'registration'              => [
+		'registration'           => [
 			'disable_username'                => [
 				'label'       => __( 'Disable username during registration:' ),
 				'description' => __( 'Enable this option to disable the username field within the registration form. The email address will be used as username for the new user.' ),
@@ -412,7 +411,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Enable the option to display a link to the password recovery within the registration form.' ),
 			],
 		],
-		'password_recovery_form'    => [
+		'password_recovery_form' => [
 			'recovery_show_login_link'        => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Show login link?' ),
@@ -424,7 +423,7 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Enable the option to display a link to the registration page within the password recovery form.' ),
 			],
 		],
-		'redirects'                 => [
+		'redirects'              => [
 			'redirect_wp_login'     => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Redirect wp-login to frontend' ),
@@ -463,7 +462,7 @@ function pno_get_registered_settings() {
 				'is_page'     => true,
 			],
 		],
-		'privacy'                   => [
+		'privacy'                => [
 			'allow_account_delete' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow users to delete their own account?' ),
@@ -480,71 +479,22 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Enable the option to allow the user to request erasure of personal data from the dashboard page.' ),
 			],
 		],
-		'emails_settings'           => [
-			'from_name'      => [
+		'emails_settings'        => [
+			'from_name'                             => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'From name:' ),
 				'description' => esc_html__( 'The name emails are said to come from. This should probably be your site name.' ),
 			],
-			'from_email'     => [
+			'from_email'                            => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'From email:' ),
 				'description' => esc_html__( 'This will act as the "from" and "reply-to" address.' ),
 			],
-			'email_template' => [
+			'email_template'                        => [
 				'type'        => 'select',
 				'label'       => esc_html__( 'Email template:' ),
 				'description' => esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.' ),
 				'options'     => pno_get_email_templates(),
-			],
-			'test_mail'      => [
-				'type'        => 'mail-tester',
-				'label'       => esc_html__( 'Send test email:' ),
-				'description' => esc_html__( 'Type an email address then click the button above to send a test email and verify emails are correctly being delivered from your website.' ),
-			],
-		],
-		'registration_confirmation' => [
-			'registration_confirmation_subject'       => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Registration confirmation subject:' ),
-				'description' => esc_html__( 'Enter the subject line for the registration confirmation email. Leave blank to disable the email.' ),
-			],
-			'registration_confirmation_heading'       => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Registration confirmation heading:' ),
-				'description' => esc_html__( 'Enter the heading for the registration confirmation email.' ),
-			],
-			'registration_confirmation_content'       => [
-				'type'        => 'textarea',
-				'label'       => esc_html__( 'Registration confirmation message:' ),
-				'description' => esc_html__( 'Enter the text that is sent to the user within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
-			],
-			'registration_confirmation_admin_subject' => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Admin registration confirmation subject:' ),
-				'description' => esc_html__( 'Enter the subject line for the registration confirmation email sent to the administrator. Leave blank to disable the email.' ),
-			],
-			'registration_confirmation_admin_content' => [
-				'type'        => 'textarea',
-				'label'       => esc_html__( 'Admin registration confirmation message:' ),
-				'description' => esc_html__( 'Enter the text that is sent to the administrator within the registration confirmation email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
-			],
-		],
-		'password_recovery'         => [
-			'password_recovery_subject'             => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Password recovery subject:' ),
-				'description' => esc_html__( 'Enter the subject line for the password recovery email.' ),
-			],
-			'password_recovery_heading'             => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Password recovery heading:' ),
-				'description' => esc_html__( 'Enter the heading for the password recovery email.' ),
-			],
-			'password_recovery_content'             => [
-				'type'        => 'textarea',
-				'label'       => esc_html__( 'Password recovery message:' ),
-				'description' => esc_html__( 'Enter the text that is sent to the user within the password recovery email. HTML is accepted. Available template tags:' ) . '<br/><br/>' . pno_get_emails_tags_list(),
 			],
 			'disable_admin_password_recovery_email' => [
 				'label'       => __( 'Disable admin password recovery email:' ),
@@ -552,7 +502,14 @@ function pno_get_registered_settings() {
 				'type'        => 'checkbox',
 			],
 		],
-		'profiles_settings'         => [
+		'emails_test'            => [
+			'test_mail' => [
+				'type'        => 'mail-tester',
+				'label'       => esc_html__( 'Send test email:' ),
+				'description' => esc_html__( 'Type an email address then click the button above to send a test email and verify emails are correctly being delivered from your website.' ),
+			],
+		],
+		'profiles_settings'      => [
 			'allow_avatars' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Custom avatars' ),
@@ -562,7 +519,7 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings configuration settings.
 		 */
-		'listings_settings'         => [
+		'listings_settings'      => [
 			'listing_date_format' => [
 				'type'        => 'radio',
 				'label'       => esc_html__( 'Date format:' ),
@@ -576,33 +533,33 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings management settings.
 		 */
-		'listings_management'       => [
-			'listings_per_page_dashboard' => [
+		'listings_management'    => [
+			'listings_per_page_dashboard'    => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'Listings per page in dashboard' ),
 				'description' => esc_html__( 'Enter the amount of listings you wish to display when users are managing their listings.' ),
 			],
-			'listing_allow_editing'       => [
+			'listing_allow_editing'          => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Listings can be edited?' ),
 				'description' => esc_html__( 'Enable the option to allow users to edit their own listings.' ),
 			],
-			'listing_allow_delete'        => [
+			'listing_allow_delete'           => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Listings can be deleted?' ),
 				'description' => esc_html__( 'Enable the option to allow users to delete their own listings.' ),
 			],
-			'listing_permanently_delete'  => [
+			'listing_permanently_delete'     => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Permanently delete listings?' ),
 				'description' => esc_html__( 'Enable the option to permanently delete listings from the database instead of trashing them.' ),
 			],
-			'submission_allow_pendings_edit'   => [
+			'submission_allow_pendings_edit' => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow pending edits' ),
 				'description' => esc_html__( 'Enable the option to allow editing of pending listings. Users can continue to edit pending listings until they are approved by an admin.' ),
 			],
-			'submission_edit_moderated'        => [
+			'submission_edit_moderated'      => [
 				'type'        => 'radio',
 				'label'       => esc_html__( 'Allow published edits' ),
 				'description' => esc_html__( 'Choose whether published listings can be edited and if edits require admin approval. When moderation is required, the original listings will be unpublished while edits await admin approval.' ),
@@ -616,7 +573,7 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings submission settings.
 		 */
-		'listings_submission'       => [
+		'listings_submission'    => [
 			'submission_requires_account'      => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Account required' ),
@@ -659,7 +616,7 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Moderate new listings' ),
 				'description' => esc_html__( 'Enable the option to require admin approval of all new listing submissions.' ),
 			],
-			'submission_images_amount'     => [
+			'submission_images_amount'         => [
 				'type'        => 'text',
 				'label'       => esc_html__( 'How many images?' ),
 				'description' => esc_html__( 'Specify the maximum amount of images your members can upload per listing.' ),
@@ -668,7 +625,7 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings content settings.
 		 */
-		'listings_content'          => [
+		'listings_content'       => [
 			'listings_social_profiles' => [
 				'label'       => __( 'Allowed social profiles' ),
 				'description' => __( 'Select which social profiles to enable for listings.' ),
@@ -681,7 +638,7 @@ function pno_get_registered_settings() {
 		/**
 		 * Listings mapping settings.
 		 */
-		'listings_maps'             => [
+		'listings_maps'          => [
 			'map_provider'        => [
 				'label'       => esc_html__( 'Map provider' ),
 				'description' => esc_html__( 'Select which maps provider to use across the website.' ),
@@ -709,8 +666,8 @@ function pno_get_registered_settings() {
 				'description' => esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ),
 			],
 		],
-		'listings_redirects' => [
-			'listing_submission_redirect'     => [
+		'listings_redirects'     => [
+			'listing_submission_redirect' => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After successful submission' ),
 				'description' => esc_html__( 'Select the page where you wish to redirect users after submitting a listing. Leave blank to display a message only.' ),
