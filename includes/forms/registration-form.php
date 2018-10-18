@@ -280,7 +280,13 @@ class RegistrationForm extends Forms {
 				 */
 				do_action( 'pno_before_registration_end', $new_user_id, $values, $this );
 
-				pno_send_registration_confirmation_email( $new_user_id, $password );
+				// Send registration confirmation emails.
+				pno_send_email(
+					'core_user_registration', $email_address, [
+						'user_id'             => $new_user_id,
+						'plain_text_password' => $password,
+					]
+				);
 
 				/**
 				 * Allow developers to extend the signup process after firing

@@ -235,7 +235,9 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 
 	if ( ! empty( $args ) ) {
 		foreach ( $args as $key => $value ) {
-			$email->__set( $key, $value );
+			if ( $value ) {
+				$email->__set( $key, $value );
+			}
 		}
 	}
 
