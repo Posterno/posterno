@@ -35,9 +35,33 @@ class PNO_Emails_Editor_Settings {
 	 */
 	public function register_settings() {
 
+		Container::make( 'post_meta', esc_html__( 'Administrator notifications' ) )
+			->where( 'post_type', '=', 'pno_emails' )
+			->add_fields(
+				array(
+					Field::make( 'checkbox', 'has_admin_notification', __( 'Notify administrator' ) )
+						->set_help_text( esc_html__( 'Enable this option to send an email notification to the administrator.' ) ),
+
+					Field::make( 'rich_text', 'administrator_notification', esc_html__( 'Administrator notification content' ) )
+						->set_conditional_logic(
+							array(
+								'relation' => 'AND',
+								array(
+									'field'   => 'has_admin_notification',
+									'value'   => true,
+									'compare' => '=',
+								),
+							)
+						)
+						->set_help_text( esc_html__( 'Enter the content of the notification sent to the administrators.' ) ),
+				)
+			);
+
 		Container::make( 'post_meta', esc_html__( 'Available email template tags:' ) )
 			->where( 'post_type', '=', 'pno_emails' )
 			->set_context( 'carbon_fields_after_title' )
+			->set_context( 'side' )
+			->set_priority( 'default' )
 			->add_fields(
 				array(
 					Field::make( 'html', 'pno_email_tags_list' )
