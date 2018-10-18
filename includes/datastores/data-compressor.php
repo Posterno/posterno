@@ -22,7 +22,42 @@ use Carbon_Fields\Toolset\Key_Toolset;
 /**
  * Store all details that belong to a posterno custom field into a single metadata row into the database.
  */
-class CustomFieldsDetails extends Post_Meta_Datastore {
+class DataCompressor extends Post_Meta_Datastore {
+
+	/**
+	 * Meta key defined for storage of data within the given container.
+	 *
+	 * @var mixed
+	 */
+	public $metakey = false;
+
+	/**
+	 * Set the metakey for storage of data within the given container.
+	 *
+	 * @param string $key the key you wish to use.
+	 * @return void
+	 */
+	public function set_storage_metakey( $key = false ) {
+		if ( $key ) {
+			$this->metakey = $key;
+		}
+	}
+
+	/**
+	 * Retrieve the meta key set for the storage of the data within the given container.
+	 *
+	 * @return mixed
+	 */
+	public function get_storage_metakey() {
+
+		$defined_meta_key = $this->metakey;
+
+		if ( ! $defined_meta_key ) {
+			$defined_meta_key = '_field_settings';
+		}
+
+		return $defined_meta_key;
+	}
 
 	/**
 	 * Get the defined key for the field.
@@ -48,7 +83,7 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 		}
 
 		$key            = $this->get_key_for_field( $field );
-		$field_settings = get_post_meta( $this->get_object_id(), '_field_settings', true );
+		$field_settings = get_post_meta( $this->get_object_id(), $this->get_storage_metakey(), true );
 		$value          = '';
 
 		if ( is_a( $field, '\\Carbon_Fields\\Field\\Complex_Field' ) ) {
@@ -82,7 +117,7 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 
 		$key            = $this->get_key_for_field( $field );
 		$value          = $field->get_formatted_value();
-		$field_settings = get_post_meta( $this->get_object_id(), '_field_settings', true );
+		$field_settings = get_post_meta( $this->get_object_id(), $this->get_storage_metakey(), true );
 
 		if ( empty( $field_settings ) || ! is_array( $field_settings ) ) {
 			$field_settings = [];
@@ -113,7 +148,7 @@ class CustomFieldsDetails extends Post_Meta_Datastore {
 
 		}
 
-		update_post_meta( $this->get_object_id(), '_field_settings', $field_settings );
+		update_post_meta( $this->get_object_id(), $this->get_storage_metakey(), $field_settings );
 
 	}
 

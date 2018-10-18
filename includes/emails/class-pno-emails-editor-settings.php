@@ -35,7 +35,11 @@ class PNO_Emails_Editor_Settings {
 	 */
 	public function register_settings() {
 
+		$datastore = new PNO\Datastores\DataCompressor();
+		$datastore->set_storage_metakey( 'email_settings' );
+
 		Container::make( 'post_meta', esc_html__( 'Administrator notifications' ) )
+			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_emails' )
 			->add_fields(
 				array(

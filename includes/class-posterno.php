@@ -247,7 +247,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/hours-of-operation.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/serialize-complex-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/listing-type.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/custom-fields.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/data-compressor.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/email-situations.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-cache-helper.php';

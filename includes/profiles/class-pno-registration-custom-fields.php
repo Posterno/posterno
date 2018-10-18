@@ -115,7 +115,7 @@ class PNO_Registration_Custom_Fields {
 	public static function register_settings() {
 
 		$container = Container::make( 'post_meta', esc_html__( 'Field settings' ) )
-			->set_datastore( new PNO\Datastores\CustomFieldsDetails() )
+			->set_datastore( new PNO\Datastores\DataCompressor() )
 			->where( 'post_type', '=', 'pno_signup_fields' );
 
 		foreach ( self::get_settings_tabs() as $key => $tab ) {

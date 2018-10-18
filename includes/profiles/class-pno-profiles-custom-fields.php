@@ -176,7 +176,7 @@ class PNO_Profiles_Custom_Fields {
 	public static function register_settings() {
 
 		$container = Container::make( 'post_meta', esc_html__( 'Field settings' ) )
-			->set_datastore( new PNO\Datastores\CustomFieldsDetails() )
+			->set_datastore( new PNO\Datastores\DataCompressor() )
 			->where( 'post_type', '=', 'pno_users_fields' );
 
 		foreach ( self::get_settings_tabs() as $key => $tab ) {
@@ -217,7 +217,7 @@ class PNO_Profiles_Custom_Fields {
 						->set_required( true )
 						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.' ) ),
 					Field::make( 'text', 'profile_field_custom_classes', esc_html__( 'Custom css classes' ) )
-						->set_datastore( new PNO\Datastores\CustomFieldsDetails() )
+						->set_datastore( new PNO\Datastores\DataCompressor() )
 						->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
 				)
 			);
