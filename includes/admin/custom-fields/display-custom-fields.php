@@ -137,3 +137,12 @@ function pno_custom_registration_fields_page() {
 function pno_custom_profile_fields_page() {
 	echo '<div id="posterno-profile-fields-page"></div>';
 }
+
+/**
+ * Displays the listings fields editor page. Actual output handled via Vuejs.
+ *
+ * @return void
+ */
+function pno_custom_listings_fields_page() {
+	echo '<div id="posterno-listings-fields-page"></div>';
+}
