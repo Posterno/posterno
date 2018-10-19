@@ -95,6 +95,13 @@ class PNO_Emails {
 	private $plain_text_password;
 
 	/**
+	 * The dynamic listing id on which some tags are based.
+	 *
+	 * @var string
+	 */
+	private $listing_id;
+
+	/**
 	 * Get things started.
 	 */
 	public function __construct() {

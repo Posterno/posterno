@@ -165,6 +165,9 @@ function pno_email_get_type_schema() {
 			'description' => esc_html__( 'Recipient has forgotten his password.' ),
 			'unsubscribe' => false,
 		],
+		'core_user_listing_submitted' => [
+			'description' => esc_html__( 'Recipient has successfully submitted a listing.' ),
+		],
 	);
 
 	return $types;

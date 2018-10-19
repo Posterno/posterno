@@ -381,6 +381,19 @@ class ListingSubmissionForm extends Forms {
 					 */
 					do_action( 'pno_after_listing_submission', $values, $new_listing_id, $this );
 
+					$user = get_user_by( 'id', $listing_author );
+
+					if ( isset( $user->data ) ) {
+						pno_send_email(
+							'core_user_listing_submitted',
+							$user->data->user_email,
+							[
+								'user_id'    => $listing_author,
+								'listing_id' => $new_listing_id,
+							]
+						);
+					}
+
 					// Redirect the user to a new page or display success message.
 					$redirect = pno_get_listing_success_redirect_page_id();
 
