@@ -63,15 +63,15 @@ class PNO_Listings_Custom_Fields_Settings {
 		$settings = [];
 
 		$settings[] = Field::make( 'hidden', 'listing_field_priority' );
-		$settings[] = Field::make( 'hidden', 'listing_is_default_field' );
+		$settings[] = Field::make( 'hidden', 'listing_field_is_default' );
 
 		$settings[] = Field::make( 'select', 'listing_field_type', esc_html__( 'Field type' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
 					array(
-						'field'   => 'listing_is_default_field',
-						'value'   => '',
+						'field'   => 'listing_field_is_default',
+						'value'   => true,
 						'compare' => '!=',
 					),
 				)

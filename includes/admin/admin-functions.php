@@ -333,7 +333,7 @@ function pno_install_listings_fields() {
 		if ( ! is_wp_error( $field_id ) ) {
 
 			// Mark the registration field as a default field.
-			carbon_set_post_meta( $field_id, 'listing_field_is_default', $key );
+			carbon_set_post_meta( $field_id, 'listing_field_is_default', true );
 
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
@@ -601,6 +601,8 @@ function pno_get_emails_situations() {
 function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
+
+		print_r( new PNO_Listing_Field( 977 ) );
 
 		wp_die();
 	}
