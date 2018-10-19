@@ -602,7 +602,7 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		print_r( new PNO_Listing_Field( 977 ) );
+		print_r( new PNO_Listing_Field( 1017 ) );
 
 		wp_die();
 	}
