@@ -89,6 +89,13 @@
 			}
 		}
 
+		tr.no-items {
+			td {
+				text-align: center;
+				padding: 1.2em;
+			}
+		}
+
 		.sortable-ghost {
 			background: #fffecc;
 		}

@@ -52,6 +52,9 @@
         width: 100px; }
       #pno-custom-fields-editor-wrapper .tables-wrapper table .dashicons-yes {
         color: #46b450; }
+    #pno-custom-fields-editor-wrapper .tables-wrapper tr.no-items td {
+      text-align: center;
+      padding: 1.2em; }
     #pno-custom-fields-editor-wrapper .tables-wrapper .sortable-ghost {
       background: #fffecc; }
     #pno-custom-fields-editor-wrapper .tables-wrapper .sortable-chosen {

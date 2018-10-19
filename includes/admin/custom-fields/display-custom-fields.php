@@ -53,10 +53,15 @@ function pno_get_custom_fields_editor_js_vars() {
 				'title'   => esc_html__( 'Posterno registration form editor' ),
 				'add_new' => esc_html__( 'Add new registration field' ),
 			],
+			'listing'             => [
+				'title'   => esc_html__( 'Posterno listings fields editor' ),
+				'add_new' => esc_html__( 'Add new listing field' ),
+			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),
 				'type'      => esc_html__( 'Type' ),
 				'required'  => esc_html__( 'Required' ),
+				'default'   => esc_html__( 'Default' ),
 				'privacy'   => esc_html__( 'Privacy' ),
 				'editable'  => esc_html__( 'Editable' ),
 				'actions'   => esc_html__( 'Actions' ),
