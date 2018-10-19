@@ -103,7 +103,8 @@ class PNO_Listing_Field extends PNO_Field_Object {
 		$this->type          = carbon_get_post_meta( $this->id, 'listing_field_type' );
 		$types               = pno_get_registered_field_types();
 		$this->type_nicename = isset( $types[ $this->type ] ) ? $types[ $this->type ] : false;
-		$this->name          = get_the_title( $this->id );
+
+		$this->name = get_the_title( $this->id );
 
 		$label = carbon_get_post_meta( $this->id, 'listing_field_label' );
 

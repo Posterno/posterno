@@ -335,6 +335,13 @@ function pno_install_listings_fields() {
 			// Mark the registration field as a default field.
 			carbon_set_post_meta( $field_id, 'listing_field_is_default', true );
 
+			// Setup the field's type.
+			$registered_field_types = pno_get_registered_field_types();
+
+			if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_type', esc_attr( $field['type'] ) );
+			}
+
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
 				carbon_set_post_meta( $field_id, 'listing_field_is_required', true );
