@@ -66,6 +66,16 @@ class PNO_Listings_Custom_Fields_Settings {
 		$settings[] = Field::make( 'hidden', 'listing_is_default_field' );
 
 		$settings[] = Field::make( 'select', 'listing_field_type', esc_html__( 'Field type' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_is_default_field',
+						'value'   => '',
+						'compare' => '!=',
+					),
+				)
+			)
 			->set_required()
 			->add_options( pno_get_registered_field_types() )
 			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.' ) );

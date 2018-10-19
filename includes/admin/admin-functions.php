@@ -348,21 +348,14 @@ function pno_install_listings_fields() {
 			// Setup the field's meta key.
 			carbon_set_post_meta( $field_id, 'listing_field_meta_key', $key );
 
-			// Setup the field's type.
-				$registered_field_types = pno_get_registered_field_types();
-
-			if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_type', esc_attr( $field['type'] ) );
-			}
-
 			// Assign a description if one is given.
 			if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_description', esc_html( $field['description'] ) );
+				carbon_set_post_meta( $field_id, 'profile_field_description', esc_html( $field['description'] ) );
 			}
 
 			// Assign a placeholder if one is given.
 			if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_placeholder', esc_html( $field['placeholder'] ) );
+				carbon_set_post_meta( $field_id, 'profile_field_placeholder', esc_html( $field['placeholder'] ) );
 			}
 
 		}
