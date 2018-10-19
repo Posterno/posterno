@@ -118,8 +118,8 @@ class PNO_Emails {
 	/**
 	 * Set properties of the class.
 	 *
-	 * @param string $key
-	 * @param mixed $value
+	 * @param string $key the key to set.
+	 * @param mixed $value the value to assign.
 	 */
 	public function __set( $key, $value ) {
 		$this->$key = $value;
@@ -223,7 +223,7 @@ class PNO_Emails {
 	/**
 	 * Retrieve the heading title set for the email.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_heading() {
 		return apply_filters( 'pno_email_heading', $this->heading );
@@ -232,8 +232,8 @@ class PNO_Emails {
 	/**
 	 * Prepare the email to be sent.
 	 *
-	 * @param string $message
-	 * @return void
+	 * @param string $message the message to send via email.
+	 * @return mixed
 	 */
 	public function build_email( $message ) {
 
@@ -276,11 +276,11 @@ class PNO_Emails {
 	/**
 	 * Finally send the email now.
 	 *
-	 * @param string $to
-	 * @param string $subject
-	 * @param string $message
-	 * @param string $attachments
-	 * @return void
+	 * @param string $to the email address to which we're going to send the email.
+	 * @param string $subject the subject of the email.
+	 * @param string $message the message to send within the email.
+	 * @param string $attachments any attachments to pass through the email.
+	 * @return boolean
 	 */
 	public function send( $to, $subject, $message, $attachments = '' ) {
 
@@ -334,8 +334,8 @@ class PNO_Emails {
 	/**
 	 * Convert content of the message.
 	 *
-	 * @param string $message
-	 * @return void
+	 * @param string $message the message to format.
+	 * @return string
 	 */
 	public function text_to_html( $message ) {
 		if ( 'text/html' == $this->content_type || true === $this->html ) {
@@ -349,11 +349,11 @@ class PNO_Emails {
 	/**
 	 * Parse email tags with the appropriate callback.
 	 *
-	 * @param string $content
+	 * @param string $content the content to parse.
 	 * @return string
 	 */
 	private function parse_tags( $content ) {
-		// Make sure there's at least one tag
+		// Make sure there's at least one tag.
 		if ( empty( $this->tags ) || ! is_array( $this->tags ) ) {
 			return $content;
 		}
@@ -446,8 +446,8 @@ class PNO_Emails {
 	/**
 	 * Parse a specific tag with it's own callback.
 	 *
-	 * @param string $m
-	 * @return void
+	 * @param string $m key of the tag to process.
+	 * @return string
 	 */
 	private function do_tag( $m ) {
 		// Get tag.
@@ -462,8 +462,8 @@ class PNO_Emails {
 	/**
 	 * Check if a tag exists.
 	 *
-	 * @param string $tag
-	 * @return void
+	 * @param string $tag the tag to verify.
+	 * @return boolean
 	 */
 	public function email_tag_exists( $tag ) {
 		return array_key_exists( $tag, $this->tags );
