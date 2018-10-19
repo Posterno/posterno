@@ -307,6 +307,70 @@ function pno_install_registration_fields() {
 }
 
 /**
+ * Install the default listings submission fields.
+ *
+ * @return void
+ */
+function pno_install_listings_fields() {
+
+	// Bail if this was already done.
+	if ( get_option( 'pno_listings_fields_installed' ) ) {
+		return;
+	}
+
+	$registered_fields = wp_list_filter( pno_get_listing_submission_fields(), [ 'default_field' => true ] );
+
+	foreach ( $registered_fields as $key => $field ) {
+
+		$new_field = [
+			'post_type'   => 'pno_listings_fields',
+			'post_title'  => $field['label'],
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $new_field );
+
+		if ( ! is_wp_error( $field_id ) ) {
+
+			// Mark the registration field as a default field.
+			carbon_set_post_meta( $field_id, 'listing_field_is_default', $key );
+
+			// Mark fields as required.
+			if ( isset( $field['required'] ) && $field['required'] === true ) {
+				carbon_set_post_meta( $field_id, 'listing_field_is_required', true );
+			}
+
+			// Setup the priority of this field.
+			if ( isset( $field['priority'] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_priority', $field['priority'] );
+			}
+
+			// Setup the field's meta key.
+			carbon_set_post_meta( $field_id, 'listing_field_meta_key', $key );
+
+			// Setup the field's type.
+				$registered_field_types = pno_get_registered_field_types();
+
+			if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_type', esc_attr( $field['type'] ) );
+			}
+
+			// Assign a description if one is given.
+			if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_description', esc_html( $field['description'] ) );
+			}
+
+			// Assign a placeholder if one is given.
+			if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_placeholder', esc_html( $field['placeholder'] ) );
+			}
+
+		}
+	}
+
+}
+
+/**
  * Install email types into the database.
  *
  * @return void
