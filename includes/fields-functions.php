@@ -63,9 +63,14 @@ function pno_is_default_profile_field( $key ) {
 /**
  * Retrieve the list of registered field types and their labels.
  *
+ * This function is also used within the custom fields editor selection,
+ * therefore sometimes it might be necessary to exclude some types from the list
+ * hence why we have an exclude parameter.
+ *
+ * @param array $exclude the list of field types to exclude from the list.
  * @return array
  */
-function pno_get_registered_field_types() {
+function pno_get_registered_field_types( $exclude = [] ) {
 
 	$types = [
 		'text'             => esc_html__( 'Single text line' ),
@@ -97,6 +102,14 @@ function pno_get_registered_field_types() {
 	 * @param array $types all registered field types.
 	 */
 	$types = apply_filters( 'pno_registered_field_types', $types );
+
+	if ( ! empty( $exclude ) && is_array( $exclude ) ) {
+		foreach ( $exclude as $type_to_exclude ) {
+			if ( isset( $types[ $type_to_exclude ] ) ) {
+				unset( $types[ $type_to_exclude ] );
+			}
+		}
+	}
 
 	asort( $types );
 
