@@ -119,6 +119,15 @@ export default {
 			fields:        []
 		}
 	},
+	mounted() {
+
+		this.loadFields()
+
+		if ( pno_fields_editor.trashed ) {
+			this.success = true
+		}
+
+	},
 	methods: {
 
 		/**
@@ -147,7 +156,52 @@ export default {
 
 		},
 
+		/**
+		 * Load listings fields from the database.
+		 */
 		loadFields() {
+
+			this.loading = true
+			this.success = false
+			this.error   = false
+
+			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/listings', {
+				headers: {
+					'X-WP-Nonce': pno_fields_editor.nonce
+				},
+				params: {
+					nonce:  pno_fields_editor.nonce,
+				}
+			})
+			.then( response => {
+
+				// Convert the object retrieved from the api,
+				// to an array so it can be made sortable by the script.
+				if ( typeof response.data === 'object' ) {
+					let new_fields = []
+					var result = Object.keys(response.data).map( function(key) {
+						new_fields.push( response.data[key] )
+					})
+					new_fields = orderBy( new_fields, 'priority', 'asc');
+					this.fields = new_fields
+				}
+
+				this.loading = false
+
+			})
+			.catch( e => {
+
+				this.loading = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
+				}
+
+			})
 
 		}
 
