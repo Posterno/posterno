@@ -147,6 +147,11 @@ function pno_after_custom_fields_post_title() {
 		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form' );
 		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All registration form fields' ) . '</a>';
 
+	} elseif ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_listings_fields' ) {
+
+		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' );
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All listings fields' ) . '</a>';
+
 	}
 
 }
