@@ -36,5 +36,10 @@ function pno_register_rest_controllers() {
 	$registration_fields = new PNO_Registration_Fields_Api();
 	$registration_fields->register_routes();
 
+	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-listings-fields-api.php';
+
+	$listings_fields = new PNO_Listings_Fields_Api();
+	$listings_fields->register_routes();
+
 }
 add_action( 'rest_api_init', 'pno_register_rest_controllers' );
