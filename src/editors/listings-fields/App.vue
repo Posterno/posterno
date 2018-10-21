@@ -37,7 +37,6 @@
 						</th>
 						<th scope="col" class="column-primary">{{labels.table.title}}</th>
 						<th scope="col">{{labels.table.type}}</th>
-						<th scope="col" class="icon-col">{{labels.table.default}}</th>
 						<th scope="col" class="icon-col">{{labels.table.required}}</th>
 						<th scope="col" class="icon-col">{{labels.table.editable}}</th>
 						<th scope="col">{{labels.table.actions}}</th>
@@ -55,9 +54,6 @@
 							<code>{{field.type_nicename}}</code>
 						</td>
 						<td>
-
-						</td>
-						<td>
 							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
 						</td>
 						<td>
@@ -68,8 +64,8 @@
 							<span class="dashicons dashicons-yes" v-else></span>
 						</td>
 						<td>
-							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span> {{labels.table.edit}}</a>
-							<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span> {{labels.table.delete}}</a>
+							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
+							<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
 						</td>
 					</tr>
 					<tr class="no-items" v-if="fields < 1 && ! loading">
