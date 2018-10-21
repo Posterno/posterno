@@ -167,13 +167,15 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 
 	if ( get_post_type( $post_id ) == 'pno_users_fields' ) {
 		wp_delete_post( $post_id, true );
-
-		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&trashed=true&page=posterno-custom-fields#/profile-fields' ) );
+		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields&trashed=true' ) );
 		exit;
 	} elseif ( get_post_type( $post_id ) == 'pno_signup_fields' ) {
 		wp_delete_post( $post_id, true );
-
-		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&trashed=true&page=posterno-custom-fields#/registration-form' ) );
+		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form&trashed=true' ) );
+		exit;
+	} elseif ( get_post_type( $post_id ) == 'pno_listings_fields' ) {
+		wp_delete_post( $post_id, true );
+		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields&trashed=true' ) );
 		exit;
 	}
 
