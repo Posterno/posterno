@@ -93,6 +93,7 @@ import orderBy from 'lodash.orderby'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
 import AddNewModal from '../../modals/add-new-listing-field'
+import DeleteFieldModal from '../../modals/delete-field'
 
 export default {
 	name: 'listings-fields-editor',
@@ -196,7 +197,24 @@ export default {
 
 		},
 
-		deleteField() {
+		/**
+		 * Show the delete field modal.
+		 */
+		deleteField(id, name) {
+
+			this.$modal.show( DeleteFieldModal, {
+				type: 'listing',
+				field_id: id,
+				name: name,
+				/**
+				 * Pass a function to the component so we can
+				 * then update the app status from the child component response.
+				 */
+				updateStatus: () => {
+					this.loadFields()
+					this.success = true
+				}
+			},{ height: '230px', width: '450px' })
 
 		},
 
