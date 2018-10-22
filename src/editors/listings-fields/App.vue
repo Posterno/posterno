@@ -153,7 +153,7 @@ export default {
 			this.sorting = true
 
 			axios.post(
-				pno_fields_editor.rest + 'posterno/v1/custom-fields/listings/update-priority',
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/listing/update-priority',
 				qs.stringify( {
 					fields: this.fields
 				} ),
@@ -227,7 +227,7 @@ export default {
 			this.success = false
 			this.error   = false
 
-			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/listings', {
+			axios.get( pno_fields_editor.rest + 'posterno/v1/custom-fields/listing', {
 				headers: {
 					'X-WP-Nonce': pno_fields_editor.nonce
 				},

@@ -28,7 +28,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $rest_base = 'listings';
+	protected $rest_base = 'listing';
 
 	/**
 	 * Post type.

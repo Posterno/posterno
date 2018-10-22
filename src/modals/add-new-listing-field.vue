@@ -74,7 +74,7 @@ export default {
 			this.loading = true
 
 			axios.post(
-				pno_fields_editor.rest + 'posterno/v1/custom-fields/listings',
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/listing',
 				qs.stringify( {
 					priority: this.priority,
 				} ),
