@@ -294,8 +294,6 @@ function pno_get_registration_fields() {
 
 	}
 
-	uasort( $fields, 'pno_sort_array_by_priority' );
-
 	/**
 	 * Allows developers to register or deregister fields for the registration form.
 	 * Fields here are yet to be formatted for the Form object.
@@ -304,7 +302,11 @@ function pno_get_registration_fields() {
 	 * @param array $fields array containing the list of fields for the registration form.
 	 * @return array the list of fields yet to be formatted.
 	 */
-	return apply_filters( 'pno_registration_fields', $fields );
+	$fields = apply_filters( 'pno_registration_fields', $fields );
+
+	uasort( $fields, 'pno_sort_array_by_priority' );
+
+	return $fields;
 
 }
 
@@ -492,8 +494,6 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		$fields[ $key ]['priority'] = $counter;
 	}
 
-	uasort( $fields, 'pno_sort_array_by_priority' );
-
 	/**
 	 * Allows developers to register or deregister custom fields within the
 	 * user's account editing form. Fields here are yet to be formatted for the form functionality.
@@ -502,7 +502,11 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 	 * @param mixed $user_id if a user id is given we load the matching user meta.
 	 * @return array list of fields yet to be formatted.
 	 */
-	return apply_filters( 'pno_account_fields', $fields, $user_id );
+	$fields = apply_filters( 'pno_account_fields', $fields, $user_id );
+
+	uasort( $fields, 'pno_sort_array_by_priority' );
+
+	return $fields;
 
 }
 
