@@ -759,7 +759,7 @@ function pno_get_listings_submission_form_js_vars() {
  *
  * @return array
  */
-function pno_get_listing_submission_fields() {
+function pno_get_listing_submission_fields( $listing_id = false, $admin_request = false ) {
 
 	$fields = [
 		'listing_title'                 => [
@@ -881,7 +881,81 @@ function pno_get_listing_submission_fields() {
 		$fields[ $key ]['priority'] = $counter;
 	}
 
-	uasort( $fields, 'pno_sort_array_by_priority' );
+	// Load fields from the database and merge it with the default settings.
+	$fields_query_args = [
+		'post_type'              => 'pno_listings_fields',
+		'posts_per_page'         => 100,
+		'nopaging'               => true,
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+		'post_status'            => 'publish',
+	];
+
+	$fields_query = new WP_Query( $fields_query_args );
+
+	if ( $fields_query->have_posts() ) {
+
+		while ( $fields_query->have_posts() ) {
+
+			$fields_query->the_post();
+
+			$field = new PNO_Listing_Field( get_the_ID() );
+
+			if ( $field instanceof PNO_Listing_Field && ! empty( $field->get_meta() ) ) {
+
+				// Determine if the field is a default one so we can just merge it
+				// to the existing default array.
+				if ( $field->is_default_field() ) {
+
+					if ( $field->is_admin_only() === true && ! $admin_request ) {
+						unset( $fields[ $field->get_meta() ] );
+						continue;
+					}
+
+					$fields[ $field->get_meta() ]['label']       = $field->get_label();
+					$fields[ $field->get_meta() ]['description'] = $field->get_description();
+					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
+					$fields[ $field->get_meta() ]['readonly']    = $field->is_read_only();
+
+					if ( $field->get_meta() !== 'listing_title' ) {
+						$fields[ $field->get_meta() ]['required'] = $field->is_required();
+					}
+
+					if ( $field->get_custom_classes() ) {
+						$fields[ $field->get_meta() ]['css_class'] = $field->get_custom_classes();
+					}
+
+					if ( $field->get_priority() ) {
+						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+					}
+				} else {
+
+					// The field does not exist so we now add it to the list of fields.
+					$fields[ $field->get_meta() ] = [
+						'label'       => $field->get_label(),
+						'type'        => $field->get_type(),
+						'description' => $field->get_description(),
+						'placeholder' => $field->get_placeholder(),
+						'readonly'    => $field->is_read_only(),
+						'required'    => $field->is_required(),
+						'css_class'   => $field->get_custom_classes(),
+						'priority'    => $field->get_priority(),
+					];
+
+					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
+					}
+
+					if ( $field->get_type() == 'file' && ! empty( $field->get_file_size() ) ) {
+						$fields[ $field->get_meta() ]['max_size'] = $field->get_file_size();
+					}
+				}
+			}
+		}
+
+		wp_reset_postdata();
+
+	}
 
 	/**
 	 * Allow developers to customize the listings submission form fields.
@@ -889,7 +963,11 @@ function pno_get_listing_submission_fields() {
 	 * @param array $fields the list of fields.
 	 * @return array $fields
 	 */
-	return apply_filters( 'pno_listing_submission_fields', $fields );
+	$fields = apply_filters( 'pno_listing_submission_fields', $fields );
+
+	uasort( $fields, 'pno_sort_array_by_priority' );
+
+	return $fields;
 
 }
 
