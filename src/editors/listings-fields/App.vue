@@ -140,7 +140,46 @@ export default {
 			return editability === 'admin_only' ? true : false
 		},
 
+		/*
+		 * Update field's priority within the database.
+		 */
 		updateFieldsPriority( event ) {
+
+			this.success = false
+			this.error   = false
+			this.loading = false
+			this.sorting = true
+
+			axios.post(
+				pno_fields_editor.rest + 'posterno/v1/custom-fields/listings/update-priority',
+				qs.stringify( {
+					fields: this.fields
+				} ),
+				{
+					headers: {
+						'X-WP-Nonce': pno_fields_editor.nonce
+					}
+				}
+			)
+			.then( response => {
+				this.error   = false
+				this.sorting = false
+				this.loadFields()
+				this.success = true
+			})
+			.catch( e => {
+				this.loading = false
+				this.sorting = false
+				this.success = false
+				this.error = true
+
+				if ( e.response.data.message ) {
+					this.error_message = e.response.data.message
+				} else if( typeof e.response.data === 'string' || e.response.data instanceof String ) {
+					this.error_message = e.response.data
+				}
+
+			} );
 
 		},
 
