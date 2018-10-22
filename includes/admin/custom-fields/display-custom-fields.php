@@ -36,7 +36,15 @@ function pno_get_custom_fields_editor_js_vars() {
 				'listing-location',
 			]
 		),
-		'listing_field_types' => pno_get_registered_field_types(),
+		'listing_field_types' => pno_get_registered_field_types(
+			[
+				'social-profiles',
+				'listing-category',
+				'listing-tags',
+				'opening-hours',
+				'listing-location',
+			]
+		),
 		'roles'               => pno_get_roles( true ),
 		'pages'               => [
 			'selector'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields' ),

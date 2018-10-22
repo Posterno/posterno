@@ -92,6 +92,7 @@ import qs from 'qs'
 import orderBy from 'lodash.orderby'
 import balloon from 'balloon-css'
 import draggable from 'vuedraggable'
+import AddNewModal from '../../modals/add-new-listing-field'
 
 export default {
 	name: 'listings-fields-editor',
@@ -183,7 +184,15 @@ export default {
 
 		},
 
+		/**
+		 * Show the add new field modal.
+		 */
 		addNewField() {
+
+			this.$modal.show( AddNewModal, {
+				type: 'listing',
+				priority: this.fields.length
+			},{ height: '300px' })
 
 		},
 
