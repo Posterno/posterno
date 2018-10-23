@@ -357,12 +357,17 @@ function pno_install_listings_fields() {
 
 			// Assign a description if one is given.
 			if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-				carbon_set_post_meta( $field_id, 'profile_field_description', esc_html( $field['description'] ) );
+				carbon_set_post_meta( $field_id, 'listing_field_description', esc_html( $field['description'] ) );
 			}
 
 			// Assign a placeholder if one is given.
 			if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-				carbon_set_post_meta( $field_id, 'profile_field_placeholder', esc_html( $field['placeholder'] ) );
+				carbon_set_post_meta( $field_id, 'listing_field_placeholder', esc_html( $field['placeholder'] ) );
+			}
+
+			// Assign taxonomies to field if specified - doesn't matter what field type it is.
+			if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
+				carbon_set_post_meta( $field_id, 'listing_field_taxonomy', true );
 			}
 
 		}
