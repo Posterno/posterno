@@ -66,19 +66,22 @@ class PNO_Listings_Custom_Fields_Settings {
 		$settings[] = Field::make( 'hidden', 'listing_field_is_default' );
 
 		$settings[] = Field::make( 'select', 'listing_field_type', esc_html__( 'Field type' ) )
+			->set_required()
+			->add_options( pno_get_registered_field_types() )
+			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.' ) );
+
+		$settings[] = Field::make( 'text', 'listing_field_taxonomy', esc_html__( 'Taxonomy ID' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
 					array(
-						'field'   => 'listing_field_is_default',
-						'value'   => true,
-						'compare' => '!=',
+						'field'   => 'listing_field_type',
+						'value'   => 'term-select',
+						'compare' => '=',
 					),
 				)
 			)
-			->set_required()
-			->add_options( pno_get_registered_field_types() )
-			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.' ) );
+			->set_help_text( esc_html__( 'Enter the name of the taxonomy which terms will be displayed within the dropdown.' ) );
 
 		$settings[] = Field::make( 'complex', 'listing_field_selectable_options', esc_html__( 'Field selectable options' ) )
 			->set_conditional_logic(

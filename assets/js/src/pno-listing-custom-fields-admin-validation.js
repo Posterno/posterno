@@ -1,6 +1,7 @@
 
 /*global pno_listing_cf:true*/
 /*global $:true*/
+
 $(document).on('carbonFields.apiLoaded', function (e, api) {
 	$(document).on('carbonFields.validateField', function (e, fieldName, error) {
 
