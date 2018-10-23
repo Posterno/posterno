@@ -24,22 +24,22 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @var string
 	 */
-	public static $opening_at = '';
+	public $opening_at = '';
 
 	/**
 	 * Contains translatable text.
 	 *
 	 * @var string
 	 */
-	public static $closing_at = '';
+	public $closing_at = '';
 
 	/**
 	 * Get the class started.
 	 */
 	public function __construct() {
 
-		self::$opening_at = esc_html__( 'Opening at:' );
-		self::$closing_at = esc_html__( 'Closing at:' );
+		$this->opening_at = esc_html__( 'Opening at:' );
+		$this->closing_at = esc_html__( 'Closing at:' );
 
 	}
 
@@ -48,9 +48,10 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function init() {
+	public function init() {
 
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_listings_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
 
 	}
 
@@ -59,7 +60,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function register_listings_settings() {
+	public function register_listings_settings() {
 
 		$social_profiles_labels = array(
 			'plural_name'   => esc_html__( 'Profiles' ),
@@ -69,7 +70,7 @@ class PNO_Listings_Custom_Fields {
 		$container = Container::make( 'post_meta', esc_html__( 'Listing settings' ) )
 			->where( 'post_type', '=', 'listings' );
 
-		foreach ( self::get_listing_settings_tabs() as $key => $tab ) {
+		foreach ( $this->get_listing_settings_tabs() as $key => $tab ) {
 
 			$fields = [];
 
@@ -77,10 +78,10 @@ class PNO_Listings_Custom_Fields {
 				case 'details':
 				case 'location':
 				case 'media':
-					$fields = self::{"get_listing_{$key}_settings"}();
+					$fields = $this->{"get_listing_{$key}_settings"}();
 					break;
 				case 'hours':
-					$fields = self::get_days_fields();
+					$fields = $this->get_days_fields();
 					break;
 				default:
 					/**
@@ -108,7 +109,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_listing_settings_tabs() {
+	public function get_listing_settings_tabs() {
 
 		$tabs = [
 			'details'  => esc_html__( 'Details' ),
@@ -133,7 +134,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_listing_details_settings() {
+	public function get_listing_details_settings() {
 
 		$social_profiles_labels = array(
 			'plural_name'   => esc_html__( 'Profiles' ),
@@ -184,7 +185,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_listing_location_settings() {
+	public function get_listing_location_settings() {
 
 		$settings = [];
 
@@ -210,7 +211,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_listing_media_settings() {
+	public function get_listing_media_settings() {
 
 		$settings = [];
 
@@ -242,7 +243,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	private static function get_days_fields() {
+	private function get_days_fields() {
 
 		$days = pno_get_days_of_the_week();
 
@@ -271,10 +272,10 @@ class PNO_Listings_Custom_Fields {
 					)
 				)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
-				->set_attribute( 'placeholder', self::$opening_at )
+				->set_attribute( 'placeholder', $this->opening_at )
 				->set_storage_format( 'H:i' )
 				->set_input_format( 'H:i', 'H:i' )
-				->set_picker_options( self::get_timepicker_config() )
+				->set_picker_options( $this->get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'time', $day_string . '_closing', '' )
@@ -289,10 +290,10 @@ class PNO_Listings_Custom_Fields {
 					)
 				)
 				->set_datastore( new PNO\Datastores\OpeningHours() )
-				->set_attribute( 'placeholder', self::$closing_at )
+				->set_attribute( 'placeholder', $this->closing_at )
 				->set_storage_format( 'H:i' )
 				->set_input_format( 'H:i', 'H:i' )
-				->set_picker_options( self::get_timepicker_config() )
+				->set_picker_options( $this->get_timepicker_config() )
 				->set_width( 50 );
 
 			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings' ) )
@@ -311,14 +312,14 @@ class PNO_Listings_Custom_Fields {
 				->add_fields(
 					array(
 						Field::make( 'time', $day_string . '_opening', '' )
-							->set_attribute( 'placeholder', self::$opening_at )
-							->set_picker_options( self::get_timepicker_config() )
+							->set_attribute( 'placeholder', $this->opening_at )
+							->set_picker_options( $this->get_timepicker_config() )
 							->set_storage_format( 'H:i' )
 							->set_input_format( 'H:i', 'H:i' )
 							->set_width( 50 ),
 						Field::make( 'time', $day_string . '_closing', '' )
-							->set_attribute( 'placeholder', self::$closing_at )
-							->set_picker_options( self::get_timepicker_config() )
+							->set_attribute( 'placeholder', $this->closing_at )
+							->set_picker_options( $this->get_timepicker_config() )
 							->set_storage_format( 'H:i' )
 							->set_input_format( 'H:i', 'H:i' )
 							->set_width( 50 ),
@@ -343,7 +344,7 @@ class PNO_Listings_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	private static function get_timepicker_config() {
+	private function get_timepicker_config() {
 
 		return [
 			'enableSeconds' => false,
