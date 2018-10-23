@@ -51,6 +51,21 @@ function pno_is_default_field_notice() {
 
 			}
 		}
+	} elseif ( $screen instanceof WP_Screen && $screen->id == 'pno_listings_fields' ) {
+		global $post;
+
+		if ( $post instanceof WP_Post && isset( $post->ID ) && ! posterno()->admin_notices->is_dismissed( 'field_is_default_' . $post->ID ) ) {
+
+			$is_default_field = carbon_get_post_meta( $post->ID, 'listing_field_is_default' );
+
+			if ( $is_default_field ) {
+
+				$message = esc_html__( 'This is a default field. Default fields cannot have their type and meta key changed and can\'t be deleted.' );
+
+				posterno()->admin_notices->register_notice( 'field_is_default_' . $post->ID, 'info', $message );
+
+			}
+		}
 	}
 
 }
