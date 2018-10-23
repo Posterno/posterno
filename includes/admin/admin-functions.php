@@ -367,7 +367,7 @@ function pno_install_listings_fields() {
 
 			// Assign taxonomies to field if specified - doesn't matter what field type it is.
 			if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_taxonomy', true );
+				carbon_set_post_meta( $field_id, 'listing_field_taxonomy', $field['taxonomy'] );
 			}
 
 		}
