@@ -243,7 +243,7 @@ class AccountCustomizationForm extends Forms {
 
 				// Now update the custom fields that are not marked as default profile fields.
 				foreach ( $values as $key => $value ) {
-					if ( ! pno_is_default_profile_field( $key ) ) {
+					if ( ! pno_is_default_field( $key ) ) {
 						if ( $value == '1' ) {
 							carbon_set_user_meta( $updated_user_id, $key, true );
 						} elseif ( is_array( $value ) && isset( $value['url'] ) && isset( $value['path'] ) ) {

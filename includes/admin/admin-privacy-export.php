@@ -68,7 +68,7 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 
 				if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
 
-					if ( ! pno_is_default_profile_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
+					if ( ! pno_is_default_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
 
 						$value = $profile_field->get_value();
 

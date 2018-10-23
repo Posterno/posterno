@@ -184,7 +184,7 @@ function pno_install_profile_fields() {
 
 	foreach ( $registered_fields as $field_key => $field ) {
 
-		if ( pno_is_default_profile_field( $field_key ) ) {
+		if ( pno_is_default_field( $field_key ) ) {
 
 			$new_field = [
 				'post_type'   => 'pno_users_fields',
@@ -229,7 +229,7 @@ function pno_install_profile_fields() {
 				}
 
 				// Mark the field as a default one.
-				if ( pno_is_default_profile_field( $field_key ) ) {
+				if ( pno_is_default_field( $field_key ) ) {
 					carbon_set_post_meta( $field_id, 'profile_is_default_field', true );
 				}
 			}
@@ -288,7 +288,7 @@ function pno_install_registration_fields() {
 		if ( ! is_wp_error( $field_id ) ) {
 
 			// Mark the registration field as a default field.
-			if ( pno_is_default_profile_field( $key ) ) {
+			if ( pno_is_default_field( $key ) ) {
 				carbon_set_post_meta( $field_id, 'registration_field_is_default', $key );
 			}
 

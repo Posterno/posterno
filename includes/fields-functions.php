@@ -59,7 +59,7 @@ function pno_get_registered_default_meta_keys() {
  * @param string $key field key.
  * @return boolean
  */
-function pno_is_default_profile_field( $key ) {
+function pno_is_default_field( $key ) {
 
 	if ( ! $key ) {
 		return;
@@ -471,7 +471,7 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		if ( $user instanceof WP_User ) {
 			foreach ( $fields as $key => $field ) {
 				$value = false;
-				if ( pno_is_default_profile_field( $key ) ) {
+				if ( pno_is_default_field( $key ) ) {
 					switch ( $key ) {
 						case 'email':
 							$value = esc_attr( $user->user_email );

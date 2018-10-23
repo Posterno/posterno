@@ -371,6 +371,8 @@ class ListingSubmissionForm extends Forms {
 						}
 					}
 
+					// Now process all field's generated through the field's editor.
+
 					/**
 					 * Allow developers to extend the listing submission process.
 					 * This action is fired after creating the new listing.

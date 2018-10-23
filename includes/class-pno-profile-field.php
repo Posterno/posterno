@@ -99,7 +99,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 
 		$this->id            = $field_id;
 		$this->meta          = carbon_get_post_meta( $this->id, 'profile_field_meta_key' );
-		$this->default       = pno_is_default_profile_field( $this->meta ) || get_post_meta( $this->id, 'is_default_field', true ) ? true : false;
+		$this->default       = pno_is_default_field( $this->meta ) || get_post_meta( $this->id, 'is_default_field', true ) ? true : false;
 		$this->type          = carbon_get_post_meta( $this->id, 'profile_field_type' );
 		$types               = pno_get_registered_field_types();
 		$this->type_nicename = isset( $types[ $this->type ] ) ? $types[ $this->type ] : false;

@@ -257,7 +257,7 @@ class RegistrationForm extends Forms {
 					if ( $key === 'email' || $key === 'password' || $key === 'username' ) {
 						continue;
 					}
-					if ( pno_is_default_profile_field( $key ) ) {
+					if ( pno_is_default_field( $key ) ) {
 						update_user_meta( $new_user_id, $key, $value );
 					} elseif ( $key == 'website' ) {
 						update_user_meta( $new_user_id, 'user_url', $value );

@@ -103,7 +103,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 		$this->priority         = carbon_get_post_meta( $this->id, 'registration_field_priority' );
 		$this->meta             = carbon_get_post_meta( $this->id, 'registration_field_is_default' );
 		$this->profile_field_id = carbon_get_post_meta( $this->id, 'registration_field_profile_field_id' );
-		$this->default          = pno_is_default_profile_field( $this->meta ) || carbon_get_post_meta( $this->id, 'registration_field_is_default' ) ? true : false;
+		$this->default          = pno_is_default_field( $this->meta ) || carbon_get_post_meta( $this->id, 'registration_field_is_default' ) ? true : false;
 		$types                  = pno_get_registered_field_types();
 
 		if ( ! empty( $this->default ) ) {
