@@ -27,6 +27,21 @@ function pno_get_registered_default_meta_keys() {
 		'description',
 		'username',
 		'password',
+		'listing_title',
+		'listing_description',
+		'listing_email_address',
+		'listing_phone_number',
+		'listing_website',
+		'listing_video',
+		'listing_social_media_profiles',
+		'listing_categories',
+		'listing_tags',
+		'listing_regions',
+		'listing_opening_hours',
+		'listing_featured_image',
+		'listing_gallery',
+		'listing_zipcode',
+		'listing_location',
 	];
 
 	/**
