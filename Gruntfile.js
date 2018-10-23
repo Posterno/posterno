@@ -59,6 +59,7 @@ module.exports = function (grunt) {
 					'assets/js/pno-general.min.js': ['assets/js/src/pno-general.js'],
 					'assets/js/pno-tinymce.min.js': ['assets/js/src/pno-tinymce.js'],
 					'assets/js/pno-profile-custom-fields-admin-validation.min.js': ['assets/js/src/pno-profile-custom-fields-admin-validation.js'],
+					'assets/js/pno-listing-custom-fields-admin-validation.min.js': ['assets/js/src/pno-listing-custom-fields-admin-validation.js'],
 				},
 				options: {
 					mangle: false

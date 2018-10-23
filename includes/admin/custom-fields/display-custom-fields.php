@@ -135,6 +135,33 @@ function pno_get_users_custom_fields_page_vars() {
 }
 
 /**
+ * JS Settings for the custom fields editor (listing fields).
+ *
+ * @return array
+ */
+function pno_get_listing_custom_fields_page_vars() {
+
+	global $post;
+
+	$existing_vars = pno_get_users_custom_fields_page_vars();
+
+	$js_vars = [
+		'field_id'        => carbon_get_post_meta( $post->ID, 'listing_field_meta_key' ),
+		'field_type'      => carbon_get_post_meta( $post->ID, 'listing_field_type' ),
+		'is_default'      => (bool) carbon_get_post_meta( $post->ID, 'listing_field_is_default' ),
+		'restricted_keys' => pno_get_registered_default_meta_keys(),
+		'messages'        => [
+			'no_meta_key_changes' => $existing_vars['messages']['no_meta_key_changes'],
+			'no_type_changes'     => $existing_vars['messages']['no_type_changes'],
+			'reserved_key'        => $existing_vars['messages']['reserved_key'],
+		],
+	];
+
+	return $js_vars;
+
+}
+
+/**
  * Function responsible of displaying the custom fields selector page.
  * Actual output handled by vuejs.
  *
