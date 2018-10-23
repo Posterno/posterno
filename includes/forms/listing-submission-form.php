@@ -372,6 +372,15 @@ class ListingSubmissionForm extends Forms {
 					}
 
 					// Now process all field's generated through the field's editor.
+					foreach ( $values as $key => $value ) {
+						if ( ! pno_is_default_field( $key ) ) {
+							if ( $value == '1' || $value === true ) {
+								carbon_set_post_meta( $new_listing_id, $key, true );
+							} else {
+								carbon_set_post_meta( $new_listing_id, $key, $value );
+							}
+						}
+					}
 
 					/**
 					 * Allow developers to extend the listing submission process.
