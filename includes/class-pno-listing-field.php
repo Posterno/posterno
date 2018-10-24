@@ -55,6 +55,20 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	protected $taxonomy_id = false;
 
 	/**
+	 * Holds the maximum amount of files that can be uploaded through a dropzone field.
+	 *
+	 * @var integer
+	 */
+	protected $dropzone_max_files = 1;
+
+	/**
+	 * Holds the maximum size for files that are uploaded through a dropzone field.
+	 *
+	 * @var boolean|string
+	 */
+	protected $dropzone_max_size = false;
+
+	/**
 	 * The post type for this field type.
 	 *
 	 * @var string
@@ -140,6 +154,11 @@ class PNO_Listing_Field extends PNO_Field_Object {
 		if ( $this->type === 'term-select' ) {
 			$this->taxonomy_id        = carbon_get_post_meta( $this->id, 'listing_field_taxonomy' );
 			$this->selectable_options = pno_parse_selectable_taxonomy_options( $this->taxonomy_id );
+		}
+
+		if ( $this->type === 'dropzone' ) {
+			$this->dropzone_max_files = carbon_get_post_meta( $this->id, 'listing_field_dropzone_max_files' );
+			$this->dropzone_max_size  = carbon_get_post_meta( $this->id, 'listing_field_dropzone_max_size' );
 		}
 
 		if ( $listing_id ) {
