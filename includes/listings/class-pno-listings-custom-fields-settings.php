@@ -98,6 +98,42 @@ class PNO_Listings_Custom_Fields_Settings {
 			)
 			->set_help_text( esc_html__( 'Enter the name of the taxonomy which terms will be displayed within the dropdown.' ) );
 
+		$settings[] = Field::make( 'text', 'listing_field_dropzone_max_files', esc_html__( 'Dropzone max files' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_is_default',
+						'value'   => true,
+						'compare' => '!=',
+					),
+					array(
+						'field'   => 'listing_field_type',
+						'value'   => 'dropzone',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Enter the maximum file size (in MB) allowed for uploads through this field. Leave blank to use server settings.' ) );
+
+		$settings[] = Field::make( 'text', 'listing_field_dropzone_max_size', esc_html__( 'Dropzone max size' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_is_default',
+						'value'   => true,
+						'compare' => '!=',
+					),
+					array(
+						'field'   => 'listing_field_type',
+						'value'   => 'dropzone',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Specify the maximum amount of files that can be uploaded through this field.' ) );
+
 		$settings[] = Field::make( 'complex', 'listing_field_selectable_options', esc_html__( 'Field selectable options' ) )
 			->set_conditional_logic(
 				array(
