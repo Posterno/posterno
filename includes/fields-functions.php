@@ -1003,6 +1003,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 					if ( $field->get_type() == 'file' && ! empty( $field->get_file_size() ) ) {
 						$fields[ $field->get_meta() ]['max_size'] = $field->get_file_size();
 					}
+
+					if ( $field->get_type() === 'term-select' && ! empty( $field->get_taxonomy_id() ) ) {
+						$fields[ $field->get_meta() ]['taxonomy'] = $field->get_taxonomy_id();
+					}
+
 				}
 			}
 		}
