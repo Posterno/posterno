@@ -435,10 +435,6 @@ class PNO_Listings_Custom_Fields {
 
 	}
 
-	private function get_terms_options() {
-		return [];
-	}
-
 }
 
 ( new PNO_Listings_Custom_Fields() )->init();
