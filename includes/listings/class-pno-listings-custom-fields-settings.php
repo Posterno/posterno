@@ -77,7 +77,13 @@ class PNO_Listings_Custom_Fields_Settings {
 				)
 			)
 			->set_required()
-			->add_options( pno_get_registered_field_types() )
+			->add_options( pno_get_registered_field_types( [
+				'social-profiles',
+				'listing-category',
+				'listing-tags',
+				'opening-hours',
+				'listing-location',
+			] ) )
 			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.' ) );
 
 		$settings[] = Field::make( 'text', 'listing_field_taxonomy', esc_html__( 'Taxonomy ID' ) )
