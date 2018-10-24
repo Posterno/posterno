@@ -663,6 +663,41 @@ function pno_parse_selectable_options( $options = [] ) {
 }
 
 /**
+ * Create an array of the selectable options of a term-select field.
+ *
+ * @param string $taxonomy the name of the taxonomy for which we're retrieving terms.
+ * @return array
+ */
+function pno_parse_selectable_taxonomy_options( $taxonomy ) {
+
+	$formatted_options = [];
+
+	if ( $taxonomy ) {
+
+		$args = array(
+			'hide_empty' => false,
+		);
+
+		/**
+		 * Allow developers to modify the get_terms arguments when retrieving options for a term-select field.
+		 *
+		 * @param array $args get_terms arguments.
+		 * @return array
+		 */
+		$terms = get_terms( $taxonomy, apply_filters( 'pno_parse_field_taxonomy_options', $args ) );
+
+		if ( is_array( $terms ) && ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$formatted_options[ absint( $term->term_id ) ] = sanitize_text_field( $term->name );
+			}
+		}
+	}
+
+	return $formatted_options;
+
+}
+
+/**
  * Displays category select dropdown.
  * Based on wp_dropdown_categories, with the exception of supporting multiple selected categories.
  *

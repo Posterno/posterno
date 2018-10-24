@@ -403,6 +403,9 @@ class PNO_Listings_Custom_Fields {
 						case 'editor':
 							$type = 'rich_text';
 							break;
+						case 'term-select':
+							$type = 'select';
+							break;
 					}
 
 					if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
@@ -427,6 +430,10 @@ class PNO_Listings_Custom_Fields {
 
 		wp_reset_postdata();
 
+	}
+
+	private function get_terms_options() {
+		return [];
 	}
 
 }

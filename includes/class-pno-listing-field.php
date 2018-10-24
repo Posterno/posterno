@@ -48,6 +48,13 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	protected $file_size = false;
 
 	/**
+	 * Holds the taxonomy name assigned to the field if this is a term-select field.
+	 *
+	 * @var boolean|string
+	 */
+	protected $taxonomy_id = false;
+
+	/**
 	 * The post type for this field type.
 	 *
 	 * @var string
@@ -126,8 +133,13 @@ class PNO_Listing_Field extends PNO_Field_Object {
 			$this->selectable_options = pno_parse_selectable_options( carbon_get_post_meta( $this->id, 'listing_field_selectable_options' ) );
 		}
 
-		if ( $this->type == 'file' ) {
+		if ( $this->type === 'file' ) {
 			$this->file_size = carbon_get_post_meta( $this->id, 'listing_field_file_max_size' );
+		}
+
+		if ( $this->type === 'term-select' ) {
+			$this->taxonomy_id        = carbon_get_post_meta( $this->id, 'listing_field_taxonomy' );
+			$this->selectable_options = pno_parse_selectable_taxonomy_options( $this->taxonomy_id );
 		}
 
 		if ( $listing_id ) {
@@ -174,6 +186,15 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	 */
 	public function get_file_size() {
 		return $this->file_size;
+	}
+
+	/**
+	 * Retrieve the id of the taxonomy assigned to this field.
+	 *
+	 * @return string
+	 */
+	public function get_taxonomy_id() {
+		return $this->taxonomy_id;
 	}
 
 	/**
