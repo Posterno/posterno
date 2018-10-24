@@ -406,6 +406,9 @@ class PNO_Listings_Custom_Fields {
 						case 'term-select':
 							$type = 'select';
 							break;
+						case 'dropzone':
+							$type = 'media_gallery';
+							break;
 					}
 
 					if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
