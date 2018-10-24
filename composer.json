@@ -5,5 +5,12 @@
     "htmlburger/carbon-fields": "^2.2",
     "alessandrotesoro/wp-notices": "^1.0"
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "extra": {
+    "installer-paths": {
+      "utils/{$name}/": [
+        "stevegrunwell/wp-cache-remember"
+      ]
+    }
+  }
 }
