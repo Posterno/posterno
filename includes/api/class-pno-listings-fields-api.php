@@ -242,9 +242,16 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.' ), 422 );
 		}
 
+		$registered_field_types = pno_get_registered_field_types();
+		$field_type             = isset( $request['type'] ) && isset( $registered_field_types[ $request['type'] ] ) ? sanitize_text_field( $request['type'] ) : false;
+
+		if ( ! $field_type ) {
+			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
+		}
+
 		$field = new PNO_Listing_Field();
 		$field->__set( 'name', $field_name );
-		$field->__set( 'listing_field_id', $listing_field_id );
+		$field->__set( 'type', $field_type );
 
 		if ( $field_priority ) {
 			$field->__set( 'priority', $field_priority );
