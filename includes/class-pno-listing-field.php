@@ -217,6 +217,24 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	}
 
 	/**
+	 * Retrieve the maximum size in MB allowed for files within the dropzone field.
+	 *
+	 * @return string
+	 */
+	public function get_dropzone_max_size() {
+		return $this->dropzone_max_size;
+	}
+
+	/**
+	 * Retrieve the amount of maximum files allowed for the dropzone.
+	 *
+	 * @return string
+	 */
+	public function get_dropzone_max_files() {
+		return $this->dropzone_max_files;
+	}
+
+	/**
 	 * Create a new listing field and store it into the database.
 	 *
 	 * @return mixed
