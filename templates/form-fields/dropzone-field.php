@@ -34,7 +34,7 @@ $max_files = pno_dropzone_get_max_files_amount( $data );
 
 <?php if ( $data->get_option( 'multiple' ) && $data->get_option( 'multiple' ) ) : ?>
 
-<div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+<div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="<?php echo absint( $data->get_option( 'dropzone_max_size' ) ); ?>" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
 
 	<ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush ml-0 mt-3 mb-3">
 		<li class="list-group-item px-0">
@@ -57,7 +57,7 @@ $max_files = pno_dropzone_get_max_files_amount( $data );
 
 <?php else : ?>
 
-	<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="3" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
+	<div class="pno-dropzone dropzone dropzone-single mb-3" data-toggle="dropzone" data-dropzone-url="<?php echo esc_url( $upload_url ); ?>" data-max-files="<?php echo esc_attr( absint( $max_files ) ); ?>" data-max-size="<?php echo absint( $data->get_option( 'dropzone_max_size' ) ); ?>" data-multiple="<?php echo esc_attr( $data->get_option( 'multiple' ) ); ?>" data-field-id="<?php echo esc_attr( $data->get_id() ); ?>">
 
 		<div class="dz-preview dz-preview-single">
 			<div class="dz-preview-cover">

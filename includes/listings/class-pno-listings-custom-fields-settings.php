@@ -138,7 +138,7 @@ class PNO_Listings_Custom_Fields_Settings {
 					),
 				)
 			)
-			->set_help_text( esc_html__( 'Enter the maximum file size (in MB) allowed for uploads through this field. Leave blank to use server settings.' ) );
+			->set_help_text( esc_html__( 'Enter the maximum file size (in MB) allowed for uploads through this field.' ) );
 
 		$settings[] = Field::make( 'complex', 'listing_field_selectable_options', esc_html__( 'Field selectable options' ) )
 			->set_conditional_logic(

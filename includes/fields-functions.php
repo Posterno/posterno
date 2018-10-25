@@ -1008,6 +1008,13 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 						$fields[ $field->get_meta() ]['taxonomy'] = $field->get_taxonomy_id();
 					}
 
+					if ( $field->get_type() === 'dropzone' ) {
+						if ( $field->get_dropzone_max_files() > 1 ) {
+							$fields[ $field->get_meta() ]['multiple']           = true;
+							$fields[ $field->get_meta() ]['dropzone_max_files'] = $field->get_dropzone_max_files();
+						}
+						$fields[ $field->get_meta() ]['dropzone_max_size'] = $field->get_dropzone_max_size();
+					}
 				}
 			}
 		}
@@ -1033,7 +1040,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 /**
  * Determine the maximum amount of files that can be uploaded through a dropzone.
  *
- * @param \PNO\Form\Field $field the field we're working with.
+ * @param \PNO\Form\Field\AbstractField $field the field we're working with.
  * @return string
  */
 function pno_dropzone_get_max_files_amount( $field ) {
@@ -1045,6 +1052,9 @@ function pno_dropzone_get_max_files_amount( $field ) {
 		switch ( $field->get_id() ) {
 			case 'listing_gallery':
 				$amount = absint( pno_get_option( 'submission_images_amount', 1 ) );
+				break;
+			default:
+				$amount = absint( $field->get_option( 'dropzone_max_files' ) );
 				break;
 		}
 	}
