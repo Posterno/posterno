@@ -64,7 +64,7 @@ class AccountCustomizationForm extends Forms {
 
 		$fields = [];
 
-		if ( ! is_user_logged_in() || is_admin() ) {
+		if ( ! is_user_logged_in() || is_admin() || ! is_page( pno_get_dashboard_page_id() ) ) {
 			return $fields;
 		}
 
@@ -112,16 +112,6 @@ class AccountCustomizationForm extends Forms {
 		 */
 		return apply_filters( 'pno_account_customization_form_fields', $fields, $this->form );
 
-	}
-
-	/**
-	 * Hook into WordPress.
-	 *
-	 * @return void
-	 */
-	public function hook() {
-		add_action( 'wp_loaded', [ $this, 'process' ] );
-		add_shortcode( 'pno_account_customization_form', [ $this, 'shortcode' ] );
 	}
 
 	/**
@@ -295,7 +285,9 @@ class AccountCustomizationForm extends Forms {
 }
 
 add_action(
-	'init', function () {
-		( new AccountCustomizationForm() )->hook();
+	'wp', function () {
+		$form = new AccountCustomizationForm();
+		$form->process();
+		add_shortcode( 'pno_account_customization_form', [ $form, 'shortcode' ] );
 	}, 30
 );

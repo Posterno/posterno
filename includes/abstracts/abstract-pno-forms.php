@@ -74,13 +74,6 @@ abstract class Forms {
 	abstract public function get_fields();
 
 	/**
-	 * Hook into WordPress.
-	 *
-	 * @return void
-	 */
-	abstract public function hook();
-
-	/**
 	 * Process the form's submission.
 	 *
 	 * @return void
