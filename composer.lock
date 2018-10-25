@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f7a24365d8ff8d5ad38e1aab4fbd501c",
-    "content-hash": "c835226d116500d2f032f86e7a3b7a28",
+    "hash": "93e117ee9f1180f28dc70aa609123334",
+    "content-hash": "b17be12442c3bbd18ca4b82c4fe028e8",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -492,6 +492,55 @@
                 "response"
             ],
             "time": "2016-08-06 14:39:51"
+        },
+        {
+            "name": "stevegrunwell/wp-cache-remember",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stevegrunwell/wp-cache-remember.git",
+                "reference": "f37b8e79d9cb05f5fd0e8035b0ffecbb1ded182e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stevegrunwell/wp-cache-remember/zipball/f37b8e79d9cb05f5fd0e8035b0ffecbb1ded182e",
+                "reference": "f37b8e79d9cb05f5fd0e8035b0ffecbb1ded182e",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "wimg/php-compatibility": "^8.1",
+                "wp-coding-standards/wpcs": "^0.14"
+            },
+            "type": "wordpress-muplugin",
+            "autoload": {
+                "files": [
+                    "wp-cache-remember.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Steve Grunwell",
+                    "email": "steve@stevegrunwell.com",
+                    "homepage": "https://stevegrunwell.com"
+                }
+            ],
+            "description": "Helper for the WordPress object cache and transients",
+            "keywords": [
+                "wordpress",
+                "wordpress-object-cache",
+                "wordpress-plugin",
+                "wordpress-transients"
+            ],
+            "time": "2018-06-14 05:10:34"
         }
     ],
     "packages-dev": [],

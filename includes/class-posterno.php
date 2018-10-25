@@ -241,6 +241,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-layout.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-form-rule.php';
 			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-forms.php';
+			require_once PNO_PLUGIN_DIR . '/includes/utils/wp-cache-remember/wp-cache-remember.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/opening-hours.php';
