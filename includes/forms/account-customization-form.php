@@ -64,7 +64,7 @@ class AccountCustomizationForm extends Forms {
 
 		$fields = [];
 
-		if ( ! is_user_logged_in() || is_admin() || ! is_page( pno_get_dashboard_page_id() ) ) {
+		if ( ! is_user_logged_in() || ! is_page( pno_get_dashboard_page_id() ) ) {
 			return $fields;
 		}
 

@@ -64,6 +64,10 @@ class ListingSubmissionForm extends Forms {
 
 		$fields = [];
 
+		if ( ! is_user_logged_in() || ! is_page( pno_get_listing_submission_page_id() ) ) {
+			return $fields;
+		}
+
 		$submission_fields = pno_get_listing_submission_fields();
 
 		foreach ( $submission_fields as $field_key => $the_field ) {
@@ -107,16 +111,6 @@ class ListingSubmissionForm extends Forms {
 		 */
 		return apply_filters( 'pno_listing_submission_form_fields', $fields, $this->form );
 
-	}
-
-	/**
-	 * Hook into WordPress.
-	 *
-	 * @return void
-	 */
-	public function hook() {
-		add_action( 'wp_loaded', [ $this, 'process' ] );
-		add_shortcode( 'pno_listing_submission_form', [ $this, 'shortcode' ] );
 	}
 
 	/**
@@ -461,7 +455,9 @@ class ListingSubmissionForm extends Forms {
 }
 
 add_action(
-	'init', function () {
-		( new ListingSubmissionForm() )->hook();
+	'wp', function () {
+		$form = new ListingSubmissionForm();
+		$form->process();
+		add_shortcode( 'pno_listing_submission_form', [ $form, 'shortcode' ] );
 	}, 30
 );
