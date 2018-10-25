@@ -251,7 +251,7 @@ export default {
 
 			this.$modal.show( AddNewModal, {
 				type: 'profile',
-				priority: this.fields.length
+				priority: this.fields.length + 1
 			},{ height: '300px' })
 
 		},
