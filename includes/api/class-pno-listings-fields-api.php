@@ -141,7 +141,8 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Matches the post data to the schema we want.
 	 *
-	 * @param WP_Post $post The comment object whose response is being prepared.
+	 * @param WP_Post         $post The comment object whose response is being prepared.
+	 * @param WP_REST_Request $request Request object.
 	 */
 	public function prepare_item_for_response( $post, $request ) {
 
@@ -191,9 +192,9 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Prepare links for the request.
 	 *
-	 * @param PNO_Listing_Field         $object  Object data.
-	 * @param WP_REST_Request $request Request object.
-	 * @return array                   Links for the given post.
+	 * @param PNO_Listing_Field $object Object data.
+	 * @param WP_REST_Request   $request Request object.
+	 * @return array                    Links for the given post.
 	 */
 	protected function prepare_links( $object, $request ) {
 		$links = array(
@@ -257,7 +258,11 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			$field->__set( 'priority', $field_priority );
 		}
 
-		$field->create();
+		$new_field = $field->create();
+
+		if ( is_wp_error( $new_field ) ) {
+			return new WP_REST_Response( $new_field->get_error_message(), 422 );
+		}
 
 		$request->set_param( 'context', 'edit' );
 		$response = $this->prepare_item_for_response( $field, $request );
@@ -270,7 +275,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Delete the selected field.
 	 *
-	 * @param array $request
+	 * @param WP_REST_Request $request Request object.
 	 * @return boolean
 	 */
 	public function delete_item( $request ) {
@@ -300,7 +305,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Updates the priority for each field.
 	 *
-	 * @param array $request
+	 * @param WP_REST_Request $request Request object.
 	 * @return mixed
 	 */
 	public function update_priority( $request ) {
@@ -327,7 +332,6 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Get the field schema, conforming to JSON Schema.
 	 *
-	 * @param WP_REST_Request $request
 	 * @return array
 	 */
 	public function get_item_schema() {

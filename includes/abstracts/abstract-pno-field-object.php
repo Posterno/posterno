@@ -470,4 +470,42 @@ abstract class PNO_Field_Object {
 
 	}
 
+	/**
+	 * Determine if a field with the same meta key already exists.
+	 *
+	 * @param string $meta the field meta key to verify.
+	 * @return mixed
+	 */
+	public function field_meta_key_exists( $meta ) {
+
+		if ( ! $meta ) {
+			return;
+		}
+
+		$args = [
+			'post_type'              => $this->post_type,
+			'posts_per_page'         => 1,
+			'nopaging'               => true,
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+			'fields'                 => 'ids',
+			'meta_query'             => array(
+				array(
+					'key'     => '_listing_field_meta_key',
+					'value'   => $meta,
+					'compare' => '=',
+				),
+			),
+		];
+
+		$query = new WP_Query( $args );
+
+		if ( ! empty( $query->get_posts() ) ) {
+			return true;
+		}
+
+		return false;
+
+	}
+
 }

@@ -266,6 +266,10 @@ class PNO_Listing_Field extends PNO_Field_Object {
 			$args['meta'] = $meta;
 		}
 
+		if ( $this->field_meta_key_exists( $args['meta'] ) ) {
+			return new WP_Error( 'field-meta-exists', esc_html__( 'Field meta key already exists. Please choose a different name.' ) );
+		}
+
 		$field_args = [
 			'post_type'   => $this->post_type,
 			'post_title'  => $args['name'],

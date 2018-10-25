@@ -280,7 +280,11 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			$field->__set( 'priority', $field_priority );
 		}
 
-		$field->create();
+		$new_field = $field->create();
+
+		if ( is_wp_error( $new_field ) ) {
+			return new WP_REST_Response( $new_field->get_error_message(), 422 );
+		}
 
 		$request->set_param( 'context', 'edit' );
 		$response = $this->prepare_item_for_response( $field, $request );
