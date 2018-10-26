@@ -56,10 +56,8 @@ class PNO_Registration_Field extends PNO_Field_Object {
 			return $_id_or_field;
 		}
 
-		$field = $this->get_field( $_id_or_field );
-
-		if ( $field ) {
-			$this->setup_field( $field );
+		if ( $_id_or_field instanceof WP_post ) {
+			$this->setup_field( $_id_or_field );
 		} else {
 			return false;
 		}
@@ -72,21 +70,17 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	 * @param int $field_id
 	 * @return void
 	 */
-	protected function setup_field( $field_id ) {
+	protected function setup_field( $field ) {
 
-		if ( null == $field_id ) {
+		if ( null == $field ) {
 			return false;
 		}
 
-		if ( ! is_int( $field_id ) ) {
+		if ( is_wp_error( $field ) ) {
 			return false;
 		}
 
-		if ( is_wp_error( $field_id ) ) {
-			return false;
-		}
-
-		$this->id   = $field_id;
+		$this->id   = $field->ID;
 		$this->name = get_the_title( $this->id );
 
 		$label = carbon_get_post_meta( $this->id, 'registration_field_label' );

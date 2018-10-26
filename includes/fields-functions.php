@@ -267,7 +267,6 @@ function pno_get_registration_fields() {
 		'nopaging'               => true,
 		'no_found_rows'          => true,
 		'update_post_term_cache' => false,
-		'fields'                 => 'ids',
 		'post_status'            => 'publish',
 	];
 
@@ -275,9 +274,9 @@ function pno_get_registration_fields() {
 
 	if ( $fields_query->have_posts() ) {
 
-		foreach ( $fields_query->get_posts() as $field_id ) {
+		foreach ( $fields_query->get_posts() as $registration_field ) {
 
-			$field = new PNO_Registration_Field( $field_id );
+			$field = new PNO_Registration_Field( $registration_field );
 
 			if ( $field instanceof PNO_Registration_Field && $field->get_id() > 0 ) {
 				if ( ! empty( $field->is_default_field() ) && isset( $fields[ $field->get_meta() ] ) ) {
