@@ -684,3 +684,22 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours )
 function pno_get_listing_author( $listing_id ) {
 	return get_post_field( 'post_author', $listing_id );
 }
+
+/**
+ * Retrieve the url of the listing editing page together with the specified listing
+ * that is going to be edited.
+ *
+ * @param string|int $listing_id the id number of the listing that needs to be edited.
+ * @return string|boolean
+ */
+function pno_get_listing_edit_page_url( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	$page_id = pno_get_listing_editing_page_id();
+
+	return add_query_arg( [ 'listing_id' => $listing_id ], get_permalink( $page_id ) );
+
+}

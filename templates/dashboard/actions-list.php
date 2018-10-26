@@ -64,7 +64,7 @@ if ( empty( $actions ) ) {
 
 			<?php elseif ( $action_id === 'edit' ) : ?>
 
-				<a class="dropdown-item" href="#">
+				<a class="dropdown-item" href="<?php echo esc_url( pno_get_listing_edit_page_url( $data->id ) ); ?>">
 					<?php if ( $icon ) : ?>
 						<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
 					<?php endif; ?>

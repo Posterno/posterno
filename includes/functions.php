@@ -104,7 +104,7 @@ function pno_get_profile_page_id() {
 /**
  * Retrieve the id number of the selected listing submission page in the admin panel.
  *
- * @return mixed
+ * @return string|boolean
  */
 function pno_get_listing_submission_page_id() {
 
@@ -116,6 +116,24 @@ function pno_get_listing_submission_page_id() {
 	}
 
 	return $listing_submission_page;
+}
+
+/**
+ * Retrieve the id number of the selected listing editing page in the admin panel.
+ *
+ * @return string|boolean
+ */
+function pno_get_listing_editing_page_id() {
+
+	$listing_submission_page = false;
+	$page_option             = pno_get_option( 'editing_page' );
+
+	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
+		$listing_submission_page = absint( $page_option['value'] );
+	}
+
+	return $listing_submission_page;
+
 }
 
 /**
