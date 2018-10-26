@@ -44,7 +44,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	/**
 	 * Instantiate the registration field.
 	 *
-	 * @param boolean $_id_or_field
+	 * @param boolean $_id_or_field the field we're going to setup.
 	 */
 	public function __construct( $_id_or_field = false ) {
 
@@ -67,8 +67,8 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	/**
 	 * Setup the properties of this field after the field has been confirmed to exist.
 	 *
-	 * @param int $field_id
-	 * @return void
+	 * @param int $field the WP_Post object to setup as a field.
+	 * @return mixed|void
 	 */
 	protected function setup_field( $field ) {
 
@@ -161,6 +161,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 	 * Create a new registration field and store it into the database.
 	 *
 	 * @return mixed
+	 * @throws InvalidArgumentException When properties can't be found.
 	 */
 	public function create() {
 
@@ -182,7 +183,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 		}
 
 		if ( empty( $args['profile_field_id'] ) ) {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'profile_field_od' ) );
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'profile_field_id' ) );
 		}
 
 		$field_args = [
