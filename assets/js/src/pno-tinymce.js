@@ -74,6 +74,12 @@
 								editor.insertContent('[pno_listing_submission_form]');
 							}
 						},
+						{
+							text: pnotinymce.forms.editing,
+							onclick: function () {
+								editor.insertContent('[pno_listing_editing_form]');
+							}
+						},
 
 					]
 				}, // End forms

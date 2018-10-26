@@ -61,6 +61,7 @@ function pno_localize_tinymce_editor() {
 			'registration' => esc_html__( 'Registration form' ),
 			'password'     => esc_html__( 'Password recovery form' ),
 			'submission'   => esc_html__( 'Listing submission form' ),
+			'editing'      => esc_html__( 'Listing editing form' ),
 		],
 		'links' => [
 			'title'  => esc_html__( 'Links' ),
