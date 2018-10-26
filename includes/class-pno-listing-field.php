@@ -87,10 +87,8 @@ class PNO_Listing_Field extends PNO_Field_Object {
 			return false;
 		}
 
-		$field = $this->get_field( $_id_or_field );
-
-		if ( $field ) {
-			$this->setup_field( $field, $listing_id );
+		if ( $_id_or_field instanceof WP_post ) {
+			$this->setup_field( $_id_or_field, $listing_id );
 		} else {
 			return false;
 		}
@@ -100,25 +98,21 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	/**
 	 * Setup the properties for the field by retrieving it's data.
 	 *
-	 * @param int    $field_id field id.
+	 * @param int    $field field id.
 	 * @param string $listing_id optional listing id to load value of the field from the db.
 	 * @return mixed
 	 */
-	protected function setup_field( $field_id, $listing_id = false ) {
+	protected function setup_field( $field, $listing_id = false ) {
 
-		if ( null == $field_id ) {
+		if ( null == $field ) {
 			return false;
 		}
 
-		if ( ! is_int( $field_id ) ) {
+		if ( is_wp_error( $field ) ) {
 			return false;
 		}
 
-		if ( is_wp_error( $field_id ) ) {
-			return false;
-		}
-
-		$this->id            = $field_id;
+		$this->id            = $field->ID;
 		$this->meta          = carbon_get_post_meta( $this->id, 'listing_field_meta_key' );
 		$this->default       = carbon_get_post_meta( $this->id, 'listing_field_is_default' ) ? true : false;
 		$this->type          = carbon_get_post_meta( $this->id, 'listing_field_type' );

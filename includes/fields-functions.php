@@ -948,11 +948,9 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 
 	if ( $fields_query->have_posts() ) {
 
-		while ( $fields_query->have_posts() ) {
+		foreach ( $fields_query->get_posts() as $listing_field ) {
 
-			$fields_query->the_post();
-
-			$field = new PNO_Listing_Field( get_the_ID() );
+			$field = new PNO_Listing_Field( $listing_field );
 
 			if ( $field instanceof PNO_Listing_Field && ! empty( $field->get_meta() ) ) {
 
@@ -1016,6 +1014,9 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 					}
 				}
 			}
+
+			$fields_query->the_post();
+
 		}
 
 		wp_reset_postdata();
