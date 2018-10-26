@@ -78,7 +78,7 @@ class PNO_Listing_Field extends PNO_Field_Object {
 	/**
 	 * Constructor.
 	 *
-	 * @param mixed|boolean $_id_or_field id of the field.
+	 * @param mixed|boolean $_id_or_field WP_Post of the field.
 	 * @param string        $listing_id optional listing id to load value of the field from the db.
 	 */
 	public function __construct( $_id_or_field = false, $listing_id = false ) {
