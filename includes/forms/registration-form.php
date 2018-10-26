@@ -63,7 +63,9 @@ class RegistrationForm extends Forms {
 
 		$fields = [];
 
-		$registration_fields = pno_get_registration_fields();
+		$registration_fields = remember_transient( 'pno_registration_fields', function () {
+			return pno_get_registration_fields();
+		} );
 
 		foreach ( $registration_fields as $field_key => $the_field ) {
 
