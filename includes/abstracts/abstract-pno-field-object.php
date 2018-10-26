@@ -186,40 +186,6 @@ abstract class PNO_Field_Object {
 	}
 
 	/**
-	 * Verify if the field exists into the database.
-	 *
-	 * @param int $field_id
-	 * @return void
-	 */
-	protected function get_field( $field_id ) {
-
-		if ( ! $field_id ) {
-			return;
-		}
-
-		$field_args = [
-			'post_type'              => $this->post_type,
-			'p'                      => absint( $field_id ),
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'fields'                 => 'ids',
-		];
-
-		$field       = new WP_Query( $field_args );
-		$found_field = $field->get_posts();
-
-		wp_reset_postdata();
-
-		if ( is_array( $found_field ) && ! empty( $found_field ) && isset( $found_field[0] ) ) {
-			return $field_id;
-		} else {
-			return false;
-		}
-
-	}
-
-	/**
 	 * Get the ID number of the field from the database.
 	 */
 	public function get_id() {
@@ -229,7 +195,7 @@ abstract class PNO_Field_Object {
 	/**
 	 * Get the name of the field.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_name() {
 		return $this->name;
@@ -238,7 +204,7 @@ abstract class PNO_Field_Object {
 	/**
 	 * Get the meta of the field.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_meta() {
 		return $this->meta;
@@ -247,7 +213,7 @@ abstract class PNO_Field_Object {
 	/**
 	 * Get the form label for this field.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_label() {
 		return $this->label;
@@ -256,7 +222,7 @@ abstract class PNO_Field_Object {
 	/**
 	 * Get the description for forms assigned to the field.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public function get_description() {
 		return $this->description;
