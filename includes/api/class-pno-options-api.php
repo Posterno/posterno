@@ -152,7 +152,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 		}
 
 		// Flush fields cache when updating the settings.
-		PNO\Cache\Helper::flush_fields_cache( false, true );
+		PNO\Cache\Helper::flush_all_fields_cache();
 
 		update_option( 'pno_settings', $data_to_save );
 
