@@ -670,3 +670,13 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours )
 	}
 
 }
+
+/**
+ * Retrieve the ID number of the author of a listing given an listing id.
+ *
+ * @param string|int $listing_id the listing id we're going to verify.
+ * @return string|int|boolean
+ */
+function pno_get_listing_author( $listing_id ) {
+	return get_post_field( 'post_author', $listing_id );
+}

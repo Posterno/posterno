@@ -19,6 +19,17 @@ defined( 'ABSPATH' ) || exit;
 class Helper {
 
 	/**
+	 * Initialize cache hooks.
+	 *
+	 * @return void
+	 */
+	public static function init() {
+		add_action( 'save_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
+		add_action( 'delete_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
+		add_action( 'trash_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
+	}
+
+	/**
 	 * Gets transient version.
 	 *
 	 * When using transients with unpredictable names, e.g. those containing an md5
@@ -50,7 +61,7 @@ class Helper {
 	 *
 	 * Note; this only works on transients appended with the transient version, and when object caching is not being used.
 	 *
-	 * @param string $version
+	 * @param string $version what we're going to delete.
 	 */
 	private static function delete_version_transients( $version ) {
 		if ( ! wp_using_ext_object_cache() && ! empty( $version ) ) {
@@ -59,4 +70,17 @@ class Helper {
 		}
 	}
 
+	/**
+	 * Flush the cache generated when checking if a user has submitted listings.
+	 *
+	 * @param string $listing_id the listing id being updated.
+	 * @return void
+	 */
+	public function flush_user_has_submitted_listings( $listing_id ) {
+		$user_id = pno_get_listing_author( $listing_id );
+		wp_cache_forget( "user_has_submitted_listings_{$user_id}" );
+	}
+
 }
+
+Helper::init();
