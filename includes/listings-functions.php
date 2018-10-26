@@ -703,3 +703,20 @@ function pno_get_listing_edit_page_url( $listing_id ) {
 	return add_query_arg( [ 'listing_id' => $listing_id ], get_permalink( $page_id ) );
 
 }
+
+/**
+ * Determine if a given user is the author of a given listing.
+ *
+ * @param string|int $user_id the user we're going to verify.
+ * @param string|int $listing_id the listing we're going to verify.
+ * @return boolean
+ */
+function pno_is_user_owner_of_listing( $user_id, $listing_id ) {
+
+	if ( ! $user_id || ! $listing_id ) {
+		return false;
+	}
+
+	return $user_id == pno_get_listing_author( $listing_id ) ? true : false;
+
+}

@@ -305,6 +305,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms/delete-account-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/account-customization-form.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/listing-submission-form.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/listing-editing-form.php';
 
 		}
 
