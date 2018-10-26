@@ -27,6 +27,10 @@ class Helper {
 		add_action( 'save_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
 		add_action( 'delete_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
 		add_action( 'trash_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
+
+		add_action( 'save_post', array( __CLASS__, 'flush_fields_cache' ) );
+		add_action( 'delete_post', array( __CLASS__, 'flush_fields_cache' ) );
+		add_action( 'trash_post', array( __CLASS__, 'flush_fields_cache' ) );
 	}
 
 	/**
@@ -73,12 +77,26 @@ class Helper {
 	/**
 	 * Flush the cache generated when checking if a user has submitted listings.
 	 *
-	 * @param string $listing_id the listing id being updated.
+	 * @param string|int $listing_id the listing id being updated.
 	 * @return void
 	 */
-	public function flush_user_has_submitted_listings( $listing_id ) {
-		$user_id = pno_get_listing_author( $listing_id );
-		wp_cache_forget( "user_has_submitted_listings_{$user_id}" );
+	public static function flush_user_has_submitted_listings( $listing_id ) {
+		if ( 'listings' === get_post_type( $listing_id ) ) {
+			$user_id = pno_get_listing_author( $listing_id );
+			wp_cache_forget( "user_has_submitted_listings_{$user_id}" );
+		}
+	}
+
+	/**
+	 * Flush the cache generated for the fields.
+	 *
+	 * @param string|int $post_id the id of the post being updated.
+	 * @return void
+	 */
+	public static function flush_fields_cache( $post_id ) {
+		if ( 'pno_signup_fields' === get_post_type( $post_id ) ) {
+			forget_transient( 'pno_registration_fields' );
+		}
 	}
 
 }
