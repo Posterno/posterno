@@ -375,6 +375,10 @@ function pno_get_listings_actions() {
 			'title'    => esc_html__( 'Edit' ),
 			'priority' => 1,
 		],
+		'view'   => [
+			'title'    => esc_html__( 'View' ),
+			'priority' => 2,
+		],
 		'delete' => [
 			'title'    => esc_html__( 'Delete' ),
 			'priority' => 100,

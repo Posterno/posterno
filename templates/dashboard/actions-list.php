@@ -43,6 +43,9 @@ if ( empty( $actions ) ) {
 				case 'edit':
 					$icon = 'fa-pen';
 					break;
+				case 'view':
+					$icon = 'fa-eye';
+					break;
 				case 'delete':
 					$icon = 'fa-trash-alt';
 					break;
