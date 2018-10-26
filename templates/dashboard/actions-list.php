@@ -53,12 +53,47 @@ if ( empty( $actions ) ) {
 
 			?>
 
-			<a class="dropdown-item" data-toggle="modal" data-target="#pno-delete-listing-modal-<?php echo absint( $data->id ); ?>" href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>">
-				<?php if ( $icon ) : ?>
-					<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
-				<?php endif; ?>
-				<?php echo esc_html( $action['title'] ); ?>
-			</a>
+			<?php if ( $action_id === 'view' ) : ?>
+
+				<a class="dropdown-item" href="<?php echo esc_url( get_permalink( $data->id ) ); ?>">
+					<?php if ( $icon ) : ?>
+						<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
+					<?php endif; ?>
+					<?php echo esc_html( $action['title'] ); ?>
+				</a>
+
+			<?php elseif ( $action_id === 'edit' ) : ?>
+
+				<a class="dropdown-item" href="#">
+					<?php if ( $icon ) : ?>
+						<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
+					<?php endif; ?>
+					<?php echo esc_html( $action['title'] ); ?>
+				</a>
+
+			<?php elseif ( $action_id === 'delete' ) : ?>
+
+				<a class="dropdown-item" data-toggle="modal" data-target="#pno-delete-listing-modal-<?php echo absint( $data->id ); ?>" href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>">
+					<?php if ( $icon ) : ?>
+						<i class="fas <?php echo esc_attr( $icon ); ?> mr-2"></i>
+					<?php endif; ?>
+					<?php echo esc_html( $action['title'] ); ?>
+				</a>
+
+			<?php else : ?>
+
+				<?php
+
+				/**
+				 * Allow developers to display custom content within the dashboard listings actions buttons.
+				 *
+				 * @param string $listing_id the id number of the current listing.
+				 */
+				do_action( "pno_listings_dashboard_table_column_{$action_id}", $data->id );
+
+				?>
+
+			<?php endif; ?>
 
 		<?php endforeach; ?>
 	</div>
