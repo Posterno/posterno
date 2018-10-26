@@ -91,10 +91,11 @@ class Helper {
 	 * Flush the cache generated for the fields.
 	 *
 	 * @param string|int $post_id the id of the post being updated.
+	 * @param boolean    $force set to true to force flushing even when no post id is provided.
 	 * @return void
 	 */
-	public static function flush_fields_cache( $post_id ) {
-		if ( 'pno_signup_fields' === get_post_type( $post_id ) ) {
+	public static function flush_fields_cache( $post_id, $force = false ) {
+		if ( $post_id && 'pno_signup_fields' === get_post_type( $post_id ) || $force === true ) {
 			forget_transient( 'pno_registration_fields' );
 		}
 	}
