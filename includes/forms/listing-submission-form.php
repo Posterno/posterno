@@ -83,22 +83,10 @@ class ListingSubmissionForm extends Forms {
 				$validation_rules[] = new NotEmpty();
 			}
 
-			$fields[] = new $field_type_class(
-				$field_key,
-				[
-					'label'              => $the_field['label'],
-					'description'        => isset( $the_field['description'] ) ? $the_field['description'] : false,
-					'choices'            => isset( $the_field['options'] ) ? $the_field['options'] : false,
-					'value'              => isset( $the_field['value'] ) ? $the_field['value'] : false,
-					'required'           => (bool) $the_field['required'],
-					'rules'              => $validation_rules,
-					'attributes'         => $this->get_field_attributes( $the_field ),
-					'taxonomy'           => isset( $the_field['taxonomy'] ) ? $the_field['taxonomy'] : false,
-					'multiple'           => isset( $the_field['multiple'] ) ? $the_field['multiple'] : false,
-					'dropzone_max_files' => isset( $the_field['dropzone_max_files'] ) ? $the_field['dropzone_max_files'] : false,
-					'dropzone_max_size'  => isset( $the_field['dropzone_max_size'] ) ? $the_field['dropzone_max_size'] : false,
-				]
-			);
+			$field_options          = $this->get_field_options( $the_field );
+			$field_options['rules'] = $validation_rules;
+
+			$fields[] = new $field_type_class( $field_key, $field_options );
 
 		}
 

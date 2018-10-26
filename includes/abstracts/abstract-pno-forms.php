@@ -171,7 +171,7 @@ abstract class Forms {
 		$attributes = [];
 
 		if ( isset( $field['attributes'] ) && ! empty( $field['attributes'] ) && is_array( $field['attributes'] ) ) {
-			$attributes = $the_field['attributes'];
+			$attributes = $field['attributes'];
 		}
 
 		if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
@@ -186,6 +186,29 @@ abstract class Forms {
 		 * @return array
 		 */
 		return apply_filters( 'pno_field_attributes', $attributes, $field );
+
+	}
+
+	/**
+	 * Get a list of all possible options that are sent through fields.
+	 *
+	 * @param array $field the field we're working with.
+	 * @return array
+	 */
+	protected function get_field_options( $field ) {
+
+		return [
+			'label'              => $field['label'],
+			'description'        => isset( $field['description'] ) ? $field['description'] : false,
+			'choices'            => isset( $field['options'] ) ? $field['options'] : false,
+			'value'              => isset( $field['value'] ) ? $field['value'] : false,
+			'required'           => (bool) $field['required'],
+			'attributes'         => $this->get_field_attributes( $field ),
+			'taxonomy'           => isset( $field['taxonomy'] ) ? $field['taxonomy'] : false,
+			'multiple'           => isset( $field['multiple'] ) ? $field['multiple'] : false,
+			'dropzone_max_files' => isset( $field['dropzone_max_files'] ) ? $field['dropzone_max_files'] : false,
+			'dropzone_max_size'  => isset( $field['dropzone_max_size'] ) ? $field['dropzone_max_size'] : false,
+		];
 
 	}
 
