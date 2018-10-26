@@ -682,7 +682,7 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours )
  * @return string|int|boolean
  */
 function pno_get_listing_author( $listing_id ) {
-	return get_post_field( 'post_author', $listing_id );
+	return get_post_field( 'post_author', $listing_id ) && 'listings' === get_post_type( $listing_id );
 }
 
 /**
