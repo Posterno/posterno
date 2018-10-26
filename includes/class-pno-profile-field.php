@@ -57,7 +57,7 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	/**
 	 * Constructor.
 	 *
-	 * @param mixed|boolean $_id_or_field id of the field.
+	 * @param mixed|boolean $_id_or_field WP_Post of the field.
 	 * @param string        $user_id optional user id to load value of the field from the db.
 	 */
 	public function __construct( $_id_or_field = false, $user_id = false ) {
@@ -66,10 +66,8 @@ class PNO_Profile_Field extends PNO_Field_Object {
 			return false;
 		}
 
-		$field = $this->get_field( $_id_or_field );
-
-		if ( $field ) {
-			$this->setup_field( $field, $user_id );
+		if ( $_id_or_field instanceof WP_post ) {
+			$this->setup_field( $_id_or_field, $user_id );
 		} else {
 			return false;
 		}
@@ -79,25 +77,21 @@ class PNO_Profile_Field extends PNO_Field_Object {
 	/**
 	 * Setup the properties for the field by retrieving it's data.
 	 *
-	 * @param int    $field_id field id.
-	 * @param string $user_id optional user id to load value of the field from the db.
+	 * @param WP_Post $field WP_Post object.
+	 * @param string  $user_id optional user id to load value of the field from the db.
 	 * @return mixed
 	 */
-	protected function setup_field( $field_id, $user_id = false ) {
+	protected function setup_field( $field, $user_id = false ) {
 
-		if ( null == $field_id ) {
+		if ( null == $field ) {
 			return false;
 		}
 
-		if ( ! is_int( $field_id ) ) {
+		if ( is_wp_error( $field ) ) {
 			return false;
 		}
 
-		if ( is_wp_error( $field_id ) ) {
-			return false;
-		}
-
-		$this->id            = $field_id;
+		$this->id            = $field->ID;
 		$this->meta          = carbon_get_post_meta( $this->id, 'profile_field_meta_key' );
 		$this->default       = pno_is_default_field( $this->meta ) || get_post_meta( $this->id, 'is_default_field', true ) ? true : false;
 		$this->type          = carbon_get_post_meta( $this->id, 'profile_field_type' );

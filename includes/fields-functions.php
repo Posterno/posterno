@@ -400,11 +400,9 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 
 	if ( $fields_query->have_posts() ) {
 
-		while ( $fields_query->have_posts() ) {
+		foreach ( $fields_query->get_posts() as $account_field ) {
 
-			$fields_query->the_post();
-
-			$field = new PNO_Profile_Field( get_the_ID() );
+			$field = new PNO_Profile_Field( $account_field );
 
 			if ( $field instanceof PNO_Profile_Field && ! empty( $field->get_meta() ) ) {
 
