@@ -1021,6 +1021,76 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 
 	}
 
+	// Load listings related values within the fields.
+	if ( $listing_id ) {
+		$listing = get_post( $listing_id );
+		if ( $listing instanceof WP_Post && $listing->post_type === 'listings' ) {
+			foreach ( $fields as $key => $field ) {
+				$value = false;
+				if ( in_array( $key, pno_get_registered_default_meta_keys() ) ) {
+					switch ( $key ) {
+						case 'listing_title':
+							$value = $listing->post_title;
+							break;
+						case 'listing_description':
+							$value = $listing->post_content;
+							break;
+						case 'listing_email_address':
+							$value = carbon_get_post_meta( $listing_id, 'listing_email' );
+							break;
+						case 'listing_phone_number':
+							$value = carbon_get_post_meta( $listing_id, 'listing_phone_number' );
+							break;
+						case 'listing_website':
+							$value = carbon_get_post_meta( $listing_id, 'listing_website' );
+							break;
+						case 'listing_video':
+							$value = carbon_get_post_meta( $listing_id, 'listing_media_embed' );
+							break;
+						case 'listing_social_media_profiles':
+							$value = wp_json_encode( carbon_get_post_meta( $listing_id, 'listing_social_profiles' ) );
+							break;
+						case 'listing_categories':
+							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-categories' ) );
+							break;
+						case 'listing_tags':
+							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-tags' ) );
+							break;
+						case 'listing_regions':
+							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-locations' ) );
+							break;
+						case 'listing_opening_hours':
+							$value = wp_json_encode( get_post_meta( $listing_id, '_listing_opening_hours', true ) );
+							break;
+						case 'listing_featured_image':
+							$featured_image_id = get_post_thumbnail_id( $listing_id );
+							$featured_image    = [
+								'featured_image_id'   => $featured_image_id,
+								'featured_image_url'  => wp_get_attachment_url( $featured_image_id ),
+								'featured_image_path' => get_attached_file( $featured_image_id ),
+							];
+							$value             = wp_json_encode( $featured_image );
+							break;
+						case 'listing_gallery':
+							$value = wp_json_encode( get_post_meta( $listing_id, '_listing_gallery_images', true ) );
+							break;
+						case 'listing_zipcode':
+							$value = carbon_get_post_meta( $listing_id, 'listing_zipcode' );
+							break;
+						case 'listing_location':
+							$value = wp_json_encode( carbon_get_post_meta( $listing_id, 'listing_location' ) );
+							break;
+					}
+				} else {
+					$value = carbon_get_user_meta( $listing_id, $key );
+				}
+				if ( ! empty( $value ) ) {
+					$fields[ $key ]['value'] = $value;
+				}
+			}
+		}
+	}
+
 	/**
 	 * Allow developers to customize the listings submission form fields.
 	 *
