@@ -174,8 +174,8 @@ function pno_load_frontend_scripts() {
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
 
-	// Load vuejs scripts within the listing submission page.
-	if ( is_page( pno_get_listing_submission_page_id() ) ) {
+	// Load vuejs scripts within the listing submission/editing page.
+	if ( is_page( pno_get_listing_submission_page_id() ) || is_page( pno_get_listing_editing_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
 		wp_enqueue_style( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-select2' );
