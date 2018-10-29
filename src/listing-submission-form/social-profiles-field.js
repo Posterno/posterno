@@ -8,6 +8,19 @@ Vue.component('pno-social-profile-field', {
 			}],
 		}
 	},
+	mounted() {
+		// Load profiles from the database into the field when viewing the listing editing form.
+		var savedProfiles = this.getSavedProfiles()
+		if ( savedProfiles.length > 0 ) {
+			this.definedSocialProfiles = []
+			savedProfiles.forEach( ( profile, index ) => {
+				this.definedSocialProfiles.push({
+					social: profile.social_id,
+					url: profile.social_url
+				})
+			} );
+		}
+	},
 	methods: {
 		/**
 		 * Add new social media field.
@@ -27,6 +40,14 @@ Vue.component('pno-social-profile-field', {
 				this.definedSocialProfiles.splice(index, 1);
 			}
 		},
+		/**
+		 * Detect the value stored into the database that it's loaded
+		 * when viewing the listing editing form.
+		 *
+		 */
+		getSavedProfiles() {
+			return document.getElementById('listing_social_media_profiles').value ? JSON.parse( document.getElementById('listing_social_media_profiles').value ) : false
+		}
 	},
 	watch: {
 		/**
