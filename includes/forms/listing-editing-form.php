@@ -84,6 +84,28 @@ class ListingEditingForm extends Forms {
 			return $fields;
 		}
 
+		$submission_fields = pno_get_listing_submission_fields( $this->listing_id );
+
+		foreach ( $submission_fields as $field_key => $the_field ) {
+
+			// Get the field type so we can get the class name of the field.
+			$field_type       = $the_field['type'];
+			$field_type_class = $this->get_field_type_class_name( $field_type );
+
+			// Define validation rules.
+			$validation_rules = [];
+
+			if ( isset( $the_field['required'] ) && $the_field['required'] === true ) {
+				$validation_rules[] = new NotEmpty();
+			}
+
+			$field_options          = $this->get_field_options( $the_field );
+			$field_options['rules'] = $validation_rules;
+
+			$fields[] = new $field_type_class( $field_key, $field_options );
+
+		}
+
 		/**
 		 * Allows developers to customize fields for the listing editing form.
 		 *
