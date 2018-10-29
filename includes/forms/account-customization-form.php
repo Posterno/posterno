@@ -87,18 +87,10 @@ class AccountCustomizationForm extends Forms {
 				$validation_rules[] = new Email();
 			}
 
-			$fields[] = new $field_type_class(
-				$field_key,
-				[
-					'label'       => $the_field['label'],
-					'description' => isset( $the_field['description'] ) ? $the_field['description'] : false,
-					'choices'     => isset( $the_field['options'] ) ? $the_field['options'] : false,
-					'value'       => isset( $the_field['value'] ) ? $the_field['value'] : false,
-					'required'    => (bool) $the_field['required'],
-					'rules'       => $validation_rules,
-					'attributes'  => $this->get_field_attributes( $the_field ),
-				]
-			);
+			$field_options          = $this->get_field_options( $the_field );
+			$field_options['rules'] = $validation_rules;
+
+			$fields[] = new $field_type_class( $field_key, $field_options );
 
 		}
 
