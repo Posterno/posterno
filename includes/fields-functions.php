@@ -1057,7 +1057,18 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-tags' ) );
 							break;
 						case 'listing_regions':
-							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-locations' ) );
+							$regions = wp_get_post_terms( $listing_id, 'listings-locations' );
+							if ( is_array( $regions ) && ! empty( $regions ) ) {
+								if ( pno_get_option( 'submission_region_sublevel' ) ) {
+									$selected_regions = wp_filter_object_list( $regions, array( 'parent' => 0 ), 'not' );
+								} else {
+									$selected_regions = $regions;
+								}
+								$selected_regions = current( $selected_regions );
+								$value            = isset( $selected_regions->term_id ) ? $selected_regions->term_id : false;
+							} else {
+								$value = false;
+							}
 							break;
 						case 'listing_opening_hours':
 							$value = wp_json_encode( get_post_meta( $listing_id, '_listing_opening_hours', true ) );
