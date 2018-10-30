@@ -180,12 +180,60 @@ class ListingEditingForm extends Forms {
 
 				$values = $this->form->get_data();
 
+				/**
+				 * Allow developers to extend the listing editing process.
+				 * This action is fired before actually editing the listing.
+				 *
+				 * @param array $values all the fields submitted through the form.
+				 * @param object $this the class instance managing the form.
+				 */
+				do_action( 'pno_before_listing_editing', $values, $this );
+
+				$listing = array(
+					'ID'           => $this->listing_id,
+					'post_title'   => $values['listing_title'],
+					'post_content' => $values['listing_description'],
+					'status'       => $this->is_moderation_required(),
+				);
+
+				$updated_listing_id = wp_update_post( $listing );
+
+				if ( is_wp_error( $updated_listing_id ) ) {
+					throw new \Exception( $updated_listing_id->get_error_message() );
+				} else {
+
+					/**
+					 * Allow developers to extend the listing editing process.
+					 * This action is fired after all the details of the listing have already been updated.
+					 *
+					 * @param array $values all the fields submitted through the form.
+					 * @param string $new_listing_id the id number of the newly created listing.
+					 * @param object $this the class instance managing the form.
+					 */
+					do_action( 'pno_after_listing_editing', $values, $this->listing_id, $this );
+
+				}
+
 			}
 		} catch ( \Exception $e ) {
 			$this->form->set_processing_error( $e->getMessage() );
 			return;
 		}
 
+	}
+
+	/**
+	 * Detect the post status that we're going to apply to the listing based on admin's settings.
+	 *
+	 * @return string
+	 */
+	private function is_moderation_required() {
+		$status = pno_published_listings_can_be_edited();
+		if ( $status === 'yes' ) {
+			return 'published';
+		} else {
+			return 'pending';
+		}
 	}
 
 }
