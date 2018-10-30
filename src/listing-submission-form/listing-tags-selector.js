@@ -29,7 +29,16 @@ Vue.component('pno-listing-tags-selector', {
 
 		var vm = this
 
-		this.loadStarterTags()
+		var savedTags = this.getSavedTags()
+
+		// Load tags stored into the database when viewing the edit form, otherwise load the starter tags.
+		if ( savedTags.length > 0 ) {
+			savedTags.forEach((tag, index) => {
+				this.selectedTags.push(tag.term_id)
+			});
+		} else {
+			this.loadStarterTags()
+		}
 
 		/**
 		 * Catch changes within the listings category selector and load appropriate tags.
@@ -121,6 +130,14 @@ Vue.component('pno-listing-tags-selector', {
 				this.removeElementClass()
 			})
 
+		},
+
+		/**
+		 * Retrieve the tags stored into the database when viewing the editing form.
+		 */
+		getSavedTags() {
+			return document.getElementById('listing_tags').value ? JSON.parse(document.getElementById('listing_tags').value) : false
 		}
+
 	}
 });

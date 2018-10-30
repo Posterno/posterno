@@ -32,8 +32,6 @@ Vue.component('pno-listing-category-selector', {
 	methods: {
 		/**
 		 * Get categories loaded into the field from the database.
-		 *
-		 * @returns
 		 */
 		getSavedCategories() {
 			return document.getElementById('listing_categories').value ? JSON.parse( document.getElementById('listing_categories').value ) : false
