@@ -107,6 +107,18 @@ Vue.component('pno-listing-location-selector', {
 
 			});
 
+			// Load address stored in the database when viewing the editing database.
+			var savedAddress = vm.getSavedAddressLocation()
+
+			if ( savedAddress.hasOwnProperty('lat') && savedAddress.hasOwnProperty('lng') ) {
+				var savedLat = savedAddress.lat
+				var savedLng = savedAddress.lng
+				vm.setCoordinates( savedLat, savedLng )
+				vm.setAddressFromCoordinates( savedLat, savedLng )
+				vm.setMapLocation( savedLat, savedLng )
+				vm.setMarkerLocation( savedLat, savedLng )
+			}
+
 		}).catch(function (error) {
 			vm.setError( error )
 		})
@@ -318,6 +330,12 @@ Vue.component('pno-listing-location-selector', {
 				address: this.address,
 			}
 			document.getElementById('listing_location').value = JSON.stringify(data);
+		},
+		/**
+		 * Get the location stored into the database to display within the edit form.
+		 */
+		getSavedAddressLocation() {
+			return document.getElementById('listing_location').value ? JSON.parse(document.getElementById('listing_location').value) : false
 		}
 	},
 	watch: {
