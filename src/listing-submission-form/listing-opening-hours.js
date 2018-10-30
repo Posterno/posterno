@@ -56,6 +56,34 @@ Vue.component('pno-listing-opening-hours-selector', {
 			},
 		}
 	},
+	mounted() {
+
+		// Load stored opening hours into the database within the edit form.
+		var vm = this
+		var savedHours = this.getSavedHours()
+
+		if ( savedHours !== false ) {
+			Object.keys(savedHours).forEach(function (day) {
+				var savedTimeslots = savedHours[day]
+				if ( typeof vm.timeslots[day] === 'object' ) {
+					vm.timeslots[day].hours = []
+					vm.timeslots[day].hours.push({
+						opening: savedTimeslots.opening ? savedTimeslots.opening : '',
+						closing: savedTimeslots.closing ? savedTimeslots.closing : '',
+					})
+					if ( savedTimeslots.hasOwnProperty( 'additional_times' ) && savedTimeslots.additional_times.length > 0 ) {
+						savedTimeslots.additional_times.forEach(( newTimeSlot, index) => {
+							vm.timeslots[day].hours.push({
+								opening: newTimeSlot.opening ? newTimeSlot.opening : '',
+								closing: newTimeSlot.closing ? newTimeSlot.closing : '',
+							})
+						});
+					}
+				}
+			});
+		}
+
+	},
 	methods: {
 		/**
 		 * Verify if the user can add hours to a given day depending on the time slot selected.
@@ -109,7 +137,14 @@ Vue.component('pno-listing-opening-hours-selector', {
 					closing: ''
 				}]
 			}
+		},
+		/**
+		 * Get hours stored within the database when viewing the edit form.
+		 */
+		getSavedHours() {
+			return document.getElementById('listing_opening_hours').value ? JSON.parse( document.getElementById('listing_opening_hours').value ) : false
 		}
+
 	},
 	watch: {
 		/**
