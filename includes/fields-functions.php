@@ -1085,7 +1085,21 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							$value             = wp_json_encode( $featured_image );
 							break;
 						case 'listing_gallery':
-							$value = wp_json_encode( get_post_meta( $listing_id, '_listing_gallery_images', true ) );
+							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images', true );
+							$attachments = [];
+							if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
+								foreach ( $gallery_images as $image_id ) {
+									$image_id = $image_id['value'];
+									$attachments[] = [
+										'image_id'   => $image_id,
+										'image_url'  => wp_get_attachment_url( $image_id ),
+										'image_path' => get_attached_file( $image_id ),
+										'image_name' => wp_basename( get_attached_file( $image_id ) ),
+										'image_size' => filesize( get_attached_file( $image_id ) ),
+									];
+								}
+							}
+							$value = wp_json_encode( $attachments );
 							break;
 						case 'listing_zipcode':
 							$value = carbon_get_post_meta( $listing_id, 'listing_zipcode' );

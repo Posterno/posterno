@@ -292,7 +292,7 @@
 	}
 
 	/**
-	 * D
+	 * Retrieve files stored on the server when viewing the edit form.
 	*/
 	window.Posterno.dropzoneGetFilesToMock = function ( myDropzone, component ) {
 		var hiddenInput = component.find('input[type=hidden]')
@@ -306,9 +306,23 @@
 
 			if ( myDropzone.options.maxFiles > 1 ) {
 
+				for (var i = 0; i < storedImages.length; i++) {
+					var mockFile = {
+						name: storedImages[i].image_name,
+						size: storedImages[i].image_size,
+					};
+
+					myDropzone.emit("addedfile", mockFile);
+					myDropzone.emit("thumbnail", mockFile, storedImages[i].image_url);
+					myDropzone.emit("complete", mockFile);
+					myDropzone.files.push(mockFile);
+
+					var existingFileCount = storedImages.length; // The number of files already uploaded
+					myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+				}
+
 			} else {
 
-				// Create the mock file:
 				var mockFile = {
 					name: storedImages.image_name,
 					size: storedImages.image_size,
