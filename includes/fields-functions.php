@@ -1076,9 +1076,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 						case 'listing_featured_image':
 							$featured_image_id = get_post_thumbnail_id( $listing_id );
 							$featured_image    = [
-								'featured_image_id'   => $featured_image_id,
-								'featured_image_url'  => wp_get_attachment_url( $featured_image_id ),
-								'featured_image_path' => get_attached_file( $featured_image_id ),
+								'image_id'   => $featured_image_id,
+								'image_url'  => wp_get_attachment_url( $featured_image_id ),
+								'image_path' => get_attached_file( $featured_image_id ),
+								'image_name' => wp_basename( get_attached_file( $featured_image_id ) ),
+								'image_size' => filesize( get_attached_file( $featured_image_id ) ),
 							];
 							$value             = wp_json_encode( $featured_image );
 							break;

@@ -107,6 +107,8 @@
 
 			dropzonePreview.html('')
 
+			window.Posterno.dropzoneGetFilesToMock(PosternoDropzone, dropzoneComponents)
+
 			PosternoDropzone.on('dragenter', function () {
 				theDropzoneElement.addClass('pno-dropzone-dragging')
 			});
@@ -167,6 +169,16 @@
 				window.Posterno.dropzoneStoreResponse( dropzoneComponents, dropzoneStoredFiles )
 
 			});
+/*
+			var mockFile = {
+				name: "myimage.jpg",
+				size: 12345,
+				type: 'image/jpeg'
+			};
+			PosternoDropzone.options.addedfile.call(PosternoDropzone, mockFile);
+			PosternoDropzone.options.thumbnail.call(PosternoDropzone, mockFile, "http://someserver.com/myimage.jpg");
+			mockFile.previewElement.classList.add('dz-success');
+			mockFile.previewElement.classList.add('dz-complete'); */
 
 		});
 
@@ -275,6 +287,44 @@
 				//	console.error(errorThrown);
 				//}
 			});
+		}
+
+	}
+
+	/**
+	 * D
+	*/
+	window.Posterno.dropzoneGetFilesToMock = function ( myDropzone, component ) {
+		var hiddenInput = component.find('input[type=hidden]')
+		if ( hiddenInput.length > 0 ) {
+
+			if ( ! hiddenInput.val() ) {
+				return
+			}
+
+			var storedImages = JSON.parse( hiddenInput.val() )
+
+			if ( myDropzone.options.maxFiles > 1 ) {
+
+			} else {
+
+				// Create the mock file:
+				var mockFile = {
+					name: storedImages.image_name,
+					size: storedImages.image_size,
+				};
+
+				myDropzone.emit("addedfile", mockFile);
+				myDropzone.emit("thumbnail", mockFile, storedImages.image_url);
+				myDropzone.emit("complete", mockFile);
+				myDropzone.files.push(mockFile);
+
+				var existingFileCount = 1; // The number of files already uploaded
+				myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+				myDropzone.element.classList.add('dz-max-files-reached')
+
+			}
+
 		}
 
 	}
