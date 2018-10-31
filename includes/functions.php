@@ -446,3 +446,30 @@ function pno_user_has_submitted_listings( $user_id ) {
 	);
 
 }
+
+/**
+ * Retrieve the success message displayed to users after editing a listing.
+ * The message changes based on the moderation status set in the settings panel.
+ *
+ * @return string
+ */
+function pno_get_listing_updated_message() {
+
+	$status = pno_published_listings_can_be_edited();
+
+	$message = esc_html__( 'Listing successfully updated.' );
+
+	if ( $status === 'yes_moderated' ) {
+		$message = esc_html__( 'Listing successfully updated. An administrator will review your submission and you\'ll receive an email notification once your listing is approved.' );
+	}
+
+	/**
+	 * Allow developers to adjust the success message displayed to users after editing a listing.
+	 *
+	 * @param string $message the message to display.
+	 * @param string $status the type of moderation status selected in the admin panel.
+	 * @return string
+	 */
+	return apply_filters( 'pno_listing_updated_success_message', $message, $status );
+
+}

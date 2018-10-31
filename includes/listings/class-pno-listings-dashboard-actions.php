@@ -94,6 +94,8 @@ class PNO_Listings_Dashboard_Actions {
 			case 'listing-deleted':
 				$message = apply_filters( 'pno_listing_deleted_message', esc_html__( 'Listing successfully deleted.' ) );
 				break;
+			case 'listing-updated':
+				$message = pno_get_listing_updated_message();
 		}
 
 		if ( ! $message ) {

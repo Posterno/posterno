@@ -219,7 +219,7 @@ class ListingEditingForm extends Forms {
 						$redirect = get_permalink( $redirect );
 					} else {
 						$redirect = add_query_arg( [
-							'listing-updated' => true,
+							'message' => 'listing-updated',
 						], pno_get_dashboard_navigation_item_url( 'listings' ) );
 					}
 
