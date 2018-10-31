@@ -435,9 +435,11 @@ function pno_user_has_submitted_listings( $user_id ) {
 		return;
 	}
 
+	$user_id = absint( $user_id );
+
 	return wp_cache_remember(
 		"user_has_submitted_listings_{$user_id}", function () use ( $wpdb, $user_id ) {
-			$where = get_posts_by_author_sql( 'listings', true, $user_id );
+			$where = "WHERE ( ( post_type = 'listings' AND ( post_status = 'publish' OR post_status = 'pending' OR post_status = 'expired' ) ) ) AND post_author = {$user_id}";
 			$count = $wpdb->get_var("SELECT ID FROM $wpdb->posts $where LIMIT 1"); //phpcs:ignore
 			return $count;
 		}
