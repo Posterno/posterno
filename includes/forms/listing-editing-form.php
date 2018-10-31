@@ -202,6 +202,41 @@ class ListingEditingForm extends Forms {
 					throw new \Exception( $updated_listing_id->get_error_message() );
 				} else {
 
+					// Now manipulate the default fields data and store them if necessary.
+					if ( isset( $values['listing_email_address'] ) ) {
+						carbon_set_post_meta( $updated_listing_id, 'listing_email', $values['listing_email_address'] );
+					}
+					if ( isset( $values['listing_phone_number'] ) ) {
+						carbon_set_post_meta( $updated_listing_id, 'listing_phone_number', $values['listing_phone_number'] );
+					}
+					if ( isset( $values['listing_website'] ) ) {
+						carbon_set_post_meta( $updated_listing_id, 'listing_website', $values['listing_website'] );
+					}
+					if ( isset( $values['listing_video'] ) ) {
+						carbon_set_post_meta( $updated_listing_id, 'listing_media_embed', $values['listing_video'] );
+					}
+					if ( isset( $values['listing_zipcode'] ) ) {
+						carbon_set_post_meta( $updated_listing_id, 'listing_zipcode', $values['listing_zipcode'] );
+					}
+
+					if ( isset( $values['listing_social_media_profiles'] ) ) {
+						pno_save_listing_social_profiles( $updated_listing_id, $values['listing_social_media_profiles'] );
+					}
+
+					if ( isset( $values['listing_opening_hours'] ) ) {
+						pno_save_submitted_listing_opening_hours( $updated_listing_id, $values['listing_opening_hours'] );
+					}
+
+					// Assign terms.
+					if ( isset( $values['listing_tags'] ) ) {
+						$listing_tags = json_decode( $values['listing_tags'] );
+						if ( is_array( $listing_tags ) && ! empty( $listing_tags ) ) {
+							$tags = array_map( 'absint', $listing_tags );
+							wp_set_object_terms( absint( $updated_listing_id ), $tags, 'listings-tags' );
+						}
+					}
+
+					// Now send email notifications to the user.
 					$user = get_user_by( 'id', $this->user_id );
 
 					if ( isset( $user->data ) ) {
@@ -220,7 +255,7 @@ class ListingEditingForm extends Forms {
 					 * This action is fired after all the details of the listing have already been updated.
 					 *
 					 * @param array $values all the fields submitted through the form.
-					 * @param string $new_listing_id the id number of the newly created listing.
+					 * @param string $updated_listing_id the id number of the newly created listing.
 					 * @param object $this the class instance managing the form.
 					 */
 					do_action( 'pno_after_listing_editing', $values, $updated_listing_id, $this );
