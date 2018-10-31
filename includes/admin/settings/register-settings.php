@@ -678,6 +678,14 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
 			],
+			'listing_editing_redirect' => [
+				'type'        => 'multiselect',
+				'label'       => esc_html__( 'After successful editing' ),
+				'description' => esc_html__( 'Select the page where you wish to redirect users after editing a listing. Leave blank to display a message only.' ),
+				'placeholder' => esc_html__( 'Select a page' ),
+				'options'     => pno_get_pages(),
+				'is_page'     => true,
+			],
 		],
 	];
 

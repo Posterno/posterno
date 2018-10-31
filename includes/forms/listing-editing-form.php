@@ -193,7 +193,7 @@ class ListingEditingForm extends Forms {
 					'ID'           => $this->listing_id,
 					'post_title'   => $values['listing_title'],
 					'post_content' => $values['listing_description'],
-					'status'       => $this->is_moderation_required(),
+					'post_status'  => $this->is_moderation_required(),
 				);
 
 				$updated_listing_id = wp_update_post( $listing );
@@ -210,7 +210,33 @@ class ListingEditingForm extends Forms {
 					 * @param string $new_listing_id the id number of the newly created listing.
 					 * @param object $this the class instance managing the form.
 					 */
-					do_action( 'pno_after_listing_editing', $values, $this->listing_id, $this );
+					do_action( 'pno_after_listing_editing', $values, $updated_listing_id, $this );
+
+					// Now redirect the user.
+					$redirect = pno_get_listing_success_edit_redirect_page_id();
+
+					if ( $redirect ) {
+						$redirect = get_permalink( $redirect );
+					} else {
+						$redirect = add_query_arg( [
+							'listing-updated' => true,
+						], pno_get_dashboard_navigation_item_url( 'listings' ) );
+					}
+
+					/**
+					 * Allow developers to adjust the url where members are redirected after
+					 * successfully editing one of their listings.
+					 *
+					 * @param string $redirect the url to redirect to.
+					 * @param array $values all the data submitted through the form.
+					 * @param string|int $updated_listing_id the id of the listing that was updated.
+					 * @param object $form the class instance managing the form.
+					 * @return string
+					 */
+					$redirect = apply_filters( 'pno_listing_successful_editing_redirect_url', $redirect, $values, $updated_listing_id, $this );
+
+					wp_safe_redirect( $redirect );
+					exit;
 
 				}
 

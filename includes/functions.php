@@ -155,6 +155,24 @@ function pno_get_listing_success_redirect_page_id() {
 }
 
 /**
+ * Retrieve the id number of the selected success page to display to users
+ * after they've successfully edited a listing.
+ *
+ * @return mixed
+ */
+function pno_get_listing_success_edit_redirect_page_id() {
+
+	$page_id     = false;
+	$page_option = pno_get_option( 'listing_editing_redirect' );
+	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
+		$page_id = absint( $page_option['value'] );
+	}
+
+	return $page_id;
+
+}
+
+/**
  * Defines a list of navigation items for the dashboard page.
  *
  * @return array
