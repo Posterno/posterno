@@ -168,6 +168,9 @@ function pno_email_get_type_schema() {
 		'core_user_listing_submitted' => [
 			'description' => esc_html__( 'Recipient has successfully submitted a listing.' ),
 		],
+		'core_user_listing_updated' => [
+			'description' => esc_html__( 'Recipient has successfully updated a listing.' ),
+		],
 	);
 
 	return $types;

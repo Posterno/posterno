@@ -202,6 +202,19 @@ class ListingEditingForm extends Forms {
 					throw new \Exception( $updated_listing_id->get_error_message() );
 				} else {
 
+					$user = get_user_by( 'id', $this->user_id );
+
+					if ( isset( $user->data ) ) {
+						pno_send_email(
+							'core_user_listing_updated',
+							$user->data->user_email,
+							[
+								'user_id'    => $this->user_id,
+								'listing_id' => $updated_listing_id,
+							]
+						);
+					}
+
 					/**
 					 * Allow developers to extend the listing editing process.
 					 * This action is fired after all the details of the listing have already been updated.
