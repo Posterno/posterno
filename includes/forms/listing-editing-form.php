@@ -228,6 +228,27 @@ class ListingEditingForm extends Forms {
 					}
 
 					// Assign terms.
+					if ( isset( $values['listing_categories'] ) ) {
+						$listing_categories = json_decode( $values['listing_categories'] );
+						$use_sub_categories = pno_get_option( 'submission_categories_sublevel', false );
+						if ( $use_sub_categories ) {
+							$top_categories = [];
+							foreach ( $listing_categories as $category ) {
+								$parent_category = pno_get_term_top_most_parent( $category, 'listings-categories' );
+								if ( isset( $parent_category->term_id ) ) {
+									$top_categories[] = absint( $parent_category->term_id );
+									$top_categories[] = absint( $category );
+								}
+							}
+							if ( ! empty( $top_categories ) && is_array( $top_categories ) ) {
+								wp_set_object_terms( absint( $updated_listing_id ), $top_categories, 'listings-categories' );
+							}
+						} else {
+							$listing_categories = array_map( 'absint', $listing_categories );
+							wp_set_object_terms( absint( $updated_listing_id ), $listing_categories, 'listings-categories' );
+						}
+					}
+
 					if ( isset( $values['listing_tags'] ) ) {
 						$listing_tags = json_decode( $values['listing_tags'] );
 						if ( is_array( $listing_tags ) && ! empty( $listing_tags ) ) {
