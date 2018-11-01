@@ -257,6 +257,20 @@ class ListingEditingForm extends Forms {
 						}
 					}
 
+					if ( isset( $values['listing_regions'] ) ) {
+						$listing_region = $values['listing_regions'];
+						$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
+						$new_regions = [];
+						if ( $assign_parent ) {
+							$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
+							if ( isset( $parent_region->term_id ) ) {
+								$new_regions[] = absint( $parent_region->term_id );
+							}
+						}
+						$new_regions[] = absint( $listing_region );
+						wp_set_object_terms( absint( $new_listing_id ), $new_regions, 'listings-locations' );
+					}
+
 					// Now send email notifications to the user.
 					$user = get_user_by( 'id', $this->user_id );
 
