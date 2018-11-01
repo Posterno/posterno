@@ -614,7 +614,9 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		print_r( new PNO_Listing_Field( 1017 ) );
+		$json = '{"image_id":"1162","image_url":"http:\/\/posterno.local\/wp-content\/uploads\/pno-uploads\/listing_featured_image\/2018\/10\/Schermata-2018-10-18-alle-12.01.44-1.png","image_path":"\/app\/public\/wp-content\/uploads\/pno-uploads\/listing_featured_image\/2018\/10\/Schermata-2018-10-18-alle-12.01.44-1.png","image_name":"Schermata-2018-10-18-alle-12.01.44-1.png","image_size":347294}';
+
+		print_r( json_decode( $json ) );
 
 		wp_die();
 	}

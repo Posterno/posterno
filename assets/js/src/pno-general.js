@@ -153,32 +153,31 @@
 
 			PosternoDropzone.on('removedfile', function (file) {
 
-				window.Posterno.dropzoneHideError( dropzoneComponents )
-				window.Posterno.dropzoneRemoveFilesFromServer( file )
+				window.Posterno.dropzoneHideError(dropzoneComponents)
 
-				// Find the the index of the file to remove from the array of uploaded files.
-				var removeFilePath = file.WordPressPATH
+				// If we're on the editing form, processing of files removal works in a different way.
+				if ( pno_submission.is_editing_mode ) {
+					window.Posterno.dropzoneUnattachFilesFromListing( file.wp_id, pno_submission.editing_listing_id )
+					PosternoDropzone.element.classList.remove('dz-max-files-reached')
+				} else {
 
-				var index = dropzoneStoredFiles.map(function (e) {
-					return e.path;
-				}).indexOf( removeFilePath );
+					window.Posterno.dropzoneRemoveFilesFromServer(file)
 
-				dropzoneStoredFiles.splice( index, 1 );
+					// Find the the index of the file to remove from the array of uploaded files.
+					var removeFilePath = file.WordPressPATH
 
-				// Update the stored array of the field containing all uploaded files.
-				window.Posterno.dropzoneStoreResponse( dropzoneComponents, dropzoneStoredFiles )
+					var index = dropzoneStoredFiles.map(function (e) {
+						return e.path;
+					}).indexOf(removeFilePath);
+
+					dropzoneStoredFiles.splice(index, 1);
+
+					// Update the stored array of the field containing all uploaded files.
+					window.Posterno.dropzoneStoreResponse(dropzoneComponents, dropzoneStoredFiles)
+
+				}
 
 			});
-/*
-			var mockFile = {
-				name: "myimage.jpg",
-				size: 12345,
-				type: 'image/jpeg'
-			};
-			PosternoDropzone.options.addedfile.call(PosternoDropzone, mockFile);
-			PosternoDropzone.options.thumbnail.call(PosternoDropzone, mockFile, "http://someserver.com/myimage.jpg");
-			mockFile.previewElement.classList.add('dz-success');
-			mockFile.previewElement.classList.add('dz-complete'); */
 
 		});
 
@@ -310,6 +309,7 @@
 					var mockFile = {
 						name: storedImages[i].image_name,
 						size: storedImages[i].image_size,
+						wp_id: storedImages[i].image_id,
 					};
 
 					myDropzone.emit("addedfile", mockFile);
@@ -323,9 +323,14 @@
 
 			} else {
 
+				if ( ! storedImages.image_url ) {
+					return
+				}
+
 				var mockFile = {
 					name: storedImages.image_name,
 					size: storedImages.image_size,
+					wp_id: storedImages.image_id,
 				};
 
 				myDropzone.emit("addedfile", mockFile);
@@ -341,6 +346,29 @@
 
 		}
 
+	}
+
+	/**
+	 * Delete attachements from the listing.
+	*/
+	window.Posterno.dropzoneUnattachFilesFromListing = function( attachment_id, listing_id ) {
+		if (attachment_id) {
+			$.post({
+				url: pno_submission.ajax,
+				data: {
+					'action': 'pno_unattach_files_from_listing',
+					'attachment_id': attachment_id,
+					'listing_id': listing_id,
+					'nonce': pno_submission.dropzone_unattach_files_nonce
+				},
+				//success: function (data) {
+				//	console.log(data)
+				//},
+				//error: function (errorThrown) {
+				//	console.error(errorThrown);
+				//}
+			});
+		}
 	}
 
 	$(document).ready(function () {

@@ -260,7 +260,7 @@ class ListingEditingForm extends Forms {
 					if ( isset( $values['listing_regions'] ) ) {
 						$listing_region = $values['listing_regions'];
 						$assign_parent  = pno_get_option( 'submission_region_sublevel', false );
-						$new_regions = [];
+						$new_regions    = [];
 						if ( $assign_parent ) {
 							$parent_region = pno_get_term_top_most_parent( $listing_region, 'listings-locations' );
 							if ( isset( $parent_region->term_id ) ) {
@@ -269,6 +269,13 @@ class ListingEditingForm extends Forms {
 						}
 						$new_regions[] = absint( $listing_region );
 						wp_set_object_terms( absint( $new_listing_id ), $new_regions, 'listings-locations' );
+					}
+
+					// Update the featured image.
+					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
+						$attachment = json_decode( $values['listing_featured_image'] );
+						print_r( $attachment );
+						exit;
 					}
 
 					// Now send email notifications to the user.
@@ -301,9 +308,11 @@ class ListingEditingForm extends Forms {
 					if ( $redirect ) {
 						$redirect = get_permalink( $redirect );
 					} else {
-						$redirect = add_query_arg( [
-							'message' => 'listing-updated',
-						], pno_get_dashboard_navigation_item_url( 'listings' ) );
+						$redirect = add_query_arg(
+							[
+								'message' => 'listing-updated',
+							], pno_get_dashboard_navigation_item_url( 'listings' )
+						);
 					}
 
 					/**
@@ -322,7 +331,6 @@ class ListingEditingForm extends Forms {
 					exit;
 
 				}
-
 			}
 		} catch ( \Exception $e ) {
 			$this->form->set_processing_error( $e->getMessage() );

@@ -32,6 +32,9 @@ class PNO_Ajax {
 
 		add_action( 'wp_ajax_pno_remove_dropzone_file', [ $this, 'dropzone_delete' ] );
 		add_action( 'wp_ajax_nopriv_pno_remove_dropzone_file', [ $this, 'dropzone_delete' ] );
+
+		add_action( 'wp_ajax_pno_unattach_files_from_listing', [ $this, 'unattach_from_listing' ] );
+		add_action( 'wp_ajax_nopriv_pno_unattach_files_from_listing', [ $this, 'unattach_from_listing' ] );
 	}
 
 	/**
@@ -176,7 +179,7 @@ class PNO_Ajax {
 
 		if ( ! empty( $_FILES ) ) {
 			foreach ( $_FILES as $file_key => $file ) {
-				$file_key = $field_id;
+				$file_key        = $field_id;
 				$files_to_upload = pno_prepare_uploaded_files( $file );
 				foreach ( $files_to_upload as $file_to_upload ) {
 					$uploaded_file = pno_upload_file(
@@ -220,6 +223,62 @@ class PNO_Ajax {
 		wp_delete_file( $file_path );
 
 		wp_send_json_success();
+
+	}
+
+	/**
+	 * Delete attachments from listings.
+	 *
+	 * @return void
+	 */
+	public function unattach_from_listing() {
+
+		check_ajax_referer( 'pno_dropzone_unattach_from_listing', 'nonce' );
+
+		if ( ! isset( $_POST['attachment_id'] ) || ! isset( $_POST['listing_id'] ) ) {
+			return;
+		}
+
+		$user_id       = get_current_user_id();
+		$listing_id    = absint( $_POST['listing_id'] );
+		$attachment_id = absint( $_POST['attachment_id'] );
+
+		if ( pno_is_user_owner_of_listing( $user_id, $listing_id ) && $attachment_id ) {
+
+			wp_delete_attachment( $attachment_id, true );
+
+			// Now detect if the attachment is also part of the media's list
+			// attached to the listing and delete it.
+			$attached_medias  = get_post_meta( $listing_id, '_listing_gallery_images', true );
+			$attachments_list = [];
+
+			if ( is_array( $attached_medias ) && ! empty( $attached_medias ) ) {
+				foreach ( $attached_medias as $media ) {
+					if ( isset( $media['value'] ) ) {
+						$attachments_list[] = $media['value'];
+					}
+				}
+
+				if ( ! empty( $attachments_list ) && in_array( $attachment_id, $attachments_list ) ) {
+					if ( ( $key = array_search( $attachment_id, $attachments_list ) ) !== false ) {
+						unset( $attachments_list[ $key ] );
+					}
+				}
+
+				// Reformat the attachments list array to be compatible with the database storage.
+				$new_storage_array = [];
+				foreach ( $attachments_list as $media_id ) {
+					$new_storage_array[] = [ 'value' => absint( $media_id ) ];
+				}
+
+				update_post_meta( $listing_id, '_listing_gallery_images', $new_storage_array );
+			}
+
+			wp_send_json_success();
+
+		} else {
+			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong while removing files.' ) ], 422 );
+		}
 
 	}
 

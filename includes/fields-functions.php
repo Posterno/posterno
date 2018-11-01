@@ -779,15 +779,18 @@ function pno_dropdown_categories( $args = '' ) {
 function pno_get_listings_submission_form_js_vars() {
 
 	$js_settings = [
-		'selected_listing_type'      => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs: ignore
-		'max_multiselect'            => absint( pno_get_option( 'submission_categories_amount' ) ),
-		'ajax'                       => admin_url( 'admin-ajax.php' ),
-		'get_tags_nonce'             => wp_create_nonce( 'pno_get_tags_from_categories' ),
-		'get_starter_tags_nonce'     => wp_create_nonce( 'pno_get_tags' ),
-		'dropzone_remove_file_nonce' => wp_create_nonce( 'pno_dropzone_remove_file_nonce' ),
-		'days'                       => pno_get_days_of_the_week(),
-		'upload_error'               => esc_html__( 'Something went wrong during the upload.' ),
-		'dropzone'                   => [
+		'selected_listing_type'         => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs: ignore
+		'max_multiselect'               => absint( pno_get_option( 'submission_categories_amount' ) ),
+		'ajax'                          => admin_url( 'admin-ajax.php' ),
+		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories' ),
+		'get_starter_tags_nonce'        => wp_create_nonce( 'pno_get_tags' ),
+		'dropzone_remove_file_nonce'    => wp_create_nonce( 'pno_dropzone_remove_file_nonce' ),
+		'dropzone_unattach_files_nonce' => wp_create_nonce( 'pno_dropzone_unattach_from_listing' ),
+		'days'                          => pno_get_days_of_the_week(),
+		'is_editing_mode'               => is_page( pno_get_listing_editing_page_id() ),
+		'editing_listing_id'            => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
+		'upload_error'                  => esc_html__( 'Something went wrong during the upload.' ),
+		'dropzone'                      => [
 			'dictDefaultMessage'           => esc_html__( 'Drop files here to upload' ),
 			'dictFallbackMessage'          => esc_html__( 'Your browser does not support drag& drop file uploads.' ),
 			'dictFileTooBig'               => esc_html__( 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.' ),
@@ -1086,10 +1089,10 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							break;
 						case 'listing_gallery':
 							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images', true );
-							$attachments = [];
+							$attachments    = [];
 							if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
 								foreach ( $gallery_images as $image_id ) {
-									$image_id = $image_id['value'];
+									$image_id      = $image_id['value'];
 									$attachments[] = [
 										'image_id'   => $image_id,
 										'image_url'  => wp_get_attachment_url( $image_id ),
