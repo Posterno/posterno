@@ -276,7 +276,7 @@ export default {
 </script>
 
 <style lang="scss">
-body.listings_page_posterno-settings {
+body.settings_page_posterno-settings {
 
 	.update-nag {
 		display: none;

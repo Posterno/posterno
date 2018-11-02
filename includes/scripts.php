@@ -44,7 +44,7 @@ function pno_load_admin_scripts() {
 	}
 
 	// Load script for the settings page.
-	if ( $screen->id === 'listings_page_posterno-settings' ) {
+	if ( $screen->id === 'settings_page_posterno-settings' ) {
 		wp_enqueue_script( 'pno-settings-page' );
 		wp_localize_script( 'pno-settings-page', 'pno_settings_page', pno_get_settings_page_vars() );
 	}
