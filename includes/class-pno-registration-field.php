@@ -201,7 +201,7 @@ class PNO_Registration_Field extends PNO_Field_Object {
 					$this->update_meta( $key, $value );
 				}
 			}
-			$this->setup_field( $this->id );
+			$this->setup_field( get_post( $this->id ) );
 		}
 
 		return $this->id;

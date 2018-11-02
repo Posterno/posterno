@@ -159,6 +159,10 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$post_data = array();
 		$schema    = $this->get_item_schema();
 
+		if ( ! $post instanceof WP_Post ) {
+			$post = get_post( $post );
+		}
+
 		$field = new PNO_Profile_Field( $post );
 
 		if ( isset( $schema['properties']['id'] ) ) {
@@ -287,7 +291,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		}
 
 		$request->set_param( 'context', 'edit' );
-		$response = $this->prepare_item_for_response( $field, $request );
+		$response = $this->prepare_item_for_response( $new_field, $request );
 		$response = rest_ensure_response( $response );
 
 		return $response;

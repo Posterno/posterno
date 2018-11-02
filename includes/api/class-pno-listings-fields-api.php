@@ -265,7 +265,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		}
 
 		$request->set_param( 'context', 'edit' );
-		$response = $this->prepare_item_for_response( $field, $request );
+		$response = $this->prepare_item_for_response( $new_field, $request );
 		$response = rest_ensure_response( $response );
 
 		return $response;
