@@ -62,7 +62,15 @@ if ( empty( $actions ) ) {
 					<?php echo esc_html( $action['title'] ); ?>
 				</a>
 
-			<?php elseif ( $action_id === 'edit' ) : ?>
+			<?php
+
+				elseif ( $action_id === 'edit' ) :
+
+					if ( ! pno_pending_listings_can_be_edited() && pno_is_listing_pending_approval( $data->id ) ) {
+						continue;
+					}
+
+			?>
 
 				<a class="dropdown-item" href="<?php echo esc_url( pno_get_listing_edit_page_url( $data->id ) ); ?>">
 					<?php if ( $icon ) : ?>
