@@ -720,3 +720,23 @@ function pno_is_user_owner_of_listing( $user_id, $listing_id ) {
 	return $user_id == pno_get_listing_author( $listing_id ) ? true : false;
 
 }
+
+/**
+ * Determine if a listing is pending approval.
+ *
+ * @param string $listing_id the id of the listing to verify.
+ * @return boolean
+ */
+function pno_is_listing_pending_approval( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	return wp_cache_remember(
+		"listing_{$listing_id}_pending_approval", function () use ( $listing_id ) {
+			return get_post_type( $listing_id ) == 'listings' && get_post_status( $listing_id ) == 'pending';
+		}
+	);
+
+}

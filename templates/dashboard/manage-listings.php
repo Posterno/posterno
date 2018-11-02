@@ -64,9 +64,13 @@ defined( 'ABSPATH' ) || exit;
 							<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
 								<?php if ( $col_key == 'name' ) : ?>
 									<td>
-										<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+										<?php if ( pno_is_listing_pending_approval( $listing_id ) ) : ?>
 											<?php pno_the_listing_title( $listing_id ); ?>
-										</a>
+										<?php else : ?>
+											<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+												<?php pno_the_listing_title( $listing_id ); ?>
+											</a>
+										<?php endif; ?>
 									</td>
 								<?php elseif ( $col_key == 'date' ) : ?>
 									<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
