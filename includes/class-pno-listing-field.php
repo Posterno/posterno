@@ -90,7 +90,7 @@ class PNO_Listing_Field extends PNO_Field_Object {
 		if ( $_id_or_field instanceof WP_post ) {
 			$this->setup_field( $_id_or_field, $listing_id );
 		} else {
-			return false;
+			$this->setup_field( get_post( $_id_or_field ), $listing_id );
 		}
 
 	}
