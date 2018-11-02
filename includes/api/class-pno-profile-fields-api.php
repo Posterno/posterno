@@ -159,7 +159,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$post_data = array();
 		$schema    = $this->get_item_schema();
 
-		$field = new PNO_Profile_Field( $post->ID );
+		$field = new PNO_Profile_Field( $post );
 
 		if ( isset( $schema['properties']['id'] ) ) {
 			$post_data['id'] = (int) $post->ID;

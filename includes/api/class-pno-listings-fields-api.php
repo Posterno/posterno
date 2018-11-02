@@ -148,7 +148,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 
 		$post_data = array();
 		$schema    = $this->get_item_schema();
-		$field     = new PNO_Listing_Field( $post->ID );
+		$field     = new PNO_Listing_Field( $post );
 
 		// We are also renaming the fields to more understandable names.
 		if ( isset( $schema['properties']['id'] ) ) {
