@@ -53,7 +53,7 @@ if ( empty( $actions ) ) {
 
 			?>
 
-			<?php if ( $action_id === 'view' ) : ?>
+			<?php if ( $action_id === 'view' && ! pno_is_listing_pending_approval( $data->id ) ) : ?>
 
 				<a class="dropdown-item" href="<?php echo esc_url( get_permalink( $data->id ) ); ?>">
 					<?php if ( $icon ) : ?>
