@@ -37,7 +37,27 @@ class ListingOpeningHoursField extends AbstractGroup {
 	 */
 	public function bind( $value ) {
 		if ( $value ) {
-			return $this->set_value( maybe_unserialize( $value ) );
+			$value            = json_decode( wp_unslash( $value ) );
+			$redefined_value  = new \stdClass();
+			$days_of_the_week = pno_get_days_of_the_week();
+			foreach ( $days_of_the_week as $day => $day_name ) {
+				if ( isset( $value->{$day} ) ) {
+					$operation_type                   = $value->{$day}->type;
+					$hours                            = $value->{$day}->hours;
+					$redefined_value->$day            = new \stdClass();
+					$redefined_value->$day->operation = $operation_type;
+					$redefined_value->$day->opening   = $hours[0]->opening;
+					$redefined_value->$day->closing   = $hours[0]->closing;
+					unset( $hours[0] );
+					if ( is_array( $hours ) && ! empty( $hours ) ) {
+						foreach ( $hours as $additional_time_slot ) {
+							$redefined_value->$day->additional_times[] = $additional_time_slot;
+						}
+					}
+				}
+			}
+			$value = $redefined_value;
+			return $this->set_value( wp_json_encode( $value ) );
 		}
 		return $this->set_value( array() );
 	}
