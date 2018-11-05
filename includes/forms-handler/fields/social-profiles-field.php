@@ -37,7 +37,20 @@ class SocialProfilesField extends AbstractGroup {
 	 */
 	public function bind( $value ) {
 		if ( $value ) {
-			return $this->set_value( maybe_unserialize( $value ) );
+			$value           = json_decode( wp_unslash( $value ) );
+			$redefined_value = [];
+			if ( is_array( $value ) && ! empty( $value ) ) {
+				foreach ( $value as $social_profile ) {
+					if ( isset( $social_profile->social ) && isset( $social_profile->url ) ) {
+						$redefined_value[] = [
+							'social_id'  => $social_profile->social,
+							'social_url' => $social_profile->url,
+						];
+					}
+				}
+			}
+			$value = $redefined_value;
+			return $this->set_value( wp_json_encode( $value ) );
 		}
 		return $this->set_value( array() );
 	}
