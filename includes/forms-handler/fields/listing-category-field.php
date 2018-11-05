@@ -37,7 +37,15 @@ class ListingCategoryField extends AbstractGroup {
 	 */
 	public function bind( $value ) {
 		if ( $value ) {
-			return $this->set_value( maybe_unserialize( $value ) );
+			$value           = json_decode( wp_unslash( $value ) );
+			$redefined_value = [];
+			if ( is_array( $value ) && ! empty( $value ) ) {
+				foreach ( $value as $cat_id ) {
+					$redefined_value[] = [ 'term_id' => $cat_id ];
+				}
+			}
+			$value = $redefined_value;
+			return $this->set_value( wp_json_encode( $value ) );
 		}
 		return $this->set_value( array() );
 	}
