@@ -67,6 +67,7 @@ Vue.component('pno-listing-opening-hours-selector', {
 				var savedTimeslots = savedHours[day]
 				if ( typeof vm.timeslots[day] === 'object' ) {
 					vm.timeslots[day].hours = []
+					vm.timeslots[day].type = savedTimeslots.operation
 					vm.timeslots[day].hours.push({
 						opening: savedTimeslots.opening ? savedTimeslots.opening : '',
 						closing: savedTimeslots.closing ? savedTimeslots.closing : '',
