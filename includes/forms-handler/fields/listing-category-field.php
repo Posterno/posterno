@@ -41,7 +41,9 @@ class ListingCategoryField extends AbstractGroup {
 			$redefined_value = [];
 			if ( is_array( $value ) && ! empty( $value ) ) {
 				foreach ( $value as $cat_id ) {
-					$redefined_value[] = [ 'term_id' => $cat_id ];
+					if ( $cat_id ) {
+						$redefined_value[] = [ 'term_id' => $cat_id ];
+					}
 				}
 			}
 			$value = $redefined_value;
