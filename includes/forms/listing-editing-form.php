@@ -80,7 +80,12 @@ class ListingEditingForm extends Forms {
 
 		$fields = [];
 
-		if ( ! is_user_logged_in() || ! is_page( pno_get_listing_editing_page_id() ) || ! $this->listing_id || ! pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) ) {
+		if (
+			! is_user_logged_in() ||
+			! is_page( pno_get_listing_editing_page_id() ) ||
+			! $this->listing_id ||
+			! pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) ||
+			( pno_is_listing_pending_approval( $this->listing_id ) && pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) && ! pno_pending_listings_can_be_edited() ) ) {
 			return $fields;
 		}
 
@@ -126,7 +131,7 @@ class ListingEditingForm extends Forms {
 
 		ob_start();
 
-		if ( pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) ) {
+		if ( pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) && ! pno_is_listing_pending_approval( $this->listing_id ) || ( pno_is_listing_pending_approval( $this->listing_id ) && pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) && pno_pending_listings_can_be_edited() ) ) {
 
 			posterno()->templates
 				->set_template_data(
