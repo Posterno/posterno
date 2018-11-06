@@ -42,22 +42,32 @@ class DropzoneField extends FileField {
 				$max_files = absint( $this->get_option( 'dropzone_max_files' ) );
 				if ( $max_files > 1 ) {
 					foreach ( $value as $uploaded_image ) {
-						if ( isset( $uploaded_image->path ) && file_exists( $uploaded_image->path ) ) {
+						$file_url  = $this->get_file_url( $uploaded_image );
+						$file_path = $this->get_file_path( $uploaded_image );
+						$file_name = $this->get_file_name( $uploaded_image );
+						$file_size = $this->get_file_size( $uploaded_image );
+
+						if ( $file_path && file_exists( $file_path ) ) {
 							$redefined_value[] = [
-								'image_url'  => $uploaded_image->url,
-								'image_path' => $uploaded_image->path,
-								'image_name' => wp_basename( $uploaded_image->path ),
-								'image_size' => filesize( $uploaded_image->path ),
+								'image_url'  => $file_url,
+								'image_path' => $file_path,
+								'image_name' => $file_name,
+								'image_size' => $file_size,
 							];
 						}
 					}
 				} else {
-					if ( isset( $value[0]->path ) && isset( $value[0]->url ) && file_exists( $value[0]->path ) ) {
+					if ( isset( $value[0] ) ) {
+						$file_url  = $this->get_file_url( $value[0] );
+						$file_path = $this->get_file_path( $value[0] );
+						$file_name = $this->get_file_name( $value[0] );
+						$file_size = $this->get_file_size( $value[0] );
+
 						$redefined_value = [
-							'image_url'  => $value[0]->url,
-							'image_path' => $value[0]->path,
-							'image_name' => wp_basename( $value[0]->path ),
-							'image_size' => filesize( $value[0]->path ),
+							'image_url'  => $file_url,
+							'image_path' => $file_path,
+							'image_name' => $file_name,
+							'image_size' => $file_size,
 						];
 					}
 				}
@@ -66,6 +76,66 @@ class DropzoneField extends FileField {
 			return $this->set_value( wp_json_encode( $value ) );
 		}
 		return $this->set_value( $value );
+	}
+
+	/**
+	 * Retrieve url of the uploaded file.
+	 *
+	 * @param object $file file object.
+	 * @return string|boolean
+	 */
+	private function get_file_url( $file ) {
+
+		$url = false;
+
+		if ( isset( $file->image_url ) ) {
+			$url = $file->image_url;
+		} elseif ( $file->url ) {
+			$url = $file->url;
+		}
+
+		return $url;
+
+	}
+
+	/**
+	 * Retrieve path of the uploaded file.
+	 *
+	 * @param object $file file object.
+	 * @return string|boolean
+	 */
+	private function get_file_path( $file ) {
+
+		$path = false;
+
+		if ( isset( $file->image_path ) ) {
+			$path = $file->image_path;
+		} elseif ( $file->path ) {
+			$path = $file->path;
+		}
+
+		return $path;
+
+	}
+
+	/**
+	 * Retrieve the name of the uploaded file.
+	 *
+	 * @param object $file file object.
+	 * @return string|boolean
+	 */
+	private function get_file_name( $file ) {
+		return wp_basename( $this->get_file_path( $file ) );
+	}
+
+	/**
+	 * Retrieve the size of the uploaded file.
+	 *
+	 * @param object $file file object.
+	 * @return string|boolean
+	 */
+	private function get_file_size( $file ) {
+		return filesize( $this->get_file_path( $file ) );
 	}
 
 }
