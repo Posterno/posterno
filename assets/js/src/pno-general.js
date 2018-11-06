@@ -177,6 +177,7 @@
 				}
 
 				PosternoDropzone.element.classList.remove('dz-max-files-reached')
+				PosternoDropzone.options.maxFiles = PosternoDropzone.options.maxFiles
 
 			});
 
