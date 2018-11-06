@@ -37,7 +37,15 @@ class ListingLocationField extends AbstractGroup {
 	 */
 	public function bind( $value ) {
 		if ( $value ) {
-			return $this->set_value( maybe_unserialize( $value ) );
+			$value           = json_decode( wp_unslash( $value ) );
+			$redefined_value = [];
+			if ( isset( $value->coordinates ) ) {
+				$redefined_value = [
+					'lat' => $value->coordinates->lat,
+					'lng' => $value->coordinates->lng,
+				];
+			}
+			return $this->set_value( wp_json_encode( $redefined_value ) );
 		}
 		return $this->set_value( array() );
 	}
