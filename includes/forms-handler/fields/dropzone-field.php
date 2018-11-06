@@ -28,4 +28,30 @@ class DropzoneField extends FileField {
 		return $this->set_value( $this->get_option( 'value', [] ) );
 	}
 
+	/**
+	 * Bind the value of the field.
+	 *
+	 * @param string $value the value of the field.
+	 * @return $this the current object.
+	 */
+	public function bind( $value ) {
+		if ( $value ) {
+			$value           = json_decode( wp_unslash( $value ) );
+			$redefined_value = [];
+			if ( is_array( $value ) && ! empty( $value ) ) {
+				if ( isset( $value[0]->path ) && isset( $value[0]->url ) && file_exists( $value[0]->path ) ) {
+					$redefined_value = [
+						'image_url'  => $value[0]->url,
+						'image_path' => $value[0]->path,
+						'image_name' => wp_basename( $value[0]->path ),
+						'image_size' => filesize( $value[0]->path ),
+					];
+				}
+			}
+			$value = $redefined_value;
+			return $this->set_value( wp_json_encode( $value ) );
+		}
+		return $this->set_value( $value );
+	}
+
 }

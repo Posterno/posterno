@@ -158,7 +158,6 @@
 				// If we're on the editing form, processing of files removal works in a different way.
 				if ( pno_submission.is_editing_mode ) {
 					window.Posterno.dropzoneUnattachFilesFromListing( file.wp_id, pno_submission.editing_listing_id )
-					PosternoDropzone.element.classList.remove('dz-max-files-reached')
 				} else {
 
 					window.Posterno.dropzoneRemoveFilesFromServer(file)
@@ -176,6 +175,8 @@
 					window.Posterno.dropzoneStoreResponse(dropzoneComponents, dropzoneStoredFiles)
 
 				}
+
+				PosternoDropzone.element.classList.remove('dz-max-files-reached')
 
 			});
 
@@ -310,6 +311,8 @@
 						name: storedImages[i].image_name,
 						size: storedImages[i].image_size,
 						wp_id: storedImages[i].image_id,
+						WordPressPATH: storedImages[i].image_path,
+						WordPressURL: storedImages[i].image_url
 					};
 
 					myDropzone.emit("addedfile", mockFile);
@@ -331,6 +334,8 @@
 					name: storedImages.image_name,
 					size: storedImages.image_size,
 					wp_id: storedImages.image_id,
+					WordPressPATH: storedImages.image_path,
+					WordPressURL: storedImages.image_url
 				};
 
 				myDropzone.emit("addedfile", mockFile);
