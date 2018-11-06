@@ -39,13 +39,27 @@ class DropzoneField extends FileField {
 			$value           = json_decode( wp_unslash( $value ) );
 			$redefined_value = [];
 			if ( is_array( $value ) && ! empty( $value ) ) {
-				if ( isset( $value[0]->path ) && isset( $value[0]->url ) && file_exists( $value[0]->path ) ) {
-					$redefined_value = [
-						'image_url'  => $value[0]->url,
-						'image_path' => $value[0]->path,
-						'image_name' => wp_basename( $value[0]->path ),
-						'image_size' => filesize( $value[0]->path ),
-					];
+				$max_files = absint( $this->get_option( 'dropzone_max_files' ) );
+				if ( $max_files > 1 ) {
+					foreach ( $value as $uploaded_image ) {
+						if ( isset( $uploaded_image->path ) && file_exists( $uploaded_image->path ) ) {
+							$redefined_value[] = [
+								'image_url'  => $uploaded_image->url,
+								'image_path' => $uploaded_image->path,
+								'image_name' => wp_basename( $uploaded_image->path ),
+								'image_size' => filesize( $uploaded_image->path ),
+							];
+						}
+					}
+				} else {
+					if ( isset( $value[0]->path ) && isset( $value[0]->url ) && file_exists( $value[0]->path ) ) {
+						$redefined_value = [
+							'image_url'  => $value[0]->url,
+							'image_path' => $value[0]->path,
+							'image_name' => wp_basename( $value[0]->path ),
+							'image_size' => filesize( $value[0]->path ),
+						];
+					}
 				}
 			}
 			$value = $redefined_value;
