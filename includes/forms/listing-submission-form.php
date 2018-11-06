@@ -233,9 +233,6 @@ class ListingSubmissionForm extends Forms {
 
 			$this->form->bind( $_POST[ $this->form->get_name() ] );
 
-			//print_r( $this->form->get_data() );
-			//exit;
-
 			if ( $this->form->is_valid() ) {
 
 				$values = $this->form->get_data();
