@@ -979,9 +979,6 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 						$fields[ $field->get_meta() ]['css_class'] = $field->get_custom_classes();
 					}
 
-					if ( $field->get_priority() ) {
-						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
-					}
 				} else {
 
 					// The field does not exist so we now add it to the list of fields.
@@ -1016,6 +1013,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 						$fields[ $field->get_meta() ]['dropzone_max_size'] = $field->get_dropzone_max_size();
 					}
 				}
+
+				if ( $field->get_priority() ) {
+					$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+				}
+
 			}
 
 			$fields_query->the_post();
@@ -1114,7 +1116,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							break;
 					}
 				} else {
-					$value = carbon_get_user_meta( $listing_id, $key );
+					$value = carbon_get_post_meta( $listing_id, $key );
 				}
 				if ( ! empty( $value ) ) {
 					$fields[ $key ]['value'] = $value;

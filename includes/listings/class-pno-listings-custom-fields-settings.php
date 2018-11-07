@@ -65,33 +65,9 @@ class PNO_Listings_Custom_Fields_Settings {
 		$settings[] = Field::make( 'hidden', 'listing_field_priority' );
 		$settings[] = Field::make( 'hidden', 'listing_field_is_default' );
 
-		$field_types_to_exclude = [];
-
-		// Little "hack" to disable some types when viewing non default fields.
-		//phpcs:ignore
-		if ( is_admin() && isset( $_GET['post'] ) ) {
-			$field_types_to_exclude = [
-				'social-profiles',
-				'listing-category',
-				'listing-tags',
-				'opening-hours',
-				'listing-location',
-			];
-		}
-
 		$settings[] = Field::make( 'select', 'listing_field_type', esc_html__( 'Field type' ) )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
-					array(
-						'field'   => 'listing_field_is_default',
-						'value'   => true,
-						'compare' => '!=',
-					),
-				)
-			)
 			->set_required()
-			->add_options( pno_get_registered_field_types( $field_types_to_exclude ) )
+			->add_options( pno_get_registered_field_types() )
 			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.' ) );
 
 		$settings[] = Field::make( 'text', 'listing_field_taxonomy', esc_html__( 'Taxonomy ID' ) )
