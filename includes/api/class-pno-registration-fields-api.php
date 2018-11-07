@@ -316,7 +316,7 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
 			if ( $field_id ) {
 				$field = new PNO_Registration_Field( $field_id );
-				$field->__set( 'priority', absint( $key ) );
+				$field->__set( 'priority', absint( $key ) + 1 );
 				$field->save();
 			}
 		}
