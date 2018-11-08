@@ -19,8 +19,12 @@ Vue.component('pno-listing-category-selector', {
 		var savedCategories = this.getSavedCategories()
 
 		if ( savedCategories.length > 0 ) {
-			savedCategories.forEach((category, index) => {
-				this.selectedCategories.push( category.term_id )
+			savedCategories.forEach( (category) => {
+				if ( category.parent > 0 ) {
+					this.selectedSubcategories.push( category.term_id )
+				} else {
+					this.selectedCategories.push( category.term_id )
+				}
 			});
 		}
 
