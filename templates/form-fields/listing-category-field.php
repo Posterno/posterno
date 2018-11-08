@@ -41,23 +41,9 @@ $max_selection = pno_get_selectable_categories_count();
 		<pno-select2 inline-template v-model="selectedCategories" data-placeholder="<?php echo esc_html( $placeholder_label ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_selection ); ?> }" data-emitterid="category-changed">
 			<div class="pno-select2-wrapper">
 				<select class="form-control" <?php echo esc_attr( $multiple ); ?>>
-					<?php if ( ! empty( $listings_categories ) && is_array( $listings_categories ) && pno_get_option( 'submission_categories_sublevel' ) ) : ?>
-
-						<?php foreach ( $listings_categories as $listing_category ) : ?>
-							<optgroup label="<?php echo esc_html( $listing_category['parent_name'] ); ?>">
-								<?php foreach ( $listing_category['subcategories'] as $subcategory ) : ?>
-									<option value="<?php echo absint( $subcategory['id'] ); ?>"><?php echo esc_html( $subcategory['name'] ); ?></option>
-								<?php endforeach; ?>
-							</optgroup>
-						<?php endforeach; ?>
-
-					<?php else : ?>
-
-						<?php foreach ( $listings_categories as $category_id => $category_name ) : ?>
-							<option value="<?php echo absint( $category_id ); ?>"><?php echo esc_html( $category_name ); ?></option>
-						<?php endforeach; ?>
-
-					<?php endif; ?>
+					<?php foreach ( $listings_categories as $category_id => $category_name ) : ?>
+						<option value="<?php echo absint( $category_id ); ?>"><?php echo esc_html( $category_name ); ?></option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</pno-select2>

@@ -329,49 +329,11 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 		$terms_args['include'] = $categories_associated_to_type;
 	}
 
-	if ( $show_subcategories ) {
+	$terms = get_terms( 'listings-categories', $terms_args );
 
-		$parent_terms = get_terms( 'listings-categories', $terms_args );
-
-		if ( ! empty( $parent_terms ) && is_array( $parent_terms ) ) {
-			foreach ( $parent_terms as $parent_listing_category ) {
-
-				$category_group = [
-					'parent_id'   => $parent_listing_category->term_id,
-					'parent_name' => $parent_listing_category->name,
-				];
-
-				// Now query for subcategories.
-				$sub_terms_args = array(
-					'hide_empty' => false,
-					'number'     => 999,
-					'orderby'    => 'name',
-					'order'      => 'ASC',
-					'parent'     => $parent_listing_category->term_id,
-				);
-				$subcategories  = get_terms( 'listings-categories', $sub_terms_args );
-
-				if ( ! empty( $subcategories ) && is_array( $subcategories ) ) {
-					foreach ( $subcategories as $subcategory ) {
-						$category_group['subcategories'][] = [
-							'id'   => $subcategory->term_id,
-							'name' => $subcategory->name,
-						];
-					}
-
-					$categories[] = $category_group;
-
-				}
-			}
-		}
-	} else {
-
-		$terms = get_terms( 'listings-categories', $terms_args );
-
-		if ( ! empty( $terms ) ) {
-			foreach ( $terms as $listing_category ) {
-				$categories[ absint( $listing_category->term_id ) ] = esc_html( $listing_category->name );
-			}
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $listing_category ) {
+			$categories[ absint( $listing_category->term_id ) ] = esc_html( $listing_category->name );
 		}
 	}
 
