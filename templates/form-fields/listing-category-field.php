@@ -28,7 +28,13 @@ $listings_categories = pno_get_listings_categories_for_submission_selection( $li
 // Determine settings for the field.
 $multiple              = pno_get_option( 'submission_categories_multiple' ) ? 'multiple' : false;
 $max_parent_selectable = pno_get_selectable_categories_count();
-$max_sub_selectable = pno_get_selectable_subcategories_count();
+$max_sub_selectable    = pno_get_selectable_subcategories_count();
+
+$sub_categories_placeholder = esc_html__( 'Select one or more subcategories.' );
+
+if ( $max_sub_selectable <= 1 ) {
+	$sub_categories_placeholder = esc_html__( 'Select a sub category.' );
+}
 
 ?>
 
@@ -45,7 +51,7 @@ $max_sub_selectable = pno_get_selectable_subcategories_count();
 		</pno-select2>
 		<div class="mt-3" v-if="displaySubcategories">
 			<div class="pno-loading" v-if="loading"></div>
-			<pno-select2 v-else :options="availableSubcategories" inline-template v-model="selectedSubcategories" :settings="{ maximumSelectionLength: <?php echo absint( $max_sub_selectable ); ?> }">
+			<pno-select2 v-else :options="availableSubcategories" inline-template v-model="selectedSubcategories" data-placeholder="<?php echo esc_html( $sub_categories_placeholder ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_sub_selectable ); ?> }">
 				<div class="pno-select2-wrapper">
 					<select class="form-control" <?php echo esc_attr( $multiple ); ?>></select>
 				</div>
