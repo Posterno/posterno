@@ -27,23 +27,27 @@ Vue.component('pno-listing-category-selector', {
 	},
 	watch: {
 		/**
-		 * Watch for changes to the vue model and store changes into the frontend field
-		 * so that we can use it via php when submitting the form.
+		 * When parent categories are selected, save the value in preparation for storage
+		 * and determine if we're going to show the sub categories.
 		 */
 		selectedCategories: {
 			handler: function () {
-
-				document.getElementById('listing_categories').value = JSON.stringify(this.selectedCategories);
-
+				this.storeSelectedCategories()
 				if ( this.subcategoriesSelectable() && this.selectedCategories !== null && this.selectedCategories.length > 0 ) {
 					this.displaySubcategories = true
 					this.loadSubcategories()
 				} else {
 					this.displaySubcategories = false
 				}
-
 			},
-			deep: true
+		},
+		/**
+		 * When sub categories are selected, save the value in preparation for storage.
+		 */
+		selectedSubcategories: {
+			handler: function() {
+				this.storeSelectedCategories()
+			}
 		}
 	},
 	methods: {
@@ -90,6 +94,17 @@ Vue.component('pno-listing-category-selector', {
 				this.availableSubcategories = []
 			})
 
+		},
+		/**
+		 * Store the selected categories and subcategories within the form's field
+		 * in preparation for storage into the database.
+		 */
+		storeSelectedCategories() {
+			var categoriesToSave = {
+				'parent': this.selectedCategories,
+				'sub': this.selectedSubcategories,
+			}
+			document.getElementById('listing_categories').value = JSON.stringify(categoriesToSave);
 		},
 		/**
 		 * Get categories loaded into the field from the database.
