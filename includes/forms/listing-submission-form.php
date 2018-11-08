@@ -292,32 +292,32 @@ class ListingSubmissionForm extends Forms {
 					}
 
 					// Create a featured image for the listing.
-					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
-						$attachment = json_decode( $values['listing_featured_image'] );
-						if ( isset( $attachment[0] ) && isset( $attachment[0]->url ) ) {
-							$attachment_id = $this->create_attachment( $new_listing_id, $attachment[0]->url );
-							if ( $attachment_id ) {
-								set_post_thumbnail( $new_listing_id, $attachment_id );
-							}
-						}
-					}
+					//if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
+					//	$attachment = json_decode( $values['listing_featured_image'] );
+					//	if ( isset( $attachment[0] ) && isset( $attachment[0]->url ) ) {
+					//		$attachment_id = $this->create_attachment( $new_listing_id, $attachment[0]->url );
+					//		if ( $attachment_id ) {
+					//			set_post_thumbnail( $new_listing_id, $attachment_id );
+					//		}
+					//	}
+					//}
 
 					// Create images for the gallery.
-					if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
-						$gallery_images = json_decode( $values['listing_gallery'] );
-						if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
-							$images_list = [];
-							foreach ( $gallery_images as $uploaded_file ) {
-								$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file->url );
-								if ( $uploaded_file_id ) {
-									$images_list[] = $uploaded_file_id;
-								}
-							}
-							if ( ! empty( $images_list ) ) {
-								carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
-							}
-						}
-					}
+					//if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
+					//	$gallery_images = json_decode( $values['listing_gallery'] );
+					//	if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
+					//		$images_list = [];
+					//		foreach ( $gallery_images as $uploaded_file ) {
+					//			$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file->url );
+					//			if ( $uploaded_file_id ) {
+					//				$images_list[] = $uploaded_file_id;
+					//			}
+					//		}
+					//		if ( ! empty( $images_list ) ) {
+					//			carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
+					//		}
+					//	}
+					//}
 
 					// Assign terms.
 					if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
@@ -334,17 +334,19 @@ class ListingSubmissionForm extends Forms {
 
 					if ( isset( $values['listing_categories'] ) && ! empty( $values['listing_categories'] ) ) {
 						$listing_categories = json_decode( $values['listing_categories'] );
-						$use_sub_categories = pno_get_option( 'submission_categories_sublevel', false );
-						if ( $use_sub_categories ) {
-							foreach ( $listing_categories as $category ) {
-								$parent_category = pno_get_term_top_most_parent( $category, 'listings-categories' );
-								if ( isset( $parent_category->term_id ) ) {
-									wp_set_object_terms( absint( $new_listing_id ), absint( $parent_category->term_id ), 'listings-categories', true );
-								}
+						$categories_to_save = [];
+						if ( isset( $listing_categories->parent ) && is_array( $listing_categories->parent ) && ! empty( $listing_categories->parent ) ) {
+							foreach ( $listing_categories->parent as $term_id ) {
+								$categories_to_save[] = absint( $term_id );
 							}
 						}
-						foreach ( $listing_categories as $selected_category ) {
-							wp_set_object_terms( absint( $new_listing_id ), absint( $selected_category ), 'listings-categories', true );
+						if ( isset( $listing_categories->sub ) && is_array( $listing_categories->sub ) && ! empty( $listing_categories->sub ) ) {
+							foreach ( $listing_categories->sub as $sub_term_id ) {
+								$categories_to_save[] = absint( $sub_term_id );
+							}
+						}
+						if ( ! empty( $categories_to_save ) ) {
+							wp_set_object_terms( absint( $new_listing_id ), $categories_to_save, 'listings-categories' );
 						}
 					}
 
