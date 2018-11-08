@@ -311,7 +311,7 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
 			],
-			'editing_page'   => [
+			'editing_page'      => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'Listing editing page' ),
 				'description' => esc_html__( 'Select the page where you have added the listing editing form shortcode.' ),
@@ -614,6 +614,11 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'How many categories?' ),
 				'description' => esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
 			],
+			'submission_subcategories_amount'  => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'How many sub categories?' ),
+				'description' => esc_html__( 'Specify how many sub categories users can select for their listings (eg: 5). Leave blank if not needed.' ),
+			],
 			'submission_moderated'             => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Moderate new listings' ),
@@ -678,7 +683,7 @@ function pno_get_registered_settings() {
 				'options'     => pno_get_pages(),
 				'is_page'     => true,
 			],
-			'listing_editing_redirect' => [
+			'listing_editing_redirect'    => [
 				'type'        => 'multiselect',
 				'label'       => esc_html__( 'After successful editing' ),
 				'description' => esc_html__( 'Select the page where you wish to redirect users after editing a listing. Leave blank to display a message only.' ),
