@@ -175,3 +175,7 @@ form.pno-form-has-errors {
 .pno-listing-submission-map {
 	height: 300px;
 }
+
+.pno-field-listing_tags:not(.pno-category-selected) {
+	display: none;
+}

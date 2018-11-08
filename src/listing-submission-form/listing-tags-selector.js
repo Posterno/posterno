@@ -36,8 +36,6 @@ Vue.component('pno-listing-tags-selector', {
 			savedTags.forEach((tag, index) => {
 				this.selectedTags.push(tag.term_id)
 			});
-		} else {
-			this.loadStarterTags()
 		}
 
 		/**
@@ -77,31 +75,6 @@ Vue.component('pno-listing-tags-selector', {
 		 */
 		removeElementClass() {
 			jQuery('.pno-field-listing_tags').removeClass("pno-category-selected");
-		},
-		/**
-		 * Load some tags on page first load.
-		 */
-		loadStarterTags() {
-
-			this.loading = true
-			this.addElementClass()
-
-			axios.get( pno_submission.ajax, {
-				params: {
-					nonce: pno_submission.get_starter_tags_nonce,
-					action: 'pno_get_tags'
-				}
-			})
-			.then( response => {
-				this.loading = false
-				this.availableTags = response.data.data
-			})
-			.catch( error => {
-				this.loading = false
-				this.availableTags = []
-				this.removeElementClass()
-			})
-
 		},
 		/**
 		 * Load tags related to the selected listings categories.
