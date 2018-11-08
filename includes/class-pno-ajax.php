@@ -26,6 +26,8 @@ class PNO_Ajax {
 		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
 		add_action( 'wp_ajax_pno_get_tags', [ $this, 'get_tags' ] );
 		add_action( 'wp_ajax_nopriv_pno_get_tags', [ $this, 'get_tags' ] );
+		add_action( 'wp_ajax_pno_get_subcategories', [ $this, 'get_subcategories' ] );
+		add_action( 'wp_ajax_nopriv_pno_get_subcategories', [ $this, 'get_subcategories' ] );
 
 		add_action( 'wp_ajax_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
 		add_action( 'wp_ajax_nopriv_pno_dropzone_upload', [ $this, 'dropzone_upload' ] );
@@ -278,6 +280,46 @@ class PNO_Ajax {
 
 		} else {
 			wp_send_json_error( [ 'message' => esc_html__( 'Something went wrong while removing files.' ) ], 422 );
+		}
+
+	}
+
+	/**
+	 * Retrieve sub categories from the database.
+	 *
+	 * @return void
+	 */
+	public function get_subcategories() {
+
+		check_ajax_referer( 'pno_get_subcategories', 'nonce' );
+
+		$parent_categories = isset( $_GET['categories'] ) && ! empty( $_GET['categories'] ) && is_array( $_GET['categories'] ) ? array_map( 'absint', $_GET['categories'] ) : false;
+		$sub_categories = [];
+
+		foreach ( $parent_categories as $parent_category_id ) {
+
+			$terms_args = [
+				'hide_empty' => false,
+				'number'     => 999,
+				'orderby'    => 'name',
+				'order'      => 'ASC',
+				'parent'     => $parent_category_id,
+			];
+
+			$found_sub_categories = get_terms( 'listings-categories', $terms_args );
+
+			if ( ! empty( $found_sub_categories ) && is_array( $found_sub_categories ) ) {
+				foreach ( $found_sub_categories as $sub_category ) {
+					$sub_categories[] = $sub_category;
+				}
+			}
+
+		}
+
+		if ( ! empty( $sub_categories ) ) {
+			wp_send_json_success( $sub_categories );
+		} else {
+			wp_send_json_error( false, 422 );
 		}
 
 	}

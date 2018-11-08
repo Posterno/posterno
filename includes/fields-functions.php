@@ -781,9 +781,11 @@ function pno_get_listings_submission_form_js_vars() {
 	$js_settings = [
 		'selected_listing_type'         => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs: ignore
 		'max_multiselect'               => absint( pno_get_option( 'submission_categories_amount' ) ),
+		'subcategories_on_submission'   => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
 		'ajax'                          => admin_url( 'admin-ajax.php' ),
 		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories' ),
 		'get_starter_tags_nonce'        => wp_create_nonce( 'pno_get_tags' ),
+		'get_subcategories_nonce'       => wp_create_nonce( 'pno_get_subcategories' ),
 		'dropzone_remove_file_nonce'    => wp_create_nonce( 'pno_dropzone_remove_file_nonce' ),
 		'dropzone_unattach_files_nonce' => wp_create_nonce( 'pno_dropzone_unattach_from_listing' ),
 		'days'                          => pno_get_days_of_the_week(),
@@ -978,7 +980,6 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 					if ( $field->get_custom_classes() ) {
 						$fields[ $field->get_meta() ]['css_class'] = $field->get_custom_classes();
 					}
-
 				} else {
 
 					// The field does not exist so we now add it to the list of fields.
@@ -1017,7 +1018,6 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 				if ( $field->get_priority() ) {
 					$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
 				}
-
 			}
 
 			$fields_query->the_post();
