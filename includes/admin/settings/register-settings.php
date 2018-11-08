@@ -599,11 +599,6 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Display sub categories' ),
 				'description' => esc_html__( 'Enable the option to display sub categories during selection.' ),
 			],
-			'submission_categories_multiple'   => [
-				'type'        => 'checkbox',
-				'label'       => esc_html__( 'Allow multiple categories' ),
-				'description' => esc_html__( 'Enable the option to let users select more than one category during listing submission.' ),
-			],
 			'submission_region_sublevel'       => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Allow child regions' ),

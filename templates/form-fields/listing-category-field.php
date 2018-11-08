@@ -26,7 +26,6 @@ $listing_type_id     = pno_get_submission_queried_listing_type_id();
 $listings_categories = pno_get_listings_categories_for_submission_selection( $listing_type_id );
 
 // Determine settings for the field.
-$multiple              = pno_get_option( 'submission_categories_multiple' ) ? 'multiple' : false;
 $max_parent_selectable = pno_get_selectable_categories_count();
 $max_sub_selectable    = pno_get_selectable_subcategories_count();
 
@@ -42,7 +41,7 @@ if ( $max_sub_selectable <= 1 ) {
 	<div>
 		<pno-select2 inline-template v-model="selectedCategories" data-placeholder="<?php echo esc_html( $data->get_option( 'placeholder' ) ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_parent_selectable ); ?> }" data-emitterid="category-changed">
 			<div class="pno-select2-wrapper">
-				<select class="form-control" <?php echo esc_attr( $multiple ); ?>>
+				<select class="form-control" multiple>
 					<?php foreach ( $listings_categories as $category_id => $category_name ) : ?>
 						<option value="<?php echo absint( $category_id ); ?>"><?php echo esc_html( $category_name ); ?></option>
 					<?php endforeach; ?>
@@ -53,7 +52,7 @@ if ( $max_sub_selectable <= 1 ) {
 			<div class="pno-loading" v-if="loading"></div>
 			<pno-select2 v-else :options="availableSubcategories" inline-template v-model="selectedSubcategories" data-placeholder="<?php echo esc_html( $sub_categories_placeholder ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_sub_selectable ); ?> }">
 				<div class="pno-select2-wrapper">
-					<select class="form-control" <?php echo esc_attr( $multiple ); ?>></select>
+					<select class="form-control" multiple></select>
 				</div>
 			</pno-select2>
 		</div>
