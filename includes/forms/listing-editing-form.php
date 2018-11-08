@@ -233,32 +233,30 @@ class ListingEditingForm extends Forms {
 					}
 
 					// Assign terms.
-					if ( isset( $values['listing_categories'] ) ) {
+					if ( isset( $values['listing_categories'] ) && ! empty( $values['listing_categories'] ) ) {
 						$listing_categories = json_decode( $values['listing_categories'] );
-						$use_sub_categories = pno_get_option( 'submission_categories_sublevel', false );
-						if ( $use_sub_categories ) {
-							$top_categories = [];
-							foreach ( $listing_categories as $category ) {
-								$parent_category = pno_get_term_top_most_parent( $category, 'listings-categories' );
-								if ( isset( $parent_category->term_id ) ) {
-									$top_categories[] = absint( $parent_category->term_id );
-									$top_categories[] = absint( $category );
-								}
+						$categories_to_save = [];
+						if ( isset( $listing_categories->parent ) && is_array( $listing_categories->parent ) && ! empty( $listing_categories->parent ) ) {
+							foreach ( $listing_categories->parent as $term_id ) {
+								$categories_to_save[] = absint( $term_id );
 							}
-							if ( ! empty( $top_categories ) && is_array( $top_categories ) ) {
-								wp_set_object_terms( absint( $updated_listing_id ), $top_categories, 'listings-categories' );
+						}
+						if ( isset( $listing_categories->sub ) && is_array( $listing_categories->sub ) && ! empty( $listing_categories->sub ) ) {
+							foreach ( $listing_categories->sub as $sub_term_id ) {
+								$categories_to_save[] = absint( $sub_term_id );
 							}
-						} else {
-							$listing_categories = array_map( 'absint', $listing_categories );
-							wp_set_object_terms( absint( $updated_listing_id ), $listing_categories, 'listings-categories' );
+						}
+						if ( ! empty( $categories_to_save ) ) {
+							wp_set_object_terms( absint( $updated_listing_id ), $categories_to_save, 'listings-categories' );
 						}
 					}
 
-					if ( isset( $values['listing_tags'] ) ) {
+					if ( isset( $values['listing_tags'] ) && ! empty( $values['listing_tags'] ) ) {
 						$listing_tags = json_decode( $values['listing_tags'] );
-						if ( is_array( $listing_tags ) && ! empty( $listing_tags ) ) {
-							$tags = array_map( 'absint', $listing_tags );
-							wp_set_object_terms( absint( $updated_listing_id ), $tags, 'listings-tags' );
+						if ( is_array( $listing_tags ) ) {
+							foreach ( $listing_tags as $tag ) {
+								wp_set_object_terms( absint( $updated_listing_id ), absint( $tag->term_id ), 'listings-tags', true );
+							}
 						}
 					}
 
@@ -273,14 +271,14 @@ class ListingEditingForm extends Forms {
 							}
 						}
 						$new_regions[] = absint( $listing_region );
-						wp_set_object_terms( absint( $new_listing_id ), $new_regions, 'listings-locations' );
+						wp_set_object_terms( absint( $updated_listing_id ), $new_regions, 'listings-locations' );
 					}
 
 					// Update the featured image.
 					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
 						$attachment = json_decode( $values['listing_featured_image'] );
-						print_r( $attachment );
-						exit;
+						//print_r( $attachment );
+						//exit;
 					}
 
 					// Now send email notifications to the user.
