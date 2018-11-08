@@ -292,32 +292,32 @@ class ListingSubmissionForm extends Forms {
 					}
 
 					// Create a featured image for the listing.
-					//if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
-					//	$attachment = json_decode( $values['listing_featured_image'] );
-					//	if ( isset( $attachment[0] ) && isset( $attachment[0]->url ) ) {
-					//		$attachment_id = $this->create_attachment( $new_listing_id, $attachment[0]->url );
-					//		if ( $attachment_id ) {
-					//			set_post_thumbnail( $new_listing_id, $attachment_id );
-					//		}
-					//	}
-					//}
+					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
+						$attachment = json_decode( $values['listing_featured_image'] );
+						if ( isset( $attachment->image_url ) ) {
+							$attachment_id = $this->create_attachment( $new_listing_id, $attachment->image_url );
+							if ( $attachment_id ) {
+								set_post_thumbnail( $new_listing_id, $attachment_id );
+							}
+						}
+					}
 
 					// Create images for the gallery.
-					//if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
-					//	$gallery_images = json_decode( $values['listing_gallery'] );
-					//	if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
-					//		$images_list = [];
-					//		foreach ( $gallery_images as $uploaded_file ) {
-					//			$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file->url );
-					//			if ( $uploaded_file_id ) {
-					//				$images_list[] = $uploaded_file_id;
-					//			}
-					//		}
-					//		if ( ! empty( $images_list ) ) {
-					//			carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
-					//		}
-					//	}
-					//}
+					if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
+						$gallery_images = json_decode( $values['listing_gallery'] );
+						if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
+							$images_list = [];
+							foreach ( $gallery_images as $uploaded_file ) {
+								$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file->image_url );
+								if ( $uploaded_file_id ) {
+									$images_list[] = $uploaded_file_id;
+								}
+							}
+							if ( ! empty( $images_list ) ) {
+								carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
+							}
+						}
+					}
 
 					// Assign terms.
 					if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
@@ -352,8 +352,10 @@ class ListingSubmissionForm extends Forms {
 
 					if ( isset( $values['listing_tags'] ) && ! empty( $values['listing_tags'] ) ) {
 						$listing_tags = json_decode( $values['listing_tags'] );
-						foreach ( $listing_tags as $tag ) {
-							wp_set_object_terms( absint( $new_listing_id ), absint( $tag ), 'listings-tags', true );
+						if ( is_array( $listing_tags ) ) {
+							foreach ( $listing_tags as $tag ) {
+								wp_set_object_terms( absint( $new_listing_id ), absint( $tag->term_id ), 'listings-tags', true );
+							}
 						}
 					}
 
