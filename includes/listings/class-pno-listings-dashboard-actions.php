@@ -62,8 +62,7 @@ class PNO_Listings_Dashboard_Actions {
 
 		// Verify the currently logged in user is the author of the listing being deleted.
 		$listing = get_post( $listing_id );
-
-		if ( $listing instanceof WP_Post && $listing->post_author == $user_id ) {
+		if ( $listing instanceof WP_Post && pno_is_user_owner_of_listing( $user_id, $listing->post_author ) ) {
 			pno_delete_listing( $listing->ID );
 		}
 
