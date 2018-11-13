@@ -277,8 +277,12 @@ class ListingEditingForm extends Forms {
 					// Update the featured image.
 					if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
 						$attachment = json_decode( $values['listing_featured_image'] );
-						//print_r( $attachment );
-						//exit;
+						if ( isset( $attachment->image_url ) ) {
+							$attachment_id = $this->create_attachment( $updated_listing_id, $attachment->image_url );
+							if ( $attachment_id ) {
+								set_post_thumbnail( $updated_listing_id, $attachment_id );
+							}
+						}
 					}
 
 					// Now send email notifications to the user.
