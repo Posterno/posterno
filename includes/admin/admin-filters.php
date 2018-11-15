@@ -150,13 +150,13 @@ function pno_emails_post_type_columns( $columns ) {
 add_filter( 'manage_pno_emails_posts_columns', 'pno_emails_post_type_columns' );
 
 /**
- * Setup bulk messages updated text for the listings post type.
+ * Setup bulk messages updated text for post types.
  *
  * @param array  $bulk_messages the list of messages.
  * @param string $bulk_counts the count of the posts.
  * @return array
  */
-function pno_listing_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
+function pno_post_types_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
 
 	$bulk_messages['listings'] = array(
 		'updated'   => _n( '%s listing updated.', '%s listings updated.', $bulk_counts['updated'] ),
@@ -166,11 +166,19 @@ function pno_listing_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
 		'untrashed' => _n( '%s listing restored from the trash.', '%s listings restored from the trash.', $bulk_counts['untrashed'] ),
 	);
 
+	$bulk_messages['pno_emails'] = array(
+		'updated'   => _n( '%s email updated.', '%s emails updated.', $bulk_counts['updated'] ),
+		'locked'    => _n( '%s email not updated, somebody is editing it.', '%s emails not updated, somebody is editing them.', $bulk_counts['locked'] ),
+		'deleted'   => _n( '%s email permanently deleted.', '%s emails permanently deleted.', $bulk_counts['deleted'] ),
+		'trashed'   => _n( '%s email moved to the trash.', '%s emails moved to the trash.', $bulk_counts['trashed'] ),
+		'untrashed' => _n( '%s email restored from the trash.', '%s emails restored from the trash.', $bulk_counts['untrashed'] ),
+	);
+
 	return $bulk_messages;
 
 }
 
-add_filter( 'bulk_post_updated_messages', 'pno_listing_bulk_updated_messages', 10, 2 );
+add_filter( 'bulk_post_updated_messages', 'pno_post_types_bulk_updated_messages', 10, 2 );
 
 /**
  * Setup the api key for the google maps field of Carbon fields in the admin panel.
