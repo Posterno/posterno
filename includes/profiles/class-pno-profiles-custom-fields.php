@@ -294,8 +294,10 @@ class PNO_Profiles_Custom_Fields {
 
 		wp_reset_postdata();
 
-		Container::make( 'user_meta', esc_html__( 'Additional listing details' ) )
-			->add_fields( $admin_fields );
+		if ( ! empty( $admin_fields ) ) {
+			Container::make( 'user_meta', esc_html__( 'Additional details' ) )
+				->add_fields( $admin_fields );
+		}
 
 	}
 

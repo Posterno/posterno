@@ -24,14 +24,14 @@ class PNO_Avatars {
 	 *
 	 * @return void
 	 */
-	public static function init() {
+	public function init() {
 
 		if ( ! pno_get_option( 'allow_avatars' ) ) {
 			return;
 		}
 
-		add_action( 'carbon_fields_register_fields', [ __class__, 'avatar_field' ] );
-		add_filter( 'get_avatar_url', [ __class__, 'set_avatar_url' ], 10, 3 );
+		add_action( 'carbon_fields_register_fields', [ $this, 'avatar_field' ] );
+		add_filter( 'get_avatar_url', [ $this, 'set_avatar_url' ], 10, 3 );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class PNO_Avatars {
 	 * @param mixed $id_or_email identifier for the user.
 	 * @return mixed
 	 */
-	private static function get_user_id( $id_or_email ) {
+	private function get_user_id( $id_or_email ) {
 
 		$retval = 0;
 
@@ -76,7 +76,7 @@ class PNO_Avatars {
 	 *
 	 * @return void
 	 */
-	public static function avatar_field() {
+	public function avatar_field() {
 		Container::make( 'user_meta', esc_html__( 'Profile picture & cover' ) )
 			->add_fields(
 				array(
@@ -96,7 +96,7 @@ class PNO_Avatars {
 	 * @param array  $args additional args.
 	 * @return mixed
 	 */
-	public static function set_avatar_url( $url, $id_or_email, $args ) {
+	public function set_avatar_url( $url, $id_or_email, $args ) {
 
 		// Bail if forcing default.
 		if ( ! empty( $args['force_default'] ) ) {
@@ -108,7 +108,7 @@ class PNO_Avatars {
 			return $url;
 		}
 
-		$custom_avatar = carbon_get_user_meta( self::get_user_id( $id_or_email ), 'current_user_avatar' );
+		$custom_avatar = get_user_meta( $this->get_user_id( $id_or_email ), '_current_user_avatar', true );
 
 		if ( $custom_avatar && $custom_avatar !== 'false' ) {
 			$url = $custom_avatar;
