@@ -96,6 +96,8 @@ class Helper {
 	public static function flush_fields_cache( $post_id ) {
 		if ( 'pno_signup_fields' === get_post_type( $post_id ) ) {
 			forget_transient( 'pno_registration_fields' );
+		} elseif ( 'pno_users_fields' === get_post_type( $post_id ) ) {
+			forget_transient( 'pno_extra_admin_account_fields' );
 		}
 	}
 
@@ -106,6 +108,7 @@ class Helper {
 	 */
 	public static function flush_all_fields_cache() {
 		forget_transient( 'pno_registration_fields' );
+		forget_transient( 'pno_extra_admin_account_fields' );
 	}
 
 }
