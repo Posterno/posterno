@@ -319,9 +319,9 @@ class ListingEditingForm extends Forms {
 					foreach ( $values as $key => $value ) {
 						if ( ! pno_is_default_field( $key ) ) {
 							if ( $value == '1' || $value === true ) {
-								carbon_set_post_meta( $new_listing_id, $key, true );
+								carbon_set_post_meta( $updated_listing_id, $key, true );
 							} else {
-								carbon_set_post_meta( $new_listing_id, $key, $value );
+								carbon_set_post_meta( $updated_listing_id, $key, $value );
 							}
 						}
 					}
