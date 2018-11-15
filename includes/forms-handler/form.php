@@ -338,6 +338,19 @@ class Form {
 	}
 
 	/**
+	 * Retrieve a list of the registered field ids together with their defined type.
+	 *
+	 * @return array
+	 */
+	public function get_types_definitions() {
+		$result = [];
+		foreach ( $this->fields as $field ) {
+			$result[ $field->get_id() ] = $field->get_type();
+		}
+		return $result;
+	}
+
+	/**
 	 * Render the form.
 	 *
 	 * @return void
