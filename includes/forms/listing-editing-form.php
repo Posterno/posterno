@@ -288,6 +288,33 @@ class ListingEditingForm extends Forms {
 						}
 					}
 
+					// Create images for the gallery.
+					if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
+						$gallery_images      = json_decode( $values['listing_gallery'] );
+						$current_images      = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+						$current_images_urls = [];
+						$images_to_save      = [];
+						if ( ! empty( $current_images ) && is_array( $current_images ) ) {
+							foreach ( $current_images as $existing_attachment_id ) {
+								$images_to_save[]      = $existing_attachment_id;
+								$current_images_urls[] = wp_get_attachment_url( $existing_attachment_id );
+							}
+						}
+						if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
+							foreach ( $gallery_images as $uploaded_file ) {
+								if ( ! in_array( $uploaded_file->image_url, $current_images_urls ) ) {
+									$uploaded_file_id = $this->create_attachment( $updated_listing_id, $uploaded_file->image_url );
+									if ( $uploaded_file_id ) {
+										$images_to_save[] = $uploaded_file_id;
+									}
+								}
+							}
+						}
+						if ( ! empty( $images_to_save ) ) {
+							carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $images_to_save );
+						}
+					}
+
 					// Now send email notifications to the user.
 					$user = get_user_by( 'id', $this->user_id );
 
