@@ -429,7 +429,7 @@ function pno_display_post_type_tabs() {
 
 	$tabs['custom_fields'] = [
 		'name' => esc_html__( 'Custom fields' ),
-		'url'  => admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields#' ),
+		'url'  => admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ),
 	];
 
 	/**
