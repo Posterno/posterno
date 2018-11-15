@@ -1,8 +1,18 @@
-
 /*global pno_listing_cf:true*/
 /*global $:true*/
 
 $(document).on('carbonFields.apiLoaded', function (e, api) {
+
+	var typesToHide = ['listing-category', 'listing-tags', 'listing-location', 'opening-hours', 'social-profiles']
+
+	if ( ! pno_listing_cf.is_default ) {
+		$('select[name=_listing_field_type] option').each(function () {
+			if ( $.inArray( $(this).val(), typesToHide) !== -1 ) {
+				$(this).remove();
+			}
+		});
+	}
+
 	$(document).on('carbonFields.validateField', function (e, fieldName, error) {
 
 		if (fieldName === 'listing_field_meta_key' && pno_listing_cf.is_default) {
