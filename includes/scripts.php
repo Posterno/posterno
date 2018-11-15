@@ -34,7 +34,6 @@ function pno_load_admin_scripts() {
 
 		// Register the custom fields page scripts.
 		wp_register_script( 'pno-custom-fields-page', 'http://localhost:8080/custom-fields-editor.js', [], $version, true );
-		wp_register_script( 'pno-custom-fields-editors', 'http://localhost:8080/editors-selector.js', [], $version, true );
 		wp_register_script( 'pno-registration-form-editor', 'http://localhost:8080/registration-form-editor.js', [], $version, true );
 		wp_register_script( 'pno-profile-fields-editor', 'http://localhost:8080/profile-fields.js', [], $version, true );
 		wp_register_script( 'pno-listings-fields-editor', 'http://localhost:8080/listings-fields-editor.js', [], $version, true );
@@ -49,22 +48,15 @@ function pno_load_admin_scripts() {
 		wp_localize_script( 'pno-settings-page', 'pno_settings_page', pno_get_settings_page_vars() );
 	}
 
-	// Load script for the custom fields selector page.
-	if ( $screen->id === 'listings_page_posterno-custom-fields' ) {
-		wp_enqueue_style( 'pno-editors-styling' );
-		wp_enqueue_script( 'pno-custom-fields-editors' );
-		wp_localize_script( 'pno-custom-fields-editors', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
-	}
-
 	// Load scripts for the registration form editor page.
-	if ( $screen->id === 'listings_page_posterno-custom-registration-form' ) {
+	if ( $screen->id === 'users_page_posterno-custom-registration-form' ) {
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-registration-form-editor' );
 		wp_localize_script( 'pno-registration-form-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
 	// Load scritps for the profile fields editor page.
-	if ( $screen->id === 'listings_page_posterno-custom-profile-fields' ) {
+	if ( $screen->id === 'users_page_posterno-custom-profile-fields' ) {
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-profile-fields-editor' );
 		wp_localize_script( 'pno-profile-fields-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
