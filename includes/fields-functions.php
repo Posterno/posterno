@@ -1116,7 +1116,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							break;
 					}
 				} else {
-					$value = carbon_get_post_meta( $listing_id, $key );
+					if ( $field['type'] === 'dropzone' ) {
+						$value = pno_dropzone_format_value_to_json( carbon_get_post_meta( $listing_id, $key ), $field );
+					} else {
+						$value = carbon_get_post_meta( $listing_id, $key );
+					}
 				}
 				if ( ! empty( $value ) ) {
 					$fields[ $key ]['value'] = $value;
@@ -1170,5 +1174,46 @@ function pno_dropzone_get_max_files_amount( $field ) {
 	 * @return string
 	 */
 	return apply_filters( 'pno_dropzone_max_files_amount', $amount, $field );
+
+}
+
+/**
+ * Prepare a list of attachments ids, to be formatted for display through a dropzone.
+ *
+ * @param string|array $value list of attachment ids.
+ * @param array        $field definition of the field used to detect wether the dropzone manages more than one file.
+ * @return string
+ */
+function pno_dropzone_format_value_to_json( $value, $field ) {
+
+	$attachments = [];
+
+	$singular = ! isset( $field['dropzone_max_files'] ) ? true : false;
+
+	if ( ! empty( $value ) && is_array( $value ) ) {
+		foreach ( $value as $image_id ) {
+			if ( $singular ) {
+				$attachments = [
+					'image_id'   => $image_id,
+					'image_url'  => wp_get_attachment_url( $image_id ),
+					'image_path' => get_attached_file( $image_id ),
+					'image_name' => wp_basename( get_attached_file( $image_id ) ),
+					'image_size' => filesize( get_attached_file( $image_id ) ),
+				];
+			} else {
+				$attachments[] = [
+					'image_id'   => $image_id,
+					'image_url'  => wp_get_attachment_url( $image_id ),
+					'image_path' => get_attached_file( $image_id ),
+					'image_name' => wp_basename( get_attached_file( $image_id ) ),
+					'image_size' => filesize( get_attached_file( $image_id ) ),
+				];
+			}
+		}
+	}
+
+	$files = wp_json_encode( $attachments );
+
+	return $files;
 
 }
