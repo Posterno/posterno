@@ -318,11 +318,7 @@ class ListingEditingForm extends Forms {
 					// Now process all field's generated through the field's editor.
 					foreach ( $values as $key => $value ) {
 						if ( ! pno_is_default_field( $key ) ) {
-							if ( $value == '1' || $value === true ) {
-								carbon_set_post_meta( $updated_listing_id, $key, true );
-							} else {
-								carbon_set_post_meta( $updated_listing_id, $key, $value );
-							}
+							$this->update_listing_custom_field_value( $key, $value );
 						}
 					}
 
@@ -399,6 +395,25 @@ class ListingEditingForm extends Forms {
 		} else {
 			return 'pending';
 		}
+	}
+
+	/**
+	 * Update the value of a custom non default listing field based on the values
+	 * submitted through the listing's editing form.
+	 *
+	 * @param string $key the name of the field.
+	 * @param mixed  $value the value of the field.
+	 * @return void
+	 */
+	private function update_listing_custom_field_value( $key, $value ) {
+
+		$types = $this->form->get_types_definitions();
+		$field_type = isset( $types[ $key ] ) ? $types[ $key ] : false;
+
+		if ( $field_type === 'dropzone' ) {
+			$files = json_decode( $value );
+		}
+
 	}
 
 }
