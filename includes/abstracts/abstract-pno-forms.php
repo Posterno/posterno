@@ -261,4 +261,42 @@ abstract class Forms {
 
 	}
 
+	/**
+	 * Process a dropzone submitted content.
+	 *
+	 * @param string $key the name of the field being processed.
+	 * @param string $value the value submitted through the dropzone.
+	 * @param string $object_id the id number of the object where we're going to attach files.
+	 * @param string $object_type the type of data object we're going to work with: post_meta, user_meta.
+	 * @return void
+	 */
+	protected function process_dropzone( $key, $value, $object_id, $object_type = 'post_meta' ) {
+
+		if ( empty( $value ) || ! $object_id || ! $object_type ) {
+			return;
+		}
+
+		$files = json_decode( $value );
+
+		if ( is_array( $files ) && ! empty( $files ) ) {
+
+			$files_to_return = [];
+
+			foreach ( $files as $uploaded_file ) {
+				$uploaded_file_id = $this->create_attachment( $updated_listing_id, $uploaded_file->image_url );
+				if ( $uploaded_file_id ) {
+					$files_to_return[] = $uploaded_file_id;
+				}
+			}
+
+			return $files_to_return;
+
+		} else {
+			if ( isset( $files->image_url ) ) {
+				return $this->create_attachment( $object_id, $files->image_url );
+			}
+		}
+
+	}
+
 }

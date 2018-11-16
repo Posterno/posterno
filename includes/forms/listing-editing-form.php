@@ -318,7 +318,7 @@ class ListingEditingForm extends Forms {
 					// Now process all field's generated through the field's editor.
 					foreach ( $values as $key => $value ) {
 						if ( ! pno_is_default_field( $key ) ) {
-							$this->update_listing_custom_field_value( $key, $value );
+							$this->update_listing_custom_field_value( $key, $value, $updated_listing_id );
 						}
 					}
 
@@ -403,15 +403,17 @@ class ListingEditingForm extends Forms {
 	 *
 	 * @param string $key the name of the field.
 	 * @param mixed  $value the value of the field.
+	 * @param string $listing_id the id of the listing for which we're going to attach images.
 	 * @return void
 	 */
-	private function update_listing_custom_field_value( $key, $value ) {
+	private function update_listing_custom_field_value( $key, $value, $listing_id ) {
 
-		$types = $this->form->get_types_definitions();
+		$types      = $this->form->get_types_definitions();
 		$field_type = isset( $types[ $key ] ) ? $types[ $key ] : false;
 
 		if ( $field_type === 'dropzone' ) {
-			$files = json_decode( $value );
+			$files = $this->process_dropzone( $key, $value, $listing_id );
+			\carbon_set_post_meta( $listing_id, $key, $files );
 		}
 
 	}
