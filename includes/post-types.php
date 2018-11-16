@@ -305,6 +305,14 @@ function pno_updated_messages( $messages ) {
 		8 => esc_html__( 'Registration field submitted.' ),
 	);
 
+	$messages['pno_listings_fields'] = [
+		1 => esc_html__( 'Listing field updated.' ),
+		4 => esc_html__( 'Listing field updated.' ),
+		6 => esc_html__( 'Listing field published.' ),
+		7 => esc_html__( 'Listing field saved.' ),
+		8 => esc_html__( 'Listing field submitted.' ),
+	];
+
 	$messages['pno_emails'] = [
 		1 => esc_html__( 'Email updated.' ),
 		4 => esc_html__( 'Email updated.' ),
