@@ -87,6 +87,7 @@ add_shortcode( 'pno_dashboard', 'pno_dashboard' );
  * @return string
  */
 function pno_login_form() {
+
 	ob_start();
 
 	if ( is_user_logged_in() ) {
