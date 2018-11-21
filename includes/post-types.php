@@ -591,3 +591,52 @@ function pno_register_email_taxonomy() {
 
 }
 add_action( 'init', 'pno_register_email_taxonomy', 0 );
+
+/**
+ * Setup the post type that holds all forms for Posterno.
+ *
+ * @return void
+ */
+function pno_setup_forms_post_type() {
+
+	$labels = array(
+		'name'               => _x( 'Posterno forms', 'Post Type General Name', 'posterno' ),
+		'singular_name'      => _x( 'Form', 'Post Type Singular Name', 'posterno' ),
+		'menu_name'          => __( 'Forms', 'posterno' ),
+		'name_admin_bar'     => __( 'Form', 'posterno' ),
+		'all_items'          => __( 'All forms', 'posterno' ),
+		'add_new_item'       => __( 'Add new Posterno Form', 'posterno' ),
+		'add_new'            => __( 'Add new Form', 'posterno' ),
+		'new_item'           => __( 'New Posterno Form', 'posterno' ),
+		'edit_item'          => __( 'Edit Posterno Form', 'posterno' ),
+		'update_item'        => __( 'Update Posterno Form', 'posterno' ),
+		'view_item'          => __( 'View Form', 'posterno' ),
+		'view_items'         => __( 'View forms', 'posterno' ),
+		'search_items'       => __( 'Search forms', 'posterno' ),
+		'not_found'          => __( 'Not found', 'posterno' ),
+		'not_found_in_trash' => __( 'Not found in Trash', 'posterno' ),
+	);
+
+	$args = array(
+		'label'               => __( 'Form', 'posterno' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title' ),
+		'hierarchical'        => false,
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_menu'        => false,
+		'menu_position'       => 5,
+		'show_in_admin_bar'   => false,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'rewrite'             => false,
+		'capability_type'     => 'page',
+		'show_in_rest'        => false,
+	);
+	register_post_type( 'pno_forms', $args );
+
+}
+add_action( 'init', 'pno_setup_forms_post_type', 0 );
