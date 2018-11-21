@@ -621,6 +621,7 @@ function pno_setup_forms_post_type() {
 		'label'               => __( 'Form', 'posterno' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
+		'taxonomies'          => array( 'pno-form-type' ),
 		'hierarchical'        => false,
 		'public'              => false,
 		'show_ui'             => true,
@@ -640,3 +641,24 @@ function pno_setup_forms_post_type() {
 
 }
 add_action( 'init', 'pno_setup_forms_post_type', 0 );
+
+/**
+ * Register custom taxonomy for the posterno forms.
+ *
+ * @return void
+ */
+function pno_register_forms_taxonomy() {
+
+	$args = array(
+		'hierarchical'      => false,
+		'public'            => false,
+		'show_ui'           => false,
+		'show_admin_column' => false,
+		'show_in_nav_menus' => false,
+		'show_tagcloud'     => false,
+		'rewrite'           => false,
+	);
+	register_taxonomy( 'pno-form-type', array( 'pno_forms' ), $args );
+
+}
+add_action( 'init', 'pno_register_forms_taxonomy', 0 );
