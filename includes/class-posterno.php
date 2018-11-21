@@ -199,7 +199,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
-			$this->setup_forms();
+			//$this->setup_forms();
 			$this->setup_api();
 
 			// Admin.
