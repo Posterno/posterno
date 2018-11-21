@@ -19,23 +19,6 @@ defined( 'ABSPATH' ) || exit;
 
 $class = 'row';
 
-if ( $data->form->has_errors() ) {
-	$class .= ' pno-form-has-errors';
-}
-
-$message      = false;
-$message_type = false;
-
-if ( $data->form->has_processing_error() ) {
-	$message_type = 'danger';
-	$message      = $data->form->get_processing_error();
-} elseif ( $data->form->is_successful() ) {
-	$message_type = 'success';
-	$message      = $data->form->get_success_message();
-} elseif ( $data->form->has_errors() ) {
-	$message_type = 'danger';
-	$message      = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
-}
 ?>
 
 <div class="pno-template pno-form">
@@ -55,7 +38,7 @@ if ( $data->form->has_processing_error() ) {
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_before_{$data->form->get_name()}", $data->form );
+	do_action( "pno_before_{$data->name}_form", $data->form );
 
 	// Display error or success message if available.
 	if ( $message_type && $message ) {
@@ -71,13 +54,11 @@ if ( $data->form->has_processing_error() ) {
 
 	?>
 
-	<form action="<?php echo esc_url( $data->form->get_action() ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
-
-		<?php $data->form->render(); ?>
-
-		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_name() ); ?>" />
-		<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_name() ); ?>" value="<?php echo esc_attr( $data->form->get_name() ); ?>">
-		<?php wp_nonce_field( 'verify_' . $data->form->get_name() . '_form', $data->form->get_name() . '_nonce' ); ?>
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->name ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
+heeheh
+		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->name ); ?>" />
+		<input type="hidden" name="submit_<?php echo esc_attr( $data->name ); ?>" value="<?php echo esc_attr( $data->name ); ?>">
+		<?php wp_nonce_field( 'verify_' . $data->name . '_form', $data->name . '_nonce' ); ?>
 
 		<div class="col-sm-12">
 			<button type="submit" class="btn btn-primary">
@@ -94,7 +75,7 @@ if ( $data->form->has_processing_error() ) {
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_after_{$data->form->get_name()}", $data->form );
+	do_action( "pno_after_{$data->name}_form", $data->form );
 
 	?>
 
