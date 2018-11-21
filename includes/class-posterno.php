@@ -199,7 +199,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_components();
 			$this->setup_objects();
 			$this->setup_functions();
-			//$this->setup_forms();
+			$this->setup_forms();
 			$this->setup_api();
 
 			// Admin.
@@ -257,49 +257,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_forms() {
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/sanitizer.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/validator.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/layouts/default-layout.php';
-
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/not-empty.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/when.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/password-matches.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/strong-password.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/must-be-empty.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/rules/email.php';
-
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/text-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/textarea-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/checkbox-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/dropdown-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/editor-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/email-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/multicheckbox-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/multiselect-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/number-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/password-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/radio-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/url-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/file-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/social-profiles-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-category-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-tags-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/term-select-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-opening-hours-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/dropzone-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms-handler/fields/listing-location-field.php';
-
-			require_once PNO_PLUGIN_DIR . 'includes/forms/login-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/registration-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/change-password-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/password-recovery-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/data-request-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/data-erasure-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/delete-account-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/account-customization-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/listing-submission-form.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/listing-editing-form.php';
 
 		}
 
@@ -328,6 +285,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/upload-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields-functions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/forms-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/dashboard-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';

@@ -400,6 +400,30 @@ function pno_install_email_types() {
 }
 
 /**
+ * Install form types into the database.
+ *
+ * @return void
+ */
+function pno_install_form_types() {
+
+	$types = pno_forms_get_type_schema();
+
+	foreach ( $types as $type_id => $type ) {
+		if ( ! term_exists( $type_id, 'pno-form-type' ) ) {
+			wp_insert_term(
+				$type_id,
+				'pno-form-type',
+				array(
+					'description' => $type['description'],
+					'slug'        => $type_id,
+				)
+			);
+		}
+	}
+
+}
+
+/**
  * Generate a list of tabs for the listings list table and taxonomies associated.
  * The tabs are then displayed at the top of the admin page.
  *
