@@ -55,10 +55,71 @@ $class = 'row';
 	?>
 
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->name ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
-heeheh
-		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->name ); ?>" />
-		<input type="hidden" name="submit_<?php echo esc_attr( $data->name ); ?>" value="<?php echo esc_attr( $data->name ); ?>">
-		<?php wp_nonce_field( 'verify_' . $data->name . '_form', $data->name . '_nonce' ); ?>
+
+		<?php foreach ( $data->fields as $key => $field ) : ?>
+
+			<?php
+				/**
+				 * Action that triggers before displaying a field within a form.
+				 *
+				 * @param string $key the id key of the current field.
+				 * @param array $field the settings of the current field.
+				 * @param string $form the name of the current form.
+				 * @param string $step the current step of the form.
+				 */
+				do_action( 'pno_form_before_field', $key, $field, $data->form, $data->step );
+			?>
+
+			<div <?php pno_form_field_class( $key, $field ); ?>>
+				<?php if ( $field['type'] == 'checkbox' ) : ?>
+
+					<?php
+						// Add the key to field.
+						$field['key'] = $key;
+						posterno()->templates
+							->set_template_data( $field )
+							->get_template_part( 'form-fields/' . $field['type'], 'field' );
+					?>
+
+				<?php else : ?>
+
+					<label for="<?php echo esc_attr( $key ); ?>">
+						<?php echo esc_html( $field['label'] ); ?>
+						<?php if ( ! isset( $field['required'] ) || isset( $field['required'] ) && $field['required'] === false ) : ?>
+							<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>
+						<?php endif; ?>
+					</label>
+					<div class="field <?php echo $field['required'] ? 'required-field' : ''; ?>">
+						<?php
+							// Add the key to field.
+							$field['key'] = $key;
+							posterno()->templates
+								->set_template_data( $field )
+								->get_template_part( 'form-fields/' . $field['type'], 'field' );
+						?>
+					</div>
+
+				<?php endif; ?>
+			</div>
+
+			<?php
+				/**
+				 * Action that triggers after displaying a field within a form.
+				 *
+				 * @param string $key the id key of the current field.
+				 * @param array $field the settings of the current field.
+				 * @param string $form the name of the current form.
+				 * @param string $step the current step of the form.
+				 */
+				do_action( 'pno_form_after_field', $key, $field, $data->form, $data->step );
+			?>
+
+		<?php endforeach; ?>
+
+		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form ); ?>" />
+		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
+		<input type="hidden" name="submit_<?php echo esc_attr( $data->form ); ?>" value="<?php echo esc_attr( $data->form ); ?>">
+		<?php wp_nonce_field( 'verify_' . $data->form . '_form', $data->form . '_nonce' ); ?>
 
 		<div class="col-sm-12">
 			<button type="submit" class="btn btn-primary">
