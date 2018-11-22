@@ -13,6 +13,7 @@
  * @version 1.0.0
  * @package posterno
  */
+namespace PNO;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -59,6 +60,12 @@ $class = 'row';
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 
 			<?php
+
+				$field = new Field( $field );
+				$field->__set( 'id', $key );
+
+				print_r( $field );
+
 				/**
 				 * Action that triggers before displaying a field within a form.
 				 *
@@ -70,36 +77,21 @@ $class = 'row';
 				do_action( 'pno_form_before_field', $key, $field, $data->form, $data->step );
 			?>
 
-			<div <?php pno_form_field_class( $key, $field ); ?>>
-				<?php if ( $field['type'] == 'checkbox' ) : ?>
+			<div>
 
-					<?php
-						// Add the key to field.
-						$field['key'] = $key;
-						posterno()->templates
-							->set_template_data( $field )
-							->get_template_part( 'form-fields/' . $field['type'], 'field' );
-					?>
-
-				<?php else : ?>
-
-					<label for="<?php echo esc_attr( $key ); ?>">
-						<?php echo esc_html( $field['label'] ); ?>
-						<?php if ( ! isset( $field['required'] ) || isset( $field['required'] ) && $field['required'] === false ) : ?>
+				<label for="<?php echo esc_attr( $key ); ?>">
+					<?php echo esc_html( $field->get_label() ); ?>
+						<?php if ( ! $field->is_required() ) : ?>
 							<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>
 						<?php endif; ?>
-					</label>
-					<div class="field <?php echo $field['required'] ? 'required-field' : ''; ?>">
-						<?php
-							// Add the key to field.
-							$field['key'] = $key;
-							posterno()->templates
-								->set_template_data( $field )
-								->get_template_part( 'form-fields/' . $field['type'], 'field' );
-						?>
-					</div>
+				</label>
 
-				<?php endif; ?>
+				<?php
+					posterno()->templates
+						->set_template_data( $field )
+						->get_template_part( 'form-fields/' . $field->get_type(), 'field' );
+				?>
+
 			</div>
 
 			<?php

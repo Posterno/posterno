@@ -602,10 +602,6 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = esc_attr( $class );
 	}
 
-	if ( $field->has_errors() ) {
-		$classes[] = 'is-invalid';
-	}
-
 	$classes = array_map( 'esc_attr', $classes );
 
 	/**

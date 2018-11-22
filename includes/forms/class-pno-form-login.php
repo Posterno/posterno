@@ -146,15 +146,24 @@ class PNO_Form_Login extends PNO_Form {
 	public function submit_handler() {
 		try {
 
+			if ( empty( $_POST[ 'submit_' . $this->form_name ] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
+				return;
+			}
+
+			//phpcs:ignore
+			if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+				return;
+			}
+
 			// Init fields.
 			$this->init_fields();
 
 			// Get posted values.
 			$values = $this->get_posted_fields();
-
-			if ( empty( $_POST['submit_job'] ) ) {
-				return;
-			}
 
 			// Validate required.
 			$validation_status = $this->validate_fields( $values );

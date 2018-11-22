@@ -17,6 +17,7 @@ defined( 'ABSPATH' ) || exit;
  * @return array {
  *     The array of form types and their schema.
  *     @type string $description The description of the type of form.
+ * }
  */
 function pno_forms_get_type_schema() {
 
