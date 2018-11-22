@@ -114,6 +114,13 @@ class Field {
 	protected $required = false;
 
 	/**
+	 * Determine wether the field is readonly or not.
+	 *
+	 * @var boolean
+	 */
+	protected $readonly = false;
+
+	/**
 	 * Selectable options for dropdown fields.
 	 *
 	 * @var mixed
@@ -283,6 +290,15 @@ class Field {
 	}
 
 	/**
+	 * Flag to detect if the field is readonly or not.
+	 *
+	 * @return boolean
+	 */
+	public function is_readonly() {
+		return (bool) $this->readonly;
+	}
+
+	/**
 	 * Get the priority set for the field.
 	 *
 	 * @return int
@@ -374,8 +390,45 @@ class Field {
 
 	}
 
-	public function get_attributes() {
+	/**
+	 * Retrieve attributes that belong to the field.
+	 *
+	 * @param array $merge additional attributes that could belong to the field.
+	 * @return mixed
+	 */
+	public function get_attributes( array $merge = array() ) {
 
+		$result     = '';
+		$attributes = [];
+
+		if ( ! empty( $merge ) ) {
+			$attributes = array_merge_recursive( $attributes, $merge );
+		}
+
+		if ( ! empty( $this->get_placeholder() ) ) {
+			$attributes['placeholder'] = $this->get_placeholder();
+		}
+		if ( $this->is_required() ) {
+			$attributes['required'] = false;
+		}
+		if ( $this->is_readonly() ) {
+			$attributes['readonly'] = false;
+		}
+
+		if ( ! empty( $attributes ) ) {
+			foreach ( $attributes as $name => $value ) {
+				if ( is_array( $value ) ) {
+					$value = implode( ' ', $value );
+				}
+				if ( $value ) {
+					$result .= " {$name}=\"{$value}\"";
+				} else {
+					$result .= " {$name}";
+				}
+			}
+		}
+
+		return $result;
 	}
 
 }
