@@ -61,10 +61,7 @@ $class = 'row';
 
 			<?php
 
-				$field = new Field( $field );
-				$field->__set( 'id', $key );
-
-				print_r( $field );
+				$field = new Field( $field, $key );
 
 				/**
 				 * Action that triggers before displaying a field within a form.
@@ -79,7 +76,7 @@ $class = 'row';
 
 			<div>
 
-				<label for="<?php echo esc_attr( $key ); ?>">
+				<label for="<?php echo esc_attr( $field->get_id() ); ?>">
 					<?php echo esc_html( $field->get_label() ); ?>
 						<?php if ( ! $field->is_required() ) : ?>
 							<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>

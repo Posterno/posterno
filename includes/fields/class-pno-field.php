@@ -202,7 +202,7 @@ class Field {
 	}
 
 	/**
-	 * Get the ID number of the field from the database.
+	 * Get the ID used in the html templates.
 	 */
 	public function get_id() {
 		return $this->id;
@@ -358,12 +358,14 @@ class Field {
 	 *
 	 * @param boolean|array|int|string $_id_or_field the field to initialize either an id or an array.
 	 */
-	public function __construct( $_id_or_field = false ) {
+	public function __construct( $_id_or_field = false, $id = false ) {
 
-		if ( ! $_id_or_field ) {
+		if ( ! $_id_or_field || ! $id ) {
 			return;
 		}
 
+		$this->set_id( $id );
+		$this->name = $id;
 		$this->populate( $_id_or_field );
 
 	}
@@ -429,6 +431,19 @@ class Field {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Set the id attribute of the field.
+	 *
+	 * @param string $id what to use as id.
+	 * @return void
+	 */
+	public function set_id( $id ) {
+
+		$id = esc_attr( $id );
+		$this->id = "pno-field-{$id}";
+
 	}
 
 }
