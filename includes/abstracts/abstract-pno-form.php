@@ -45,6 +45,20 @@ abstract class PNO_Form {
 	protected $errors = array();
 
 	/**
+	 * Whether the form has been successful and a message has been assigned.
+	 *
+	 * @var boolean
+	 */
+	protected $success = false;
+
+	/**
+	 * Holds the success message assigned to the form.
+	 *
+	 * @var string
+	 */
+	protected $success_message = null;
+
+	/**
 	 * Form steps.
 	 *
 	 * @access protected
@@ -131,6 +145,33 @@ abstract class PNO_Form {
 		foreach ( $this->errors as $error ) {
 			echo '<div class="pno-error">' . wp_kses_post( $error ) . '</div>';
 		}
+	}
+
+	/**
+	 * Set the form as successful in order to show a message.
+	 *
+	 * @return void
+	 */
+	public function set_as_successful() {
+		$this->success = true;
+	}
+
+	/**
+	 * Assign a message to the form when successful.
+	 *
+	 * @param string $message the message to assign to the form.
+	 * @return void
+	 */
+	public function set_success_message( $message ) {
+		$this->success_message = $message;
+	}
+
+	public function get_success_message() {
+		return $this->success_message;
+	}
+
+	public function is_successful() {
+		return $this->success === true ? true : false;
 	}
 
 	/**
@@ -347,7 +388,15 @@ abstract class PNO_Form {
 				}
 			}
 		}
-		return apply_filters( 'pno_form_validate_fields', true, $this->fields, $values );
+		/**
+		 * Allow developers to add custom validation rules within forms.
+		 *
+		 * @param boolean $pass whether validation is successful or not, set to false to trigger an error within the form.
+		 * @param array $fields all fields assigned to the form.
+		 * @param array $values all values submitted through the form.
+		 * @param string $form_name the name of the form being processed.
+		 */
+		return apply_filters( 'pno_form_validate_fields', true, $this->fields, $values, $this->form_name );
 	}
 
 	/**
@@ -538,4 +587,14 @@ abstract class PNO_Form {
 			}
 		}
 	}
+
+	/**
+	 * Reset fields back to empty.
+	 *
+	 * @return void
+	 */
+	protected function unbind() {
+		$this->fields = [];
+	}
+
 }

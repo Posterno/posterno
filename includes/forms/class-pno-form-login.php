@@ -139,7 +139,7 @@ class PNO_Form_Login extends PNO_Form {
 		posterno()->templates
 			->set_template_data(
 				[
-					'form'         => $this->form_name,
+					'form'         => $this,
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'login' ),
 					'step'         => $this->get_step(),

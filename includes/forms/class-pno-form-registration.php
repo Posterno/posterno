@@ -197,7 +197,7 @@ class PNO_Form_Registration extends PNO_Form {
 		posterno()->templates
 			->set_template_data(
 				[
-					'form'         => $this->form_name,
+					'form'         => $this,
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'registration' ),
 					'step'         => $this->get_step(),
@@ -249,6 +249,121 @@ class PNO_Form_Registration extends PNO_Form {
 
 			if ( is_wp_error( $validation_status ) ) {
 				throw new Exception( $validation_status->get_error_message() );
+			}
+
+			$values = $values['registration'];
+
+			$email_address = $values['email'];
+
+			// Verify if a username has been submitted.
+			// If no username has been supplied, use the email address.
+			$has_username = isset( $values['username'] ) && ! empty( $values['username'] ) ? true : false;
+			$username     = $email_address;
+
+			if ( $has_username ) {
+				$username = $values['username'];
+			}
+
+			// Verify if a password has been submitted.
+			// If no password has been supplied, generate a random one.
+			$has_password = isset( $values['password'] ) && ! empty( $values['password'] ) ? true : false;
+			$password     = wp_generate_password( 24, true, true );
+
+			if ( $has_password ) {
+				$password = $values['password'];
+			}
+
+			/**
+			 * Allow developers to extend the signup process before actually
+			 * registering the new user.
+			 *
+			 * @param array $values all the fields submitted through the form.
+			 * @param object $this the class instance managing the form.
+			 */
+			do_action( 'pno_before_registration', $values, $this );
+
+			$new_user_id = wp_create_user( $username, $password, $email_address );
+
+			if ( is_wp_error( $new_user_id ) ) {
+				throw new Exception( $new_user_id->get_error_message() );
+			}
+
+			// Assign the role set into the registration form.
+			if ( pno_get_option( 'allowed_roles' ) && isset( $values['role'] ) ) {
+				$user = new WP_User( $new_user_id );
+				$user->set_role( $values['role'] );
+			}
+
+			// Now process all other custom fields.
+			foreach ( $values as $key => $value ) {
+				if ( $key === 'email' || $key === 'password' || $key === 'username' ) {
+					continue;
+				}
+				if ( pno_is_default_field( $key ) ) {
+					update_user_meta( $new_user_id, $key, $value );
+				} elseif ( $key == 'website' ) {
+					update_user_meta( $new_user_id, 'user_url', $value );
+				} else {
+					if ( $value == '1' ) {
+						carbon_set_user_meta( $new_user_id, $key, true );
+					} else {
+						carbon_set_user_meta( $new_user_id, $key, $value );
+					}
+				}
+			}
+
+			/**
+			 * Allow developers to extend the signup process before firing
+			 * the registration confirmation email.
+			 *
+			 * @param string $new_user_id the user id.
+			 * @param array $values all the fields submitted through the form.
+			 * @param object $this the class instance managing the form.
+			 */
+			do_action( 'pno_before_registration_end', $new_user_id, $values, $this );
+
+			// Send registration confirmation emails.
+			pno_send_email(
+				'core_user_registration',
+				$email_address,
+				[
+					'user_id'             => $new_user_id,
+					'plain_text_password' => $password,
+				]
+			);
+
+			/**
+			 * Allow developers to extend the signup process after firing
+			 * the registration confirmation email and before showing the
+			 * success message/page.
+			 *
+			 * @param string $new_user_id the user id.
+			 * @param array $values all the fields submitted through the form.
+			 * @param object $this the class instance managing the form.
+			 */
+			do_action( 'pno_after_registration', $new_user_id, $values, $this );
+
+			// Automatically log a user in if enabled.
+			if ( pno_get_option( 'login_after_registration' ) ) {
+				pno_log_user_in( $new_user_id );
+			}
+
+			if ( pno_get_registration_redirect() ) {
+				wp_safe_redirect( pno_get_registration_redirect() );
+				exit;
+			} else {
+
+				/**
+				 * Allow developers to customize the message displayed after successfull registration.
+				 *
+				 * @param string $message the message that appears after registration.
+				 */
+				$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
+
+				$this->set_as_successful();
+				$this->set_success_message( $success_message );
+				$this->unbind();
+				return;
 			}
 
 			// Successful, show next step.

@@ -102,6 +102,7 @@ function pno_login_form() {
 
 	} else {
 
+		//phpcs:ignore
 		echo posterno()->forms->get_form( 'login' );
 
 	}
@@ -109,3 +110,34 @@ function pno_login_form() {
 	return ob_get_clean();
 }
 add_shortcode( 'pno_login_form', 'pno_login_form' );
+
+/**
+ * Display the registration form.
+ *
+ * @return string
+ */
+function pno_registration_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+
+		$data = [
+			'user' => wp_get_current_user(),
+		];
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'logged-user' );
+
+	} else {
+
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'registration' );
+
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_registration_form', 'pno_registration_form' );
