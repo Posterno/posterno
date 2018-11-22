@@ -20,6 +20,21 @@ defined( 'ABSPATH' ) || exit;
 
 $class = 'row';
 
+$message      = false;
+$message_type = false;
+
+/*
+if ( $data->form->has_processing_error() ) {
+	$message_type = 'danger';
+	$message      = $data->form->get_processing_error();
+} elseif ( $data->form->is_successful() ) {
+	$message_type = 'success';
+	$message      = $data->form->get_success_message();
+} elseif ( $data->form->has_errors() ) {
+	$message_type = 'danger';
+	$message      = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
+}*/
+
 ?>
 
 <div class="pno-template pno-form">
@@ -39,7 +54,7 @@ $class = 'row';
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_before_{$data->name}_form", $data->form );
+	do_action( "pno_before_{$data->form}_form", $data );
 
 	// Display error or success message if available.
 	if ( $message_type && $message ) {
@@ -55,7 +70,7 @@ $class = 'row';
 
 	?>
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->name ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 
@@ -125,7 +140,7 @@ $class = 'row';
 	 *
 	 * @param string $form the name of the form.
 	 */
-	do_action( "pno_after_{$data->name}_form", $data->form );
+	do_action( "pno_after_{$data->form}_form", $data );
 
 	?>
 

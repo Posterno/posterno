@@ -24,6 +24,13 @@ class PNO_Form_Login extends PNO_Form {
 	public $form_name = 'login';
 
 	/**
+	 * Holds the ID of the user that is logging in.
+	 *
+	 * @var boolean|string|int
+	 */
+	public $user_id = false;
+
+	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
@@ -59,10 +66,11 @@ class PNO_Form_Login extends PNO_Form {
 					'handler'  => array( $this, 'submit_handler' ),
 					'priority' => 10,
 				),
-				'done'   => array(
-					'name'     => __( 'Done' ),
-					'view'     => array( $this, 'done' ),
-					'priority' => 30,
+				'login'  => array(
+					'name'     => false,
+					'view'     => false,
+					'handler'  => array( $this, 'login_handler' ),
+					'priority' => 20,
 				),
 			)
 		);
@@ -88,12 +96,25 @@ class PNO_Form_Login extends PNO_Form {
 
 		$fields = array(
 			'login' => array(
-				'title' => array(
-					'label'       => __( 'Title' ),
+				'username' => array(
+					'label'       => pno_get_login_label(),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
+				),
+				'password' => array(
+					'label'       => __( 'Password' ),
+					'type'        => 'password',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 2,
+				),
+				'remember' => array(
+					'label'    => __( 'Remember me' ),
+					'type'     => 'checkbox',
+					'required' => false,
+					'priority' => 3,
 				),
 			),
 		);
@@ -172,6 +193,17 @@ class PNO_Form_Login extends PNO_Form {
 				throw new Exception( $validation_status->get_error_message() );
 			}
 
+			$username = $values['login']['username'];
+			$password = $values['login']['password'];
+
+			$authenticate = wp_authenticate( $username, $password );
+
+			if ( is_wp_error( $authenticate ) ) {
+				throw new Exception( $authenticate->get_error_message() );
+			} elseif ( $authenticate instanceof WP_User ) {
+				$this->user_id = $authenticate->data->ID;
+			}
+
 			// Successful, show next step.
 			$this->step ++;
 
@@ -182,9 +214,39 @@ class PNO_Form_Login extends PNO_Form {
 	}
 
 	/**
-	 * Displays the final screen after form has been submitted.
+	 * Log the user in after his credentials have been verified.
+	 *
+	 * @throws Exception When logging in fails.
+	 * @return void
 	 */
-	public function done() {
+	public function login_handler() {
+		try {
+			// Init fields.
+			$this->init_fields();
 
+			// Get posted values.
+			$values   = $this->get_posted_fields();
+			$username = $values['login']['username'];
+			$password = $values['login']['password'];
+
+			$creds    = [
+				'user_login'    => $username,
+				'user_password' => $password,
+				'remember'      => $values['login']['remember'] ? true : false,
+			];
+
+			$user = wp_signon( $creds );
+
+			if ( is_wp_error( $user ) ) {
+				throw new Exception( $user->get_error_message() );
+			} else {
+				wp_safe_redirect( pno_get_login_redirect() );
+				exit;
+			}
+
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+			return;
+		}
 	}
 }
