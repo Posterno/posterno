@@ -24,13 +24,6 @@ class PNO_Form_Registration extends PNO_Form {
 	public $form_name = 'registration';
 
 	/**
-	 * Holds the ID of the user that is logging in.
-	 *
-	 * @var boolean|string|int
-	 */
-	public $user_id = false;
-
-	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
