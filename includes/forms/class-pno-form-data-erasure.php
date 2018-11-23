@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles display and processing of the data requests form.
+ * Handles display and processing of the data erasure form.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -14,20 +14,20 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The class that handles the form.
  */
-class PNO_Form_Data_Request extends PNO_Form {
+class PNO_Form_Data_Erasure extends PNO_Form {
 
 	/**
 	 * Form name.
 	 *
 	 * @var string
 	 */
-	public $form_name = 'data-request';
+	public $form_name = 'data-erasure';
 
 	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
-	 * @var PNO_Form_Data_Request The single instance of the class
+	 * @var PNO_Form_Data_Erasure The single instance of the class
 	 */
 	protected static $_instance = null;
 
@@ -51,21 +51,21 @@ class PNO_Form_Data_Request extends PNO_Form {
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
-			'submit'           => array(
-				'name'     => esc_html__( 'Download your data' ),
+			'submit' => array(
+				'name'     => esc_html__( 'Request cancellation of your data' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
-			)
+			),
 		);
 
 		/**
-		 * List of steps for the data request form.
+		 * List of steps for the data erasure request form.
 		 *
 		 * @since 0.1.0
-		 * @param array $steps the list of steps for the data request form.
+		 * @param array $steps the list of steps for the data erasure request form.
 		 */
-		$this->steps = (array) apply_filters( 'pno_data_request_form_steps', $steps );
+		$this->steps = (array) apply_filters( 'pno_data_erasure_request_form_steps', $steps );
 
 		uasort( $this->steps, array( $this, 'sort_by_priority' ) );
 
@@ -87,10 +87,10 @@ class PNO_Form_Data_Request extends PNO_Form {
 		}
 
 		$fields = array(
-			'data-request' => array(
+			'data-erasure' => array(
 				'current_password' => array(
 					'label'       => esc_html__( 'Current password' ),
-					'description' => esc_html__( 'Enter your current password to confim export of your personal data.' ),
+					'description' => esc_html__( 'Enter your current password to confim erasure of your personal data.' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
@@ -105,7 +105,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 		 * @since 0.1.0
 		 * @param array $fields array containing the list of fields for the form.
 		 */
-		$this->fields = apply_filters( 'pno_data_request_form_fields', $fields );
+		$this->fields = apply_filters( 'pno_data_erasure_request_form_fields', $fields );
 
 	}
 
@@ -119,9 +119,9 @@ class PNO_Form_Data_Request extends PNO_Form {
 		$user = wp_get_current_user();
 
 		$message = apply_filters(
-			'pno_data_request_form_message',
+			'pno_data_cancellation_request_form_message',
 			sprintf(
-				__( 'You can request a file with the information that we believe is most relevant and useful to you. You’ll get an email sent to %s with a link when it’s ready to be downloaded.' ),
+				__( 'You can request cancellation of the data that we have about you. You’ll get an email sent to %s with a link to confirm your request.' ),
 				'<strong>' . antispambot( $user->data->user_email ) . '</strong>'
 			)
 		);
@@ -129,11 +129,11 @@ class PNO_Form_Data_Request extends PNO_Form {
 		$data = [
 			'form'         => $this,
 			'action'       => $this->get_action(),
-			'fields'       => $this->get_fields( 'data-request' ),
+			'fields'       => $this->get_fields( 'data-erasure' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 			'message'      => $message,
-			'submit_label' => esc_html__( 'Request data' ),
+			'submit_label' => esc_html__( 'Request data cancellation' ),
 		];
 
 		posterno()->templates
@@ -178,37 +178,35 @@ class PNO_Form_Data_Request extends PNO_Form {
 
 			$user = wp_get_current_user();
 
-			$submitted_password = $values['data-request']['current_password'];
+			$submitted_password = $values['data-erasure']['current_password'];
 
-			if ( $user instanceof WP_User && wp_check_password( $submitted_password, $user->data->user_pass, $user->ID ) && is_user_logged_in() ) {
+			if ( $user instanceof \WP_User && wp_check_password( $submitted_password, $user->data->user_pass, $user->ID ) && is_user_logged_in() ) {
 
-				$request_id = wp_create_user_request( $user->user_email, 'export_personal_data' );
+				$request_id = wp_create_user_request( $user->data->user_email, 'remove_personal_data' );
 
 				if ( is_wp_error( $request_id ) ) {
-					throw new Exception( $request_id->get_error_message() );
+					throw new \Exception( $request_id->get_error_message() );
 				} else {
 					wp_send_user_request( $request_id );
 
-					$message = sprintf( esc_html__( 'A confirmation email has been sent to %s. Click the link within the email to confirm your export request.' ), '<strong>' . $user->data->user_email . '</strong>' );
+					$message = sprintf( esc_html__( 'A confirmation email has been sent to %s. Click the link within the email to confirm your data erasure request.' ), '<strong>' . $user->data->user_email . '</strong>' );
 
 					/**
-					 * Allow developers to customize the data request form success message.
+					 * Allow developers to customize the data erasure success message.
 					 *
-					 * @param string $message the success message.
+					 * @param string $message the message.
 					 * @return string the new message.
 					 */
-					$message = apply_filters( 'pno_personal_data_request_success_message', $message );
+					$message = apply_filters( 'pno_data_erasure_success_message', $message );
 
 					$this->unbind();
 					$this->set_as_successful();
 					$this->set_success_message( $message );
 					return;
-
 				}
 			} else {
-				throw new Exception( __( 'The password you entered is incorrect.' ) );
+				throw new \Exception( __( 'The password you entered is incorrect.' ) );
 			}
-
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage() );
 			return;
