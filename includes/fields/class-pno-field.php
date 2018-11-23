@@ -128,6 +128,27 @@ class Field {
 	protected $options = false;
 
 	/**
+	 * Allowed mime types for upload of file fields.
+	 *
+	 * @var boolean|array
+	 */
+	protected $allowed_mime_types = false;
+
+	/**
+	 * Determine if the field can store multiple values eg: arrays.
+	 *
+	 * @var boolean
+	 */
+	protected $multiple = false;
+
+	/**
+	 * Holds the max size for files uploadable through this field.
+	 *
+	 * @var string
+	 */
+	protected $maxsize = null;
+
+	/**
 	 * Value associated to the field.
 	 *
 	 * @var mixed
@@ -323,6 +344,33 @@ class Field {
 	 */
 	public function get_options() {
 		return apply_filters( "pno_field_{$this->meta}_selectable_options", $this->options );
+	}
+
+	/**
+	 * Retrieve mime types defined for the field.
+	 *
+	 * @return mixed
+	 */
+	public function get_allowed_mime_types() {
+		return $this->allowed_mime_types;
+	}
+
+	/**
+	 * Verify if the field can store multiple values eg: arrays.
+	 *
+	 * @return boolean
+	 */
+	public function is_multiple() {
+		return (bool) $this->multiple;
+	}
+
+	/**
+	 * Retrieve the specified max size allowed for files within this field.
+	 *
+	 * @return null|string
+	 */
+	public function get_maxsize() {
+		return $this->maxsize;
 	}
 
 	/**

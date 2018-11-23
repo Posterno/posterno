@@ -12,7 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class that handles the login form.
+ * The class that handles the form.
  */
 class PNO_Form_Password_Recovery extends PNO_Form {
 

@@ -16,13 +16,13 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$allowed_mime_types = array_keys( ! empty( $data->get_option( 'allowed_mime_types' ) ) ? $data->get_option( 'allowed_mime_types' ) : get_allowed_mime_types() );
+$allowed_mime_types = array_keys( ! empty( $data->get_allowed_mime_types() ) ? $data->get_allowed_mime_types() : get_allowed_mime_types() );
 $field_name         = $data->get_name();
-$field_name        .= ! empty( $data->get_option( 'multiple' ) ) ? '[]' : '';
-$file_size          = $data->get_option( 'max_size' ) ? $data->get_option( 'max_size' ) : false;
+$field_name        .= ! empty( $data->is_multiple() ) ? '[]' : '';
+$file_size          = $data->get_maxsize() ? $data->get_maxsize() : false;
 
 // Determine the type of form we're working with.
-$form_type = $data->get_parent()->get_object_type();
+$form_type = 'user_meta';
 
 if ( $form_type === 'user_meta' ) {
 	$field_id = $data->get_id() === 'avatar' ? 'current_user_avatar' : $data->get_id();
@@ -74,7 +74,7 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 	<?php pno_form_field_input_class( $data ); ?>
 	id="<?php echo esc_attr( $data->get_id() ); ?>"
 	aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
-	<?php if ( $data->get_option( 'multiple' ) ) echo 'multiple'; //phpcs:ignore ?>
+	<?php if ( $data->is_multiple() ) echo 'multiple'; //phpcs:ignore ?>
 	name="<?php echo esc_attr( $data->get_id() ); ?>"
 	value=""
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>

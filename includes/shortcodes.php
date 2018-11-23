@@ -164,7 +164,7 @@ function pno_password_recovery_form() {
 	} else {
 
 		//phpcs:ignore
-		echo posterno()->forms->get_form( 'password-recovery', [] );
+		echo posterno()->forms->get_form( 'password-recovery' );
 
 	}
 
@@ -172,3 +172,22 @@ function pno_password_recovery_form() {
 
 }
 add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
+
+/**
+ * Displays the account customization form.
+ *
+ * @return string
+ */
+function pno_account_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'account' );
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
