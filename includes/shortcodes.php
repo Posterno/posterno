@@ -202,7 +202,7 @@ function pno_change_password_form() {
 	ob_start();
 
 	if ( is_user_logged_in() ) {
-
+		//phpcs:ignore
 		echo posterno()->forms->get_form( 'password-change' );
 
 	}
@@ -211,3 +211,23 @@ function pno_change_password_form() {
 
 }
 add_shortcode( 'pno_change_password_form', 'pno_change_password_form' );
+
+/**
+ * Displays the user's data request form.
+ *
+ * @return string
+ */
+function pno_request_data_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'data-request' );
+
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_request_data_form', 'pno_request_data_form' );
