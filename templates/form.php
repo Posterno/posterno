@@ -18,8 +18,6 @@ namespace PNO;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$class = 'row';
-
 $message      = false;
 $message_type = false;
 
@@ -63,7 +61,7 @@ if ( $data->form->is_successful() ) {
 
 	?>
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data" class="<?php echo esc_attr( $class ); ?>">
+	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->fields as $key => $field ) : ?>
 
@@ -82,7 +80,7 @@ if ( $data->form->is_successful() ) {
 				do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
 			?>
 
-			<div>
+			<div class="form-group">
 
 				<label for="<?php echo esc_attr( $field->get_id() ); ?>">
 					<?php echo esc_html( $field->get_label() ); ?>
@@ -118,11 +116,9 @@ if ( $data->form->is_successful() ) {
 		<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
 		<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
 
-		<div class="col-sm-12">
-			<button type="submit" class="btn btn-primary">
-				<?php echo esc_html( $data->submit_label ); ?>
-			</button>
-		</div>
+		<button type="submit" class="btn btn-primary">
+			<?php echo esc_html( $data->submit_label ); ?>
+		</button>
 
 	</form>
 

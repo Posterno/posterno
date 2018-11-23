@@ -52,7 +52,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 
 		$steps = array(
 			'submit' => array(
-				'name'     => esc_html__( 'Delete your account' ),
+				'name'     => esc_html__( 'Permanently delete this account' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
@@ -116,12 +116,22 @@ class PNO_Form_Account_Delete extends PNO_Form {
 
 		$this->init_fields();
 
+		/**
+		 * Allow developers to customize the message displayed within
+		 * the account cancellation form.
+		 *
+		 * @param string $message
+		 * @return string
+		 */
+		$message = apply_filters( 'pno_delete_account_form_message', esc_html__( 'The account will no longer be available, and all data in the account will be permanently deleted.' ) );
+
 		$data = [
 			'form'         => $this,
 			'action'       => $this->get_action(),
 			'fields'       => $this->get_fields( 'account-delete' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
+			'message' => $message,
 			'submit_label' => esc_html__( 'Delete account' ),
 		];
 
