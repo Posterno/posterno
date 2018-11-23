@@ -250,3 +250,22 @@ function pno_request_data_erasure_form() {
 
 }
 add_shortcode( 'pno_request_data_erasure_form', 'pno_request_data_erasure_form' );
+
+/**
+ * Displays the account cancellation form.
+ *
+ * @return string
+ */
+function pno_delete_account_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'account-delete' );
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_delete_account_form', 'pno_delete_account_form' );
