@@ -191,3 +191,23 @@ function pno_account_form() {
 
 }
 add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
+
+/**
+ * Displays the change password form.
+ *
+ * @return string
+ */
+function pno_change_password_form() {
+
+	ob_start();
+
+	if ( is_user_logged_in() ) {
+
+		echo posterno()->forms->get_form( 'password-change' );
+
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_change_password_form', 'pno_change_password_form' );
