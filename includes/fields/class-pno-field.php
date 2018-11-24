@@ -174,7 +174,7 @@ class Field {
 		if ( method_exists( $this, 'get_' . $key ) ) {
 			return call_user_func( array( $this, 'get_' . $key ) );
 		} else {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), $key ) );
+			throw new \InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), $key ) );
 		}
 	}
 
@@ -343,7 +343,7 @@ class Field {
 	 * @return mixed
 	 */
 	public function get_options() {
-		return apply_filters( "pno_field_{$this->meta}_selectable_options", $this->options );
+		return apply_filters( "pno_field_{$this->object_meta_key}_selectable_options", $this->options );
 	}
 
 	/**

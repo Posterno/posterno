@@ -534,16 +534,11 @@ function pno_get_form_field_class( $field, $class = '' ) {
 	$classes = [ 'pno-field' ];
 
 	if ( $field->get_id() ) {
-		$classes[] = 'pno-field-' . $field->get_id();
+		$classes[] = 'pno-field-' . sanitize_title( strtolower( $field->get_name() ) );
 	}
 
 	$classes[] = 'pno-field-' . $field->get_type();
 	$classes[] = 'form-group';
-	$classes[] = 'col-sm-12';
-
-	if ( $field->has_errors() ) {
-		$classes[] = 'field-has-errors';
-	}
 
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );

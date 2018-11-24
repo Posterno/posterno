@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$default = ! empty( $data->get_value() ) ? $data->get_value() : $data->get_option( 'default' );
+$default = ! empty( $data->get_value() ) ? $data->get_value() : '';
 
-foreach ( $data->get_choices() as $option_key => $value ) : ?>
+foreach ( $data->get_options() as $option_key => $value ) : ?>
 
 	<div class="custom-control custom-radio">
 		<input type="radio" class="custom-control-input" id="<?php echo esc_attr( $option_key ); ?>" name="<?php echo esc_attr( $data->get_name() ); ?>" value="<?php echo esc_attr( $option_key ); ?>" <?php checked( $default, $option_key ); ?> <?php echo $data->get_attributes(); //phpcs:ignore ?>/>

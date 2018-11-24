@@ -122,8 +122,6 @@ abstract class PNO_Form {
 	 */
 	public function output( $atts = array() ) {
 		$step_key = $this->get_step_key( $this->step );
-		$this->show_errors();
-
 		if ( $step_key && is_callable( $this->steps[ $step_key ]['view'] ) ) {
 			call_user_func( $this->steps[ $step_key ]['view'], $atts );
 		}
@@ -139,12 +137,21 @@ abstract class PNO_Form {
 	}
 
 	/**
-	 * Displays errors.
+	 * Retrieve all errors attached to the form.
+	 *
+	 * @return array
 	 */
-	public function show_errors() {
-		foreach ( $this->errors as $error ) {
-			echo '<div class="pno-error">' . wp_kses_post( $error ) . '</div>';
-		}
+	public function get_errors() {
+		return $this->errors;
+	}
+
+	/**
+	 * Determine if the form has errors.
+	 *
+	 * @return boolean
+	 */
+	public function has_errors() {
+		return ! empty( $this->errors );
 	}
 
 	/**

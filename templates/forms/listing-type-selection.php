@@ -20,10 +20,6 @@ defined( 'ABSPATH' ) || exit;
 
 <div id="pno-listing-type-selection">
 
-	<?php if ( isset( $data->title ) && ! empty( $data->title ) ) : ?>
-		<h2><i class="fas fa-info-circle"></i> <?php echo esc_html( $data->title ); ?></h2>
-	<?php endif; ?>
-
 	<div class="row pno-types-container">
 		<?php
 
@@ -45,7 +41,16 @@ defined( 'ABSPATH' ) || exit;
 					<?php if ( $listing_type_description = carbon_get_term_meta( $type_id, 'submission_description' ) ) : ?>
 						<p class="card-text"><?php echo wp_kses_post( $listing_type_description ); ?></p>
 					<?php endif; ?>
-					<a href="<?php echo esc_url( $submission_url ); ?>" class="btn btn-secondary"><?php echo esc_html( $data->submit_label ); ?></a>
+					<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data">
+						<input type="hidden" name="listing_type_id" value="<?php echo absint( $type_id ); ?>">
+						<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>" />
+						<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
+						<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
+						<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
+						<button type="submit" class="btn btn-primary">
+							<?php echo esc_html__( 'Continue &rarr;' ); ?>
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>

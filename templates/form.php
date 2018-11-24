@@ -47,7 +47,7 @@ if ( $data->form->is_successful() ) {
 	 */
 	do_action( "pno_before_{$data->form->get_form_name()}_form", $data );
 
-	// Display error or success message if available.
+	// Display various messages if available.
 	if ( $message_type && $message ) {
 		posterno()->templates
 			->set_template_data(
@@ -57,6 +57,20 @@ if ( $data->form->is_successful() ) {
 				]
 			)
 			->get_template_part( 'message' );
+	}
+
+	// Display all errors found.
+	if ( $data->form->has_errors() ) {
+		foreach ( $data->form->get_errors() as $found_error ) {
+			posterno()->templates
+				->set_template_data(
+					[
+						'type'    => 'danger',
+						'message' => wp_kses_post( $found_error ),
+					]
+				)
+				->get_template_part( 'message' );
+		}
 	}
 
 	?>
@@ -80,14 +94,16 @@ if ( $data->form->is_successful() ) {
 				do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
 			?>
 
-			<div class="form-group">
+			<div <?php pno_form_field_class( $field ); ?>>
 
-				<label for="<?php echo esc_attr( $field->get_id() ); ?>">
-					<?php echo esc_html( $field->get_label() ); ?>
-						<?php if ( ! $field->is_required() ) : ?>
-							<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>
-						<?php endif; ?>
-				</label>
+				<?php if ( $field->get_type() !== 'checkbox' ) : ?>
+					<label for="<?php echo esc_attr( $field->get_id() ); ?>">
+						<?php echo esc_html( $field->get_label() ); ?>
+							<?php if ( ! $field->is_required() ) : ?>
+								<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>
+							<?php endif; ?>
+					</label>
+				<?php endif; ?>
 
 				<?php
 					posterno()->templates
