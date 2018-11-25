@@ -100,16 +100,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 		}
 
 		$fields = array(
-			'listing-details' => array(
-				'listing_type' => array(
-					'label'       => esc_html__( 'Select the listing type' ),
-					'description' => false,
-					'type'        => 'text',
-					'required'    => true,
-					'placeholder' => '',
-					'priority'    => 0,
-				),
-			),
+			'listing-details' => pno_get_listing_submission_fields(),
 		);
 
 		$this->fields = $fields;
@@ -141,7 +132,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 	}
 
 	/**
-	 * Undocumented function
+	 * Save the selected listing type id and proceed to the next step.
 	 *
 	 * @return void
 	 */
@@ -161,7 +152,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 				return;
 			}
 
-			$type_id = isset( $_POST['listing_type_id'] ) ? absint( $_POST['listing_type_id'] ) : false;
+			$type_id = $this->get_submitted_listing_type_id();
 
 			if ( $type_id ) {
 				$this->listing_type_id = $type_id;
@@ -174,6 +165,24 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			$this->add_error( $e->getMessage() );
 			return;
 		}
+	}
+
+	/**
+	 * Detect if a listing type has been selected and retrieve it's id.
+	 *
+	 * @return mixed
+	 */
+	private function get_submitted_listing_type_id() {
+
+		$id = false;
+
+		//phpcs:ignore
+		if ( isset( $_POST['listing_type_id'] ) && ! empty( $_POST['listing_type_id'] ) ) {
+			$id = absint( $_POST['listing_type_id'] );
+		}
+
+		return $id;
+
 	}
 
 	/**

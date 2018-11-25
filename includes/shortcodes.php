@@ -276,13 +276,7 @@ function pno_listing_submission_form() {
 
 	$roles_required = pno_get_option( 'submission_requires_roles' );
 
-	/**
-	 * Allow developers to add custom access restrictions to the submission form.
-	 *
-	 * @param bool $restricted true or false.
-	 * @return bool|string
-	 */
-	$restricted = apply_filters( 'pno_submission_form_is_restricted', false );
+	$restricted = false;
 
 	// Display error message if specific roles are required to access the page.
 	if ( is_user_logged_in() && $roles_required && is_array( $roles_required ) && ! empty( $roles_required ) ) {
@@ -299,6 +293,14 @@ function pno_listing_submission_form() {
 			$restricted = 'role';
 		}
 	}
+
+	/**
+	 * Allow developers to add custom access restrictions to the submission form.
+	 *
+	 * @param bool $restricted true or false.
+	 * @return bool|string
+	 */
+	$restricted = apply_filters( 'pno_submission_form_is_restricted', $restricted );
 
 	if ( $restricted ) {
 
