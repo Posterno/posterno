@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'WPNavBarFilterItem',
+        name: 'pno-options-panel-navbar-item',
         props: {
             label: String
         },

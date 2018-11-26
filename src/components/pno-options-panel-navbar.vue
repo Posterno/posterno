@@ -23,7 +23,7 @@
 
 <script>
     export default {
-        name: 'WPNavBarFilter',
+        name: 'pno-options-panel-navbar',
         props: {
             value: [String, Number],
         },

@@ -1,198 +1,113 @@
 <template>
-	<div id="posterno-settings-panel" class="wrap">
-		<wp-container>
-			<!-- Header -->
-			<wp-header height="auto">
-				<wp-row :gutter="0">
-					<wp-col :span="16" class="header-content">
-						<h1>
-							<img :src="logo_url" :alt="labels.page_title">
-							<span>{{labels.page_title}}</span>
-						</h1>
-						<ul class="title-links">
-							<li>
-								<a href="https://posterno.com/addons" class="page-title-action" target="_blank">{{labels.addons}}</a>
-							</li>
-							<li><a href="https://docs.posterno.com/" class="page-title-action" target="_blank">{{labels.read_docs}}</a></li>
-						</ul>
-					</wp-col>
-					<wp-col :span="8" class="save-area">
-						<wp-spinner v-if="loading"></wp-spinner>
-						<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
-					</wp-col>
-				</wp-row>
-			</wp-header>
-			<!-- end header -->
-			<!-- Options Panel Content -->
-			<wp-main>
+	<div id="pno-options-panel">
 
-				<wp-notice type="success" dismissible v-if="success">
-					<strong>{{labels.settings_saved}}</strong>
-				</wp-notice>
+		<AdminHeader :links="adminLinks">
+			{{labels.page_title}}
 
-				<wp-notice type="error" v-if="error && error_message">
-					<span class="dashicons dashicons-warning"></span> <strong>{{error_message}}</strong>
-				</wp-notice>
+			<div class="save-area" slot="side">
+				<wp-spinner v-if="loading"></wp-spinner>
+				<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
+			</div>
+		</AdminHeader>
 
-				<!-- navigation tabs -->
-				<wp-tabs>
-					<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
+		<div class="wrap pno-options-wrapper">
 
-						<!-- subsections -->
-						<WPNavBarFilter v-if="settings_tab_has_sections( id )">
-							<WPNavBarFilterItem v-for="( section, section_id ) in settings_sections[ id ]" :key="section_id" :label="section">
+			<wp-notice type="success" dismissible v-if="success">
+				<strong>{{labels.settings_saved}}</strong>
+			</wp-notice>
 
-								<div class="settings-form-wrapper in-section">
+			<wp-notice type="error" v-if="error && error_message">
+				<span class="dashicons dashicons-warning"></span> <strong>{{error_message}}</strong>
+			</wp-notice>
 
-									<!-- options generator -->
-										<table class="form-table">
-											<tbody>
-												<tr v-for="( setting, setting_id ) in registered_settings[ section_id ]" :key="setting_id">
-													<th scope="row">
-														<label :for="setting_id">{{setting.label}}</label>
-													</th>
-													<td>
+			<wp-tabs>
+				<wp-tab-item v-for="( tab, id ) in settings_tabs" :key="id" :label="tab">
 
-														<input v-if="setting.type == 'text'" :placeholder="setting.placeholder" type="text" class="regular-text" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+					<OptionsPanelNavbar v-if="settings_tab_has_sections( id )">
+							<OptionsPanelNavbarItem v-for="( section, section_id ) in settings_sections[ id ]" :key="section_id" :label="section">
+								<div class="pno-options-list">
+									<table class="form-table">
+										<tbody>
+											<tr v-for="( setting, setting_id ) in registered_settings[ section_id ]" :key="setting_id">
+												<th scope="row">
+													<label :for="setting_id">{{setting.label}}</label>
+												</th>
+												<td>
 
-														<textarea v-else-if="setting.type == 'textarea'" :placeholder="setting.placeholder" cols="50" rows="5" :name="setting_id" :id="setting_id" v-model="settings[setting_id]"></textarea>
+													<input v-if="setting.type == 'text'" :placeholder="setting.placeholder" type="text" class="regular-text" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
 
-														<select v-else-if="setting.type == 'select'" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
-															<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
-														</select>
+													<textarea v-else-if="setting.type == 'textarea'" :placeholder="setting.placeholder" cols="50" rows="5" :name="setting_id" :id="setting_id" v-model="settings[setting_id]"></textarea>
 
-														<div class="radio-wrapper" v-else-if="setting.type == 'radio'">
-															<p v-for="( option_label, option_id ) in setting.options" :key="option_id">
-																<label>
-																	<input :name="setting_id" :id="setting_id" :value="option_id" class="tog" type="radio" v-model="settings[setting_id]">
-																{{ option_label }}</label>
-															</p>
-														</div>
+													<select v-else-if="setting.type == 'select'" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
+														<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
+													</select>
 
-														<span v-else-if="setting.type == 'checkbox'" class="checkbox-wrapper">
-															<input :name="setting_id" :id="setting_id" v-model="settings[setting_id]" type="checkbox">
+													<div class="radio-wrapper" v-else-if="setting.type == 'radio'">
+														<p v-for="( option_label, option_id ) in setting.options" :key="option_id">
+															<label>
+																<input :name="setting_id" :id="setting_id" :value="option_id" class="tog" type="radio" v-model="settings[setting_id]">
+															{{ option_label }}</label>
+														</p>
+													</div>
+
+													<span v-else-if="setting.type == 'checkbox'" class="checkbox-wrapper">
+														<input :name="setting_id" :id="setting_id" v-model="settings[setting_id]" type="checkbox">
+													</span>
+
+													<div class="multi-check-wrapper" v-else-if="setting.type == 'multicheckbox'">
+														<span class="checkbox-wrapper" v-for="( option_label, option_id ) in setting.options" :key="option_id">
+															<input :id="option_id" :value="option_id" v-model="settings[setting_id]" type="checkbox">
+															<label :for="option_id">{{option_label}}</label>
 														</span>
+													</div>
 
-														<div class="multi-check-wrapper" v-else-if="setting.type == 'multicheckbox'">
-															<span class="checkbox-wrapper" v-for="( option_label, option_id ) in setting.options" :key="option_id">
-																<input :id="option_id" :value="option_id" v-model="settings[setting_id]" type="checkbox">
-																<label :for="option_id">{{option_label}}</label>
-															</span>
-														</div>
+													<multiselect
+														v-else-if="setting.type == 'multiselect'"
+														v-model="settings[setting_id]"
+														:options="setting.options"
+														track-by="value"
+														label="label"
+														placeholder=""
+														:multiple="setting.multiple"
+														selectLabel=""
+														:deselectLabel="labels.multiselect.deselected"
+														:selectedLabel="labels.multiselect.selected"
+														>
+													</multiselect>
 
-														<multiselect
-															v-else-if="setting.type == 'multiselect'"
-															v-model="settings[setting_id]"
-															:options="setting.options"
-															track-by="value"
-															label="label"
-															placeholder=""
-															:multiple="setting.multiple"
-															selectLabel=""
-															:deselectLabel="labels.multiselect.deselected"
-															:selectedLabel="labels.multiselect.selected"
-															>
-														</multiselect>
+													<mail-tester v-else-if="setting.type == 'mail-tester'"></mail-tester>
 
-														<mail-tester v-else-if="setting.type == 'mail-tester'"></mail-tester>
+													<p class="description" v-if="setting.description" v-html="setting.description"></p>
 
-														<p class="description" v-if="setting.description" v-html="setting.description"></p>
-
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<!-- end options generator -->
-
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
+							</OptionsPanelNavbarItem>
+					</OptionsPanelNavbar>
+				</wp-tab-item>
+			</wp-tabs>
 
-							</WPNavBarFilterItem>
-						</WPNavBarFilter>
-						<div class="settings-form-wrapper no-section" v-else>
+			<div class="footer-save">
+				<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
+				<wp-spinner v-if="loading"></wp-spinner>
+			</div>
 
-							<!-- options generator -->
-							<table class="form-table">
-								<tbody>
-									<tr v-for="( setting, setting_id ) in registered_settings[ id ]" :key="setting_id">
-										<th scope="row">
-											<label :for="setting_id">{{setting.label}}</label>
-										</th>
-										<td>
+		</div>
 
-											<input v-if="setting.type == 'text'" :placeholder="setting.placeholder" type="text" class="regular-text" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
-
-											<textarea v-else-if="setting.type == 'textarea'" :placeholder="setting.placeholder" cols="50" rows="5" :name="setting_id" :id="setting_id" v-model="settings[setting_id]"></textarea>
-
-											<select v-else-if="setting.type == 'select'" :name="setting_id" :id="setting_id" v-model="settings[setting_id]">
-												<option v-for="( option_label, option_id ) in setting.options" :key="option_id"  :value="option_id">{{ option_label }}</option>
-											</select>
-
-											<div class="radio-wrapper" v-else-if="setting.type == 'radio'">
-												<p v-for="( option_label, option_id ) in setting.options" :key="option_id">
-													<label>
-														<input :name="setting_id" :id="setting_id" :value="option_id" class="tog" type="radio" v-model="settings[setting_id]">
-													{{ option_label }}</label>
-												</p>
-											</div>
-
-											<span v-else-if="setting.type == 'checkbox'" class="checkbox-wrapper">
-												<input :name="setting_id" :id="setting_id" v-model="settings[setting_id]" type="checkbox">
-											</span>
-
-											<div class="multi-check-wrapper" v-else-if="setting.type == 'multicheckbox'">
-												<span class="checkbox-wrapper" v-for="( option_label, option_id ) in setting.options" :key="option_id">
-													<input :id="option_id" :value="option_id" v-model="settings[setting_id]" type="checkbox">
-													<label :for="option_id">{{option_label}}</label>
-												</span>
-											</div>
-
-											<multiselect
-												v-else-if="setting.type == 'multiselect'"
-												v-model="settings[setting_id]"
-												:options="setting.options"
-												track-by="value"
-												label="label"
-												:placeholder="setting.placeholder"
-												:multiple="setting.multiple"
-												selectLabel=""
-												deselectLabel=""
-												:selectedLabel="labels.multiselect.selected"
-												>
-											</multiselect>
-
-											<mail-tester v-else-if="setting.type == 'mail-tester'"></mail-tester>
-
-											<p class="description" v-if="setting.description">{{setting.description}}</p>
-
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- end options generator -->
-
-						</div>
-
-					</wp-tab-item>
-				</wp-tabs>
-				<!-- end navigation tabs -->
-
-				<div class="footer-save">
-					<wp-button type="primary" :disabled="loading" @click="save()">{{labels.save}}</wp-button>
-					<wp-spinner v-if="loading"></wp-spinner>
-				</div>
-
-			</wp-main>
-			<!-- end options panel content -->
-		</wp-container>
-  	</div>
+	</div>
 </template>
 
 <script>
-import WPNavBarFilter from '../global-components/WPNavBarFilter.vue'
-import WPNavBarFilterItem from '../global-components/WPNavBarFilterItem.vue'
-import MailTester from '../global-components/mail-tester.vue'
+import AdminHeader from '../components/pno-admin-header'
+import OptionsPanelNavbar from '../components/pno-options-panel-navbar'
+import OptionsPanelNavbarItem from '../components/pno-options-panel-navbar-item'
+import MailTester from '../components/pno-options-panel-mail-tester'
+
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+
 import lodash_has from 'lodash.has'
 import axios from 'axios'
 import qs from 'qs'
@@ -200,8 +115,9 @@ import qs from 'qs'
 export default {
 	name: "app",
 	components: {
-		WPNavBarFilter,
-		WPNavBarFilterItem,
+		AdminHeader,
+		OptionsPanelNavbar,
+		OptionsPanelNavbarItem,
 		Multiselect,
 		MailTester
 	},
@@ -210,6 +126,17 @@ export default {
 			// Visual stuff.
 			logo_url:            pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
 			labels:              pno_settings_page.labels,
+			collapsed: false,
+			adminLinks: [
+				{
+					title: pno_settings_page.labels.addons,
+					url: 'https://posterno.com/addons'
+				},
+				{
+					title: pno_settings_page.labels.read_docs,
+					url: 'https://docs.posterno.com/'
+				}
+			],
 
 			// Manage the status of the app.
 			success:             false,
@@ -276,169 +203,120 @@ export default {
 </script>
 
 <style lang="scss">
-body.settings_page_posterno-settings {
+	body.settings_page_posterno-settings #wpcontent {
+		padding-left: 0;
 
-	.update-nag {
-		display: none;
-	}
+		.save-area {
+			text-align: right;
+			.spinner {
+				margin-right: 10px;
+				margin-top: 5px;
+			}
+		}
 
-	#posterno-settings-panel {
-		margin: 0;
-	}
+		.pno-options-wrapper {
+			margin: 40px 20px;
+		}
 
-	#wpcontent {
-    	padding-left: 0;
-  	}
+		.footer-save {
+			margin-top: 50px;
+		}
 
-	.vuewp-header {
-		background-color: #fff;
-		box-shadow: 0 1px 0 rgba(200,215,225,0.5), 0 1px 2px #DDD;
-		padding: 20px;
-	}
+		.vue-wp-notice {
+			margin-bottom: 20px;
+		}
 
-	.save-area {
-		text-align: right;
-		.spinner {
+		.wp-filter-bar-wrapper {
+			margin-top: 15px;
+		}
+
+		.description {
+			font-style: normal;
+		}
+
+		.checkbox-wrapper ~ p.description {
+			display: inline-block;
+			position: relative;
+		}
+
+		.multi-check-wrapper {
+			.checkbox-wrapper {
+				display: block;
+				margin-bottom: 7px;
+				label {
+					position: relative;
+					top: -2px;
+				}
+			}
+			~ .description {
+				margin-top: 10px;
+			}
+		}
+
+		.dashicons-warning {
 			margin-right: 10px;
-			margin-top: 5px;
+			color: #dc3232;
 		}
-	}
 
-	.header-content {
-		h1 {
-			margin: 0;
-			font-size: 23px;
-			font-weight: 500;
-			padding: 0;
-			display: inline-block;
-			img {
-				float:left;
-				height: 28px;
+		.multi-check-wrapper {
+			.checkbox-wrapper {
+				display: block;
+				margin-bottom: 7px;
+				label {
+					position: relative;
+					top: -2px;
+				}
 			}
-			span {
-				position: relative;
-				left: 8px;
-				margin-right: 25px;
+			~ .description {
+				margin-top: 10px;
 			}
 		}
-	}
 
-	.title-links {
-		display: inline-block;
-		margin-bottom: 0;
-		margin-top: 10px;
-		li {
-			display: inline-block;
-			margin-bottom: 0;
+		.multiselect {
+			max-width: 500px;
 		}
-	}
 
-	.nav-tab {
-		&:focus,
-		&:active {
-			outline: none;
+		.multiselect__tags {
+			border-radius: 0;
+			border-color: #cbcbcb;
+			cursor: pointer;
 			box-shadow: none;
 		}
-	}
 
-	.wp-tabs {
-		margin-top: 10px;
-	}
-
-	.vue-wp-notice {
-		margin-bottom: 20px;
-	}
-
-	.vuewp-main {
-		overflow: initial;
-	}
-
-	.wp-filter-bar-wrapper {
-		margin-top: 10px;
-	}
-
-	.footer-save {
-		margin-top: 30px;
-		.spinner {
-			margin-top: 5px;
-			margin-left: 10px;
+		.multiselect--above.multiselect--active .multiselect__input,
+		.multiselect--active:not(.multiselect--above) .multiselect__input {
+			border-radius: 3px;
 		}
-	}
 
-	.description {
-		font-style: normal;
-	}
+		.multiselect__tag,
+		.multiselect__option--selected.multiselect__option--highlight {
+			background: #0073aa;
+			color: #fff;
+			border-radius: 0;
+		}
 
-	.checkbox-wrapper ~ p.description {
-		display: inline-block;
-		position: relative;
-	}
+		.multiselect__tag-icon::after {
+			color: #fff;
+		}
 
-	.multi-check-wrapper {
-		.checkbox-wrapper {
-			display: block;
-			margin-bottom: 7px;
-			label {
-				position: relative;
-				top: -2px;
+		.multiselect__option--highlight {
+			background: #ddd;
+			color: #222;
+		}
+
+		.multiselect__tag-icon {
+			border-radius: 0;
+			margin-left: 5px;
+			&:hover {
+				background: #dc3232;
 			}
 		}
-		~ .description {
-			margin-top: 10px;
-		}
-	}
-
-	.multiselect {
-		max-width: 500px;
-	}
-
-	.multiselect__tags {
-		border-radius: 0;
-		border-color: #cbcbcb;
-		cursor: pointer;
-		box-shadow: none;
-	}
-
-	.multiselect--above.multiselect--active .multiselect__input,
-	.multiselect--active:not(.multiselect--above) .multiselect__input {
-		border-radius: 3px;
-	}
-
-	.multiselect__tag,
-	.multiselect__option--selected.multiselect__option--highlight {
-		background: #0073aa;
-		color: #fff;
-		border-radius: 0;
-	}
-
-	.multiselect__tag-icon::after {
-		color: #fff;
-	}
-
-	.multiselect__option--highlight {
-		background: #ddd;
-		color: #222;
-	}
-
-	.multiselect__tag-icon {
-		border-radius: 0;
-		margin-left: 5px;
-		&:hover {
-			background: #dc3232;
-		}
-	}
-
-	.dashicons-warning {
-		margin-right: 10px;
-		color: #dc3232;
-	}
-
 	.multiselect__content-wrapper {
-    	box-shadow: 0 3px 5px rgba(0,0,0,.2);
-    	border: 1px solid #ddd;
-		border-radius: 0;
-		margin-top: 5px;
-	}
+			box-shadow: 0 3px 5px rgba(0,0,0,.2);
+			border: 1px solid #ddd;
+			border-radius: 0;
+			margin-top: 5px;
+		}
 
-}
+	}
 </style>
