@@ -2,11 +2,10 @@
 /**
  * Base Schema Column Class.
  *
- * @package     posterno
+ * @package     PNO
  * @subpackage  Database\Schemas
  * @copyright   Copyright (c) 2018, Easy Digital Downloads, LLC
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0.0
  */
 
 namespace PNO\Database;
@@ -17,12 +16,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Base class used for each column for a custom table.
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @see \PNO\Database\Schemas\Column::__construct() for accepted arguments.
  */
 class Column extends Base {
-
 
 	/** Table Attributes ******************************************************/
 
@@ -33,7 +31,7 @@ class Column extends Base {
 	 * other character (number, ascii, unicode, emoji, etc...) will result in
 	 * fatal application errors.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -44,7 +42,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/data-types.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -55,7 +53,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/storage-requirements.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -66,7 +64,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/numeric-type-overview.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -77,7 +75,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/numeric-type-overview.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -88,7 +86,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/binary-varbinary.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -99,7 +97,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/data-type-defaults.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -110,7 +108,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/data-type-defaults.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -121,7 +119,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/en/data-type-defaults.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -136,7 +134,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/mysql/en/charset-column.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -151,7 +149,7 @@ class Column extends Base {
 	 *
 	 * See: https://dev.mysql.com/doc/mysql/en/charset-column.html
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -163,7 +161,7 @@ class Column extends Base {
 	 * By default, columns do not have comments. This is unused by any other
 	 * relative code, but you can include less than 1024 characters here.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -178,7 +176,7 @@ class Column extends Base {
 	 * class for several critical functions, including (but not limited to) the
 	 * cache key, meta-key relationships, auto-incrementing, etc...
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -191,7 +189,7 @@ class Column extends Base {
 	 * This is used by the Query class to set its value automatically to the
 	 * current datetime value immediately before insert.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -204,7 +202,7 @@ class Column extends Base {
 	 * This is used by the Query class to update its value automatically to the
 	 * current datetime value immediately before insert|update.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -217,7 +215,7 @@ class Column extends Base {
 	 * generate a unique string that can be used to identify a row in a database
 	 * table, typically in such a way that is unrelated to the row data itself.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -232,7 +230,7 @@ class Column extends Base {
 	 * manually to `%s|%d|%f` only if you are doing something weird, or are
 	 * explicitly storing numeric values in text-based column types.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -247,7 +245,7 @@ class Column extends Base {
 	 * Avoid setting to `true` on large blobs of text, unless you've optimized
 	 * your database server to accommodate these kinds of queries.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -260,7 +258,7 @@ class Column extends Base {
 	 * class will accept complex statements to help narrow results down to
 	 * specific periods of time for values in this column.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -276,7 +274,7 @@ class Column extends Base {
 	 * You can safely turn this on for most numeric columns, indexed columns,
 	 * and text columns with intentionally limited lengths.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -290,7 +288,7 @@ class Column extends Base {
 	 *
 	 * Consider setting this to `false` for longer text columns.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -305,7 +303,7 @@ class Column extends Base {
 	 *
 	 * Consider setting this to `false` for longer text columns.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -322,7 +320,7 @@ class Column extends Base {
 	 *
 	 * Use in conjunction with a database index for speedy queries.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var string
 	 */
@@ -339,7 +337,7 @@ class Column extends Base {
 	 *
 	 * The Query class is responsible for triggering the event action.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var bool
 	 */
@@ -354,7 +352,7 @@ class Column extends Base {
 	 * is. You can set this to a callback function of your choice to override
 	 * the default validation behavior.
 	 *
-	 * @since 1.0.0.0
+	 * @since 0.1.0.0
 	 * @access public
 	 * @var string
 	 */
@@ -366,7 +364,7 @@ class Column extends Base {
 	 * These are used by the Query class to allow and disallow CRUD access to
 	 * column data, typically based on roles or capabilities.
 	 *
-	 * @since 1.0.0.0
+	 * @since 0.1.0.0
 	 * @access public
 	 * @var array
 	 */
@@ -378,7 +376,7 @@ class Column extends Base {
 	 * These are used by the Query class to allow for columns to be renamed
 	 * without requiring complex architectural backwards compatability support.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var array
 	 */
@@ -391,7 +389,7 @@ class Column extends Base {
 	 * These are typically unenforced foreign keys, and are used by the Query
 	 * class to help prime related items.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @var array
 	 */
@@ -402,7 +400,7 @@ class Column extends Base {
 	/**
 	 * Sets up the order query, based on the query vars passed.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 *
 	 * @param string|array $args {
@@ -452,18 +450,19 @@ class Column extends Base {
 	/** Argument Handlers *****************************************************/
 
 	/**
-	 * Parse column arguments
+	 * Parse column arguments.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
-	 * @param array $args settings.
+	 * @param array $args
 	 * @return array
 	 */
 	private function parse_args( $args = array() ) {
 
 		// Parse arguments.
 		$r = wp_parse_args(
-			$args, array(
+			$args,
+			array(
 
 				// Table.
 				'name'          => '',
@@ -517,15 +516,16 @@ class Column extends Base {
 		// Set the args before they are sanitized.
 		$this->set_vars( $r );
 
+		// Return array.
 		return $this->validate_args( $r );
 	}
 
 	/**
 	 * Validate arguments after they are parsed.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access private
-	 * @param array $args settings.
+	 * @param array $args
 	 * @return array
 	 */
 	private function validate_args( $args = array() ) {
@@ -581,15 +581,16 @@ class Column extends Base {
 			}
 		}
 
+		// Return sanitized arguments.
 		return $r;
 	}
 
 	/**
 	 * Force column arguments for special column types
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
-	 * @param array $args settings.
+	 * @param array $args
 	 * @return array
 	 */
 	private function special_args( $args = array() ) {
@@ -609,6 +610,7 @@ class Column extends Base {
 			$args['sortable']   = false;
 		}
 
+		// Return args.
 		return (array) $args;
 	}
 
@@ -617,7 +619,7 @@ class Column extends Base {
 	/**
 	 * Return if a column type is numeric or not.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @return boolean
 	 */
@@ -637,18 +639,21 @@ class Column extends Base {
 	/**
 	 * Return if this column is of a certain type.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @param mixed $type The type to check. Accepts an array.
 	 * @return boolean True if of type, False if not
 	 */
 	private function is_type( $type = '' ) {
 
+		// If string, cast to array.
 		if ( is_string( $type ) ) {
 			$type = (array) $type;
 		}
 
+		// Make them lowercase.
 		$types = array_map( 'strtolower', $type );
 
+		// Return if match or not.
 		return (bool) in_array( strtolower( $this->type ), $types, true );
 	}
 
@@ -657,13 +662,14 @@ class Column extends Base {
 	/**
 	 * Sanitize capabilities array
 	 *
-	 * @since 1.0.0
-	 * @param array $caps capabilities list.
+	 * @since 0.1.0
+	 * @param array $caps
 	 * @return array
 	 */
 	private function sanitize_capabilities( $caps = array() ) {
 		return wp_parse_args(
-			$caps, array(
+			$caps,
+			array(
 				'select' => 'exist',
 				'insert' => 'exist',
 				'update' => 'exist',
@@ -675,8 +681,8 @@ class Column extends Base {
 	/**
 	 * Sanitize aliases array using `sanitize_key()`
 	 *
-	 * @since 1.0.0.0
-	 * @param array $aliases aliases.
+	 * @since 0.1.0.0
+	 * @param array $aliases
 	 * @return array
 	 */
 	private function sanitize_aliases( $aliases = array() ) {
@@ -686,8 +692,8 @@ class Column extends Base {
 	/**
 	 * Sanitize relationships array
 	 *
-	 * @since 1.0.0.0
-	 * @param array $relationships relationships.
+	 * @since 0.1.0.0
+	 * @param array $relationships
 	 * @return array
 	 */
 	private function sanitize_relationships( $relationships = array() ) {
@@ -697,18 +703,21 @@ class Column extends Base {
 	/**
 	 * Sanitize the pattern
 	 *
-	 * @since 1.0.0
-	 * @param mixed $pattern selected pattern.
+	 * @since 0.1.0
+	 * @param mixed $pattern
 	 * @return string
 	 */
 	private function sanitize_pattern( $pattern = false ) {
 
+		// Allowed patterns.
 		$allowed_patterns = array( '%s', '%d', '%f' );
 
+		// Return pattern if allowed.
 		if ( in_array( $pattern, $allowed_patterns, true ) ) {
 			return $pattern;
 		}
 
+		// Fallback to digit or string.
 		return $this->is_numeric()
 			? '%d'
 			: '%s';
@@ -717,26 +726,31 @@ class Column extends Base {
 	/**
 	 * Sanitize the validation callback
 	 *
-	 * @since 1.0.0
-	 * @param string $callback A callable PHP function name or method.
-	 * @return string The most appropriate callback function for the value.
+	 * @since 0.1.0
+	 * @param string $callback A callable PHP function name or method
+	 * @return string The most appropriate callback function for the value
 	 */
 	private function sanitize_validation( $callback = '' ) {
 
+		// Return callback if it's callable.
 		if ( is_callable( $callback ) ) {
 			return $callback;
 		}
 
+		// UUID special column.
 		if ( true === $this->uuid ) {
 			$callback = array( $this, 'validate_uuid' );
 
+			// Intval fallback.
 		} elseif ( $this->is_type( array( 'tinyint', 'int' ) ) ) {
 			$callback = 'intval';
 
+			// Datetime fallback.
 		} elseif ( $this->is_type( 'datetime' ) ) {
 			$callback = array( $this, 'validate_datetime' );
 		}
 
+		// Return the callback.
 		return $callback;
 	}
 
@@ -745,24 +759,28 @@ class Column extends Base {
 	/**
 	 * Fallback to validate a datetime value if no other is set.
 	 *
-	 * @since 1.0.0
-	 * @param string $value A datetime value that needs validating.
-	 * @return string A valid datetime value.
+	 * @since 0.1.0
+	 * @param string $value A datetime value that needs validating
+	 * @return string A valid datetime value
 	 */
 	public function validate_datetime( $value = '0000-00-00 00:00:00' ) {
 
+		// Fallback for empty values.
 		if ( empty( $value ) || ( '0000-00-00 00:00:00' === $value ) ) {
 			$value = ! empty( $this->default )
 				? $this->default
 				: '0000-00-00 00:00:00';
 
+			// Fallback if WordPress function exists.
 		} elseif ( function_exists( 'date_i18n' ) ) {
 			$value = date_i18n( 'Y-m-d H:i:s', strtotime( $value ), true );
 
+			// Fallback if only PHP date function exists.
 		} elseif ( function_exists( 'date' ) ) {
 			$value = date( 'Y-m-d H:i:s', strtotime( $value ) );
 		}
 
+		// Return the validated value.
 		return $value;
 	}
 
@@ -775,8 +793,8 @@ class Column extends Base {
 	 *
 	 * From http://php.net/manual/en/function.uniqid.php#94959
 	 *
-	 * @since 1.0.0
-	 * @param string $uuid The UUID value (empty on insert, string on update).
+	 * @since 0.1.0
+	 * @param string $uuid The UUID value (empty on insert, string on update)
 	 * @return string Generated UUID.
 	 */
 	public function validate_uuid( $uuid = '' ) {
@@ -786,6 +804,7 @@ class Column extends Base {
 			return $uuid;
 		}
 
+		// Default URN UUID prefix.
 		$prefix = 'urn:uuid:';
 
 		// Put the pieces together.
@@ -809,6 +828,95 @@ class Column extends Base {
 			mt_rand( 0, 0xffff )
 		);
 
+		// Return the new UUID.
 		return $uuid;
+	}
+
+	/**
+	 * Return a string representation of what this column's properties look like
+	 * in a MySQL
+	 *
+	 * @since 0.1.0
+	 *
+	 * return string
+	 */
+	public function get_create_string() {
+
+		// Default return val.
+		$retval = '';
+
+		// Bail if no name.
+		if ( ! empty( $this->name ) ) {
+			$retval .= $this->name;
+		}
+
+		// Type.
+		if ( ! empty( $this->type ) ) {
+			$retval .= " {$this->type}";
+		}
+
+		// Length.
+		if ( ! empty( $this->length ) ) {
+			$retval .= '(' . $this->length . ')';
+		}
+
+		// Unsigned.
+		if ( ! empty( $this->unsigned ) ) {
+			$retval .= ' unsigned';
+		}
+
+		// Zerofill.
+		if ( ! empty( $this->zerofill ) ) {
+			// TBD
+		}
+
+		// Binary.
+		if ( ! empty( $this->binary ) ) {
+			// TBD
+		}
+
+		// Allow null.
+		if ( ! empty( $this->allow_null ) ) {
+			$retval .= ' NOT NULL ';
+		}
+
+		// Default.
+		if ( ! empty( $this->default ) ) {
+			$retval .= " default '{$this->default}'";
+
+			// A literal false means no default value.
+		} elseif ( false !== $this->default ) {
+
+			// Numeric.
+			if ( $this->is_numeric() ) {
+				$retval .= " default '0'";
+			} elseif ( $this->is_type( 'datetime' ) ) {
+				$retval .= " default '0000-00-00 00:00:00'";
+			} else {
+				$retval .= " default ''";
+			}
+		}
+
+		// Extra.
+		if ( ! empty( $this->extra ) ) {
+			$retval .= " {$this->extra}";
+		}
+
+		// Encoding.
+		if ( ! empty( $this->encoding ) ) {
+
+		} else {
+
+		}
+
+		// Collation.
+		if ( ! empty( $this->collation ) ) {
+
+		} else {
+
+		}
+
+		// Return the create string.
+		return $retval;
 	}
 }

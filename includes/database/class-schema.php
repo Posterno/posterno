@@ -2,11 +2,10 @@
 /**
  * Base Schema Class.
  *
- * @package     posterno
+ * @package     PNO
  * @subpackage  Database\Schemas
  * @copyright   Copyright (c) 2018, Easy Digital Downloads, LLC
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.0
  */
 
 namespace PNO\Database;
@@ -14,60 +13,80 @@ namespace PNO\Database;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( '\\PNO\\Database\\Schema' ) ) :
+/**
+ * A base WordPress database table class, which facilitates the creation of
+ * and schema changes to individual database tables.
+ *
+ * This class is intended to be extended for each unique database table,
+ * including global multisite tables and users tables.
+ *
+ * It exists to make managing database tables in WordPress as easy as possible.
+ *
+ * Extending this class comes with several automatic benefits:
+ * - Activation hook makes it great for plugins
+ * - Tables store their versions in the database independently
+ * - Tables upgrade via independent upgrade abstract methods
+ * - Multisite friendly - site tables switch on "switch_blog" action
+ */
+class Schema extends Base {
+
 	/**
-	 * A base WordPress database table class, which facilitates the creation of
-	 * and schema changes to individual database tables.
+	 * Array of database column objects to turn into \PNO\Database\Column
 	 *
-	 * This class is intended to be extended for each unique database table,
-	 * including global multisite tables and users tables.
-	 *
-	 * It exists to make managing database tables in WordPress as easy as possible.
-	 *
-	 * Extending this class comes with several automatic benefits:
-	 * - Activation hook makes it great for plugins
-	 * - Tables store their versions in the database independently
-	 * - Tables upgrade via independent upgrade abstract methods
-	 * - Multisite friendly - site tables switch on "switch_blog" action
-	 *
-	 * @since 1.0.0
+	 * @access public
+	 * @var array
 	 */
-	class Schema extends Base {
+	protected $columns = array();
 
+	/**
+	 * Invoke new column objects based on array of column data
+	 *
+	 * @access public
+	 */
+	public function __construct() {
 
-		/**
-		 * Array of database column objects to turn into \PNO\Database\Column
-		 *
-		 * @since 1.0.0
-		 * @access public
-		 * @var array
-		 */
-		protected $columns = array();
+		// Bail if no columns.
+		if ( empty( $this->columns ) || ! is_array( $this->columns ) ) {
+			return;
+		}
 
-		/**
-		 * Invoke new column objects based on array of column data
-		 *
-		 * @since 1.0.0
-		 * @access public
-		 */
-		public function __construct() {
+		// Juggle original columns array.
+		$columns = $this->columns;
+		$this->columns = array();
 
-			if ( empty( $this->columns ) || ! is_array( $this->columns ) ) {
-				return;
-			}
-
-			// Juggle original columns array.
-			$columns       = $this->columns;
-			$this->columns = array();
-
-			// Loop through columns and create objects from them.
-			foreach ( $columns as $column ) {
-				if ( is_array( $column ) ) {
-					$this->columns[] = new Column( $column );
-				} elseif ( $column instanceof Column ) {
-					$this->columns[] = $column;
-				}
+		// Loop through columns and create objects from them.
+		foreach ( $columns as $column ) {
+			if ( is_array( $column ) ) {
+				$this->columns[] = new Column( $column );
+			} elseif ( $column instanceof Column ) {
+				$this->columns[] = $column;
 			}
 		}
 	}
-endif;
+
+	/**
+	 * Return the schema in string form
+	 *
+	 * @access protected
+	 */
+	protected function to_string() {
+
+		// Default return value.
+		$retval = '';
+
+		// Bail if no columns to convert.
+		if ( empty( $this->columns ) ) {
+			return $retval;
+		}
+
+		// Loop through columns...
+		foreach ( $this->columns as $column_info ) {
+			if ( method_exists( $column_info, 'get_create_string' ) ) {
+				$retval .= '\n' . $column_info->get_create_string() . ', ';
+			}
+		}
+
+		// Return the string.
+		return $retval;
+	}
+}

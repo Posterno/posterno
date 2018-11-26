@@ -2,11 +2,10 @@
 /**
  * Base Database Row Class.
  *
- * @package     posterno
+ * @package     PNO
  * @subpackage  Database\Rows
  * @copyright   Copyright (c) 2018, Easy Digital Downloads, LLC
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.0
  */
 
 namespace PNO\Database;
@@ -24,17 +23,13 @@ defined( 'ABSPATH' ) || exit;
  * For example, if a database column is renamed or a return value needs to be
  * formatted differently, this class will make sure old values are still
  * supported and new values do not conflict.
- *
- * @since 1.0.0
  */
 class Row extends Base {
 
 	/**
 	 * Construct a database object
 	 *
-	 * @since 1.0.0
-	 *
-	 * @param mixed Null by default, Array/Object if not
+	 * @param mixed Null by default, Array/Object if not.
 	 */
 	public function __construct( $item = null ) {
 		if ( ! empty( $item ) ) {
@@ -45,8 +40,6 @@ class Row extends Base {
 	/**
 	 * Initialize class properties based on data array
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param array $data
 	 */
 	private function init( $data = array() ) {
@@ -55,8 +48,6 @@ class Row extends Base {
 
 	/**
 	 * Determines whether the current row exists.
-	 *
-	 * @since 1.0.0
 	 *
 	 * @return boolean
 	 */

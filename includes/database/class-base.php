@@ -6,7 +6,6 @@
  * @subpackage  Database
  * @copyright   Copyright (c) 2018, Easy Digital Downloads, LLC
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.0
  */
 
 namespace PNO\Database;
@@ -21,16 +20,26 @@ defined( 'ABSPATH' ) || exit;
  * database interfaces, starting with a magic getter, but likely expanding into
  * a magic call handler and others.
  *
- * @since 1.0.0
+ * @since 0.1.0
  */
 class Base {
 
 	/**
+	 * The last database error, if any.
+	 *
+	 * @since 0.1.0
+	 * @var   mixed
+	 */
+	protected $last_error = false;
+
+	/** Public ****************************************************************/
+
+	/**
 	 * Magic isset'ter for immutability.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
-	 * @param string $key key to verify.
+	 * @param string $key
 	 * @return mixed
 	 */
 	public function __isset( $key = '' ) {
@@ -47,7 +56,7 @@ class Base {
 		if ( method_exists( $this, $method ) ) {
 			return true;
 
-			// Return get method results if exists.
+		// Return get method results if exists.
 		} elseif ( property_exists( $this, $key ) ) {
 			return true;
 		}
@@ -59,9 +68,9 @@ class Base {
 	/**
 	 * Magic getter for immutability.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
-	 * @param string $key to verify.
+	 * @param string $key
 	 * @return mixed
 	 */
 	public function __get( $key = '' ) {
@@ -78,7 +87,7 @@ class Base {
 		if ( method_exists( $this, $method ) ) {
 			return call_user_func( array( $this, $method ) );
 
-			// Return get method results if exists.
+		// Return get method results if exists.
 		} elseif ( property_exists( $this, $key ) ) {
 			return $this->{$key};
 		}
@@ -90,7 +99,7 @@ class Base {
 	/**
 	 * Converts the given object to an array.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
 	 * @return array Array version of the given object.
 	 */
@@ -98,11 +107,13 @@ class Base {
 		return get_object_vars( $this );
 	}
 
+	/** Protected *************************************************************/
+
 	/**
 	 * Set class variables from arguments.
 	 *
-	 * @since 1.0.0
-	 * @param array $args settings.
+	 * @since 0.1.0
+	 * @param array $args
 	 */
 	protected function set_vars( $args = array() ) {
 
@@ -120,5 +131,71 @@ class Base {
 		foreach ( $args as $key => $value ) {
 			$this->{$key} = $value;
 		}
+	}
+
+	/**
+	 * Return the global database interface.
+	 *
+	 * See: https://core.trac.wordpress.org/ticket/31556
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return object Database interface, or False if not set
+	 */
+	protected function get_db() {
+
+		// Default database return value (might change).
+		$retval = false;
+
+		// Look for the WordPress global database interface.
+		if ( isset( $GLOBALS['wpdb'] ) ) {
+			$retval = $GLOBALS['wpdb'];
+		}
+
+		/*
+		 * Developer note:
+		 *
+		 * It should be impossible for a database table to be interacted with
+		 * before the primary database interface it is setup.
+		 *
+		 * However, because applications are complicated, it is unsafe to assume
+		 * anything, so this silently returns false instead of halting everything.
+		 *
+		 * If you are here because this method is returning false for you, that
+		 * means the database table is being invoked too early in the lifecycle
+		 * of the application. In WordPress, that means before the $wpdb global
+		 * is created; in other environments, you will need to adjust accordingly.
+		 */
+
+		// Return the database interface.
+		return $retval;
+	}
+
+	/**
+	 * Check if an operation succeeded
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param mixed $result
+	 * @return boolean
+	 */
+	protected function is_success( $result = false ) {
+
+		// Bail if no row exists.
+		if ( empty( $result ) ) {
+			$retval = false;
+
+		// Bail if an error occurred.
+		} elseif ( is_wp_error( $result ) ) {
+			$this->last_error = $result;
+			$retval           = false;
+
+		// No errors.
+		} else {
+			$retval = true;
+		}
+
+		// Return the result.
+		return (bool) $retval;
 	}
 }
