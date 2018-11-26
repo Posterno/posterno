@@ -123,6 +123,17 @@ function pno_setup_components() {
 		)
 	);
 
+	pno_register_component(
+		'registration_fields',
+		array(
+			'schema' => '\\PNO\\Database\\Schema\\Registration_Fields',
+			'table'  => '\\PNO\\Database\\Tables\\Registration_Fields',
+			'query'  => '\\PNO\\Database\\Queries\\Registration_Fields',
+			'object' => '\\PNO\\Customers\\Customer_Address',
+			'meta'   => false,
+		)
+	);
+
 	$setup = true;
 
 	do_action( 'pno_setup_components' );
