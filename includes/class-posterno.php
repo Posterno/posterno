@@ -356,9 +356,17 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/database/class-table.php';
 
 			// Database Schemas.
+			require_once PNO_PLUGIN_DIR . 'includes/database/schemas/class-profile-fields.php';
+
 			// Database Objects.
+			require_once PNO_PLUGIN_DIR . 'includes/database/rows/class-profile-fields.php';
+
 			// Database Tables.
+			require_once PNO_PLUGIN_DIR . 'includes/database/tables/class-profile-fields.php';
+
 			// Database Table Query Interfaces.
+			require_once PNO_PLUGIN_DIR . 'includes/database/queries/class-profile-fields.php';
+
 		}
 
 		/**

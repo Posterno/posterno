@@ -9,15 +9,6 @@
  * - Object interface
  * - Optional meta-data
  *
- * Some examples of PNO components are:
- *
- * - Customer
- * - Adjustment
- * - Order
- * - Order Item
- * - Note
- * - Log
- *
  * Add-ons and third party plugins are welcome to register their own component
  * in exactly the same way that PNO does internally.
  *
@@ -56,7 +47,7 @@ function pno_register_component( $name = '', $args = array() ) {
 		)
 	);
 
-	PNO()->components[ $name ] = new PNO\Component( $r );
+	posterno()->components[ $name ] = new PNO\Component( $r );
 
 	do_action( 'pno_registered_component', $name, $r, $args );
 }
@@ -72,8 +63,8 @@ function pno_register_component( $name = '', $args = array() ) {
 function pno_get_component( $name = '' ) {
 	$name = sanitize_key( $name );
 
-	return isset( PNO()->components[ $name ] )
-		? PNO()->components[ $name ]
+	return isset( posterno()->components[ $name ] )
+		? posterno()->components[ $name ]
 		: false;
 }
 
@@ -110,27 +101,14 @@ function pno_setup_components() {
 		return;
 	}
 
-	// Register note.
 	pno_register_component(
-		'note',
+		'profile_fields',
 		array(
-			'schema' => '\\PNO\\Database\\Schema\\Notes',
-			'table'  => '\\PNO\\Database\\Tables\\Notes',
-			'meta'   => '\\PNO\\Database\\Tables\\Note_Meta',
-			'query'  => '\\PNO\\Database\\Queries\\Note',
-			'object' => '\\PNO\\Notes\\Note',
-		)
-	);
-
-	// Register log.
-	pno_register_component(
-		'log',
-		array(
-			'schema' => '\\PNO\\Database\\Schema\\Logs',
-			'table'  => '\\PNO\\Database\\Tables\\Logs',
-			'meta'   => '\\PNO\\Database\\Tables\\Log_Meta',
-			'query'  => '\\PNO\\Database\\Queries\\Log',
-			'object' => '\\PNO\\Logs\\Log',
+			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
+			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
+			'query'  => '\\PNO\\Database\\Queries\\Profile_Fields',
+			'object' => '\\PNO\\Customers\\Customer_Address',
+			'meta'   => false,
 		)
 	);
 
@@ -151,7 +129,7 @@ function pno_setup_components() {
  */
 function pno_install_component_database_tables() {
 
-	$components = PNO()->components;
+	$components = posterno()->components;
 
 	if ( empty( $components ) ) {
 		return;
@@ -184,7 +162,7 @@ function pno_install_component_database_tables() {
  */
 function pno_uninstall_component_database_tables() {
 
-	$components = PNO()->components;
+	$components = posterno()->components;
 
 	if ( empty( $components ) ) {
 		return;
