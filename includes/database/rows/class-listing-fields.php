@@ -1,6 +1,6 @@
 <?php
 /**
- * Profile fields Database Object Class.
+ * Listing fields Database Object Class.
  *
  * @package     PNO
  * @subpackage  Database\Rows
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 use PNO\Database\Row;
 
 /**
- * Profile fields row class.
+ * Listing fields row class.
  *
  * This class exists solely to encapsulate database schema changes, to help
  * separate the needs of the application layer from the requirements of the
@@ -28,6 +28,6 @@ use PNO\Database\Row;
  *
  * @since 0.1.0
  */
-class Profile_Fields extends Row {
+class Listing_Fields extends Row {
 
 }

@@ -112,6 +112,17 @@ function pno_setup_components() {
 		)
 	);
 
+	pno_register_component(
+		'listing_fields',
+		array(
+			'schema' => '\\PNO\\Database\\Schema\\Listing_Fields',
+			'table'  => '\\PNO\\Database\\Tables\\Listing_Fields',
+			'query'  => '\\PNO\\Database\\Queries\\Listing_Fields',
+			'object' => '\\PNO\\Customers\\Customer_Address',
+			'meta'   => false,
+		)
+	);
+
 	$setup = true;
 
 	do_action( 'pno_setup_components' );
