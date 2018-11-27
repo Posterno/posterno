@@ -1,91 +1,86 @@
 <template>
-	<div id="pno-custom-fields-editor-wrapper" class="wrap">
+	<div id="pno-custom-fields-editor">
 
-		<h1>
-			<img :src="logo_url">
+		<AdminHeader :links="adminLinks">
 			{{labels.profile.title}}
-			<ul class="title-links hidden-xs-only">
-				<li>
-					<a href="https://posterno.com/addons" target="_blank" class="page-title-action">{{labels.addons}}</a>
-				</li>
-				<li>
-					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action">{{labels.documentation}}</a>
-				</li>
-			</ul>
-		</h1>
+		</AdminHeader>
 
-		<v-dialog/>
-		<modals-container/>
+		<div id="pno-custom-fields-editor-wrapper" class="wrap">
 
-		<div class="tables-wrapper">
+			<v-dialog/>
+			<modals-container/>
 
-			<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
-			<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
+			<div class="tables-wrapper">
 
-			<wp-button type="primary" @click="showAddNewModal()">{{labels.profile.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
+				<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
+				<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-			<table class="wp-list-table widefat fixed striped">
-				<thead>
-					<tr>
-						<th scope="col" class="move-col" :data-balloon="labels.profile.field_order" data-balloon-pos="right">
-							<span class="dashicons dashicons-menu"></span>
-						</th>
-						<th scope="col" class="column-primary">{{labels.table.title}}</th>
-						<th scope="col">{{labels.table.type}}</th>
-						<th scope="col" class="icon-col">{{labels.table.required}}</th>
-						<th scope="col" class="icon-col" v-if="privacy">{{labels.table.privacy}}</th>
-						<th scope="col" class="icon-col">{{labels.table.editable}}</th>
-						<th scope="col">{{labels.table.actions}}</th>
-					</tr>
-				</thead>
-				<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
-					<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
-						<td class="order-anchor align-middle">
-							<span class="dashicons dashicons-menu"></span>
-						</td>
-						<td class="column-primary">
-							<strong>{{field.name}}</strong>
-						</td>
-						<td>
-							<code>{{field.type_nicename}}</code>
-						</td>
-						<td>
-							<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
-						</td>
-						<td v-if="privacy">
+				<wp-button type="primary" @click="showAddNewModal()">{{labels.profile.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
-						</td>
-						<td>
-							<span :data-balloon="labels.profile.field_admin_only" data-balloon-pos="down" v-if="isAdminOnly(field.editable)">
-								<span class="dashicons dashicons-lock"></span>
-							</span>
+				<table class="wp-list-table widefat fixed striped">
+					<thead>
+						<tr>
+							<th scope="col" class="move-col" :data-balloon="labels.profile.field_order" data-balloon-pos="right">
+								<span class="dashicons dashicons-menu"></span>
+							</th>
+							<th scope="col" class="column-primary">{{labels.table.title}}</th>
+							<th scope="col">{{labels.table.type}}</th>
+							<th scope="col" class="icon-col">{{labels.table.required}}</th>
+							<th scope="col" class="icon-col" v-if="privacy">{{labels.table.privacy}}</th>
+							<th scope="col" class="icon-col">{{labels.table.editable}}</th>
+							<th scope="col">{{labels.table.actions}}</th>
+						</tr>
+					</thead>
+					<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
+						<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
+							<td class="order-anchor align-middle">
+								<span class="dashicons dashicons-menu"></span>
+							</td>
+							<td class="column-primary">
+								<strong>{{field.name}}</strong>
+							</td>
+							<td>
+								<code>{{field.type_nicename}}</code>
+							</td>
+							<td>
+								<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
+							</td>
+							<td v-if="privacy">
 
-							<span class="dashicons dashicons-yes" v-else></span>
-						</td>
-						<td>
-							<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
-							<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
-						</td>
-					</tr>
-					<tr class="no-items" v-if="fields < 1 && ! loading">
-						<td class="colspanchange" colspan="6">
-							<strong>{{labels.table.not_found}}</strong>
-						</td>
-					</tr>
-					<tr class="no-items" v-if="loading">
-						<td class="colspanchange" colspan="6">
-							<wp-spinner></wp-spinner>
-						</td>
-					</tr>
-				</draggable>
-			</table>
+							</td>
+							<td>
+								<span :data-balloon="labels.profile.field_admin_only" data-balloon-pos="down" v-if="isAdminOnly(field.editable)">
+									<span class="dashicons dashicons-lock"></span>
+								</span>
 
+								<span class="dashicons dashicons-yes" v-else></span>
+							</td>
+							<td>
+								<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
+								<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
+							</td>
+						</tr>
+						<tr class="no-items" v-if="fields < 1 && ! loading">
+							<td class="colspanchange" colspan="6">
+								<strong>{{labels.table.not_found}}</strong>
+							</td>
+						</tr>
+						<tr class="no-items" v-if="loading">
+							<td class="colspanchange" colspan="6">
+								<wp-spinner></wp-spinner>
+							</td>
+						</tr>
+					</draggable>
+				</table>
+
+			</div>
 		</div>
-
 	</div>
 </template>
 
 <script>
+import AdminHeader from '../../components/pno-admin-header'
+
 import axios from 'axios'
 import qs from 'qs'
 import orderBy from 'lodash.orderby'
@@ -100,6 +95,7 @@ export default {
 		type: 'profile',
 	},
 	components: {
+		AdminHeader,
 		draggable,
 	},
 	data() {
@@ -108,6 +104,16 @@ export default {
 			labels:        pno_fields_editor.labels,
 			pages:         pno_fields_editor.pages,
 			privacy:       false,
+			adminLinks: [
+				{
+					title: pno_fields_editor.labels.addons,
+					url: 'https://posterno.com/addons'
+				},
+				{
+					title: pno_fields_editor.labels.documentation,
+					url: 'https://docs.posterno.com/'
+				}
+			],
 
 			// App status.
 			loading:       true,
@@ -274,3 +280,15 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss">
+	body.users_page_posterno-custom-profile-fields #wpcontent {
+		padding-left: 0;
+
+		#pno-custom-fields-editor {
+			.pno-admin-title-area .wrap h1 {
+				margin: 15px 0;
+			}
+		}
+	}
+</style>

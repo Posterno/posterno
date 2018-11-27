@@ -126,7 +126,6 @@ export default {
 			// Visual stuff.
 			logo_url:            pno_settings_page.plugin_url + '/assets/imgs/logo.svg',
 			labels:              pno_settings_page.labels,
-			collapsed: false,
 			adminLinks: [
 				{
 					title: pno_settings_page.labels.addons,
