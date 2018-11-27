@@ -249,12 +249,10 @@ export default {
 		 * Displays the add new profile field modal.
 		 */
 		showAddNewModal() {
-
 			this.$modal.show( AddNewModal, {
 				type: 'profile',
 				priority: this.fields.length + 1
 			},{ height: '300px' })
-
 		},
 
 		/*
@@ -273,22 +271,10 @@ export default {
 					this.load_fields()
 					this.success = true
 				}
-			},{ height: '230px', width: '450px' })
+			},{ height: '230px', width: '500px' })
 
 		}
 
 	}
 }
 </script>
-
-<style lang="scss">
-	body.users_page_posterno-custom-profile-fields #wpcontent {
-		padding-left: 0;
-
-		#pno-custom-fields-editor {
-			.pno-admin-title-area .wrap h1 {
-				margin: 15px 0;
-			}
-		}
-	}
-</style>

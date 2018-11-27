@@ -1,5 +1,17 @@
+body.users_page_posterno-custom-profile-fields #wpcontent,
+body.listings_page_posterno-custom-listings-fields #wpcontent,
+body.users_page_posterno-custom-registration-form #wpcontent {
+	padding-left: 0;
+
+	#pno-custom-fields-editor {
+		.pno-admin-title-area .wrap h1 {
+			margin: 15px 0;
+		}
+	}
+}
+
 #pno-custom-fields-editor-wrapper {
-	margin-top: 0;
+	margin: 20px;
 
 	h1 {
 		img {
@@ -68,9 +80,13 @@
 
 			a.button {
 				margin-right: 5px;
+				width: 2em;
+				padding: 0;
 
 				span {
-					margin-top: 3px;
+					margin-top: 4px;
+					font-size: 18px;
+					margin-left: 3px;
 				}
 
 				&.error:hover {

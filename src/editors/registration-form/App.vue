@@ -1,81 +1,74 @@
 <template>
 
-	<div id="pno-custom-fields-editor-wrapper" class="wrap">
+	<div id="pno-custom-fields-editor">
 
-		<h1>
-			<img :src="logo_url">
-			{{labels.registration.title}}
-			<ul class="title-links hidden-xs-only">
-				<li>
-					<a href="https://posterno.com/addons" target="_blank" class="page-title-action">{{labels.addons}}</a>
-				</li>
-				<li>
-					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action">{{labels.documentation}}</a>
-				</li>
-			</ul>
-		</h1>
+		<AdminHeader :links="adminLinks">
+			{{labels.profile.title}}
+		</AdminHeader>
 
-		<v-dialog/>
-		<modals-container/>
+		<div id="pno-custom-fields-editor-wrapper" class="wrap">
 
-		<div id="poststuff">
+			<v-dialog/>
+			<modals-container/>
 
-			<div id="registration-form-editor-wrapper" class="tables-wrapper">
+				<div id="registration-form-editor-wrapper" class="tables-wrapper">
 
-				<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
-				<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
+					<wp-notice type="success" dismissible v-if="success"><strong>{{labels.success}}</strong></wp-notice>
+					<wp-notice type="error" dismissible v-if="error"><strong>{{error_message}}</strong></wp-notice>
 
-				<wp-button type="primary" @click="showAddNewModal()">{{labels.registration.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
+					<wp-button type="primary" @click="showAddNewModal()">{{labels.registration.add_new}}</wp-button> <wp-spinner class="sorting-spinner" v-if="sorting"></wp-spinner>
 
-				<table class="wp-list-table widefat fixed striped">
-					<thead>
-						<tr>
-							<th scope="col" class="hidden-xs-only move-col">
-								<span class="dashicons dashicons-menu"></span>
-							</th>
-							<th scope="col" class="column-primary">{{labels.table.title}}</th>
-							<th scope="col">{{labels.table.required}}</th>
-							<th scope="col">{{labels.table.actions}}</th>
-						</tr>
-					</thead>
-					<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
-						<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
-							<td class="order-anchor align-middle hidden-xs-only">
-								<span class="dashicons dashicons-menu"></span>
-							</td>
-							<td>
-								<strong>{{field.name}}</strong>
-							</td>
-							<td>
-								<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
-							</td>
-							<td>
-								<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
-								<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
-							</td>
-						</tr>
-						<tr class="no-items" v-if="fields < 1 && ! loading">
-							<td class="colspanchange" colspan="4">
-								<strong>{{labels.table.not_found}}</strong>
-							</td>
-						</tr>
-						<tr class="no-items" v-if="loading">
-							<td class="colspanchange" colspan="4">
-								<wp-spinner></wp-spinner>
-							</td>
-						</tr>
-					</draggable>
-				</table>
+					<table class="wp-list-table widefat fixed striped">
+						<thead>
+							<tr>
+								<th scope="col" class="hidden-xs-only move-col">
+									<span class="dashicons dashicons-menu"></span>
+								</th>
+								<th scope="col" class="column-primary">{{labels.table.title}}</th>
+								<th scope="col">{{labels.table.required}}</th>
+								<th scope="col">{{labels.table.actions}}</th>
+							</tr>
+						</thead>
+						<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
+							<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
+								<td class="order-anchor align-middle hidden-xs-only">
+									<span class="dashicons dashicons-menu"></span>
+								</td>
+								<td>
+									<strong>{{field.name}}</strong>
+								</td>
+								<td>
+									<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
+								</td>
+								<td>
+									<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
+									<a href="#/registration-form" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
+								</td>
+							</tr>
+							<tr class="no-items" v-if="fields < 1 && ! loading">
+								<td class="colspanchange" colspan="4">
+									<strong>{{labels.table.not_found}}</strong>
+								</td>
+							</tr>
+							<tr class="no-items" v-if="loading">
+								<td class="colspanchange" colspan="4">
+									<wp-spinner></wp-spinner>
+								</td>
+							</tr>
+						</draggable>
+					</table>
+
+				</div>
 
 			</div>
-
-		</div>
 
 	</div>
 
 </template>
 
 <script>
+import AdminHeader from '../../components/pno-admin-header'
+
 import axios from 'axios'
 import qs from 'qs'
 import orderBy from 'lodash.orderby'
@@ -87,6 +80,7 @@ import DeleteFieldModal from '../../modals/delete-field'
 export default {
 	name: 'registration-editor',
 	components: {
+		AdminHeader,
 		draggable,
 	},
 	data() {
@@ -94,6 +88,16 @@ export default {
 			logo_url:      pno_fields_editor.plugin_url + '/assets/imgs/logo.svg',
 			labels:        pno_fields_editor.labels,
 			pages:         pno_fields_editor.pages,
+			adminLinks: [
+				{
+					title: pno_fields_editor.labels.addons,
+					url: 'https://posterno.com/addons'
+				},
+				{
+					title: pno_fields_editor.labels.documentation,
+					url: 'https://docs.posterno.com/'
+				}
+			],
 
 			// App status.
 			loading:       true,
