@@ -52,6 +52,13 @@ class Field {
 	protected $field_setting_prefix = '';
 
 	/**
+	 * The post type where the field is stored.
+	 *
+	 * @var boolean|string
+	 */
+	protected $post_type = false;
+
+	/**
 	 * ID attribute used within forms and templates.
 	 *
 	 * @access protected
@@ -450,6 +457,15 @@ class Field {
 	}
 
 	/**
+	 * Get the post type set for the field.
+	 *
+	 * @return string
+	 */
+	public function get_post_type() {
+		return $this->post_type;
+	}
+
+	/**
 	 * Get things started.
 	 *
 	 * @param boolean|array|int|string $field the field to initialize either an id or an array.
@@ -549,6 +565,21 @@ class Field {
 	 * @return void
 	 */
 	public function populate_from_post_id( $post_id ) {}
+
+	/**
+	 * Create a new field and save it into the database.
+	 *
+	 * @param array $args list of arguments to create a new field.
+	 * @return void
+	 */
+	public function create( $args = [] ) {}
+
+	/**
+	 * Delete a field from the database and delete it's associated settings too.
+	 *
+	 * @return void
+	 */
+	public function delete() {}
 
 	/**
 	 * Update the priority of the field into the database.

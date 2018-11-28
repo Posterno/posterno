@@ -124,6 +124,7 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			'nopaging'               => true,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
+			'fields'                 => 'ids',
 		];
 
 		$fields = new WP_Query( $args );
@@ -153,11 +154,11 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 
 		$post_data = array();
 		$schema    = $this->get_item_schema();
-		$field     = new PNO\Field\Registration( $post->ID );
+		$field     = new PNO\Field\Registration( $post );
 
 		// We are also renaming the fields to more understandable names.
 		if ( isset( $schema['properties']['id'] ) ) {
-			$post_data['id'] = (int) $post->ID;
+			$post_data['id'] = (int) $post;
 		}
 		if ( isset( $schema['properties']['name'] ) ) {
 			$post_data['name'] = $field->get_name();
@@ -249,19 +250,15 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.' ), 422 );
 		}
 
-		$field = new PNO_Registration_Field();
-		$field->__set( 'name', $field_name );
-		$field->__set( 'profile_field_id', $profile_field_id );
+		$field = new PNO\Field\Registration();
 
-		if ( $field_priority ) {
-			$field->__set( 'priority', $field_priority );
-		}
-
-		$new_field = $field->create();
-
-		if ( is_wp_error( $new_field ) ) {
-			return new WP_REST_Response( $new_field->get_error_message(), 422 );
-		}
+		$new_field = $field->create(
+			[
+				'name'             => $field_name,
+				'profile_field_id' => $profile_field_id,
+				'priority'         => $field_priority,
+			]
+		);
 
 		$request->set_param( 'context', 'edit' );
 		$response = $this->prepare_item_for_response( $new_field, $request );
@@ -285,17 +282,15 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 		}
 
-		$field = new PNO_Registration_Field( $field_id );
+		$field = new PNO\Field\Registration( $field_id );
 
-		if ( $field instanceof PNO_Registration_Field && $field->get_id() > 0 ) {
+		if ( $field instanceof PNO\Field\Registration && $field->get_id() > 0 ) {
 
-			$field_meta = $field->get_meta();
-
-			if ( $field_meta && in_array( $field_meta, pno_get_registration_default_meta_keys() ) ) {
-				return new WP_REST_Response( esc_html__( 'Default fields cannnot be deleted.' ), 422 );
+			if ( $field->can_delete() ) {
+				$field->delete();
+			} else {
+				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 			}
-
-			$field->delete();
 
 		}
 

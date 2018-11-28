@@ -653,9 +653,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Field\Registration( 1411 );
+		$field = new \PNO\Field\Registration( 1413 );
 
-		carbon_set_post_meta( 1411, 'registration_field_priority', 2 );
+		$field->delete();
 
 		wp_die();
 	}

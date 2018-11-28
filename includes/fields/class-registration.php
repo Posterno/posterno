@@ -38,6 +38,13 @@ class Registration extends Field {
 	protected $field_setting_prefix = 'registration_field_';
 
 	/**
+	 * The post type where these type of fields are stored.
+	 *
+	 * @var string
+	 */
+	protected $post_type = 'pno_signup_fields';
+
+	/**
 	 * Registration fields are associated to a profile field when
 	 * they're not default fields.
 	 *
@@ -114,6 +121,65 @@ class Registration extends Field {
 				$this->required = true;
 			}
 		}
+
+	}
+
+	/**
+	 * Create a new field and save it into the database.
+	 *
+	 * @param array $args list of arguments to create a new field.
+	 * @throws InvalidArgumentException When missing arguments.
+	 * @return string
+	 */
+	public function create( $args = [] ) {
+
+		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+		}
+
+		if ( ! isset( $args['profile_field_id'] ) || empty( $args['profile_field_id'] ) ) {
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'profile_field_id' ) );
+		}
+
+		$field_args = [
+			'post_type'   => $this->get_post_type(),
+			'post_title'  => $args['name'],
+			'post_status' => 'publish',
+		];
+
+		$field_id = wp_insert_post( $field_args );
+
+		if ( ! is_wp_error( $field_id ) ) {
+
+			$field = new \PNO\Database\Queries\Registration_Fields();
+			$field->add_item( [ 'post_id' => $field_id ] );
+
+			carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'profile_field_id', $args['profile_field_id'] );
+
+			if ( isset( $args['priority'] ) && ! empty( $args['priority'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'priority', $args['priority'] );
+			}
+
+			return $field_id;
+
+		}
+
+	}
+
+	/**
+	 * Delete a field from the database and delete it's associated settings too.
+	 *
+	 * @return void
+	 */
+	public function delete() {
+
+		wp_delete_post( $this->get_post_id(), true );
+
+		$field = new \PNO\Database\Queries\Registration_Fields();
+
+		$found_field = $field->get_item_by( 'post_id', $this->get_post_id() );
+
+		$field->delete_item( $found_field->get_id() );
 
 	}
 
