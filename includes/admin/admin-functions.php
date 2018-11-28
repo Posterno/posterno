@@ -45,7 +45,7 @@ function pno_get_pages( $force = false ) {
  * @access public
  * @since  0.1.0
  * @return $plugin_array
-*/
+ */
 function pno_shortcodes_add_tinymce_plugin( $plugin_array ) {
 
 	$plugin_array['pno_shortcodes_mce_button'] = apply_filters( 'pno_shortcodes_tinymce_js_file_url', PNO_PLUGIN_URL . 'assets/js/pno-tinymce.min.js' );
@@ -60,7 +60,7 @@ function pno_shortcodes_add_tinymce_plugin( $plugin_array ) {
  * @access public
  * @since  1.0.0
  * @return $buttons
-*/
+ */
 function pno_shortcodes_register_mce_button( $buttons ) {
 
 	array_push( $buttons, 'pno_shortcodes_mce_button' );
@@ -76,7 +76,8 @@ function pno_shortcodes_register_mce_button( $buttons ) {
  */
 function pno_get_login_methods() {
 	return apply_filters(
-		'pno_get_login_methods', array(
+		'pno_get_login_methods',
+		array(
 			'username'       => __( 'Username only' ),
 			'email'          => __( 'Email only' ),
 			'username_email' => __( 'Username or Email' ),
@@ -111,7 +112,7 @@ function pno_get_roles( $force = false, $admin = false ) {
 				'label' => esc_html( $role ),
 			);
 		}
-		//set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
+		// set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
 	}
 	return $roles;
 }
@@ -195,43 +196,54 @@ function pno_install_profile_fields() {
 			$field_id = wp_insert_post( $new_field );
 
 			if ( is_wp_error( $field_id ) ) {
-				return new WP_REST_Response( $field_id->get_error_message(), 422 );
+				return $field_id;
 			} else {
 
-				// Setup the field's meta key.
-				carbon_set_post_meta( $field_id, 'profile_field_meta_key', $field_key );
+				$dbfield = new \PNO\Database\Queries\Profile_Fields();
+
+				$db_settings = [
+					'_profile_field_meta_key' => $field_key,
+				];
 
 				// Setup the field's type.
 				$registered_field_types = pno_get_registered_field_types();
 
 				if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
-					carbon_set_post_meta( $field_id, 'profile_field_type', esc_attr( $field['type'] ) );
+					$db_settings['_profile_field_type'] = $field['type'];
 				}
 
 				// Assign a description if one is given.
 				if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-					carbon_set_post_meta( $field_id, 'profile_field_description', esc_html( $field['description'] ) );
+					$db_settings['_profile_field_description'] = $field['description'];
 				}
 
 				// Assign a placeholder if one is given.
 				if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-					carbon_set_post_meta( $field_id, 'profile_field_placeholder', esc_html( $field['placeholder'] ) );
+					$db_settings['_profile_field_placeholder'] = esc_html( $field['placeholder'] );
 				}
 
 				// Make field required if defined.
 				if ( isset( $field['required'] ) && $field['required'] === true ) {
-					carbon_set_post_meta( $field_id, 'profile_field_is_required', true );
+					$db_settings['_profile_field_is_required'] = true;
 				}
 
 				// Set priority.
 				if ( isset( $field['priority'] ) && ! empty( $field['priority'] ) ) {
-					carbon_set_post_meta( $field_id, 'profile_field_priority', absint( $field['priority'] ) );
+					$db_settings['_profile_field_priority'] = absint( $field['priority'] );
 				}
 
 				// Mark the field as a default one.
 				if ( pno_is_default_field( $field_key ) ) {
-					carbon_set_post_meta( $field_id, 'profile_is_default_field', true );
+					$db_settings['_profile_is_default_field'] = true;
 				}
+
+				$dbfield->add_item(
+					[
+						'post_id'  => $field_id,
+						'settings' => maybe_serialize( $db_settings ),
+					]
+				);
+
 			}
 
 			wp_reset_postdata();
@@ -369,7 +381,6 @@ function pno_install_listings_fields() {
 			if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
 				carbon_set_post_meta( $field_id, 'listing_field_taxonomy', $field['taxonomy'] );
 			}
-
 		}
 	}
 
@@ -446,7 +457,8 @@ function pno_display_post_type_tabs() {
 				array(
 					'taxonomy'  => $tax,
 					'post_type' => 'listings',
-				), admin_url( 'edit-tags.php' )
+				),
+				admin_url( 'edit-tags.php' )
 			),
 		);
 	}
@@ -508,7 +520,8 @@ function pno_get_listings_types_for_association() {
 	$types = [];
 
 	$terms = get_terms(
-		'listings-types', array(
+		'listings-types',
+		array(
 			'hide_empty' => false,
 			'number'     => 999,
 			'orderby'    => 'name',
@@ -537,7 +550,8 @@ function pno_get_listings_categories_for_association() {
 	$categories = [];
 
 	$terms = get_terms(
-		'listings-categories', array(
+		'listings-categories',
+		array(
 			'hide_empty' => false,
 			'number'     => 999,
 			'orderby'    => 'name',
@@ -567,7 +581,8 @@ function pno_get_listings_tags_for_association() {
 	$tags = [];
 
 	$terms = get_terms(
-		'listings-tags', array(
+		'listings-tags',
+		array(
 			'hide_empty' => false,
 			'number'     => 999,
 			'orderby'    => 'name',
@@ -595,7 +610,8 @@ function pno_get_emails_situations() {
 	$types = [];
 
 	$terms = get_terms(
-		'pno-email-type', array(
+		'pno-email-type',
+		array(
 			'hide_empty' => false,
 			'number'     => 999,
 			'orderby'    => 'name',
@@ -639,7 +655,7 @@ function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
 		$field = new \PNO\Database\Queries\Registration_Fields();
-		$n = $field->get_item_by( 'post_id', 492 );
+		$n     = $field->get_item_by( 'post_id', 492 );
 
 		var_dump( $n );
 
