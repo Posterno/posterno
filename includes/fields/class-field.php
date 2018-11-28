@@ -164,6 +164,11 @@ class Field {
 	 */
 	private $pending;
 
+	/**
+	 * Holds the settings stored into the database for the given's field.
+	 *
+	 * @var boolean|string
+	 */
 	protected $settings = false;
 
 	/**
@@ -403,6 +408,11 @@ class Field {
 		return $this->object_meta_key;
 	}
 
+	/**
+	 * Get an array of settings for the field, retrieved from the database.
+	 *
+	 * @return array
+	 */
 	public function get_settings() {
 		return maybe_unserialize( $this->settings );
 	}
@@ -410,7 +420,7 @@ class Field {
 	/**
 	 * Get things started.
 	 *
-	 * @param boolean|array|int|string $_id_or_field the field to initialize either an id or an array.
+	 * @param boolean|array|int|string $field the field to initialize either an id or an array.
 	 */
 	public function __construct( $field = false, $id = false ) {
 

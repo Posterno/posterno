@@ -1,6 +1,6 @@
 <?php
 /**
- * Defines a representation of a Posterno profile field.
+ * Defines a representation of a Posterno registration field.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -16,8 +16,8 @@ use PNO\Field;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Profile field representation of posterno's fields.
+ * Registration field of Posterno's forms.
  */
-class Profile extends Field {
+class Registration extends Field {
 
 }

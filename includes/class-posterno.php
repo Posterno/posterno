@@ -271,6 +271,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/class-registration.php';
 		}
 
 		/**
