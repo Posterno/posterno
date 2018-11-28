@@ -24,7 +24,7 @@ class Field {
 	 * @access protected
 	 * @var int
 	 */
-	protected $object_id = 0;
+	protected $post_id = 0;
 
 	/**
 	 * The type of data the field will'be storing into the database.
@@ -163,6 +163,8 @@ class Field {
 	 * @var array
 	 */
 	private $pending;
+
+	protected $settings = false;
 
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property.
@@ -401,20 +403,29 @@ class Field {
 		return $this->object_meta_key;
 	}
 
+	public function get_settings() {
+		return maybe_unserialize( $this->settings );
+	}
+
 	/**
 	 * Get things started.
 	 *
 	 * @param boolean|array|int|string $_id_or_field the field to initialize either an id or an array.
 	 */
-	public function __construct( $_id_or_field = false, $id = false ) {
+	public function __construct( $field = false, $id = false ) {
 
+		/*
 		if ( ! $_id_or_field || ! $id ) {
 			return;
 		}
 
 		$this->set_id( $id );
 		$this->name = $id;
-		$this->populate( $_id_or_field );
+		$this->populate( $_id_or_field );*/
+
+		if ( is_object( $field ) ) {
+			$this->populate( $field );
+		}
 
 	}
 

@@ -107,11 +107,12 @@ function pno_setup_components() {
 			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
 			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
 			'query'  => '\\PNO\\Database\\Queries\\Profile_Fields',
-			'object' => '\\PNO\\Customers\\Customer_Address',
+			'object' => '\\PNO\\Field\\Profile',
 			'meta'   => false,
 		)
 	);
 
+	/*
 	pno_register_component(
 		'listing_fields',
 		array(
@@ -132,7 +133,7 @@ function pno_setup_components() {
 			'object' => '\\PNO\\Customers\\Customer_Address',
 			'meta'   => false,
 		)
-	);
+	);*/
 
 	$setup = true;
 

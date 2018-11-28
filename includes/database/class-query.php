@@ -53,7 +53,7 @@ class Query extends Base {
 	 * @since 0.1.0
 	 * @var   string
 	 */
-	protected $prefix = 'edd';
+	protected $prefix = 'pno';
 
 	/** Table Properties ******************************************************/
 

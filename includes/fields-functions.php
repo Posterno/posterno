@@ -1208,3 +1208,24 @@ function pno_dropzone_format_value_to_json( $value, $field ) {
 	return $files;
 
 }
+
+function pno_add_profile_field_settings( $data ) {
+
+	// A post ID must be supplied for every setting inserted.
+	if ( empty( $data['post_id'] ) ) {
+		return false;
+	}
+
+	$profile_fields = new PNO\Database\Queries\Profile_Fields();
+
+	return $profile_fields->add_item( $data );
+
+}
+
+function pno_get_profile_field_settings( $post_id ) {
+
+	$profile_fields = new PNO\Database\Queries\Profile_Fields();
+
+	return $profile_fields->get_item_by( 'post_id', $post_id );
+
+}

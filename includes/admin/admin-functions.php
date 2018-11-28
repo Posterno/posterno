@@ -638,9 +638,13 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		$json = '{"image_id":"1162","image_url":"http:\/\/posterno.local\/wp-content\/uploads\/pno-uploads\/listing_featured_image\/2018\/10\/Schermata-2018-10-18-alle-12.01.44-1.png","image_path":"\/app\/public\/wp-content\/uploads\/pno-uploads\/listing_featured_image\/2018\/10\/Schermata-2018-10-18-alle-12.01.44-1.png","image_name":"Schermata-2018-10-18-alle-12.01.44-1.png","image_size":347294}';
-
-		print_r( json_decode( $json ) );
+		$field = new \PNO\Database\Queries\Profile_Fields();
+		$field->add_item(
+			[
+				'post_id' => 11111,
+				'settings' => 'asdasdasdasdasdasdasd',
+			]
+		);
 
 		wp_die();
 	}

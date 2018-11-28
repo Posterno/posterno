@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
  */
 class Component {
 
-
 	/**
 	 * Database schema definition
 	 *

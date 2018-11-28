@@ -25,10 +25,10 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function init() {
+	public function init() {
 
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_profile_fields' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_profile_fields' ] );
 
 	}
 
@@ -37,7 +37,7 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_settings_tabs() {
+	public function get_settings_tabs() {
 
 		$tabs = [
 			'general'     => esc_html__( 'General' ),
@@ -60,7 +60,7 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_general_settings() {
+	public function get_general_settings() {
 
 		$settings = [];
 
@@ -128,7 +128,7 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_validation_settings() {
+	public function get_validation_settings() {
 		$settings = [];
 
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_required', esc_html__( 'Set as required' ) )
@@ -149,7 +149,7 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_permissions_settings() {
+	public function get_permissions_settings() {
 		$settings = [];
 
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_hidden', esc_html__( 'Admin only?' ) )
@@ -173,13 +173,16 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function register_settings() {
+	public function register_settings() {
+
+		$datastore = new PNO\Datastores\CustomFieldSettings();
+		$datastore->set_custom_field_type( 'profile' );
 
 		$container = Container::make( 'post_meta', esc_html__( 'Field settings' ) )
-			->set_datastore( new PNO\Datastores\DataCompressor() )
+			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_users_fields' );
 
-		foreach ( self::get_settings_tabs() as $key => $tab ) {
+		foreach ( $this->get_settings_tabs() as $key => $tab ) {
 
 			$fields = [];
 
@@ -187,7 +190,7 @@ class PNO_Profiles_Custom_Fields {
 				case 'general':
 				case 'validation':
 				case 'permissions':
-					$fields = self::{"get_{$key}_settings"}();
+					$fields = $this->{"get_{$key}_settings"}();
 					break;
 				default:
 					/**
@@ -229,7 +232,7 @@ class PNO_Profiles_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function register_profile_fields() {
+	public function register_profile_fields() {
 
 		$extra_account_fields = remember_transient( 'pno_extra_admin_account_fields', function () {
 			$fields_query = [

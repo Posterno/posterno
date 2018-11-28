@@ -12,14 +12,9 @@ namespace PNO\Field;
 
 use PNO\Field;
 
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
-
 class Profile extends Field {
-
-	public function __construct( $args ) {
-		print_r( $args );
-		exit;
-	}
 
 }
