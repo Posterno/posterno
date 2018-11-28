@@ -80,7 +80,7 @@ class PNO_Registration_Custom_Fields {
 					'relation' => 'AND',
 					array(
 						'field'   => 'registration_field_is_default',
-						'value'   => [ 'email', 'password', 'username' ],
+						'value'   => [ 'email' ],
 						'compare' => 'NOT IN',
 					),
 				)
