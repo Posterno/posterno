@@ -61,7 +61,7 @@ class PNO_Registration_Custom_Fields {
 		$settings[] = Field::make( 'hidden', 'registration_field_is_default' );
 		$settings[] = Field::make( 'hidden', 'registration_field_priority' );
 
-		$settings[] = Field::make( 'text', 'registration_field_profile_field_id', esc_html__( 'Profile field id' ) )
+		$settings[] = Field::make( 'hidden', 'registration_field_profile_field_id' )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
@@ -71,8 +71,7 @@ class PNO_Registration_Custom_Fields {
 						'compare' => 'NOT IN',
 					),
 				)
-			)
-			->set_help_text( esc_html__( 'Registration fields must be mapped to an existing profile field in order to store information related to the field.' ) );
+			);
 
 		$settings[] = Field::make( 'checkbox', 'registration_field_is_required', esc_html__( 'Set as required' ) )
 			->set_conditional_logic(
