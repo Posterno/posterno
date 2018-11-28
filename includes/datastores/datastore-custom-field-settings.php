@@ -105,6 +105,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 		$pno_field      = $this->get_field_type_class();
 		$existing_field = $this->get_field_settings();
+
 		$field_settings = [];
 		$value          = '';
 
@@ -118,7 +119,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Checkbox_Field' ) && isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
 
-			$value = $field_settings[ $key ] === '1' ? 'yes' : false;
+			$value = true;
 
 		} else {
 			if ( isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
