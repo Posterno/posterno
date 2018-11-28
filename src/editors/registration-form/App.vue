@@ -3,7 +3,7 @@
 	<div id="pno-custom-fields-editor">
 
 		<AdminHeader :links="adminLinks">
-			{{labels.profile.title}}
+			{{labels.registration.title}}
 		</AdminHeader>
 
 		<div id="pno-custom-fields-editor-wrapper" class="wrap">
