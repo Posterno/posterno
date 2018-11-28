@@ -1,4 +1,5 @@
 <?php
+
 /**
  * All the functions that are only used within the admin panel.
  *
@@ -124,7 +125,6 @@ function pno_get_roles( $force = false, $admin = false ) {
  * @return void
  */
 function pno_install_profile_fields() {
-
 	// Bail if this was already done.
 	if ( get_option( 'pno_profile_fields_installed' ) ) {
 		return;
@@ -260,7 +260,6 @@ function pno_install_profile_fields() {
  * @return void
  */
 function pno_install_registration_fields() {
-
 	// Bail if this was already done.
 	if ( get_option( 'pno_registration_fields_installed' ) ) {
 		return;
@@ -299,20 +298,29 @@ function pno_install_registration_fields() {
 
 		if ( ! is_wp_error( $field_id ) ) {
 
-			// Mark the registration field as a default field.
-			if ( pno_is_default_field( $key ) ) {
-				carbon_set_post_meta( $field_id, 'registration_field_is_default', $key );
-			}
+			$dbfield = new \PNO\Database\Queries\Registration_Fields();
+
+			$db_settings = [
+				'_registration_field_is_default' => $key,
+			];
 
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
-				carbon_set_post_meta( $field_id, 'registration_field_is_required', true );
+				$db_settings['_registration_field_is_required'] = true;
 			}
 
 			// Setup the priority of this field.
 			if ( isset( $field['priority'] ) ) {
-				carbon_set_post_meta( $field_id, 'registration_field_priority', $field['priority'] );
+				$db_settings['_registration_field_priority'] = $field['priority'];
 			}
+
+			$dbfield->add_item(
+				[
+					'post_id'  => $field_id,
+					'settings' => maybe_serialize( $db_settings ),
+				]
+			);
+
 		}
 	}
 
@@ -324,7 +332,6 @@ function pno_install_registration_fields() {
  * @return void
  */
 function pno_install_listings_fields() {
-
 	// Bail if this was already done.
 	if ( get_option( 'pno_listings_fields_installed' ) ) {
 		return;
@@ -392,7 +399,6 @@ function pno_install_listings_fields() {
  * @return void
  */
 function pno_install_email_types() {
-
 	$types = pno_email_get_type_schema();
 
 	foreach ( $types as $type_id => $type ) {
@@ -416,7 +422,6 @@ function pno_install_email_types() {
  * @return void
  */
 function pno_install_form_types() {
-
 	$types = pno_forms_get_type_schema();
 
 	foreach ( $types as $type_id => $type ) {
@@ -441,7 +446,6 @@ function pno_install_form_types() {
  * @return void
  */
 function pno_display_post_type_tabs() {
-
 	$tabs = array(
 		'listings' => array(
 			'name' => 'Listings',
@@ -476,7 +480,7 @@ function pno_display_post_type_tabs() {
 	$tabs = apply_filters( 'pno_add_ons_tabs', $tabs );
 
 	// phpcs:ignore
-	if ( isset( $_GET['taxonomy'] ) && in_array( $_GET['taxonomy'], array_keys( $taxonomies ), true ) ) {
+	if (isset($_GET['taxonomy']) && in_array($_GET['taxonomy'], array_keys($taxonomies), true)) {
 		$active_tab = $_GET['taxonomy']; // phpcs:ignore
 	} else {
 		$active_tab = 'listings';
@@ -490,8 +494,8 @@ function pno_display_post_type_tabs() {
 
 		foreach ( $tabs as $tab_id => $tab ) {
 			$active = ( $active_tab === $tab_id )
-				? ' nav-tab-active'
-				: '';
+			? ' nav-tab-active'
+			: '';
 
 			echo '<a href="' . esc_url( $tab['url'] ) . '" class="nav-tab' . esc_attr( $active ) . '">';
 			echo esc_html( $tab['name'] );
@@ -506,7 +510,7 @@ function pno_display_post_type_tabs() {
 	<br />
 
 	<?php
-	echo ob_get_clean(); // phpcs:ignore
+echo ob_get_clean(); // phpcs:ignore
 }
 
 /**
@@ -516,7 +520,6 @@ function pno_display_post_type_tabs() {
  * @return array
  */
 function pno_get_listings_types_for_association() {
-
 	$types = [];
 
 	$terms = get_terms(
@@ -546,7 +549,6 @@ function pno_get_listings_types_for_association() {
  * @return array
  */
 function pno_get_listings_categories_for_association() {
-
 	$categories = [];
 
 	$terms = get_terms(
@@ -577,7 +579,6 @@ function pno_get_listings_categories_for_association() {
  * @return array
  */
 function pno_get_listings_tags_for_association() {
-
 	$tags = [];
 
 	$terms = get_terms(
@@ -606,7 +607,6 @@ function pno_get_listings_tags_for_association() {
  * @return array
  */
 function pno_get_emails_situations() {
-
 	$types = [];
 
 	$terms = get_terms(
@@ -651,7 +651,6 @@ function pno_get_emails_situations() {
 
 
 function testme() {
-
 	if ( isset( $_GET['testme'] ) ) {
 
 		$field = new \PNO\Database\Queries\Registration_Fields();
