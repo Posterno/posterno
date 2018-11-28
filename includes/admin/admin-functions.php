@@ -638,13 +638,10 @@ function testme() {
 
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Database\Queries\Profile_Fields();
-		$field->add_item(
-			[
-				'post_id' => 11111,
-				'settings' => 'asdasdasdasdasdasdasd',
-			]
-		);
+		$field = new \PNO\Database\Queries\Registration_Fields();
+		$n = $field->get_item_by( 'post_id', 492 );
+
+		var_dump( $n );
 
 		wp_die();
 	}

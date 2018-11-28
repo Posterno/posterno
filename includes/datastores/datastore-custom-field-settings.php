@@ -32,6 +32,13 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 	protected $custom_field_type = false;
 
 	/**
+	 * Temporary store the id of newly created settings object id.
+	 *
+	 * @var integer
+	 */
+	private $settings_object_id = 0;
+
+	/**
 	 * Specify the type of custom field we're going to save.
 	 *
 	 * @param string $type the type of custom field eg: listing, profile, registration.
@@ -63,6 +70,8 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 		if ( $this->get_custom_field_type() === 'profile' ) {
 			$field = new \PNO\Database\Queries\Profile_Fields();
+		} elseif ( $this->get_custom_field_type() === 'registration' ) {
+			$field = new \PNO\Database\Queries\Registration_Fields();
 		}
 
 		return $field;
@@ -95,12 +104,12 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 		$key = $this->get_key_for_field( $field );
 
 		$pno_field      = $this->get_field_type_class();
-		$existing_field = $pno_field->get_item_by( 'post_id', $this->get_object_id() );
+		$existing_field = $this->get_field_settings();
 		$field_settings = [];
 		$value          = '';
 
 		if ( $pno_field instanceof $pno_field ) {
-			$field_settings = $existing_field->get_settings();
+			$field_settings = $existing_field;
 		}
 
 		if ( is_a( $field, '\\Carbon_Fields\\Field\\Complex_Field' ) ) {
@@ -190,6 +199,8 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 			}
 
 			$new_field = $field->add_item( [ 'post_id' => $this->get_object_id() ] );
+
+			$this->settings_object_id = $new_field;
 
 		}
 
