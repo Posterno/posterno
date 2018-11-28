@@ -31,6 +31,13 @@ class Registration extends Field {
 	protected $object_type = 'user_meta';
 
 	/**
+	 * The prefix used by Carbon Fields to store field's settings.
+	 *
+	 * @var string
+	 */
+	protected $field_setting_prefix = 'registration_field_';
+
+	/**
 	 * Registration fields are associated to a profile field when
 	 * they're not default fields.
 	 *

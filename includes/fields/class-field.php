@@ -45,6 +45,13 @@ class Field {
 	protected $object_meta_key = null;
 
 	/**
+	 * The prefix used by Carbon Fields to store field's settings.
+	 *
+	 * @var string
+	 */
+	protected $field_setting_prefix = '';
+
+	/**
 	 * ID attribute used within forms and templates.
 	 *
 	 * @access protected
@@ -434,6 +441,15 @@ class Field {
 	}
 
 	/**
+	 * Retrieve the specified field setting prefix for this type of field.
+	 *
+	 * @return string
+	 */
+	public function get_field_setting_prefix() {
+		return $this->field_setting_prefix;
+	}
+
+	/**
 	 * Get things started.
 	 *
 	 * @param boolean|array|int|string $field the field to initialize either an id or an array.
@@ -535,16 +551,13 @@ class Field {
 	public function populate_from_post_id( $post_id ) {}
 
 	/**
-	 * Set the id attribute of the field.
+	 * Update the priority of the field into the database.
 	 *
-	 * @param string $id what to use as id.
+	 * @param string $priority the new priority to set for the field.
 	 * @return void
 	 */
-	public function set_id( $id ) {
-
-		$id = esc_attr( $id );
-		$this->id = "pno-field-{$id}";
-
+	public function update_priority( $priority ) {
+		carbon_set_post_meta( $this->get_post_id(), $this->get_field_setting_prefix() . 'priority', absint( $priority ) );
 	}
 
 }

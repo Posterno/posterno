@@ -655,7 +655,7 @@ function testme() {
 
 		$field = new \PNO\Field\Registration( 1411 );
 
-		var_dump( $field );
+		carbon_set_post_meta( 1411, 'registration_field_priority', 2 );
 
 		wp_die();
 	}
