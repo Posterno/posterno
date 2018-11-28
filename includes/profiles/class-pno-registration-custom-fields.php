@@ -24,8 +24,8 @@ class PNO_Registration_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function init() {
-		add_action( 'carbon_fields_register_fields', [ __class__, 'register_settings' ] );
+	public function init() {
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class PNO_Registration_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_settings_tabs() {
+	public function get_settings_tabs() {
 
 		$tabs = [
 			'general' => esc_html__( 'General' ),
@@ -54,7 +54,7 @@ class PNO_Registration_Custom_Fields {
 	 *
 	 * @return array
 	 */
-	public static function get_general_settings() {
+	public function get_general_settings() {
 
 		$settings = [];
 
@@ -112,7 +112,7 @@ class PNO_Registration_Custom_Fields {
 	 *
 	 * @return void
 	 */
-	public static function register_settings() {
+	public function register_settings() {
 
 		$datastore = new PNO\Datastores\CustomFieldSettings();
 		$datastore->set_custom_field_type( 'registration' );
