@@ -653,10 +653,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Database\Queries\Registration_Fields();
-		$n     = $field->get_item_by( 'post_id', 492 );
+		$field = new \PNO\Field\Registration( 1411 );
 
-		var_dump( $n );
+		var_dump( $field );
 
 		wp_die();
 	}

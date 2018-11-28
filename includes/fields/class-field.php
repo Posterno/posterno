@@ -75,6 +75,13 @@ class Field {
 	protected $type = false;
 
 	/**
+	 * The human readable name of the set field type.
+	 *
+	 * @var string
+	 */
+	protected $type_nicename = null;
+
+	/**
 	 * Field Name.
 	 *
 	 * @access protected
@@ -227,6 +234,15 @@ class Field {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Retrieve the associated post id with the field.
+	 *
+	 * @return string
+	 */
+	public function get_post_id() {
+		return $this->post_id;
 	}
 
 	/**
@@ -424,17 +440,14 @@ class Field {
 	 */
 	public function __construct( $field = false, $id = false ) {
 
-		/*
-		if ( ! $_id_or_field || ! $id ) {
-			return;
-		}
-
-		$this->set_id( $id );
-		$this->name = $id;
-		$this->populate( $_id_or_field );*/
-
 		if ( is_object( $field ) ) {
+
 			$this->populate( $field );
+
+		} else {
+
+			$this->populate_from_post_id( $field );
+
 		}
 
 	}
@@ -501,6 +514,25 @@ class Field {
 
 		return $result;
 	}
+
+	/**
+	 * Remove a prefix from the field id.
+	 *
+	 * @param string $prefix string to remove.
+	 * @param string $id field id.
+	 * @return string
+	 */
+	public function remove_prefix_from_setting_id( $prefix, $id ) {
+		return str_replace( $prefix, '', $id );
+	}
+
+	/**
+	 * Populate field's object from post id.
+	 *
+	 * @param string $post_id the id of the post.
+	 * @return void
+	 */
+	public function populate_from_post_id( $post_id ) {}
 
 	/**
 	 * Set the id attribute of the field.
