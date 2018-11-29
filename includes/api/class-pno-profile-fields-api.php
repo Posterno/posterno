@@ -45,7 +45,9 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 	public function register_routes() {
 
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base, array(
+			$this->namespace,
+			'/' . $this->rest_base,
+			array(
 				array(
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_items' ),
@@ -57,7 +59,8 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 					'callback'            => array( $this, 'create_item' ),
 					'permission_callback' => array( $this, 'create_item_permissions_check' ),
 					'args'                => array_merge(
-						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ), array(
+						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+						array(
 							'name' => array(
 								'description' => __( 'Field name.' ),
 								'required'    => true,
@@ -76,7 +79,9 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		);
 
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
+			array(
 				'args'   => array(
 					'id' => array(
 						'description' => __( 'Unique identifier for the resource.' ),
@@ -94,7 +99,9 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		);
 
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base . '/update-priority', array(
+			$this->namespace,
+			'/' . $this->rest_base . '/update-priority',
+			array(
 				array(
 					'methods'             => WP_REST_Server::EDITABLE,
 					'callback'            => array( $this, 'update_priority' ),
@@ -120,6 +127,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			'nopaging'               => true,
 			'no_found_rows'          => true,
 			'update_post_term_cache' => false,
+			'fields'                 => 'ids',
 		];
 
 		$fields = new WP_Query( $args );
@@ -159,14 +167,10 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$post_data = array();
 		$schema    = $this->get_item_schema();
 
-		if ( ! $post instanceof WP_Post ) {
-			$post = get_post( $post );
-		}
-
-		$field = new PNO_Profile_Field( $post );
+		$field = new PNO\Field\Profile( $post );
 
 		if ( isset( $schema['properties']['id'] ) ) {
-			$post_data['id'] = (int) $post->ID;
+			$post_data['id'] = (int) $field->get_post_id();
 		}
 		if ( isset( $schema['properties']['name'] ) ) {
 			$post_data['name'] = $field->get_name();
@@ -175,13 +179,13 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			$post_data['label'] = $field->get_label();
 		}
 		if ( isset( $schema['properties']['meta'] ) ) {
-			$post_data['meta'] = $field->get_meta();
+			$post_data['meta'] = $field->get_object_meta_key();
 		}
 		if ( isset( $schema['properties']['priority'] ) ) {
 			$post_data['priority'] = (int) $field->get_priority();
 		}
 		if ( isset( $schema['properties']['default'] ) ) {
-			$post_data['default'] = (bool) $field->is_default_field();
+			$post_data['default'] = (bool) ! $field->can_delete();
 		}
 		if ( isset( $schema['properties']['type'] ) ) {
 			$post_data['type']          = $field->get_type();
@@ -197,16 +201,13 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			$post_data['required'] = (bool) $field->is_required();
 		}
 		if ( isset( $schema['properties']['read_only'] ) ) {
-			$post_data['read_only'] = (bool) $field->is_read_only();
+			$post_data['read_only'] = (bool) $field->is_readonly();
 		}
 		if ( isset( $schema['properties']['admin_only'] ) ) {
 			$post_data['admin_only'] = (bool) $field->is_admin_only();
 		}
 		if ( isset( $schema['properties']['selectable_options'] ) ) {
-			$post_data['selectable_options'] = (bool) $field->get_selectable_options();
-		}
-		if ( isset( $schema['properties']['file_size'] ) ) {
-			$post_data['file_size'] = (bool) $field->get_file_size();
+			$post_data['selectable_options'] = (bool) $field->get_options();
 		}
 
 		$response = rest_ensure_response( $post_data );
@@ -219,14 +220,14 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 	/**
 	 * Prepare links for the request.
 	 *
-	 * @param PNO_Profile_Field         $object  Object data.
-	 * @param WP_REST_Request $request Request object.
+	 * @param PNO_Profile_Field $object  Object data.
+	 * @param WP_REST_Request   $request Request object.
 	 * @return array                   Links for the given post.
 	 */
 	protected function prepare_links( $object, $request ) {
 		$links = array(
 			'self'       => array(
-				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_id() ) ),
+				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_post_id() ) ),
 			),
 			'collection' => array(
 				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ),
@@ -237,9 +238,10 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			$admin_url = admin_url( 'post.php' );
 			$admin_url = add_query_arg(
 				[
-					'post'   => $object->get_id(),
+					'post'   => $object->get_post_id(),
 					'action' => 'edit',
-				], $admin_url
+				],
+				$admin_url
 			);
 
 			$links['admin'] = array(
@@ -276,15 +278,15 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
 		}
 
-		$field = new PNO_Profile_Field();
-		$field->__set( 'name', $field_name );
-		$field->__set( 'type', $field_type );
+		$field = new PNO\Field\Profile();
 
-		if ( $field_priority ) {
-			$field->__set( 'priority', $field_priority );
-		}
-
-		$new_field = $field->create();
+		$new_field = $field->create(
+			[
+				'name'     => $field_name,
+				'priority' => $field_priority,
+				'type'     => $field_type,
+			]
+		);
 
 		if ( is_wp_error( $new_field ) ) {
 			return new WP_REST_Response( $new_field->get_error_message(), 422 );
@@ -312,18 +314,15 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 		}
 
-		$field = new PNO_Profile_Field( $field_id );
+		$field = new PNO\Field\Profile( $field_id );
 
-		if ( $field instanceof PNO_Profile_Field && $field->get_id() > 0 ) {
+		if ( $field instanceof PNO\Field\Profile && $field->get_post_id() > 0 ) {
 
-			$field_meta = $field->get_meta();
-
-			if ( $field_meta && in_array( $field_meta, pno_get_registered_default_meta_keys() ) ) {
-				return new WP_REST_Response( esc_html__( 'Default fields cannnot be deleted.' ), 422 );
+			if ( $field->can_delete() ) {
+				$field->delete();
+			} else {
+				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 			}
-
-			$field->delete();
-
 		}
 
 		return rest_ensure_response( $field_id );
@@ -347,9 +346,8 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		foreach ( $fields as $key => $field ) {
 			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
 			if ( $field_id ) {
-				$field = new PNO_Profile_Field( $field_id );
-				$field->__set( 'priority', absint( $key ) + 1 );
-				$field->save();
+				$field = new PNO\Field\Profile( $field_id );
+				$field->update_priority( absint( $key ) + 1 );
 			}
 		}
 
@@ -441,11 +439,6 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 					'items'       => array(
 						'type' => 'string',
 					),
-					'context'     => array( 'view', 'edit' ),
-				),
-				'file_size'          => array(
-					'description' => __( 'Max file size assigned to the field if the type is file.' ),
-					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 			),

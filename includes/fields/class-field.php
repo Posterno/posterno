@@ -142,6 +142,13 @@ class Field {
 	protected $readonly = false;
 
 	/**
+	 * Determine wether the field is admin only or not.
+	 *
+	 * @var boolean
+	 */
+	protected $admin_only = false;
+
+	/**
 	 * Selectable options for dropdown fields.
 	 *
 	 * @var mixed
@@ -354,6 +361,15 @@ class Field {
 	 */
 	public function is_readonly() {
 		return (bool) $this->readonly;
+	}
+
+	/**
+	 * Flag to detect whether the field is admin only.
+	 *
+	 * @return boolean
+	 */
+	public function is_admin_only() {
+		return (bool) $this->admin_only;
 	}
 
 	/**

@@ -133,6 +133,11 @@ class Registration extends Field {
 				if ( is_array( $profile_field->get_options() ) && ! empty( $profile_field->get_options() ) ) {
 					$this->options = $profile_field->get_options();
 				}
+
+				if ( in_array( $profile_field->get_type(), pno_get_multi_options_field_types() ) ) {
+					$this->multiple = true;
+				}
+
 			}
 		}
 

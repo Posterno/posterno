@@ -140,7 +140,7 @@ function pno_after_custom_fields_post_title() {
 
 	if ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_users_fields' ) {
 
-		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields' );
+		$admin_url = admin_url( 'users.php?page=posterno-custom-profile-fields' );
 		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All profile fields' ) . '</a>';
 
 	} elseif ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_signup_fields' ) {

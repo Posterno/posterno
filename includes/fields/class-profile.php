@@ -42,7 +42,7 @@ class Profile extends Field {
 	 *
 	 * @var string
 	 */
-	protected $post_type = 'pno_profile_fields';
+	protected $post_type = 'pno_users_fields';
 
 	/**
 	 * Query the database for all the settings belonging to the field.
@@ -77,6 +77,18 @@ class Profile extends Field {
 					case 'meta_key':
 						$this->object_meta_key = $value;
 						break;
+					case 'is_read_only':
+						$this->readonly = $value;
+						break;
+					case 'is_admin_only':
+						$this->admin_only = $value;
+						break;
+					case 'selectable_options':
+						$this->options = pno_parse_selectable_options( $value );
+						break;
+					case 'file_max_size':
+						$this->maxsize = $value;
+						break;
 					default:
 						$this->{$setting} = $value;
 						break;
@@ -89,6 +101,10 @@ class Profile extends Field {
 
 		if ( empty( $this->get_label() ) ) {
 			$this->label = $this->get_name();
+		}
+
+		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
+			$this->multiple = true;
 		}
 
 		$this->can_delete = pno_is_default_field( $this->object_meta_key ) ? false : true;
@@ -135,6 +151,10 @@ class Profile extends Field {
 
 			if ( isset( $args['meta'] ) && ! empty( $args['meta'] ) ) {
 				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'meta_key', $args['meta'] );
+			}
+
+			if ( isset( $args['type'] ) && ! empty( $args['type'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'type', $args['type'] );
 			}
 
 			return $field_id;

@@ -100,19 +100,6 @@ class PNO_Profiles_Custom_Fields {
 		$settings[] = Field::make( 'textarea', 'profile_field_description', esc_html__( 'Field description' ) )
 			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) );
 
-		$settings[] = Field::make( 'text', 'profile_field_file_max_size', esc_html__( 'Upload max size:' ) )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
-					array(
-						'field'   => 'profile_field_type',
-						'value'   => 'file',
-						'compare' => '=',
-					),
-				)
-			)
-			->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.' ) );
-
 		/**
 		 * Allow developers to customize the settings for the profile field post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "General" tab.
@@ -134,6 +121,19 @@ class PNO_Profiles_Custom_Fields {
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_required', esc_html__( 'Set as required' ) )
 			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) );
 
+		$settings[] = Field::make( 'text', 'profile_field_file_max_size', esc_html__( 'Upload max size:' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'profile_field_type',
+						'value'   => 'file',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.' ) );
+
 		/**
 		 * Allow developers to customize the settings for the profile field post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "Validation" tab.
@@ -152,7 +152,7 @@ class PNO_Profiles_Custom_Fields {
 	public function get_permissions_settings() {
 		$settings = [];
 
-		$settings[] = Field::make( 'checkbox', 'profile_field_is_hidden', esc_html__( 'Admin only?' ) )
+		$settings[] = Field::make( 'checkbox', 'profile_field_is_admin_only', esc_html__( 'Admin only?' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not be customizable from the account settings page.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_read_only', esc_html__( 'Set as read only' ) )
@@ -220,8 +220,6 @@ class PNO_Profiles_Custom_Fields {
 					Field::make( 'text', 'profile_field_meta_key', esc_html__( 'Unique meta key' ) )
 						->set_required( true )
 						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.' ) ),
-					Field::make( 'text', 'profile_field_custom_classes', esc_html__( 'Custom css classes' ) )
-						->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
 				)
 			);
 
