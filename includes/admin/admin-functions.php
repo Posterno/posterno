@@ -653,7 +653,7 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Field\Registration( 1423 );
+		$field = new \PNO\Field\Profile( 1397 );
 
 		print_r( $field );
 
