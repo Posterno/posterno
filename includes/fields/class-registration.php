@@ -122,6 +122,20 @@ class Registration extends Field {
 			}
 		}
 
+		// Attach profile field to the registration field if not a default field.
+		if ( ! empty( $this->profile_field_id ) ) {
+			$profile_field = new Profile( $this->profile_field_id );
+			if ( $profile_field instanceof Profile ) {
+				$this->type            = $profile_field->get_type();
+				$this->type_nicename   = isset( $types[ $profile_field->get_type() ] ) ? $types[ $profile_field->get_type() ] : false;
+				$this->object_meta_key = $this->get_object_meta_key();
+
+				if ( is_array( $profile_field->get_options() ) && ! empty( $profile_field->get_options() ) ) {
+					$this->options = $profile_field->get_options();
+				}
+			}
+		}
+
 	}
 
 	/**

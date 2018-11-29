@@ -653,9 +653,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Field\Registration( 1413 );
+		$field = new \PNO\Field\Registration( 1423 );
 
-		$field->delete();
+		print_r( $field );
 
 		wp_die();
 	}
