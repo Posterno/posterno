@@ -32,7 +32,7 @@ add_action( 'save_post_page', 'pno_delete_pages_transient' );
  * @access public
  * @since  0.1.0
  * @return void
-*/
+ */
 function pno_shortcodes_add_mce_button() {
 
 	if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
@@ -166,22 +166,25 @@ add_action( 'edit_form_before_permalink', 'pno_after_custom_fields_post_title' )
  */
 function pno_force_delete_on_custom_fields_trash( $post_id ) {
 
-	if ( get_post_type( $post_id ) == 'pno_users_fields' ) {
-		wp_delete_post( $post_id, true );
-		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields&trashed=true' ) );
+	if ( get_post_type( $post_id ) === 'pno_users_fields' ) {
+		$field = new PNO\Field\Profile( $post_id );
+		$field->delete();
+		wp_safe_redirect( admin_url( 'users.php?page=posterno-custom-profile-fields&trashed=true' ) );
 		exit;
-	} elseif ( get_post_type( $post_id ) == 'pno_signup_fields' ) {
-		wp_delete_post( $post_id, true );
-		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form&trashed=true' ) );
+	} elseif ( get_post_type( $post_id ) === 'pno_signup_fields' ) {
+		$field = new PNO\Field\Registration( $post_id );
+		$field->delete();
+		wp_safe_redirect( admin_url( 'users.php?page=posterno-custom-registration-form&trashed=true' ) );
 		exit;
 	} elseif ( get_post_type( $post_id ) == 'pno_listings_fields' ) {
-		wp_delete_post( $post_id, true );
+		$field = new PNO\Field\Listing( $post_id );
+		$field->delete();
 		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields&trashed=true' ) );
 		exit;
 	}
 
 }
-//add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
+add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
 
 /**
  * When the listings list table loads, call the function to view our tabs.
@@ -259,7 +262,7 @@ function pno_display_listings_post_statuses_list() {
 			jQuery( select ).html( <?php echo wp_json_encode( $options ); ?> );
 		} );
 	</script>
-<?php
+	<?php
 }
 foreach ( array( 'post', 'post-new' ) as $hook ) {
 	add_action( "admin_footer-{$hook}.php", 'pno_display_listings_post_statuses_list' );
