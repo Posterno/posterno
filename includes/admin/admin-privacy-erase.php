@@ -14,8 +14,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Register a custom eraser for the plugin.
  *
- * @param array $erasers
- * @return void
+ * @param array $erasers list of erasers.
+ * @return array
  */
 function pno_plugin_register_erasers( $erasers = array() ) {
 
@@ -32,9 +32,9 @@ add_filter( 'wp_privacy_personal_data_erasers', 'pno_plugin_register_erasers' );
 /**
  * Erases all the values submitted through profile fields of Posterno.
  *
- * @param string $email_address
- * @param integer $page
- * @return void
+ * @param string  $email_address email address.
+ * @param integer $page page counter.
+ * @return array
  */
 function pno_plugin_profile_data_eraser( $email_address, $page = 1 ) {
 
