@@ -59,6 +59,7 @@ final class Registration_Fields extends Table {
 	protected function set_schema() {
 		$this->schema = "id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			post_id bigint(20) unsigned NOT NULL default '0',
+			profile_field_id bigint(20) unsigned NOT NULL default '0',
 			settings longtext,
 			PRIMARY KEY (id),
 			KEY post_id (post_id)";

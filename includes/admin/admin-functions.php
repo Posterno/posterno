@@ -653,9 +653,14 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$field = new \PNO\Field\Profile( 1430 );
+		$registration_field = new \PNO\Database\Queries\Registration_Fields();
+		$attached_registration_field = $registration_field->get_item_by( 'profile_field_id', 1397 );
 
-		print_r( $field );
+		print_r( new PNO\Field\Registration( $attached_registration_field->get_post_id() ) );
+
+		$profile_field = new PNO\Field\Profile( $attached_profile_field->get_profile_field_id() );
+
+		print_r( $profile_field );
 
 		wp_die();
 	}

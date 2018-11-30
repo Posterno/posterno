@@ -178,6 +178,15 @@ class Profile extends Field {
 
 		$field->delete_item( $found_field->get_id() );
 
+		// Delete registration field automatically if found attached.
+		$reg_field_query             = new \PNO\Database\Queries\Registration_Fields();
+		$attached_registration_field = $reg_field_query->get_item_by( 'profile_field_id', $this->get_post_id() );
+		$registration_field          = new \PNO\Field\Registration( $attached_registration_field->get_post_id() );
+
+		if ( $registration_field->can_delete() ) {
+			$registration_field->delete();
+		}
+
 	}
 
 }

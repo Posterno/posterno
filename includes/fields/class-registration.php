@@ -52,6 +52,10 @@ class Registration extends Field {
 	 */
 	protected $profile_field_id = false;
 
+	public function get_profile_field_id() {
+		return $this->profile_field_id;
+	}
+
 	/**
 	 * Query the database for all the settings belonging to the field.
 	 *
@@ -137,7 +141,6 @@ class Registration extends Field {
 				if ( in_array( $profile_field->get_type(), pno_get_multi_options_field_types() ) ) {
 					$this->multiple = true;
 				}
-
 			}
 		}
 
@@ -171,9 +174,16 @@ class Registration extends Field {
 		if ( ! is_wp_error( $field_id ) ) {
 
 			$field = new \PNO\Database\Queries\Registration_Fields();
-			$field->add_item( [ 'post_id' => $field_id ] );
+			$field->add_item(
+				[
+					'post_id'          => $field_id,
+					'profile_field_id' => isset( $args['profile_field_id'] ) ? absint( $args['profile_field_id'] ) : false,
+				]
+			);
 
-			carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'profile_field_id', $args['profile_field_id'] );
+			if ( isset( $args['profile_field_id'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'profile_field_id', $args['profile_field_id'] );
+			}
 
 			if ( isset( $args['priority'] ) && ! empty( $args['priority'] ) ) {
 				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'priority', $args['priority'] );

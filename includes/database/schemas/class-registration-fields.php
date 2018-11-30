@@ -51,6 +51,15 @@ class Registration_Fields extends Schema {
 		),
 
 		array(
+			'name'      => 'profile_field_id',
+			'type'      => 'bigint',
+			'length'    => '20',
+			'unsigned'  => true,
+			'default'   => '0',
+			'cache_key' => true,
+		),
+
+		array(
 			'name'       => 'settings',
 			'type'       => 'longtext',
 			'searchable' => false,
