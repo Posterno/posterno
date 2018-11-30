@@ -358,34 +358,34 @@ function pno_install_listings_fields() {
 			$registered_field_types = pno_get_registered_field_types();
 
 			$db_settings = [
-				'listing_field_is_default' => true,
-				'listing_field_meta_key'   => $key,
-				'listing_field_type'       => isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ? esc_attr( $field['type'] ) : 'text',
+				'_listing_field_is_default' => true,
+				'_listing_field_meta_key'   => $key,
+				'_listing_field_type'       => isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ? esc_attr( $field['type'] ) : 'text',
 			];
 
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
-				$db_settings['listing_field_is_required'] = true;
+				$db_settings['_listing_field_is_required'] = true;
 			}
 
 			// Setup the priority of this field.
 			if ( isset( $field['priority'] ) ) {
-				$db_settings['listing_field_priority'] = absint( $field['priority'] );
+				$db_settings['_listing_field_priority'] = absint( $field['priority'] );
 			}
 
 			// Assign a description if one is given.
 			if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-				$db_settings['listing_field_description'] = esc_html( $field['description'] );
+				$db_settings['_listing_field_description'] = esc_html( $field['description'] );
 			}
 
 			// Assign a placeholder if one is given.
 			if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-				$db_settings['listing_field_placeholder'] = esc_html( $field['placeholder'] );
+				$db_settings['_listing_field_placeholder'] = esc_html( $field['placeholder'] );
 			}
 
 			// Assign taxonomies to field if specified - doesn't matter what field type it is.
 			if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
-				$db_settings['listing_field_taxonomy'] = $field['taxonomy'];
+				$db_settings['_listing_field_taxonomy'] = $field['taxonomy'];
 			}
 
 			$dbfield->add_item(
@@ -660,9 +660,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$profile_field = new \PNO\Database\Queries\Profile_Fields();
+		$f = new PNO\Field\Listing( 1472 );
 
-		print_r( $profile_field->get_item_by( 'user_meta_key', 'description' ) );
+		print_r( $f );
 
 		wp_die();
 	}

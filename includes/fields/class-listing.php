@@ -74,8 +74,20 @@ class Listing extends Field {
 					case 'is_required':
 						$this->required = $value;
 						break;
-					case 'is_default':
+					case 'meta_key':
 						$this->object_meta_key = $value;
+						break;
+					case 'is_read_only':
+						$this->readonly = $value;
+						break;
+					case 'is_admin_only':
+						$this->admin_only = $value;
+						break;
+					case 'selectable_options':
+						$this->options = pno_parse_selectable_options( $value );
+						break;
+					case 'file_max_size':
+						$this->maxsize = $value;
 						break;
 					default:
 						$this->{$setting} = $value;
@@ -84,13 +96,18 @@ class Listing extends Field {
 			}
 		}
 
+		$types               = pno_get_registered_field_types();
+		$this->type_nicename = isset( $types[ $this->type ] ) ? $types[ $this->type ] : false;
+
 		if ( empty( $this->get_label() ) ) {
 			$this->label = $this->get_name();
 		}
 
-		$this->can_delete = pno_is_default_field( $this->object_meta_key ) ? false : true;
+		if ( in_array( $this->type, pno_get_multi_options_field_types() ) ) {
+			$this->multiple = true;
+		}
 
-		$types = pno_get_registered_field_types();
+		$this->can_delete = pno_is_default_field( $this->object_meta_key ) ? false : true;
 
 	}
 
