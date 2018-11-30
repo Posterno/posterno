@@ -283,15 +283,6 @@ class Field {
 	}
 
 	/**
-	 * Get the meta of the field.
-	 *
-	 * @return string
-	 */
-	public function get_meta() {
-		return $this->meta;
-	}
-
-	/**
 	 * Get the form label for this field.
 	 *
 	 * @return string
@@ -485,17 +476,18 @@ class Field {
 	 * Get things started.
 	 *
 	 * @param boolean|array|int|string $field the field to initialize either an id or an array.
+	 * @param boolean|string           $object_id the id of the object for which we're going to retrieve the value associated to the field.
 	 */
-	public function __construct( $field = false, $id = false ) {
+	public function __construct( $field = false, $object_id = false ) {
 
 		if ( is_object( $field ) ) {
-
 			$this->populate( $field );
-
 		} else {
-
 			$this->populate_from_post_id( $field );
+		}
 
+		if ( $object_id ) {
+			$this->load_value( $object_id );
 		}
 
 	}
@@ -596,6 +588,14 @@ class Field {
 	 * @return void
 	 */
 	public function delete() {}
+
+	/**
+	 * Load the value associated with the field.
+	 *
+	 * @param string $object_id the id of the object we're going to look up.
+	 * @return void
+	 */
+	public function load_value( $object_id ) {}
 
 	/**
 	 * Update the priority of the field into the database.

@@ -219,4 +219,30 @@ class Profile extends Field {
 
 	}
 
+	/**
+	 * Load the value associated with the field if a user id is given.
+	 *
+	 * @param string $user_id the user id for which we're going to look up data.
+	 * @return void
+	 */
+	public function load_value( $user_id ) {
+
+		if ( $user_id ) {
+
+			$meta_lookup = $this->get_object_meta_key();
+
+			if ( $meta_lookup === 'avatar' ) {
+				$meta_lookup = 'current_user_avatar';
+			}
+
+			if ( pno_is_default_field( $meta_lookup ) ) {
+				$this->value = get_user_meta( $user_id, $meta_lookup, true );
+			} else {
+				$this->value = carbon_get_user_meta( $user_id, $meta_lookup );
+			}
+
+		}
+
+	}
+
 }

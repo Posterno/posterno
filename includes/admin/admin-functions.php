@@ -660,9 +660,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$f = new PNO\Field\Listing( 1472 );
+		$f = new PNO\Field\Profile( 1393, 1 );
 
-		print_r( $f );
+		print_r( $f->get_value() );
 
 		wp_die();
 	}
