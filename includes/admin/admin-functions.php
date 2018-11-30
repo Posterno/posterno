@@ -332,6 +332,7 @@ function pno_install_registration_fields() {
  * @return void
  */
 function pno_install_listings_fields() {
+
 	// Bail if this was already done.
 	if ( get_option( 'pno_listings_fields_installed' ) ) {
 		return;
@@ -351,43 +352,49 @@ function pno_install_listings_fields() {
 
 		if ( ! is_wp_error( $field_id ) ) {
 
-			// Mark the registration field as a default field.
-			carbon_set_post_meta( $field_id, 'listing_field_is_default', true );
+			$dbfield = new \PNO\Database\Queries\Listing_Fields();
 
 			// Setup the field's type.
 			$registered_field_types = pno_get_registered_field_types();
 
-			if ( isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_type', esc_attr( $field['type'] ) );
-			}
+			$db_settings = [
+				'listing_field_is_default' => true,
+				'listing_field_meta_key'   => $key,
+				'listing_field_type'       => isset( $field['type'] ) && isset( $registered_field_types[ $field['type'] ] ) ? esc_attr( $field['type'] ) : 'text',
+			];
 
 			// Mark fields as required.
 			if ( isset( $field['required'] ) && $field['required'] === true ) {
-				carbon_set_post_meta( $field_id, 'listing_field_is_required', true );
+				$db_settings['listing_field_is_required'] = true;
 			}
 
 			// Setup the priority of this field.
 			if ( isset( $field['priority'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_priority', $field['priority'] );
+				$db_settings['listing_field_priority'] = absint( $field['priority'] );
 			}
-
-			// Setup the field's meta key.
-			carbon_set_post_meta( $field_id, 'listing_field_meta_key', $key );
 
 			// Assign a description if one is given.
 			if ( isset( $field['description'] ) && ! empty( $field['description'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_description', esc_html( $field['description'] ) );
+				$db_settings['listing_field_description'] = esc_html( $field['description'] );
 			}
 
 			// Assign a placeholder if one is given.
 			if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_placeholder', esc_html( $field['placeholder'] ) );
+				$db_settings['listing_field_placeholder'] = esc_html( $field['placeholder'] );
 			}
 
 			// Assign taxonomies to field if specified - doesn't matter what field type it is.
 			if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
-				carbon_set_post_meta( $field_id, 'listing_field_taxonomy', $field['taxonomy'] );
+				$db_settings['listing_field_taxonomy'] = $field['taxonomy'];
 			}
+
+			$dbfield->add_item(
+				[
+					'post_id'  => $field_id,
+					'settings' => maybe_serialize( $db_settings ),
+				]
+			);
+
 		}
 	}
 
@@ -655,7 +662,7 @@ function testme() {
 
 		$profile_field = new \PNO\Database\Queries\Profile_Fields();
 
-		print_r( $profile_field->get_item_by('user_meta_key', 'description' ) );
+		print_r( $profile_field->get_item_by( 'user_meta_key', 'description' ) );
 
 		wp_die();
 	}
