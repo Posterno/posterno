@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Defines a representation of a Posterno listing field.
  *
@@ -19,6 +20,7 @@ defined( 'ABSPATH' ) || exit;
  * Listing field of Posterno's forms.
  */
 class Listing extends Field {
+
 
 	/**
 	 * The type of data the field will'be storing into the database.
@@ -43,6 +45,22 @@ class Listing extends Field {
 	 * @var string
 	 */
 	protected $post_type = 'pno_listings_fields';
+
+	/**
+	 * Holds the taxonomy id if the field is a terms selector.
+	 *
+	 * @var string
+	 */
+	protected $taxonomy_id = null;
+
+	/**
+	 * Retrieve the attached taxonomy id to the field.
+	 *
+	 * @return string
+	 */
+	public function get_taxonomy_id() {
+		return $this->taxonomy_id;
+	}
 
 	/**
 	 * Query the database for all the settings belonging to the field.
@@ -89,6 +107,10 @@ class Listing extends Field {
 					case 'file_max_size':
 						$this->maxsize = $value;
 						break;
+					case 'taxonomy':
+						$this->taxonomy_id = $value;
+						$this->options     = pno_parse_selectable_options( $this->taxonomy_id );
+						break;
 					default:
 						$this->{$setting} = $value;
 						break;
@@ -108,6 +130,101 @@ class Listing extends Field {
 		}
 
 		$this->can_delete = pno_is_default_field( $this->object_meta_key ) ? false : true;
+
+	}
+
+	/**
+	 * Create a new field and save it into the database.
+	 *
+	 * @param array $args list of arguments to create a new field.
+	 * @throws InvalidArgumentException When missing arguments.
+	 * @return string
+	 */
+	public function create( $args = [] ) {
+
+		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
+			throw new \InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+		}
+
+		if ( ! isset( $args['meta'] ) || empty( $args['meta'] ) ) {
+			$meta         = sanitize_title( $args['name'] );
+			$meta         = str_replace( '-', '_', $meta );
+			$args['meta'] = $meta;
+		}
+
+		$field_args = [
+			'post_type'   => $this->get_post_type(),
+			'post_title'  => $args['name'],
+			'post_status' => 'publish',
+		];
+
+		if ( isset( $args['meta'] ) && ! empty( $args['meta'] ) ) {
+			if ( $this->field_meta_key_exists( $args['meta'] ) ) {
+				return new \WP_Error( 'field-meta-exists', esc_html__( 'Field meta key already exists. Please choose a different name.' ) );
+			}
+		}
+
+		$field_id = wp_insert_post( $field_args );
+
+		if ( ! is_wp_error( $field_id ) ) {
+
+			$field = new \PNO\Database\Queries\Listing_Fields();
+			$field->add_item( [ 'post_id' => $field_id ] );
+
+			if ( isset( $args['priority'] ) && ! empty( $args['priority'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'priority', $args['priority'] );
+			}
+
+			if ( isset( $args['meta'] ) && ! empty( $args['meta'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'meta_key', $args['meta'] );
+			}
+
+			if ( isset( $args['type'] ) && ! empty( $args['type'] ) ) {
+				carbon_set_post_meta( $field_id, $this->get_field_setting_prefix() . 'type', $args['type'] );
+			}
+
+			return $field_id;
+
+		}
+
+	}
+
+	/**
+	 * Determine if a field using the same meta key already exists.
+	 *
+	 * @param string $meta the meta key to verify.
+	 * @return boolean
+	 */
+	private function field_meta_key_exists( $meta ) {
+
+		$exists = false;
+
+		$listing_field = new \PNO\Database\Queries\Listing_Fields();
+
+		$query = $listing_field->get_item_by( 'post_meta_key', $meta );
+
+		if ( $query instanceof \PNO\Field\Listing ) {
+			$exists = true;
+		}
+
+		return $exists;
+
+	}
+
+	/**
+	 * Delete a field from the database and delete it's associated settings too.
+	 *
+	 * @return void
+	 */
+	public function delete() {
+
+		wp_delete_post( $this->get_post_id(), true );
+
+		$field = new \PNO\Database\Queries\Listing_Fields();
+
+		$found_field = $field->get_item_by( 'post_id', $this->get_post_id() );
+
+		$field->delete_item( $found_field->get_id() );
 
 	}
 

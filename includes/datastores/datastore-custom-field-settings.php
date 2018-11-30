@@ -72,6 +72,8 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 			$field = new \PNO\Database\Queries\Profile_Fields();
 		} elseif ( $this->get_custom_field_type() === 'registration' ) {
 			$field = new \PNO\Database\Queries\Registration_Fields();
+		} elseif ( $this->get_custom_field_type() === 'listing' ) {
+			$field = new \PNO\Database\Queries\Listing_Fields();
 		}
 
 		return $field;

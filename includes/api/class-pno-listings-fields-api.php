@@ -44,7 +44,9 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	 */
 	public function register_routes() {
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base, array(
+			$this->namespace,
+			'/' . $this->rest_base,
+			array(
 				array(
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_items' ),
@@ -55,8 +57,9 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 					'callback'            => array( $this, 'create_item' ),
 					'permission_callback' => array( $this, 'create_item_permissions_check' ),
 					'args'                => array_merge(
-						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ), array(
-							'name'             => array(
+						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+						array(
+							'name' => array(
 								'description' => __( 'Field name.' ),
 								'required'    => true,
 								'type'        => 'string',
@@ -74,7 +77,9 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		);
 
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
+			array(
 				'args'   => array(
 					'id' => array(
 						'description' => __( 'Unique identifier for the resource.' ),
@@ -92,7 +97,9 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		);
 
 		register_rest_route(
-			$this->namespace, '/' . $this->rest_base . '/update-priority', array(
+			$this->namespace,
+			'/' . $this->rest_base . '/update-priority',
+			array(
 				array(
 					'methods'             => WP_REST_Server::EDITABLE,
 					'callback'            => array( $this, 'update_priority' ),
@@ -148,11 +155,17 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 
 		$post_data = array();
 		$schema    = $this->get_item_schema();
-		$field     = new PNO_Listing_Field( $post );
+
+		if ( $post instanceof WP_Post ) {
+			$field = new PNO\Field\Listing( $post->ID );
+		} else {
+			$post  = get_post( $post );
+			$field = new PNO\Field\Listing( $post->ID );
+		}
 
 		// We are also renaming the fields to more understandable names.
 		if ( isset( $schema['properties']['id'] ) ) {
-			$post_data['id'] = (int) $post->ID;
+			$post_data['id'] = (int) $field->get_post_id();
 		}
 		if ( isset( $schema['properties']['name'] ) ) {
 			$post_data['name'] = $field->get_name();
@@ -161,13 +174,13 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			$post_data['label'] = $field->get_label();
 		}
 		if ( isset( $schema['properties']['meta'] ) ) {
-			$post_data['meta'] = $field->get_meta();
+			$post_data['meta'] = $field->get_object_meta_key();
 		}
 		if ( isset( $schema['properties']['priority'] ) ) {
 			$post_data['priority'] = (int) $field->get_priority();
 		}
 		if ( isset( $schema['properties']['default'] ) ) {
-			$post_data['default'] = (bool) $field->is_default_field();
+			$post_data['default'] = (bool) ! $field->can_delete();
 		}
 		if ( isset( $schema['properties']['type'] ) ) {
 			$post_data['type']          = $field->get_type();
@@ -199,7 +212,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	protected function prepare_links( $object, $request ) {
 		$links = array(
 			'self'       => array(
-				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_id() ) ),
+				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_post_id() ) ),
 			),
 			'collection' => array(
 				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ),
@@ -210,9 +223,10 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			$admin_url = admin_url( 'post.php' );
 			$admin_url = add_query_arg(
 				[
-					'post'   => $object->get_id(),
+					'post'   => $object->get_post_id(),
 					'action' => 'edit',
-				], $admin_url
+				],
+				$admin_url
 			);
 
 			$links['admin'] = array(
@@ -250,15 +264,15 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
 		}
 
-		$field = new PNO_Listing_Field();
-		$field->__set( 'name', $field_name );
-		$field->__set( 'type', $field_type );
+		$field = new PNO\Field\Listing();
 
-		if ( $field_priority ) {
-			$field->__set( 'priority', $field_priority );
-		}
-
-		$new_field = $field->create();
+		$new_field = $field->create(
+			[
+				'name'     => $field_name,
+				'priority' => $field_priority,
+				'type'     => $field_type,
+			]
+		);
 
 		if ( is_wp_error( $new_field ) ) {
 			return new WP_REST_Response( $new_field->get_error_message(), 422 );
@@ -286,16 +300,15 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 		}
 
-		$field = new PNO_Listing_Field( $field_id );
+		$field = new PNO\Field\Listing( $field_id );
 
-		if ( $field instanceof PNO_Listing_Field && $field->get_id() > 0 ) {
+		if ( $field instanceof PNO\Field\Listing && $field->get_post_id() > 0 ) {
 
-			if ( $field->is_default_field() ) {
-				return new WP_REST_Response( esc_html__( 'Default fields cannnot be deleted.' ), 422 );
+			if ( $field->can_delete() ) {
+				$field->delete();
+			} else {
+				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
 			}
-
-			$field->delete();
-
 		}
 
 		return rest_ensure_response( $field_id );
@@ -319,9 +332,8 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		foreach ( $fields as $key => $field ) {
 			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
 			if ( $field_id ) {
-				$field = new PNO_Listing_Field( $field_id );
-				$field->__set( 'priority', absint( $key ) + 1 );
-				$field->save();
+				$field = new PNO\Field\Listing( $field_id );
+				$field->update_priority( absint( $key ) + 1 );
 			}
 		}
 
@@ -393,11 +405,6 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 					'description' => __( 'Flag to determine if the field is required when displayed within forms.' ),
 					'type'        => 'boolean',
 					'default'     => false,
-					'context'     => array( 'view', 'edit' ),
-				),
-				'role'        => array(
-					'description' => __( 'User role assigned to the field.' ),
-					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 			),

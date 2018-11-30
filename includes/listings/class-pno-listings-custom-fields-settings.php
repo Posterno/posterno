@@ -224,8 +224,11 @@ class PNO_Listings_Custom_Fields_Settings {
 	 */
 	public function register_settings() {
 
+		$datastore = new PNO\Datastores\CustomFieldSettings();
+		$datastore->set_custom_field_type( 'listing' );
+
 		$container = Container::make( 'post_meta', esc_html__( 'Field settings' ) )
-			->set_datastore( new PNO\Datastores\DataCompressor() )
+			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_listings_fields' );
 
 		foreach ( $this->get_registered_settings_tabs() as $key => $tab ) {
@@ -257,6 +260,7 @@ class PNO_Listings_Custom_Fields_Settings {
 		}
 
 		Container::make( 'post_meta', esc_html__( 'Advanced' ) )
+			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_listings_fields' )
 			->set_context( 'side' )
 			->set_priority( 'default' )
@@ -265,9 +269,6 @@ class PNO_Listings_Custom_Fields_Settings {
 					Field::make( 'text', 'listing_field_meta_key', esc_html__( 'Unique meta key' ) )
 						->set_required( true )
 						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about the listings into the database of your website.' ) ),
-					Field::make( 'text', 'listing_field_custom_classes', esc_html__( 'Custom css classes' ) )
-						->set_datastore( new PNO\Datastores\DataCompressor() )
-						->set_help_text( esc_html__( 'Enter custom css classes to customize the style of the field. Leave blank if not needed.' ) ),
 				)
 			);
 
