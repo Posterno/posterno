@@ -52,6 +52,11 @@ class Registration extends Field {
 	 */
 	protected $profile_field_id = false;
 
+	/**
+	 * Retrieve the profile field post id attached to the registration field.
+	 *
+	 * @return string
+	 */
 	public function get_profile_field_id() {
 		return $this->profile_field_id;
 	}

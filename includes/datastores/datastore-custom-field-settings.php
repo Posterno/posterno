@@ -221,7 +221,15 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 		$settings_object_id = $field->get_item_by( 'post_id', $this->get_object_id() );
 
-		$field->update_item( $settings_object_id, [ 'settings' => maybe_serialize( $settings ) ] );
+		$data_to_save = [
+			'settings' => maybe_serialize( $settings ),
+		];
+
+		if ( $this->get_custom_field_type() === 'profile' && isset( $settings['_profile_field_meta_key'] ) ) {
+			$data_to_save['user_meta_key'] = $settings['_profile_field_meta_key'];
+		}
+
+		$field->update_item( $settings_object_id, $data_to_save );
 
 	}
 

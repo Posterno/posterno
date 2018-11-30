@@ -121,7 +121,7 @@ class Profile extends Field {
 	public function create( $args = [] ) {
 
 		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+			throw new \InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
 		}
 
 		if ( empty( $args['meta'] ) ) {
@@ -135,6 +135,12 @@ class Profile extends Field {
 			'post_title'  => $args['name'],
 			'post_status' => 'publish',
 		];
+
+		if ( isset( $args['meta'] ) && ! empty( $args['meta'] ) ) {
+			if ( $this->field_meta_key_exists( $args['meta'] ) ) {
+				return new \WP_Error( 'field-meta-exists', esc_html__( 'Field meta key already exists. Please choose a different name.' ) );
+			}
+		}
 
 		$field_id = wp_insert_post( $field_args );
 
@@ -160,6 +166,28 @@ class Profile extends Field {
 			return $field_id;
 
 		}
+
+	}
+
+	/**
+	 * Determine if a field using the same meta key already exists.
+	 *
+	 * @param string $meta the meta key to verify.
+	 * @return boolean
+	 */
+	private function field_meta_key_exists( $meta ) {
+
+		$exists = false;
+
+		$profile_field = new \PNO\Database\Queries\Profile_Fields();
+
+		$query = $profile_field->get_item_by( 'user_meta_key', $meta );
+
+		if ( $query instanceof \PNO\Field\Profile ) {
+			$exists = true;
+		}
+
+		return $exists;
 
 	}
 

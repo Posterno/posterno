@@ -51,6 +51,13 @@ class Profile_Fields extends Schema {
 		),
 
 		array(
+			'name'       => 'user_meta_key',
+			'type'       => 'longtext',
+			'searchable' => false,
+			'sortable'   => false,
+		),
+
+		array(
 			'name'       => 'settings',
 			'type'       => 'longtext',
 			'searchable' => false,
