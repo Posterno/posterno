@@ -70,17 +70,17 @@ function pno_plugin_profile_data_eraser( $email_address, $page = 1 ) {
 
 			foreach ( $fields_query->get_posts() as $field_id ) {
 
-				$profile_field = new PNO_Profile_Field( $field_id, $user->ID );
+				$profile_field = new PNO\Field\Profile( $field_id, $user->ID );
 
-				if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
+				if ( $profile_field instanceof PNO\Field\Profile && $profile_field->get_post_id() > 0 ) {
 
-					if ( ! pno_is_default_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
+					if ( ! pno_is_default_field( $profile_field->get_object_meta_key() ) || $profile_field->get_object_meta_key() == 'avatar' ) {
 
 						if ( ! empty( $profile_field->get_value() ) ) {
 
-							$meta = $profile_field->get_meta();
+							$meta = $profile_field->get_object_meta_key();
 
-							if ( $meta == 'avatar' ) {
+							if ( $meta === 'avatar' ) {
 								$meta = 'current_user_avatar';
 							}
 
