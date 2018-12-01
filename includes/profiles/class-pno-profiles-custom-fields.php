@@ -69,7 +69,18 @@ class PNO_Profiles_Custom_Fields {
 
 		$settings[] = Field::make( 'select', 'profile_field_type', esc_html__( 'Field type' ) )
 			->set_required()
-			->add_options( pno_get_registered_field_types() )
+			->add_options(
+				pno_get_registered_field_types(
+					[
+						'social-profiles',
+						'listing-category',
+						'listing-tags',
+						'term-select',
+						'opening-hours',
+						'listing-location',
+					]
+				)
+			)
 			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the account and registration forms.' ) );
 
 		$settings[] = Field::make( 'complex', 'profile_field_selectable_options', esc_html__( 'Field selectable options' ) )
