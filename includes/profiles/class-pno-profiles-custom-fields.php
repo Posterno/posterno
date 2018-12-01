@@ -232,79 +232,65 @@ class PNO_Profiles_Custom_Fields {
 	 */
 	public function register_profile_fields() {
 
-		$extra_account_fields = remember_transient(
-			'pno_extra_admin_account_fields',
+		$admin_fields = remember_transient(
+			'pno_admin_custom_profile_fields',
 			function () {
-				$fields_query = [
-					'post_type'              => 'pno_users_fields',
-					'posts_per_page'         => 100,
-					'nopaging'               => true,
-					'no_found_rows'          => true,
-					'update_post_term_cache' => false,
-					'fields'                 => 'ids',
-					'post_status'            => 'publish',
-					'meta_query'             => array(
-						array(
-							'key'     => '_profile_field_meta_key',
-							'value'   => pno_get_registered_default_meta_keys(),
-							'compare' => 'NOT IN',
-						),
-					),
-				];
 
-				$fields       = new WP_Query( $fields_query );
+				$profile_fields = new PNO\Database\Queries\Profile_Fields( [ 'user_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
+
+				$custom_fields_ids = [];
+
+				foreach ( $profile_fields->items as $field ) {
+					$custom_field_ids[] = $field->get_post_id();
+				}
+
 				$admin_fields = [];
 
-				if ( $fields->have_posts() ) {
+				foreach ( $custom_field_ids as $profile_field_id ) {
 
-					$found_fields = $fields->get_posts();
+					$custom_profile_field = new PNO\Field\Profile( $profile_field_id );
 
-					foreach ( $found_fields as $field_id ) {
-						$custom_field = new PNO_Profile_Field( $field_id );
+					if ( $custom_profile_field instanceof PNO\Field\Profile && ! empty( $custom_profile_field->get_object_meta_key() ) ) {
 
-						if ( $custom_field instanceof PNO_Profile_Field && ! empty( $custom_field->get_meta() ) ) {
+						$type = $custom_profile_field->get_type();
 
-							$type = $custom_field->get_type();
+						switch ( $type ) {
+							case 'url':
+							case 'email':
+							case 'number':
+							case 'password':
+								$type = 'text';
+								break;
+							case 'multicheckbox':
+								$type = 'set';
+								break;
+							case 'editor':
+								$type = 'rich_text';
+								break;
+						}
 
-							switch ( $type ) {
-								case 'url':
-								case 'email':
-								case 'number':
-								case 'password':
-									$type = 'text';
-									break;
-								case 'multicheckbox':
-									$type = 'set';
-									break;
-								case 'editor':
-									$type = 'rich_text';
-									break;
-							}
-
-							if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
-								$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->add_options( $custom_field->get_selectable_options() );
-							} elseif ( $type == 'file' ) {
-								$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_value_type( 'url' );
-							} elseif ( $custom_field->get_type() == 'number' ) {
-								$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'number' );
-							} elseif ( $custom_field->get_type() == 'password' ) {
-								$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'password' );
-							} else {
-								$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() );
-							}
+						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
+							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->add_options( $custom_profile_field->get_options() );
+						} elseif ( $type == 'file' ) {
+							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_value_type( 'url' );
+						} elseif ( $custom_profile_field->get_type() == 'number' ) {
+							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_attribute( 'type', 'number' );
+						} elseif ( $custom_profile_field->get_type() == 'password' ) {
+							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_attribute( 'type', 'password' );
+						} else {
+							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() );
 						}
 					}
 				}
 
 				return $admin_fields;
+
 			}
 		);
 
-		wp_reset_postdata();
-
-		if ( ! empty( $extra_account_fields ) ) {
+		if ( ! empty( $admin_fields ) ) {
 			Container::make( 'user_meta', esc_html__( 'Additional details' ) )
-				->add_fields( $extra_account_fields );
+				->add_fields( $admin_fields );
 		}
 
 	}

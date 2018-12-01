@@ -660,9 +660,9 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$f = new PNO\Field\Profile( 1393, 1 );
+		$f = new PNO\Database\Queries\Profile_Fields( [ 'user_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
 
-		print_r( $f->get_value() );
+		print_r( $f );
 
 		wp_die();
 	}
