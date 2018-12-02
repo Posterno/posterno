@@ -396,9 +396,11 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-walker-menu-checklist.php';
 
 			// Fields.
-			require_once PNO_PLUGIN_DIR . 'includes/profiles/class-pno-profiles-custom-fields.php';
-			require_once PNO_PLUGIN_DIR . 'includes/profiles/class-pno-registration-custom-fields.php';
-			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-custom-fields-settings.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-profile.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-registration.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-listing.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/integration/class-profile.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/integration/class-listing.php';
 
 			// Emails.
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails-editor-settings.php';
@@ -410,7 +412,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Listings.
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-dashboard-actions.php';
-			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-terms-custom-fields.php';
 
 		}
