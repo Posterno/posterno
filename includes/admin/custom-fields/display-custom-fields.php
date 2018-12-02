@@ -64,17 +64,17 @@ function pno_get_custom_fields_editor_js_vars() {
 			'purchase_extension'  => esc_html__( 'Purchase extension' ),
 			'profile'             => [
 				'title'            => esc_html__( 'Posterno profile fields editor' ),
-				'add_new'          => esc_html__( 'Add new profile field' ),
+				'add_new'          => esc_html__( 'Add new' ),
 				'field_admin_only' => esc_html__( 'This field is editable only by an administrator.' ),
 				'field_order'      => esc_html__( 'Drag and drop the rows below to change the order of the fields.' ),
 			],
 			'registration'        => [
 				'title'   => esc_html__( 'Posterno registration form editor' ),
-				'add_new' => esc_html__( 'Add new registration field' ),
+				'add_new' => esc_html__( 'Add new' ),
 			],
 			'listing'             => [
 				'title'   => esc_html__( 'Posterno listings fields editor' ),
-				'add_new' => esc_html__( 'Add new listing field' ),
+				'add_new' => esc_html__( 'Add new' ),
 			],
 			'table'               => [
 				'title'     => esc_html__( 'Field title' ),
@@ -87,7 +87,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'not_found' => esc_html__( 'No fields yet, click the button above to add fields.' ),
 				'edit'      => esc_html__( 'Edit field' ),
 				'role'      => esc_html__( 'User role' ),
-				'delete'    => esc_html__( 'Delete field' ),
+				'delete'    => esc_html__( 'Delete' ),
 				'roles'     => [
 					'all' => esc_html__( 'All user roles' ),
 				],
