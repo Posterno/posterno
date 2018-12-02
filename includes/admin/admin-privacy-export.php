@@ -14,8 +14,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Register new exporters for additional personal data used by Posterno.
  *
- * @param array $exporters
- * @return void
+ * @param array $exporters registered exporters.
+ * @return array
  */
 function pno_plugin_register_exporters( $exporters ) {
 
@@ -32,9 +32,9 @@ add_filter( 'wp_privacy_personal_data_exporters', 'pno_plugin_register_exporters
 /**
  * Export all profile fields data added by Posterno.
  *
- * @param string $email_address
- * @param integer $page
- * @return void
+ * @param string  $email_address email address of the user.
+ * @param integer $page page list.
+ * @return array
  */
 function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 
@@ -64,11 +64,11 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 
 			foreach ( $fields_query->get_posts() as $field_id ) {
 
-				$profile_field = new PNO_Profile_Field( $field_id, $user->ID );
+				$profile_field = new PNO\Field\Profile( $field_id, $user->ID );
 
-				if ( $profile_field instanceof PNO_Profile_Field && $profile_field->get_id() > 0 ) {
+				if ( $profile_field instanceof PNO\Field\Profile && $profile_field->get_post_id() > 0 ) {
 
-					if ( ! pno_is_default_field( $profile_field->get_meta() ) || $profile_field->get_meta() == 'avatar' ) {
+					if ( ! pno_is_default_field( $profile_field->get_object_meta_key() ) || $profile_field->get_object_meta_key() == 'avatar' ) {
 
 						$value = $profile_field->get_value();
 
@@ -76,7 +76,7 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 							$value = esc_html__( 'Yes' );
 						} elseif ( $profile_field->get_type() == 'multiselect' || $profile_field->get_type() == 'multicheckbox' ) {
 
-							$stored_field_options = $profile_field->get_selectable_options();
+							$stored_field_options = $profile_field->get_options();
 							$stored_options       = [];
 							$found_options_labels = [];
 
