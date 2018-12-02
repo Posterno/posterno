@@ -248,12 +248,12 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-custom-field-settings.php';
 
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/opening-hours.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/hours-of-operation.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/serialize-complex-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/listing-type.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/data-compressor.php';
-			require_once PNO_PLUGIN_DIR . 'includes/datastores/email-situations.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-opening-hours.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-hours-of-operation.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-serialize-complex-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-listing-type.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-data-compressor.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-email-situations.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-cache-helper.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-ajax.php';
