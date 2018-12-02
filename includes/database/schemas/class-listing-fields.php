@@ -51,6 +51,13 @@ class Listing_Fields extends Schema {
 		),
 
 		array(
+			'name'       => 'listing_meta_key',
+			'type'       => 'longtext',
+			'searchable' => false,
+			'sortable'   => false,
+		),
+
+		array(
 			'name'       => 'settings',
 			'type'       => 'longtext',
 			'searchable' => false,
