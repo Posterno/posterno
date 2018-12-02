@@ -1,10 +1,5 @@
 <template>
 	<wp-container id="pno-admin-header-wrapper">
-		<div class="pno-admin-banner hidden-sm-and-down">
-			<div class="pno-admin-banner__logo">
-			</div>
-			<div class="pno-admin-banner__body"></div>
-		</div>
 		<wp-header height="auto" class="pno-admin-title-area">
 			<wp-row :gutter="0" class="wrap">
 				<wp-col :span="16">
