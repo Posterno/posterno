@@ -24,9 +24,11 @@ function pno_avatar_field_is_disabled_notice() {
 
 		global $post;
 
-		if ( $post instanceof WP_Post && isset( $post->ID ) && get_post_meta( $post->ID, '_field_meta_key', true ) == 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
+		$field = new PNO\Field\Profile( $post->ID );
 
-			$message = esc_html__( 'The avatar field is currently disabled. If needed, you can enable it through the plugin\'s settings.' );
+		if ( $post instanceof WP_Post && isset( $post->ID ) && $field->get_object_meta_key() === 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
+
+			$message = esc_html__( 'The avatar field is currently disabled. You can enable it through the plugin\'s settings.' );
 
 			posterno()->admin_notices->register_notice( 'avatar_disabled', 'info', $message, [ 'dismissible' => false ] );
 
