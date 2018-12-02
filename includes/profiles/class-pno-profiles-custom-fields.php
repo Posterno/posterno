@@ -252,12 +252,12 @@ class PNO_Profiles_Custom_Fields {
 				$custom_fields_ids = [];
 
 				foreach ( $profile_fields->items as $field ) {
-					$custom_field_ids[] = $field->get_post_id();
+					$custom_fields_ids[] = $field->get_post_id();
 				}
 
 				$admin_fields = [];
 
-				foreach ( $custom_field_ids as $profile_field_id ) {
+				foreach ( $custom_fields_ids as $profile_field_id ) {
 
 					$custom_profile_field = new PNO\Field\Profile( $profile_field_id );
 
