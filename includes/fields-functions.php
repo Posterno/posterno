@@ -276,19 +276,24 @@ function pno_get_registration_fields() {
 
 		foreach ( $fields_query->get_posts() as $registration_field ) {
 
-			$field = new PNO_Registration_Field( $registration_field );
+			$field = new PNO\Field\Registration( $registration_field );
 
-			if ( $field instanceof PNO_Registration_Field && $field->get_id() > 0 ) {
-				if ( ! empty( $field->is_default_field() ) && isset( $fields[ $field->get_meta() ] ) ) {
-					$fields[ $field->get_meta() ]['label']       = $field->get_label();
-					$fields[ $field->get_meta() ]['description'] = $field->get_description();
-					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
+			if ( $field instanceof PNO\Field\Registration && $field->get_post_id() > 0 ) {
+
+				if ( pno_is_default_field( $field->get_object_meta_key() ) && isset( $fields[ $field->get_object_meta_key() ] ) ) {
+
+					$fields[ $field->get_object_meta_key() ]['label']       = $field->get_label();
+					$fields[ $field->get_object_meta_key() ]['description'] = $field->get_description();
+					$fields[ $field->get_object_meta_key() ]['placeholder'] = $field->get_placeholder();
+
 					if ( $field->get_priority() ) {
-						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
 					}
-				} elseif ( ! $field->is_default_field() && ! isset( $fields[ $field->get_meta() ] ) ) {
+
+				} else {
+
 					// The field does not exist so we now add it to the list of fields.
-					$fields[ $field->get_meta() ] = [
+					$fields[ $field->get_object_meta_key() ] = [
 						'label'       => $field->get_label(),
 						'type'        => $field->get_type(),
 						'description' => $field->get_description(),
@@ -298,10 +303,13 @@ function pno_get_registration_fields() {
 					];
 
 					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
+						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
+
 				}
+
 			}
+
 		}
 
 		wp_reset_postdata();
