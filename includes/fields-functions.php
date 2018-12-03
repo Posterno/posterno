@@ -541,9 +541,7 @@ function pno_get_form_field_class( $field, $class = '' ) {
 
 	$classes = [ 'pno-field' ];
 
-	if ( $field->get_id() ) {
-		$classes[] = 'pno-field-' . sanitize_title( strtolower( $field->get_name() ) );
-	}
+	$classes[] = 'pno-field-' . sanitize_title( strtolower( $field->get_object_meta_key() ) );
 
 	$classes[] = 'pno-field-' . $field->get_type();
 	$classes[] = 'form-group';
