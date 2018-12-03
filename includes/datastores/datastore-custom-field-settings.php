@@ -229,6 +229,8 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 		if ( $this->get_custom_field_type() === 'profile' && isset( $settings['_profile_field_meta_key'] ) ) {
 			$data_to_save['user_meta_key'] = $settings['_profile_field_meta_key'];
+		} elseif ( $this->get_custom_field_type() === 'listing' && isset( $settings['_listing_field_meta_key'] ) ) {
+			$data_to_save['listing_meta_key'] = $settings['_listing_field_meta_key'];
 		}
 
 		$field->update_item( $settings_object_id, $data_to_save );

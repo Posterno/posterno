@@ -199,9 +199,9 @@ class Listing extends Field {
 
 		$exists = false;
 
-		$listing_field = new \PNO\Database\Queries\Listing_Fields();
+		$profile_field = new \PNO\Database\Queries\Listing_Fields();
 
-		$query = $listing_field->get_item_by( 'post_meta_key', $meta );
+		$query = $profile_field->get_item_by( 'listing_meta_key', $meta );
 
 		if ( $query instanceof \PNO\Field\Listing ) {
 			$exists = true;
