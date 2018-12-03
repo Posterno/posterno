@@ -53,7 +53,7 @@ class Listing {
 	public function init() {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
-		//add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
 
 	}
 
@@ -361,79 +361,63 @@ class Listing {
 	 */
 	public function register_custom_fields() {
 
-		$fields_query = [
-			'post_type'              => 'pno_listings_fields',
-			'posts_per_page'         => 100,
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'fields'                 => 'ids',
-			'post_status'            => 'publish',
-			'meta_query'             => array(
-				array(
-					'key'     => '_listing_field_meta_key',
-					'value'   => pno_get_registered_default_meta_keys(),
-					'compare' => 'NOT IN',
-				),
-			),
-		];
+		$listing_fields = new \PNO\Database\Queries\Listing_Fields( [ 'listing_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
 
-		$fields       = new WP_Query( $fields_query );
-		$admin_fields = [];
+		$custom_fields_ids = [];
 
-		if ( $fields->have_posts() ) {
-
-			$found_fields = $fields->get_posts();
-
-			foreach ( $found_fields as $field_id ) {
-				$custom_field = new PNO_Listing_Field( $field_id );
-
-				if ( $custom_field instanceof PNO_Listing_Field && ! empty( $custom_field->get_meta() ) ) {
-
-					$type = $custom_field->get_type();
-
-					switch ( $type ) {
-						case 'url':
-						case 'email':
-						case 'number':
-						case 'password':
-							$type = 'text';
-							break;
-						case 'multicheckbox':
-							$type = 'set';
-							break;
-						case 'editor':
-							$type = 'rich_text';
-							break;
-						case 'term-select':
-							$type = 'select';
-							break;
-						case 'dropzone':
-							$type = 'media_gallery';
-							break;
-					}
-
-					if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
-						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->add_options( $custom_field->get_selectable_options() );
-					} elseif ( $type == 'file' ) {
-						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_value_type( 'url' );
-					} elseif ( $custom_field->get_type() == 'number' ) {
-						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'number' );
-					} elseif ( $custom_field->get_type() == 'password' ) {
-						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() )->set_attribute( 'type', 'password' );
-					} else {
-						$admin_fields[] = Field::make( $type, $custom_field->get_meta(), $custom_field->get_name() );
-					}
-				}
-			}
-
-			Container::make( 'post_meta', esc_html__( 'Additional settings' ) )
-				->where( 'post_type', '=', 'listings' )
-				->add_fields( $admin_fields );
-
+		foreach ( $listing_fields->items as $field ) {
+			$custom_fields_ids[] = $field->get_post_id();
 		}
 
-		wp_reset_postdata();
+		$admin_fields = [];
+
+		foreach ( $custom_fields_ids as $listing_field_id ) {
+
+			$custom_listing_field = new \PNO\Field\Listing( $listing_field_id );
+
+			if ( $custom_listing_field instanceof \PNO\Field\Listing && ! empty( $custom_listing_field->get_object_meta_key() ) ) {
+
+				$type = $custom_listing_field->get_type();
+
+				switch ( $type ) {
+					case 'url':
+					case 'email':
+					case 'number':
+					case 'password':
+						$type = 'text';
+						break;
+					case 'multicheckbox':
+						$type = 'set';
+						break;
+					case 'editor':
+						$type = 'rich_text';
+						break;
+					case 'term-select':
+						$type = 'select';
+						break;
+				}
+
+				if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
+					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
+				} elseif ( $type == 'file' ) {
+					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_value_type( 'url' );
+				} elseif ( $custom_listing_field->get_type() == 'number' ) {
+					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'number' );
+				} elseif ( $custom_listing_field->get_type() == 'password' ) {
+					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'password' );
+				} else {
+					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+				}
+
+			}
+
+			if ( ! empty( $admin_fields ) ) {
+				Container::make( 'post_meta', esc_html__( 'Additional settings' ) )
+					->where( 'post_type', '=', 'listings' )
+					->add_fields( $admin_fields );
+			}
+
+		}
 
 	}
 
