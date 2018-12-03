@@ -98,6 +98,8 @@ class Helper {
 			forget_transient( 'pno_registration_fields' );
 		} elseif ( 'pno_users_fields' === get_post_type( $post_id ) ) {
 			forget_transient( 'pno_admin_custom_profile_fields' );
+		} elseif ( 'pno_listings_fields' === get_post_type( $post_id ) ) {
+			forget_transient( 'pno_admin_custom_listing_fields' );
 		}
 	}
 
@@ -109,6 +111,7 @@ class Helper {
 	public static function flush_all_fields_cache() {
 		forget_transient( 'pno_registration_fields' );
 		forget_transient( 'pno_admin_custom_profile_fields' );
+		forget_transient( 'pno_admin_custom_listing_fields' );
 	}
 
 }
