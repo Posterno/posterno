@@ -474,11 +474,6 @@ function pno_display_post_type_tabs() {
 		);
 	}
 
-	$tabs['custom_fields'] = [
-		'name' => esc_html__( 'Custom fields' ),
-		'url'  => admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ),
-	];
-
 	/**
 	 * Allows developers to extend the tabs within the admin panel.
 	 *
@@ -517,7 +512,7 @@ function pno_display_post_type_tabs() {
 	<br />
 
 	<?php
-echo ob_get_clean(); // phpcs:ignore
+	echo ob_get_clean(); // phpcs:ignore
 }
 
 /**
