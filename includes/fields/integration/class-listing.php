@@ -361,62 +361,71 @@ class Listing {
 	 */
 	public function register_custom_fields() {
 
-		$listing_fields = new \PNO\Database\Queries\Listing_Fields( [ 'listing_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
+		$admin_fields = remember_transient(
+			'pno_admin_custom_listing_fields',
+			function () {
 
-		$custom_fields_ids = [];
+				$listing_fields = new \PNO\Database\Queries\Listing_Fields( [ 'listing_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
 
-		foreach ( $listing_fields->items as $field ) {
-			$custom_fields_ids[] = $field->get_post_id();
-		}
+				$custom_fields_ids = [];
 
-		$admin_fields = [];
-
-		foreach ( $custom_fields_ids as $listing_field_id ) {
-
-			$custom_listing_field = new \PNO\Field\Listing( $listing_field_id );
-
-			if ( $custom_listing_field instanceof \PNO\Field\Listing && ! empty( $custom_listing_field->get_object_meta_key() ) ) {
-
-				$type = $custom_listing_field->get_type();
-
-				switch ( $type ) {
-					case 'url':
-					case 'email':
-					case 'number':
-					case 'password':
-						$type = 'text';
-						break;
-					case 'multicheckbox':
-						$type = 'set';
-						break;
-					case 'editor':
-						$type = 'rich_text';
-						break;
-					case 'term-select':
-						$type = 'select';
-						break;
+				foreach ( $listing_fields->items as $field ) {
+					$custom_fields_ids[] = $field->get_post_id();
 				}
 
-				if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
-					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
-				} elseif ( $type == 'file' ) {
-					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_value_type( 'url' );
-				} elseif ( $custom_listing_field->get_type() == 'number' ) {
-					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'number' );
-				} elseif ( $custom_listing_field->get_type() == 'password' ) {
-					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'password' );
-				} else {
-					$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+				$admin_fields = [];
+
+				foreach ( $custom_fields_ids as $listing_field_id ) {
+
+					$custom_listing_field = new \PNO\Field\Listing( $listing_field_id );
+
+					if ( $custom_listing_field instanceof \PNO\Field\Listing && ! empty( $custom_listing_field->get_object_meta_key() ) ) {
+
+						$type = $custom_listing_field->get_type();
+
+						switch ( $type ) {
+							case 'url':
+							case 'email':
+							case 'number':
+							case 'password':
+								$type = 'text';
+								break;
+							case 'multicheckbox':
+								$type = 'set';
+								break;
+							case 'editor':
+								$type = 'rich_text';
+								break;
+							case 'term-select':
+								$type = 'select';
+								break;
+						}
+
+						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
+						} elseif ( $type == 'file' ) {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_value_type( 'url' );
+						} elseif ( $custom_listing_field->get_type() == 'number' ) {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'number' );
+						} elseif ( $custom_listing_field->get_type() == 'password' ) {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'password' );
+						} else {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+						}
+
+					}
+
 				}
 
-			}
+				return $admin_fields;
 
-			if ( ! empty( $admin_fields ) ) {
-				Container::make( 'post_meta', esc_html__( 'Additional settings' ) )
-					->where( 'post_type', '=', 'listings' )
-					->add_fields( $admin_fields );
 			}
+		);
 
+		if ( ! empty( $admin_fields ) ) {
+			Container::make( 'post_meta', esc_html__( 'Additional settings' ) )
+				->where( 'post_type', '=', 'listings' )
+				->add_fields( $admin_fields );
 		}
 
 	}
