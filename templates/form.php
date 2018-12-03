@@ -81,7 +81,8 @@ if ( $data->form->is_successful() ) {
 
 			<?php
 
-				$field = new Field( $field, $key );
+				$field['key'] = $key;
+				$field        = new Field( $field );
 
 				/**
 				 * Action that triggers before displaying a field within a form.
@@ -97,7 +98,7 @@ if ( $data->form->is_successful() ) {
 			<div <?php pno_form_field_class( $field ); ?>>
 
 				<?php if ( $field->get_type() !== 'checkbox' ) : ?>
-					<label for="<?php echo esc_attr( $field->get_id() ); ?>">
+					<label for="pno-field-<?php echo esc_attr( $field->get_object_meta_key() ); ?>">
 						<?php echo esc_html( $field->get_label() ); ?>
 							<?php if ( ! $field->is_required() ) : ?>
 								<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>

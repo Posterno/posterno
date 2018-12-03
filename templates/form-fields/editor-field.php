@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $editor = apply_filters(
 	'pno_wp_editor_args', array(
-		'textarea_name' => $data->get_name(),
+		'textarea_name' => esc_attr( $data->get_object_meta_key() ),
 		'media_buttons' => false,
 		'textarea_rows' => 8,
 		'quicktags'     => false,
@@ -39,4 +39,4 @@ $editor = apply_filters(
 		),
 	)
 );
-wp_editor( ! empty( $data->get_value() ) ? wp_kses_post( wp_specialchars_decode( $data->get_value() ) ) : '', $data->get_id(), $editor );
+wp_editor( ! empty( $data->get_value() ) ? wp_kses_post( wp_specialchars_decode( $data->get_value() ) ) : '', 'pno-field-' . esc_attr( $data->get_object_meta_key() ), $editor );

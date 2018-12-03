@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<input
 			type="checkbox"
 			<?php pno_form_field_input_class( $data ); ?>
-			name="<?php echo esc_attr( $data->get_name() ); ?>[]"
+			name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>[]"
 			<?php if ( ! empty( $data->get_value() ) && is_array( $data->get_value() ) ) checked( in_array( $opt_key, $data->get_value() ), true ); ?>
 			value="<?php echo esc_attr( $opt_key ); ?>"
 			id="<?php echo esc_attr( $opt_key ); ?>"

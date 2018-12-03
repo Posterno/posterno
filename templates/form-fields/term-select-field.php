@@ -43,7 +43,7 @@ wp_dropdown_categories(
 			'show_option_all'    => false,
 			'show_option_none'   => $data->get_option( 'required' ) ? '' : '-',
 			'placeholder-select' => isset( $data->get_option( 'attributes' )['placeholder'] ) ? $data->get_option( 'attributes' )['placeholder'] : false,
-			'name'               => esc_attr( $data->get_name() ),
+			'name'               => esc_attr( $data->get_object_meta_key() ),
 			'orderby'            => 'name',
 			'selected'           => $selected,
 			'hide_empty'         => false,

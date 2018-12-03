@@ -73,8 +73,8 @@ $registered_networks = pno_get_registered_social_media();
 			<input
 				type="hidden"
 				<?php pno_form_field_input_class( $data ); ?>
-				name="<?php echo esc_attr( $data->get_name() ); ?>"
-				id="<?php echo esc_attr( $data->get_id() ); ?>"
+				name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+				id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 				value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
 			>
 		</div>

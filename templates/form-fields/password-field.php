@@ -14,15 +14,17 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 
 <input
 	type="password"
 	<?php pno_form_field_input_class( $data ); ?>
-	name="<?php echo esc_attr( $data->get_name() ); ?>"
-	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 />

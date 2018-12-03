@@ -480,7 +480,7 @@ class Field {
 	 */
 	public function __construct( $field = false, $object_id = false ) {
 
-		if ( is_object( $field ) ) {
+		if ( is_object( $field ) || is_array( $field ) ) {
 			$this->populate( $field );
 		} else {
 			$this->populate_from_post_id( $field );
@@ -510,6 +510,10 @@ class Field {
 
 		foreach ( $args as $key => $value ) {
 			$this->{$key} = $value;
+		}
+
+		if ( isset( $args['key'] ) && ! empty( $args['key'] ) ) {
+			$this->object_meta_key = $args['key'];
 		}
 
 	}

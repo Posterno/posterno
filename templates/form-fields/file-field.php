@@ -72,10 +72,10 @@ if ( is_array( $stored_value ) && isset( $stored_value['url'] ) ) {
 <input
 	type="file"
 	<?php pno_form_field_input_class( $data ); ?>
-	id="<?php echo esc_attr( $data->get_id() ); ?>"
+	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	aria-describedby="<?php echo esc_attr( $data->get_id() ); ?>"
 	<?php if ( $data->is_multiple() ) echo 'multiple'; //phpcs:ignore ?>
-	name="<?php echo esc_attr( $data->get_id() ); ?>"
 	value=""
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 >

@@ -23,14 +23,14 @@ defined( 'ABSPATH' ) || exit;
 	<input
 		type="checkbox"
 		<?php pno_form_field_input_class( $data ); ?>
-		name="<?php echo esc_attr( $data->get_name() ); ?>"
-		id="<?php echo esc_attr( $data->get_id() ); ?>"
+		name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+		id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 		<?php checked( ! empty( $data->get_value() ), true ); ?>
 		<?php echo $data->get_attributes(); //phpcs:ignore ?>
 		value="1"
 	/>
 
-	<label for="<?php echo esc_attr( $data->get_id() ); ?>" class="custom-control-label">
+	<label for="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>" class="custom-control-label">
 		<?php echo wp_kses_post( $data->get_label() ); ?>
 	</label>
 
