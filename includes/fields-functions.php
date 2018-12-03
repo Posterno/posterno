@@ -268,6 +268,7 @@ function pno_get_registration_fields() {
 		'no_found_rows'          => true,
 		'update_post_term_cache' => false,
 		'post_status'            => 'publish',
+		'fields'                 => 'ids',
 	];
 
 	$fields_query = new WP_Query( $fields_query_args );
@@ -289,7 +290,6 @@ function pno_get_registration_fields() {
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
 					}
-
 				} else {
 
 					// The field does not exist so we now add it to the list of fields.
@@ -305,11 +305,8 @@ function pno_get_registration_fields() {
 					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
-
 				}
-
 			}
-
 		}
 
 		wp_reset_postdata();
@@ -402,6 +399,7 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 		'no_found_rows'          => true,
 		'update_post_term_cache' => false,
 		'post_status'            => 'publish',
+		'fields'                 => 'ids',
 	];
 
 	$fields_query = new WP_Query( $fields_query_args );
@@ -410,55 +408,50 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 
 		foreach ( $fields_query->get_posts() as $account_field ) {
 
-			$field = new PNO_Profile_Field( $account_field );
+			$field = new PNO\Field\Profile( $account_field );
 
-			if ( $field instanceof PNO_Profile_Field && ! empty( $field->get_meta() ) ) {
+			if ( $field instanceof PNO\Field\Profile && ! empty( $field->get_object_meta_key() ) ) {
 
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
-				if ( isset( $fields[ $field->get_meta() ] ) ) {
+				if ( isset( $fields[ $field->get_object_meta_key() ] ) ) {
 
 					if ( $field->is_admin_only() === true && ! $admin_request ) {
-						unset( $fields[ $field->get_meta() ] );
+						unset( $fields[ $field->get_object_meta_key() ] );
 						continue;
 					}
 
-					$fields[ $field->get_meta() ]['label']       = $field->get_label();
-					$fields[ $field->get_meta() ]['description'] = $field->get_description();
-					$fields[ $field->get_meta() ]['placeholder'] = $field->get_placeholder();
-					$fields[ $field->get_meta() ]['readonly']    = $field->is_read_only();
+					$fields[ $field->get_object_meta_key() ]['label']       = $field->get_label();
+					$fields[ $field->get_object_meta_key() ]['description'] = $field->get_description();
+					$fields[ $field->get_object_meta_key() ]['placeholder'] = $field->get_placeholder();
+					$fields[ $field->get_object_meta_key() ]['readonly']    = $field->is_readonly();
 
-					if ( $field->get_meta() !== 'email' ) {
-						$fields[ $field->get_meta() ]['required'] = $field->is_required();
-					}
-
-					if ( $field->get_custom_classes() ) {
-						$fields[ $field->get_meta() ]['css_class'] = $field->get_custom_classes();
+					if ( $field->get_object_meta_key() !== 'email' ) {
+						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
 					}
 
 					if ( $field->get_priority() ) {
-						$fields[ $field->get_meta() ]['priority'] = $field->get_priority();
+						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
 					}
 				} else {
 
 					// The field does not exist so we now add it to the list of fields.
-					$fields[ $field->get_meta() ] = [
+					$fields[ $field->get_object_meta_key() ] = [
 						'label'       => $field->get_label(),
 						'type'        => $field->get_type(),
 						'description' => $field->get_description(),
 						'placeholder' => $field->get_placeholder(),
-						'readonly'    => $field->is_read_only(),
+						'readonly'    => $field->is_readonly(),
 						'required'    => $field->is_required(),
-						'css_class'   => $field->get_custom_classes(),
 						'priority'    => $field->get_priority(),
 					];
 
 					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_meta() ]['options'] = $field->get_selectable_options();
+						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
 
-					if ( $field->get_type() == 'file' && ! empty( $field->get_file_size() ) ) {
-						$fields[ $field->get_meta() ]['max_size'] = $field->get_file_size();
+					if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
+						$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
 					}
 				}
 			}
@@ -776,7 +769,7 @@ function pno_dropdown_categories( $args = '' ) {
 function pno_get_listings_submission_form_js_vars() {
 
 	$js_settings = [
-		'selected_listing_type'         => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, //phpcs: ignore
+		'selected_listing_type'         => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, // phpcs: ignore
 		'max_multiselect'               => absint( pno_get_option( 'submission_categories_amount' ) ),
 		'subcategories_on_submission'   => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
 		'ajax'                          => admin_url( 'admin-ajax.php' ),
@@ -1212,26 +1205,5 @@ function pno_dropzone_format_value_to_json( $value, $field ) {
 	$files = wp_json_encode( $attachments );
 
 	return $files;
-
-}
-
-function pno_add_profile_field_settings( $data ) {
-
-	// A post ID must be supplied for every setting inserted.
-	if ( empty( $data['post_id'] ) ) {
-		return false;
-	}
-
-	$profile_fields = new PNO\Database\Queries\Profile_Fields();
-
-	return $profile_fields->add_item( $data );
-
-}
-
-function pno_get_profile_field_settings( $post_id ) {
-
-	$profile_fields = new PNO\Database\Queries\Profile_Fields();
-
-	return $profile_fields->get_item_by( 'post_id', $post_id );
 
 }

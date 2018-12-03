@@ -112,6 +112,12 @@ if ( $data->form->is_successful() ) {
 						->get_template_part( 'form-fields/' . $field->get_type(), 'field' );
 				?>
 
+				<?php if ( ! empty( $field->get_description() ) ) : ?>
+					<small class="form-text text-muted">
+						<?php echo esc_html( $field->get_description() ); ?>
+					</small>
+				<?php endif; ?>
+
 			</div>
 
 			<?php
