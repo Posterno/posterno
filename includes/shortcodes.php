@@ -270,6 +270,11 @@ function pno_delete_account_form() {
 }
 add_shortcode( 'pno_delete_account_form', 'pno_delete_account_form' );
 
+/**
+ * Displays the listing submission form.
+ *
+ * @return string
+ */
 function pno_listing_submission_form() {
 
 	ob_start();
