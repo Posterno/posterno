@@ -107,6 +107,11 @@ form.pno-form-has-errors .field-has-errors {
 .pno-field-listing_tags:not(.pno-category-selected) {
   display: none; }
 
+.pno-uploaded-files-list {
+  margin: 0 0 1em 0; }
+  .pno-uploaded-files-list img {
+    height: 70px; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0; }

@@ -93,3 +93,10 @@ form.pno-form-has-errors {
 .pno-field-listing_tags:not(.pno-category-selected) {
 	display: none;
 }
+
+.pno-uploaded-files-list {
+	margin: 0 0 1em 0;
+	img {
+		height: 70px;
+	}
+}

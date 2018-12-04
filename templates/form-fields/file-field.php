@@ -23,6 +23,46 @@ $file_size          = $data->get_maxsize() ? $data->get_maxsize() : false;
 
 ?>
 
+<?php if ( ! empty( $data->get_value() ) ) : ?>
+	<div class="pno-uploaded-files">
+
+		<?php if ( is_array( $data->get_value() ) ) : ?>
+
+			<?php foreach ( $data->get_value() as $value ) : ?>
+
+				<?php
+					posterno()->templates
+						->set_template_data(
+							[
+								'key'   => $data->get_object_meta_key(),
+								'name'  => 'current_' . $data->get_object_meta_key(),
+								'value' => $value,
+							]
+						)
+						->get_template_part( 'form-fields/file', 'uploaded' );
+				?>
+
+			<?php endforeach; ?>
+
+		<?php else : ?>
+
+			<?php
+				posterno()->templates
+					->set_template_data(
+						[
+							'key'   => $data->get_object_meta_key(),
+							'name'  => 'current_' . $data->get_object_meta_key(),
+							'value' => $data->get_value(),
+						]
+					)
+					->get_template_part( 'form-fields/file', 'uploaded' );
+			?>
+
+		<?php endif; ?>
+
+	</div>
+<?php endif; ?>
+
 <input
 	type="file"
 	<?php pno_form_field_input_class( $data ); ?>

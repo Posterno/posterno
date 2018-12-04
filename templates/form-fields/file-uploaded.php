@@ -21,22 +21,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $value = is_array( $data->value ) ? $data->value['url'] : $data->value;
 
+if ( is_numeric( $value ) ) {
+	$image_src = wp_get_attachment_image_src( absint( $value ) );
+	$image_src = $image_src ? $image_src[0] : '';
+} else {
+	$image_src = $value;
+}
+
+$extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $image_src, '.' ), 1 );
+
 ?>
 
 <div class="pno-uploaded-file">
-	<?php
-	if ( is_numeric( $value ) ) {
-		$image_src = wp_get_attachment_image_src( absint( $value ) );
-		$image_src = $image_src ? $image_src[0] : '';
-	} else {
-		$image_src = $value;
-	}
-	$extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $image_src, '.' ), 1 );
-	if ( 'image' === wp_ext2type( $extension ) ) :
-	?>
-		<span class="pno-uploaded-file-preview"><img src="<?php echo esc_url( $image_src ); ?>" /> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#" data-dropped="dropzone-<?php echo esc_attr( $data->key ); ?>"><?php esc_html_e( 'Remove' ); ?></a></span>
+	<?php if ( 'image' === wp_ext2type( $extension ) ) : ?>
+		<ul class="list-group pno-uploaded-files-list">
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<img src="<?php echo esc_url( $image_src ); ?>" />
+				<a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#">
+					<?php esc_html_e( 'Remove' ); ?>
+				</a>
+			</li>
+		</ul>
 	<?php else : ?>
-		<span class="pno-uploaded-file-name"><code><?php echo esc_html( basename( $image_src ) ); ?></code> <a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#" data-dropped="dropzone-<?php echo esc_attr( $data->key ); ?>"><?php esc_html_e( 'Remove' ); ?></a></span>
+		<ul class="list-group pno-uploaded-files-list">
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<code>
+					<?php echo esc_html( basename( $image_src ) ); ?>
+				</code>
+				<a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#">
+					<?php esc_html_e( 'Remove' ); ?>
+				</a>
+			</li>
+		</ul>
 	<?php endif; ?>
 
 	<input type="hidden" class="input-text" name="<?php echo esc_attr( $data->name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
