@@ -26,7 +26,7 @@ $file_size          = $data->get_maxsize() ? $data->get_maxsize() : false;
 <?php if ( ! empty( $data->get_value() ) ) : ?>
 	<div class="pno-uploaded-files">
 
-		<?php if ( is_array( $data->get_value() ) ) : ?>
+		<?php if ( is_array( $data->get_value() ) && ! isset( $data->get_value()['url'] ) ) : ?>
 
 			<?php foreach ( $data->get_value() as $value ) : ?>
 
