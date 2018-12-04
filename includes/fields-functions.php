@@ -106,7 +106,6 @@ function pno_get_registered_field_types( $exclude = [] ) {
 		'listing-tags'     => esc_html__( 'Listing tags selector' ),
 		'term-select'      => esc_html__( 'Taxonomy dropdown' ),
 		'opening-hours'    => esc_html__( 'Opening hours' ),
-		'dropzone'         => esc_html__( 'Dropzone upload' ),
 		'listing-location' => esc_html__( 'Map' ),
 	];
 
@@ -569,8 +568,6 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = 'custom-control-input';
 	} elseif ( $field->get_type() === 'dropdown' || $field->get_type() === 'term-select' ) {
 		$classes[] = 'custom-select';
-	} elseif ( $field->get_type() === 'dropzone' ) {
-		$classes[] = 'dropzone';
 	} else {
 		$classes[] = 'input-' . $field->get_type();
 	}
@@ -759,24 +756,10 @@ function pno_get_listings_submission_form_js_vars() {
 		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories' ),
 		'get_starter_tags_nonce'        => wp_create_nonce( 'pno_get_tags' ),
 		'get_subcategories_nonce'       => wp_create_nonce( 'pno_get_subcategories' ),
-		'dropzone_remove_file_nonce'    => wp_create_nonce( 'pno_dropzone_remove_file_nonce' ),
-		'dropzone_unattach_files_nonce' => wp_create_nonce( 'pno_dropzone_unattach_from_listing' ),
 		'days'                          => pno_get_days_of_the_week(),
 		'is_editing_mode'               => is_page( pno_get_listing_editing_page_id() ),
 		'editing_listing_id'            => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
 		'upload_error'                  => esc_html__( 'Something went wrong during the upload.' ),
-		'dropzone'                      => [
-			'dictDefaultMessage'           => esc_html__( 'Drop files here to upload' ),
-			'dictFallbackMessage'          => esc_html__( 'Your browser does not support drag& drop file uploads.' ),
-			'dictFileTooBig'               => esc_html__( 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.' ),
-			'dictInvalidFileType'          => esc_html__( 'You can\'t upload files of this type.' ),
-			'dictResponseError'            => esc_html__( 'Server responded with {{statusCode}} code.' ),
-			'dictCancelUpload'             => esc_html__( 'Cancel upload.' ),
-			'dictUploadCanceled'           => esc_html__( 'Upload canceled.' ),
-			'dictCancelUploadConfirmation' => esc_html__( 'Are you sure you want to cancel this upload?' ),
-			'dictRemoveFile'               => esc_html__( 'Remove file' ),
-			'dictMaxFilesExceeded'         => esc_html__( 'You can not upload any more files.' ),
-		],
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
@@ -979,13 +962,6 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 						$fields[ $field->get_meta() ]['taxonomy'] = $field->get_taxonomy_id();
 					}
 
-					if ( $field->get_type() === 'dropzone' ) {
-						if ( $field->get_dropzone_max_files() > 1 ) {
-							$fields[ $field->get_meta() ]['multiple']           = true;
-							$fields[ $field->get_meta() ]['dropzone_max_files'] = $field->get_dropzone_max_files();
-						}
-						$fields[ $field->get_meta() ]['dropzone_max_size'] = $field->get_dropzone_max_size();
-					}
 				}
 
 				if ( $field->get_priority() ) {
@@ -1089,11 +1065,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							break;
 					}
 				} else {
-					if ( $field['type'] === 'dropzone' ) {
-						$value = pno_dropzone_format_value_to_json( carbon_get_post_meta( $listing_id, $key ), $field );
-					} else {
-						$value = carbon_get_post_meta( $listing_id, $key );
-					}
+					$value = carbon_get_post_meta( $listing_id, $key );
 				}
 				if ( ! empty( $value ) ) {
 					$fields[ $key ]['value'] = $value;
@@ -1113,80 +1085,5 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 
 	return $fields;
-
-}
-
-/**
- * Determine the maximum amount of files that can be uploaded through a dropzone.
- *
- * @param \PNO\Form\Field\AbstractField $field the field we're working with.
- * @return string
- */
-function pno_dropzone_get_max_files_amount( $field ) {
-
-	$amount = 1;
-
-	if ( $field instanceof \PNO\Form\Field\AbstractField && $field->get_option( 'multiple' ) ) {
-
-		switch ( $field->get_id() ) {
-			case 'listing_gallery':
-				$amount = absint( pno_get_option( 'submission_images_amount', 1 ) );
-				break;
-			default:
-				$amount = absint( $field->get_option( 'dropzone_max_files' ) );
-				break;
-		}
-	}
-
-	/**
-	 * Allow developers to customize the max amount of files that
-	 * can be uploaded through a dropzone.
-	 *
-	 * @param string $amount the max amount of files in numeric value.
-	 * @param PNO\Form\Field $field the field to verify.
-	 * @return string
-	 */
-	return apply_filters( 'pno_dropzone_max_files_amount', $amount, $field );
-
-}
-
-/**
- * Prepare a list of attachments ids, to be formatted for display through a dropzone.
- *
- * @param string|array $value list of attachment ids.
- * @param array        $field definition of the field used to detect wether the dropzone manages more than one file.
- * @return string
- */
-function pno_dropzone_format_value_to_json( $value, $field ) {
-
-	$attachments = [];
-
-	$singular = ! isset( $field['dropzone_max_files'] ) ? true : false;
-
-	if ( ! empty( $value ) && is_array( $value ) ) {
-		foreach ( $value as $image_id ) {
-			if ( $singular ) {
-				$attachments = [
-					'image_id'   => $image_id,
-					'image_url'  => wp_get_attachment_url( $image_id ),
-					'image_path' => get_attached_file( $image_id ),
-					'image_name' => wp_basename( get_attached_file( $image_id ) ),
-					'image_size' => filesize( get_attached_file( $image_id ) ),
-				];
-			} else {
-				$attachments[] = [
-					'image_id'   => $image_id,
-					'image_url'  => wp_get_attachment_url( $image_id ),
-					'image_path' => get_attached_file( $image_id ),
-					'image_name' => wp_basename( get_attached_file( $image_id ) ),
-					'image_size' => filesize( get_attached_file( $image_id ) ),
-				];
-			}
-		}
-	}
-
-	$files = wp_json_encode( $attachments );
-
-	return $files;
 
 }

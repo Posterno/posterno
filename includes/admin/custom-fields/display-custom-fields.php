@@ -32,7 +32,6 @@ function pno_get_custom_fields_editor_js_vars() {
 				'listing-tags',
 				'term-select',
 				'opening-hours',
-				'dropzone',
 				'listing-location',
 			]
 		),
