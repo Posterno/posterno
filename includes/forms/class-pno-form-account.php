@@ -227,6 +227,43 @@ class PNO_Form_Account extends PNO_Form {
 			}
 
 			// Now update the custom fields that are not marked as default profile fields.
+			foreach ( $this->fields['account'] as $key => $field_details ) {
+
+				if ( isset( $values[ $key ] ) && ! pno_is_default_field( $key ) ) {
+
+					// Custom processing logic for file type field.
+					// - Deletes existing file if replacing it.
+					// - Deletes existing file if just removing it.
+					// - Updates db with whatever it's left.
+					if ( $field_details['type'] === 'file' ) {
+
+						$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
+						$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
+
+						if ( $currently_uploaded_file && $existing_file_path && isset( $values[ $key ]['url'] ) && $values[ $key ]['url'] !== $currently_uploaded_file ) {
+							wp_delete_file( $existing_file_path );
+						}
+
+						if ( ! $currently_uploaded_file && file_exists( $existing_file_path ) ) {
+							wp_delete_file( $existing_file_path );
+							carbon_set_user_meta( $updated_user_id, $key, false );
+							delete_user_meta( $updated_user_id, "current_{$key}" );
+						}
+
+						if ( ! empty( $values[ $key ]['url'] ) && ! empty( $values[ $key ]['path'] ) ) {
+							carbon_set_user_meta( $updated_user_id, $key, $values[ $key ]['url'] );
+							update_user_meta( $updated_user_id, "current_{$key}", $values[ $key ]['path'] );
+						}
+
+					} else {
+
+						carbon_set_user_meta( $updated_user_id, $key, $values[ $key ] );
+
+					}
+
+				}
+			}
+			/*
 			foreach ( $values as $key => $value ) {
 				if ( ! pno_is_default_field( $key ) ) {
 					if ( $value == '1' ) {
@@ -240,6 +277,12 @@ class PNO_Form_Account extends PNO_Form {
 							wp_delete_file( $existing_file_path );
 						}
 
+						if ( ! $currently_uploaded_file && file_exists( $existing_file_path ) ) {
+							wp_delete_file( $existing_file_path );
+							carbon_set_user_meta( $updated_user_id, $key, false );
+							delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
+						}
+
 						carbon_set_user_meta( $updated_user_id, $key, $value['url'] );
 						update_user_meta( $updated_user_id, "current_{$key}", $value['path'] );
 
@@ -247,7 +290,7 @@ class PNO_Form_Account extends PNO_Form {
 						carbon_set_user_meta( $updated_user_id, $key, $value );
 					}
 				}
-			}
+			}*/
 
 			/**
 			 * Action that fires after the user's account has been update,
