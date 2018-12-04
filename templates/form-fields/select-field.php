@@ -13,7 +13,7 @@
  * @version 1.0.0
  */
 
- // Exit if accessed directly.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -26,12 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 	>
-	<?php foreach ( $data->get_choices() as $key => $value ) : ?>
+	<?php foreach ( $data->get_options() as $key => $value ) : ?>
 		<option
 			value="<?php echo esc_attr( $key ); ?>"
 			<?php
-			if ( ! empty( $data->get_value() ) || ! empty( $data->get_option( 'default' ) ) ) {
-				selected( ! empty( $data->get_value() ) ? $data->get_value() : $data->get_option( 'default' ), $key );}
+			if ( ! empty( $data->get_value() ) ) {
+				selected( ! empty( $data->get_value() ) ? $data->get_value() : false, $key );}
 			?>
 			>
 				<?php echo esc_html( $value ); ?>

@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	<?php echo $data->get_attributes(); //phpcs:ignore ?>
 	>
-	<?php foreach ( $data->get_choices() as $key => $value ) : ?>
+	<?php foreach ( $data->get_options() as $key => $value ) : ?>
 		<option
 			value="<?php echo esc_attr( $key ); ?>"
 			<?php if ( ! empty( $data->get_value() ) && is_array( $data->get_value() ) ) selected( in_array( $key, $data->get_value() ), true ); ?>

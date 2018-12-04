@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php foreach ( $data->get_choices() as $opt_key => $value ) : ?>
+<?php foreach ( $data->get_options() as $opt_key => $value ) : ?>
 
 	<div class="custom-control custom-checkbox">
 		<input
