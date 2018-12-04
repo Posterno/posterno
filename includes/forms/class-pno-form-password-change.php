@@ -175,6 +175,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 					'fields'       => $this->get_fields( 'password-change' ),
 					'step'         => $this->get_step(),
 					'submit_label' => esc_html__( 'Change password' ),
+					'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 				]
 			)
 			->get_template_part( 'form' );
