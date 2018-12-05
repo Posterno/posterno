@@ -46,7 +46,7 @@ Vue.component('pno-social-profile-field', {
 		 *
 		 */
 		getSavedProfiles() {
-			return document.getElementById('listing_social_media_profiles').value ? JSON.parse( document.getElementById('listing_social_media_profiles').value ) : false
+			return document.getElementById('pno-field-listing_social_media_profiles').value ? JSON.parse( document.getElementById('pno-field-listing_social_media_profiles').value ) : false
 		}
 	},
 	watch: {
@@ -56,7 +56,7 @@ Vue.component('pno-social-profile-field', {
 		 */
 		definedSocialProfiles: {
 			handler: function () {
-				document.getElementById('listing_social_media_profiles').value = JSON.stringify(this.definedSocialProfiles);
+				document.getElementById('pno-field-listing_social_media_profiles').value = JSON.stringify(this.definedSocialProfiles);
 			},
 			deep: true
 		}

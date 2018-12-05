@@ -300,7 +300,7 @@ function pno_get_days_of_the_week() {
  */
 function pno_get_submission_queried_listing_type_id() {
 
-	return isset( $_GET['listing_type'] ) && ! empty( sanitize_text_field( $_GET['listing_type'] ) ) ? absint( $_GET['listing_type'] ) : false;
+	return isset( $_POST['listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['listing_type_id'] ) ) ? absint( $_POST['listing_type_id'] ) : false;
 
 }
 
@@ -315,7 +315,6 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 	$categories = [];
 
 	$categories_associated_to_type = carbon_get_term_meta( $listing_type_id, 'associated_categories' );
-	$show_subcategories            = pno_get_option( 'submission_categories_sublevel' ) ? true : false;
 
 	$terms_args = array(
 		'hide_empty' => false,
@@ -333,11 +332,43 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 
 	if ( ! empty( $terms ) ) {
 		foreach ( $terms as $listing_category ) {
-			$categories[ absint( $listing_category->term_id ) ] = esc_html( $listing_category->name );
+			$categories[] = absint( $listing_category->term_id );
 		}
 	}
 
 	return $categories;
+
+}
+
+/**
+ * Retrieve taxonomy tree.
+ *
+ * @param string  $taxonomy the taxonomy to analyze.
+ * @param integer $parent the id of the parent term to analyze.
+ * @param array   $include the term ids to specifically analyze.
+ * @return array
+ */
+function pno_get_taxonomy_hierarchy( $taxonomy, $parent = 0, $include = [] ) {
+
+	$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
+
+	$terms = get_terms(
+		$taxonomy,
+		[
+			'parent'     => $parent,
+			'hide_empty' => false,
+			'include'    => $include,
+		]
+	);
+
+	$children = array();
+
+	foreach ( $terms as $term ) {
+		$term->children             = pno_get_taxonomy_hierarchy( $taxonomy, $term->term_id );
+		$children[ $term->term_id ] = $term;
+	}
+
+	return $children;
 
 }
 
@@ -400,7 +431,8 @@ function pno_user_has_submitted_listings( $user_id ) {
 	$user_id = absint( $user_id );
 
 	return wp_cache_remember(
-		"user_has_submitted_listings_{$user_id}", function () use ( $wpdb, $user_id ) {
+		"user_has_submitted_listings_{$user_id}",
+		function () use ( $wpdb, $user_id ) {
 			$where = "WHERE ( ( post_type = 'listings' AND ( post_status = 'publish' OR post_status = 'pending' OR post_status = 'expired' ) ) ) AND post_author = {$user_id}";
 			$count = $wpdb->get_var("SELECT ID FROM $wpdb->posts $where LIMIT 1"); //phpcs:ignore
 			return $count;
@@ -434,4 +466,127 @@ function pno_get_listing_updated_message() {
 	 */
 	return apply_filters( 'pno_listing_updated_success_message', $message, $status );
 
+}
+
+
+function wpp_dropdown_categories( $args = '' ) {
+	$defaults = array(
+		'show_option_all'   => '',
+		'show_option_none'  => '',
+		'orderby'           => 'id',
+		'order'             => 'ASC',
+		'show_count'        => 0,
+		'hide_empty'        => 1,
+		'child_of'          => 0,
+		'exclude'           => '',
+		'echo'              => 1,
+		'selected'          => 0,
+		'hierarchical'      => 0,
+		'name'              => 'cat',
+		'id'                => '',
+		'class'             => 'postform',
+		'depth'             => 0,
+		'tab_index'         => 0,
+		'taxonomy'          => 'category',
+		'hide_if_empty'     => false,
+		'option_none_value' => -1,
+		'value_field'       => 'term_id',
+		'required'          => false,
+	);
+	$defaults['selected'] = ( is_category() ) ? get_query_var( 'cat' ) : 0;
+	// Back compat.
+	if ( isset( $args['type'] ) && 'link' == $args['type'] ) {
+		_deprecated_argument(
+			__FUNCTION__,
+			'3.0.0',
+			/* translators: 1: "type => link", 2: "taxonomy => link_category" */
+			sprintf(
+				__( '%1$s is deprecated. Use %2$s instead.' ),
+				'<code>type => link</code>',
+				'<code>taxonomy => link_category</code>'
+			)
+		);
+		$args['taxonomy'] = 'link_category';
+	}
+	$r                 = wp_parse_args( $args, $defaults );
+	$option_none_value = $r['option_none_value'];
+	if ( ! isset( $r['pad_counts'] ) && $r['show_count'] && $r['hierarchical'] ) {
+		$r['pad_counts'] = true;
+	}
+	$tab_index = $r['tab_index'];
+	$tab_index_attribute = '';
+	if ( (int) $tab_index > 0 ) {
+		$tab_index_attribute = " tabindex=\"$tab_index\"";
+	}
+	// Avoid clashes with the 'name' param of get_terms().
+	$get_terms_args = $r;
+	unset( $get_terms_args['name'] );
+
+	$get_terms_args['exclude'] = 30;
+
+	$categories = get_terms( $r['taxonomy'], $get_terms_args );
+	$name     = esc_attr( $r['name'] );
+	$class    = esc_attr( $r['class'] );
+	$id       = $r['id'] ? esc_attr( $r['id'] ) : $name;
+	$required = $r['required'] ? 'required' : '';
+	if ( ! $r['hide_if_empty'] || ! empty( $categories ) ) {
+		$output = "<select $required name='$name' id='$id' class='$class' $tab_index_attribute>\n";
+	} else {
+		$output = '';
+	}
+	if ( empty( $categories ) && ! $r['hide_if_empty'] && ! empty( $r['show_option_none'] ) ) {
+		/**
+		 * Filters a taxonomy drop-down display element.
+		 *
+		 * A variety of taxonomy drop-down display elements can be modified
+		 * just prior to display via this filter. Filterable arguments include
+		 * 'show_option_none', 'show_option_all', and various forms of the
+		 * term name.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @see wp_dropdown_categories()
+		 *
+		 * @param string       $element  Category name.
+		 * @param WP_Term|null $category The category object, or null if there's no corresponding category.
+		 */
+		$show_option_none = apply_filters( 'list_cats', $r['show_option_none'], null );
+		$output          .= "\t<option value='" . esc_attr( $option_none_value ) . "' selected='selected'>$show_option_none</option>\n";
+	}
+	if ( ! empty( $categories ) ) {
+		if ( $r['show_option_all'] ) {
+			/** This filter is documented in wp-includes/category-template.php */
+			$show_option_all = apply_filters( 'list_cats', $r['show_option_all'], null );
+			$selected        = ( '0' === strval( $r['selected'] ) ) ? " selected='selected'" : '';
+			$output         .= "\t<option value='0'$selected>$show_option_all</option>\n";
+		}
+		if ( $r['show_option_none'] ) {
+			/** This filter is documented in wp-includes/category-template.php */
+			$show_option_none = apply_filters( 'list_cats', $r['show_option_none'], null );
+			$selected         = selected( $option_none_value, $r['selected'], false );
+			$output          .= "\t<option value='" . esc_attr( $option_none_value ) . "'$selected>$show_option_none</option>\n";
+		}
+		if ( $r['hierarchical'] ) {
+			$depth = $r['depth'];  // Walk the full depth.
+		} else {
+			$depth = -1; // Flat.
+		}
+		$output .= walk_category_dropdown_tree( $categories, $depth, $r );
+	}
+	if ( ! $r['hide_if_empty'] || ! empty( $categories ) ) {
+		$output .= "</select>\n";
+	}
+	/**
+	 * Filters the taxonomy drop-down output.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $output HTML output.
+	 * @param array  $r      Arguments used to build the drop-down.
+	 */
+	$output = apply_filters( 'wp_dropdown_cats', $output, $r );
+	if ( $r['echo'] ) {
+		echo $output;
+	}
+	return $output;
 }
