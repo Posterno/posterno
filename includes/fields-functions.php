@@ -896,7 +896,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	}
 
 	// Load fields from the database and merge it with the default settings.
-	$fields_query_args = [
+	/*$fields_query_args = [
 		'post_type'              => 'pno_listings_fields',
 		'posts_per_page'         => 100,
 		'nopaging'               => true,
@@ -975,7 +975,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 
 		wp_reset_postdata();
 
-	}
+	} */
 
 	// Load listings related values within the fields.
 	if ( $listing_id ) {
