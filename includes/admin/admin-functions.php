@@ -390,8 +390,9 @@ function pno_install_listings_fields() {
 
 			$dbfield->add_item(
 				[
-					'post_id'  => $field_id,
-					'settings' => maybe_serialize( $db_settings ),
+					'post_id'          => $field_id,
+					'listing_meta_key' => $key,
+					'settings'         => maybe_serialize( $db_settings ),
 				]
 			);
 
@@ -655,7 +656,7 @@ function pno_get_emails_situations() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$f = new \PNO\Database\Queries\Listing_Fields( [ 'listing_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
+		$f = new PNO\Field\Listing( 1479 );
 
 		print_r( $f );
 
