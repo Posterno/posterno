@@ -58,7 +58,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
-			'listing-type' => array(
+			'listing-type'    => array(
 				'name'     => esc_html__( 'Select a listing type' ),
 				'view'     => array( $this, 'type' ),
 				'handler'  => array( $this, 'type_handler' ),
@@ -160,7 +160,6 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			} else {
 				throw new Exception( esc_html__( 'Something went wrong.' ) );
 			}
-
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage() );
 			return;
@@ -201,6 +200,8 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 			'submit_label' => esc_html__( 'Save changes' ),
+			'form_type'    => 'listing',
+
 		];
 
 		posterno()->templates

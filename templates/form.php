@@ -82,7 +82,12 @@ if ( $data->form->is_successful() ) {
 			<?php
 
 				$field['key'] = $key;
-				$field        = new Field( $field );
+
+				if ( $data->form_type === 'listing' ) {
+					$field = new Field\Listing( $field );
+				} else {
+					$field = new Field( $field );
+				}
 
 				/**
 				 * Action that triggers before displaying a field within a form.
@@ -93,6 +98,7 @@ if ( $data->form->is_successful() ) {
 				 * @param string $step the current step of the form.
 				 */
 				do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
+
 			?>
 
 			<div <?php pno_form_field_class( $field ); ?>>

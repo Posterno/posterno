@@ -51,15 +51,15 @@ class Listing extends Field {
 	 *
 	 * @var string
 	 */
-	protected $taxonomy_id = null;
+	protected $taxonomy = null;
 
 	/**
 	 * Retrieve the attached taxonomy id to the field.
 	 *
 	 * @return string
 	 */
-	public function get_taxonomy_id() {
-		return $this->taxonomy_id;
+	public function get_taxonomy() {
+		return $this->taxonomy;
 	}
 
 	/**
@@ -108,8 +108,8 @@ class Listing extends Field {
 						$this->maxsize = $value;
 						break;
 					case 'taxonomy':
-						$this->taxonomy_id = $value;
-						$this->options     = pno_parse_selectable_options( $this->taxonomy_id );
+						$this->taxonomy = $value;
+						$this->options     = pno_parse_selectable_options( $this->taxonomy );
 						break;
 					default:
 						$this->{$setting} = $value;

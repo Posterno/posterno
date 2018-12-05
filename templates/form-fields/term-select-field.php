@@ -22,10 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get selected value.
 if ( ! empty( $data->get_value() ) ) {
 	$selected = $data->get_value();
-} elseif ( is_int( $data->get_option( 'default' ) ) ) {
-	$selected = $data->get_option( 'default' );
-} elseif ( ! empty( $data->get_option( 'default' ) ) && ( $term = get_term_by( 'slug', $data->get_option( 'default' ), $data->get_option( 'taxonomy' ) ) ) ) {
-	$selected = $term->term_id;
 } else {
 	$selected = '';
 }
@@ -38,11 +34,11 @@ if ( is_array( $selected ) ) {
 wp_dropdown_categories(
 	apply_filters(
 		'pno_term_select_field_wp_dropdown_categories_args', array(
-			'taxonomy'           => $data->get_option( 'taxonomy' ),
-			'hierarchical'       => 1,
+			'taxonomy'           => $data->get_taxonomy(),
+			'hierarchical'       => true,
 			'show_option_all'    => false,
-			'show_option_none'   => $data->get_option( 'required' ) ? '' : '-',
-			'placeholder-select' => isset( $data->get_option( 'attributes' )['placeholder'] ) ? $data->get_option( 'attributes' )['placeholder'] : false,
+			'show_option_none'   => '',
+			'placeholder-select' => $data->get_placeholder(),
 			'name'               => esc_attr( $data->get_object_meta_key() ),
 			'orderby'            => 'name',
 			'selected'           => $selected,
