@@ -825,13 +825,14 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 		],
 		'listing_categories'            => [
 			'label'         => esc_html__( 'Listing category' ),
-			'type'          => 'listing-category',
+			'type'          => 'term-select',
+			'taxonomy'      => 'listings-categories',
 			'required'      => true,
 			'priority'      => 8,
 			'search'        => true,
 			'default_field' => true,
 		],
-		'listing_tags'                  => [
+		/*'listing_tags'                  => [
 			'label'         => esc_html__( 'Listing tags' ),
 			'type'          => 'listing-tags',
 			'required'      => true,
@@ -884,7 +885,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'required'      => false,
 			'priority'      => 15,
 			'default_field' => true,
-		],
+		],*/
 	];
 
 	$counter = 0;
