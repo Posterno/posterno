@@ -32,23 +32,20 @@ defined( 'ABSPATH' ) || exit;
 				get_permalink()
 			);
 
-		?>
+			?>
 
 		<div class="col-sm-4">
 			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title"><?php echo esc_html( $type_name ); ?></h5>
-					<?php if ( $listing_type_description = carbon_get_term_meta( $type_id, 'submission_description' ) ) : ?>
-						<p class="card-text"><?php echo wp_kses_post( $listing_type_description ); ?></p>
-					<?php endif; ?>
+				<div class="card-body text-center">
+					<h5 class="card-title mt-3 mb-3"><?php echo esc_html( $type_name ); ?></h5>
 					<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data">
 						<input type="hidden" name="listing_type_id" value="<?php echo absint( $type_id ); ?>">
 						<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>" />
 						<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
 						<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
-						<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
-						<button type="submit" class="btn btn-primary">
-							<?php echo esc_html__( 'Continue &rarr;' ); ?>
+					<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
+						<button type="submit" class="btn btn-primary mb-3">
+						<?php echo esc_html__( 'Select &rarr;' ); ?>
 						</button>
 					</form>
 				</div>
