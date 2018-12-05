@@ -1,7 +1,5 @@
 /*global Vue:true*/
 /*global pno_submission:true*/
-import axios from 'axios'
-
 Vue.component('pno-listing-category-selector', {
 	data() {
 		return {
