@@ -65,18 +65,6 @@ Vue.component('pno-listing-tags-selector', {
 			}
 		},
 		/**
-		 * Add the "pno-category-selected" class to the field's element
-		 */
-		addElementClass() {
-			jQuery('.pno-field-listing_tags').addClass("pno-category-selected");
-		},
-		/**
-		 * Remove the "pno-category-selected" class to the field's element
-		 */
-		removeElementClass() {
-			jQuery('.pno-field-listing_tags').removeClass("pno-category-selected");
-		},
-		/**
 		 * Load tags related to the selected listings categories.
 		 *
 		 * @param {mixed} selectedCategories list of selected categories.
@@ -84,7 +72,6 @@ Vue.component('pno-listing-tags-selector', {
 		loadTags( selectedCategories ) {
 
 			this.loading = true
-			this.addElementClass()
 
 			axios.get( pno_submission.ajax, {
 				params: {
@@ -94,13 +81,24 @@ Vue.component('pno-listing-tags-selector', {
 				}
 			})
 			.then( response => {
+
 				this.loading = false
-				this.availableTags = response.data.data
+
+				var newTags = []
+
+				response.data.data.forEach( ( tag ) => {
+					newTags.push({
+						id: tag.term_id,
+						text: tag.name
+					})
+				});
+
+				this.availableTags = newTags
+
 			})
 			.catch( error => {
 				this.loading = false
 				this.availableTags = []
-				this.removeElementClass()
 			})
 
 		},

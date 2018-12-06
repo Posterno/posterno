@@ -1004,7 +1004,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	 * @param array $fields the list of fields.
 	 * @return array $fields
 	 */
-	$fields = apply_filters( 'pno_listing_submission_fields', $fields );
+	$fields = apply_filters( 'pno_listing_submission_fields', $fields, $listing_id );
 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 

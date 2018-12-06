@@ -302,3 +302,41 @@ function pno_set_attributes_for_term_select( $output, $args ) {
 
 }
 add_filter( 'wp_dropdown_cats', 'pno_set_attributes_for_term_select', 10, 2 );
+
+/**
+ * Change listing tags field type when tags association to categories is disabled.
+ * When disabled, a simple list of all tags is enough.
+ *
+ * @param array $fields all the listing's submission fields.
+ * @return array
+ */
+function pno_set_listing_tags_selector_field_type( $fields ) {
+
+	$tags_associated = pno_get_option( 'submission_tags_associated', false );
+
+	if ( ! $tags_associated && isset( $fields['listing_tags'] ) ) {
+
+		$terms_args = [
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		];
+
+		$tags     = get_terms( 'listings-tags', $terms_args );
+		$all_tags = [];
+
+		if ( is_array( $tags ) && ! empty( $tags ) ) {
+			foreach ( $tags as $tag ) {
+				$all_tags[ absint( $tag->term_id ) ] = esc_html( $tag->name );
+			}
+		}
+
+		$fields['listing_tags']['type']    = 'multiselect';
+		$fields['listing_tags']['options'] = $all_tags;
+	}
+
+	return $fields;
+
+}
+add_filter( 'pno_listing_submission_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
