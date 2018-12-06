@@ -330,13 +330,7 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 
 	$terms = get_terms( 'listings-categories', $terms_args );
 
-	if ( ! empty( $terms ) ) {
-		foreach ( $terms as $listing_category ) {
-			$categories[] = absint( $listing_category->term_id );
-		}
-	}
-
-	return $categories;
+	return $terms;
 
 }
 

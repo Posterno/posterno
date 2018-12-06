@@ -157,16 +157,18 @@ class PNO_Ajax {
 		check_ajax_referer( 'pno_get_subcategories', 'nonce' );
 
 		$parent_categories = isset( $_GET['categories'] ) && ! empty( $_GET['categories'] ) && is_array( $_GET['categories'] ) ? array_map( 'absint', $_GET['categories'] ) : false;
-		$sub_categories = [];
+		$sub_categories    = [];
 
 		foreach ( $parent_categories as $parent_category_id ) {
+
+			$childs = get_term_children( $parent_category_id, 'listings-categories' );
 
 			$terms_args = [
 				'hide_empty' => false,
 				'number'     => 999,
 				'orderby'    => 'name',
 				'order'      => 'ASC',
-				'parent'     => $parent_category_id,
+				'include'    => $childs,
 			];
 
 			$found_sub_categories = get_terms( 'listings-categories', $terms_args );
@@ -176,7 +178,6 @@ class PNO_Ajax {
 					$sub_categories[] = $sub_category;
 				}
 			}
-
 		}
 
 		if ( ! empty( $sub_categories ) ) {
