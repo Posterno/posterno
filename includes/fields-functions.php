@@ -1012,26 +1012,3 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 
 }
 
-/**
- * Recursively print dropdown options for terms childrens objects.
- *
- * @param WP_Term $item the taxonomy term object.
- * @param string  $i iterator value within the recursive callback.
- * @param integer $spacer how many times the spacer needs to be multiplied.
- * @return void
- */
-function pno_recursive_term_print( $item, $i, $spacer = 0 ) {
-	$spacing = '&#8212; ';
-	if ( $item instanceof WP_Term ) {
-		$spacer++;
-		echo '<option data-name="' . esc_html( $item->name ) . '" value="' . absint( $item->term_id ) . '">' . esc_html( str_repeat( $spacing, $spacer ) ) . esc_html( $item->name ) . '</option>';
-		foreach ( $item->children as $childitem ) {
-			$spacer ++;
-			echo '<option data-name="' . esc_html( $childitem->name ) . '" value="' . absint( $childitem->term_id ) . '">' . esc_html( str_repeat( $spacing, $spacer ) ) . esc_html( $childitem->name ) . '</option>';
-			if ( ! empty( $childitem->children ) ) {
-				array_walk_recursive( $childitem->children, 'pno_recursive_term_print', $spacer );
-			}
-		}
-	}
-
-}
