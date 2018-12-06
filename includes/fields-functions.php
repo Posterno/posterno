@@ -676,7 +676,7 @@ function pno_get_listings_submission_form_js_vars() {
 		'max_multiselect'               => absint( pno_get_option( 'submission_categories_amount' ) ),
 		'subcategories_on_submission'   => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
 		'ajax'                          => admin_url( 'admin-ajax.php' ),
-		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories' ),
+		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories_for_submission' ),
 		'get_starter_tags_nonce'        => wp_create_nonce( 'pno_get_tags' ),
 		'get_subcategories_nonce'       => wp_create_nonce( 'pno_get_subcategories' ),
 		'days'                          => pno_get_days_of_the_week(),
@@ -755,14 +755,14 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'search'        => true,
 			'default_field' => true,
 		],
-		/*'listing_tags'                  => [
+		'listing_tags'                  => [
 			'label'         => esc_html__( 'Listing tags' ),
 			'type'          => 'listing-tags',
 			'required'      => true,
 			'priority'      => 9,
 			'default_field' => true,
 		],
-		'listing_regions'               => [
+		/*'listing_regions'               => [
 			'label'         => esc_html__( 'Listing regions' ),
 			'type'          => 'term-select',
 			'taxonomy'      => 'listings-locations',

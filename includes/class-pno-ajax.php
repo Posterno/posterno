@@ -22,8 +22,9 @@ class PNO_Ajax {
 	 * @return void
 	 */
 	public function init() {
-		add_action( 'wp_ajax_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
-		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories', [ $this, 'get_tags_from_categories' ] );
+		add_action( 'wp_ajax_pno_get_tags_from_categories_for_submission', [ $this, 'get_tags_from_categories_for_submission' ] );
+		add_action( 'wp_ajax_nopriv_pno_get_tags_from_categories_for_submission', [ $this, 'get_tags_from_categories_for_submission' ] );
+
 		add_action( 'wp_ajax_pno_get_tags', [ $this, 'get_tags' ] );
 		add_action( 'wp_ajax_nopriv_pno_get_tags', [ $this, 'get_tags' ] );
 		add_action( 'wp_ajax_pno_get_subcategories', [ $this, 'get_subcategories' ] );
@@ -71,9 +72,9 @@ class PNO_Ajax {
 	 *
 	 * @return void
 	 */
-	public static function get_tags_from_categories() {
+	public function get_tags_from_categories_for_submission() {
 
-		check_ajax_referer( 'pno_get_tags_from_categories', 'nonce' );
+		check_ajax_referer( 'pno_get_tags_from_categories_for_submission', 'nonce' );
 
 		$tags_ids   = [];
 		$categories = isset( $_GET['categories'] ) ? (array) $_GET['categories'] : array();
@@ -81,17 +82,18 @@ class PNO_Ajax {
 
 		$subcategories_enabled = pno_get_option( 'submission_categories_sublevel' );
 
-		// With subcategories enabled, go and find the top level category where tags have been associated.
-		if ( $subcategories_enabled ) {
-			$parent_categories = [];
-			foreach ( $categories as $category_id ) {
-				$found_parent_term = pno_get_term_top_most_parent( $category_id, 'listings-categories' );
-				if ( isset( $found_parent_term->term_id ) ) {
-					$parent_categories[] = absint( $found_parent_term->term_id );
+		$top_parent_categories = [];
+
+		if ( ! empty( $categories ) && is_array( $categories ) ) {
+			foreach ( $categories as $submitted_category_id ) {
+				$parent_term = pno_get_term_top_most_parent( $submitted_category_id, 'listings-categories' );
+				if ( $parent_term instanceof WP_Term ) {
+					$top_parent_categories[] = absint( $parent_term->term_id );
 				}
 			}
-			$categories = array_unique( $parent_categories );
 		}
+
+		$categories = array_unique( $top_parent_categories );
 
 		// Retrieve the tags associated to the found top level categories.
 		if ( ! empty( $categories ) && is_array( $categories ) ) {

@@ -20,7 +20,7 @@ Vue.component('pno-listing-tags-selector', {
 		 */
 		selectedTags: {
 			handler: function () {
-				document.getElementById('listing_tags').value = JSON.stringify(this.selectedTags);
+				document.getElementById('pno-field-listing_tags').value = JSON.stringify(this.selectedTags);
 			},
 			deep: true
 		}
@@ -90,7 +90,7 @@ Vue.component('pno-listing-tags-selector', {
 				params: {
 					categories: selectedCategories,
 					nonce: pno_submission.get_tags_nonce,
-					action: 'pno_get_tags_from_categories'
+					action: 'pno_get_tags_from_categories_for_submission'
 				}
 			})
 			.then( response => {
@@ -109,7 +109,7 @@ Vue.component('pno-listing-tags-selector', {
 		 * Retrieve the tags stored into the database when viewing the editing form.
 		 */
 		getSavedTags() {
-			return document.getElementById('listing_tags').value ? JSON.parse(document.getElementById('listing_tags').value) : false
+			return document.getElementById('pno-field-listing_tags').value ? JSON.parse(document.getElementById('pno-field-listing_tags').value) : false
 		}
 
 	}
