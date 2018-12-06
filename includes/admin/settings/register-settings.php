@@ -594,6 +594,11 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Categories to type association' ),
 				'description' => esc_html__( 'Enable this option to allow selection of categories belonging to the chosen listing type during submission.' ),
 			],
+			'submission_tags_associated' => [
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Tags to categories association' ),
+				'description' => esc_html__( 'Enable this option to allow selection of tags belonging to the chosen listing categories during submission.' ),
+			],
 			'submission_categories_sublevel'   => [
 				'type'        => 'checkbox',
 				'label'       => esc_html__( 'Display sub categories' ),
