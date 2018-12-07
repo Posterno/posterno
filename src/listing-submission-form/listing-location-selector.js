@@ -329,13 +329,13 @@ Vue.component('pno-listing-location-selector', {
 				coordinates: this.coordinates,
 				address: this.address,
 			}
-			document.getElementById('listing_location').value = JSON.stringify(data);
+			document.getElementById('pno-field-listing_location').value = JSON.stringify(data);
 		},
 		/**
 		 * Get the location stored into the database to display within the edit form.
 		 */
 		getSavedAddressLocation() {
-			return document.getElementById('listing_location').value ? JSON.parse(document.getElementById('listing_location').value) : false
+			return document.getElementById('pno-field-listing_location').value ? JSON.parse(document.getElementById('pno-field-listing_location').value) : false
 		}
 	},
 	watch: {

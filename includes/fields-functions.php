@@ -801,14 +801,14 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'required'      => false,
 			'priority'      => 14,
 			'default_field' => true,
-		],
+		],*/
 		'listing_location'              => [
 			'label'         => esc_html__( 'Location' ),
 			'type'          => 'listing-location',
 			'required'      => false,
 			'priority'      => 15,
 			'default_field' => true,
-		],*/
+		],
 	];
 
 	$counter = 0;
