@@ -11,12 +11,13 @@ Vue.component('pno-social-profile-field', {
 	mounted() {
 		// Load profiles from the database into the field when viewing the listing editing form.
 		var savedProfiles = this.getSavedProfiles()
+
 		if ( savedProfiles.length > 0 ) {
 			this.definedSocialProfiles = []
-			savedProfiles.forEach( ( profile, index ) => {
+			savedProfiles.forEach( ( profile ) => {
 				this.definedSocialProfiles.push({
-					social: profile.social_id,
-					url: profile.social_url
+					social: profile.social,
+					url: profile.url
 				})
 			} );
 		}
