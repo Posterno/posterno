@@ -70,8 +70,6 @@ Vue.component('pno-listing-category-selector', {
 
 			this.loading = true
 
-			console.log(this.selectedSubcategories)
-
 			axios.get( pno_submission.ajax, {
 				params: {
 					nonce: pno_submission.get_subcategories_nonce,
