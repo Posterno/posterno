@@ -110,13 +110,22 @@ Vue.component('pno-listing-location-selector', {
 			// Load address stored in the database when viewing the editing database.
 			var savedAddress = vm.getSavedAddressLocation()
 
-			if ( savedAddress.hasOwnProperty('lat') && savedAddress.hasOwnProperty('lng') ) {
-				var savedLat = savedAddress.lat
-				var savedLng = savedAddress.lng
-				vm.setCoordinates( savedLat, savedLng )
-				vm.setAddressFromCoordinates( savedLat, savedLng )
-				vm.setMapLocation( savedLat, savedLng )
-				vm.setMarkerLocation( savedLat, savedLng )
+			if ( savedAddress.address !== undefined ) {
+
+				vm.setCoordinates( savedAddress.coordinates.lat, savedAddress.coordinates.lng )
+				vm.setAddressFromCoordinates( savedAddress.coordinates.lat, savedAddress.coordinates.lng )
+				vm.setMapLocation( savedAddress.coordinates.lat, savedAddress.coordinates.lng )
+				vm.setMarkerLocation( savedAddress.coordinates.lat, savedAddress.coordinates.lng )
+
+			} else {
+				if ( savedAddress.hasOwnProperty('lat') && savedAddress.hasOwnProperty('lng') ) {
+					var savedLat = savedAddress.lat
+					var savedLng = savedAddress.lng
+					vm.setCoordinates( savedLat, savedLng )
+					vm.setAddressFromCoordinates( savedLat, savedLng )
+					vm.setMapLocation( savedLat, savedLng )
+					vm.setMarkerLocation( savedLat, savedLng )
+				}
 			}
 
 		}).catch(function (error) {
