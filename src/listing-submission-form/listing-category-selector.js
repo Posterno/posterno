@@ -18,13 +18,14 @@ Vue.component('pno-listing-category-selector', {
 		// Load selected categories of a listing from the database when viewing the edit form.
 		var savedCategories = this.getSavedCategories()
 
-		if ( savedCategories.length > 0 ) {
-			savedCategories.forEach( (category) => {
-				if ( category.parent > 0 ) {
-					this.selectedSubcategories.push( category.term_id )
-				} else {
-					this.selectedCategories.push( category.term_id )
-				}
+		if ( savedCategories.parent !== undefined ) {
+			savedCategories.parent.forEach( (category) => {
+				this.selectedCategories.push( category )
+			});
+		}
+		if ( savedCategories.sub !== undefined ) {
+			savedCategories.sub.forEach( (category) => {
+				this.selectedSubcategories.push(category)
 			});
 		}
 
