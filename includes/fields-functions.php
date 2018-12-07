@@ -762,7 +762,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'priority'      => 9,
 			'default_field' => true,
 		],
-		/*'listing_regions'               => [
+		'listing_regions'               => [
 			'label'         => esc_html__( 'Listing regions' ),
 			'type'          => 'term-select',
 			'taxonomy'      => 'listings-locations',
@@ -773,12 +773,12 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 		],
 		'listing_opening_hours'         => [
 			'label'         => esc_html__( 'Hours of operation' ),
-			'type'          => 'opening-hours',
+			'type'          => 'listing-opening-hours',
 			'required'      => false,
 			'priority'      => 11,
 			'default_field' => true,
 		],
-		'listing_featured_image'        => [
+		/*'listing_featured_image'        => [
 			'label'              => esc_html__( 'Featured image' ),
 			'type'               => 'dropzone',
 			'required'           => true,

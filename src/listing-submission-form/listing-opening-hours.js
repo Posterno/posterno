@@ -143,7 +143,7 @@ Vue.component('pno-listing-opening-hours-selector', {
 		 * Get hours stored within the database when viewing the edit form.
 		 */
 		getSavedHours() {
-			return document.getElementById('listing_opening_hours').value ? JSON.parse( document.getElementById('listing_opening_hours').value ) : false
+			return document.getElementById('pno-field-listing_opening_hours').value ? JSON.parse( document.getElementById('pno-field-listing_opening_hours').value ) : false
 		}
 
 	},
@@ -154,7 +154,7 @@ Vue.component('pno-listing-opening-hours-selector', {
 		 */
 		timeslots: {
 			handler: function () {
-				document.getElementById('listing_opening_hours').value = JSON.stringify(this.timeslots);
+				document.getElementById('pno-field-listing_opening_hours').value = JSON.stringify(this.timeslots);
 			},
 			deep: true
 		}
