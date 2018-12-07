@@ -672,17 +672,17 @@ function pno_parse_selectable_taxonomy_options( $taxonomy ) {
 function pno_get_listings_submission_form_js_vars() {
 
 	$js_settings = [
-		'selected_listing_type'         => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, // phpcs: ignore
-		'max_multiselect'               => absint( pno_get_option( 'submission_categories_amount' ) ),
-		'subcategories_on_submission'   => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
-		'ajax'                          => admin_url( 'admin-ajax.php' ),
-		'get_tags_nonce'                => wp_create_nonce( 'pno_get_tags_from_categories_for_submission' ),
-		'get_starter_tags_nonce'        => wp_create_nonce( 'pno_get_tags' ),
-		'get_subcategories_nonce'       => wp_create_nonce( 'pno_get_subcategories' ),
-		'days'                          => pno_get_days_of_the_week(),
-		'is_editing_mode'               => is_page( pno_get_listing_editing_page_id() ),
-		'editing_listing_id'            => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
-		'upload_error'                  => esc_html__( 'Something went wrong during the upload.' ),
+		'selected_listing_type'       => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, // phpcs: ignore
+		'max_multiselect'             => absint( pno_get_option( 'submission_categories_amount' ) ),
+		'subcategories_on_submission' => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
+		'ajax'                        => admin_url( 'admin-ajax.php' ),
+		'get_tags_nonce'              => wp_create_nonce( 'pno_get_tags_from_categories_for_submission' ),
+		'get_starter_tags_nonce'      => wp_create_nonce( 'pno_get_tags' ),
+		'get_subcategories_nonce'     => wp_create_nonce( 'pno_get_subcategories' ),
+		'days'                        => pno_get_days_of_the_week(),
+		'is_editing_mode'             => is_page( pno_get_listing_editing_page_id() ),
+		'editing_listing_id'          => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
+		'upload_error'                => esc_html__( 'Something went wrong during the upload.' ),
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
@@ -787,12 +787,12 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'dropzone_max_files' => 1,
 		],
 		'listing_gallery'               => [
-			'label'              => esc_html__( 'Gallery images' ),
-			'type'               => 'file',
-			'multiple'           => true,
-			'required'           => true,
-			'priority'           => 13,
-			'default_field'      => true,
+			'label'         => esc_html__( 'Gallery images' ),
+			'type'          => 'file',
+			'multiple'      => true,
+			'required'      => true,
+			'priority'      => 13,
+			'default_field' => true,
 		],
 		'listing_zipcode'               => [
 			'label'         => esc_html__( 'Zipcode' ),
@@ -819,7 +819,8 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	}
 
 	// Load fields from the database and merge it with the default settings.
-	/*$fields_query_args = [
+	/*
+	$fields_query_args = [
 		'post_type'              => 'pno_listings_fields',
 		'posts_per_page'         => 100,
 		'nopaging'               => true,
