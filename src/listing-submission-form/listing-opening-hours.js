@@ -66,20 +66,37 @@ Vue.component('pno-listing-opening-hours-selector', {
 			Object.keys(savedHours).forEach(function (day) {
 				var savedTimeslots = savedHours[day]
 				if ( typeof vm.timeslots[day] === 'object' ) {
+
 					vm.timeslots[day].hours = []
-					vm.timeslots[day].type = savedTimeslots.operation
-					vm.timeslots[day].hours.push({
-						opening: savedTimeslots.opening ? savedTimeslots.opening : '',
-						closing: savedTimeslots.closing ? savedTimeslots.closing : '',
-					})
-					if ( savedTimeslots.hasOwnProperty( 'additional_times' ) && savedTimeslots.additional_times.length > 0 ) {
-						savedTimeslots.additional_times.forEach(( newTimeSlot, index) => {
+
+					if ( savedTimeslots.operation !== undefined ) {
+						vm.timeslots[day].type = savedTimeslots.operation
+					} else if ( savedTimeslots.type !== undefined ) {
+						vm.timeslots[day].type = savedTimeslots.type
+					}
+
+					if ( savedTimeslots.hours !== undefined && savedTimeslots.hours.length > 0 ) {
+						savedTimeslots.hours.forEach( ( hourSlot ) => {
 							vm.timeslots[day].hours.push({
-								opening: newTimeSlot.opening ? newTimeSlot.opening : '',
-								closing: newTimeSlot.closing ? newTimeSlot.closing : '',
+								opening: hourSlot.opening ? hourSlot.opening : '',
+								closing: hourSlot.closing ? hourSlot.closing : '',
 							})
 						});
+					} else {
+						vm.timeslots[day].hours.push({
+							opening: savedTimeslots.opening ? savedTimeslots.opening : '',
+							closing: savedTimeslots.closing ? savedTimeslots.closing : '',
+						})
+						if (savedTimeslots.hasOwnProperty('additional_times') && savedTimeslots.additional_times.length > 0) {
+							savedTimeslots.additional_times.forEach((newTimeSlot, index) => {
+								vm.timeslots[day].hours.push({
+									opening: newTimeSlot.opening ? newTimeSlot.opening : '',
+									closing: newTimeSlot.closing ? newTimeSlot.closing : '',
+								})
+							});
+						}
 					}
+
 				}
 			});
 		}
