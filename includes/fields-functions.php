@@ -778,9 +778,9 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'priority'      => 11,
 			'default_field' => true,
 		],
-		/*'listing_featured_image'        => [
+		'listing_featured_image'        => [
 			'label'              => esc_html__( 'Featured image' ),
-			'type'               => 'dropzone',
+			'type'               => 'file',
 			'required'           => true,
 			'priority'           => 12,
 			'default_field'      => true,
@@ -788,12 +788,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 		],
 		'listing_gallery'               => [
 			'label'              => esc_html__( 'Gallery images' ),
-			'type'               => 'dropzone',
+			'type'               => 'file',
 			'multiple'           => true,
 			'required'           => true,
 			'priority'           => 13,
 			'default_field'      => true,
-			'dropzone_max_files' => absint( pno_get_option( 'submission_images_amount', 1 ) ),
 		],
 		'listing_zipcode'               => [
 			'label'         => esc_html__( 'Zipcode' ),
@@ -801,7 +800,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 			'required'      => false,
 			'priority'      => 14,
 			'default_field' => true,
-		],*/
+		],
 		'listing_location'              => [
 			'label'         => esc_html__( 'Location' ),
 			'type'          => 'listing-location',

@@ -210,4 +210,48 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 	}
 
+	/**
+	 * Handles the submission of form data.
+	 *
+	 * @throws Exception On validation error.
+	 */
+	public function submit_handler() {
+		try {
+
+			if ( empty( $_POST[ 'submit_' . $this->form_name ] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
+				return;
+			}
+
+			//phpcs:ignore
+			if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+				return;
+			}
+
+			// Init fields.
+			$this->init_fields();
+
+			// Get posted values.
+			$values = $this->get_posted_fields();
+
+			// Validate required.
+			$validation_status = $this->validate_fields( $values );
+
+			if ( is_wp_error( $validation_status ) ) {
+				throw new Exception( $validation_status->get_error_message() );
+			}
+
+			print_r( $values );
+
+			return;
+
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+			return;
+		}
+	}
+
 }

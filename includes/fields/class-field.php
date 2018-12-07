@@ -536,7 +536,7 @@ class Field {
 		if ( ! empty( $this->get_placeholder() ) ) {
 			$attributes['placeholder'] = $this->get_placeholder();
 		}
-		if ( $this->is_required() ) {
+		if ( $this->is_required() && $this->get_type() !== 'file' ) {
 			$attributes['required'] = false;
 		}
 		if ( $this->is_readonly() ) {

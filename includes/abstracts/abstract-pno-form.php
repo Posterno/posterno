@@ -369,6 +369,9 @@ abstract class PNO_Form {
 							if ( is_numeric( $file_url ) ) {
 								continue;
 							}
+							if ( is_array( $file_url ) && isset( $file_url['url'] ) ) {
+								$file_url = $file_url['url'];
+							}
 							$file_url = esc_url( $file_url, array( 'http', 'https' ) );
 							if ( empty( $file_url ) ) {
 								throw new Exception( __( 'Invalid attachment provided.' ) );
