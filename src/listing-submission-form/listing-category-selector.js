@@ -29,6 +29,10 @@ Vue.component('pno-listing-category-selector', {
 			});
 		}
 
+		if ( this.selectedCategories.length > 0 ) {
+			this.loadSubcategories()
+		}
+
 	},
 	watch: {
 		/**

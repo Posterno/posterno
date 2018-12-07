@@ -33,8 +33,8 @@ Vue.component('pno-listing-tags-selector', {
 
 		// Load tags stored into the database when viewing the edit form, otherwise load the starter tags.
 		if ( savedTags.length > 0 ) {
-			savedTags.forEach((tag, index) => {
-				this.selectedTags.push(tag.term_id)
+			savedTags.forEach((tag) => {
+				this.selectedTags.push(tag)
 			});
 		}
 
