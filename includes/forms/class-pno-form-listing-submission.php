@@ -359,6 +359,8 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 						}
 					}
 
+					// Verify selected sub categories belong to the selected parent categories.
+
 					if ( ! empty( $categories_to_save ) ) {
 						wp_set_object_terms( absint( $new_listing_id ), array_unique( $categories_to_save ), 'listings-categories' );
 					}
@@ -376,6 +378,13 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					if ( ! empty( $tags ) ) {
 						wp_set_object_terms( absint( $new_listing_id ), $tags, 'listings-tags', true );
 					}
+				}
+
+				// Assign the selected listing type to the listing.
+				$listing_type = $this->get_submitted_listing_type_id();
+
+				if ( ! empty( $listing_type ) ) {
+					wp_set_object_terms( absint( $new_listing_id ), $listing_type, 'listings-types', true );
 				}
 
 				/**
