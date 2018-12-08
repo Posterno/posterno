@@ -50,7 +50,7 @@ function pno_setup_post_types() {
 	$args   = array(
 		'label'               => __( 'Listing', 'posterno' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+		'supports'            => array( 'title', /*'editor',*/ 'thumbnail', 'revisions' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,

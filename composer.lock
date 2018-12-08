@@ -1,10 +1,9 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "93e117ee9f1180f28dc70aa609123334",
     "content-hash": "b17be12442c3bbd18ca4b82c4fe028e8",
     "packages": [
         {
@@ -47,7 +46,7 @@
                 "notices",
                 "wordpress"
             ],
-            "time": "2018-04-29 15:46:53"
+            "time": "2018-04-29T15:46:53+00:00"
         },
         {
             "name": "brain/cortex",
@@ -102,7 +101,7 @@
                 "routing",
                 "wordpress"
             ],
-            "time": "2016-07-14 19:53:27"
+            "time": "2016-07-14T19:53:27+00:00"
         },
         {
             "name": "composer/installers",
@@ -222,7 +221,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27 06:10:37"
+            "time": "2018-08-27T06:10:37+00:00"
         },
         {
             "name": "gamajo/template-loader",
@@ -275,7 +274,7 @@
                 "templates",
                 "wordpress"
             ],
-            "time": "2018-09-24 10:23:49"
+            "time": "2018-09-24T10:23:49+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -398,7 +397,7 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2018-03-16 09:06:14"
+            "time": "2018-03-16T09:06:14+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -441,7 +440,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-12-20 19:50:12"
+            "time": "2015-12-20T19:50:12+00:00"
         },
         {
             "name": "psr/http-message",
@@ -491,7 +490,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "stevegrunwell/wp-cache-remember",
@@ -540,7 +539,7 @@
                 "wordpress-plugin",
                 "wordpress-transients"
             ],
-            "time": "2018-06-14 05:10:34"
+            "time": "2018-06-14T05:10:34+00:00"
         }
     ],
     "packages-dev": [],
