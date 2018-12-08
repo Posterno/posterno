@@ -359,8 +359,6 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 						}
 					}
 
-					// Verify selected sub categories belong to the selected parent categories.
-
 					if ( ! empty( $categories_to_save ) ) {
 						wp_set_object_terms( absint( $new_listing_id ), array_unique( $categories_to_save ), 'listings-categories' );
 					}
