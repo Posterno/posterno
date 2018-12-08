@@ -35,16 +35,6 @@ add_action( 'admin_menu', 'pno_add_admin_pages', 10 );
  */
 function pno_admin_remove_submenus() {
 
-	$taxonomies = get_object_taxonomies( 'listings' );
-
-	if ( empty( $taxonomies ) ) {
-		return;
-	}
-
-	foreach ( $taxonomies as $taxonomy ) {
-		remove_submenu_page( 'edit.php?post_type=listings', 'edit-tags.php?taxonomy=' . $taxonomy . '&amp;post_type=listings' );
-	}
-
 	remove_submenu_page( 'edit.php?post_type=pno_emails', 'edit-tags.php?taxonomy=pno-email-type&amp;post_type=pno_emails' );
 
 }
