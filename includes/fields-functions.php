@@ -954,14 +954,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							break;
 						case 'listing_featured_image':
 							$featured_image_id = get_post_thumbnail_id( $listing_id );
-							$featured_image    = [
-								'image_id'   => $featured_image_id,
-								'image_url'  => wp_get_attachment_url( $featured_image_id ),
-								'image_path' => get_attached_file( $featured_image_id ),
-								'image_name' => wp_basename( get_attached_file( $featured_image_id ) ),
-								'image_size' => filesize( get_attached_file( $featured_image_id ) ),
-							];
-							$value             = wp_json_encode( $featured_image );
+							$value             = wp_get_attachment_url( $featured_image_id );
 							break;
 						case 'listing_gallery':
 							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images', true );
@@ -969,16 +962,10 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
 								foreach ( $gallery_images as $image_id ) {
 									$image_id      = $image_id['value'];
-									$attachments[] = [
-										'image_id'   => $image_id,
-										'image_url'  => wp_get_attachment_url( $image_id ),
-										'image_path' => get_attached_file( $image_id ),
-										'image_name' => wp_basename( get_attached_file( $image_id ) ),
-										'image_size' => filesize( get_attached_file( $image_id ) ),
-									];
+									$attachments[] = wp_get_attachment_url( $image_id );
 								}
 							}
-							$value = wp_json_encode( $attachments );
+							$value = $attachments;
 							break;
 						case 'listing_zipcode':
 							$value = carbon_get_post_meta( $listing_id, 'listing_zipcode' );
