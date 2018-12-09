@@ -339,11 +339,13 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 				if ( isset( $values['listing_categories'] ) && ! empty( $values['listing_categories'] ) ) {
 
 					$listing_categories = json_decode( $values['listing_categories'] );
+					$parent_categories  = [];
 					$categories_to_save = [];
 
 					if ( isset( $listing_categories->parent ) && is_array( $listing_categories->parent ) && ! empty( $listing_categories->parent ) ) {
 						foreach ( $listing_categories->parent as $term_id ) {
 							$categories_to_save[] = absint( $term_id );
+							$parent_categories[]  = absint( $term_id );
 						}
 					}
 
@@ -352,9 +354,16 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 							$categories_to_save[] = absint( $sub_term_id );
 							$ancestors            = get_ancestors( $sub_term_id, 'listings-categories', 'taxonomy' );
+							$parent_category      = pno_get_term_top_most_parent( $sub_term_id, 'listings-categories' );
 
-							if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
-								$categories_to_save = array_merge( $categories_to_save, $ancestors );
+							if ( $parent_category instanceof WP_Term ) {
+								if ( ! empty( $ancestors ) && is_array( $ancestors ) && in_array( $parent_category->term_id, $parent_categories ) ) {
+									$categories_to_save = array_merge( $categories_to_save, $ancestors );
+								}
+							} else {
+								if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
+									$categories_to_save = array_merge( $categories_to_save, $ancestors );
+								}
 							}
 						}
 					}
@@ -451,7 +460,6 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					return;
 
 				}
-
 			}
 
 			return;
