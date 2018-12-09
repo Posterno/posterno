@@ -165,4 +165,137 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 
 	}
 
+	/**
+	 * Handles the submission of form data.
+	 *
+	 * @throws Exception On validation error.
+	 */
+	public function submit_handler() {
+		try {
+
+			if ( empty( $_POST[ 'submit_' . $this->form_name ] ) ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
+				return;
+			}
+
+			//phpcs:ignore
+			if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+				return;
+			}
+
+			// Init fields.
+			$this->init_fields();
+
+			// Get posted values.
+			$values = $this->get_posted_fields();
+
+			// Validate required.
+			$validation_status = $this->validate_fields( $values );
+
+			$values = $values['listing-details'];
+
+			if ( is_wp_error( $validation_status ) ) {
+				throw new Exception( $validation_status->get_error_message() );
+			}
+
+			/**
+			 * Allow developers to extend the listing editing process.
+			 * This action is fired before actually editing the listing.
+			 *
+			 * @param array  $values all the fields submitted through the form.
+			 * @param string $liting_id the id of the listing being modified.
+			 * @param string $user_id the id of the user modifying the listing.
+			 */
+			do_action( 'pno_before_listing_editing', $values, $this->listing_id, $this->user_id );
+
+			$listing = array(
+				'ID'           => $this->listing_id,
+				'post_title'   => $values['listing_title'],
+				'post_content' => $values['listing_description'],
+				'post_status'  => $this->is_moderation_required(),
+			);
+
+			$updated_listing_id = wp_update_post( $listing );
+
+			if ( is_wp_error( $updated_listing_id ) ) {
+				throw new Exception( $updated_listing_id->get_error_message() );
+			} else {
+
+				// Now send email notifications to the user.
+				$user = get_user_by( 'id', $this->user_id );
+
+				if ( isset( $user->data ) ) {
+					pno_send_email(
+						'core_user_listing_updated',
+						$user->data->user_email,
+						[
+							'user_id'    => $this->user_id,
+							'listing_id' => $updated_listing_id,
+						]
+					);
+				}
+
+				/**
+				 * Allow developers to extend the listing editing process.
+				 * This action is fired after all the details of the listing have already been updated.
+				 *
+				 * @param array $values all the fields submitted through the form.
+				 * @param string $updated_listing_id the id number of the newly created listing.
+				 * @param string $user_id user modifying the form.
+				 */
+				do_action( 'pno_after_listing_editing', $values, $updated_listing_id, $this->user_id );
+
+				// Now redirect the user.
+				$redirect = pno_get_listing_success_edit_redirect_page_id();
+
+				if ( $redirect ) {
+					$redirect = get_permalink( $redirect );
+				} else {
+					$redirect = add_query_arg(
+						[
+							'message' => 'listing-updated',
+						],
+						pno_get_dashboard_navigation_item_url( 'listings' )
+					);
+				}
+
+				/**
+				 * Allow developers to adjust the url where members are redirected after
+				 * successfully editing one of their listings.
+				 *
+				 * @param string $redirect the url to redirect to.
+				 * @param array $values all the data submitted through the form.
+				 * @param string|int $updated_listing_id the id of the listing that was updated.
+				 * @param string $user_id user modifying the form.
+				 * @return string
+				 */
+				$redirect = apply_filters( 'pno_listing_successful_editing_redirect_url', $redirect, $values, $updated_listing_id, $this->user_id );
+
+				wp_safe_redirect( $redirect );
+				exit;
+
+			}
+		} catch ( Exception $e ) {
+			$this->add_error( $e->getMessage() );
+			return;
+		}
+	}
+
+	/**
+	 * Detect the post status that we're going to apply to the listing based on admin's settings.
+	 *
+	 * @return string
+	 */
+	private function is_moderation_required() {
+		$status = pno_published_listings_can_be_edited();
+		if ( $status === 'yes' ) {
+			return 'published';
+		} else {
+			return 'pending';
+		}
+	}
+
 }
