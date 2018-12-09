@@ -682,7 +682,6 @@ function pno_get_listings_submission_form_js_vars() {
 		'days'                        => pno_get_days_of_the_week(),
 		'is_editing_mode'             => is_page( pno_get_listing_editing_page_id() ),
 		'editing_listing_id'          => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
-		'upload_error'                => esc_html__( 'Something went wrong during the upload.' ),
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
