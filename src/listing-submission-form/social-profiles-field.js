@@ -15,10 +15,27 @@ Vue.component('pno-social-profile-field', {
 		if ( savedProfiles.length > 0 ) {
 			this.definedSocialProfiles = []
 			savedProfiles.forEach( ( profile ) => {
+
+				var socialID = ''
+				var socialURL = ''
+
+				if ( profile.social !== undefined ) {
+					socialID = profile.social
+				} else if ( profile.social_id !== undefined ) {
+					socialID = profile.social_id
+				}
+
+				if ( profile.url !== undefined ) {
+					socialURL = profile.url
+				} else if ( profile.social_url ) {
+					socialURL = profile.social_url
+				}
+
 				this.definedSocialProfiles.push({
-					social: profile.social,
-					url: profile.url
+					social: socialID,
+					url: socialURL
 				})
+
 			} );
 		}
 	},

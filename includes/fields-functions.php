@@ -1010,4 +1010,3 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	return $fields;
 
 }
-
