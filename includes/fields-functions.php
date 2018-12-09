@@ -930,7 +930,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							$value = wp_json_encode( carbon_get_post_meta( $listing_id, 'listing_social_profiles' ) );
 							break;
 						case 'listing_categories':
-							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-categories' ) );
+							$value = pno_serialize_stored_listing_categories( $listing_id );
 							break;
 						case 'listing_tags':
 							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-tags' ) );
@@ -1008,5 +1008,47 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 
 	return $fields;
+
+}
+
+/**
+ * Retrieve categories assigned to a listing and prepare the "value" parameter
+ * for fields within the listing's editing form.
+ *
+ * @param string $listing_id the listing for which we're going to verify the assigned categories.
+ * @return string
+ */
+function pno_serialize_stored_listing_categories( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	$value = '';
+
+	$cats          = wp_get_post_terms( $listing_id, 'listings-categories' );
+	$top           = wp_list_filter( $cats, [ 'parent' => 0 ] );
+	$sub           = wp_list_filter( $cats, [ 'parent' => 0 ], 'NOT' );
+	$parent        = [];
+	$subcategories = [];
+
+	if ( is_array( $top ) ) {
+		foreach ( $top as $parent_category ) {
+			$parent[] = $parent_category->term_id;
+		}
+	}
+
+	if ( is_array( $sub ) ) {
+		foreach ( $sub as $subcategory ) {
+			$subcategories[] = $subcategory->term_id;
+		}
+	}
+
+	$value = [
+		'parent' => $parent,
+		'sub'    => $subcategories,
+	];
+
+	return wp_json_encode( $value );
 
 }
