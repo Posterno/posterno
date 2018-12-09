@@ -13,6 +13,7 @@
  * @version 1.0.0
  * @package posterno
  */
+
 namespace PNO;
 
 // Exit if accessed directly.
@@ -81,23 +82,23 @@ if ( $data->form->is_successful() ) {
 
 			<?php
 
-				$field['key'] = $key;
+			$field['key'] = $key;
 
-				if ( $data->form_type === 'listing' ) {
-					$field = new Field\Listing( $field );
-				} else {
-					$field = new Field( $field );
-				}
+			if ( isset( $data->form_type ) && $data->form_type === 'listing' ) {
+				$field = new Field\Listing( $field );
+			} else {
+				$field = new Field( $field );
+			}
 
-				/**
-				 * Action that triggers before displaying a field within a form.
-				 *
-				 * @param string $key the id key of the current field.
-				 * @param array $field the settings of the current field.
-				 * @param string $form the name of the current form.
-				 * @param string $step the current step of the form.
-				 */
-				do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
+			/**
+			 * Action that triggers before displaying a field within a form.
+			 *
+			 * @param string $key the id key of the current field.
+			 * @param array $field the settings of the current field.
+			 * @param string $form the name of the current form.
+			 * @param string $step the current step of the form.
+			 */
+			do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
 
 			?>
 
