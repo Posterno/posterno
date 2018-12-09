@@ -337,3 +337,38 @@ function pno_listing_submission_form() {
 
 }
 add_shortcode( 'pno_listing_submission_form', 'pno_listing_submission_form' );
+
+/**
+ * Displays the listing editing form.
+ *
+ * @return string
+ */
+function pno_listing_editing_form() {
+
+	ob_start();
+
+	$user_id    = is_user_logged_in() ? get_current_user_id() : false;
+	$listing_id = pno_get_queried_listing_editable_id();
+
+	if ( pno_is_user_owner_of_listing( $user_id, $listing_id ) && ! pno_is_listing_pending_approval( $listing_id ) || ( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $user_id, $listing_id ) && pno_pending_listings_can_be_edited() ) ) {
+
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'listing-edit' );
+
+	} else {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'warning',
+					'message' => esc_html__( 'You are not authorized to access this page.' ),
+				]
+			)
+			->get_template_part( 'message' );
+
+	}
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_listing_editing_form', 'pno_listing_editing_form' );

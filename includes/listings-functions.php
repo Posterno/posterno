@@ -761,3 +761,12 @@ function pno_is_listing_pending_approval( $listing_id ) {
 	);
 
 }
+
+/**
+ * Retrieve the ID number of the listing that is about to get edited.
+ *
+ * @return mixed
+ */
+function pno_get_queried_listing_editable_id() {
+	return isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false;
+}
