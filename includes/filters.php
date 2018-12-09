@@ -340,3 +340,20 @@ function pno_set_listing_tags_selector_field_type( $fields ) {
 
 }
 add_filter( 'pno_listing_submission_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
+
+/**
+ * Disable the listing type selection step during frontend submission when not needed.
+ *
+ * @param array $steps steps defined for the submission form.
+ * @return array
+ */
+function pno_disable_listing_type_submission_selection_step( $steps ) {
+
+	if ( isset( $steps['listing-type'] ) && empty( pno_get_listings_types() ) ) {
+		unset( $steps['listing-type'] );
+	}
+
+	return $steps;
+
+}
+add_filter( 'pno_listing_submission_form_steps', 'pno_disable_listing_type_submission_selection_step' );
