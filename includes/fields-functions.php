@@ -933,7 +933,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 							$value = pno_serialize_stored_listing_categories( $listing_id );
 							break;
 						case 'listing_tags':
-							$value = wp_json_encode( wp_get_post_terms( $listing_id, 'listings-tags' ) );
+							$value = pno_serialize_stored_listing_tags( $listing_id );
 							break;
 						case 'listing_regions':
 							$regions = wp_get_post_terms( $listing_id, 'listings-locations' );
@@ -1015,7 +1015,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
  * Retrieve categories assigned to a listing and prepare the "value" parameter
  * for fields within the listing's editing form.
  *
- * @param string $listing_id the listing for which we're going to verify the assigned categories.
+ * @param string $listing_id the id of the listing.
  * @return string
  */
 function pno_serialize_stored_listing_categories( $listing_id ) {
@@ -1048,6 +1048,33 @@ function pno_serialize_stored_listing_categories( $listing_id ) {
 		'parent' => $parent,
 		'sub'    => $subcategories,
 	];
+
+	return wp_json_encode( $value );
+
+}
+
+/**
+ * Retrieve tags assigned to the listing and prepare the "value" parameter
+ * for the tags selector field within the listing's editing form.
+ *
+ * @param string $listing_id the id of the listing.
+ * @return string
+ */
+function pno_serialize_stored_listing_tags( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	$value = [];
+
+	$stored_tags = wp_get_post_terms( $listing_id, 'listings-tags' );
+
+	if ( ! empty( $stored_tags ) && is_array( $stored_tags ) ) {
+		foreach ( $stored_tags as $tag ) {
+			$value[] = $tag->term_id;
+		}
+	}
 
 	return wp_json_encode( $value );
 

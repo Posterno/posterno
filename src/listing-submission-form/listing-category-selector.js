@@ -18,8 +18,6 @@ Vue.component('pno-listing-category-selector', {
 		// Load selected categories of a listing from the database when viewing the edit form.
 		var savedCategories = this.getSavedCategories()
 
-		console.log(savedCategories)
-
 		if ( savedCategories.parent !== undefined ) {
 			savedCategories.parent.forEach( (category) => {
 				this.selectedCategories.push( category )
