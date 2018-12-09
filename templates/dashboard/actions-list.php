@@ -120,7 +120,6 @@ if ( empty( $actions ) ) {
 				<p><?php echo sprintf( esc_html__( 'Are you sure you want to delete the "%s" listing? This action cannot be undone.' ), '<strong>' . esc_html( pno_get_the_listing_title( $data->id ) ) . '</strong>' ); ?></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php esc_html_e( 'Close' ); ?></button>
 				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e( 'Delete listing' ); ?></a>
 			</div>
 		</div>
