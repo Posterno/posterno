@@ -342,7 +342,8 @@ function pno_set_listing_tags_selector_field_type( $fields ) {
 add_filter( 'pno_listing_submission_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
 
 /**
- * Disable the listing type selection step during frontend submission when not needed.
+ * Disable the listing type selection step during frontend submission
+ * when no listing types are available.
  *
  * @param array $steps steps defined for the submission form.
  * @return array
