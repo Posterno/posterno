@@ -299,7 +299,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/upload-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields-functions.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/forms-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/dashboard-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
