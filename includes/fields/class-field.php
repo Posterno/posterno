@@ -498,7 +498,7 @@ class Field {
 	 * @param mixed $args all the details available for a field.
 	 * @return mixed
 	 */
-	private function populate( $args = [] ) {
+	public function populate( $args = [] ) {
 
 		if ( empty( $args ) ) {
 			return;
@@ -514,6 +514,15 @@ class Field {
 
 		if ( isset( $args['key'] ) && ! empty( $args['key'] ) ) {
 			$this->object_meta_key = $args['key'];
+		}
+
+		if ( ! empty( $this->post_id ) ) {
+			$this->set_title( absint( $this->post_id ) );
+		}
+
+		if ( ! empty( $this->settings ) ) {
+			$settings = $this->get_settings();
+			$this->parse_settings( $settings );
 		}
 
 	}
@@ -560,6 +569,23 @@ class Field {
 	}
 
 	/**
+	 * Set the name of the field. If an INT is passed as argument, it'll load the title
+	 * from the posts database table.
+	 *
+	 * @param string|int $title_or_id how to set the name.
+	 * @return void
+	 */
+	public function set_title( $title_or_id = null ) {
+
+		if ( is_int( $title_or_id ) ) {
+			$this->name = get_the_title( $title_or_id );
+		} else {
+			$this->name = $title_or_id;
+		}
+
+	}
+
+	/**
 	 * Remove a prefix from the field id.
 	 *
 	 * @param string $prefix string to remove.
@@ -577,6 +603,14 @@ class Field {
 	 * @return void
 	 */
 	public function populate_from_post_id( $post_id ) {}
+
+	/**
+	 * Parse settings assigned to the field.
+	 *
+	 * @param mixed $settings settings to parse.
+	 * @return void
+	 */
+	public function parse_settings( $settings ) {}
 
 	/**
 	 * Create a new field and save it into the database.
