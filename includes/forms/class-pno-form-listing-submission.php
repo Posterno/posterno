@@ -274,6 +274,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			if ( is_wp_error( $new_listing_id ) ) {
 				throw new Exception( $new_listing_id->get_error_message() );
 			} else {
+
 				// Now manipulate the default fields data and store them if necessary.
 				if ( isset( $values['listing_email_address'] ) && ! empty( $values['listing_email_address'] ) ) {
 					carbon_set_post_meta( $new_listing_id, 'listing_email', $values['listing_email_address'] );
