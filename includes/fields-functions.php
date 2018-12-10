@@ -374,23 +374,13 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 	];
 
 	// Load fields from the database and merge it with the default settings.
-	$fields_query_args = [
-		'post_type'              => 'pno_users_fields',
-		'posts_per_page'         => 100,
-		'nopaging'               => true,
-		'no_found_rows'          => true,
-		'update_post_term_cache' => false,
-		'post_status'            => 'publish',
-		'fields'                 => 'ids',
-	];
+	$fields_query = new PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
 
-	$fields_query = new WP_Query( $fields_query_args );
+	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 
-	if ( $fields_query->have_posts() ) {
+		foreach ( $fields_query->items as $account_field ) {
 
-		foreach ( $fields_query->get_posts() as $account_field ) {
-
-			$field = new PNO\Field\Profile( $account_field );
+			$field = $account_field;
 
 			if ( $field instanceof PNO\Field\Profile && ! empty( $field->get_object_meta_key() ) ) {
 
@@ -438,8 +428,6 @@ function pno_get_account_fields( $user_id = false, $admin_request = false ) {
 				}
 			}
 		}
-
-		wp_reset_postdata();
 
 	}
 

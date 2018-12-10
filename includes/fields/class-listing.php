@@ -152,7 +152,7 @@ class Listing extends Field {
 	 * Create a new field and save it into the database.
 	 *
 	 * @param array $args list of arguments to create a new field.
-	 * @throws InvalidArgumentException When missing arguments.
+	 * @throws \InvalidArgumentException When missing arguments.
 	 * @return string
 	 */
 	public function create( $args = [] ) {

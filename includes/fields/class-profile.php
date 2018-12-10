@@ -53,7 +53,7 @@ class Profile extends Field {
 	public function populate_from_post_id( $post_id ) {
 
 		$this->post_id = $post_id;
-		$this->name    = get_the_title( $post_id );
+		$this->set_title( absint( $post_id ) );
 
 		$settings = [];
 
@@ -63,7 +63,18 @@ class Profile extends Field {
 		if ( $found_field instanceof $this ) {
 			$this->id = $found_field->get_id();
 			$settings = $found_field->get_settings();
+			$this->parse_settings( $settings );
 		}
+
+	}
+
+	/**
+	 * Parse all settings assigned to the field and complete setup of the field's object.
+	 *
+	 * @param array $settings settings to parse.
+	 * @return void
+	 */
+	public function parse_settings( $settings ) {
 
 		if ( is_array( $settings ) ) {
 			$this->settings = $settings;
