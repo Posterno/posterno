@@ -264,22 +264,62 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 					if ( isset( $_POST['current_listing_featured_image'] ) && empty( $_POST['current_listing_featured_image'] ) ) {
 						delete_post_thumbnail( $updated_listing_id );
 					}
-
 				}
 
 				// Create images for the gallery.
-				if ( isset( $values['listing_gallery'] ) && ! empty( $values['listing_gallery'] ) ) {
+				if ( isset( $values['listing_gallery'] ) ) {
+
+					// Verify images to remove.
+					if ( isset( $_POST['current_listing_gallery'] ) && ! empty( $_POST['current_listing_gallery'] ) && is_array( $_POST['current_listing_gallery'] ) ) {
+						$submitted_attachments    = $_POST['current_listing_gallery'];
+						$current_attachments      = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+						$current_attachments_urls = [];
+
+						if ( is_array( $current_attachments ) && ! empty( $current_attachments ) ) {
+							foreach ( $current_attachments as $attachment_id ) {
+								$current_attachments_urls[] = wp_get_attachment_url( $attachment_id );
+							}
+						}
+
+						$removed_attachments_urls = array_diff( $current_attachments_urls, $submitted_attachments );
+
+						if ( ! empty( $removed_attachments_urls ) && is_array( $removed_attachments_urls ) ) {
+
+							$removed_attachment_ids = [];
+
+							foreach ( $removed_attachments_urls as $removed_attachment_url ) {
+								$attachment_id = attachment_url_to_postid( $removed_attachment_url );
+								if ( $attachment_id ) {
+									$removed_attachment_ids[] = $attachment_id;
+									wp_delete_attachment( $attachment_id, true );
+								}
+							}
+
+							if ( ! empty( $removed_attachment_ids ) ) {
+								$updated_attachments_ids = array_diff( $current_attachments, $removed_attachment_ids );
+								if ( ! empty( $updated_attachments_ids ) ) {
+									carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $updated_attachments_ids );
+								}
+							}
+						}
+					}
+
 					$gallery_images = $values['listing_gallery'];
+
 					if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 						$images_list = [];
 						foreach ( $gallery_images as $uploaded_file ) {
-							$uploaded_file_id = $this->create_attachment( $updated_listing_id, $uploaded_file['url'] );
-							if ( $uploaded_file_id ) {
-								$images_list[] = $uploaded_file_id;
+							if ( isset( $uploaded_file['url'] ) ) {
+								$uploaded_file_id = $this->create_attachment( $updated_listing_id, $uploaded_file['url'] );
+								if ( $uploaded_file_id ) {
+									$images_list[] = $uploaded_file_id;
+								}
 							}
 						}
 						if ( ! empty( $images_list ) ) {
-							carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $images_list );
+							$current_attachments = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+							$new_attachments     = array_merge( $current_attachments, $images_list );
+							carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $new_attachments );
 						}
 					}
 				}

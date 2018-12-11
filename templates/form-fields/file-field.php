@@ -35,7 +35,7 @@ $file_size          = $data->get_maxsize() ? $data->get_maxsize() : false;
 						->set_template_data(
 							[
 								'key'   => $data->get_object_meta_key(),
-								'name'  => 'current_' . $data->get_object_meta_key(),
+								'name'  => 'current_' . $data->get_object_meta_key() . '[]',
 								'value' => $value,
 							]
 						)
