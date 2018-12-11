@@ -122,11 +122,8 @@ function pno_get_users_custom_fields_page_vars() {
 		'field_type'      => carbon_get_post_meta( $post->ID, 'profile_field_type' ),
 		'is_default'      => (bool) carbon_get_post_meta( $post->ID, 'profile_is_default_field' ),
 		'restricted_keys' => pno_get_registered_default_meta_keys(),
-		'messages'        => [
-			'no_meta_key_changes' => esc_html__( 'The meta key for default fields cannot be changed.' ),
-			'no_type_changes'     => esc_html__( 'The field type for default fields cannot be changed.' ),
-			'reserved_key'        => esc_html__( 'This is a reserved meta key, please select a different key.' ),
-		],
+		'error_message' => esc_html__( 'This setting cannot be changed for default fields.' ),
+		'reserved_message' => esc_html__( 'This is a reserved meta key, please select a different key.' ),
 	];
 
 	return $js_vars;
@@ -148,12 +145,10 @@ function pno_get_listing_custom_fields_page_vars() {
 		'field_id'        => carbon_get_post_meta( $post->ID, 'listing_field_meta_key' ),
 		'field_type'      => carbon_get_post_meta( $post->ID, 'listing_field_type' ),
 		'is_default'      => (bool) carbon_get_post_meta( $post->ID, 'listing_field_is_default' ),
+		'taxonomy'        => carbon_get_post_meta( $post->ID, 'listing_field_taxonomy' ),
 		'restricted_keys' => pno_get_registered_default_meta_keys(),
-		'messages'        => [
-			'no_meta_key_changes' => $existing_vars['messages']['no_meta_key_changes'],
-			'no_type_changes'     => $existing_vars['messages']['no_type_changes'],
-			'reserved_key'        => $existing_vars['messages']['reserved_key'],
-		],
+		'error_message' => esc_html__( 'This setting cannot be changed for default fields.' ),
+		'reserved_message' => esc_html__( 'This is a reserved meta key, please select a different key.' ),
 	];
 
 	return $js_vars;
