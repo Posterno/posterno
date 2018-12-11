@@ -13,6 +13,10 @@ $(document).on('carbonFields.apiLoaded', function (e, api) {
 		});
 	}
 
+	if ( pno_listing_cf.is_default && pno_listing_cf.taxonomy.length > 0 ) {
+		$('input[name=_listing_field_taxonomy]').parent().parent().hide()
+	}
+
 	$(document).on('carbonFields.validateField', function (e, fieldName, error) {
 
 		if (fieldName === 'listing_field_meta_key' && pno_listing_cf.is_default) {
