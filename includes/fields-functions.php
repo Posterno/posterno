@@ -864,6 +864,11 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 				if ( $field->get_priority() ) {
 					$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
 				}
+
+				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
+					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
+				}
+
 			}
 
 		}

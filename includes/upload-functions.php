@@ -72,6 +72,8 @@ function pno_upload_file( $file, $args = array() ) {
 	} else {
 		$allowed_mime_types = $args['allowed_mime_types'];
 	}
+
+
 	/**
 	 * Filter file configuration before upload
 	 *
@@ -89,14 +91,11 @@ function pno_upload_file( $file, $args = array() ) {
 	if ( is_wp_error( $file ) ) {
 		return $file;
 	}
-	if ( ! in_array( $file['type'], $allowed_mime_types, true ) ) {
-		if ( $args['file_label'] ) {
-			// translators: %1$s is the file field label; %2$s is the file type; %3$s is the list of allowed file types.
-			return new WP_Error( 'upload', sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s' ), $args['file_label'], $file['type'], implode( ', ', array_keys( $allowed_mime_types ) ) ) );
-		} else {
-			// translators: %s is the list of allowed file types.
-			return new WP_Error( 'upload', sprintf( __( 'Uploaded files need to be one of the following file types: %s' ), implode( ', ', array_keys( $allowed_mime_types ) ) ) );
-		}
+
+	$file_extension = wp_check_filetype( $file['name'] );
+
+	if ( is_array( $file_extension ) && isset( $file_extension['ext'] ) && ! in_array( $file_extension['ext'], $allowed_mime_types ) ) {
+		return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" needs to be one of the following file types: %2$s' ), $file['name'], implode( ', ', array_values( $allowed_mime_types ) ) ) );
 	} else {
 		$upload = wp_handle_upload( $file, apply_filters( 'submit_pno_handle_upload_overrides', array( 'test_form' => false ) ) );
 		if ( ! empty( $upload['error'] ) ) {
