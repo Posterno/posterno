@@ -31,7 +31,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'listing-category',
 				'listing-tags',
 				'term-select',
-				'opening-hours',
+				'listing-opening-hours',
 				'listing-location',
 			]
 		),
