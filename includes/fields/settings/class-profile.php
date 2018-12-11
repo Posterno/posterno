@@ -76,7 +76,7 @@ class Profile {
 						'listing-category',
 						'listing-tags',
 						'term-select',
-						'opening-hours',
+						'listing-opening-hours',
 						'listing-location',
 					]
 				)
