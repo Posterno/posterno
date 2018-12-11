@@ -100,6 +100,9 @@ class Profile extends Field {
 					case 'file_max_size':
 						$this->maxsize = $value;
 						break;
+					case 'file_extensions':
+						$this->allowed_mime_types = explode( ',', trim( $value ) );
+						break;
 					default:
 						$this->{$setting} = $value;
 						break;
@@ -251,7 +254,6 @@ class Profile extends Field {
 			} else {
 				$this->value = carbon_get_user_meta( $user_id, $meta_lookup );
 			}
-
 		}
 
 	}

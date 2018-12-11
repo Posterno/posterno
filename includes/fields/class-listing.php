@@ -124,7 +124,10 @@ class Listing extends Field {
 						break;
 					case 'taxonomy':
 						$this->taxonomy = $value;
-						$this->options     = pno_parse_selectable_options( $this->taxonomy );
+						$this->options  = pno_parse_selectable_options( $this->taxonomy );
+						break;
+					case 'file_extensions':
+						$this->allowed_mime_types = explode( ',', trim( $value ) );
 						break;
 					default:
 						$this->{$setting} = $value;

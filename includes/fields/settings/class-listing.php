@@ -126,6 +126,19 @@ class Listing {
 			)
 			->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.' ) );
 
+		$settings[] = Field::make( 'text', 'listing_field_file_extensions', esc_html__( 'Allowed file types:' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_type',
+						'value'   => 'file',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Specify which file types are supported by this field. Separate with comma to add multiple extensions. Eg: jpg, png.' ) );
+
 		/**
 		 * Allow developers to customize the settings for the listings fields post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "General" tab.
