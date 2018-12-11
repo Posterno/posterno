@@ -252,6 +252,12 @@ class PNO_Registration_Fields_Api extends PNO_REST_Controller {
 
 		$field = new PNO\Field\Registration();
 
+		$profile_field = new PNO\Field\Profile( $profile_field_id );
+
+		if ( $profile_field instanceof PNO\Field\Profile && $profile_field->get_type() === 'file' ) {
+			return new WP_REST_Response( esc_html__( 'File fields cannot be added to registration forms.' ), 422 );
+		}
+
 		$new_field = $field->create(
 			[
 				'name'             => $field_name,
