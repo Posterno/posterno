@@ -76,11 +76,6 @@ class Listing {
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
-					/*array(
-						'field'   => 'listing_field_is_default',
-						'value'   => true,
-						'compare' => '!=',
-					),*/
 					array(
 						'field'   => 'listing_field_type',
 						'value'   => 'term-select',
