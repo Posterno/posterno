@@ -163,11 +163,10 @@ function pno_get_allowed_mime_types( $field = '' ) {
 /**
  * Wrapper function for size_format - checks the max size for file fields.
  *
- * @param array  $field_name field name.
  * @param string $custom_size in bytes.
  * @return string
  */
-function pno_max_upload_size( $field_name = '', $custom_size = false ) {
+function pno_max_upload_size( $custom_size = false ) {
 	// Default max upload size.
 	$output = size_format( wp_max_upload_size() );
 

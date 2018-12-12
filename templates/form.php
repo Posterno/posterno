@@ -83,6 +83,7 @@ if ( $data->form->is_successful() ) {
 			<?php
 
 			$field['key'] = $key;
+			$field_args   = $field;
 
 			if ( isset( $data->form_type ) && $data->form_type === 'listing' ) {
 				$field = new Field\Listing( $field );
@@ -122,6 +123,18 @@ if ( $data->form->is_successful() ) {
 				<?php if ( ! empty( $field->get_description() ) ) : ?>
 					<small class="form-text text-muted">
 						<?php echo esc_html( $field->get_description() ); ?>
+					</small>
+				<?php endif; ?>
+
+				<?php
+
+				if ( $field->get_type() === 'file' ) :
+
+					$size = isset( $field_args['max_size'] ) ? $field_args['max_size'] : false;
+
+					?>
+					<small class="form-text text-muted">
+					<?php printf( esc_html__( 'Maximum file size: %s.' ), pno_max_upload_size( $size ) ); ?>
 					</small>
 				<?php endif; ?>
 
