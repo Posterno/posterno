@@ -214,7 +214,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 			$listing = array(
 				'ID'           => $this->listing_id,
 				'post_title'   => $values['listing_title'],
-				'post_content' => $values['listing_description'],
+				'post_content' => isset( $values['listing_description'] ) ? $values['listing_description'] : '',
 				'post_status'  => $this->is_moderation_required(),
 			);
 
