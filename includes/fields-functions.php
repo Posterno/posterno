@@ -865,10 +865,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
 
-					if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
-						$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
-					}
-
 					if ( $field->get_type() === 'term-select' && ! empty( $field->get_taxonomy() ) ) {
 						$fields[ $field->get_object_meta_key() ]['taxonomy'] = $field->get_taxonomy();
 					}
