@@ -180,7 +180,7 @@ class Listing {
 	public static function get_permissions_settings() {
 		$settings = [];
 
-		$settings[] = Field::make( 'checkbox', 'listing_field_is_hidden', esc_html__( 'Admin only?' ) )
+		$settings[] = Field::make( 'checkbox', 'listing_field_is_admin_only', esc_html__( 'Admin only?' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not visible within the listing submission form on the frontend.' ) );
 
 		/**

@@ -686,7 +686,7 @@ function pno_get_listings_submission_form_js_vars() {
  *
  * @return array
  */
-function pno_get_listing_submission_fields( $listing_id = false, $admin_request = false ) {
+function pno_get_listing_submission_fields( $listing_id = false ) {
 
 	$fields = [
 		'listing_title'                 => [
@@ -825,7 +825,7 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 				// to the existing default array.
 				if ( pno_is_default_field( $field->get_object_meta_key() ) ) {
 
-					if ( $field->is_admin_only() === true && ! $admin_request ) {
+					if ( $field->is_admin_only() === true && ! in_array( $field->get_object_meta_key(), [ 'listing_title' ] ) ) {
 						unset( $fields[ $field->get_object_meta_key() ] );
 						continue;
 					}
@@ -840,6 +840,10 @@ function pno_get_listing_submission_fields( $listing_id = false, $admin_request 
 					}
 
 				} else {
+
+					if ( $field->is_admin_only() === true ) {
+						continue;
+					}
 
 					// The field does not exist so we now add it to the list of fields.
 					$fields[ $field->get_object_meta_key() ] = [
