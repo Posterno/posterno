@@ -264,12 +264,7 @@ add_filter( 'post_types_to_delete_with_user', 'pno_delete_listings_on_user_delet
  */
 function pno_set_placeholder_for_term_select( $args, $field ) {
 
-	if ( isset( $args['taxonomy'] ) && $args['taxonomy'] === 'listings-locations' ) {
-		$args['option_none_value'] = '';
-		$args['show_option_none']  = esc_html__( 'Select a region' );
-	}
-
-	if ( $field->get_id() === 'listing_regions' && pno_get_option( 'submission_region_sublevel' ) ) {
+	if ( $field->get_object_meta_key() === 'listing_regions' && pno_get_option( 'submission_region_sublevel' ) ) {
 		$args['hierarchical'] = true;
 		$args['walker']       = new PNO\Utils\TermsHierarchyDropdown();
 	}

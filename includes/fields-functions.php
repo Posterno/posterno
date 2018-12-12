@@ -105,6 +105,7 @@ function pno_get_registered_field_types( $exclude = [] ) {
 		'listing-category'      => esc_html__( 'Listing category selector' ),
 		'listing-tags'          => esc_html__( 'Listing tags selector' ),
 		'term-select'           => esc_html__( 'Taxonomy dropdown' ),
+		'term-multiselect'      => esc_html__( 'Taxonomy multiselect' ),
 		'listing-opening-hours' => esc_html__( 'Opening hours' ),
 		'listing-location'      => esc_html__( 'Map' ),
 	];
@@ -400,7 +401,6 @@ function pno_get_account_fields( $user_id = false ) {
 					if ( $field->get_object_meta_key() !== 'email' ) {
 						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
 					}
-
 				} else {
 
 					if ( $field->is_admin_only() === true ) {
@@ -421,7 +421,6 @@ function pno_get_account_fields( $user_id = false ) {
 					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
-
 				}
 
 				if ( $field->get_priority() ) {
@@ -435,10 +434,8 @@ function pno_get_account_fields( $user_id = false ) {
 				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
 					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
 				}
-
 			}
 		}
-
 	}
 
 	// Load user's related values within the fields.
@@ -564,7 +561,7 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 		$classes[] = 'input-text';
 	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' ) {
 		$classes[] = 'custom-control-input';
-	} elseif ( $field->get_type() === 'select' || $field->get_type() === 'term-select' ) {
+	} elseif ( $field->get_type() === 'select' || $field->get_type() === 'term-select' || $field->get_type() === 'term-multiselect' ) {
 		$classes[] = 'custom-select';
 	} else {
 		$classes[] = 'input-' . $field->get_type();
@@ -843,7 +840,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 					if ( $field->get_object_meta_key() !== 'listing_title' ) {
 						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
 					}
-
 				} else {
 
 					if ( $field->is_admin_only() === true ) {
@@ -865,10 +861,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
 
-					if ( $field->get_type() === 'term-select' && ! empty( $field->get_taxonomy() ) ) {
+					if ( in_array( $field->get_type(), [ 'term-select', 'term-multiselect' ] ) && ! empty( $field->get_taxonomy() ) ) {
 						$fields[ $field->get_object_meta_key() ]['taxonomy'] = $field->get_taxonomy();
 					}
-
 				}
 
 				if ( $field->get_priority() ) {
@@ -882,11 +877,8 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
 					$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
 				}
-
 			}
-
 		}
-
 	}
 
 	// Load listings related values within the fields.

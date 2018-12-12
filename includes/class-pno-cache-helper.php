@@ -31,6 +31,11 @@ class Helper {
 		add_action( 'save_post', array( __CLASS__, 'flush_fields_cache' ) );
 		add_action( 'delete_post', array( __CLASS__, 'flush_fields_cache' ) );
 		add_action( 'trash_post', array( __CLASS__, 'flush_fields_cache' ) );
+
+		add_action( 'set_object_terms', array( __CLASS__, 'set_term' ), 10, 4 );
+		add_action( 'edited_term', array( __CLASS__, 'edited_term' ), 10, 3 );
+		add_action( 'create_term', array( __CLASS__, 'edited_term' ), 10, 3 );
+		add_action( 'delete_term', array( __CLASS__, 'edited_term' ), 10, 3 );
 	}
 
 	/**
@@ -112,6 +117,28 @@ class Helper {
 		forget_transient( 'pno_registration_fields' );
 		forget_transient( 'pno_admin_custom_profile_fields' );
 		forget_transient( 'pno_admin_custom_listing_fields' );
+	}
+
+	/**
+	 * Refreshes the terms cache when terms are updated.
+	 *
+	 * @param string|int $object_id the object sent through the hook.
+	 * @param string     $terms list of terms.
+	 * @param string     $tt_ids terms ids.
+	 * @param string     $taxonomy taxonomy id.
+	 */
+	public static function set_term( $object_id = '', $terms = '', $tt_ids = '', $taxonomy = '' ) {
+		self::get_transient_version( 'pno_get_' . sanitize_text_field( $taxonomy ), true );
+	}
+	/**
+	 * Refreshes the terms cache when terms are updated.
+	 *
+	 * @param string|int $term_id term updated.
+	 * @param string|int $tt_id id of the term updated.
+	 * @param string     $taxonomy taxonomy name updated.
+	 */
+	public static function edited_term( $term_id = '', $tt_id = '', $taxonomy = '' ) {
+		self::get_transient_version( 'pno_get_' . sanitize_text_field( $taxonomy ), true );
 	}
 
 }

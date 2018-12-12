@@ -33,6 +33,7 @@ $args = array(
 	'orderby'      => 'name',
 	'selected'     => $selected,
 	'hide_empty'   => false,
+	'class'        => join( ' ', pno_get_form_field_input_class( $data ) ),
 );
 
 if ( ! empty( $data->get_placeholder() ) ) {
