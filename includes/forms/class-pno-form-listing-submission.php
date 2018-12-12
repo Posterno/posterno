@@ -257,7 +257,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 			// Grab main listing details.
 			$listing_title       = $values['listing_title'];
-			$listing_description = $values['listing_description'];
+			$listing_description = isset( $values['listing_description'] ) ? $values['listing_description'] : '';
 			$listing_author      = get_current_user_id();
 			$listing_status      = pno_listing_submission_is_moderated() ? 'pending' : 'publish';
 
