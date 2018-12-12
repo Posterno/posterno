@@ -254,13 +254,11 @@ class PNO_Form_Account extends PNO_Form {
 							carbon_set_user_meta( $updated_user_id, $key, $values[ $key ]['url'] );
 							update_user_meta( $updated_user_id, "current_{$key}", $values[ $key ]['path'] );
 						}
-
 					} else {
 
 						carbon_set_user_meta( $updated_user_id, $key, $values[ $key ] );
 
 					}
-
 				}
 			}
 

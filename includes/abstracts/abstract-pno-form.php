@@ -580,6 +580,7 @@ abstract class PNO_Form {
 					array(
 						'file_key'           => $field_key,
 						'allowed_mime_types' => $allowed_mime_types,
+						'max_size'           => isset( $field['max_size'] ) ? $field['max_size'] : false,
 					)
 				);
 
