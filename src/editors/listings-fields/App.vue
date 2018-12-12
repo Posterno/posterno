@@ -26,7 +26,6 @@
 							<th scope="col" class="column-primary">{{labels.table.title}}</th>
 							<th scope="col">{{labels.table.type}}</th>
 							<th scope="col" class="icon-col">{{labels.table.required}}</th>
-							<th scope="col" class="icon-col">{{labels.table.editable}}</th>
 							<th scope="col">{{labels.table.actions}}</th>
 						</tr>
 					</thead>
@@ -45,24 +44,17 @@
 								<span class="dashicons dashicons-yes" v-if="isRequired(field.required)"></span>
 							</td>
 							<td>
-								<span :data-balloon="labels.profile.field_admin_only" data-balloon-pos="down" v-if="isAdminOnly(field.editable)">
-									<span class="dashicons dashicons-lock"></span>
-								</span>
-
-								<span class="dashicons dashicons-yes" v-else></span>
-							</td>
-							<td>
 								<a :href="field._links.admin[0].href" class="button"><span class="dashicons dashicons-edit"></span></a>
-								<a href="#/profile-fields" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
+								<a href="#" class="button error" v-if="! field.default" @click="deleteField( field.id, field.name )"><span class="dashicons dashicons-trash"></span></a>
 							</td>
 						</tr>
 						<tr class="no-items" v-if="fields < 1 && ! loading">
-							<td class="colspanchange" colspan="6">
+							<td class="colspanchange" colspan="5">
 								<strong>{{labels.table.not_found}}</strong>
 							</td>
 						</tr>
 						<tr class="no-items" v-if="loading">
-							<td class="colspanchange" colspan="6">
+							<td class="colspanchange" colspan="5">
 								<wp-spinner></wp-spinner>
 							</td>
 						</tr>
@@ -137,13 +129,6 @@ export default {
 		 */
 		isRequired( is_required ) {
 			return is_required === true ? true : false
-		},
-
-		/**
-		 * Determine if the field is admin only field or not.
-		 */
-		isAdminOnly( editability ) {
-			return editability === 'admin_only' ? true : false
 		},
 
 		/*
