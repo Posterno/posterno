@@ -113,6 +113,28 @@ class Listing {
 		$settings[] = Field::make( 'textarea', 'listing_field_description', esc_html__( 'Field description' ) )
 			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) );
 
+		/**
+		 * Allow developers to customize the settings for the listings fields post type.
+		 * Settings are powered by Carbon Fields and will be displayed within the "General" tab.
+		 *
+		 * @param array $settings list of Carbon Fields - fields.
+		 * @return array
+		 */
+		return apply_filters( 'pno_listings_fields_general_settings', $settings );
+	}
+
+	/**
+	 * Get the list of validation settings for the listings custom fields.
+	 *
+	 * @return array
+	 */
+	public static function get_validation_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'checkbox', 'listing_field_is_required', esc_html__( 'Set as required' ) )
+			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) );
+
 		$settings[] = Field::make( 'text', 'listing_field_file_max_size', esc_html__( 'Upload max size:' ) )
 			->set_conditional_logic(
 				array(
@@ -140,27 +162,6 @@ class Listing {
 			->set_help_text( esc_html__( 'Specify which file types are supported by this field. Separate with comma to add multiple extensions. Eg: jpg, png.' ) );
 
 		/**
-		 * Allow developers to customize the settings for the listings fields post type.
-		 * Settings are powered by Carbon Fields and will be displayed within the "General" tab.
-		 *
-		 * @param array $settings list of Carbon Fields - fields.
-		 * @return array
-		 */
-		return apply_filters( 'pno_listings_fields_general_settings', $settings );
-	}
-
-	/**
-	 * Get the list of validation settings for the listings custom fields.
-	 *
-	 * @return array
-	 */
-	public static function get_validation_settings() {
-		$settings = [];
-
-		$settings[] = Field::make( 'checkbox', 'listing_field_is_required', esc_html__( 'Set as required' ) )
-			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) );
-
-		/**
 		 * Allow developers to customize the settings for the listings custom fields post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "Validation" tab.
 		 *
@@ -168,6 +169,7 @@ class Listing {
 		 * @return array
 		 */
 		return apply_filters( 'pno_listings_fields_validation_settings', $settings );
+
 	}
 
 	/**
