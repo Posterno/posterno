@@ -40,7 +40,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'social-profiles',
 				'listing-category',
 				'listing-tags',
-				'opening-hours',
+				'listing-opening-hours',
 				'listing-location',
 			]
 		),
