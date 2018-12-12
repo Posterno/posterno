@@ -401,14 +401,6 @@ function pno_get_account_fields( $user_id = false ) {
 						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
 					}
 
-					if ( $field->get_priority() ) {
-						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
-					}
-
-					if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
-						$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
-					}
-
 				} else {
 
 					if ( $field->is_admin_only() === true ) {
@@ -430,10 +422,20 @@ function pno_get_account_fields( $user_id = false ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
 
-					if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
-						$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
-					}
 				}
+
+				if ( $field->get_priority() ) {
+					$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
+				}
+
+				if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
+					$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
+				}
+
+				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
+					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
+				}
+
 			}
 		}
 
