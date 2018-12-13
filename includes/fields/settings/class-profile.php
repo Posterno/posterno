@@ -168,6 +168,16 @@ class Profile {
 			->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not be customizable from the account settings page.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_read_only', esc_html__( 'Set as read only' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'profile_field_type',
+						'value'   => 'file',
+						'compare' => '!=',
+					),
+				)
+			)
 			->set_help_text( esc_html__( 'Enable to prevent users from editing this field but still make it visible within the account settings page.' ) );
 
 		/**
