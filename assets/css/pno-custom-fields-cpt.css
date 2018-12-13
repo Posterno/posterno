@@ -1,4 +1,12 @@
 div.carbon-container-carbon_fields_container_span_classdashicons_dashicons-admin-settingsspan .carbon-html {
   background-color: #e5f5fa; }
 
+body.post-type-pno_users_fields #misc-publishing-actions,
+body.post-type-pno_users_fields #minor-publishing-actions,
+body.post-type-pno_listings_fields #misc-publishing-actions,
+body.post-type-pno_listings_fields #minor-publishing-actions,
+body.post-type-pno_signup_fields #misc-publishing-actions,
+body.post-type-pno_signup_fields #minor-publishing-actions {
+  display: none; }
+
 /*# sourceMappingURL=pno-custom-fields-cpt.css.map */

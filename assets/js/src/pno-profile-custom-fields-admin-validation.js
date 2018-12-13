@@ -1,4 +1,5 @@
 $(document).on('carbonFields.apiLoaded', function (e, api) {
+
 	$(document).on('carbonFields.validateField', function (e, fieldName, error) {
 
 		if (fieldName === 'profile_field_meta_key' && pno_user_cf.is_default) {
