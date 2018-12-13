@@ -189,8 +189,8 @@ class Profile {
 					'relation' => 'AND',
 					array(
 						'field'   => 'profile_field_type',
-						'value'   => 'file',
-						'compare' => '!=',
+						'value'   => [ 'file', 'editor' ],
+						'compare' => 'NOT IN',
 					),
 				)
 			)
