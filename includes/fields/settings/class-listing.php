@@ -78,7 +78,7 @@ class Listing {
 					'relation' => 'AND',
 					array(
 						'field'   => 'listing_field_type',
-						'value'   => [ 'term-select', 'term-multiselect' ],
+						'value'   => [ 'term-select', 'term-multiselect', 'term-checklist' ],
 						'compare' => 'IN',
 					),
 				)

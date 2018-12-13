@@ -106,6 +106,7 @@ function pno_get_registered_field_types( $exclude = [] ) {
 		'listing-tags'          => esc_html__( 'Listing tags selector' ),
 		'term-select'           => esc_html__( 'Taxonomy dropdown' ),
 		'term-multiselect'      => esc_html__( 'Taxonomy multiselect' ),
+		'term-checklist'        => esc_html__( 'Taxonomy check list' ),
 		'listing-opening-hours' => esc_html__( 'Opening hours' ),
 		'listing-location'      => esc_html__( 'Map' ),
 	];
@@ -559,7 +560,7 @@ function pno_get_form_field_input_class( $field, $class = '' ) {
 
 	if ( $field->get_type() === 'textarea' ) {
 		$classes[] = 'input-text';
-	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' ) {
+	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' || $field->get_type() === 'term-checklist' ) {
 		$classes[] = 'custom-control-input';
 	} elseif ( $field->get_type() === 'select' || $field->get_type() === 'term-select' || $field->get_type() === 'term-multiselect' ) {
 		$classes[] = 'custom-select';
@@ -861,7 +862,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
 					}
 
-					if ( in_array( $field->get_type(), [ 'term-select', 'term-multiselect' ] ) && ! empty( $field->get_taxonomy() ) ) {
+					if ( in_array( $field->get_type(), [ 'term-select', 'term-multiselect', 'term-checklist' ] ) && ! empty( $field->get_taxonomy() ) ) {
 						$fields[ $field->get_object_meta_key() ]['taxonomy'] = $field->get_taxonomy();
 					}
 				}
