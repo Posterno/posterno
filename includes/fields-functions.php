@@ -234,16 +234,6 @@ function pno_get_registration_fields() {
 		);
 	}
 
-	// Remove username field if the option is enabled.
-	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
-		unset( $fields['username'] );
-	}
-
-	// Remove the password field if option enabled.
-	if ( pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
-		unset( $fields['password'] );
-	}
-
 	// Now inject fields data from the database and add new fields if any.
 	$fields_query_args = [
 		'post_type'              => 'pno_signup_fields',
@@ -255,13 +245,13 @@ function pno_get_registration_fields() {
 		'fields'                 => 'ids',
 	];
 
-	$fields_query = new WP_Query( $fields_query_args );
+	$fields_query = new PNO\Database\Queries\Registration_Fields( [ 'number' => 100 ] );
 
-	if ( $fields_query->have_posts() ) {
+	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 
-		foreach ( $fields_query->get_posts() as $registration_field ) {
+		foreach ( $fields_query->items as $registration_field ) {
 
-			$field = new PNO\Field\Registration( $registration_field );
+			$field = $registration_field;
 
 			if ( $field instanceof PNO\Field\Registration && $field->get_post_id() > 0 ) {
 
@@ -295,6 +285,16 @@ function pno_get_registration_fields() {
 
 		wp_reset_postdata();
 
+	}
+
+	// Remove username field if the option is enabled.
+	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
+		unset( $fields['username'] );
+	}
+
+	// Remove the password field if option enabled.
+	if ( pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
+		unset( $fields['password'] );
 	}
 
 	/**

@@ -70,7 +70,7 @@ class Registration extends Field {
 	public function populate_from_post_id( $post_id ) {
 
 		$this->post_id = $post_id;
-		$this->name    = get_the_title( $post_id );
+		$this->set_title( absint( $post_id ) );
 
 		$settings = [];
 
@@ -78,9 +78,23 @@ class Registration extends Field {
 		$found_field = $field->get_item_by( 'post_id', $post_id );
 
 		if ( $found_field instanceof $this ) {
+
 			$this->id = $found_field->get_id();
 			$settings = $found_field->get_settings();
+
+			$this->parse_settings( $settings );
+
 		}
+
+	}
+
+	/**
+	 * Parse all settings assigned to the field and complete setup of the field's object.
+	 *
+	 * @param array $settings settings to parse.
+	 * @return void
+	 */
+	public function parse_settings( $settings ) {
 
 		if ( is_array( $settings ) ) {
 			$this->settings = $settings;
@@ -133,11 +147,13 @@ class Registration extends Field {
 
 		// Attach profile field to the registration field if not a default field.
 		if ( ! empty( $this->profile_field_id ) ) {
+
 			$profile_field = new Profile( $this->profile_field_id );
+
 			if ( $profile_field instanceof Profile ) {
 				$this->type            = $profile_field->get_type();
 				$this->type_nicename   = isset( $types[ $profile_field->get_type() ] ) ? $types[ $profile_field->get_type() ] : false;
-				$this->object_meta_key = $this->get_object_meta_key();
+				$this->object_meta_key = $profile_field->get_object_meta_key();
 
 				if ( is_array( $profile_field->get_options() ) && ! empty( $profile_field->get_options() ) ) {
 					$this->options = $profile_field->get_options();

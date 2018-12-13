@@ -77,7 +77,9 @@ class Profile {
 						}
 
 						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
-							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->add_options( $custom_profile_field->get_options() );
+							if ( ! empty( $custom_profile_field->get_options() ) ) {
+								$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->add_options( $custom_profile_field->get_options() );
+							}
 						} elseif ( $type == 'file' ) {
 							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_value_type( 'url' );
 						} elseif ( $custom_profile_field->get_type() == 'number' ) {

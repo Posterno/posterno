@@ -293,15 +293,23 @@ class PNO_Form_Registration extends PNO_Form {
 					continue;
 				}
 				if ( pno_is_default_field( $key ) ) {
-					update_user_meta( $new_user_id, $key, $value );
-				} elseif ( $key == 'website' ) {
-					update_user_meta( $new_user_id, 'user_url', $value );
+					if ( $key == 'website' ) {
+						update_user_meta( $new_user_id, 'user_url', $value );
+					} else {
+						update_user_meta( $new_user_id, $key, $value );
+					}
 				} else {
-					if ( $value == '1' ) {
-						carbon_set_user_meta( $new_user_id, $key, true );
+
+					$field_type = $this->fields['registration'][ $key ]['type'];
+
+					if ( $field_type === 'checkbox' ) {
+						if ( $value === '1' ) {
+							carbon_set_user_meta( $new_user_id, $key, true );
+						}
 					} else {
 						carbon_set_user_meta( $new_user_id, $key, $value );
 					}
+
 				}
 			}
 

@@ -145,7 +145,7 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-bootstrap-script' );
 	}
 
-	if ( is_page( pno_get_dashboard_page_id() ) ) {
+	if ( is_page( pno_get_dashboard_page_id() ) || is_page( pno_get_registration_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
 		wp_enqueue_script( 'pno-select2' );
 	}

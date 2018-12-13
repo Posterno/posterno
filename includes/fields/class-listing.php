@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
  */
 class Listing extends Field {
 
-
 	/**
 	 * The type of data the field will'be storing into the database.
 	 *
