@@ -162,10 +162,26 @@ class Profile {
 	 * @return array
 	 */
 	public function get_permissions_settings() {
+
 		$settings = [];
 
-		$settings[] = Field::make( 'checkbox', 'profile_field_is_admin_only', esc_html__( 'Admin only?' ) )
-			->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not be customizable from the account settings page.' ) );
+		$field_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$disable_admin_only_setting = false;
+
+		if ( $field_id ) {
+
+			$profile_field = new \PNO\Field\Profile( $field_id );
+
+			if ( $profile_field instanceof \PNO\Field\Profile && $profile_field->get_object_meta_key() === 'avatar' ) {
+				$disable_admin_only_setting = true;
+			}
+
+		}
+
+		if ( ! $disable_admin_only_setting ) {
+			$settings[] = Field::make( 'checkbox', 'profile_field_is_admin_only', esc_html__( 'Admin only?' ) )
+				->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not be customizable from the account settings page.' ) );
+		}
 
 		$settings[] = Field::make( 'checkbox', 'profile_field_is_read_only', esc_html__( 'Set as read only' ) )
 			->set_conditional_logic(
