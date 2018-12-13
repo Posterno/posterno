@@ -41,4 +41,12 @@ $(document).on('carbonFields.apiLoaded', function (e, api) {
 		return error;
 	});
 
+	$(document).on('carbonFields.fieldUpdated', function (e, fieldName) {
+		if (fieldName === 'listing_field_is_required' && pno_listing_cf.is_default && pno_listing_cf.field_id === 'listing_title') {
+			if (api.getFieldValue('listing_field_is_required') === false) {
+				api.setFieldValue('listing_field_is_required', true);
+			}
+		}
+	});
+
 });
