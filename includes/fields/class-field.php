@@ -544,6 +544,9 @@ class Field {
 
 		if ( ! empty( $this->get_placeholder() ) ) {
 			$attributes['placeholder'] = $this->get_placeholder();
+			if ( $this->get_type() === 'multiselect' ) {
+				$attributes['data-placeholder'] = $this->get_placeholder();
+			}
 		}
 		if ( $this->is_required() && $this->get_type() !== 'file' ) {
 			$attributes['required'] = false;
