@@ -123,7 +123,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 			$value = true;
 
-		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Multiselect_Field' ) ) {
+		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Multiselect_Field' ) && isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
 
 			$value = maybe_unserialize( $field_settings[ $key ] );
 

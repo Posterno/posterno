@@ -237,26 +237,62 @@ class PNO_Form_Account extends PNO_Form {
 					// - Updates db with whatever it's left.
 					if ( $field_details['type'] === 'file' ) {
 
-						$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
-						$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
+						// Handle upload for single files.
+						if ( isset( $values[ $key ]['path'] ) ) {
 
-						if ( $currently_uploaded_file && $existing_file_path && isset( $values[ $key ]['url'] ) && $values[ $key ]['url'] !== $currently_uploaded_file ) {
-							wp_delete_file( $existing_file_path );
+							$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
+							$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
+
+							if ( $currently_uploaded_file && $existing_file_path && isset( $values[ $key ]['url'] ) && $values[ $key ]['url'] !== $currently_uploaded_file ) {
+								wp_delete_file( $existing_file_path );
+							}
+
+							if ( ! $currently_uploaded_file && file_exists( $existing_file_path ) ) {
+								wp_delete_file( $existing_file_path );
+								carbon_set_user_meta( $updated_user_id, $key, false );
+								delete_user_meta( $updated_user_id, "current_{$key}" );
+							}
+
+							if ( ! empty( $values[ $key ]['url'] ) && ! empty( $values[ $key ]['path'] ) ) {
+								carbon_set_user_meta( $updated_user_id, $key, $values[ $key ]['url'] );
+								update_user_meta( $updated_user_id, "current_{$key}", $values[ $key ]['path'] );
+							}
+						} else {
+
+							// Handle upload for multiple files.
+							if ( is_array( $values[ $key ] ) && ! empty( $values[ $key ] ) ) {
+
+								$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? array_map( 'esc_url_raw', $_POST[ "current_{$key}" ] ) : false;
+								$current_attachments     = carbon_get_user_meta( $updated_user_id, $key );
+								$attachments_to_save     = [];
+								$current_attachments_urls = [];
+
+								if ( is_array( $current_attachments ) && ! empty( $current_attachments ) ) {
+									foreach ( $current_attachments as $attachment ) {
+										$current_attachments_urls[] = esc_url_raw( $attachment['url'] );
+									}
+								}
+
+								$removed_attachments_urls = array_diff( $current_attachments_urls, $currently_uploaded_file );
+
+								foreach ( $values[ $key ] as $attachment_to_upload ) {
+									$attachment_path = isset( $attachment_to_upload['path'] ) ? $attachment_to_upload['path'] : false;
+									$attachment_url  = isset( $attachment_to_upload['url'] ) ? $attachment_to_upload['url'] : false;
+									if ( $attachment_url && $attachment_path ) {
+										$attachments_to_save[] = [
+											'url'  => $attachment_url,
+											'path' => $attachment_path,
+										];
+									}
+								}
+
+								if ( ! empty( $attachments_to_save ) ) {
+									carbon_set_user_meta( $updated_user_id, $key, $attachments_to_save );
+								}
+							}
 						}
-
-						if ( ! $currently_uploaded_file && file_exists( $existing_file_path ) ) {
-							wp_delete_file( $existing_file_path );
-							carbon_set_user_meta( $updated_user_id, $key, false );
-							delete_user_meta( $updated_user_id, "current_{$key}" );
-						}
-
-						if ( ! empty( $values[ $key ]['url'] ) && ! empty( $values[ $key ]['path'] ) ) {
-							carbon_set_user_meta( $updated_user_id, $key, $values[ $key ]['url'] );
-							update_user_meta( $updated_user_id, "current_{$key}", $values[ $key ]['path'] );
-						}
-
 					} elseif ( $field_details['type'] === 'checkbox' ) {
-						if ( $values[ $key ] === '1') {
+						if ( $values[ $key ] === '1' ) {
 							carbon_set_user_meta( $updated_user_id, $key, true );
 						}
 					} else {

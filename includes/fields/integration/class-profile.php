@@ -82,7 +82,12 @@ class Profile {
 							}
 						} elseif ( $type == 'file' ) {
 							if ( $custom_profile_field->is_multiple() ) {
-								$admin_fields[] = Field::make( 'media_gallery', $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() );
+								$admin_fields[] = Field::make( 'complex', $custom_profile_field->get_object_meta_key() )->add_fields(
+									array(
+										Field::make( 'text', 'url', esc_html__( 'File url' ) ),
+										Field::make( 'hidden', 'path' ),
+									)
+								);
 							} else {
 								$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_value_type( 'url' );
 							}

@@ -102,7 +102,7 @@ function pno_upload_file( $file, $args = array() ) {
 		}
 	}
 
-	if ( is_array( $file_extension ) && isset( $file_extension['ext'] ) && ! in_array( $file_extension['type'], $allowed_mime_types ) ) {
+	if ( is_array( $file_extension ) && isset( $file_extension['type'] ) && ! in_array( $file_extension['type'], $allowed_mime_types ) ) {
 		return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" needs to be one of the following file types: %2$s' ), $file['name'], implode( ', ', array_values( $allowed_mime_types ) ) ) );
 	} else {
 		$upload = wp_handle_upload( $file, apply_filters( 'submit_pno_handle_upload_overrides', array( 'test_form' => false ) ) );

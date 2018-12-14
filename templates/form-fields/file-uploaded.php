@@ -19,11 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$value = is_array( $data->value ) ? $data->value['url'] : $data->value;
+$value = is_array( $data->value ) && isset( $data->value['url'] ) ? $data->value['url'] : $data->value;
 
 if ( is_numeric( $value ) ) {
-	$image_src = wp_get_attachment_image_src( absint( $value ) );
-	$image_src = $image_src ? $image_src[0] : '';
+	$image_src = wp_get_attachment_url( absint( $value ) );
 } else {
 	$image_src = $value;
 }
