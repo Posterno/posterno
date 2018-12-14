@@ -389,7 +389,7 @@ abstract class PNO_Form {
 						foreach ( $check_value as $file_url ) {
 							$file_url  = current( explode( '?', $file_url ) );
 							$file_info = wp_check_filetype( $file_url );
-							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['ext'], $field['allowed_mime_types'], true ) ) {
+							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'], true ) ) {
 								// translators: Placeholder %1$s is field label; %2$s is the file mime type; %3$s is the allowed mime-types.
 								throw new Exception( sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}

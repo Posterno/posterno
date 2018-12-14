@@ -461,3 +461,13 @@ function pno_get_listing_updated_message() {
 	return apply_filters( 'pno_listing_updated_success_message', $message, $status );
 
 }
+
+/**
+ * Get allowed mime types and use the key as a label.
+ * This function is used within dropdowns.
+ *
+ * @return array
+ */
+function pno_get_human_readable_mime_types() {
+	return array_flip( get_allowed_mime_types() );
+}

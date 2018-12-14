@@ -172,6 +172,20 @@ class Profile {
 			)
 			->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.' ) );
 
+		$settings[] = Field::make( 'multiselect', 'profile_field_file_extensions', esc_html__( 'Allowed file types:' ) )
+			->add_options( 'pno_get_human_readable_mime_types' )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'profile_field_type',
+						'value'   => 'file',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Specify which file types are supported by this field.' ) );
+
 		/**
 		 * Allow developers to customize the settings for the profile field post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "Validation" tab.

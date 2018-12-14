@@ -101,7 +101,7 @@ class Profile extends Field {
 						$this->maxsize = $value;
 						break;
 					case 'file_extensions':
-						$this->allowed_mime_types = explode( ',', trim( $value ) );
+						$this->allowed_mime_types = maybe_unserialize( $value );
 						break;
 					case 'file_is_multiple':
 						$this->multiple = $this->get_type() === 'file' ? true : false;

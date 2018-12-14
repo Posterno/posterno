@@ -123,6 +123,10 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 
 			$value = true;
 
+		} elseif ( is_a( $field, '\\Carbon_Fields\\Field\\Multiselect_Field' ) ) {
+
+			$value = maybe_unserialize( $field_settings[ $key ] );
+
 		} else {
 			if ( isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
 				$value = esc_html( $field_settings[ $key ] );
@@ -166,6 +170,8 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 					$formatted_options[ $optkey ] = $array_of_options;
 				}
 				$value = $formatted_options;
+			} else if ( is_array( $value ) ) {
+				$value = maybe_serialize( $value );
 			} else {
 				$value = sanitize_text_field( $value );
 			}
