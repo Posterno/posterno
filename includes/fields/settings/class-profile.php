@@ -104,18 +104,30 @@ class Profile {
 				)
 			);
 
-		$settings[] = Field::make( 'checkbox', 'profile_field_file_is_multiple', esc_html__( 'Allow multiple files' ) )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
+		$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$disable_multiple_setting = false;
+
+		if ( $field_id ) {
+			$profile_field = new \PNO\Field\Profile( $field_id );
+			if ( $profile_field instanceof \PNO\Field\Profile && $profile_field->get_object_meta_key() === 'avatar' ) {
+				$disable_multiple_setting = true;
+			}
+		}
+
+		if ( ! $disable_multiple_setting ) {
+			$settings[] = Field::make( 'checkbox', 'profile_field_file_is_multiple', esc_html__( 'Allow multiple files' ) )
+				->set_conditional_logic(
 					array(
-						'field'   => 'profile_field_type',
-						'value'   => 'file',
-						'compare' => '=',
-					),
+						'relation' => 'AND',
+						array(
+							'field'   => 'profile_field_type',
+							'value'   => 'file',
+							'compare' => '=',
+						),
+					)
 				)
-			)
-			->set_help_text( esc_html__( 'Enable this option to allow users to upload multiple files through this field.' ) );
+				->set_help_text( esc_html__( 'Enable this option to allow users to upload multiple files through this field.' ) );
+		}
 
 		$settings[] = Field::make( 'text', 'profile_field_label', esc_html__( 'Custom form label' ) )
 			->set_help_text( esc_html__( 'This text will be used as label within the registration and account settings forms. Leave blank to use the field title.' ) );
@@ -179,7 +191,7 @@ class Profile {
 
 		$settings = [];
 
-		$field_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
 		$disable_admin_only_setting = false;
 
 		if ( $field_id ) {
