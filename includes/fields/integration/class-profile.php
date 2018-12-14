@@ -81,7 +81,11 @@ class Profile {
 								$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->add_options( $custom_profile_field->get_options() );
 							}
 						} elseif ( $type == 'file' ) {
-							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_value_type( 'url' );
+							if ( $custom_profile_field->is_multiple() ) {
+								$admin_fields[] = Field::make( 'media_gallery', $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() );
+							} else {
+								$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_value_type( 'url' );
+							}
 						} elseif ( $custom_profile_field->get_type() == 'number' ) {
 							$admin_fields[] = Field::make( $type, $custom_profile_field->get_object_meta_key(), $custom_profile_field->get_name() )->set_attribute( 'type', 'number' );
 						} elseif ( $custom_profile_field->get_type() == 'password' ) {

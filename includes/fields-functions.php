@@ -435,6 +435,11 @@ function pno_get_account_fields( $user_id = false ) {
 				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
 					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
 				}
+
+				if ( $field->get_type() === 'file' && $field->is_multiple() ) {
+					$fields[ $field->get_object_meta_key() ]['multiple'] = true;
+				}
+
 			}
 		}
 	}
