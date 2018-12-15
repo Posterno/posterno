@@ -482,14 +482,6 @@ function pno_get_account_fields( $user_id = false ) {
 		unset( $fields['avatar'] );
 	}
 
-	$counter = 0;
-
-	// Make sure priority is always correct.
-	foreach ( $fields as $key => $field ) {
-		$counter ++;
-		$fields[ $key ]['priority'] = $counter;
-	}
-
 	/**
 	 * Allows developers to register or deregister custom fields within the
 	 * user's account editing form. Fields here are yet to be formatted for the form functionality.
