@@ -128,6 +128,9 @@ class Listing extends Field {
 					case 'file_extensions':
 						$this->allowed_mime_types = explode( ',', trim( $value ) );
 						break;
+					case 'file_is_multiple':
+						$this->multiple = $this->get_type() === 'file' ? true : false;
+						break;
 					default:
 						$this->{$setting} = $value;
 						break;
