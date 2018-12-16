@@ -3,7 +3,7 @@
 
 $(document).on('carbonFields.apiLoaded', function (e, api) {
 
-	var typesToHide = ['listing-category', 'listing-tags', 'listing-location', 'opening-hours', 'social-profiles']
+	var typesToHide = ['listing-category', 'listing-tags', 'listing-location', 'listing-opening-hours', 'social-profiles']
 
 	if ( ! pno_listing_cf.is_default ) {
 		$('select[name=_listing_field_type] option').each(function () {
