@@ -660,4 +660,15 @@ abstract class PNO_Form {
 		$this->fields = [];
 	}
 
+	/**
+	 * Process the data sent through a file field and update the listing's attachments.
+	 *
+	 * @param array  $field_details details about the field.
+	 * @param string $listing_id the listing to update.
+	 * @return void
+	 */
+	protected function process_listing_file_field( $field_details, $listing_id ) {
+
+	}
+
 }

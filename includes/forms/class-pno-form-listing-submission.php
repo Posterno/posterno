@@ -395,6 +395,29 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					wp_set_object_terms( absint( $new_listing_id ), $listing_type, 'listings-types', true );
 				}
 
+				// Now update the custom fields that are not marked as default.
+				foreach ( $this->fields['listing-details'] as $key => $field_details ) {
+					if ( isset( $values[ $key ] ) && ! pno_is_default_field( $key ) ) {
+						if ( $field_details['type'] === 'file' ) {
+
+							$this->process_listing_file_field( $field_details, $new_listing_id );
+
+						} elseif ( $field_details['type'] === 'checkbox' ) {
+
+							if ( $values[ $key ] === '1' ) {
+								carbon_set_post_meta( $updated_user_id, $key, true );
+							}
+
+						} else {
+
+							if ( ! empty( $values[ $key ] ) ) {
+								carbon_set_post_meta( $updated_user_id, $key, $values[ $key ] );
+							}
+
+						}
+					}
+				}
+
 				/**
 				 * Allow developers to extend the listing submission process.
 				 * This action is fired after creating the new listing.
