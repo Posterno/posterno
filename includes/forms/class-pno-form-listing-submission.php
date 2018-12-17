@@ -314,7 +314,8 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 						$images_list = [];
 						foreach ( $gallery_images as $uploaded_file ) {
-							$uploaded_file_id = $this->create_attachment( $new_listing_id, $uploaded_file['url'] );
+							$gallery_image_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
+							$uploaded_file_id  = $this->create_attachment( $new_listing_id, $gallery_image_url );
 							if ( $uploaded_file_id ) {
 								$images_list[] = $uploaded_file_id;
 							}
