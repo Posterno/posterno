@@ -391,18 +391,15 @@ class Listing {
 								$type = 'text';
 								break;
 							case 'multicheckbox':
-							case 'term-checklist':
 								$type = 'set';
-								break;
-							case 'term-multiselect':
-								$type = 'multiselect';
 								break;
 							case 'editor':
 								$type = 'rich_text';
 								break;
-							case 'term-select':
-								$type = 'select';
-								break;
+						}
+
+						if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select' ] ) ) {
+							continue;
 						}
 
 						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
