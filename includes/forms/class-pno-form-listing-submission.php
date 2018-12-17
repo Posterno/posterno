@@ -300,8 +300,9 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 				// Create a featured image for the listing.
 				if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
-					if ( isset( $values['listing_featured_image']['url'] ) ) {
-						$attachment_id = $this->create_attachment( $new_listing_id, $values['listing_featured_image']['url'] );
+					$featured_image = isset( $values['listing_featured_image']['url'] ) ? $values['listing_featured_image']['url'] : $values['listing_featured_image'];
+					if ( $featured_image ) {
+						$attachment_id = $this->create_attachment( $new_listing_id, $featured_image );
 						if ( $attachment_id ) {
 							set_post_thumbnail( $new_listing_id, $attachment_id );
 						}
