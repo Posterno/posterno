@@ -247,14 +247,16 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 				}
 
 				// Create a featured image for the listing.
-				if ( isset( $values['listing_featured_image'] ) && ! empty( $values['listing_featured_image'] ) ) {
+				if ( isset( $values['listing_featured_image'] ) ) {
 
-					if ( isset( $values['listing_featured_image']['url'] ) ) {
+					$attachment_url = isset( $values['listing_featured_image']['url'] ) ? $values['listing_featured_image']['url'] : $values['listing_featured_image'];
+
+					if ( $attachment_url ) {
 
 						// Because we're uploading a new picture, we're removing the old one.
 						delete_post_thumbnail( $updated_listing_id );
 
-						$attachment_id = $this->create_attachment( $updated_listing_id, $values['listing_featured_image']['url'] );
+						$attachment_id = $this->create_attachment( $updated_listing_id, $attachment_url );
 						if ( $attachment_id ) {
 							set_post_thumbnail( $updated_listing_id, $attachment_id );
 						}
@@ -309,8 +311,9 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 					if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 						$images_list = [];
 						foreach ( $gallery_images as $uploaded_file ) {
-							if ( isset( $uploaded_file['url'] ) ) {
-								$uploaded_file_id = $this->create_attachment( $updated_listing_id, $uploaded_file['url'] );
+							$attachment_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
+							if ( $attachment_url ) {
+								$uploaded_file_id = $this->create_attachment( $updated_listing_id, $attachment_url );
 								if ( $uploaded_file_id ) {
 									$images_list[] = $uploaded_file_id;
 								}
@@ -385,6 +388,123 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 					if ( ! empty( $tags ) ) {
 						wp_set_object_terms( absint( $updated_listing_id ), $tags, 'listings-tags', true );
 					}
+				}
+
+				foreach ( $this->fields['listing-details'] as $key => $field_details ) {
+
+					if ( isset( $values[ $key ] ) && ! pno_is_default_field( $key ) ) {
+
+						if ( $field_details['type'] === 'file' ) {
+
+							$is_multiple = isset( $field_details['multiple'] ) && $field_details['multiple'] === true ? true : false;
+
+							if ( $is_multiple ) {
+
+								$submitted_attachments    = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? array_map( 'absint', $_POST[ "current_{$key}" ] ) : [];
+								$current_attachments      = carbon_get_post_meta( $updated_listing_id, $key );
+								$current_attachments_urls = [];
+
+								if ( is_array( $current_attachments ) && ! empty( $current_attachments ) ) {
+									foreach ( $current_attachments as $attachment_id ) {
+										$current_attachments_urls[] = wp_get_attachment_url( $attachment_id );
+									}
+								}
+
+								$removed_attachments_urls = array_diff( $current_attachments_urls, $submitted_attachments );
+
+								if ( ! empty( $removed_attachments_urls ) && is_array( $removed_attachments_urls ) ) {
+
+									$removed_attachment_ids = [];
+
+									foreach ( $removed_attachments_urls as $removed_attachment_url ) {
+										$attachment_id = attachment_url_to_postid( $removed_attachment_url );
+										if ( $attachment_id ) {
+											$removed_attachment_ids[] = $attachment_id;
+											wp_delete_attachment( $attachment_id, true );
+										}
+									}
+
+									if ( ! empty( $removed_attachment_ids ) ) {
+										$updated_attachments_ids = array_diff( $current_attachments, $removed_attachment_ids );
+										if ( ! empty( $updated_attachments_ids ) ) {
+											carbon_set_post_meta( $updated_listing_id, $key, $updated_attachments_ids );
+										}
+									}
+								}
+
+								$attachments_gallery = $values[ $key ];
+
+								if ( is_array( $attachments_gallery ) && ! empty( $attachments_gallery ) ) {
+									$new_attachments_list = [];
+									foreach ( $attachments_gallery as $uploaded_file ) {
+										$attachment_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
+										if ( $attachment_url ) {
+											$uploaded_file_id = $this->create_attachment( $updated_listing_id, $attachment_url );
+											if ( $uploaded_file_id ) {
+												$new_attachments_list[] = $uploaded_file_id;
+											}
+										}
+									}
+									if ( ! empty( $new_attachments_list ) ) {
+										$current_attachments = carbon_get_post_meta( $updated_listing_id, $key );
+										$new_attachments     = array_merge( $current_attachments, $new_attachments_list );
+										carbon_set_post_meta( $updated_listing_id, $key, $new_attachments );
+									}
+								}
+
+							} else {
+
+								if ( isset( $values[ $key ]['url'] ) ) {
+
+									$existing_attachment = carbon_get_post_meta( $updated_listing_id, $key );
+
+									if ( $existing_attachment ) {
+										wp_delete_attachment( $existing_attachment, true );
+									}
+
+									$attachment_id = $this->create_attachment( $updated_listing_id, $values[ $key ]['url'] );
+									if ( $attachment_id ) {
+										carbon_set_post_meta( $updated_listing_id, $key, $attachment_id );
+									}
+								}
+
+								if ( isset( $_POST[ "current_{$key}" ] ) && empty( $_POST[ "current_{$key}" ] ) ) {
+
+									$existing_attachment = carbon_get_post_meta( $updated_listing_id, $key );
+
+									if ( $existing_attachment ) {
+										wp_delete_attachment( $existing_attachment, true );
+										carbon_set_post_meta( $updated_listing_id, $key, false );
+									}
+
+								}
+
+							}
+
+						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist' ] ) ) {
+
+							if ( ! empty( $values[ $key ] ) ) {
+								$this->process_taxonomy_field( $field_details, $updated_listing_id, $values[ $key ] );
+							}
+
+						} elseif ( $field_details['type'] === 'checkbox' ) {
+
+							if ( $values[ $key ] === '1' ) {
+								carbon_set_post_meta( $updated_listing_id, $key, true );
+							} else {
+								carbon_set_post_meta( $updated_listing_id, $key, false );
+							}
+
+						} else {
+
+							if ( ! empty( $values[ $key ] ) ) {
+								carbon_set_post_meta( $updated_listing_id, $key, $values[ $key ] );
+							}
+
+						}
+
+					}
+
 				}
 
 				/**

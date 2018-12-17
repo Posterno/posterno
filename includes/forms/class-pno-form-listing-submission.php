@@ -444,7 +444,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 						} elseif ( $field_details['type'] === 'checkbox' ) {
 
 							if ( $values[ $key ] === '1' ) {
-								carbon_set_post_meta( $updated_user_id, $key, true );
+								carbon_set_post_meta( $new_listing_id, $key, true );
 							}
 
 						} else {
