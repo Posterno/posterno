@@ -435,6 +435,12 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 							}
 
+						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist' ] ) ) {
+
+							if ( ! empty( $values[ $key ] ) ) {
+								$this->process_taxonomy_field( $field_details, $new_listing_id, $values[ $key ] );
+							}
+
 						} elseif ( $field_details['type'] === 'checkbox' ) {
 
 							if ( $values[ $key ] === '1' ) {

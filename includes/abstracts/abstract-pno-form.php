@@ -663,8 +663,10 @@ abstract class PNO_Form {
 	/**
 	 * Process the data sent through a file field and update the listing's attachments.
 	 *
-	 * @param array  $field_details details about the field.
-	 * @param string $listing_id the listing to update.
+	 * @param array        $field_details details about the field.
+	 * @param string       $listing_id the listing to update.
+	 * @param string       $key the name of the field.
+	 * @param array|string $values values applied to the fiel field.
 	 * @return void
 	 */
 	protected function process_listing_file_field_submission( $field_details, $listing_id, $key, $values ) {
@@ -688,6 +690,43 @@ abstract class PNO_Form {
 
 		} else {
 
+		}
+
+	}
+
+	/**
+	 * Assign to the listing the taxonomies selected through the field.
+	 *
+	 * @param array        $field_details details about the field being submitted.
+	 * @param string       $listing_id the listing to update.
+	 * @param array|string $values the terms to assign.
+	 * @return void
+	 */
+	protected function process_taxonomy_field( $field_details, $listing_id, $values ) {
+
+		if ( ! $values || ! $listing_id ) {
+			return;
+		}
+
+		$taxonomy = isset( $field_details['taxonomy'] ) ? sanitize_text_field( $field_details['taxonomy'] ) : false;
+
+		if ( ! $taxonomy ) {
+			return;
+		}
+
+		$belongs_to_listings = false;
+
+		$registered_taxonomies = get_object_taxonomies( 'listings', 'objects' );
+		$listing_taxonomies = [];
+
+		foreach ( $registered_taxonomies as $tax => $details ) {
+			$listing_taxonomies[] = $tax;
+		}
+
+		$terms = is_array( $values ) ? array_map( 'absint', $values ) : absint( $values );
+
+		if ( in_array( $taxonomy, $listing_taxonomies ) ) {
+			wp_set_object_terms( absint( $listing_id ), $terms, $taxonomy, false );
 		}
 
 	}
