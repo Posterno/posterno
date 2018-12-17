@@ -53,7 +53,7 @@ class Listing {
 	public function init() {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
-		//add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
 
 	}
 
@@ -391,7 +391,11 @@ class Listing {
 								$type = 'text';
 								break;
 							case 'multicheckbox':
+							case 'term-checklist':
 								$type = 'set';
+								break;
+							case 'term-multiselect':
+								$type = 'multiselect';
 								break;
 							case 'editor':
 								$type = 'rich_text';
@@ -404,7 +408,11 @@ class Listing {
 						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
 							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
 						} elseif ( $type == 'file' ) {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_value_type( 'url' );
+							if ( $custom_listing_field->is_multiple() ) {
+								$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+							} else {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+							}
 						} elseif ( $custom_listing_field->get_type() == 'number' ) {
 							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'number' );
 						} elseif ( $custom_listing_field->get_type() == 'password' ) {
