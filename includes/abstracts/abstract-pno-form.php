@@ -667,7 +667,28 @@ abstract class PNO_Form {
 	 * @param string $listing_id the listing to update.
 	 * @return void
 	 */
-	protected function process_listing_file_field( $field_details, $listing_id ) {
+	protected function process_listing_file_field_submission( $field_details, $listing_id, $key, $values ) {
+
+		$is_multiple = isset( $field_details['multiple'] ) && $field_details['multiple'] === true ? true : false;
+
+		if ( $is_multiple ) {
+
+			var_dump( $_POST );
+
+			var_dump( $values );
+
+			//phpcs:ignore
+			if ( isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) && is_array( $_POST[ "current_{$key}" ] ) ) {
+
+				$submitted_attachments    = $_POST[ "current_{$key}" ];
+				$current_attachments      = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+				$current_attachments_urls = [];
+
+			}
+
+		} else {
+
+		}
 
 	}
 

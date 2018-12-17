@@ -875,6 +875,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
 					$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
 				}
+
+				if ( $field->get_type() === 'file' && $field->is_multiple() ) {
+					$fields[ $field->get_object_meta_key() ]['multiple'] = true;
+				}
+
 			}
 		}
 	}

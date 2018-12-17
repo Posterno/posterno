@@ -400,7 +400,22 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					if ( isset( $values[ $key ] ) && ! pno_is_default_field( $key ) ) {
 						if ( $field_details['type'] === 'file' ) {
 
-							$this->process_listing_file_field( $field_details, $new_listing_id );
+							$attachments_uploaded = $values[ $key ];
+							if ( is_array( $attachments_uploaded ) && ! empty( $attachments_uploaded ) ) {
+								$images_list = [];
+								foreach ( $attachments_uploaded as $uploaded_file ) {
+									$new_attachment_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
+									if ( $new_attachment_url ) {
+										$uploaded_file_id = $this->create_attachment( $new_listing_id, $new_attachment_url );
+										if ( $uploaded_file_id ) {
+											$images_list[] = $uploaded_file_id;
+										}
+									}
+								}
+								if ( ! empty( $images_list ) ) {
+									carbon_set_post_meta( $new_listing_id, 'listing_gallery_images', $images_list );
+								}
+							}
 
 						} elseif ( $field_details['type'] === 'checkbox' ) {
 
@@ -411,7 +426,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 						} else {
 
 							if ( ! empty( $values[ $key ] ) ) {
-								carbon_set_post_meta( $updated_user_id, $key, $values[ $key ] );
+								carbon_set_post_meta( $new_listing_id, $key, $values[ $key ] );
 							}
 
 						}
