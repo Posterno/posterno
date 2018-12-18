@@ -273,21 +273,6 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 
 					}
 
-					/*
-					if ( $attachment_url ) {
-						// Because we're uploading a new picture, we're removing the old one.
-						delete_post_thumbnail( $updated_listing_id );
-						$attachment_id = $this->create_attachment( $updated_listing_id, $attachment_url );
-						if ( $attachment_id ) {
-							set_post_thumbnail( $updated_listing_id, $attachment_id );
-						}
-					}
-
-					// Verify if the featured image has been removed.
-					if ( isset( $_POST['current_listing_featured_image'] ) && empty( $_POST['current_listing_featured_image'] ) ) {
-						delete_post_thumbnail( $updated_listing_id );
-					}*/
-
 				}
 
 				// Create images for the gallery.
