@@ -31,6 +31,13 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 	public $listing_type_id = null;
 
 	/**
+	 * ID number of the newly created listing,
+	 *
+	 * @var integer
+	 */
+	public $new_listing_id = 0;
+
+	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
@@ -69,6 +76,12 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 20,
+			),
+			'listing-submitted' => array(
+				'name'     => esc_html__( 'Listing successfully submitted.' ),
+				'view'     => array( $this, 'success' ),
+				'handler'  => false,
+				'priority' => 30,
 			),
 		);
 
@@ -504,23 +517,8 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 				} else {
 
-					$message = sprintf( __( 'Listing successfully submitted. <a href="%s">View your listing.</a>' ), get_permalink( $new_listing_id ) );
-
-					if ( pno_listing_submission_is_moderated() ) {
-						$message = esc_html__( 'Listing successfully submitted . Your listing will be visible once approved.' );
-					}
-
-					/**
-					 * Allow developers to customize the message displayed after successfull listing submission.
-					 *
-					 * @param string $message the message that appears after listing submission.
-					 */
-					$success_message = apply_filters( 'pno_listing_submission_success_message', $message );
-
-					$this->set_as_successful();
-					$this->set_success_message( $success_message );
-					$this->unbind();
-					return;
+					$this->new_listing_id = $new_listing_id;
+					$this->step ++;
 
 				}
 			}
@@ -531,6 +529,37 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			$this->add_error( $e->getMessage() );
 			return;
 		}
+	}
+
+	/**
+	 * Display the success message when no redirect is in place.
+	 *
+	 * @return void
+	 */
+	public function success() {
+
+		$message = sprintf( __( 'Listing successfully submitted. <a href="%s">View your listing.</a>' ), get_permalink( $this->new_listing_id ) );
+
+		if ( pno_listing_submission_is_moderated() ) {
+			$message = esc_html__( 'Listing successfully submitted. Your listing will be visible once approved.' );
+		}
+
+		/**
+		 * Allow developers to customize the message displayed after successfull listing submission.
+		 *
+		 * @param string $message the message that appears after listing submission.
+		 */
+		$success_message = apply_filters( 'pno_listing_submission_success_message', $message );
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'success',
+					'message' => $message,
+				]
+			)
+			->get_template_part( 'message' );
+
 	}
 
 }

@@ -173,10 +173,20 @@ abstract class PNO_Form {
 		$this->success_message = $message;
 	}
 
+	/**
+	 * Get the success message assigned to the form.
+	 *
+	 * @return string
+	 */
 	public function get_success_message() {
 		return $this->success_message;
 	}
 
+	/**
+	 * Verify if the form is successful.
+	 *
+	 * @return boolean
+	 */
 	public function is_successful() {
 		return $this->success === true ? true : false;
 	}
