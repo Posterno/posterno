@@ -442,7 +442,9 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 								}
 							} else {
 
-								if ( isset( $values[ $key ]['url'] ) ) {
+								$attachment_url = isset( $values[ $key ]['url'] ) ? $values[ $key ]['url'] : $values[ $key ];
+
+								if ( $attachment_url && ! is_numeric( $attachment_url ) ) {
 
 									$existing_attachment = carbon_get_post_meta( $updated_listing_id, $key );
 
@@ -454,17 +456,20 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 									if ( $attachment_id ) {
 										carbon_set_post_meta( $updated_listing_id, $key, $attachment_id );
 									}
-								}
 
-								if ( isset( $_POST[ "current_{$key}" ] ) && empty( $_POST[ "current_{$key}" ] ) ) {
+									if ( isset( $_POST['current_listing_featured_image'] ) && empty( $_POST['current_listing_featured_image'] ) ) {
+										wp_delete_attachment( $thumbnail_id, true );
+										delete_post_thumbnail( $updated_listing_id );
+									}
 
+								} elseif ( empty( $attachment_url ) ) {
 									$existing_attachment = carbon_get_post_meta( $updated_listing_id, $key );
-
 									if ( $existing_attachment ) {
 										wp_delete_attachment( $existing_attachment, true );
 										carbon_set_post_meta( $updated_listing_id, $key, false );
 									}
 								}
+
 							}
 						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist' ] ) ) {
 
