@@ -946,7 +946,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
 								foreach ( $gallery_images as $image_id ) {
 									$image_id      = $image_id['value'];
-									$attachments[] = wp_get_attachment_url( $image_id );
+									$attachments[] = $image_id;
 								}
 							}
 							$value = $attachments;
