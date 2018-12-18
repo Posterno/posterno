@@ -938,7 +938,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							break;
 						case 'listing_featured_image':
 							$featured_image_id = get_post_thumbnail_id( $listing_id );
-							$value             = wp_get_attachment_url( $featured_image_id );
+							$value             = $featured_image_id;
 							break;
 						case 'listing_gallery':
 							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images', true );

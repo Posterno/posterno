@@ -251,11 +251,32 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 
 					$attachment_url = isset( $values['listing_featured_image']['url'] ) ? $values['listing_featured_image']['url'] : $values['listing_featured_image'];
 
-					if ( $attachment_url ) {
+					if ( $attachment_url && ! is_numeric( $attachment_url ) ) {
 
 						// Because we're uploading a new picture, we're removing the old one.
-						delete_post_thumbnail( $updated_listing_id );
+						$thumbnail_id = get_post_thumbnail_id( $updated_listing_id );
 
+						if ( $thumbnail_id ) {
+							wp_delete_attachment( $thumbnail_id, true );
+							delete_post_thumbnail( $updated_listing_id );
+						}
+
+						$attachment_id = $this->create_attachment( $updated_listing_id, $attachment_url );
+						if ( $attachment_id ) {
+							set_post_thumbnail( $updated_listing_id, $attachment_id );
+						}
+
+						if ( isset( $_POST['current_listing_featured_image'] ) && empty( $_POST['current_listing_featured_image'] ) ) {
+							wp_delete_attachment( $thumbnail_id, true );
+							delete_post_thumbnail( $updated_listing_id );
+						}
+
+					}
+
+					/*
+					if ( $attachment_url ) {
+						// Because we're uploading a new picture, we're removing the old one.
+						delete_post_thumbnail( $updated_listing_id );
 						$attachment_id = $this->create_attachment( $updated_listing_id, $attachment_url );
 						if ( $attachment_id ) {
 							set_post_thumbnail( $updated_listing_id, $attachment_id );
@@ -265,7 +286,8 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 					// Verify if the featured image has been removed.
 					if ( isset( $_POST['current_listing_featured_image'] ) && empty( $_POST['current_listing_featured_image'] ) ) {
 						delete_post_thumbnail( $updated_listing_id );
-					}
+					}*/
+
 				}
 
 				// Create images for the gallery.
