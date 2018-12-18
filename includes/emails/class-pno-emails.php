@@ -329,6 +329,7 @@ class PNO_Emails {
 		$this->user_id             = '';
 		$this->password_reset_key  = '';
 		$this->plain_text_password = '';
+		$this->listing_id = '';
 	}
 
 	/**
@@ -425,6 +426,34 @@ class PNO_Emails {
 				'tag'         => 'recovery_url',
 				'function'    => 'pno_email_tag_password_recovery_url',
 			),
+			array(
+				'name'        => esc_html__( 'Listing ID' ),
+				'description' => esc_html__( 'Display listing ID number.' ),
+				'tag'         => 'listing_id_number',
+				'function'    => 'pno_email_tag_listing_id_number',
+				'listing' => true,
+			),
+			array(
+				'name'        => esc_html__( 'Listing title' ),
+				'description' => esc_html__( 'Display listing title.' ),
+				'tag'         => 'listing_title',
+				'function'    => 'pno_email_tag_listing_title',
+				'listing' => true,
+			),
+			array(
+				'name'        => esc_html__( 'Listing submission date' ),
+				'description' => esc_html__( 'Display listing submission date.' ),
+				'tag'         => 'listing_submission_date',
+				'function'    => 'pno_email_tag_listing_submission_date',
+				'listing' => true,
+			),
+			array(
+				'name'        => esc_html__( 'Listing url' ),
+				'description' => esc_html__( 'Display listing url.' ),
+				'tag'         => 'listing_url',
+				'function'    => 'pno_email_tag_listing_url',
+				'listing' => true,
+			),
 		);
 
 		/**
@@ -456,7 +485,12 @@ class PNO_Emails {
 		if ( ! $this->email_tag_exists( $tag ) ) {
 			return $m[0];
 		}
-		return call_user_func( $this->tags[ $tag ]['function'], $this->user_id, $this->password_reset_key, $this->plain_text_password, $tag );
+
+		if ( isset( $this->tags[ $tag ]['listing'] ) && $this->tags[ $tag ]['listing'] === true ) {
+			return call_user_func( $this->tags[ $tag ]['function'], $this->user_id, $this->listing_id, $tag );
+		} else {
+			return call_user_func( $this->tags[ $tag ]['function'], $this->user_id, $this->password_reset_key, $this->plain_text_password, $tag );
+		}
 	}
 
 	/**

@@ -125,10 +125,55 @@ function pno_email_tag_password_recovery_url( $user_id, $password_reset_key ) {
 			'user_id' => $user_id,
 			'key'     => $password_reset_key,
 			'step'    => 'reset',
-		], $reset_page
+		],
+		$reset_page
 	);
 	$output     = $reset_page;
 	return $output;
+}
+
+/**
+ * Display the ID number of a listing within emails.
+ *
+ * @param string $user_id id number of the user modifying the listing.
+ * @param string $listing_id id number of the listing to display.
+ * @return string
+ */
+function pno_email_tag_listing_id_number( $user_id, $listing_id ) {
+	return $listing_id ? absint( $listing_id ) : '-';
+}
+
+/**
+ * Display title of the listing within emails.
+ *
+ * @param string $user_id id number of the user modifying the listing.
+ * @param string $listing_id id number of the listing to display.
+ * @return string
+ */
+function pno_email_tag_listing_title( $user_id, $listing_id ) {
+	return get_the_title( $listing_id );
+}
+
+/**
+ * Display the publish date of the listing within emails.
+ *
+ * @param string $user_id id number of the user modifying the listing.
+ * @param string $listing_id id number of the listing to display.
+ * @return string
+ */
+function pno_email_tag_listing_submission_date( $user_id, $listing_id ) {
+	return get_the_date( get_option( 'date_format' ), $listing_id );
+}
+
+/**
+ * Display the url of the listing within emails.
+ *
+ * @param string $user_id id number of the user modifying the listing.
+ * @param string $listing_id id number of the listing to display.
+ * @return string
+ */
+function pno_email_tag_listing_url( $user_id, $listing_id ) {
+	return get_permalink( $listing_id );
 }
 
 /**
@@ -168,7 +213,7 @@ function pno_email_get_type_schema() {
 		'core_user_listing_submitted' => [
 			'description' => esc_html__( 'Recipient has successfully submitted a listing.' ),
 		],
-		'core_user_listing_updated' => [
+		'core_user_listing_updated'   => [
 			'description' => esc_html__( 'Recipient has successfully updated a listing.' ),
 		],
 	);
