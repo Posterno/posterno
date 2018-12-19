@@ -392,7 +392,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
 			// Menus.
-			require_once PNO_PLUGIN_DIR . 'includes/class-pno-walker-menu-checklist.php';
+			require_once PNO_PLUGIN_DIR . 'includes/walkers/class-pno-walker-menu-checklist.php';
 
 			// Fields.
 			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-profile.php';

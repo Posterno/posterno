@@ -1121,7 +1121,7 @@ function pno_dropdown_categories( $args = '' ) {
 
 	if ( ! empty( $categories ) ) {
 
-		include_once PNO_PLUGIN_DIR . '/includes/class-pno-category-walker.php';
+		include_once PNO_PLUGIN_DIR . '/includes/walkers/class-pno-category-walker.php';
 
 		$walker = new PNO_Category_Walker();
 
