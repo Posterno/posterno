@@ -50,7 +50,7 @@ function pno_setup_post_types() {
 	$args   = array(
 		'label'               => __( 'Listing', 'posterno' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', /*'editor',*/ 'thumbnail', 'revisions' ),
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -592,3 +592,16 @@ function pno_register_email_taxonomy() {
 
 }
 add_action( 'init', 'pno_register_email_taxonomy', 0 );
+
+/**
+ * Disable Gutenberg for listings.
+ *
+ * @param boolean $can_edit Whether the post type can be edited or not.
+ * @param string  $post_type The post type being checked.
+ * @return bool
+ */
+function pno_gutenberg_can_edit_post_type( $can_edit, $post_type ) {
+	return 'listings' === $post_type ? false : $can_edit;
+}
+add_filter( 'gutenberg_can_edit_post_type', 'pno_gutenberg_can_edit_post_type', 10, 2 );
+add_filter( 'use_block_editor_for_post_type', 'pno_gutenberg_can_edit_post_type', 10, 2 );
