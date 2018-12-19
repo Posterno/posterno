@@ -145,13 +145,15 @@ class Listing {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'radio', 'listing_type', esc_html__( 'Listing type' ) )
-			->set_datastore( new \PNO\Datastores\ListingType() )
-			->set_required( true )
-			->set_classes( 'inline-radio-selector' )
-			->add_options(
-				'pno_get_listings_types_for_association'
-			);
+		if ( function_exists( 'pno_get_listings_types_for_association' ) && ! empty( pno_get_listings_types_for_association() ) ) {
+			$settings[] = Field::make( 'radio', 'listing_type', esc_html__( 'Listing type' ) )
+				->set_datastore( new \PNO\Datastores\ListingType() )
+				->set_required( true )
+				->set_classes( 'inline-radio-selector' )
+				->add_options(
+					'pno_get_listings_types_for_association'
+				);
+		}
 
 		$settings[] = Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number' ) )->set_width( 33.33 );
 		$settings[] = Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 );
@@ -417,9 +419,7 @@ class Listing {
 						} else {
 							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
 						}
-
 					}
-
 				}
 
 				return $admin_fields;
