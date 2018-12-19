@@ -262,6 +262,7 @@ class PNO_Form_Account extends PNO_Form {
 										unset( $current_attachments[ key( $removed_attachment ) ] );
 									}
 								}
+								$current_attachments = array_values( $current_attachments );
 							}
 
 							if ( is_array( $values[ $key ] ) && ! empty( $values[ $key ] ) ) {
