@@ -60,7 +60,7 @@ class Listing {
 	 *
 	 * @return array
 	 */
-	public static function get_general_settings() {
+	public function get_general_settings() {
 
 		$settings = [];
 
@@ -153,7 +153,7 @@ class Listing {
 	 *
 	 * @return array
 	 */
-	public static function get_validation_settings() {
+	public function get_validation_settings() {
 
 		$settings = [];
 
@@ -202,7 +202,7 @@ class Listing {
 	 *
 	 * @return array
 	 */
-	public static function get_permissions_settings() {
+	public function get_permissions_settings() {
 		$settings = [];
 
 		$settings[] = Field::make( 'checkbox', 'listing_field_is_admin_only', esc_html__( 'Admin only?' ) )
