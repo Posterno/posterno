@@ -197,20 +197,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 		$field_exists = $field->get_item_by( 'post_id', $this->get_object_id() );
 
 		if ( $field_exists ) {
-
 			$settings = $field_exists->get_settings();
-
-		} else {
-
-			// Automatically create a new row into the database when no settings are found.
-			if ( $this->settings_object_id ) {
-				return;
-			}
-
-			$new_field = $field->add_item( [ 'post_id' => $this->get_object_id() ] );
-
-			$this->settings_object_id = $new_field;
-
 		}
 
 		return $settings;
