@@ -23,6 +23,16 @@ defined( 'ABSPATH' ) || exit;
 class PNO_Theme_Integration {
 
 	/**
+	 * Store the login page id.
+	 * We use this page to get information about
+	 * the administrator that created the page in order
+	 * to create a dummy post for our integration.
+	 *
+	 * @var integer
+	 */
+	private static $login_page_id = 0;
+
+	/**
 	 * Is Posterno support defined?
 	 *
 	 * @var boolean
@@ -37,6 +47,7 @@ class PNO_Theme_Integration {
 	public static function init() {
 
 		self::$theme_support = current_theme_supports( 'posterno' );
+		self::$login_page_id = pno_get_login_page_id();
 
 		if ( ! self::$theme_support ) {
 			add_action( 'template_redirect', array( __class__, 'unsupported_theme_init' ) );
@@ -49,8 +60,10 @@ class PNO_Theme_Integration {
 	 * @return void
 	 */
 	public static function unsupported_theme_init() {
-		if ( pno_is_listing_taxonomy() ) {
-			self::unsupported_theme_tax_archive_init();
+		if ( 0 < self::$login_page_id ) {
+			if ( pno_is_listing_taxonomy() ) {
+				self::unsupported_theme_tax_archive_init();
+			}
 		}
 	}
 
@@ -67,16 +80,18 @@ class PNO_Theme_Integration {
 
 		$queried_object = get_queried_object();
 
+		$login_page = get_post( self::$login_page_id );
+
 		$dummy_post_properties = array(
 			'ID'                    => 0,
 			'post_status'           => 'publish',
-			'post_author'           => 1,
+			'post_author'           => isset( $login_page->post_author ) ? $login_page->post_author : false,
 			'post_parent'           => 0,
 			'post_type'             => 'page',
-			'post_date'             => '',
-			'post_date_gmt'         => '',
-			'post_modified'         => '',
-			'post_modified_gmt'     => '',
+			'post_date'             => isset( $login_page->post_date ) ? $login_page->post_date : '',
+			'post_date_gmt'         => isset( $login_page->post_date_gmt ) ? $login_page->post_date_gmt : '',
+			'post_modified'         => isset( $login_page->post_modified ) ? $login_page->post_modified : '',
+			'post_modified_gmt'     => isset( $login_page->post_modified_gmt ) ? $login_page->post_modified_gmt : '',
 			'post_content'          => 'test',
 			'post_title'            => esc_html( $queried_object->name ),
 			'post_excerpt'          => '',
