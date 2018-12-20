@@ -471,3 +471,12 @@ function pno_get_listing_updated_message() {
 function pno_get_human_readable_mime_types() {
 	return array_flip( get_allowed_mime_types() );
 }
+
+/**
+ * Returns true when viewing a listing taxonomy archive.
+ *
+ * @return boolean
+ */
+function pno_is_listing_taxonomy() {
+	return is_tax( get_object_taxonomies( 'listings' ) );
+}

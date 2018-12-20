@@ -413,6 +413,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-dashboard-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-terms-custom-fields.php';
 
+			// Theme Integration.
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-theme-integration.php';
+
 		}
 
 	}
