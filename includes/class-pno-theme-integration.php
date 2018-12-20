@@ -92,7 +92,7 @@ class PNO_Theme_Integration {
 			'post_date_gmt'         => isset( $login_page->post_date_gmt ) ? $login_page->post_date_gmt : '',
 			'post_modified'         => isset( $login_page->post_modified ) ? $login_page->post_modified : '',
 			'post_modified_gmt'     => isset( $login_page->post_modified_gmt ) ? $login_page->post_modified_gmt : '',
-			'post_content'          => 'test',
+			'post_content'          => self::get_taxonomy_template(),
 			'post_title'            => esc_html( $queried_object->name ),
 			'post_excerpt'          => '',
 			'post_content_filtered' => '',
@@ -156,6 +156,21 @@ class PNO_Theme_Integration {
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Load the taxonomy template.
+	 *
+	 * @return string
+	 */
+	public static function get_taxonomy_template() {
+
+		ob_start();
+
+		posterno()->templates->get_template_part( 'taxonomy' );
+
+		return ob_get_clean();
+
 	}
 
 }
