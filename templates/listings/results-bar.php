@@ -44,7 +44,16 @@ global $wp_query;
 			</div>
 
 			<div class="col-12 col-md-4 text-md-right">
-			One of two columns
+
+				<div class="row">
+					<div class="col">
+						<?php posterno()->templates->get_template_part( 'listings/results', 'grid-filter' ); ?>
+					</div>
+					<div class="col">
+						<?php posterno()->templates->get_template_part( 'listings/results', 'order-filter' ); ?>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
