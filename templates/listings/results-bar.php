@@ -33,9 +33,9 @@ global $wp_query;
 					posterno()->templates
 						->set_template_data(
 							[
-								'total'    => $wp_query->post_count,
-								'per_page' => $wp_query->query_vars['posts_per_page'],
-								'current'  => $wp_query->found_posts,
+								'total'    => absint( $wp_query->found_posts ),
+								'per_page' => absint( $wp_query->query_vars['posts_per_page'] ),
+								'current'  => absint( max( 1, $wp_query->get( 'paged', 1 ) ) ),
 							]
 						)
 						->get_template_part( 'listings/results', 'count' );
