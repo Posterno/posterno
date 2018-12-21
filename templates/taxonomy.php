@@ -18,6 +18,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+global $wp_query;
+
 /**
  * Hook: loads before the taxonomy content and loop.
  */
@@ -53,6 +55,11 @@ $description = term_description();
 				the_title();
 
 			}
+
+			// Display pagination.
+			posterno()->templates
+				->set_template_data( [ 'max_num_pages' => $wp_query->max_num_pages ] )
+				->get_template_part( 'listings/pagination' );
 
 			/**
 			 * Hook: loads after the taxonomy & archive listings loop when listings are available.
