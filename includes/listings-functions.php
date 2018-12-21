@@ -343,7 +343,8 @@ function pno_get_dashboard_listing_status_filter_url( $status_key = false ) {
 	$url = add_query_arg(
 		[
 			'listing_status' => sanitize_key( $status_key ),
-		], $url
+		],
+		$url
 	);
 
 	return $url;
@@ -393,17 +394,19 @@ function pno_get_listings_actions() {
 		unset( $actions['delete'] );
 	}
 
-	if ( ! empty( $actions ) ) {
-		uasort( $actions, 'pno_sort_array_by_priority' );
-	}
-
 	/**
 	 * Allow developers to extend the list of actions for listings.
 	 *
 	 * @param array $actions the list of registered actions.
 	 * @return array
 	 */
-	return apply_filters( 'pno_listings_actions', $actions );
+	$actions = apply_filters( 'pno_listings_actions', $actions );
+
+	if ( ! empty( $actions ) ) {
+		uasort( $actions, 'pno_sort_array_by_priority' );
+	}
+
+	return $actions;
 
 }
 
@@ -477,7 +480,8 @@ function pno_get_listings_types() {
 	$types = [];
 
 	$terms = get_terms(
-		'listings-types', array(
+		'listings-types',
+		array(
 			'hide_empty' => false,
 			'number'     => 999,
 			'orderby'    => 'name',
@@ -686,11 +690,8 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours )
 					if ( ! empty( $additional_times ) ) {
 						pno_update_listing_additional_opening_hours_by_day( $listing_id, $day, $additional_times );
 					}
-
 				}
-
 			}
-
 		}
 	}
 
@@ -755,7 +756,8 @@ function pno_is_listing_pending_approval( $listing_id ) {
 	}
 
 	return wp_cache_remember(
-		"listing_{$listing_id}_pending_approval", function () use ( $listing_id ) {
+		"listing_{$listing_id}_pending_approval",
+		function () use ( $listing_id ) {
 			return get_post_type( $listing_id ) == 'listings' && get_post_status( $listing_id ) == 'pending';
 		}
 	);
@@ -769,4 +771,81 @@ function pno_is_listing_pending_approval( $listing_id ) {
  */
 function pno_get_queried_listing_editable_id() {
 	return isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false;
+}
+
+/**
+ * Retrieve the list of filters that determine the order of listings results.
+ *
+ * @return array
+ */
+function pno_get_listings_results_order_filters() {
+
+	$filters = [
+		'newest' => [
+			'label'    => esc_html__( 'Newest first' ),
+			'priority' => 1,
+		],
+		'oldest' => [
+			'label'    => esc_html__( 'Oldest first' ),
+			'priority' => 2,
+		],
+		'title'  => [
+			'label'    => esc_html__( 'Title' ),
+			'priority' => 3,
+		],
+		'random' => [
+			'label'    => esc_html__( 'Random' ),
+			'priority' => 4,
+		],
+	];
+
+	$filters = apply_filters( 'pno_listings_results_order_filters', $filters );
+
+	if ( ! empty( $filters ) ) {
+		uasort( $filters, 'pno_sort_array_by_priority' );
+	}
+
+	return $filters;
+
+}
+
+/**
+ * Retrieve the URL for a given results order filter.
+ *
+ * @param string $filter_id the filter for which we're going to create the unique url.
+ * @return string
+ */
+function pno_get_listings_results_order_filter_link( $filter_id ) {
+
+	if ( ! $filter_id ) {
+		return get_pagenum_link( get_query_var( 'paged' ) );
+	}
+
+	return add_query_arg( [ 'listings-order' => esc_attr( $filter_id ) ], pno_get_full_page_url() );
+
+}
+
+/**
+ * Determine the currently activate listings results order filter if
+ * the user has enabled one through the frontend.
+ *
+ * @return boolean|string
+ */
+function pno_get_listings_results_order_active_filter() {
+
+	$all_filters = pno_get_listings_results_order_filters();
+
+	if ( ! is_array( $all_filters ) || empty( $all_filters ) ) {
+		return;
+	}
+
+	//phpcs:ignore
+	$current = isset( $_GET['listings-order'] ) && ! empty( $_GET['listings-order'] ) ? sanitize_key( $_GET['listings-order'] ) : false;
+
+	return $current && isset( $all_filters[ $current ] ) ? $current : false;
+
+}
+
+function pno_get_listings_results_active_layout() {
+	return isset( $_GET['layout'] ) && ! empty( $_GET['layout'] ) ? sanitize_key( $_GET['layout'] ) : false;
 }

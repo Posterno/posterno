@@ -17,15 +17,24 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$filters = pno_get_listings_results_order_filters();
+
+if ( ! is_array( $filters ) || empty( $filters ) ) {
+	return;
+}
+
+$active        = pno_get_listings_results_order_active_filter();
+$active_filter = isset( $filters[ $active ] ) ? $filters[ $active ] : $filters[ key( $filters ) ];
+
 ?>
 
 <div class="dropdown">
 	<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="pno-results-order-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Dropdown
+		<?php echo esc_html( sprintf( __( 'Sort by: %s' ), $active_filter['label'] ) ); ?>
 	</button>
 	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="pno-results-order-filter">
-		<button class="dropdown-item" type="button">Action</button>
-		<button class="dropdown-item" type="button">Another action</button>
-		<button class="dropdown-item" type="button">Something else here</button>
+		<?php foreach ( $filters as $filter_id => $filter ) : ?>
+			<a href="<?php echo esc_url( pno_get_listings_results_order_filter_link( $filter_id ) ); ?>" class="dropdown-item <?php if ( $active === $filter_id ) : ?>active<?php endif; ?>"><?php echo esc_html( $filter['label'] ); ?></a>
+		<?php endforeach; ?>
 	</div>
 </div>

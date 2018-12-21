@@ -17,6 +17,10 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$list_layout_link = add_query_arg( [ 'layout' => 'list' ], pno_get_full_page_url() );
+$grid_layout_link = add_query_arg( [ 'layout' => 'grid' ], pno_get_full_page_url() );
+$active_layout    = pno_get_listings_results_active_layout();
+
 ?>
 
 <div class="btn-group" role="group" aria-label="<?php esc_html_e( 'Grid layout' ); ?>">
@@ -28,12 +32,12 @@ defined( 'ABSPATH' ) || exit;
 	do_action( 'pno_listings_results_before_grid_filter' );
 	?>
 
-	<button type="button" class="btn btn-outline-secondary" aria-label="<?php esc_html_e( 'List layout' ); ?>">
+	<a href="<?php echo esc_url( $list_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'list' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'List layout' ); ?>">
 		<i class="fas fa-list-ul"></i>
-	</button>
-	<button type="button" class="btn btn-outline-secondary" aria-label="<?php esc_html_e( 'Grid layout' ); ?>">
+	</a>
+	<a href="<?php echo esc_url( $grid_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'grid' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'Grid layout' ); ?>">
 		<i class="fas fa-th"></i>
-	</button>
+	</a>
 
 	<?php
 	/**

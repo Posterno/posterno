@@ -480,3 +480,16 @@ function pno_get_human_readable_mime_types() {
 function pno_is_listing_taxonomy() {
 	return is_tax( get_object_taxonomies( 'listings' ) );
 }
+
+/**
+ * Returns the current page url including query strings.
+ *
+ * @return string
+ */
+function pno_get_full_page_url() {
+
+	global $wp;
+
+	return add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
+
+}
