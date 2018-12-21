@@ -846,6 +846,11 @@ function pno_get_listings_results_order_active_filter() {
 
 }
 
+/**
+ * Detect the currently active listings results selected layout.
+ *
+ * @return string|boolean
+ */
 function pno_get_listings_results_active_layout() {
 	return isset( $_GET['layout'] ) && ! empty( $_GET['layout'] ) ? sanitize_key( $_GET['layout'] ) : false;
 }
