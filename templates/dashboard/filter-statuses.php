@@ -11,6 +11,7 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package Posterno
  */
 
 // Exit if accessed directly.
