@@ -37,7 +37,12 @@ global $wp_query;
 
 				// Display pagination.
 				posterno()->templates
-					->set_template_data( [ 'max_num_pages' => $wp_query->max_num_pages ] )
+					->set_template_data(
+						[
+							'max_num_pages' => $wp_query->max_num_pages,
+							'layout'        => 'justify-content-end',
+						]
+					)
 					->get_template_part( 'listings/pagination' );
 
 				?>

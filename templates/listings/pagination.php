@@ -43,10 +43,12 @@ if ( empty( $pagination ) ) {
 	return;
 }
 
+$custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
+
 ?>
 
 <nav aria-label="<?php esc_html_e( 'Pagination' ); ?>">
-	<ul class="pagination pno-pagination">
+	<ul class="pagination pno-pagination <?php echo esc_attr( $custom_class ); ?>">
 
 		<?php if ( $paged > 2 && $paged > $range + 1 && $showitems < $pages ) : ?>
 			<li class="page-item disabled">
