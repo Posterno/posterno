@@ -868,7 +868,13 @@ function pno_get_listings_results_active_layout() {
  */
 function pno_get_listings_results_per_page_options() {
 
+	$default = pno_get_option( 'listings_per_page', get_option( 'posts_per_page', '5' ) );
+
 	$options = [ '5', '10', '15', '20' ];
+
+	if ( $default && ! in_array( (string) $default, $options ) ) {
+		$options[] = $default;
+	}
 
 	/**
 	 * Filter: determines options available for the listings amount modifier for results pages.
@@ -877,6 +883,8 @@ function pno_get_listings_results_per_page_options() {
 	 * @return array
 	 */
 	$options = apply_filters( 'pno_listings_results_per_page_options', $options );
+
+	sort( $options );
 
 	return $options;
 
@@ -904,5 +912,8 @@ function pno_get_listings_results_per_page_option_link( $option ) {
  * @return string
  */
 function pno_get_listings_results_per_page_active_option() {
-	return isset( $_GET['listings-per-page'] ) && ! empty( $_GET['listings-per-page'] ) && in_array( $_GET['listings-per-page'], pno_get_listings_results_per_page_options() ) ? absint( $_GET['listings-per-page'] ) : false;
+
+	$default = pno_get_option( 'listings_per_page', get_option( 'posts_per_page', '5' ) );
+
+	return isset( $_GET['listings-per-page'] ) && ! empty( $_GET['listings-per-page'] ) && in_array( $_GET['listings-per-page'], pno_get_listings_results_per_page_options() ) ? absint( $_GET['listings-per-page'] ) : $default;
 }

@@ -528,6 +528,11 @@ function pno_get_registered_settings() {
 		 * Listings configuration settings.
 		 */
 		'listings_settings'      => [
+			'listings_per_page'    => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Listings per page' ),
+				'description' => esc_html__( 'Enter the amount of listings you wish to display.' ),
+			],
 			'listing_date_format' => [
 				'type'        => 'radio',
 				'label'       => esc_html__( 'Date format:' ),
