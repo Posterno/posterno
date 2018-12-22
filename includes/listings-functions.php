@@ -774,7 +774,7 @@ function pno_get_queried_listing_editable_id() {
 }
 
 /**
- * Retrieve the list of filters that determine the order of listings results.
+ * Retrieve the list of filters that determines the order of listings results.
  *
  * @return array
  */
@@ -799,6 +799,12 @@ function pno_get_listings_results_order_filters() {
 		],
 	];
 
+	/**
+	 * Filter: modify the options available for the results order filter selector.
+	 *
+	 * @param array $filters the currently defined filters.
+	 * @return array
+	 */
 	$filters = apply_filters( 'pno_listings_results_order_filters', $filters );
 
 	if ( ! empty( $filters ) ) {
@@ -853,4 +859,50 @@ function pno_get_listings_results_order_active_filter() {
  */
 function pno_get_listings_results_active_layout() {
 	return isset( $_GET['layout'] ) && ! empty( $_GET['layout'] ) ? sanitize_key( $_GET['layout'] ) : false;
+}
+
+/**
+ * Define the options available for the amount modifier dropdown within listings results pages.
+ *
+ * @return array
+ */
+function pno_get_listings_results_per_page_options() {
+
+	$options = [ '5', '10', '15', '20' ];
+
+	/**
+	 * Filter: determines options available for the listings amount modifier for results pages.
+	 *
+	 * @param mixed $options the currently defined options.
+	 * @return array
+	 */
+	$options = apply_filters( 'pno_listings_results_per_page_options', $options );
+
+	return $options;
+
+}
+
+/**
+ * Retrieve the URL for a given per page amount modifier option.
+ *
+ * @param string|int $option the number of results to display per page.
+ * @return string
+ */
+function pno_get_listings_results_per_page_option_link( $option ) {
+
+	if ( ! $option ) {
+		return pno_get_full_page_url();
+	}
+
+	return add_query_arg( [ 'listings-per-page' => absint( $option ) ], pno_get_full_page_url() );
+
+}
+
+/**
+ * Determine the currently active results per page amount modifier if any is selected.
+ *
+ * @return string
+ */
+function pno_get_listings_results_per_page_active_option() {
+	return isset( $_GET['listings-per-page'] ) && ! empty( $_GET['listings-per-page'] ) && in_array( $_GET['listings-per-page'], pno_get_listings_results_per_page_options() ) ? absint( $_GET['listings-per-page'] ) : false;
 }
