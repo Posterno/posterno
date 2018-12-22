@@ -32,10 +32,10 @@ $active_layout    = pno_get_listings_results_active_layout();
 	do_action( 'pno_listings_results_before_grid_filter' );
 	?>
 
-	<a href="<?php echo esc_url( $list_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'list' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'List layout' ); ?>">
+	<a href="<?php echo esc_url( $list_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'list' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'List layout' ); ?>" data-toggle="tooltip" data-placement="top" title="<?php esc_html_e( 'List layout' ); ?>">
 		<i class="fas fa-list-ul"></i>
 	</a>
-	<a href="<?php echo esc_url( $grid_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'grid' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'Grid layout' ); ?>">
+	<a href="<?php echo esc_url( $grid_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'grid' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'Grid layout' ); ?>" data-toggle="tooltip" data-placement="top" title="<?php esc_html_e( 'Grid layout' ); ?>">
 		<i class="fas fa-th"></i>
 	</a>
 
