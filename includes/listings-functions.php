@@ -839,6 +839,8 @@ function pno_get_listings_results_order_filter_link( $filter_id ) {
  */
 function pno_get_listings_results_order_active_filter() {
 
+	$default = pno_get_option( 'listings_default_order', 'newest' );
+
 	$all_filters = pno_get_listings_results_order_filters();
 
 	if ( ! is_array( $all_filters ) || empty( $all_filters ) ) {
@@ -846,9 +848,9 @@ function pno_get_listings_results_order_active_filter() {
 	}
 
 	//phpcs:ignore
-	$current = isset( $_GET['listings-order'] ) && ! empty( $_GET['listings-order'] ) ? sanitize_key( $_GET['listings-order'] ) : false;
+	$current = isset( $_GET['listings-order'] ) && ! empty( $_GET['listings-order'] ) ? sanitize_key( $_GET['listings-order'] ) : $default;
 
-	return $current && isset( $all_filters[ $current ] ) ? $current : false;
+	return $current && isset( $all_filters[ $current ] ) ? $current : $default;
 
 }
 

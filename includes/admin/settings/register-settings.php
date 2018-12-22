@@ -533,6 +533,12 @@ function pno_get_registered_settings() {
 				'label'       => esc_html__( 'Listings per page' ),
 				'description' => esc_html__( 'Enter the amount of listings you wish to display.' ),
 			],
+			'listings_default_order'      => [
+				'type'        => 'select',
+				'label'       => esc_html__( 'Order listings by' ),
+				'description' => false,
+				'options'     => wp_list_pluck( pno_get_listings_results_order_filters(), 'label' ),
+			],
 			'listing_date_format' => [
 				'type'        => 'radio',
 				'label'       => esc_html__( 'Date format:' ),
