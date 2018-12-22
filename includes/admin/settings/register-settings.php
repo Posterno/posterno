@@ -539,6 +539,12 @@ function pno_get_registered_settings() {
 				'description' => false,
 				'options'     => wp_list_pluck( pno_get_listings_results_order_filters(), 'label' ),
 			],
+			'listings_layout'      => [
+				'type'        => 'select',
+				'label'       => esc_html__( 'Default listings layout' ),
+				'description' => false,
+				'options'     => wp_list_pluck( pno_get_listings_layout_options(), 'label' ),
+			],
 			'listing_date_format' => [
 				'type'        => 'radio',
 				'label'       => esc_html__( 'Date format:' ),

@@ -17,33 +17,42 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$list_layout_link = add_query_arg( [ 'layout' => 'list' ], pno_get_full_page_url() );
-$grid_layout_link = add_query_arg( [ 'layout' => 'grid' ], pno_get_full_page_url() );
-$active_layout    = pno_get_listings_results_active_layout();
+$active_layout = pno_get_listings_results_active_layout();
+
+$layouts = pno_get_listings_layout_options();
+
+if ( empty( $layouts ) ) {
+	return;
+}
 
 ?>
 
-<div class="btn-group" role="group" aria-label="<?php esc_html_e( 'Grid layout' ); ?>">
+<div class="btn-group" role="group" aria-label="<?php esc_html_e( 'Results layout' ); ?>">
 
 	<?php
+
 	/**
 	 * Hook: loads before the listings results grid filter.
 	 */
 	do_action( 'pno_listings_results_before_grid_filter' );
+
 	?>
 
-	<a href="<?php echo esc_url( $list_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'list' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'List layout' ); ?>" data-toggle="tooltip" data-placement="top" title="<?php esc_html_e( 'List layout' ); ?>">
-		<i class="fas fa-list-ul"></i>
-	</a>
-	<a href="<?php echo esc_url( $grid_layout_link ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === 'grid' ) : ?>active<?php endif; ?>" aria-label="<?php esc_html_e( 'Grid layout' ); ?>" data-toggle="tooltip" data-placement="top" title="<?php esc_html_e( 'Grid layout' ); ?>">
-		<i class="fas fa-th"></i>
-	</a>
+	<?php foreach ( $layouts as $key => $layout ) : ?>
+
+		<a href="<?php echo esc_url( add_query_arg( [ 'layout' => esc_attr( $key ) ], pno_get_full_page_url() ) ); ?>" class="btn btn-outline-secondary <?php if ( $active_layout === $key ) : ?>active<?php endif; ?>" aria-label="<?php echo esc_html( $layout['label'] ); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo esc_html( $layout['label'] ); ?>">
+			<i class="<?php echo esc_attr( $layout['icon'] ); ?>"></i>
+		</a>
+
+	<?php endforeach; ?>
 
 	<?php
+
 	/**
 	 * Hook: loads after the listings results grid filter.
 	 */
 	do_action( 'pno_listings_results_after_grid_filter' );
+
 	?>
 
 </div>

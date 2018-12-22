@@ -855,12 +855,52 @@ function pno_get_listings_results_order_active_filter() {
 }
 
 /**
+ * Retrieve the layout options available for listings results.
+ *
+ * @return array
+ */
+function pno_get_listings_layout_options() {
+
+	$options = [
+		'list' => [
+			'label'    => esc_html__( 'List layout' ),
+			'icon'     => 'fas fa-list-ul',
+			'priority' => 1,
+		],
+		'grid' => [
+			'label'    => esc_html__( 'Grid layout' ),
+			'icon'     => 'fas fa-th',
+			'priority' => 2,
+		],
+	];
+
+	/**
+	 * Filter: determine the layout options available for listings results.
+	 *
+	 * @param array $options the list of options available.
+	 * @return array
+	 */
+	$options = apply_filters( 'pno_listings_layout_options', $options );
+
+	if ( ! empty( $options ) ) {
+		uasort( $options, 'pno_sort_array_by_priority' );
+	}
+
+	return $options;
+
+}
+
+/**
  * Detect the currently active listings results selected layout.
  *
  * @return string|boolean
  */
 function pno_get_listings_results_active_layout() {
-	return isset( $_GET['layout'] ) && ! empty( $_GET['layout'] ) ? sanitize_key( $_GET['layout'] ) : false;
+
+	$default = pno_get_option( 'listings_layout', 'list' );
+
+	return isset( $_GET['layout'] ) && ! empty( $_GET['layout'] ) && isset( pno_get_listings_layout_options()[ $_GET['layout'] ] ) ? sanitize_key( $_GET['layout'] ) : $default;
+
 }
 
 /**
