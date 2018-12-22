@@ -111,7 +111,8 @@ form.pno-form-has-errors .field-has-errors {
 
 nav .pno-pagination {
   margin: 0;
-  border: 0; }
+  border: 0;
+  padding: 0; }
 
 .pno-dashboard-status-filter {
   font-weight: bold; }

@@ -11,6 +11,7 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package Posterno
  */
 
 // Exit if accessed directly.
@@ -19,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 $range     = 4;
 $showitems = ( $range * 2 ) + 1;
 $paged     = get_query_var( 'paged' );
-$pages = $data->max_num_pages;
+$pages     = $data->max_num_pages;
 
 $pagination = paginate_links(
 	array(
@@ -69,7 +70,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 			if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
 
 				if ( $paged == $i ) :
-				?>
+					?>
 
 					<li class="page-item active">
 						<a class="page-link" href="#"><?php echo esc_html( $i ); ?> <span class="sr-only"><?php esc_html_e( '(current)' ); ?></span></a>
