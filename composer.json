@@ -4,7 +4,8 @@
     "brain/cortex": "~1.0.0",
     "htmlburger/carbon-fields": "^2.2",
     "alessandrotesoro/wp-notices": "^1.0",
-    "stevegrunwell/wp-cache-remember": "^1.1"
+    "stevegrunwell/wp-cache-remember": "^1.1",
+    "pressmodo/carbon-fields-custom-options-container": "^0.1.0"
   },
   "minimum-stability": "dev",
   "extra": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b17be12442c3bbd18ca4b82c4fe028e8",
+    "content-hash": "e00b4442807585baa00bd10d760c60b2",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -441,6 +441,41 @@
                 "routing"
             ],
             "time": "2015-12-20T19:50:12+00:00"
+        },
+        {
+            "name": "pressmodo/carbon-fields-custom-options-container",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pressmodo/carbon-fields-custom-options-container.git",
+                "reference": "6050d6fbc39511290117d0fcc43d50f50421d0d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pressmodo/carbon-fields-custom-options-container/zipball/6050d6fbc39511290117d0fcc43d50f50421d0d9",
+                "reference": "6050d6fbc39511290117d0fcc43d50f50421d0d9",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "carbon-fields-custom-options-container.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Carbon fields custom options container modified to support custom files for rendering pages.",
+            "keywords": [
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2018-12-24T16:50:01+00:00"
         },
         {
             "name": "psr/http-message",
