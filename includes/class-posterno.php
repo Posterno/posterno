@@ -233,6 +233,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_options() {
 			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-options.php';
 			$GLOBALS['pno_options'] = pno_get_settings();
 		}
 
