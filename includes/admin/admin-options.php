@@ -12,6 +12,76 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Retrieve the list of settings tabs for the options panel.
+ *
+ * @return array
+ */
+function pno_get_registered_settings_tabs() {
+
+	$tabs = [
+		'general'  => esc_html__( 'General' ),
+		'accounts' => esc_html__( 'Accounts' ),
+		'emails'   => esc_html__( 'Emails' ),
+		'listings' => esc_html__( 'Listings' ),
+	];
+
+	/**
+	 * Allows developers to register or deregister tabs for the
+	 * settings panel.
+	 *
+	 * @since 0.1.0
+	 * @param array $tabs
+	 */
+	return apply_filters( 'pno_registered_settings_tabs', $tabs );
+
+}
+
+/**
+ * Retrieve the list of settings subsections for all tabs.
+ *
+ * @return array
+ */
+function pno_get_registered_settings_tabs_sections() {
+
+	$sections = [
+		'general'  => [
+			'pages' => esc_html__( 'Pages setup' ),
+			'theme' => esc_html__( 'Theme' ),
+		],
+		'accounts' => [
+			'login'                  => esc_html__( 'Login' ),
+			'registration'           => esc_html__( 'Registration' ),
+			'password_recovery_form' => esc_html__( 'Password recovery' ),
+			'redirects'              => esc_html__( 'Redirects' ),
+			'privacy'                => esc_html__( 'Privacy' ),
+			'profiles_settings'      => esc_html__( 'Profile' ),
+		],
+		'emails'   => [
+			'emails_settings' => esc_html__( 'Configuration' ),
+			'emails_test'     => esc_html__( 'Send test email' ),
+		],
+		'listings' => [
+			'listings_settings'   => esc_html__( 'Configuration' ),
+			'listings_submission' => esc_html__( 'Submission' ),
+			'listings_management' => esc_html__( 'Management' ),
+			'listings_redirects'  => esc_html__( 'Redirects' ),
+			'listings_content'    => esc_html__( 'Content' ),
+			'listings_maps'       => esc_html__( 'Maps' ),
+		],
+	];
+
+	/**
+	 * Allows developers to register or deregister subsections for tabs in the
+	 * settings panel.
+	 *
+	 * @since 0.1.0
+	 * @param array $sections
+	 */
+	return apply_filters( 'pno_registered_settings_tabs_sections', $sections );
+
+}
+
+/**
  * Get an option
  *
  * Looks to see if the specified setting exists, returns default if not.
