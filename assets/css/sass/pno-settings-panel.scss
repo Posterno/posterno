@@ -1,0 +1,141 @@
+.pno-admin-title-area {
+	background-color: #fff;
+	box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #DDD;
+	padding: 15px 20px;
+
+	.wrap {
+		margin: 0;
+
+		h1 {
+			display: inline-block;
+			padding: 0
+		}
+	}
+
+	.title-links {
+		display: inline-block;
+		margin: 10px 0 0 20px;
+
+		li {
+			display: inline-block;
+			margin-bottom: 0;
+		}
+	}
+}
+
+body.settings_page_posterno-settings #wpcontent {
+		padding-left: 0;
+
+		.save-area {
+			text-align: right;
+			.spinner {
+				margin-right: 10px;
+				margin-top: 5px;
+			}
+		}
+
+		.pno-options-wrapper {
+			margin: 40px 20px;
+		}
+
+		.footer-save {
+			margin-top: 50px;
+		}
+
+		.vue-wp-notice {
+			margin-bottom: 20px;
+		}
+
+		.wp-filter-bar-wrapper {
+			margin-top: 15px;
+		}
+
+		.description {
+			font-style: normal;
+		}
+
+		.checkbox-wrapper ~ p.description {
+			display: inline-block;
+			position: relative;
+		}
+
+		.multi-check-wrapper {
+			.checkbox-wrapper {
+				display: block;
+				margin-bottom: 7px;
+				label {
+					position: relative;
+					top: -2px;
+				}
+			}
+			~ .description {
+				margin-top: 10px;
+			}
+		}
+
+		.dashicons-warning {
+			margin-right: 10px;
+			color: #dc3232;
+		}
+
+		.multi-check-wrapper {
+			.checkbox-wrapper {
+				display: block;
+				margin-bottom: 7px;
+				label {
+					position: relative;
+					top: -2px;
+				}
+			}
+			~ .description {
+				margin-top: 10px;
+			}
+		}
+
+		.multiselect {
+			max-width: 500px;
+		}
+
+		.multiselect__tags {
+			border-radius: 0;
+			border-color: #cbcbcb;
+			cursor: pointer;
+			box-shadow: none;
+		}
+
+		.multiselect--above.multiselect--active .multiselect__input,
+		.multiselect--active:not(.multiselect--above) .multiselect__input {
+			border-radius: 3px;
+		}
+
+		.multiselect__tag,
+		.multiselect__option--selected.multiselect__option--highlight {
+			background: #0073aa;
+			color: #fff;
+			border-radius: 0;
+		}
+
+		.multiselect__tag-icon::after {
+			color: #fff;
+		}
+
+		.multiselect__option--highlight {
+			background: #ddd;
+			color: #222;
+		}
+
+		.multiselect__tag-icon {
+			border-radius: 0;
+			margin-left: 5px;
+			&:hover {
+				background: #dc3232;
+			}
+		}
+	.multiselect__content-wrapper {
+			box-shadow: 0 3px 5px rgba(0,0,0,.2);
+			border: 1px solid #ddd;
+			border-radius: 0;
+			margin-top: 5px;
+		}
+
+}

@@ -1,0 +1,87 @@
+.pno-admin-title-area {
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #DDD;
+  padding: 15px 20px; }
+  .pno-admin-title-area .wrap {
+    margin: 0; }
+    .pno-admin-title-area .wrap h1 {
+      display: inline-block;
+      padding: 0; }
+  .pno-admin-title-area .title-links {
+    display: inline-block;
+    margin: 10px 0 0 20px; }
+    .pno-admin-title-area .title-links li {
+      display: inline-block;
+      margin-bottom: 0; }
+
+body.settings_page_posterno-settings #wpcontent {
+  padding-left: 0; }
+  body.settings_page_posterno-settings #wpcontent .save-area {
+    text-align: right; }
+    body.settings_page_posterno-settings #wpcontent .save-area .spinner {
+      margin-right: 10px;
+      margin-top: 5px; }
+  body.settings_page_posterno-settings #wpcontent .pno-options-wrapper {
+    margin: 40px 20px; }
+  body.settings_page_posterno-settings #wpcontent .footer-save {
+    margin-top: 50px; }
+  body.settings_page_posterno-settings #wpcontent .vue-wp-notice {
+    margin-bottom: 20px; }
+  body.settings_page_posterno-settings #wpcontent .wp-filter-bar-wrapper {
+    margin-top: 15px; }
+  body.settings_page_posterno-settings #wpcontent .description {
+    font-style: normal; }
+  body.settings_page_posterno-settings #wpcontent .checkbox-wrapper ~ p.description {
+    display: inline-block;
+    position: relative; }
+  body.settings_page_posterno-settings #wpcontent .multi-check-wrapper .checkbox-wrapper {
+    display: block;
+    margin-bottom: 7px; }
+    body.settings_page_posterno-settings #wpcontent .multi-check-wrapper .checkbox-wrapper label {
+      position: relative;
+      top: -2px; }
+  body.settings_page_posterno-settings #wpcontent .multi-check-wrapper ~ .description {
+    margin-top: 10px; }
+  body.settings_page_posterno-settings #wpcontent .dashicons-warning {
+    margin-right: 10px;
+    color: #dc3232; }
+  body.settings_page_posterno-settings #wpcontent .multi-check-wrapper .checkbox-wrapper {
+    display: block;
+    margin-bottom: 7px; }
+    body.settings_page_posterno-settings #wpcontent .multi-check-wrapper .checkbox-wrapper label {
+      position: relative;
+      top: -2px; }
+  body.settings_page_posterno-settings #wpcontent .multi-check-wrapper ~ .description {
+    margin-top: 10px; }
+  body.settings_page_posterno-settings #wpcontent .multiselect {
+    max-width: 500px; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__tags {
+    border-radius: 0;
+    border-color: #cbcbcb;
+    cursor: pointer;
+    box-shadow: none; }
+  body.settings_page_posterno-settings #wpcontent .multiselect--above.multiselect--active .multiselect__input,
+  body.settings_page_posterno-settings #wpcontent .multiselect--active:not(.multiselect--above) .multiselect__input {
+    border-radius: 3px; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__tag,
+  body.settings_page_posterno-settings #wpcontent .multiselect__option--selected.multiselect__option--highlight {
+    background: #0073aa;
+    color: #fff;
+    border-radius: 0; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__tag-icon::after {
+    color: #fff; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__option--highlight {
+    background: #ddd;
+    color: #222; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__tag-icon {
+    border-radius: 0;
+    margin-left: 5px; }
+    body.settings_page_posterno-settings #wpcontent .multiselect__tag-icon:hover {
+      background: #dc3232; }
+  body.settings_page_posterno-settings #wpcontent .multiselect__content-wrapper {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 0;
+    margin-top: 5px; }
+
+/*# sourceMappingURL=pno-settings-panel.css.map */

@@ -54,6 +54,15 @@ class OptionsPanel {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
 
+		add_filter( "cb_theme_options_{$this->slug}_container_file", [ $this, 'render' ] );
+		if ( ! empty( $this->options_pages ) && is_array( $this->options_pages ) ) {
+			foreach ( $this->options_pages as $page_id => $page_label ) {
+				if ( $page_id !== 'general' ) {
+					add_filter( "cb_theme_options_{$this->slug}[{$page_id}]_container_file", [ $this, 'render' ] );
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -570,6 +579,15 @@ class OptionsPanel {
 
 		return $settings;
 
+	}
+
+	/**
+	 * Render the options panel.
+	 *
+	 * @return string.
+	 */
+	public function render() {
+		return PNO_PLUGIN_DIR . 'includes/admin/views/options-panel.php';
 	}
 
 }

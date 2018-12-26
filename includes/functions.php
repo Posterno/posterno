@@ -493,3 +493,19 @@ function pno_get_full_page_url() {
 	return add_query_arg( $_SERVER['QUERY_STRING'], '', home_url( $wp->request ) );
 
 }
+
+/**
+ * Get content of a string between 2 characters.
+ *
+ * @param string $str the entire string.
+ * @param string $from opening character.
+ * @param string $to closing character.
+ * @return mixed
+ */
+function pno_get_string_between( $str, $from, $to ) {
+
+	$sub = substr( $str, strpos( $str, $from ) + strlen( $from ), strlen( $str ) );
+
+	return substr( $sub, 0, strpos( $sub, $to ) );
+
+}

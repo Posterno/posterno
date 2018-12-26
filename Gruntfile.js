@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 			all: {
 				files: {
 					'assets/css/pno.css': 'assets/css/sass/pno.scss',
+					'assets/css/pno-settings-panel.css': 'assets/css/sass/pno-settings-panel.scss',
 					'assets/css/pno-admin-listings.css': 'assets/css/sass/pno-admin-listings.scss',
 					'assets/css/pno-custom-fields-cpt.css': 'assets/css/sass/pno-custom-fields-cpt.scss',
 					'assets/css/pno-custom-fields-editor.css': 'assets/css/sass/pno-custom-fields-editor.scss',
@@ -26,6 +27,13 @@ module.exports = function (grunt) {
 						expand: true,
 						cwd: 'assets/css',
 						src: ['pno-admin-listings.css'],
+						dest: 'assets/css',
+						ext: '.min.css'
+					},
+					{
+						expand: true,
+						cwd: 'assets/css',
+						src: ['pno-settings-panel.css'],
 						dest: 'assets/css',
 						ext: '.min.css'
 					},
