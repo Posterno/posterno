@@ -248,6 +248,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . '/includes/utils/wp-cache-remember/wp-cache-remember.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
+			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-options-panel.php';
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-custom-field-settings.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-opening-hours.php';

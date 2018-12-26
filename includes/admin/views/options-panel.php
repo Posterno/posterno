@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 $container_id = $this->get_id();
 if ( ! isset( $container_css_class ) ) {
-	$container_css_class = 'generic-container';
+	$container_css_class = 'theme-options';
 }
 
 $options_panel_tabs = pno_get_registered_settings_tabs();
@@ -93,7 +93,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 					<?php do_action( "{$container_id}_before_sidebar" ); ?>
 
 					<div id="submitdiv" class="postbox">
-						<h3><?php _e( 'Actions', 'carbon-fields' ); ?></h3>
+						<h3><?php _e( 'Actions', 'posterno' ); ?></h3>
 
 						<div id="major-publishing-actions">
 
@@ -102,10 +102,10 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 
 								<?php
 									$filter_name  = 'carbon_fields_' . str_replace( '-', '_', sanitize_title( $this->title ) ) . '_button_label';
-									$button_label = apply_filters( $filter_name, __( 'Save Changes', 'carbon-fields' ) );
+									$button_label = apply_filters( $filter_name, __( 'Save Changes', 'posterno' ) );
 								?>
 
-								<input type="submit" value="<?php echo esc_attr( $button_label ); ?>" name="publish" id="publish" class="button button-primary button-large">
+								<input type="submit" value="<?php echo esc_html( $button_label ); ?>" name="publish" id="publish" class="button button-primary button-large">
 							</div>
 
 							<div class="clear"></div>
