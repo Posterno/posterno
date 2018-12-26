@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_get_pages( $force = false ) {
 	$pages = [];
-	if ( ( ! isset( $_GET['page'] ) || 'posterno-settings' != $_GET['page'] ) && ! $force ) {
+	if ( ( ! isset( $_GET['page'] ) || strpos( $_GET['page'], 'posterno-options' ) !== 0 ) && ! $force ) {
 		return $pages;
 	}
 	$transient = get_transient( 'pno_get_pages' );
@@ -30,10 +30,7 @@ function pno_get_pages( $force = false ) {
 		$available_pages = get_pages();
 		if ( ! empty( $available_pages ) ) {
 			foreach ( $available_pages as $page ) {
-				$pages[] = array(
-					'value' => $page->ID,
-					'label' => $page->post_title,
-				);
+				$pages[ $page->ID ] = $page->post_title;
 			}
 			set_transient( 'pno_get_pages', $pages, DAY_IN_SECONDS );
 		}
@@ -96,7 +93,7 @@ function pno_get_login_methods() {
  */
 function pno_get_roles( $force = false, $admin = false ) {
 	$roles = [];
-	if ( ( ! isset( $_GET['page'] ) || 'posterno-settings' != $_GET['page'] ) && ! $force ) {
+	if ( ( ! isset( $_GET['page'] ) || strpos( $_GET['page'], 'posterno-options' ) !== 0 ) && ! $force ) {
 		return $roles;
 	}
 	$transient = get_transient( 'pno_get_roles' );
@@ -109,10 +106,7 @@ function pno_get_roles( $force = false, $admin = false ) {
 			if ( $role_id == 'administrator' && ! $admin ) {
 				continue;
 			}
-			$roles[] = array(
-				'value' => esc_attr( $role_id ),
-				'label' => esc_html( $role ),
-			);
+			$roles[ esc_attr( $role_id ) ] = esc_html( $role );
 		}
 		// set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
 	}
@@ -610,9 +604,23 @@ function pno_get_emails_situations() {
 
 }
 
+/**
+ * Retrieve ordering options available for listings.
+ *
+ * @return array
+ */
+function pno_get_listings_order_options() {
+	return wp_list_pluck( pno_get_listings_results_order_filters(), 'label' );
+}
 
-
-
+/**
+ * Retrive layout options available for listings.
+ *
+ * @return array
+ */
+function pno_get_listings_layout_available_options() {
+	return wp_list_pluck( pno_get_listings_layout_options(), 'label' );
+}
 
 
 
