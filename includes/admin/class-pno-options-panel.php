@@ -64,8 +64,9 @@ class OptionsPanel {
 	public function register_settings() {
 
 		$main_options_page = Container::make( 'custom_options', esc_html__( 'Posterno settings' ) )
-			->set_page_file( $this->slug );
-			// ->set_page_parent( 'options-general.php' );
+			->set_page_file( $this->slug )
+			->set_page_parent( 'options-general.php' );
+
 		$main_options_page_tabs = $this->get_settings_tabs( 'general' );
 
 		foreach ( $main_options_page_tabs as $tab_id => $tab_label ) {
