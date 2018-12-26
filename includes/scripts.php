@@ -29,9 +29,6 @@ function pno_load_admin_scripts() {
 
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
 
-		// Register settings page scripts.
-		wp_register_script( 'pno-settings-page', 'http://localhost:8080/options-panel.js', [], $version, true );
-
 		// Register the custom fields page scripts.
 		wp_register_script( 'pno-custom-fields-page', 'http://localhost:8080/custom-fields-editor.js', [], $version, true );
 		wp_register_script( 'pno-registration-form-editor', 'http://localhost:8080/registration-form-editor.js', [], $version, true );
@@ -40,12 +37,6 @@ function pno_load_admin_scripts() {
 
 	} else {
 
-	}
-
-	// Load script for the settings page.
-	if ( $screen->id === 'settings_page_posterno-settings' ) {
-		wp_enqueue_script( 'pno-settings-page' );
-		wp_localize_script( 'pno-settings-page', 'pno_settings_page', pno_get_settings_page_vars() );
 	}
 
 	// Load scripts for the registration form editor page.

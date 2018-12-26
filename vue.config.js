@@ -5,9 +5,6 @@ module.exports = {
 		config.entryPoints.delete('app')
 		// then add your own
 		config
-			.entry('options-panel')
-				.add('./src/options-panel/main.js')
-				.end()
 			.entry('registration-form-editor')
 				.add('./src/editors/registration-form/main.js')
 				.end()

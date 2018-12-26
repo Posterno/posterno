@@ -75,6 +75,7 @@ class OptionsPanel {
 	public function register_settings() {
 
 		$main_options_page = Container::make( 'custom_options', esc_html__( 'Posterno settings' ) )
+			->set_page_menu_title( esc_html__( 'Posterno' ) )
 			->set_datastore( new \PNO\Datastores\OptionsPanel() )
 			->set_page_file( $this->slug )
 			->set_page_parent( 'options-general.php' );
@@ -98,6 +99,7 @@ class OptionsPanel {
 			}
 
 			$sub_page = Container::make( 'custom_options', esc_html__( 'Posterno settings' ) )
+				->set_page_menu_title( esc_html__( 'Posterno' ) )
 				->set_datastore( new \PNO\Datastores\OptionsPanel() )
 				->set_page_file( $this->slug . "[$option_page_id]" )
 				->set_page_parent( $main_options_page );

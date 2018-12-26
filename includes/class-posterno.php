@@ -232,7 +232,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_options() {
-			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-options.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-options-panel.php';
 			$GLOBALS['pno_options'] = pno_get_settings();
@@ -323,7 +322,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-footer.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
-			require_once PNO_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/custom-fields/display-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-export.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-erase.php';
