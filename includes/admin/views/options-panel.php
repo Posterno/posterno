@@ -22,43 +22,53 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 ?>
 
 <div class="pno-admin-title-area">
-
+	<div class="wrap">
+		<h1><?php echo esc_html( $this->title ); ?></h1>
+		<ul class="title-links hidden-sm-and-down">
+			<li>
+				<a href="https://posterno.com/addons" target="_blank" class="page-title-action"><?php esc_html_e( 'View Addons' ); ?></a>
+			</li>
+			<li>
+				<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
+			</li>
+		</ul>
+	</div>
 </div>
-
-<h2 class="nav-tab-wrapper pno-nav-tab-wrapper">
-	<?php
-	foreach ( $options_panel_tabs as $option_page_id => $option_page_label ) :
-
-		$url = esc_url( admin_url( "admin.php?page=posterno-options[{$option_page_id}]" ) );
-
-		if ( $option_page_id === 'general' ) {
-			$url = esc_url( admin_url( 'options-general.php?page=posterno-options' ) );
-		}
-
-		$active = false;
-
-		if ( $active_page === $option_page_id && $option_page_id !== 'general' ) {
-			$active = 'nav-tab-active';
-		} elseif ( ! $active_page && $option_page_id === 'general' ) {
-			$active = 'nav-tab-active';
-		}
-
-		?>
-		<a href="<?php echo esc_url( $url ); ?>" class="nav-tab <?php echo esc_attr( $active ); ?>"><?php echo esc_html( $option_page_label ); ?></a>
-	<?php endforeach; ?>
-</h2>
 
 <div class="wrap carbon-<?php echo $container_css_class; ?>">
 
+	<h2 class="nav-tab-wrapper pno-nav-tab-wrapper">
+		<?php
+		foreach ( $options_panel_tabs as $option_page_id => $option_page_label ) :
+
+			$url = esc_url( admin_url( "admin.php?page=posterno-options[{$option_page_id}]" ) );
+
+			if ( $option_page_id === 'general' ) {
+				$url = esc_url( admin_url( 'options-general.php?page=posterno-options' ) );
+			}
+
+			$active = false;
+
+			if ( $active_page === $option_page_id && $option_page_id !== 'general' ) {
+				$active = 'nav-tab-active';
+			} elseif ( ! $active_page && $option_page_id === 'general' ) {
+				$active = 'nav-tab-active';
+			}
+
+			?>
+			<a href="<?php echo esc_url( $url ); ?>" class="nav-tab <?php echo esc_attr( $active ); ?>"><?php echo esc_html( $option_page_label ); ?></a>
+		<?php endforeach; ?>
+	</h2>
+
 	<?php if ( $this->errors ) : ?>
-		<div class="error settings-error">
+		<div class="carbon-wp-notice notice-error">
 			<?php foreach ( $this->errors as $error ) : ?>
 				<p><strong><?php echo $error; ?></strong></p>
 			<?php endforeach ?>
 		</div>
 	<?php elseif ( $this->notifications ) : ?>
 		<?php foreach ( $this->notifications as $notification ) : ?>
-			<div class="settings-error updated">
+			<div class="carbon-wp-notice notice-success">
 				<p><strong><?php echo $notification; ?></strong></p>
 			</div>
 		<?php endforeach ?>
@@ -72,7 +82,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 					<?php do_action( "{$container_id}_before_fields" ); ?>
 
 					<div class="postbox carbon-box" id="<?php echo $this->get_id(); ?>">
-						<fieldset class="inside <?php echo $container_css_class; ?>-container container-<?php echo $this->get_id(); ?>"></fieldset>
+						<fieldset class="inside <?php echo $container_css_class; ?>-container carbon-grid container-<?php echo $this->get_id(); ?>"></fieldset>
 					</div>
 
 					<?php do_action( "{$container_id}_after_fields" ); ?>

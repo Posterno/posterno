@@ -63,6 +63,8 @@ class OptionsPanel {
 			}
 		}
 
+		add_action( 'admin_enqueue_scripts', [ $this, 'assets' ], 100 );
+
 	}
 
 	/**
@@ -588,6 +590,27 @@ class OptionsPanel {
 	 */
 	public function render() {
 		return PNO_PLUGIN_DIR . 'includes/admin/views/options-panel.php';
+	}
+
+	/**
+	 * Load assets into the options panel.
+	 *
+	 * @return void
+	 */
+	public function assets() {
+
+		$screen = get_current_screen();
+
+		$screens = [ 'settings_page_posterno-options' ];
+
+		foreach ( $this->options_pages as $page_id => $page_label ) {
+			$screens[] = "admin_page_posterno-options[{$page_id}]";
+		}
+
+		if ( in_array( $screen->base, $screens ) ) {
+			wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/pno-settings-panel.min.css', false, PNO_VERSION );
+		}
+
 	}
 
 }
