@@ -282,7 +282,7 @@ class PNO_Form_Registration extends PNO_Form {
 			}
 
 			// Assign the role set into the registration form.
-			if ( pno_get_option( 'allowed_roles' ) && isset( $values['role'] ) ) {
+			if ( pno_get_option( 'allowed_roles' ) && isset( $values['role'] ) && in_array( $values['role'], pno_get_option( 'allowed_roles' ) ) ) {
 				$user = new WP_User( $new_user_id );
 				$user->set_role( $values['role'] );
 			}

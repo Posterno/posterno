@@ -291,7 +291,7 @@ function pno_listing_submission_form() {
 		$roles_selected = [ 'administrator' ];
 
 		foreach ( $roles_required as $single_role ) {
-			$roles_selected[] = $single_role['value'];
+			$roles_selected[] = esc_attr( $single_role );
 		}
 
 		if ( ! array_intersect( (array) $user->roles, $roles_selected ) ) {
