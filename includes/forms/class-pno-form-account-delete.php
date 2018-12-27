@@ -181,8 +181,8 @@ class PNO_Form_Account_Delete extends PNO_Form {
 				require_once ABSPATH . 'wp-admin/includes/user.php';
 				wp_delete_user( $user->ID );
 				$redirect_to = pno_get_option( 'cancellation_redirect' );
-				if ( is_array( $redirect_to ) && isset( $redirect_to['value'] ) && ! empty( $redirect_to['value'] ) ) {
-					wp_safe_redirect( get_permalink( $redirect_to['value'] ) );
+				if ( is_array( $redirect_to ) && isset( $redirect_to[0] ) && ! empty( $redirect_to[0] ) ) {
+					wp_safe_redirect( get_permalink( $redirect_to[0] ) );
 					exit;
 				} else {
 					wp_safe_redirect( home_url() );

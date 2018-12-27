@@ -54,8 +54,8 @@ function pno_get_login_redirect() {
 
 	$custom_page = pno_get_option( 'login_redirect' );
 
-	if ( is_array( $custom_page ) && isset( $custom_page['value'] ) ) {
-		$url = get_permalink( $custom_page['value'] );
+	if ( is_array( $custom_page ) && isset( $custom_page[0] ) ) {
+		$url = get_permalink( $custom_page[0] );
 	}
 
 	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
@@ -84,8 +84,8 @@ function pno_get_registration_redirect() {
 
 	$registration_redirect_page = pno_get_option( 'registration_redirect' );
 
-	if ( is_array( $registration_redirect_page ) && isset( $registration_redirect_page['value'] ) ) {
-		$url = get_permalink( $registration_redirect_page['value'] );
+	if ( is_array( $registration_redirect_page ) && isset( $registration_redirect_page[0] ) ) {
+		$url = get_permalink( $registration_redirect_page[0] );
 	}
 
 	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
