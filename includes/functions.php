@@ -21,8 +21,8 @@ function pno_get_login_page_id() {
 	$login_page  = false;
 	$page_option = pno_get_option( 'login_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$login_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$login_page = absint( $page_option[0] );
 	}
 
 	return $login_page;
@@ -39,8 +39,8 @@ function pno_get_registration_page_id() {
 	$registration_page = false;
 	$page_option       = pno_get_option( 'registration_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$registration_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$registration_page = absint( $page_option[0] );
 	}
 
 	return $registration_page;
@@ -57,8 +57,8 @@ function pno_get_password_recovery_page_id() {
 	$password_page = false;
 	$page_option   = pno_get_option( 'password_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$password_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$password_page = absint( $page_option[0] );
 	}
 
 	return $password_page;
@@ -75,8 +75,8 @@ function pno_get_dashboard_page_id() {
 	$dashboard_page = false;
 	$page_option    = pno_get_option( 'dashboard_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$dashboard_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$dashboard_page = absint( $page_option[0] );
 	}
 
 	return $dashboard_page;
@@ -93,8 +93,8 @@ function pno_get_profile_page_id() {
 	$profile_page = false;
 	$page_option  = pno_get_option( 'profile_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$profile_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$profile_page = absint( $page_option[0] );
 	}
 
 	return $profile_page;
@@ -111,8 +111,8 @@ function pno_get_listing_submission_page_id() {
 	$listing_submission_page = false;
 	$page_option             = pno_get_option( 'submission_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$listing_submission_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$listing_submission_page = absint( $page_option[0] );
 	}
 
 	return $listing_submission_page;
@@ -128,8 +128,8 @@ function pno_get_listing_editing_page_id() {
 	$listing_submission_page = false;
 	$page_option             = pno_get_option( 'editing_page' );
 
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$listing_submission_page = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$listing_submission_page = absint( $page_option[0] );
 	}
 
 	return $listing_submission_page;
@@ -146,8 +146,8 @@ function pno_get_listing_success_redirect_page_id() {
 
 	$page_id     = false;
 	$page_option = pno_get_option( 'listing_submission_redirect' );
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$page_id = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$page_id = absint( $page_option[0] );
 	}
 
 	return $page_id;
@@ -164,8 +164,8 @@ function pno_get_listing_success_edit_redirect_page_id() {
 
 	$page_id     = false;
 	$page_option = pno_get_option( 'listing_editing_redirect' );
-	if ( is_array( $page_option ) && isset( $page_option['value'] ) ) {
-		$page_id = absint( $page_option['value'] );
+	if ( is_array( $page_option ) && isset( $page_option[0] ) ) {
+		$page_id = absint( $page_option[0] );
 	}
 
 	return $page_id;
