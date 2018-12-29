@@ -50,7 +50,7 @@ $description = term_description();
 
 				the_post();
 
-				the_title();
+				posterno()->templates->get_template_part( 'listings/card', pno_get_listings_results_active_layout() );
 
 			}
 

@@ -959,3 +959,78 @@ function pno_get_listings_results_per_page_active_option() {
 
 	return isset( $_GET['listings-per-page'] ) && ! empty( $_GET['listings-per-page'] ) && in_array( $_GET['listings-per-page'], pno_get_listings_results_per_page_options() ) ? absint( $_GET['listings-per-page'] ) : $default;
 }
+
+/**
+ * Get the address of a listing.
+ *
+ * @param string|int|boolean $listing_id optional id of a listing. If false, uses the listing within the loop.
+ * @return string|boolean
+ */
+function pno_get_listing_address( $listing_id = false ) {
+
+	$post_id = false;
+	$address = false;
+
+	if ( $listing_id ) {
+		$post_id = absint( $listing_id );
+	} else {
+		$post_id = get_the_id();
+	}
+
+	if ( $post_id ) {
+		$address = carbon_get_post_meta( $post_id, 'listing_location' );
+	}
+
+	return $address;
+
+}
+
+/**
+ * Get the phone number assigned to a listing.
+ *
+ * @param string|int|boolean $listing_id optional id of a listing. If false, uses the listing within the loop.
+ * @return string|boolean
+ */
+function pno_get_listing_phone_number( $listing_id = false ) {
+
+	$post_id      = false;
+	$phone_number = false;
+
+	if ( $listing_id ) {
+		$post_id = absint( $listing_id );
+	} else {
+		$post_id = get_the_id();
+	}
+
+	if ( $post_id ) {
+		$phone_number = carbon_get_post_meta( $post_id, 'listing_phone_number' );
+	}
+
+	return $phone_number;
+
+}
+
+/**
+ * Get tags assigned to a listing.
+ *
+ * @param string|int|boolean $listing_id optional id of a listing. If false, uses the listing within the loop.
+ * @return array|boolean
+ */
+function pno_get_listing_tags( $listing_id = false ) {
+
+	$post_id = false;
+	$tags = [];
+
+	if ( $listing_id ) {
+		$post_id = absint( $listing_id );
+	} else {
+		$post_id = get_the_id();
+	}
+
+	if ( $post_id ) {
+		$tags = wp_get_post_terms( $post_id, 'listings-tags' );
+	}
+
+	return $tags;
+
+}

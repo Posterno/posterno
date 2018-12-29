@@ -117,4 +117,25 @@ nav .pno-pagination {
 .pno-dashboard-status-filter {
   font-weight: bold; }
 
+.pno-listing-card {
+  background-color: #f9f9f9;
+  border: none; }
+  .pno-listing-card .pno-listing-card-img-wrapper {
+    min-height: 200px;
+    height: 100%;
+    overflow: hidden;
+    position: relative; }
+    .pno-listing-card .pno-listing-card-img-wrapper img {
+      object-fit: cover;
+      height: 200px;
+      width: 200px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
+  .pno-listing-card.list-template ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .pno-listing-card.list-template ul li {
+      margin-bottom: 0.5em; }
+
 /*# sourceMappingURL=pno.css.map */

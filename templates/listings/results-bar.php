@@ -21,7 +21,7 @@ global $wp_query;
 
 ?>
 
-<div class="pno-results-bar">
+<div class="pno-results-bar mb-4">
 
 	<div class="container-fluid pl-0 pr-0">
 
