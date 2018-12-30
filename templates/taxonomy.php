@@ -25,6 +25,10 @@ do_action( 'pno_before_taxonomy_content' );
 
 $description = term_description();
 
+// Determine the currently active listings layout.
+$layout = pno_get_listings_results_active_layout();
+$i = '';
+
 ?>
 
 <div class="pno-taxonomy-wrapper">
@@ -46,12 +50,40 @@ $description = term_description();
 
 			posterno()->templates->get_template_part( 'listings/results', 'bar' );
 
+			// Start opening the grid's container.
+			if ( $layout === 'grid' ) {
+				echo '<div class="card-deck">';
+			}
+
 			while ( have_posts() ) {
 
 				the_post();
 
-				posterno()->templates->get_template_part( 'listings/card', pno_get_listings_results_active_layout() );
+				/**
+				 * Hook: loads before the content of a single listing is loaded within the loop.
+				 */
+				do_action( 'pno_before_listing_in_loop' );
 
+				posterno()->templates->get_template_part( 'listings/card', $layout );
+
+				// Continue the loop of grids containers.
+				if ( $layout === 'grid' ) {
+					$i++;
+					if ( $i % 3 == 0 ) {
+						echo '</div><div class="card-deck">';
+					}
+				}
+
+				/**
+				 * Hook: loads after the content of a single listing is loaded within the loop.
+				 */
+				do_action( 'pno_after_listing_in_loop' );
+
+			}
+
+			// Close grid's container.
+			if ( $layout === 'grid' ) {
+				echo '</div>';
 			}
 
 			posterno()->templates->get_template_part( 'listings/results', 'footer' );

@@ -20,13 +20,30 @@
 
 	}
 
-	&.list-template {
+	&.list-template,
+	&.grid-template {
 		ul {
 			list-style: none;
 			margin: 0;
 			padding: 0;
 			li {
 				margin-bottom: 0.5em;
+			}
+		}
+	}
+
+	&.grid-template {
+		.listing-img-wrapper {
+			height: 200px;
+			overflow: hidden;
+			position: relative;
+
+			img {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				object-fit: cover;
+				height: 100%;
+				width: 100%;
 			}
 		}
 	}

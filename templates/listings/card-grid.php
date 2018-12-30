@@ -1,8 +1,8 @@
 <?php
 /**
- * The template for displaying a listing card within the list layout.
+ * The template for displaying a listing card within the grid layout.
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/card-list.php
+ * This template can be overridden by copying it to yourtheme/pno/listings/grid-list.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -25,12 +25,12 @@ $tags         = pno_get_listing_tags();
 
 ?>
 
-<?php if ( $featured_img ) : ?>
+<?php if ( has_post_thumbnail() ) : ?>
 
-	<div class="card flex-sm-row mb-4 pno-listing-card list-template">
-		<div class="pno-listing-card-img-wrapper">
+	<div class="card mb-4 pno-listing-card grid-template">
+		<div class="listing-img-wrapper">
 			<a href="<?php the_permalink(); ?>">
-				<img class="card-img-top card-img-sm-left" alt="<?php the_title(); ?>" src="<?php echo esc_url( $featured_img ); ?>"/>
+				<?php the_post_thumbnail( 'full', [ 'class' => 'card-img-top' ] ); ?>
 			</a>
 		</div>
 		<div class="card-body">
@@ -57,9 +57,9 @@ $tags         = pno_get_listing_tags();
 
 <?php else : ?>
 
-	<div class="card mb-4 pno-listing-card list-template">
+	<div class="card mb-4 pno-listing-card grid-template">
 		<div class="card-body">
-			<h4 class="card-title mb-3">
+			<h4 class="card-title">
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			</h4>
 			<div class="card-text">
