@@ -12,14 +12,17 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Modify the amount of listings displayed on each page.
+ * Adjust different parameters of listings queries.
+ *
+ * - on archives and taxonomies set the selected posts_per_page parameter.
+ * - on archives and taxonomies set the selected listings sort order.
  *
  * @param object $query current query.
  * @return void
  */
-function pno_adjust_listings_posts_per_page( $query ) {
+function pno_adjust_listings_query( $query ) {
 
-	$is_listing_page = false;
+	$is_listing_page     = false;
 	$listings_taxonomies = get_object_taxonomies( 'listings' );
 
 	if ( is_post_type_archive( 'listings' ) ) {
@@ -32,7 +35,40 @@ function pno_adjust_listings_posts_per_page( $query ) {
 	}
 
 	if ( ! is_admin() && $query->is_main_query() && $is_listing_page ) {
+
+		// Set posts per page.
 		$query->set( 'posts_per_page', pno_get_listings_results_per_page_active_option() );
+
+		// Set sorting order.
+		$active_order = pno_get_listings_results_order_active_filter();
+
+		if ( $active_order ) {
+
+			$orderby = 'date';
+			$order   = 'DESC';
+
+			switch ( $active_order ) {
+				case 'newest':
+					$orderby = 'date';
+					$order   = 'DESC';
+					break;
+				case 'oldest':
+					$orderby = 'date';
+					$order   = 'ASC';
+					break;
+				case 'title':
+					$orderby = 'title';
+					$order   = 'ASC';
+					break;
+				case 'random':
+					$orderby = 'rand';
+					break;
+			}
+
+			$query->set( 'orderby', $orderby );
+			$query->set( 'order', $order );
+
+		}
 	}
 }
-add_action( 'pre_get_posts', 'pno_adjust_listings_posts_per_page' );
+add_action( 'pre_get_posts', 'pno_adjust_listings_query' );
