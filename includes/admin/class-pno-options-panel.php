@@ -432,12 +432,24 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
 		$settings[] = Field::make( 'radio', 'listings_default_order', esc_html__( 'Order listings by' ) )
-			->set_width( 50 )
 			->set_options( 'pno_get_listings_order_options' );
 
 		$settings[] = Field::make( 'radio', 'listings_layout', esc_html__( 'Default listings layout' ) )
-			->set_width( 50 )
 			->set_options( 'pno_get_listings_layout_available_options' );
+
+		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
+			->set_help_text( esc_html__( 'Enable the option to display a placeholder image when a listing does not have a thumbnail.' ) );
+
+		$settings[] = Field::make( 'image', 'listing_image_placeholder_file', esc_html__( 'Custom placeholder image' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'listing_image_placeholder',
+						'value' => true,
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
 
 		return $settings;
 
