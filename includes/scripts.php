@@ -146,13 +146,15 @@ function pno_load_frontend_scripts() {
 	wp_enqueue_script( 'pno-general' );
 
 	$js_vars = [
-		'bootstrap'         => (bool) pno_get_option( 'bootstrap_style' ),
-		'mapProvider'       => pno_get_option( 'map_provider', 'googlemaps' ),
-		'googleMapsApiKey'  => pno_get_option( 'google_maps_api_key' ),
-		'startingLatitude'  => pno_get_option( 'map_starting_lat', '40.7484405' ),
-		'startingLongitude' => pno_get_option( 'map_starting_lng', '-73.9944191' ),
-		'mapZoom'           => pno_get_option( 'map_zoom', '12' ),
-		'labels'            => [
+		'bootstrap'                        => (bool) pno_get_option( 'bootstrap_style' ),
+		'mapProvider'                      => pno_get_option( 'map_provider', 'googlemaps' ),
+		'googleMapsApiKey'                 => pno_get_option( 'google_maps_api_key' ),
+		'startingLatitude'                 => pno_get_option( 'map_starting_lat', '40.7484405' ),
+		'startingLongitude'                => pno_get_option( 'map_starting_lng', '-73.9944191' ),
+		'mapZoom'                          => pno_get_option( 'map_zoom', '12' ),
+		'internal_links_new_tab'           => (bool) pno_get_option( 'listing_open_new_tab', false ),
+		'internal_links_new_tab_selectors' => pno_get_internal_listing_links_selectors(),
+		'labels'                           => [
 			'addressNotFound'         => esc_html__( 'Address not found, please try again.' ),
 			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.' ),
 			'geolocationNotSupported' => esc_html__( 'Your browser doesn\'t support geolocation.' ),

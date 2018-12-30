@@ -431,10 +431,10 @@ class OptionsPanel {
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page' ) )
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
-		$settings[] = Field::make( 'radio', 'listings_default_order', esc_html__( 'Order listings by' ) )
+		$settings[] = Field::make( 'select', 'listings_default_order', esc_html__( 'Order listings by' ) )
 			->set_options( 'pno_get_listings_order_options' );
 
-		$settings[] = Field::make( 'radio', 'listings_layout', esc_html__( 'Default listings layout' ) )
+		$settings[] = Field::make( 'select', 'listings_layout', esc_html__( 'Default listings layout' ) )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
 		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
@@ -451,6 +451,9 @@ class OptionsPanel {
 			)
 			->set_value_type( 'url' )
 			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
+			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
 
 		return $settings;
 

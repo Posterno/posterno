@@ -1057,3 +1057,28 @@ function pno_get_listing_placeholder_image() {
 	return $custom && ! empty( $custom ) ? $custom : $image;
 
 }
+
+/**
+ * Retrieve the list of html selectors that belong to internal listings links.
+ * These selectors are used when using the option "Open internal listings links in new tab" is enabled.
+ * Each link contained within these selectors will be opened in a new tab if the browser settings allow it.
+ *
+ * @return array
+ */
+function pno_get_internal_listing_links_selectors() {
+
+	$selectors = [
+		'.pno-listing-card h4 a',
+		'.listing-img-wrapper a',
+	];
+
+	/**
+	 * Filter: adjust the list of selectors that belong to internal listing links.
+	 * These selectors are used when using the option "Open internal listings links in new tab" is enabled.
+	 *
+	 * @param mixed $selectors the list of html selectors.
+	 * @return array
+	 */
+	return apply_filters( 'pno_internal_listing_links_selectors', $selectors );
+
+}

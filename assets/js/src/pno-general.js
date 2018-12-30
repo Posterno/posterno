@@ -1,7 +1,5 @@
 /*global jQuery:true*/
 /*global pno_settings:true*/
-/*global Dropzone:true*/
-/*global pno_submission:true*/
 (function ($) {
 
 	window.Posterno = window.Posterno || {};
@@ -10,6 +8,7 @@
 	 * Cache selectors for future usage.
 	 */
 	window.Posterno.cacheSelectors = function () {
+		window.Posterno.listingsLinks = pno_settings.internal_links_new_tab_selectors.join(",");
 		window.Posterno.formSelectFields = $('.pno-field-multiselect select, .pno-select-searchable, .pno-field-term-select select, .pno-field-term-multiselect select');
 	}
 
@@ -50,11 +49,34 @@
 		});
 	}
 
+	/**
+	 * Open internal listings links into a new tab.
+	*/
+	window.Posterno.openInternalLinksNewTab = function () {
+
+		if ( pno_settings.internal_links_new_tab ) {
+			$(window.Posterno.listingsLinks).each(function () {
+				var a = new RegExp('/' + window.location.host + '/');
+				if (a.test(this.href)) {
+					$(this).click(function (event) {
+						event.preventDefault();
+						event.stopPropagation();
+						window.open(this.href, '_blank');
+					}
+					);
+				}
+			}
+			);
+		}
+
+	}
+
 	$(document).ready(function () {
 		window.Posterno.cacheSelectors()
 		window.Posterno.bootstrapTooltips()
 		window.Posterno.removeUploadedFiles()
 		window.Posterno.select2()
+		window.Posterno.openInternalLinksNewTab()
 	});
 
 })(jQuery);
