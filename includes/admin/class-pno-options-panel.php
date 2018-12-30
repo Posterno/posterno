@@ -449,6 +449,7 @@ class OptionsPanel {
 					),
 				)
 			)
+			->set_value_type( 'url' )
 			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
 
 		return $settings;

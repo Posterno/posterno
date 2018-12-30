@@ -1019,7 +1019,7 @@ function pno_get_listing_phone_number( $listing_id = false ) {
 function pno_get_listing_tags( $listing_id = false ) {
 
 	$post_id = false;
-	$tags = [];
+	$tags    = [];
 
 	if ( $listing_id ) {
 		$post_id = absint( $listing_id );
@@ -1032,5 +1032,28 @@ function pno_get_listing_tags( $listing_id = false ) {
 	}
 
 	return $tags;
+
+}
+
+/**
+ * Determine if a thumbnail placeholder image is enabled.
+ *
+ * @return boolean
+ */
+function pno_is_listing_placeholder_image_enabled() {
+	return pno_get_option( 'listing_image_placeholder', false );
+}
+
+/**
+ * Retrieve the placeholder image.
+ *
+ * @return string
+ */
+function pno_get_listing_placeholder_image() {
+
+	$image  = PNO_PLUGIN_URL . '/assets/imgs/placeholder.png';
+	$custom = pno_get_option( 'listing_image_placeholder_file', false );
+
+	return $custom && ! empty( $custom ) ? $custom : $image;
 
 }

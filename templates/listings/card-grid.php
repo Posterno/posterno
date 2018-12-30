@@ -23,6 +23,8 @@ $address      = pno_get_listing_address();
 $phone_number = pno_get_listing_phone_number();
 $tags         = pno_get_listing_tags();
 
+$placeholder_enabled = pno_is_listing_placeholder_image_enabled();
+
 ?>
 
 <?php if ( has_post_thumbnail() ) : ?>
@@ -58,6 +60,13 @@ $tags         = pno_get_listing_tags();
 <?php else : ?>
 
 	<div class="card mb-4 pno-listing-card grid-template">
+		<?php if ( $placeholder_enabled ) : ?>
+			<div class="listing-img-wrapper">
+				<a href="<?php the_permalink(); ?>">
+					<img src="<?php echo esc_url( pno_get_listing_placeholder_image() ); ?>" alt="<?php the_title(); ?>" class="card-img-top">
+				</a>
+			</div>
+		<?php endif; ?>
 		<div class="card-body">
 			<h4 class="card-title">
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
