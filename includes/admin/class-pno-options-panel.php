@@ -432,9 +432,11 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
 		$settings[] = Field::make( 'radio', 'listings_default_order', esc_html__( 'Order listings by' ) )
+			->set_width( 50 )
 			->set_options( 'pno_get_listings_order_options' );
 
 		$settings[] = Field::make( 'radio', 'listings_layout', esc_html__( 'Default listings layout' ) )
+			->set_width( 50 )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
 		return $settings;
