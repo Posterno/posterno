@@ -23,14 +23,16 @@ $address      = pno_get_listing_address();
 $phone_number = pno_get_listing_phone_number();
 $tags         = pno_get_listing_tags();
 
+$placeholder_enabled = pno_is_listing_placeholder_image_enabled();
+
 ?>
 
 <?php if ( $featured_img ) : ?>
 
 	<div class="card flex-sm-row mb-4 pno-listing-card list-template">
-		<div class="pno-listing-card-img-wrapper">
+		<div class="listing-img-wrapper">
 			<a href="<?php the_permalink(); ?>">
-				<img class="card-img-top card-img-sm-left" alt="<?php the_title(); ?>" src="<?php echo esc_url( $featured_img ); ?>"/>
+				<?php the_post_thumbnail( 'full', [ 'class' => 'card-img-top' ] ); ?>
 			</a>
 		</div>
 		<div class="card-body">
@@ -57,7 +59,14 @@ $tags         = pno_get_listing_tags();
 
 <?php else : ?>
 
-	<div class="card mb-4 pno-listing-card list-template">
+	<div class="card flex-sm-row mb-4 pno-listing-card list-template">
+		<?php if ( $placeholder_enabled ) : ?>
+			<div class="listing-img-wrapper">
+				<a href="<?php the_permalink(); ?>">
+					<img src="<?php echo esc_url( pno_get_listing_placeholder_image() ); ?>" alt="<?php the_title(); ?>" class="card-img-top">
+				</a>
+			</div>
+		<?php endif; ?>
 		<div class="card-body">
 			<h4 class="card-title mb-3">
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>

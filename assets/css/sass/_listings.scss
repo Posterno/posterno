@@ -4,22 +4,6 @@
 	background-color: #f9f9f9;
 	border: none;
 
-	.pno-listing-card-img-wrapper {
-		min-height: 200px;
-		height: 100%;
-		overflow: hidden;
-		position: relative;
-
-		img {
-			object-fit: cover;
-			height: 200px;
-			width: 200px;
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
-		}
-
-	}
-
 	&.list-template,
 	&.grid-template {
 		ul {
@@ -28,6 +12,21 @@
 			padding: 0;
 			li {
 				margin-bottom: 0.5em;
+			}
+		}
+	}
+
+	&.list-template {
+		.listing-img-wrapper {
+			height: 250px;
+			overflow: hidden;
+			position: relative;
+			img {
+				object-fit: cover;
+				height: 100%;
+				width: 200px;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
 			}
 		}
 	}

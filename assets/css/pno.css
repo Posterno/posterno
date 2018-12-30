@@ -120,23 +120,22 @@ nav .pno-pagination {
 .pno-listing-card {
   background-color: #f9f9f9;
   border: none; }
-  .pno-listing-card .pno-listing-card-img-wrapper {
-    min-height: 200px;
-    height: 100%;
-    overflow: hidden;
-    position: relative; }
-    .pno-listing-card .pno-listing-card-img-wrapper img {
-      object-fit: cover;
-      height: 200px;
-      width: 200px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0; }
   .pno-listing-card.list-template ul, .pno-listing-card.grid-template ul {
     list-style: none;
     margin: 0;
     padding: 0; }
     .pno-listing-card.list-template ul li, .pno-listing-card.grid-template ul li {
       margin-bottom: 0.5em; }
+  .pno-listing-card.list-template .listing-img-wrapper {
+    height: 250px;
+    overflow: hidden;
+    position: relative; }
+    .pno-listing-card.list-template .listing-img-wrapper img {
+      object-fit: cover;
+      height: 100%;
+      width: 200px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
   .pno-listing-card.grid-template .listing-img-wrapper {
     height: 200px;
     overflow: hidden;
