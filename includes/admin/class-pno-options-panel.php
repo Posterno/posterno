@@ -428,21 +428,6 @@ class OptionsPanel {
 		$settings[] = Field::make( 'select', 'listings_layout', esc_html__( 'Default listings layout' ) )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
-		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
-			->set_help_text( esc_html__( 'Enable the option to display a placeholder image when a listing does not have a thumbnail.' ) );
-
-		$settings[] = Field::make( 'image', 'listing_image_placeholder_file', esc_html__( 'Custom placeholder image' ) )
-			->set_conditional_logic(
-				array(
-					array(
-						'field' => 'listing_image_placeholder',
-						'value' => true,
-					),
-				)
-			)
-			->set_value_type( 'url' )
-			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
-
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
 
@@ -550,6 +535,21 @@ class OptionsPanel {
 		$settings[] = Field::make( 'multiselect', 'listings_social_profiles', __( 'Allowed social profiles' ) )
 			->set_help_text( __( 'Select which social profiles to enable for listings.' ) )
 			->add_options( 'pno_get_registered_social_media' );
+
+		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
+			->set_help_text( esc_html__( 'Enable the option to display a placeholder image when a listing does not have a thumbnail.' ) );
+
+		$settings[] = Field::make( 'image', 'listing_image_placeholder_file', esc_html__( 'Custom placeholder image' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'listing_image_placeholder',
+						'value' => true,
+					),
+				)
+			)
+			->set_value_type( 'url' )
+			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
 
 		return $settings;
 
