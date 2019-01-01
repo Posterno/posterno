@@ -19,12 +19,14 @@ defined( 'ABSPATH' ) || exit;
 function pno_load_admin_scripts() {
 
 	$screen  = get_current_screen();
-	$js_dir  = PNO_PLUGIN_URL . 'assets/js/';
-	$css_dir = PNO_PLUGIN_URL . 'assets/css/';
+	$js_dir  = PNO_PLUGIN_URL . 'assets/js/admin/';
+	$css_dir = PNO_PLUGIN_URL . 'assets/css/admin/';
 	$version = PNO_VERSION;
 
-	wp_register_style( 'pno-logo', $css_dir . 'posterno-font.css', array(), $version );
-	wp_register_style( 'pno-editors-styling', $css_dir . 'pno-custom-fields-editor.min.css', [], $version );
+	wp_register_style( 'pno-logo', $css_dir . 'admin-font.min.css', array(), $version );
+	wp_register_style( 'pno-editors-styling', $css_dir . 'admin-custom-fields-editor.min.css', [], $version );
+	wp_register_style( 'pno-editors-styling-post-type', $css_dir . 'admin-custom-fields-cpt.min.css', [], $version );
+
 	wp_enqueue_style( 'pno-logo' );
 
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
@@ -60,19 +62,19 @@ function pno_load_admin_scripts() {
 	}
 
 	if ( $screen->id === 'pno_users_fields' ) {
-		wp_enqueue_style( 'pnocf', PNO_PLUGIN_URL . '/assets/css/pno-custom-fields-cpt.min.css', [], $version );
-		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/pno-profile-custom-fields-admin-validation.min.js', [], $version, true );
+		wp_enqueue_style( 'pno-editors-styling-post-type' );
+		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-profile-fields-settings-validation.min.js', [], $version, true );
 		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
 	}
 
 	if ( $screen->id === 'pno_listings_fields' ) {
-		wp_enqueue_style( 'pnocf', PNO_PLUGIN_URL . '/assets/css/pno-custom-fields-cpt.min.css', [], $version );
-		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/pno-listing-custom-fields-admin-validation.min.js', [], $version, true );
+		wp_enqueue_style('pno-editors-styling-post-type');
+		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-listings-fields-settings-validation.min.js', [], $version, true );
 		wp_localize_script( 'pnocf-validation', 'pno_listing_cf', pno_get_listing_custom_fields_page_vars() );
 	}
 
 	if ( $screen->id === 'pno_signup_fields' ) {
-		wp_enqueue_style( 'pnocf', PNO_PLUGIN_URL . '/assets/css/pno-custom-fields-cpt.min.css', [], $version );
+		wp_enqueue_style( 'pno-editors-styling-post-type' );
 	}
 
 	$admin_style_screens = [
@@ -86,7 +88,7 @@ function pno_load_admin_scripts() {
 	];
 
 	if ( in_array( $screen->id, $admin_style_screens ) ) {
-		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . '/assets/css/pno-admin-listings.min.css', [], $version );
+		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . '/assets/css/admin/admin-listings.min.css', [], $version );
 	}
 
 }
@@ -106,13 +108,13 @@ function pno_load_frontend_scripts() {
 	wp_register_style( 'pno-fa', 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', [], $version );
 	wp_register_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, $version );
 	wp_register_style( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css', [], $version );
-	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/pno.min.css', [], $version );
+	wp_register_style( 'pno', PNO_PLUGIN_URL . 'assets/css/frontend/posterno.min.css', [], $version );
 
 	wp_register_script( 'pno-bootstrap-script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
 	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
-	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/pno-general.min.js', array( 'jquery' ), $version, true );
+	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/frontend/posterno.min.js', array( 'jquery' ), $version, true );
 
 	// Register vuejs related scripts.
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {

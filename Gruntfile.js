@@ -1,79 +1,108 @@
 module.exports = function (grunt) {
+
 	// Load multiple grunt tasks using globbing patterns
 	require('load-grunt-tasks')(grunt);
+
 	// Project configuration.
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON('package.json'),
 
-		sass: {
-			all: {
-				files: {
-					'assets/css/pno.css': 'assets/css/sass/pno.scss',
-					'assets/css/pno-settings-panel.css': 'assets/css/sass/pno-settings-panel.scss',
-					'assets/css/pno-admin-listings.css': 'assets/css/sass/pno-admin-listings.scss',
-					'assets/css/pno-custom-fields-cpt.css': 'assets/css/sass/pno-custom-fields-cpt.scss',
-					'assets/css/pno-custom-fields-editor.css': 'assets/css/sass/pno-custom-fields-editor.scss',
-				}
-			}
+		// Setting folder templates.
+		dirs: {
+			css: 'assets/css',
+			fonts: 'assets/font',
+			images: 'assets/imgs',
+			js: 'assets/js'
 		},
+
+		sass: {
+			frontend: {
+				options: {
+					sourcemap: 'none'
+				},
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.css %>/sass/frontend/',
+					src: ['*.scss'],
+					dest: '<%= dirs.css %>/frontend/',
+					ext: '.css'
+				}]
+			},
+			admin: {
+				options: {
+					sourcemap: 'none'
+				},
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.css %>/sass/admin/',
+					src: ['*.scss'],
+					dest: '<%= dirs.css %>/admin/',
+					ext: '.css'
+				}]
+			},
+		},
+
 		cssmin: {
 			options: {
 				mergeIntoShorthands: false,
 			},
-			target: {
-				files: [
-					{
-						expand: true,
-						cwd: 'assets/css',
-						src: ['pno-admin-listings.css'],
-						dest: 'assets/css',
-						ext: '.min.css'
-					},
-					{
-						expand: true,
-						cwd: 'assets/css',
-						src: ['pno-settings-panel.css'],
-						dest: 'assets/css',
-						ext: '.min.css'
-					},
-					{
-						expand: true,
-						cwd: 'assets/css',
-						src: ['pno-custom-fields-cpt.css'],
-						dest: 'assets/css',
-						ext: '.min.css'
-					},
-					{
-						expand: true,
-						cwd: 'assets/css',
-						src: ['pno-custom-fields-editor.css'],
-						dest: 'assets/css',
-						ext: '.min.css'
-					},
-					{
-						expand: true,
-						cwd: 'assets/css',
-						src: ['pno.css'],
-						dest: 'assets/css',
-						ext: '.min.css'
-					}
-				],
+			admin: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.css %>/admin/',
+					src: ['*.css', '!*.min.css'],
+					dest: '<%= dirs.css %>/admin/',
+					ext: '.min.css'
+				}]
+			},
+			frontend: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.css %>/frontend/',
+					src: ['*.css', '!*.min.css'],
+					dest: '<%= dirs.css %>/frontend/',
+					ext: '.min.css'
+				}]
 			}
 		},
+
 		uglify: {
-			all: {
-				files: {
-					'assets/js/pno-general.min.js': ['assets/js/src/pno-general.js'],
-					'assets/js/pno-tinymce.min.js': ['assets/js/src/pno-tinymce.js'],
-					'assets/js/pno-profile-custom-fields-admin-validation.min.js': ['assets/js/src/pno-profile-custom-fields-admin-validation.js'],
-					'assets/js/pno-listing-custom-fields-admin-validation.min.js': ['assets/js/src/pno-listing-custom-fields-admin-validation.js'],
+			options: {
+				ie8: true,
+				parse: {
+					strict: false
 				},
-				options: {
-					mangle: false
+				output: {
+					comments: /@license|@preserve|^!/
 				}
-			}
+			},
+			admin: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.js %>/src/admin/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: '<%= dirs.js %>/admin/',
+					ext: '.min.js'
+				}]
+			},
+			frontend: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.js %>/src/frontend/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: '<%= dirs.js %>/frontend/',
+					ext: '.min.js'
+				}]
+			},
 		},
+
 		checktextdomain: {
 			options: {
 				text_domain: 'posterno',
@@ -108,6 +137,7 @@ module.exports = function (grunt) {
 				expand: true
 			}
 		},
+
 		makepot: {
 			target: {
 				options: {
@@ -146,10 +176,12 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+
 		// Clean up build directory
 		clean: {
 			main: ['build/<%= pkg.name %>']
 		},
+
 		// Copy the plugin into the build directory
 		copy: {
 			main: {
@@ -164,6 +196,7 @@ module.exports = function (grunt) {
 				dest: 'build/<%= pkg.name %>/'
 			}
 		},
+
 		// Compress build directory into <name>.zip and <name>-<version>.zip
 		compress: {
 			main: {
@@ -180,11 +213,17 @@ module.exports = function (grunt) {
 
 		watch: {
 			css: {
-				files: 'assets/css/sass/*.scss',
+				files: [
+					'<%= dirs.css %>/sass/admin/*.scss',
+					'<%= dirs.css %>/sass/frontend/*.scss'
+				],
 				tasks: ['sass', 'cssmin'],
 			},
-			scripts: {
-				files: ['assets/js/src/**/*.js'],
+			js: {
+				files: [
+					'<%= dirs.js %>/src/admin/*.js',
+					'<%= dirs.js %>/src/frontend/*.js',
+				],
 				tasks: ['uglify'],
 				options: {
 					debounceDelay: 500

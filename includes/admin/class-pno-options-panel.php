@@ -630,7 +630,7 @@ class OptionsPanel {
 		}
 
 		if ( in_array( $screen->base, $screens ) ) {
-			wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/pno-settings-panel.min.css', false, PNO_VERSION );
+			wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/admin/admin-settings-panel.min.css', false, PNO_VERSION );
 		}
 
 	}

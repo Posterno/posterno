@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACC,0GAAa;EACZ,gBAAgB,EAAE,OAAO;;AAO1B;;;;;0DAC0B;EACzB,OAAO,EAAE,IAAI",
-"sources": ["sass/pno-custom-fields-cpt.scss"],
-"names": [],
-"file": "pno-custom-fields-cpt.css"
-}
