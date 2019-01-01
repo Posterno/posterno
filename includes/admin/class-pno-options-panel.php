@@ -390,15 +390,6 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'disable_admin_password_recovery_email', __( 'Disable admin password recovery email:' ) )
 			->set_help_text( __( 'Enable this option to stop receiving notifications when a new user resets his password.' ) );
 
-		$settings[] = Field::make( 'radio', 'listing_date_format', esc_html__( 'Date format:' ) )
-			->set_help_text( esc_html__( 'Choose how you want the published date for listings to be displayed on the front-end.' ) )
-			->add_options(
-				[
-					'relative' => esc_html__( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)' ),
-					'default'  => esc_html__( 'Default date format as defined in Settings' ),
-				]
-			);
-
 		return $settings;
 
 	}
@@ -454,6 +445,15 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
+
+		$settings[] = Field::make( 'radio', 'listing_date_format', esc_html__( 'Date format:' ) )
+			->set_help_text( esc_html__( 'Choose how you want the published date for listings to be displayed on the front-end.' ) )
+			->add_options(
+				[
+					'relative' => esc_html__( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)' ),
+					'default'  => esc_html__( 'Default date format as defined in Settings' ),
+				]
+			);
 
 		return $settings;
 
