@@ -176,6 +176,10 @@ class Registration extends Field {
 	 */
 	public function create( $args = [] ) {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
 			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
 		}
@@ -222,6 +226,10 @@ class Registration extends Field {
 	 * @return void
 	 */
 	public function delete() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		wp_delete_post( $this->get_post_id(), true );
 
