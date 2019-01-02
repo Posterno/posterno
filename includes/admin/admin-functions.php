@@ -19,22 +19,21 @@ defined( 'ABSPATH' ) || exit;
  * @return array
  */
 function pno_get_pages( $force = false ) {
+
 	$pages = [];
+
 	if ( ( ! isset( $_GET['page'] ) || strpos( $_GET['page'], 'posterno-options' ) !== 0 ) && ! $force ) {
 		return $pages;
 	}
-	$transient = get_transient( 'pno_get_pages' );
-	if ( $transient ) {
-		$pages = $transient;
-	} else {
-		$available_pages = get_pages();
-		if ( ! empty( $available_pages ) ) {
-			foreach ( $available_pages as $page ) {
-				$pages[ $page->ID ] = $page->post_title;
-			}
-			set_transient( 'pno_get_pages', $pages, DAY_IN_SECONDS );
+
+	$available_pages = get_pages();
+
+	if ( ! empty( $available_pages ) ) {
+		foreach ( $available_pages as $page ) {
+			$pages[ $page->ID ] = $page->post_title;
 		}
 	}
+
 	return $pages;
 }
 
