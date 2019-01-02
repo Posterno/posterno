@@ -125,6 +125,11 @@ function pno_get_option( $key = '', $default = false ) {
  * @return boolean True if updated, false if not.
  */
 function pno_update_option( $key = '', $value = false ) {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
 	global $pno_options;
 
 	// If no key, exit.
@@ -172,6 +177,10 @@ function pno_update_option( $key = '', $value = false ) {
  * @return boolean True if removed, false if not.
  */
 function pno_delete_option( $key = '' ) {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
 
 	global $pno_options;
 
