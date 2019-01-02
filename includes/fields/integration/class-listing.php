@@ -400,7 +400,7 @@ class Listing {
 								break;
 						}
 
-						if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select' ] ) ) {
+						if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select', 'term-chain-dropdown' ] ) ) {
 							continue;
 						}
 

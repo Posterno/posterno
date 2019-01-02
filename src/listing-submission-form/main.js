@@ -10,5 +10,6 @@ import './listing-category-selector.js'
 import './listing-tags-selector.js'
 import './listing-opening-hours.js'
 import './listing-location-selector.js'
+import './term-chain-select-field'
 
 new Vue().$mount('#pno-form-listing-submission, #pno-form-listing-edit')

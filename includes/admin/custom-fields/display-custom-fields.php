@@ -33,6 +33,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'term-select',
 				'term-multiselect',
 				'term-checklist',
+				'term-chain-dropdown',
 				'listing-opening-hours',
 				'listing-location',
 			]

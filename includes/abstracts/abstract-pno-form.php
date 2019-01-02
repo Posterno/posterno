@@ -355,7 +355,7 @@ abstract class PNO_Form {
 					// translators: Placeholder %s is the label for the required field.
 					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
 				}
-				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect' ), true ) ) {
+				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect', 'term-chain-dropdown' ), true ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
 						$check_value = $values[ $group_key ][ $key ];
 					} else {

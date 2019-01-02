@@ -448,7 +448,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 							}
 
-						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist' ] ) ) {
+						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
 							if ( ! empty( $values[ $key ] ) ) {
 								$this->process_taxonomy_field( $field_details, $new_listing_id, $values[ $key ] );

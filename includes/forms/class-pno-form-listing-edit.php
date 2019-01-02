@@ -469,7 +469,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 								}
 
 							}
-						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist' ] ) ) {
+						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
 							if ( ! empty( $values[ $key ] ) ) {
 								$this->process_taxonomy_field( $field_details, $updated_listing_id, $values[ $key ] );
