@@ -36,7 +36,7 @@ class PNO_Ajax {
 	 *
 	 * No nonce field since the form may be statically cached.
 	 */
-	public function upload_file() {
+	/*public function upload_file() {
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( esc_html__( 'You must be logged in to upload files using this method.' ) );
 			return;
@@ -65,7 +65,7 @@ class PNO_Ajax {
 			}
 		}
 		wp_send_json( $data );
-	}
+	}*/
 
 	/**
 	 * Retrieve a list of tags given categories ids.
