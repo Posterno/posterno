@@ -91,24 +91,24 @@ function pno_get_login_methods() {
  * @return array
  */
 function pno_get_roles( $force = false, $admin = false ) {
+
+	global $wp_roles;
+
 	$roles = [];
+
 	if ( ( ! isset( $_GET['page'] ) || strpos( $_GET['page'], 'posterno-options' ) !== 0 ) && ! $force ) {
 		return $roles;
 	}
-	$transient = get_transient( 'pno_get_roles' );
-	if ( $transient && ! $force ) {
-		$roles = $transient;
-	} else {
-		global $wp_roles;
-		$available_roles = $wp_roles->get_names();
-		foreach ( $available_roles as $role_id => $role ) {
-			if ( $role_id == 'administrator' && ! $admin ) {
-				continue;
-			}
-			$roles[ esc_attr( $role_id ) ] = esc_html( $role );
+
+	$available_roles = $wp_roles->get_names();
+
+	foreach ( $available_roles as $role_id => $role ) {
+		if ( $role_id == 'administrator' && ! $admin ) {
+			continue;
 		}
-		// set_transient( 'pno_get_roles', $roles, DAY_IN_SECONDS );
+		$roles[ esc_attr( $role_id ) ] = esc_html( $role );
 	}
+
 	return $roles;
 }
 
