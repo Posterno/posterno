@@ -45,7 +45,7 @@ add_action( 'admin_head', 'pno_avatar_field_is_disabled_notice' );
  */
 function pno_password_settings_controller_notice() {
 
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-options' ) {
 		return;
 	}
 
@@ -67,14 +67,14 @@ add_action( 'admin_head', 'pno_password_settings_controller_notice' );
  */
 function pno_avatar_globally_disabled_notice() {
 
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-settings' ) {
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-options' ) {
 		return;
 	}
 
 	if ( pno_get_option( 'allow_avatars' ) && ! get_option( 'show_avatars' ) ) {
 
 		$admin_url     = admin_url( 'options-discussion.php#show_avatars' );
-		$pno_admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-settings' );
+		$pno_admin_url = admin_url( 'options-general.php?page=posterno-options' );
 
 		$message = sprintf( __( 'Posterno: avatars <a href="%1$s">are currently globally disabled</a> onto your site, please <a href="%1$s">enable avatars</a> onto your site or <a href="%2$s">disable Posterno\'s built-in custom avatars</a>.' ), $admin_url, $pno_admin_url );
 
@@ -84,3 +84,51 @@ function pno_avatar_globally_disabled_notice() {
 
 }
 add_action( 'admin_head', 'pno_avatar_globally_disabled_notice' );
+
+/**
+ * Display an error message when pages settings have more than one page selected.
+ * Dirty solution since Carbon Fields currently doesn't provide a select "search" field,
+ * therefore I'm forced to use a multiselect field to allow customers to search options.
+ *
+ * @return void
+ */
+function pno_required_pages_settings_is_singular_notice() {
+
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-options' ) {
+		return;
+	}
+
+	$settings = [
+		'login_page'                  => esc_html__( 'Login page' ),
+		'password_page'               => esc_html__( 'Password recovery page' ),
+		'registration_page'           => esc_html__( 'Registration page' ),
+		'dashboard_page'              => esc_html__( 'Dashboard page' ),
+		'submission_page'             => esc_html__( 'Listing submission page' ),
+		'editing_page'                => esc_html__( 'Listing editing page' ),
+		'profile_page'                => esc_html__( 'Public profile page' ),
+		'terms_page'                  => esc_html__( 'Terms Page:' ),
+		'login_redirect'              => esc_html__( 'After login' ),
+		'logout_redirect'             => esc_html__( 'After logout' ),
+		'registration_redirect'       => esc_html__( 'After registration' ),
+		'cancellation_redirect'       => esc_html__( 'After account cancellation' ),
+		'listing_submission_redirect' => esc_html__( 'After successful submission' ),
+		'listing_editing_redirect'    => esc_html__( 'After successful editing' ),
+	];
+
+	$settings = apply_filters( 'pno_singular_page_options_list', $settings );
+
+	foreach ( $settings as $key => $label ) {
+
+		$option = pno_get_option( $key, false );
+
+		if ( is_array( $option ) && count( $option ) > 1 ) {
+
+			$message = sprintf( __( 'Posterno: the setting <strong>"%1$s"</strong> can only have 1 page selected. Please correct the issue by selecting only one page into the <a href="%2$s">settings panel</a>.' ), $label, admin_url( 'options-general.php?page=posterno-options' ) );
+
+			posterno()->admin_notices->register_notice( "pno_setting_error_{$key}", 'error', $message, [ 'dismissible' => false ] );
+
+		}
+	}
+
+}
+add_action( 'admin_head', 'pno_required_pages_settings_is_singular_notice' );
