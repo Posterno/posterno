@@ -367,6 +367,50 @@ function pno_get_taxonomy_hierarchy( $taxonomy, $parent = 0, $include = [] ) {
 }
 
 /**
+ * Retrieve taxonomy tree formatted for the frontend submission field's Vuejs options property.
+ *
+ * @param string  $taxonomy the taxonomy to analyze.
+ * @param integer $parent the id of the parent term to analyze.
+ * @param array   $include the term ids to specifically analyze.
+ * @return array
+ */
+function pno_get_taxonomy_hierarchy_for_chain_selector( $taxonomy, $parent = 0, $include = [] ) {
+
+	$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
+
+	$terms = get_terms(
+		$taxonomy,
+		[
+			'parent'     => $parent,
+			'hide_empty' => false,
+			'include'    => $include,
+		]
+	);
+
+	$children = array();
+
+	foreach ( $terms as $term ) {
+
+		$term->children = pno_get_taxonomy_hierarchy_for_chain_selector( $taxonomy, $term->term_id );
+
+		$new_item = [
+			'id'    => $term->term_id,
+			'label' => $term->name,
+		];
+
+		if ( is_array( $term->children ) && ! empty( $term->children ) ) {
+			$new_item['children'] = $term->children;
+		}
+
+		$children[] = $new_item;
+
+	}
+
+	return $children;
+
+}
+
+/**
  * Retrieve the most parent term of a given term.
  *
  * @param string $term_id the id of the term to verify.
