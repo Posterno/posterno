@@ -19,7 +19,6 @@ Vue.component( 'pno-term-chain-select-field', {
 	data() {
 		return {
 			value: null,
-			options: [],
 		}
 	},
 	methods: {
@@ -31,8 +30,8 @@ Vue.component( 'pno-term-chain-select-field', {
 		 * so that we can use it via php when submitting the form.
 		 */
 		selectedParentTerms: {
-			handler: function ( newValue, oldValue ) {
-
+			handler: function () {
+				document.getElementById('pno-field-listing_opening_hours').value = JSON.stringify(this.timeslots);
 			},
 			deep: true
 		}

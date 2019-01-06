@@ -32,18 +32,24 @@ if ( empty( $terms ) ) {
 	return;
 }
 
-var_dump( $data->is_multiple() );
-
 ?>
 <pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->get_taxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
-	<div class="pno-term-chain">
+	<div class="pno-term-chain" <?php pno_form_field_input_class( $data ); ?>>
 		<treeselect
 			v-model="value"
 			<?php if ( $data->is_branch_nodes_disabled() === true ) : ?>:disable-branch-nodes="true"<?php endif; ?>
 			<?php if ( $data->is_multiple() ) : ?>:multiple="true"<?php endif; ?>
-			:options="options"
 			value-consists-of="ALL"
+			no-results-text="<?php esc_html_e( 'No results found' ); ?>"
+			no-options-text="<?php esc_html_e( 'No options available.' ); ?>"
 			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
 		/>
 	</div>
 </pno-term-chain-select-field>
+
+<input
+	type="hidden"
+	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+>
