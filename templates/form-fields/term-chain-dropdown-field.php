@@ -52,5 +52,6 @@ if ( empty( $terms ) ) {
 	type="hidden"
 	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
+	class="pno-chain-select-value-holder" <?php // Do not change. ?>
 	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
 >

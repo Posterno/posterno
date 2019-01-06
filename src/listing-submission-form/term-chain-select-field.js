@@ -30,9 +30,14 @@ Vue.component( 'pno-term-chain-select-field', {
 		 * Watch for changes to the vue model and store changes into the frontend field
 		 * so that we can use it via php when submitting the form.
 		 */
-		selectedParentTerms: {
+		value: {
 			handler: function () {
-				document.getElementById('pno-field-listing_opening_hours').value = JSON.stringify(this.timeslots);
+				var selectedTerms = JSON.stringify(this.value)
+				var HolderID = this.$el.nextElementSibling.id
+				var HolderClass = this.$el.nextElementSibling.className
+				if ( HolderClass === "pno-chain-select-value-holder" ) {
+					document.getElementById( HolderID ).value = selectedTerms;
+				}
 			},
 			deep: true
 		}
