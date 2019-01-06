@@ -31,14 +31,11 @@ Vue.component( 'pno-term-chain-select-field', {
 		 */
 		value: {
 			handler: function () {
-				var selectedTerms = {
-					taxonomy: this.taxonomy,
-					terms: JSON.stringify(this.value)
-				}
+				var selectedTerms = JSON.stringify(this.value)
 				var HolderID = this.$el.nextElementSibling.id
 				var HolderClass = this.$el.nextElementSibling.className
 				if ( HolderClass === "pno-chain-select-value-holder" ) {
-					document.getElementById(HolderID).value = JSON.stringify(selectedTerms);
+					document.getElementById(HolderID).value = selectedTerms;
 				}
 			},
 			deep: true
