@@ -52,6 +52,8 @@ class Listing extends Field {
 	 */
 	protected $taxonomy = null;
 
+	protected $disable_branch_nodes = false;
+
 	/**
 	 * Retrieve the attached taxonomy id to the field.
 	 *
@@ -130,6 +132,9 @@ class Listing extends Field {
 						break;
 					case 'file_is_multiple':
 						$this->multiple = $this->get_type() === 'file' ? true : false;
+						break;
+					case 'chain_is_multiple':
+						$this->multiple = $this->get_type() === 'term-chain-dropdown' ? true : false;
 						break;
 					default:
 						$this->{$setting} = $value;
@@ -254,6 +259,15 @@ class Listing extends Field {
 
 		$field->delete_item( $found_field->get_id() );
 
+	}
+
+	/**
+	 * Determine if the taxonomy chain dropdown field has branch nodes disabled.
+	 *
+	 * @return string
+	 */
+	public function is_branch_nodes_disabled() {
+		return (bool) $this->disable_branch_nodes;
 	}
 
 }

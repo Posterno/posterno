@@ -129,6 +129,32 @@ class Listing {
 				->set_help_text( esc_html__( 'Enable this option to allow users to upload multiple files through this field.' ) );
 		}
 
+		$settings[] = Field::make( 'checkbox', 'listing_field_disable_branch_nodes', esc_html__( 'Disable branch nodes' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_type',
+						'value'   => 'term-chain-dropdown',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Enable this option so that branch nodes (Parent terms) are collapsible and not selectable.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'listing_field_chain_is_multiple', esc_html__( 'Allow multiple values' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_type',
+						'value'   => 'term-chain-dropdown',
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Enable this option to allow multiple values to be selected through the dropdown.' ) );
+
 		$settings[] = Field::make( 'text', 'listing_field_label', esc_html__( 'Custom form label' ) )
 			->set_help_text( esc_html__( 'This text will be used as label within the listing submission forms. Leave blank to use the field title.' ) );
 

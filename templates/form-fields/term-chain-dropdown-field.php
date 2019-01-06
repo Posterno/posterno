@@ -32,27 +32,18 @@ if ( empty( $terms ) ) {
 	return;
 }
 
-$parent_terms = $terms;
+var_dump( $data->is_multiple() );
 
 ?>
 <pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->get_taxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
 	<div class="pno-term-chain">
-
-	<!--	<pno-select2 inline-template :options="dropdowns.parent.options" v-model="selectedParentTerms" data-placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>" data-emitterid="tt">
-			<div class="pno-select2-wrapper">
-				<select class="form-control" multiple>
-				</select>
-			</div>
-		</pno-select2>
-
-		<pno-select2 inline-template v-for="( dropdown, index ) in dropdowns" v-if="index !== 'parent'" :key="index" :options="dropdown.options">
-			<div class="pno-select2-wrapper">
-				<select class="form-control" multiple>
-				</select>
-			</div>
-		</pno-select2> -->
-
-		<treeselect v-model="value" :multiple="true" :options="options" />
-
+		<treeselect
+			v-model="value"
+			<?php if ( $data->is_branch_nodes_disabled() === true ) : ?>:disable-branch-nodes="true"<?php endif; ?>
+			<?php if ( $data->is_multiple() ) : ?>:multiple="true"<?php endif; ?>
+			:options="options"
+			value-consists-of="ALL"
+			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
+		/>
 	</div>
 </pno-term-chain-select-field>
