@@ -382,6 +382,11 @@ function pno_install_listings_fields() {
 				$db_settings['_listing_field_taxonomy'] = $field['taxonomy'];
 			}
 
+			// Disable branch node on some tree-select fields.
+			if ( isset( $field['taxonomy'] ) && $field['taxonomy'] === 'listings-regions' ) {
+				$db_settings['_listing_field_disable_branch_nodes'] = true;
+			}
+
 			$dbfield->add_item(
 				[
 					'post_id'          => $field_id,
