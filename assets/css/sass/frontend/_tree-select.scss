@@ -87,40 +87,6 @@
 }
 
 /**
- * Transitions
- */
-.vue-treeselect__multi-value-item--transition-enter-active,
-.vue-treeselect__multi-value-item--transition-leave-active {
-	transition-duration: 200ms;
-	transition-property: opacity, -webkit-transform;
-	transition-property: transform, opacity;
-	transition-property: transform, opacity, -webkit-transform;
-}
-
-.vue-treeselect__multi-value-item--transition-enter-active {
-	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.vue-treeselect__multi-value-item--transition-leave-active {
-	transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-	position: absolute;
-}
-
-.vue-treeselect__multi-value-item--transition-enter,
-.vue-treeselect__multi-value-item--transition-leave-to {
-	-webkit-transform: scale(0.7);
-	-ms-transform: scale(0.7);
-	transform: scale(0.7);
-	opacity: 0;
-}
-
-.vue-treeselect__multi-value-item--transition-move {
-	transition: 200ms -webkit-transform cubic-bezier(0.165, 0.84, 0.44, 1);
-	transition: 200ms transform cubic-bezier(0.165, 0.84, 0.44, 1);
-	transition: 200ms transform cubic-bezier(0.165, 0.84, 0.44, 1), 200ms -webkit-transform cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/**
  * Namespace
  */
 .vue-treeselect {
@@ -247,12 +213,10 @@
 .vue-treeselect__multi-value-item {
 	cursor: pointer;
 	display: inline-table;
-	background: #E3F2FD;
+	background: #e9e9e9;
 	padding: 2px 0;
 	border: 1px solid transparent;
 	border-radius: 2px;
-	color: #039BE5;
-	font-size: 12px;
 	vertical-align: top;
 }
 
@@ -291,7 +255,6 @@
 }
 
 .vue-treeselect__value-remove {
-	color: #039BE5;
 	padding-left: 5px;
 	border-left: 1px solid #fff;
 	line-height: 0;
@@ -333,7 +296,6 @@
 	margin: 2px 0;
 	padding: 1px 0;
 	color: #BDBDBD;
-	font-size: 12px;
 	font-weight: 600;
 }
 
@@ -344,19 +306,12 @@
 }
 
 .vue-treeselect--single .vue-treeselect__input-container {
-	font-size: inherit;
 	height: 100%;
 }
 
 .vue-treeselect--multi .vue-treeselect__input-container {
 	display: inline-block;
-	font-size: 12px;
 	vertical-align: top;
-}
-
-.vue-treeselect--searchable .vue-treeselect__input-container {
-	padding-left: 5px;
-	padding-right: 5px;
 }
 
 .vue-treeselect--searchable.vue-treeselect--multi.vue-treeselect--has-value .vue-treeselect__input-container {
@@ -373,7 +328,6 @@
 	margin: 0;
 	line-height: inherit;
 	font-family: inherit;
-	font-size: inherit;
 }
 
 .vue-treeselect__input {
@@ -401,6 +355,12 @@
 .vue-treeselect--multi .vue-treeselect__input {
 	padding-top: 3px;
 	padding-bottom: 3px;
+	background: none;
+	box-shadow: none;
+	&:focus {
+		background: none;
+		box-shadow: none;
+	}
 }
 
 .vue-treeselect--has-value .vue-treeselect__input {
@@ -905,7 +865,6 @@
 	white-space: nowrap;
 	width: 100%;
 	padding-left: 5px;
-	font-size: 12px;
 }
 
 .vue-treeselect__error-tip .vue-treeselect__retry {
