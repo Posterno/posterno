@@ -325,14 +325,22 @@
   box-shadow: none;
   background: none transparent;
   line-height: 1;
-  vertical-align: middle; }
+  vertical-align: middle;
+  background: none;
+  box-shadow: none; }
 
 .vue-treeselect__input::-ms-clear {
   display: none; }
 
 .vue-treeselect--single .vue-treeselect__input {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  background: none;
+  box-shadow: none;
+  padding: 0; }
+  .vue-treeselect--single .vue-treeselect__input:focus {
+    background: none;
+    box-shadow: none; }
 
 .vue-treeselect--multi .vue-treeselect__input {
   padding-top: 3px;
