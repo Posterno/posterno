@@ -20,8 +20,33 @@ defined( 'ABSPATH' ) || exit;
  * @return      string
  */
 function pno_admin_rate_us( $footer_text ) {
+
 	global $typenow;
-	if ( $typenow == 'listings' || $typenow === 'pno_emails' ) {
+
+	$screen = get_current_screen();
+
+	$checks = [
+		'edit-listings',
+		'listings',
+		'edit-listings-types',
+		'edit-listings-categories',
+		'edit-listings-locations',
+		'edit-listings-tags',
+		'listings_page_posterno-custom-listings-fields',
+		'pno_listings_fields',
+		'users_page_posterno-custom-profile-fields',
+		'pno_users_fields',
+		'users_page_posterno-custom-registration-form',
+		'pno_signup_fields',
+		'edit-pno_emails',
+		'pno_emails',
+		'settings_page_posterno-options',
+		'admin_page_posterno-options[accounts]',
+		'admin_page_posterno-options[emails]',
+		'admin_page_posterno-options[listings]'
+	];
+
+	if ( in_array( $screen->id, $checks ) ) {
 		$rate_text = sprintf(
 			__( 'Thank you for using <a href="%1$s" target="_blank">Posterno</a>! Please <a href="%2$s" target="_blank">rate us on WordPress.org</a>' ),
 			'https://posterno.com',
