@@ -1,5 +1,4 @@
 /*global Vue:true*/
-/*global pno_submission:true*/
 import Treeselect from '@riophae/vue-treeselect'
 
 Vue.component( 'pno-term-chain-select-field', {
@@ -32,11 +31,14 @@ Vue.component( 'pno-term-chain-select-field', {
 		 */
 		value: {
 			handler: function () {
-				var selectedTerms = JSON.stringify(this.value)
+				var selectedTerms = {
+					taxonomy: this.taxonomy,
+					terms: JSON.stringify(this.value)
+				}
 				var HolderID = this.$el.nextElementSibling.id
 				var HolderClass = this.$el.nextElementSibling.className
 				if ( HolderClass === "pno-chain-select-value-holder" ) {
-					document.getElementById( HolderID ).value = selectedTerms;
+					document.getElementById(HolderID).value = JSON.stringify(selectedTerms);
 				}
 			},
 			deep: true
