@@ -39,6 +39,7 @@ if ( empty( $terms ) ) {
 			v-model="value"
 			<?php if ( $data->is_branch_nodes_disabled() === true ) : ?>:disable-branch-nodes="true"<?php endif; ?>
 			<?php if ( $data->is_multiple() ) : ?>:multiple="true"<?php endif; ?>
+			:options="options"
 			value-consists-of="ALL"
 			no-results-text="<?php esc_html_e( 'No results found' ); ?>"
 			no-options-text="<?php esc_html_e( 'No options available.' ); ?>"

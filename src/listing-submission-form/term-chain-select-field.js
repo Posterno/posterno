@@ -19,6 +19,7 @@ Vue.component( 'pno-term-chain-select-field', {
 	data() {
 		return {
 			value: null,
+			options: [],
 		}
 	},
 	methods: {
