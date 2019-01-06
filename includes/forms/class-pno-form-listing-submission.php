@@ -212,7 +212,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			'fields'       => $this->get_fields( 'listing-details' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-			'submit_label' => esc_html__( 'Save changes' ),
+			'submit_label' => esc_html__( 'Submit listing' ),
 			'form_type'    => 'listing',
 
 		];
