@@ -756,7 +756,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 		],
 		'listing_regions'               => [
 			'label'         => esc_html__( 'Listing regions' ),
-			'type'          => 'term-select',
+			'type'          => 'term-chain-dropdown',
 			'taxonomy'      => 'listings-locations',
 			'placeholder'   => esc_html__( 'Select a region' ),
 			'required'      => true,
