@@ -23,6 +23,14 @@ Vue.component('pno-listing-tags-selector', {
 				document.getElementById('pno-field-listing_tags').value = JSON.stringify(this.selectedTags);
 			},
 			deep: true
+		},
+		availableTags: {
+			handler: function () {
+				if ( ! this.tagsAreAvailable() ) {
+					this.selectedTags = []
+				}
+			},
+			deep: true
 		}
 	},
 	mounted() {
