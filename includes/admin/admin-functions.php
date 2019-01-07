@@ -46,7 +46,7 @@ function pno_get_pages( $force = false ) {
  */
 function pno_shortcodes_add_tinymce_plugin( $plugin_array ) {
 
-	$plugin_array['pno_shortcodes_mce_button'] = apply_filters( 'pno_shortcodes_tinymce_js_file_url', PNO_PLUGIN_URL . 'assets/js/pno-tinymce.min.js' );
+	$plugin_array['pno_shortcodes_mce_button'] = apply_filters( 'pno_shortcodes_tinymce_js_file_url', PNO_PLUGIN_URL . 'assets/js/frontend/tinymce.min.js' );
 
 	return $plugin_array;
 
