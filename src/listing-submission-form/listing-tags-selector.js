@@ -24,6 +24,9 @@ Vue.component('pno-listing-tags-selector', {
 			},
 			deep: true
 		},
+		/**
+		 * Clear tags storage when clearing the categories selection.
+		*/
 		availableTags: {
 			handler: function () {
 				if ( ! this.tagsAreAvailable() ) {
