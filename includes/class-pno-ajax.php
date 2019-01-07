@@ -80,8 +80,6 @@ class PNO_Ajax {
 		$categories = isset( $_GET['categories'] ) ? (array) $_GET['categories'] : array();
 		$categories = array_map( 'esc_attr', $categories );
 
-		$subcategories_enabled = pno_get_option( 'submission_categories_sublevel' );
-
 		$top_parent_categories = [];
 
 		if ( ! empty( $categories ) && is_array( $categories ) ) {

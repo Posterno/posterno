@@ -41,7 +41,7 @@ Vue.component('pno-listing-tags-selector', {
 		/**
 		 * Catch changes within the listings category selector and load appropriate tags.
 		 */
-		EventBus.$on( 'category-changed', function (payLoad) {
+		EventBus.$on( 'categories-changed', function (payLoad) {
 
 			clearTimeout(this.timeout);
 
