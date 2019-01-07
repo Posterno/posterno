@@ -1,4 +1,5 @@
 /*global Vue:true*/
+import EventBus from './event-bus'
 import Treeselect from '@riophae/vue-treeselect'
 
 Vue.component( 'pno-term-chain-select-field', {
@@ -7,6 +8,7 @@ Vue.component( 'pno-term-chain-select-field', {
 	},
 	props: {
 		taxonomy: '',
+		emitterid: false,
 		terms: false
 	},
 	beforeMount() {
@@ -22,7 +24,17 @@ Vue.component( 'pno-term-chain-select-field', {
 		}
 	},
 	methods: {
-
+		/**
+		 * Emit a global event so that some of our components can interact with do
+		 * and run specific functionalities.
+		 *
+		 * @param {*} payLoad
+		 */
+		emitMethod(payLoad) {
+			if (this.emitterid) {
+				EventBus.$emit(this.emitterid, payLoad);
+			}
+		},
 	},
 	watch: {
 		/**
@@ -31,12 +43,17 @@ Vue.component( 'pno-term-chain-select-field', {
 		 */
 		value: {
 			handler: function () {
+
 				var selectedTerms = JSON.stringify(this.value)
 				var HolderID = this.$el.nextElementSibling.id
 				var HolderClass = this.$el.nextElementSibling.className
+
+				this.emitMethod(this.value)
+
 				if ( HolderClass === "pno-chain-select-value-holder" ) {
 					document.getElementById(HolderID).value = selectedTerms;
 				}
+
 			},
 			deep: true
 		}
