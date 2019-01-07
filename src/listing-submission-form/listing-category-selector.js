@@ -23,6 +23,18 @@ Vue.component('pno-listing-category-selector', {
 		// Parse the terms json string into an object.
 		this.options = JSON.parse(this.terms)
 
+		// Load selected categories of a listing from the database when viewing the edit form.
+		var savedCategories = this.getSavedCategories()
+
+		if ( savedCategories.length > 0 ) {
+
+			this.value = []
+
+			savedCategories.forEach((category) => {
+				this.value.push(category)
+			});
+		}
+
 	},
 	watch: {
 		/**
@@ -51,5 +63,11 @@ Vue.component('pno-listing-category-selector', {
 				EventBus.$emit(this.emitterid, payLoad);
 			}
 		},
+		/**
+		 * Get categories loaded into the field from the database.
+		 */
+		getSavedCategories() {
+			return document.getElementById('pno-field-listing_categories').value ? JSON.parse(document.getElementById('pno-field-listing_categories').value) : false
+		}
 	},
 });
