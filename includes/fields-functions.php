@@ -916,14 +916,13 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							$value = wp_json_encode( carbon_get_post_meta( $listing_id, 'listing_social_profiles' ) );
 							break;
 						case 'listing_categories':
-							$value = pno_serialize_stored_listing_categories( $listing_id );
+							$value = pno_serialize_stored_listing_terms( $listing_id );
 							break;
 						case 'listing_tags':
-							$value = pno_serialize_stored_listing_tags( $listing_id );
+							$value = pno_serialize_stored_listing_terms( $listing_id, 'listings-tags' );
 							break;
 						case 'listing_regions':
-							$regions = wp_get_post_terms( $listing_id, 'listings-locations' );
-							$value = false;
+							$value = pno_serialize_stored_listing_terms( $listing_id, 'listings-locations' );
 							break;
 						case 'listing_opening_hours':
 							$value = wp_json_encode( get_post_meta( $listing_id, '_listing_opening_hours', true ) );
@@ -981,36 +980,24 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
  * @param string $listing_id the id of the listing.
  * @return string
  */
-function pno_serialize_stored_listing_categories( $listing_id ) {
+function pno_serialize_stored_listing_terms( $listing_id, $taxonomy = 'listings-categories' ) {
 
 	if ( ! $listing_id ) {
 		return;
 	}
 
-	$value = '';
+	$values = [];
+	$cats = wp_get_post_terms( $listing_id, $taxonomy );
 
-	$cats          = wp_get_post_terms( $listing_id, 'listings-categories' );
-	$top           = wp_list_filter( $cats, [ 'parent' => 0 ] );
-	$sub           = wp_list_filter( $cats, [ 'parent' => 0 ], 'NOT' );
-	$parent        = [];
-	$subcategories = [];
+	if ( ! empty( $cats ) && is_array( $cats ) ) {
+		foreach ( $cats as $term ) {
 
-	if ( is_array( $top ) ) {
-		foreach ( $top as $parent_category ) {
-			$parent[] = $parent_category->term_id;
+			if ( isset( $term->term_id ) ) {
+				$value[] = absint( $term->term_id );
+			}
+
 		}
 	}
-
-	if ( is_array( $sub ) ) {
-		foreach ( $sub as $subcategory ) {
-			$subcategories[] = $subcategory->term_id;
-		}
-	}
-
-	$value = [
-		'parent' => $parent,
-		'sub'    => $subcategories,
-	];
 
 	return wp_json_encode( $value );
 

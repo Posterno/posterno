@@ -180,24 +180,6 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 	}
 
 	/**
-	 * Detect if a listing type has been selected and retrieve it's id.
-	 *
-	 * @return mixed
-	 */
-	public function get_submitted_listing_type_id() {
-
-		$id = false;
-
-		//phpcs:ignore
-		if ( isset( $_POST['listing_type_id'] ) && ! empty( $_POST['listing_type_id'] ) ) {
-			$id = absint( $_POST['listing_type_id'] );
-		}
-
-		return $id;
-
-	}
-
-	/**
 	 * Displays the listing details form.
 	 *
 	 * @return void

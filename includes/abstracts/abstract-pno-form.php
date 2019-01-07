@@ -672,19 +672,6 @@ abstract class PNO_Form {
 	}
 
 	/**
-	 * Process the data sent through a file field and update the listing's attachments.
-	 *
-	 * @param array        $field_details details about the field.
-	 * @param string       $listing_id the listing to update.
-	 * @param string       $key the name of the field.
-	 * @param array|string $values values applied to the fiel field.
-	 * @return void
-	 */
-	protected function process_listing_file_field_submission( $field_details, $listing_id, $key, $values ) {
-
-	}
-
-	/**
 	 * Assign to the listing the taxonomies selected through the field.
 	 *
 	 * @param array        $field_details details about the field being submitted.
@@ -718,6 +705,24 @@ abstract class PNO_Form {
 		if ( in_array( $taxonomy, $listing_taxonomies ) ) {
 			wp_set_object_terms( absint( $listing_id ), $terms, $taxonomy, false );
 		}
+
+	}
+
+	/**
+	 * Detect if a listing type has been selected and retrieve it's id.
+	 *
+	 * @return mixed
+	 */
+	public function get_submitted_listing_type_id() {
+
+		$id = false;
+
+		//phpcs:ignore
+		if ( isset( $_POST['listing_type_id'] ) && ! empty( $_POST['listing_type_id'] ) ) {
+			$id = absint( $_POST['listing_type_id'] );
+		}
+
+		return $id;
 
 	}
 
