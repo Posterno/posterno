@@ -361,8 +361,9 @@ abstract class PNO_Form {
 					} else {
 						$check_value = empty( $values[ $group_key ][ $key ] ) ? array() : array( $values[ $group_key ][ $key ] );
 					}
+
 					foreach ( $check_value as $term ) {
-						if ( ! term_exists( $term, $field['taxonomy'] ) ) {
+						if ( ! term_exists( absint( $term ), $field['taxonomy'] ) ) {
 							// translators: Placeholder %s is the field label that is did not validate.
 							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid' ), $field['label'] ) );
 						}

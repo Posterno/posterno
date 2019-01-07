@@ -155,6 +155,7 @@ if ( $data->form->is_successful() ) {
 		<?php endforeach; ?>
 
 		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>" />
+		<input type="hidden" name="listing_type_id" value="<?php echo esc_html( $data->form->get_submitted_listing_type_id() ); ?>">
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
 		<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
 		<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>

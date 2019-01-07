@@ -65,13 +65,13 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
-			'listing-type'    => array(
+			'listing-type'      => array(
 				'name'     => esc_html__( 'Select a listing type' ),
 				'view'     => array( $this, 'type' ),
 				'handler'  => array( $this, 'type_handler' ),
 				'priority' => 10,
 			),
-			'listing-details' => array(
+			'listing-details'   => array(
 				'name'     => esc_html__( 'Listing details' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
@@ -184,7 +184,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 	 *
 	 * @return mixed
 	 */
-	private function get_submitted_listing_type_id() {
+	public function get_submitted_listing_type_id() {
 
 		$id = false;
 
@@ -342,7 +342,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 				// Assign terms.
 				if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
-					$listing_region  = $values['listing_regions'];
+					$listing_region  = json_decode( $values['listing_regions'] );
 					$ancestors       = get_ancestors( $listing_region, 'listings-locations', 'taxonomy' );
 					$listing_regions = [ $listing_region ];
 					if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
@@ -353,39 +353,10 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 				// Assign categories to the listing.
 				if ( isset( $values['listing_categories'] ) && ! empty( $values['listing_categories'] ) ) {
-
 					$listing_categories = json_decode( $values['listing_categories'] );
-					$parent_categories  = [];
-					$categories_to_save = [];
-
-					if ( isset( $listing_categories->parent ) && is_array( $listing_categories->parent ) && ! empty( $listing_categories->parent ) ) {
-						foreach ( $listing_categories->parent as $term_id ) {
-							$categories_to_save[] = absint( $term_id );
-							$parent_categories[]  = absint( $term_id );
-						}
-					}
-
-					if ( isset( $listing_categories->sub ) && is_array( $listing_categories->sub ) && ! empty( $listing_categories->sub ) ) {
-						foreach ( $listing_categories->sub as $sub_term_id ) {
-
-							$categories_to_save[] = absint( $sub_term_id );
-							$ancestors            = get_ancestors( $sub_term_id, 'listings-categories', 'taxonomy' );
-							$parent_category      = pno_get_term_top_most_parent( $sub_term_id, 'listings-categories' );
-
-							if ( $parent_category instanceof WP_Term ) {
-								if ( ! empty( $ancestors ) && is_array( $ancestors ) && in_array( $parent_category->term_id, $parent_categories ) ) {
-									$categories_to_save = array_merge( $categories_to_save, $ancestors );
-								}
-							} else {
-								if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
-									$categories_to_save = array_merge( $categories_to_save, $ancestors );
-								}
-							}
-						}
-					}
-
-					if ( ! empty( $categories_to_save ) ) {
-						wp_set_object_terms( absint( $new_listing_id ), array_unique( $categories_to_save ), 'listings-categories' );
+					$listing_categories = array_map( 'absint', $listing_categories );
+					if ( ! empty( $listing_categories ) ) {
+						wp_set_object_terms( absint( $new_listing_id ), array_unique( $listing_categories ), 'listings-categories' );
 					}
 				}
 
@@ -436,7 +407,6 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 										carbon_set_post_meta( $new_listing_id, $key, $new_attachments_list );
 									}
 								}
-
 							} else {
 
 								if ( isset( $values[ $key ]['url'] ) ) {
@@ -445,27 +415,28 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 										carbon_set_post_meta( $new_listing_id, $key, $attachment_id );
 									}
 								}
-
 							}
-
 						} elseif ( in_array( $field_details['type'], [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
-							if ( ! empty( $values[ $key ] ) ) {
-								$this->process_taxonomy_field( $field_details, $new_listing_id, $values[ $key ] );
+							$term_value = $values[ $key ];
+
+							if ( $field_details['type'] === 'term-chain-dropdown' ) {
+								$term_value = json_decode( $term_value );
 							}
 
+							if ( ! empty( $term_value ) ) {
+								$this->process_taxonomy_field( $field_details, $new_listing_id, $term_value );
+							}
 						} elseif ( $field_details['type'] === 'checkbox' ) {
 
 							if ( $values[ $key ] === '1' ) {
 								carbon_set_post_meta( $new_listing_id, $key, true );
 							}
-
 						} else {
 
 							if ( ! empty( $values[ $key ] ) ) {
 								carbon_set_post_meta( $new_listing_id, $key, $values[ $key ] );
 							}
-
 						}
 					}
 				}
