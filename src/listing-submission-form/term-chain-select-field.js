@@ -1,5 +1,6 @@
 /*global Vue:true*/
 import EventBus from './event-bus'
+import _isEmpty from 'lodash.isempty'
 import Treeselect from '@riophae/vue-treeselect'
 
 Vue.component( 'pno-term-chain-select-field', {
@@ -15,6 +16,15 @@ Vue.component( 'pno-term-chain-select-field', {
 
 		// Parse the terms json string into an object.
 		this.options = JSON.parse(this.terms)
+
+	},
+	mounted() {
+
+		let storedValues = this.getSavedValues()
+
+		if ( ! _isEmpty( storedValues ) ) {
+			this.value = storedValues
+		}
 
 	},
 	data() {
@@ -35,6 +45,17 @@ Vue.component( 'pno-term-chain-select-field', {
 				EventBus.$emit(this.emitterid, payLoad);
 			}
 		},
+		getSavedValues() {
+
+			var HolderID = this.$el.nextElementSibling.id
+			var HolderClass = this.$el.nextElementSibling.className
+
+			if ( HolderClass === "pno-chain-select-value-holder" ) {
+				return document.getElementById(HolderID).value
+			}
+
+			return false
+		}
 	},
 	watch: {
 		/**

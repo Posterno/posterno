@@ -27,9 +27,7 @@ Vue.component('pno-listing-category-selector', {
 		var savedCategories = this.getSavedCategories()
 
 		if ( savedCategories.length > 0 ) {
-
 			this.value = []
-
 			savedCategories.forEach((category) => {
 				this.value.push(category)
 			});
