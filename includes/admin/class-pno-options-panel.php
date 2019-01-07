@@ -501,9 +501,6 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'submission_tags_associated', esc_html__( 'Tags to categories association' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow selection of tags belonging to the chosen listing categories during submission.' ) );
 
-		$settings[] = Field::make( 'checkbox', 'submission_categories_sublevel', esc_html__( 'Display sub categories' ) )
-			->set_help_text( esc_html__( 'Enable the option to display sub categories during selection.' ) );
-
 		$settings[] = Field::make( 'text', 'submission_categories_amount', esc_html__( 'How many categories?' ) )
 			->set_help_text( esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ) );
 
