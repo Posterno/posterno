@@ -23,7 +23,7 @@ Vue.component( 'pno-term-chain-select-field', {
 		let storedValues = this.getSavedValues()
 
 		if ( ! _isEmpty( storedValues ) ) {
-			this.value = storedValues
+			this.value = JSON.parse(storedValues)
 		}
 
 	},
