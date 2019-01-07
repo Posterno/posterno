@@ -498,6 +498,12 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'submission_categories_associated', esc_html__( 'Categories to type association' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow selection of categories belonging to the chosen listing type during submission.' ) );
 
+		$settings[] = Field::make( 'checkbox', 'submission_categories_disable_nodes', esc_html__( 'Categories disable branch nodes' ) )
+			->set_help_text( esc_html__( 'Enable this option so that branch nodes (Parent terms) are collapsible and not selectable during submission.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'submission_categories_multiple', esc_html__( 'Allow multiple categories' ) )
+			->set_help_text( esc_html__( 'Enable this option to allow multiple categories to be selected through the dropdown during submission.' ) );
+
 		$settings[] = Field::make( 'checkbox', 'submission_tags_associated', esc_html__( 'Tags to categories association' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow selection of tags belonging to the chosen listing categories during submission.' ) );
 

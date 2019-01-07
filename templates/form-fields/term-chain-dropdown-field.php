@@ -34,7 +34,7 @@ if ( empty( $terms ) ) {
 
 ?>
 <pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->get_taxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
-	<div class="pno-term-chain" <?php pno_form_field_input_class( $data ); ?>>
+	<div>
 		<treeselect
 			v-model="value"
 			<?php if ( $data->is_branch_nodes_disabled() === true ) : ?>:disable-branch-nodes="true"<?php endif; ?>

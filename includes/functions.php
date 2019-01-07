@@ -322,13 +322,16 @@ function pno_get_listings_categories_for_submission_selection( $listing_type_id 
 		'orderby'    => 'name',
 		'order'      => 'ASC',
 		'parent'     => 0,
+		'fields'     => 'ids',
 	);
 
 	if ( $listing_type_id && pno_get_option( 'submission_categories_associated' ) ) {
 		$terms_args['include'] = $categories_associated_to_type;
 	}
 
-	$terms = get_terms( 'listings-categories', $terms_args );
+	$cats = get_terms( 'listings-categories', $terms_args );
+
+	$terms = pno_get_taxonomy_hierarchy_for_chain_selector( 'listings-categories', 0, $cats );
 
 	return $terms;
 

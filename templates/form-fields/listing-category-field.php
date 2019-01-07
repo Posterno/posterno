@@ -24,46 +24,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Retrieve categories.
 $listing_type_id                = pno_get_submission_queried_listing_type_id();
 $listings_categories_associated = pno_get_listings_categories_for_submission_selection( $listing_type_id );
-$show_subcategories             = pno_get_option( 'submission_categories_sublevel' ) ? true : false;
-
-// Determine settings for the field.
-$max_parent_selectable = pno_get_selectable_categories_count();
-$max_sub_selectable    = pno_get_selectable_subcategories_count();
-
-$sub_categories_placeholder = esc_html__( 'Select one or more sub categories.' );
-
-if ( $max_sub_selectable <= 1 ) {
-	$sub_categories_placeholder = esc_html__( 'Select a sub category.' );
-}
 
 ?>
 
-<pno-listing-category-selector inline-template>
+<pno-listing-category-selector inline-template emitterid="categories-changed" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $listings_categories_associated ) ) ); ?>">
 	<div>
-		<pno-select2 inline-template v-model="selectedCategories" data-placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_parent_selectable ); ?> }" data-emitterid="category-changed">
-			<div class="pno-select2-wrapper">
-				<select class="form-control" multiple>
-					<?php foreach ( $listings_categories_associated as $category ) : ?>
-						<option value="<?php echo absint( $category->term_id ); ?>"><?php echo esc_html( $category->name ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-		</pno-select2>
-
-		<div class="mt-3" v-if="displaySubcategories">
-			<div class="pno-loading" v-if="loading"></div>
-			<pno-select2 v-else :options="availableSubcategories" inline-template v-model="selectedSubcategories" data-placeholder="<?php echo esc_html( $sub_categories_placeholder ); ?>" :settings="{ maximumSelectionLength: <?php echo absint( $max_sub_selectable ); ?> }">
-				<div class="pno-select2-wrapper">
-					<select class="form-control" multiple></select>
-				</div>
-			</pno-select2>
-		</div>
+		<treeselect
+			v-model="value"
+			<?php if ( pno_get_option( 'submission_categories_disable_nodes' ) ) : ?>:disable-branch-nodes="true"<?php endif; ?>
+			<?php if ( pno_get_option( 'submission_categories_multiple' ) ) : ?>:multiple="true"<?php endif; ?>
+			:options="options"
+			value-consists-of="ALL"
+			no-results-text="<?php esc_html_e( 'No results found' ); ?>"
+			no-options-text="<?php esc_html_e( 'No options available.' ); ?>"
+			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
+		/>
 	</div>
 </pno-listing-category-selector>
 
 <input
 	type="hidden"
-	<?php pno_form_field_input_class( $data ); ?>
 	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
 	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
