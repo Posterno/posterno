@@ -504,9 +504,6 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'submission_categories_sublevel', esc_html__( 'Display sub categories' ) )
 			->set_help_text( esc_html__( 'Enable the option to display sub categories during selection.' ) );
 
-		$settings[] = Field::make( 'checkbox', 'submission_region_sublevel', esc_html__( 'Allow child regions' ) )
-			->set_help_text( esc_html__( 'Enable the option to display a parent to child hierarchy for the regions selector while submitting listings.' ) );
-
 		$settings[] = Field::make( 'text', 'submission_categories_amount', esc_html__( 'How many categories?' ) )
 			->set_help_text( esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ) );
 
