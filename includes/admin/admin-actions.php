@@ -169,7 +169,7 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 	}
 
 }
-add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash' );
+add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash', 9999 );
 
 /**
  * When the listings list table loads, call the function to view our tabs.
