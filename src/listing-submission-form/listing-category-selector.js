@@ -32,6 +32,10 @@ Vue.component('pno-listing-category-selector', {
 		value: {
 			handler: function () {
 
+				this.emitMethod(this.value)
+
+				document.getElementById('pno-field-listing_categories').value = JSON.stringify(this.value);
+
 			},
 		},
 	},
