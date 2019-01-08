@@ -334,3 +334,33 @@ function pno_disable_listing_type_submission_selection_step( $steps ) {
 
 }
 add_filter( 'pno_listing_submission_form_steps', 'pno_disable_listing_type_submission_selection_step' );
+
+/**
+ * Restrict the amount of categories the user can select when submitting or editing a listing from the fronted.
+ *
+ * @param boolean $pass whether validation should pass or not.
+ * @param array   $fields all fields defined into the form.
+ * @param array   $values all values submitted through the form.
+ * @param string  $form the name of form being processed.
+ * @return boolean|WP_Error
+ */
+function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $form ) {
+
+	$forms = [ 'listing-edit', 'listing-submission' ];
+
+	if ( in_array( $form, $forms ) && ! empty( pno_get_option( 'submission_categories_amount' ) ) && isset( $values['listing-details']['listing_categories'] ) && ! empty( $values['listing-details']['listing_categories'] ) ) {
+
+		$max_selection      = pno_get_selectable_categories_count();
+		$listing_categories = json_decode( $values['listing-details']['listing_categories'] );
+		$listing_categories = array_map( 'absint', $listing_categories );
+		$categories_amount  = count( $listing_categories );
+
+		if ( is_array( $listing_categories ) && $categories_amount > $max_selection ) {
+			return new WP_Error( 'max-categories-reached', sprintf( esc_html__( 'The maximum amount of categories you are allowed to select is %1$s, you have selected %2$s.' ), $max_selection, $categories_amount ) );
+		}
+	}
+
+	return $pass;
+
+}
+add_filter( 'pno_form_validate_fields', 'pno_validate_amount_of_selected_categories', 10, 4 );

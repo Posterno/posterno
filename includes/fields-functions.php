@@ -665,16 +665,14 @@ function pno_parse_selectable_taxonomy_options( $taxonomy ) {
 function pno_get_listings_submission_form_js_vars() {
 
 	$js_settings = [
-		'selected_listing_type'       => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, // phpcs: ignore
-		'max_multiselect'             => absint( pno_get_option( 'submission_categories_amount' ) ),
-		'subcategories_on_submission' => pno_get_option( 'submission_categories_sublevel' ) ? true : false,
-		'ajax'                        => admin_url( 'admin-ajax.php' ),
-		'get_tags_nonce'              => wp_create_nonce( 'pno_get_tags_from_categories_for_submission' ),
-		'get_starter_tags_nonce'      => wp_create_nonce( 'pno_get_tags' ),
-		'get_subcategories_nonce'     => wp_create_nonce( 'pno_get_subcategories' ),
-		'days'                        => pno_get_days_of_the_week(),
-		'is_editing_mode'             => is_page( pno_get_listing_editing_page_id() ),
-		'editing_listing_id'          => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
+		'selected_listing_type'   => isset( $_POST['pno_listing_type_id'] ) && ! empty( sanitize_text_field( $_POST['pno_listing_type_id'] ) ) ? absint( $_POST['pno_listing_type_id'] ) : false, // phpcs: ignore
+		'ajax'                    => admin_url( 'admin-ajax.php' ),
+		'get_tags_nonce'          => wp_create_nonce( 'pno_get_tags_from_categories_for_submission' ),
+		'get_starter_tags_nonce'  => wp_create_nonce( 'pno_get_tags' ),
+		'get_subcategories_nonce' => wp_create_nonce( 'pno_get_subcategories' ),
+		'days'                    => pno_get_days_of_the_week(),
+		'is_editing_mode'         => is_page( pno_get_listing_editing_page_id() ),
+		'editing_listing_id'      => is_page( pno_get_listing_editing_page_id() ) && isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false,
 	];
 
 	return apply_filters( 'pno_listings_submission_form_js_vars', $js_settings );
@@ -881,7 +879,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				if ( $field->get_type() === 'term-chain-dropdown' ) {
 					$fields[ $field->get_object_meta_key() ]['disable_branch_nodes'] = $field->is_branch_nodes_disabled();
 				}
-
 			}
 		}
 	}
@@ -987,7 +984,7 @@ function pno_serialize_stored_listing_terms( $listing_id, $taxonomy = 'listings-
 	}
 
 	$values = [];
-	$cats = wp_get_post_terms( $listing_id, $taxonomy );
+	$cats   = wp_get_post_terms( $listing_id, $taxonomy );
 
 	if ( ! empty( $cats ) && is_array( $cats ) ) {
 		foreach ( $cats as $term ) {
@@ -995,7 +992,6 @@ function pno_serialize_stored_listing_terms( $listing_id, $taxonomy = 'listings-
 			if ( isset( $term->term_id ) ) {
 				$value[] = absint( $term->term_id );
 			}
-
 		}
 	}
 

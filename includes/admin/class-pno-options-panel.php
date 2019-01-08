@@ -510,9 +510,6 @@ class OptionsPanel {
 		$settings[] = Field::make( 'text', 'submission_categories_amount', esc_html__( 'How many categories?' ) )
 			->set_help_text( esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ) );
 
-		$settings[] = Field::make( 'text', 'submission_subcategories_amount', esc_html__( 'How many sub categories?' ) )
-			->set_help_text( esc_html__( 'Specify how many sub categories users can select for their listings (eg: 5). Leave blank if not needed.' ) );
-
 		$settings[] = Field::make( 'checkbox', 'submission_moderated', esc_html__( 'Moderate new listings' ) )
 			->set_help_text( esc_html__( 'Enable the option to require admin approval of all new listing submissions.' ) );
 
