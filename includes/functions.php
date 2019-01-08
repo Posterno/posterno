@@ -556,3 +556,39 @@ function pno_get_string_between( $str, $from, $to ) {
 	return substr( $sub, 0, strpos( $sub, $to ) );
 
 }
+
+/**
+ * Determine if the currently logged in user can submit listings.
+ *
+ * @return boolean
+ */
+function pno_can_user_submit_listings() {
+
+	$roles_required = pno_get_option( 'submission_requires_roles' );
+
+	if ( ! is_user_logged_in() ) {
+		return false;
+	}
+
+	if ( empty( $roles_required ) ) {
+
+		return true;
+
+	} else {
+
+		$user           = wp_get_current_user();
+		$role           = (array) $user->roles;
+		$roles_selected = [ 'administrator' ];
+
+		foreach ( $roles_required as $single_role ) {
+			$roles_selected[] = esc_attr( $single_role );
+		}
+
+		if ( ! array_intersect( (array) $user->roles, $roles_selected ) ) {
+			return false;
+		}
+	}
+
+	return true;
+
+}
