@@ -429,6 +429,8 @@ class OptionsPanel {
 			);
 
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
 		$settings[] = Field::make( 'select', 'listings_default_order', esc_html__( 'Order listings by' ) )
@@ -459,6 +461,8 @@ class OptionsPanel {
 		$settings = [];
 
 		$settings[] = Field::make( 'text', 'listings_per_page_dashboard', esc_html__( 'Listings per page in dashboard' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display when users are managing their listings.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'listing_allow_editing', esc_html__( 'Listings can be edited' ) )
@@ -513,12 +517,16 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Enable this option to allow selection of tags belonging to the chosen listing categories during submission.' ) );
 
 		$settings[] = Field::make( 'text', 'submission_categories_amount', esc_html__( 'How many categories?' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'submission_moderated', esc_html__( 'Moderate new listings' ) )
 			->set_help_text( esc_html__( 'Enable the option to require admin approval of all new listing submissions.' ) );
 
 		$settings[] = Field::make( 'text', 'submission_images_amount', esc_html__( 'How many images?' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Specify the maximum amount of images your members can upload per listing.' ) );
 
 		return $settings;
