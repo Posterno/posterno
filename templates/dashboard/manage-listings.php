@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 			?>
 		</div>
 		<div class="col-12 col-sm-12 col-md-4 text-sm-left text-md-right">
-			<?php if ( $data->submission_page ) : ?>
+			<?php if ( $data->submission_page && pno_can_user_submit_listings() ) : ?>
 				<a class="btn btn-primary btn-sm" href="<?php echo esc_url( get_permalink( $data->submission_page ) ); ?>" role="button"><i class="fas fa-plus-circle mr-1"></i> <?php esc_html_e( 'Add listing' ); ?></a>
 			<?php endif; ?>
 		</div>

@@ -162,7 +162,7 @@ function pno_load_manage_listings_dashboard() {
 
 	$user_id = get_current_user_id();
 
-	if ( ! pno_user_has_submitted_listings( $user_id ) ) {
+	if ( ! pno_user_has_submitted_listings( $user_id ) || ! pno_can_user_submit_listings() ) {
 		return;
 	}
 

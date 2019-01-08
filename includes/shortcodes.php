@@ -284,19 +284,8 @@ function pno_listing_submission_form() {
 	$restricted = false;
 
 	// Display error message if specific roles are required to access the page.
-	if ( is_user_logged_in() && $roles_required && is_array( $roles_required ) && ! empty( $roles_required ) ) {
-
-		$user           = wp_get_current_user();
-		$role           = (array) $user->roles;
-		$roles_selected = [ 'administrator' ];
-
-		foreach ( $roles_required as $single_role ) {
-			$roles_selected[] = esc_attr( $single_role );
-		}
-
-		if ( ! array_intersect( (array) $user->roles, $roles_selected ) ) {
-			$restricted = 'role';
-		}
+	if ( ! pno_can_user_submit_listings() ) {
+		$restricted = true;
 	}
 
 	/**
@@ -350,7 +339,7 @@ function pno_listing_editing_form() {
 	$user_id    = is_user_logged_in() ? get_current_user_id() : false;
 	$listing_id = pno_get_queried_listing_editable_id();
 
-	if ( pno_is_user_owner_of_listing( $user_id, $listing_id ) && ! pno_is_listing_pending_approval( $listing_id ) || ( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $user_id, $listing_id ) && pno_pending_listings_can_be_edited() ) ) {
+	if ( pno_can_user_submit_listings() && pno_is_user_owner_of_listing( $user_id, $listing_id ) && ! pno_is_listing_pending_approval( $listing_id ) || ( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $user_id, $listing_id ) && pno_pending_listings_can_be_edited() ) ) {
 
 		//phpcs:ignore
 		echo posterno()->forms->get_form( 'listing-edit' );

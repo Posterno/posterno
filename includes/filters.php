@@ -169,6 +169,16 @@ function pno_setup_nav_menu_item( $menu_item ) {
 	// Prevent a notice error when using the customizer.
 	$menu_classes = $menu_item->classes;
 
+	// Hide the add listing menu item page if the user can't add listings.
+	if ( isset( $menu_item->object_id ) && absint( $menu_item->object_id ) === absint( pno_get_listing_submission_page_id() ) && ! pno_can_user_submit_listings() ) {
+		$menu_item->_invalid = true;
+	}
+
+	// Hide the listing edit page menu item if the user can't add listings.
+	if ( isset( $menu_item->object_id ) && absint( $menu_item->object_id ) === absint( pno_get_listing_editing_page_id() ) && ! pno_can_user_submit_listings() ) {
+		$menu_item->_invalid = true;
+	}
+
 	if ( is_array( $menu_classes ) ) {
 		$menu_classes = implode( ' ', $menu_item->classes );
 	}
@@ -219,7 +229,7 @@ function pno_setup_nav_menu_item( $menu_item ) {
 			}
 			break;
 		case 'listings':
-			if ( ! is_user_logged_in() || is_user_logged_in() && ! pno_user_has_submitted_listings( get_current_user_id() ) ) {
+			if ( ! is_user_logged_in() || is_user_logged_in() && ! pno_user_has_submitted_listings( get_current_user_id() ) || ! pno_can_user_submit_listings() ) {
 				$menu_item->_invalid = true;
 			} else {
 				$menu_item->url = pno_get_dashboard_navigation_item_url( $matches[1] );
