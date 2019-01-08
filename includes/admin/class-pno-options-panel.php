@@ -419,6 +419,15 @@ class OptionsPanel {
 
 		$settings = [];
 
+		$settings[] = Field::make( 'radio', 'listing_date_format', esc_html__( 'Date format:' ) )
+			->set_help_text( esc_html__( 'Choose how you want the published date for listings to be displayed on the front-end.' ) )
+			->add_options(
+				[
+					'relative' => esc_html__( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)' ),
+					'default'  => esc_html__( 'Default date format as defined in Settings' ),
+				]
+			);
+
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page' ) )
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
@@ -428,17 +437,13 @@ class OptionsPanel {
 		$settings[] = Field::make( 'select', 'listings_layout', esc_html__( 'Default listings layout' ) )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
+		$settings[] = Field::make( 'text', 'listings_duration', esc_html__( 'Listings duration' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
+			->set_help_text( esc_html__( 'Listings will display for the set number of days, then expire. Leave this field blank if you don\'t want listings to have an expiration date.' ) );
+
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
-
-		$settings[] = Field::make( 'radio', 'listing_date_format', esc_html__( 'Date format:' ) )
-			->set_help_text( esc_html__( 'Choose how you want the published date for listings to be displayed on the front-end.' ) )
-			->add_options(
-				[
-					'relative' => esc_html__( 'Relative to the current date (e.g., 1 day, 1 week, 1 month ago)' ),
-					'default'  => esc_html__( 'Default date format as defined in Settings' ),
-				]
-			);
 
 		return $settings;
 
