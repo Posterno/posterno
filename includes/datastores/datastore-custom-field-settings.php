@@ -163,6 +163,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 				unset( $field_settings[ $key ] );
 			}
 		} else {
+
 			if ( is_array( $value ) && is_a( $field, '\\Carbon_Fields\\Field\\Complex_Field' ) ) {
 				$formatted_options = [];
 				foreach ( $value as $optkey => $array_of_options ) {
@@ -170,11 +171,18 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 					$formatted_options[ $optkey ] = $array_of_options;
 				}
 				$value = $formatted_options;
-			} else if ( is_array( $value ) ) {
+			} elseif ( is_array( $value ) ) {
 				$value = maybe_serialize( $value );
 			} else {
 				$value = sanitize_text_field( $value );
 			}
+
+			if ( $key === '_listing_field_meta_key' || $key === '_profile_field_meta_key' ) {
+				$value = \strtolower( $value );
+				$value = preg_replace( '/[^a-z0-9_\s-]/', '', $value );
+				$value = preg_replace( '/[\s-]/', '_', $value );
+			}
+
 			$field_settings[ $key ] = $value;
 		}
 
@@ -221,9 +229,19 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 		];
 
 		if ( $this->get_custom_field_type() === 'profile' && isset( $settings['_profile_field_meta_key'] ) ) {
-			$data_to_save['user_meta_key'] = $settings['_profile_field_meta_key'];
+
+			$value = \strtolower( $settings['_profile_field_meta_key'] );
+			$value = preg_replace( '/[^a-z0-9_\s-]/', '', $value );
+			$value = preg_replace( '/[\s-]/', '_', $value );
+
+			$data_to_save['user_meta_key'] = $value;
 		} elseif ( $this->get_custom_field_type() === 'listing' && isset( $settings['_listing_field_meta_key'] ) ) {
-			$data_to_save['listing_meta_key'] = $settings['_listing_field_meta_key'];
+
+			$value = \strtolower( $settings['_listing_field_meta_key'] );
+			$value = preg_replace( '/[^a-z0-9_\s-]/', '', $value );
+			$value = preg_replace( '/[\s-]/', '_', $value );
+
+			$data_to_save['listing_meta_key'] = $value;
 		}
 
 		$field->update_item( $settings_object_id, $data_to_save );
