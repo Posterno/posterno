@@ -53,3 +53,11 @@
 		display: none;
 	}
 }
+
+body.post-type-listings {
+	.wp-list-table {
+		th#expires {
+			width: 10%;
+		}
+	}
+}
