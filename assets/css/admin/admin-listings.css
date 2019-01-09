@@ -31,3 +31,6 @@
 
 #carbon_fields_container_administrator_notification .wp-media-buttons {
   display: none; }
+
+.carbon-container-carbon_fields_container_listing_expiry button.button {
+  display: none; }

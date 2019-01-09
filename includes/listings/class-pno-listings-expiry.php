@@ -8,6 +8,9 @@
  * @since       0.1.0
  */
 
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -29,6 +32,8 @@ class PNO_Listings_Expiry {
 			return;
 		}
 
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
+
 	}
 
 	/**
@@ -42,6 +47,31 @@ class PNO_Listings_Expiry {
 			unset( $cols['expires'] );
 		}
 		return $cols;
+	}
+
+	/**
+	 * Add a new metabox within the listings post type that holds the
+	 * listings expiration date picker.
+	 *
+	 * @return void
+	 */
+	public function register_settings() {
+
+		$format = get_option( 'date_format' );
+
+		Container::make( 'post_meta', esc_html__( 'Listing expiry' ) )
+			->where( 'post_type', '=', 'listings' )
+			->set_context( 'side' )
+			->set_priority( 'low' )
+			->add_fields(
+				array(
+					Field::make( 'date', 'listing_expires', esc_html__( 'Listing expiry date' ) )
+						->set_input_format( $format, $format )
+						->set_storage_format( 'Y-m-d' )
+						->set_attribute( 'placeholder', pno_calculate_listing_expiry() ),
+				)
+			);
+
 	}
 
 }
