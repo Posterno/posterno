@@ -592,3 +592,39 @@ function pno_can_user_submit_listings() {
 	return true;
 
 }
+
+/**
+ * Determine if listings expiration is enabled.
+ *
+ * @return boolean
+ */
+function pno_listings_can_expire() {
+
+	$expiration = pno_get_option( 'listings_duration', false );
+
+	return is_numeric( $expiration );
+
+}
+
+/**
+ * Calculates and returns the listing expiry date.
+ *
+ * @param  int $listing_id the id of the listing.
+ * @return string
+ */
+function pno_calculate_listing_expiry( $listing_id = false ) {
+
+	// Get duration from the product if set...
+	$duration = get_post_meta( $listing_id, 'listing_duration', true );
+
+	// ...otherwise use the global option.
+	if ( ! $duration ) {
+		$duration = absint( pno_get_option( 'listings_duration' ) );
+	}
+
+	if ( $duration ) {
+		return date( get_option( 'date_format' ), strtotime( "+{$duration} days", current_time( 'timestamp' ) ) );
+	}
+
+	return '';
+}

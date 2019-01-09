@@ -205,8 +205,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_options();
 			$this->setup_utilities();
 			$this->setup_components();
-			$this->setup_objects();
 			$this->setup_functions();
+			$this->setup_objects();
 			$this->setup_forms();
 			$this->setup_api();
 
@@ -414,6 +414,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Listings.
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-dashboard-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-terms-custom-fields.php';
+			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-expiry.php';
 
 			// Theme Integration.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-theme-integration.php';
