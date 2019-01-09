@@ -172,45 +172,6 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash', 9999 );
 
 /**
- * When the listings list table loads, call the function to view our tabs.
- *
- * @param array $views registered views.
- * @return mixed
- */
-function pno_post_type_tabs( $views ) {
-	pno_display_post_type_tabs();
-
-	return $views;
-}
-add_filter( 'views_edit-listings', 'pno_post_type_tabs', 10, 1 );
-
-/**
- * Display the taxonomies tabs within the taxonomies panel.
- *
- * @return void
- */
-function pno_taxonomies_tabs() {
-	// phpcs:ignore
-	if ( empty( $_GET['taxonomy'] ) ) {
-		return;
-	}
-
-	$taxonomy   = sanitize_key( $_GET['taxonomy'] );
-	$taxonomies = get_object_taxonomies( 'listings' );
-
-	if ( ! in_array( $taxonomy, $taxonomies, true ) ) {
-		return;
-	}
-
-	?>
-	<div class="wrap edd-tab-wrap">
-		<?php pno_display_post_type_tabs(); ?>
-	</div>
-	<?php
-}
-add_action( 'admin_notices', 'pno_taxonomies_tabs', 10, 1 );
-
-/**
  * Display the list of listings post statuses into the admin panel.
  *
  * @return void

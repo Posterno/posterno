@@ -1,7 +1,3 @@
-.edit-php.post-type-listings .wrap .wp-heading-inline,
-.edit-php.post-type-listings .wrap > .page-title-action {
-  display: none; }
-
 .wrap .page-title-action.pno-title-action {
   top: 5px;
   left: 10px; }
