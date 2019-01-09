@@ -189,3 +189,23 @@ function pno_set_cb_admin_gmaps_api_key() {
 	return pno_get_option( 'google_maps_api_key' );
 }
 add_filter( 'carbon_fields_map_field_api_key', 'pno_set_cb_admin_gmaps_api_key' );
+
+/**
+ * Adjusts columns for the listings post type admin table.
+ *
+ * @param array $columns already registered columns.
+ * @return array
+ */
+function pno_listings_post_type_columns( $columns ) {
+
+	if ( isset( $columns['author'] ) ) {
+		unset( $columns['author'] );
+	}
+
+	if ( pno_listings_can_expire() ) {
+		$columns['expires'] = esc_html__( 'Expires' );
+	}
+
+	return $columns;
+}
+add_filter( 'manage_listings_posts_columns', 'pno_listings_post_type_columns' );

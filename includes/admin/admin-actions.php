@@ -280,3 +280,19 @@ function pno_emails_post_type_columns_content( $column, $post_id ) {
 
 }
 add_action( 'manage_pno_emails_posts_custom_column', 'pno_emails_post_type_columns_content', 10, 2 );
+
+/**
+ * Define the content for the custom columns for the listings post type.
+ *
+ * @param string $column the name of the column.
+ * @param string $listing_id the post we're going to use.
+ * @return void
+ */
+function pno_listings_post_type_columns_content( $column, $listing_id ) {
+
+	if ( $column === 'expires' && pno_listings_can_expire() ) {
+		pno_the_listing_expire_date( $listing_id );
+	}
+
+}
+add_action( 'manage_listings_posts_custom_column', 'pno_listings_post_type_columns_content', 10, 2 );
