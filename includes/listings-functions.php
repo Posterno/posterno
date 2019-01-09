@@ -281,7 +281,7 @@ function pno_the_listing_expire_date( $post = null ) {
  */
 function pno_get_the_listing_expire_date( $post = null ) {
 
-	$expires = get_post_meta( $post, 'listing_expires', true );
+	$expires = get_post_meta( $post, '_listing_expires', true );
 
 	return esc_html( $expires ? date_i18n( get_option( 'date_format' ), strtotime( $expires ) ) : false );
 
