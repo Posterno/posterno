@@ -34,6 +34,12 @@ class PNO_Listings_Expiry {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
 
+		add_action( 'pending_to_publish', [ $this, 'set_expiry' ] );
+		add_action( 'preview_to_publish', [ $this, 'set_expiry' ] );
+		add_action( 'draft_to_publish', [ $this, 'set_expiry' ] );
+		add_action( 'auto-draft_to_publish', [ $this, 'set_expiry' ] );
+		add_action( 'expired_to_publish', [ $this, 'set_expiry' ] );
+
 	}
 
 	/**
@@ -71,6 +77,46 @@ class PNO_Listings_Expiry {
 						->set_attribute( 'placeholder', pno_calculate_listing_expiry() ),
 				)
 			);
+
+	}
+
+	/**
+	 * Automatically set expiry date when creating or publishing listings.
+	 *
+	 * @param object $post the post object.
+	 * @return void
+	 */
+	public function set_expiry( $post ) {
+
+		if ( 'listings' !== $post->post_type ) {
+			return;
+		}
+
+		// See if it is already set.
+		if ( metadata_exists( 'post', $post->ID, '_listing_expires' ) ) {
+			$expires = get_post_meta( $post->ID, '_listing_expires', true );
+			if ( $expires && strtotime( $expires ) < current_time( 'timestamp' ) ) {
+				update_post_meta( $post->ID, '_listing_expires', '' );
+			}
+		}
+
+		// See if the user has set the expiry manually.
+		if ( ! empty( $_POST['_listing_expires'] ) ) {
+
+			update_post_meta( $post->ID, '_listing_expires', date( 'Y-m-d', strtotime( sanitize_text_field( $_POST['_listing_expires'] ) ) ) );
+
+		} elseif ( ! isset( $expires ) ) {
+
+			// No manual setting? Lets generate a date if there isn't already one.
+			$expires = pno_calculate_listing_expiry( $post->ID );
+
+			update_post_meta( $post->ID, '_listing_expires', $expires );
+
+			// In case we are saving a post, ensure post data is updated so the field is not overridden.
+			if ( isset( $_POST['_listing_expires'] ) ) {
+				$_POST['_listing_expires'] = $expires;
+			}
+		}
 
 	}
 
