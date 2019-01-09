@@ -327,6 +327,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-export.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-privacy-erase.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-dashboard-menu-editor.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-admin-listings-table.php';
 
 		}
 
