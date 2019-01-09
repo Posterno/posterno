@@ -257,3 +257,18 @@ function pno_listings_post_type_columns_content( $column, $listing_id ) {
 
 }
 add_action( 'manage_listings_posts_custom_column', 'pno_listings_post_type_columns_content', 10, 2 );
+
+/**
+ * Removes listings from the list of post types that support "View Mode" option.
+ *
+ * @param array $post_types Array of post types that support view mode.
+ * @return array
+ */
+function pno_disable_listings_post_type_view_mode( $post_types ) {
+
+	unset( $post_types['job_listing'] );
+
+	return $post_types;
+
+}
+add_action( 'view_mode_post_types', 'pno_disable_listings_post_type_view_mode' );
