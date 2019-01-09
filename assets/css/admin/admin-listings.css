@@ -33,3 +33,15 @@
 
 body.post-type-listings .wp-list-table th#expires {
   width: 10%; }
+body.post-type-listings .wp-list-table .column-status,
+body.post-type-listings .wp-list-table .column-featured {
+  width: 1em; }
+  body.post-type-listings .wp-list-table .column-status span,
+  body.post-type-listings .wp-list-table .column-featured span {
+    display: block;
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+    line-height: 17px;
+    padding: 1px 0 0 0;
+    overflow: hidden; }

@@ -55,5 +55,18 @@ body.post-type-listings {
 		th#expires {
 			width: 10%;
 		}
+		.column-status,
+		.column-featured {
+			width: 1em;
+			span {
+				display: block;
+				width: 17px;
+				height: 17px;
+				font-size: 17px;
+				line-height: 17px;
+				padding: 1px 0 0 0;
+				overflow: hidden;
+			}
+		}
 	}
 }

@@ -386,7 +386,7 @@ function pno_register_listings_taxonomies() {
 		'show_in_rest'       => true,
 		'show_in_quick_edit' => false,
 		'meta_box_cb'        => false,
-		'show_admin_column'  => true,
+		'show_admin_column'  => false,
 	);
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 

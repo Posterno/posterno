@@ -42,9 +42,18 @@ class ListingsTable {
 			unset( $columns['author'] );
 		}
 
+		unset( $columns['date'] );
+
+		$columns['status']   = '<span class="dashicons dashicons-info"></span>';
+		$columns['featured'] = '<span class="dashicons dashicons-star-filled"></span>';
+		$columns['posted']   = esc_html__( 'Posted' );
+
 		if ( pno_listings_can_expire() ) {
 			$columns['expires'] = esc_html__( 'Expires' );
 		}
+
+		$columns['type']       = esc_html__( 'Type' );
+		$columns['categories'] = esc_html__( 'Categories' );
 
 		return $columns;
 
