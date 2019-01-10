@@ -444,6 +444,11 @@ class OptionsPanel {
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Listings will display for the set number of days, then expire. Leave this field blank if you don\'t want listings to have an expiration date.' ) );
 
+		$days_threshold = apply_filters( 'pno_delete_expired_listings_days', 30 );
+
+		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete listings older than %s days.' ), $days_threshold ) )
+			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.' ) );
+
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
 

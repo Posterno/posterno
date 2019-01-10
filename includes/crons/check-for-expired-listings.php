@@ -68,7 +68,7 @@ function check_for_expired_listings() {
 		 * @param boolean $permanent true or false.
 		 * @return boolean
 		 */
-		$permanent = apply_filters( 'pno_delete_expired_listings_days', false );
+		$permanent = apply_filters( 'pno_permanently_delete_expired_listings', false );
 
 		$listings_ids = $wpdb->get_col(
 			$wpdb->prepare(
@@ -82,7 +82,7 @@ function check_for_expired_listings() {
 		);
 		if ( $listings_ids ) {
 			foreach ( $listings_ids as $listings_id ) {
-				wp_delete_post( $listings_id );
+				wp_delete_post( $listings_id, $permanent );
 			}
 		}
 	}
