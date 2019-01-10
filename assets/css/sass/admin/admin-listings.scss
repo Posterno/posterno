@@ -52,12 +52,11 @@
 
 body.post-type-listings {
 	.wp-list-table {
-		th#expires {
-			width: 10%;
-		}
 		.column-status,
 		.column-featured {
 			width: 1em;
+			text-align: center;
+			vertical-align: middle;
 			span {
 				display: block;
 				width: 17px;
@@ -66,6 +65,15 @@ body.post-type-listings {
 				line-height: 17px;
 				padding: 1px 0 0 0;
 				overflow: hidden;
+				&.dashicons-yes {
+					color: #46b450;
+				}
+				&.dashicons-dismiss {
+					color: #dc3232;
+				}
+				&.dashicons-clock {
+					color: #ffb900;
+				}
 			}
 		}
 	}

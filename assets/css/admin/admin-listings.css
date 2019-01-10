@@ -31,11 +31,11 @@
 .carbon-container-carbon_fields_container_listing_expiry button.button {
   display: none; }
 
-body.post-type-listings .wp-list-table th#expires {
-  width: 10%; }
 body.post-type-listings .wp-list-table .column-status,
 body.post-type-listings .wp-list-table .column-featured {
-  width: 1em; }
+  width: 1em;
+  text-align: center;
+  vertical-align: middle; }
   body.post-type-listings .wp-list-table .column-status span,
   body.post-type-listings .wp-list-table .column-featured span {
     display: block;
@@ -45,3 +45,12 @@ body.post-type-listings .wp-list-table .column-featured {
     line-height: 17px;
     padding: 1px 0 0 0;
     overflow: hidden; }
+    body.post-type-listings .wp-list-table .column-status span.dashicons-yes,
+    body.post-type-listings .wp-list-table .column-featured span.dashicons-yes {
+      color: #46b450; }
+    body.post-type-listings .wp-list-table .column-status span.dashicons-dismiss,
+    body.post-type-listings .wp-list-table .column-featured span.dashicons-dismiss {
+      color: #dc3232; }
+    body.post-type-listings .wp-list-table .column-status span.dashicons-clock,
+    body.post-type-listings .wp-list-table .column-featured span.dashicons-clock {
+      color: #ffb900; }

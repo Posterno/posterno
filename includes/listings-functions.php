@@ -1108,3 +1108,15 @@ function pno_get_listing_categories( $listing_id = false ) {
 	return wp_get_post_terms( $listing_id, 'listings-categories' );
 
 }
+
+/**
+ * Determine if a listing has been set as featured.
+ *
+ * @param string $listing_id the id of the listing to verify.
+ * @return boolean
+ */
+function pno_listing_is_featured( $listing_id ) {
+
+	return (bool) get_post_meta( $listing_id, 'listing_is_featured', true );
+
+}

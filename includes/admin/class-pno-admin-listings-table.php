@@ -109,6 +109,28 @@ class ListingsTable {
 				echo '–';
 			}
 
+		} elseif ( $column === 'featured' ) {
+
+			if ( pno_listing_is_featured( $listing_id ) ) {
+				echo '<span class="dashicons dashicons-star-filled"></span>';
+			} else {
+				echo '–';
+			}
+
+		} elseif ( $column === 'status' ) {
+
+			$status = get_post_status( $listing_id );
+
+			if ( $status === 'publish' ) {
+				echo '<span class="dashicons dashicons-yes"></span>';
+			} elseif ( $status === 'expired' ) {
+				echo '<span class="dashicons dashicons-dismiss"></span>';
+			} elseif ( $status === 'pending' ) {
+				echo '<span class="dashicons dashicons-clock"></span>';
+			} else {
+				echo '–';
+			}
+
 		}
 
 	}
