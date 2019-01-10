@@ -27,6 +27,7 @@ class ListingsTable {
 
 		add_filter( 'manage_listings_posts_columns', [ $this, 'columns' ] );
 		add_action( 'manage_listings_posts_custom_column', [ $this, 'columns_content' ], 10, 2 );
+		add_filter( 'post_row_actions', [ $this, 'row_actions' ] );
 
 	}
 
@@ -133,6 +134,23 @@ class ListingsTable {
 
 		}
 
+	}
+
+	/**
+	 * Modify the actions row for the listings post type.
+	 *
+	 * - Removes quick edit action.
+	 *
+	 * @param array $actions the list of actions.
+	 * @return array
+	 */
+	public function row_actions( $actions ) {
+		if ( 'listings' === get_post_type() ) {
+			if ( isset( $actions['inline hide-if-no-js'] ) ) {
+				unset( $actions['inline hide-if-no-js'] );
+			}
+		}
+		return $actions;
 	}
 
 }
