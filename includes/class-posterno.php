@@ -424,6 +424,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Crons.
 			require_once PNO_PLUGIN_DIR . 'includes/crons/check-for-expired-listings.php';
+			require_once PNO_PLUGIN_DIR . 'includes/crons/notice-listings-soon-to-expire.php';
 
 		}
 
@@ -436,6 +437,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			if ( ! wp_next_scheduled( 'posterno_check_for_expired_listings' ) ) {
 				wp_schedule_event( time(), 'hourly', 'posterno_check_for_expired_listings' );
 			}
+			if ( ! wp_next_scheduled( 'posterno_email_daily_listings_expiring_notices' ) ) {
+				wp_schedule_event( time(), 'daily', 'posterno_email_daily_listings_expiring_notices' );
+			}
 		}
 
 		/**
@@ -445,6 +449,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		public static function unschedule_cron_jobs() {
 			wp_clear_scheduled_hook( 'posterno_check_for_expired_listings' );
+			wp_clear_scheduled_hook( 'posterno_email_daily_listings_expiring_notices' );
 		}
 
 	}
