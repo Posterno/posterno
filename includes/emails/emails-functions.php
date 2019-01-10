@@ -177,6 +177,17 @@ function pno_email_tag_listing_url( $user_id, $listing_id ) {
 }
 
 /**
+ * Display the listing expiration date within emails.
+ *
+ * @param string $user_id id number of the user modifying the listing.
+ * @param string $listing_id id number of the listing to display.
+ * @return string
+ */
+function pno_email_tag_listing_expiry_date( $user_id, $listing_id ) {
+	return pno_get_the_listing_expire_date( $listing_id );
+}
+
+/**
  * Disable the email notification sent to the admin when a user changes the password.
  */
 if ( pno_get_option( 'disable_admin_password_recovery_email' ) && ! function_exists( 'wp_password_change_notification' ) ) {

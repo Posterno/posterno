@@ -5,7 +5,7 @@
  * @package     wp-user-manager
  * @copyright   Copyright (c) 2018, Alessandro Tesoro
  * @license     https://opensource.org/licenses/GPL-3.0 GNU Public License
-*/
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -119,7 +119,7 @@ class PNO_Emails {
 	 * Set properties of the class.
 	 *
 	 * @param string $key the key to set.
-	 * @param mixed $value the value to assign.
+	 * @param mixed  $value the value to assign.
 	 */
 	public function __set( $key, $value ) {
 		$this->$key = $value;
@@ -329,7 +329,7 @@ class PNO_Emails {
 		$this->user_id             = '';
 		$this->password_reset_key  = '';
 		$this->plain_text_password = '';
-		$this->listing_id = '';
+		$this->listing_id          = '';
 	}
 
 	/**
@@ -431,28 +431,35 @@ class PNO_Emails {
 				'description' => esc_html__( 'Display listing ID number.' ),
 				'tag'         => 'listing_id_number',
 				'function'    => 'pno_email_tag_listing_id_number',
-				'listing' => true,
+				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing title' ),
 				'description' => esc_html__( 'Display listing title.' ),
 				'tag'         => 'listing_title',
 				'function'    => 'pno_email_tag_listing_title',
-				'listing' => true,
+				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing submission date' ),
 				'description' => esc_html__( 'Display listing submission date.' ),
 				'tag'         => 'listing_submission_date',
 				'function'    => 'pno_email_tag_listing_submission_date',
-				'listing' => true,
+				'listing'     => true,
+			),
+			array(
+				'name'        => esc_html__( 'Listing expiry date' ),
+				'description' => esc_html__( 'Display listing expiration date.' ),
+				'tag'         => 'listing_expiration_date',
+				'function'    => 'pno_email_tag_listing_expiry_date',
+				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing url' ),
 				'description' => esc_html__( 'Display listing url.' ),
 				'tag'         => 'listing_url',
 				'function'    => 'pno_email_tag_listing_url',
-				'listing' => true,
+				'listing'     => true,
 			),
 		);
 
