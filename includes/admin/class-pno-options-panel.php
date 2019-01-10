@@ -470,7 +470,7 @@ class OptionsPanel {
 
 		$days_threshold = apply_filters( 'pno_delete_expired_listings_days', 30 );
 
-		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete listings older than %s days.' ), $days_threshold ) )
+		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.' ), $days_threshold ) )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
