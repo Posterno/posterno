@@ -69,7 +69,32 @@ class ListingsTable {
 	public function columns_content( $column, $listing_id ) {
 
 		if ( $column === 'expires' && pno_listings_can_expire() ) {
+
+			echo '<strong>';
 			pno_the_listing_expire_date( $listing_id );
+			echo '</strong>';
+
+		} elseif ( $column === 'posted' ) {
+
+			echo '<strong>';
+			pno_the_listing_publish_date( $listing_id );
+			echo '</strong><br/>';
+
+			$post_author_id = get_post_field( 'post_author', $listing_id );
+			$author_name    = get_the_author_meta( 'display_name', $post_author_id );
+			$admin_url      = add_query_arg(
+				[
+					'user_id' => $post_author_id,
+				],
+				admin_url( 'user-edit.php' )
+			);
+
+			echo wp_sprintf( __( 'By: %1$s' ), '<strong><a href="' . esc_url( $admin_url ) . '">' . esc_html( $author_name ) . '</a></strong>' );
+
+		} elseif ( $column === 'type' ) {
+			echo 'd';
+		} elseif ( $column === 'categories' ) {
+			echo 'dd';
 		}
 
 	}
