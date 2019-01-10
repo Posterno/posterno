@@ -1083,10 +1083,28 @@ function pno_get_internal_listing_links_selectors() {
 
 }
 
+/**
+ * Retrieve the type assigned to a listing.
+ *
+ * @param boolean|string $listing_id the id of the listing to inspect.
+ * @return boolean|object
+ */
 function pno_get_listing_type( $listing_id = false ) {
 
 	$type = wp_get_post_terms( $listing_id, 'listings-types' );
 
 	return is_array( $type ) ? $type[0] : false;
+
+}
+
+/**
+ * Retrieve categories assigned to a listing.
+ *
+ * @param boolean|string $listing_id the id of the listing to inspect.
+ * @return array
+ */
+function pno_get_listing_categories( $listing_id = false ) {
+
+	return wp_get_post_terms( $listing_id, 'listings-categories' );
 
 }

@@ -52,8 +52,7 @@ class ListingsTable {
 			$columns['expires'] = esc_html__( 'Expires' );
 		}
 
-		$columns['type']       = esc_html__( 'Type' );
-		$columns['categories'] = esc_html__( 'Categories' );
+		$columns['type'] = esc_html__( 'Type' );
 
 		return $columns;
 
@@ -110,8 +109,6 @@ class ListingsTable {
 				echo '–';
 			}
 
-		} elseif ( $column === 'categories' ) {
-			echo 'dd';
 		}
 
 	}
