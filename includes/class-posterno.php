@@ -105,6 +105,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->emails        = new PNO_Emails();
 			self::$instance->forms         = PNO_Forms::instance();
 
+			self::maybe_schedule_cron_jobs();
+
 			// Return the instance.
 			return self::$instance;
 
@@ -420,6 +422,29 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Theme Integration.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-theme-integration.php';
 
+			// Crons.
+			require_once PNO_PLUGIN_DIR . 'includes/crons/check-for-expired-listings.php';
+
+		}
+
+		/**
+		 * Schedule cron jobs.
+		 *
+		 * @return void
+		 */
+		public static function maybe_schedule_cron_jobs() {
+			if ( ! wp_next_scheduled( 'posterno_check_for_expired_listings' ) ) {
+				wp_schedule_event( time(), 'hourly', 'posterno_check_for_expired_listings' );
+			}
+		}
+
+		/**
+		 * Remove scheduled cron jobs.
+		 *
+		 * @return void
+		 */
+		public static function unschedule_cron_jobs() {
+			wp_clear_scheduled_hook( 'posterno_check_for_expired_listings' );
 		}
 
 	}
