@@ -92,7 +92,24 @@ class ListingsTable {
 			echo wp_sprintf( __( 'By: %1$s' ), '<strong><a href="' . esc_url( $admin_url ) . '">' . esc_html( $author_name ) . '</a></strong>' );
 
 		} elseif ( $column === 'type' ) {
-			echo 'd';
+
+			$type = pno_get_listing_type( $listing_id );
+
+			if ( isset( $type->name ) ) {
+
+				$url = add_query_arg(
+					[
+						'listings-types' => $type->slug,
+						'post_type'      => 'listings',
+					],
+					admin_url( 'edit.php' )
+				);
+
+				echo '<a href="' . esc_url( $url ) . '">' . esc_html( $type->name ) . '</a>';
+			} else {
+				echo '–';
+			}
+
 		} elseif ( $column === 'categories' ) {
 			echo 'dd';
 		}

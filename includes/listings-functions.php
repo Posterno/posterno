@@ -1082,3 +1082,11 @@ function pno_get_internal_listing_links_selectors() {
 	return apply_filters( 'pno_internal_listing_links_selectors', $selectors );
 
 }
+
+function pno_get_listing_type( $listing_id = false ) {
+
+	$type = wp_get_post_terms( $listing_id, 'listings-types' );
+
+	return is_array( $type ) ? $type[0] : false;
+
+}
