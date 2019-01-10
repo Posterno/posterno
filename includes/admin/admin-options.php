@@ -58,6 +58,7 @@ function pno_get_registered_settings_tabs_sections() {
 		],
 		'emails'   => [
 			'emails_settings' => esc_html__( 'Configuration' ),
+			'emails_listings' => esc_html__( 'Listings' ),
 			'emails_test'     => esc_html__( 'Send test email' ),
 		],
 		'listings' => [

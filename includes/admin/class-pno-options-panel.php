@@ -145,6 +145,7 @@ class OptionsPanel {
 		$settings['redirects']              = $this->get_redirects_settings();
 		$settings['privacy']                = $this->get_privacy_settings();
 		$settings['emails_settings']        = $this->get_emails_settings();
+		$settings['emails_listings']        = $this->get_emails_listings_settings();
 
 		$settings['profiles_settings']   = $this->get_profiles_settings();
 		$settings['listings_settings']   = $this->get_listings_settings();
@@ -389,6 +390,29 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'checkbox', 'disable_admin_password_recovery_email', __( 'Disable admin password recovery email:' ) )
 			->set_help_text( __( 'Enable this option to stop receiving notifications when a new user resets his password.' ) );
+
+		return $settings;
+
+	}
+
+	/**
+	 * Get emails listings settings.
+	 *
+	 * @return array
+	 */
+	private function get_emails_listings_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'checkbox', 'listing_expiration_email', esc_html__( 'Notice of expiring listing' ) )
+			->set_width( 50 )
+			->set_help_text( __( 'Enable this option to send notices when a listing is about to expire.' ) );
+
+		$settings[] = Field::make( 'text', 'listing_expiration_email_period', esc_html__( 'Notice of expiring listing period (days)' ) )
+			->set_width( 50 )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'placeholder', esc_html__( 'Number of days' ) )
+			->set_attribute( 'min', '1' );
 
 		return $settings;
 
