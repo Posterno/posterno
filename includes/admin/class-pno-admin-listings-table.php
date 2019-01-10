@@ -44,8 +44,8 @@ class ListingsTable {
 
 		unset( $columns['date'] );
 
-		$columns['status']   = '<span class="dashicons dashicons-info"></span>';
-		$columns['featured'] = '<span class="dashicons dashicons-star-filled"></span>';
+		$columns['status']   = '<div data-balloon="' . esc_html__( 'Status' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-info"></span></div>';
+		$columns['featured'] = '<div data-balloon="' . esc_html__( 'Featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
 		$columns['posted']   = esc_html__( 'Posted' );
 
 		if ( pno_listings_can_expire() ) {
@@ -122,11 +122,11 @@ class ListingsTable {
 			$status = get_post_status( $listing_id );
 
 			if ( $status === 'publish' ) {
-				echo '<span class="dashicons dashicons-yes"></span>';
+				echo '<div data-balloon="' . esc_html__( 'Active' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-yes"></span></div>';
 			} elseif ( $status === 'expired' ) {
-				echo '<span class="dashicons dashicons-dismiss"></span>';
+				echo '<div data-balloon="' . esc_html__( 'Expired' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-dismiss"></span></div>';
 			} elseif ( $status === 'pending' ) {
-				echo '<span class="dashicons dashicons-clock"></span>';
+				echo '<div data-balloon="' . esc_html__( 'Pending approval' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-clock"></span></div>';
 			} else {
 				echo '–';
 			}
