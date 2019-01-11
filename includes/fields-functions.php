@@ -990,12 +990,12 @@ function pno_serialize_stored_listing_terms( $listing_id, $taxonomy = 'listings-
 		foreach ( $cats as $term ) {
 
 			if ( isset( $term->term_id ) ) {
-				$value[] = absint( $term->term_id );
+				$values[] = absint( $term->term_id );
 			}
 		}
 	}
 
-	return wp_json_encode( $value );
+	return wp_json_encode( $values );
 
 }
 
