@@ -109,6 +109,15 @@ abstract class PNO_Form {
 
 		$next_step_key = $this->get_step_key( $this->step );
 
+		// If the next step has a handler to call before going to the view, run it now.
+		if ( $next_step_key
+			&& $step_key !== $next_step_key
+			&& isset( $this->steps[ $next_step_key ]['before'] )
+			&& is_callable( $this->steps[ $next_step_key ]['before'] )
+		) {
+			call_user_func( $this->steps[ $next_step_key ]['before'] );
+		}
+
 		// if the step changed, but the next step has no 'view', call the next handler in sequence.
 		if ( $next_step_key && $step_key !== $next_step_key && ! is_callable( $this->steps[ $next_step_key ]['view'] ) ) {
 			$this->process();
@@ -355,7 +364,10 @@ abstract class PNO_Form {
 					// translators: Placeholder %s is the label for the required field.
 					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
 				}
-				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect', 'term-chain-dropdown' ), true ) ) {
+				if ( $field['required'] && $values[ $group_key ][ $key ] === '[]' && in_array( $field['type'], array( 'term-chain-dropdown', 'listing-category', 'listing-tags', 'social-profiles' ), true ) ) {
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
+				}
+				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect', 'term-chain-dropdown', 'listing-category', 'listing-tags' ), true ) ) {
 					if ( is_array( $values[ $group_key ][ $key ] ) ) {
 						$check_value = $values[ $group_key ][ $key ];
 					} else {
@@ -694,7 +706,7 @@ abstract class PNO_Form {
 		$belongs_to_listings = false;
 
 		$registered_taxonomies = get_object_taxonomies( 'listings', 'objects' );
-		$listing_taxonomies = [];
+		$listing_taxonomies    = [];
 
 		foreach ( $registered_taxonomies as $tax => $details ) {
 			$listing_taxonomies[] = $tax;
