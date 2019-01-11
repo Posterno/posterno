@@ -40,6 +40,13 @@ class PNO_Theme_Integration {
 	private static $theme_support = false;
 
 	/**
+	 * Store whether we're processing a listing inside the_content filter.
+	 *
+	 * @var boolean
+	 */
+	private static $in_content_filter = false;
+
+	/**
 	 * Get things started.
 	 *
 	 * @return void
@@ -63,6 +70,8 @@ class PNO_Theme_Integration {
 		if ( 0 < self::$login_page_id ) {
 			if ( pno_is_listing_taxonomy() ) {
 				self::unsupported_theme_tax_archive_init();
+			} elseif ( is_singular( 'listings' ) ) {
+				self::unsupported_single_listing_page_init();
 			}
 		}
 	}
@@ -173,6 +182,78 @@ class PNO_Theme_Integration {
 
 	}
 
-}
+	/**
+	 * Enhance the unsupported theme experience on the single listing template.
+	 *
+	 * @return void
+	 */
+	private static function unsupported_single_listing_page_init() {
+		add_filter( 'the_content', array( __CLASS__, 'unsupported_theme_listing_content_filter' ), 10 );
+		add_filter( 'post_thumbnail_html', array( __CLASS__, 'unsupported_theme_single_featured_image_filter' ) );
+	}
 
+	/**
+	 * Filter the content and insert Posterno content on the single listing page for non supported themes.
+	 *
+	 * @param string $content Existing post content.
+	 * @return string
+	 */
+	public static function unsupported_theme_listing_content_filter( $content ) {
+		global $wp_query;
+
+		if ( self::$theme_support || ! is_main_query() || ! in_the_loop() ) {
+			return $content;
+		}
+
+		self::$in_content_filter = true;
+
+		// Remove the filter we're in to avoid nested calls.
+		remove_filter( 'the_content', array( __CLASS__, 'unsupported_theme_listing_content_filter' ) );
+
+		if ( is_singular( 'listings' ) ) {
+			$content = self::get_single_template();
+		}
+
+		self::$in_content_filter = false;
+
+		return $content;
+	}
+
+	/**
+	 * Prevent the main featured image on listing singular pages because there will be another featured image
+	 * in the gallery.
+	 *
+	 * @param string $html Img element HTML.
+	 * @return string
+	 */
+	public static function unsupported_theme_single_featured_image_filter( $html ) {
+		if ( self::in_content_filter() || ! is_singular( 'listings' ) || ! is_main_query() ) {
+			return $html;
+		}
+		return '';
+	}
+
+	/**
+	 * Are we filtering content for unsupported themes?
+	 *
+	 * @return bool
+	 */
+	public static function in_content_filter() {
+		return (bool) self::$in_content_filter;
+	}
+
+	/**
+	 * Retrieve the single's listing template file.
+	 *
+	 * @return string
+	 */
+	public static function get_single_template() {
+		ob_start();
+
+		posterno()->templates->get_template_part( 'single' );
+
+		return ob_get_clean();
+	}
+
+}
 add_action( 'init', array( 'PNO_Theme_Integration', 'init' ) );
