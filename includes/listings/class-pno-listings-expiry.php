@@ -65,7 +65,7 @@ class PNO_Listings_Expiry {
 
 		$format = get_option( 'date_format' );
 
-		Container::make( 'post_meta', esc_html__( 'Listing expiry' ) )
+		Container::make( 'post_meta', esc_html__( 'Expiry' ) )
 			->where( 'post_type', '=', 'listings' )
 			->set_context( 'side' )
 			->set_priority( 'low' )
