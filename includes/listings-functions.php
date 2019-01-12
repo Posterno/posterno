@@ -1093,7 +1093,7 @@ function pno_get_listing_type( $listing_id = false ) {
 
 	$type = wp_get_post_terms( $listing_id, 'listings-types' );
 
-	return is_array( $type ) ? $type[0] : false;
+	return is_array( $type ) && isset( $type[0] ) ? $type[0] : false;
 
 }
 
