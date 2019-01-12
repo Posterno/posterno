@@ -26,9 +26,11 @@ do_action( 'pno_before_single_listing' );
 
 <div class="pno-single-listing-wrapper">
 
-	<div class="listing-featured-image">
-		<?php the_post_thumbnail( 'full' ); ?>
-	</div>
+	<?php if ( has_post_thumbnail() ) : ?>
+		<div class="listing-featured-image">
+			<?php the_post_thumbnail( 'full' ); ?>
+		</div>
+	<?php endif; ?>
 
 </div>
 
