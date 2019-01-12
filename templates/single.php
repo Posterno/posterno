@@ -32,6 +32,16 @@ do_action( 'pno_before_single_listing' );
 		</div>
 	<?php endif; ?>
 
+	<?php the_content(); ?>
+
+	<div class="listing-meta-fields">
+
+		<ul class="list-group">
+			<li class="list-group-item"><span class="field-title">Field</span>: value</li>
+		</ul>
+
+	</div>
+
 </div>
 
 <?php
