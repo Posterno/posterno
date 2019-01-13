@@ -557,7 +557,21 @@ function pno_get_listings_layout_available_options() {
 	return wp_list_pluck( pno_get_listings_layout_options(), 'label' );
 }
 
+/**
+ * Retrieve options for the "Move featured listings at the top of the list when sorting by" setting.
+ * Removes the random option since it's not needed.
+ *
+ * @return array
+ */
+function pno_get_listings_featured_order_options() {
 
+	$options = wp_list_pluck( pno_get_listings_results_order_filters(), 'label' );
+
+	unset( $options['random'] );
+
+	return $options;
+
+}
 
 
 

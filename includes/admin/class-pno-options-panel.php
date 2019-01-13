@@ -452,6 +452,8 @@ class OptionsPanel {
 				]
 			);
 
+		$settings[] = Field::make( 'separator', 'h1', esc_html__( 'Layout' ) );
+
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
@@ -463,6 +465,8 @@ class OptionsPanel {
 		$settings[] = Field::make( 'select', 'listings_layout', esc_html__( 'Default listings layout' ) )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
+		$settings[] = Field::make( 'separator', 'h2', esc_html__( 'Expiration' ) );
+
 		$settings[] = Field::make( 'text', 'listings_duration', esc_html__( 'Listings duration' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
@@ -472,6 +476,15 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.' ), $days_threshold ) )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.' ) );
+
+		$settings[] = Field::make( 'separator', 'h3', esc_html__( 'Featured listings' ) );
+
+		$settings[] = Field::make( 'checkbox', 'listing_can_be_featured', esc_html__( 'Listings can be featured' ) )
+			->set_help_text( esc_html__( 'Enable the option to allow listings to be marked as featured. ' ) );
+
+		$settings[] = Field::make( 'set', 'listings_featured_in_sorters', esc_html__( 'Move featured listings at the top of the list when sorting by:' ) )
+			->set_options( 'pno_get_listings_featured_order_options' )
+			->set_help_text( esc_html__( 'When changing sorting order within search results, featured listings can still be displayed at the top of the list.' ) );
 
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );

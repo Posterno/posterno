@@ -42,31 +42,45 @@ function pno_adjust_listings_query( $query ) {
 		// Set sorting order.
 		$active_order = pno_get_listings_results_order_active_filter();
 
-		if ( $active_order ) {
+		// Prepare orderby parameters and check if listings are featured.
+		$listings_can_be_featured  = pno_listings_can_be_featured();
+		$enabled_featuring_sorters = pno_get_option( 'listings_featured_in_sorters', [] );
 
-			$orderby = 'date';
-			$order   = 'DESC';
+		if ( $active_order ) {
 
 			switch ( $active_order ) {
 				case 'newest':
-					$orderby = 'date';
-					$order   = 'DESC';
+					$sorters = [
+						'menu_order' => 'ASC',
+						'date'       => 'DESC',
+					];
 					break;
 				case 'oldest':
-					$orderby = 'date';
-					$order   = 'ASC';
+					$sorters = [
+						'menu_order' => 'ASC',
+						'date' => 'ASC',
+					];
 					break;
 				case 'title':
-					$orderby = 'title';
-					$order   = 'ASC';
+					$sorters = [
+						'menu_order' => 'ASC',
+						'title'      => 'ASC',
+					];
 					break;
 				case 'random':
-					$orderby = 'rand';
+					$sorters = 'rand';
 					break;
 			}
 
-			$query->set( 'orderby', $orderby );
-			$query->set( 'order', $order );
+			if ( isset( $sorters ) && ! empty( $sorters ) ) {
+				if ( ! in_array( $active_order, $enabled_featuring_sorters ) ) {
+					unset( $sorters['menu_order'] );
+				}
+				if ( ! $listings_can_be_featured && isset( $sorters['menu_order'] ) ) {
+					unset( $sorters['menu_order'] );
+				}
+				$query->set( 'orderby', $sorters );
+			}
 
 		}
 	}

@@ -1110,6 +1110,15 @@ function pno_get_listing_categories( $listing_id = false ) {
 }
 
 /**
+ * Determine if listings can be featured.
+ *
+ * @return boolean
+ */
+function pno_listings_can_be_featured() {
+	return (bool) pno_get_option( 'listing_can_be_featured', false );
+}
+
+/**
  * Determine if a listing has been set as featured.
  *
  * @param string $listing_id the id of the listing to verify.

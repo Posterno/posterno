@@ -45,9 +45,13 @@ class ListingsTable {
 
 		unset( $columns['date'] );
 
-		$columns['status']   = '<div data-balloon="' . esc_html__( 'Status' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-info"></span></div>';
-		$columns['featured'] = '<div data-balloon="' . esc_html__( 'Featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
-		$columns['posted']   = esc_html__( 'Posted' );
+		$columns['status'] = '<div data-balloon="' . esc_html__( 'Status' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-info"></span></div>';
+
+		if ( pno_listings_can_be_featured() ) {
+			$columns['featured'] = '<div data-balloon="' . esc_html__( 'Featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
+		}
+
+		$columns['posted'] = esc_html__( 'Posted' );
 
 		if ( pno_listings_can_expire() ) {
 			$columns['expires'] = esc_html__( 'Expires' );
