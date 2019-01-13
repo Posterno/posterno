@@ -957,6 +957,10 @@ nav .pno-pagination {
       object-fit: cover;
       height: 100%;
       width: 100%; }
+  .pno-listing-card .listing-img-wrapper .featured-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px; }
 
 .pno-single-listing-wrapper .listing-featured-image img {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);

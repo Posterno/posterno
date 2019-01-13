@@ -31,6 +31,11 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 
 	<div class="card mb-4 pno-listing-card grid-template">
 		<div class="listing-img-wrapper">
+
+			<?php if ( pno_listing_is_featured( get_the_id() ) ) : ?>
+				<span class="badge badge-pill badge-warning featured-badge"><?php esc_html_e( 'Featured' ); ?></span>
+			<?php endif; ?>
+
 			<a href="<?php the_permalink(); ?>">
 				<?php the_post_thumbnail( 'full', [ 'class' => 'card-img-top' ] ); ?>
 			</a>
@@ -62,6 +67,11 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 	<div class="card mb-4 pno-listing-card grid-template">
 		<?php if ( $placeholder_enabled ) : ?>
 			<div class="listing-img-wrapper">
+
+				<?php if ( pno_listing_is_featured( get_the_id() ) ) : ?>
+					<span class="badge badge-pill badge-warning featured-badge"><?php esc_html_e( 'Featured' ); ?></span>
+				<?php endif; ?>
+
 				<a href="<?php the_permalink(); ?>">
 					<img src="<?php echo esc_url( pno_get_listing_placeholder_image() ); ?>" alt="<?php the_title(); ?>" class="card-img-top">
 				</a>
@@ -72,6 +82,11 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			</h4>
 			<div class="card-text">
+
+				<?php if ( ! $placeholder_enabled && pno_listing_is_featured( get_the_id() ) ) : ?>
+					<span class="badge badge-pill badge-warning featured-badge"><?php esc_html_e( 'Featured' ); ?></span>
+				<?php endif; ?>
+
 				<?php if ( is_array( $tags ) && ! empty( $tags ) ) : ?>
 					<?php foreach ( $tags as $listing_tag ) : ?>
 						<a href="<?php echo esc_url( get_term_link( $listing_tag ) ); ?>" class="mb-2 mr-2 badge badge-secondary"><?php echo esc_html( $listing_tag->name ); ?></a>
