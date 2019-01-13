@@ -46,12 +46,11 @@ body.post-type-listings .wp-list-table .column-featured {
     line-height: 17px;
     padding: 1px 0 0 0;
     overflow: hidden; }
-    body.post-type-listings .wp-list-table .column-status span.dashicons-yes,
-    body.post-type-listings .wp-list-table .column-featured span.dashicons-yes {
-      color: #46b450; }
-    body.post-type-listings .wp-list-table .column-status span.dashicons-dismiss,
-    body.post-type-listings .wp-list-table .column-featured span.dashicons-dismiss {
-      color: #dc3232; }
-    body.post-type-listings .wp-list-table .column-status span.dashicons-clock,
-    body.post-type-listings .wp-list-table .column-featured span.dashicons-clock {
-      color: #ffb900; }
+body.post-type-listings .wp-list-table .column-status span.dashicons-yes {
+  color: #46b450; }
+body.post-type-listings .wp-list-table .column-status span.dashicons-dismiss {
+  color: #dc3232; }
+body.post-type-listings .wp-list-table .column-status span.dashicons-clock {
+  color: #ffb900; }
+body.post-type-listings td.column-featured span.dashicons-star-filled {
+  color: #f1c40f; }

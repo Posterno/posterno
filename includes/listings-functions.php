@@ -1117,6 +1117,6 @@ function pno_get_listing_categories( $listing_id = false ) {
  */
 function pno_listing_is_featured( $listing_id ) {
 
-	return (bool) get_post_meta( $listing_id, 'listing_is_featured', true );
+	return (bool) get_post_meta( $listing_id, '_listing_is_featured', true );
 
 }

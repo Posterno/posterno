@@ -113,7 +113,7 @@ class ListingsTable {
 		} elseif ( $column === 'featured' ) {
 
 			if ( pno_listing_is_featured( $listing_id ) ) {
-				echo '<span class="dashicons dashicons-star-filled"></span>';
+				echo '<div data-balloon="' . esc_html__( 'Listing is featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
 			} else {
 				echo '–';
 			}

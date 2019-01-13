@@ -66,15 +66,28 @@ body.post-type-listings {
 				line-height: 17px;
 				padding: 1px 0 0 0;
 				overflow: hidden;
+			}
+		}
+		.column-status {
+			span {
 				&.dashicons-yes {
 					color: #46b450;
 				}
+
 				&.dashicons-dismiss {
 					color: #dc3232;
 				}
+
 				&.dashicons-clock {
 					color: #ffb900;
 				}
+			}
+		}
+	}
+	td.column-featured {
+		span {
+			&.dashicons-star-filled {
+				color: #f1c40f;
 			}
 		}
 	}
