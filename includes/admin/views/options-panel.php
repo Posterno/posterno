@@ -35,7 +35,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 	</div>
 </div>
 
-<div class="wrap carbon-<?php echo $container_css_class; ?>">
+<div class="posterno-options-panel wrap carbon-<?php echo $container_css_class; ?>">
 
 	<h2 class="nav-tab-wrapper pno-nav-tab-wrapper">
 		<?php

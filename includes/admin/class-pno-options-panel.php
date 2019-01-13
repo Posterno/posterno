@@ -477,7 +477,7 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.' ), $days_threshold ) )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.' ) );
 
-		$settings[] = Field::make( 'separator', 'h3', esc_html__( 'Featured listings' ) );
+		$settings[] = Field::make( 'separator', 'h3', esc_html__( 'Featured status' ) );
 
 		$settings[] = Field::make( 'checkbox', 'listing_can_be_featured', esc_html__( 'Listings can be featured' ) )
 			->set_help_text( esc_html__( 'Enable the option to allow listings to be marked as featured. ' ) );

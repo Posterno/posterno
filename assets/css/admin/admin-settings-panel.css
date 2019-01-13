@@ -80,3 +80,9 @@
       background-color: #fbeaea; }
     .carbon-wp-notice.is-alt.notice-info {
       background-color: #e5f5fa; }
+
+.posterno-options-panel .carbon-separator {
+  background: #f5f5f5; }
+  .posterno-options-panel .carbon-separator h3 {
+    font-size: 16px !important;
+    font-weight: 600; }
