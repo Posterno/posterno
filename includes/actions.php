@@ -21,6 +21,7 @@ function pno_after_theme_setup_load() {
 	\Carbon_Fields\Carbon_Fields::boot();
 
 	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu' ) );
+	register_nav_menu( 'pno-profile-menu', esc_html__( 'Posterno Profile Menu' ) );
 
 }
 add_action( 'after_setup_theme', 'pno_after_theme_setup_load', 20 );
