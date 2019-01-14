@@ -11,7 +11,29 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package posterno
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+// Retrieve assigned user id.
+$user_id = isset( $data->user_id ) ? absint( $data->user_id ) : pno_get_queried_user_id();
+
+?>
+
+<div class="container" id="pno-profile-wrapper">
+
+	<div class="row">
+
+		<div class="col-4">
+
+		</div>
+
+		<div class="col-8">
+
+		</div>
+
+	</div>
+
+</div>

@@ -56,11 +56,9 @@ final class PN_Requirements_Check {
 	 *
 	 * @todo Extend WP_Dependencies
 	 * @var array
-	 * @since 3.0
 	 */
 	private $requirements = array(
 
-		// PHP.
 		'php' => array(
 			'minimum' => '5.5.0',
 			'name'    => 'PHP',
@@ -70,7 +68,6 @@ final class PN_Requirements_Check {
 			'met'     => false,
 		),
 
-		// WordPress.
 		'wp'  => array(
 			'minimum' => '4.9.6',
 			'name'    => 'WordPress',
@@ -88,14 +85,11 @@ final class PN_Requirements_Check {
 	 */
 	public function __construct() {
 
-		// Setup file & base
 		$this->file = __FILE__;
 		$this->base = plugin_basename( $this->file );
 
-		// Always load translations
 		add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
 
-		// Load or quit
 		$this->met()
 			? $this->load()
 			: $this->quit();
@@ -133,14 +127,14 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_url() {
-		return 'https://docs.easydigitaldownloads.com/article/2051-minimum-requirements-for-edd-3-0';
+		return '#';
 	}
 
 	/**
 	 * Plugin specific text to quickly explain what's wrong.
 	 *
 	 * @since 0.1.0
-	 * @return string
+	 * @return void
 	 */
 	private function unmet_requirements_text() {
 		esc_html_e( 'This plugin is not fully active.' );
@@ -219,7 +213,6 @@ final class PN_Requirements_Check {
 	/**
 	 * Plugin agnostic method used to output all unmet requirement information
 	 *
-	 * @since 3.0
 	 */
 	private function unmet_requirements_description() {
 		foreach ( $this->requirements as $properties ) {
@@ -232,11 +225,10 @@ final class PN_Requirements_Check {
 	/**
 	 * Plugin agnostic method to output specific unmet requirement information
 	 *
-	 * @since 3.0
-	 * @param array $requirement
+	 * @param array $requirement list of requirements.
 	 */
 	private function unmet_requirement_description( $requirement = array() ) {
-		// Requirement exists, but is out of date
+		// Requirement exists, but is out of date.
 		if ( ! empty( $requirement['exists'] ) ) {
 			$text = sprintf(
 				$this->unmet_requirements_description_text(),
@@ -244,7 +236,7 @@ final class PN_Requirements_Check {
 				'<strong>' . esc_html( $requirement['minimum'] ) . '</strong>',
 				'<strong>' . esc_html( $requirement['current'] ) . '</strong>'
 			);
-			// Requirement could not be found
+			// Requirement could not be found.
 		} else {
 			$text = sprintf(
 				$this->unmet_requirements_missing_text(),
@@ -252,17 +244,15 @@ final class PN_Requirements_Check {
 				'<strong>' . esc_html( $requirement['minimum'] ) . '</strong>'
 			);
 		}
-		// Output the description
+		// Output the description.
 		echo '<p>' . $text . '</p>';
 	}
 
 	/**
 	 * Plugin agnostic method to output unmet requirements styling
-	 *
-	 * @since 3.0
 	 */
 	public function admin_head() {
-		// Get the requirements row name
+
 		$name = $this->unmet_requirements_name();
 		?>
 
@@ -298,44 +288,41 @@ final class PN_Requirements_Check {
 	/**
 	 * Plugin agnostic method to add the "Requirements" link to row actions
 	 *
-	 * @since 3.0
-	 * @param array $links
+	 * @param array $links action links.
 	 * @return array
 	 */
 	public function plugin_row_links( $links = array() ) {
-		// Add the Requirements link
+		// Add the Requirements link.
 		$links['requirements'] =
 			'<a href="' . esc_url( $this->unmet_requirements_url() ) . '" aria-label="' . esc_attr( $this->unmet_requirements_label() ) . '">'
 			. esc_html( $this->unmet_requirements_link() )
 			. '</a>';
-		// Return links with Requirements link
+		// Return links with Requirements link.
 		return $links;
 	}
 
 	/**
 	 * Plugin specific requirements checker
-	 *
-	 * @since 3.0
 	 */
 	private function check() {
-		// Loop through requirements
+		// Loop through requirements.
 		foreach ( $this->requirements as $dependency => $properties ) {
 			// Which dependency are we checking?
 			switch ( $dependency ) {
-				// PHP
+				// PHP.
 				case 'php':
 					$version = phpversion();
 					break;
-				// WP
+				// WP.
 				case 'wp':
 					$version = get_bloginfo( 'version' );
 					break;
-				// Unknown
+				// Unknown.
 				default:
 					$version = false;
 					break;
 			}
-			// Merge to original array
+			// Merge to original array.
 			if ( ! empty( $version ) ) {
 				$this->requirements[ $dependency ] = array_merge(
 					$this->requirements[ $dependency ], array(
@@ -351,24 +338,22 @@ final class PN_Requirements_Check {
 	/**
 	 * Have all requirements been met?
 	 *
-	 * @since 3.0
-	 *
 	 * @return boolean
 	 */
 	public function met() {
-		// Run the check
+		// Run the check.
 		$this->check();
-		// Default to true (any false below wins)
+		// Default to true (any false below wins).
 		$retval  = true;
 		$to_meet = wp_list_pluck( $this->requirements, 'met' );
-		// Look for unmet dependencies, and exit if so
+		// Look for unmet dependencies, and exit if so.
 		foreach ( $to_meet as $met ) {
 			if ( empty( $met ) ) {
 				$retval = false;
 				continue;
 			}
 		}
-		// Return
+		// Return.
 		return $retval;
 	}
 

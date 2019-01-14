@@ -371,7 +371,13 @@ function pno_profile() {
 
 	ob_start();
 
-	posterno()->templates->get_template_part( 'profile' );
+	posterno()->templates
+		->set_template_data(
+			[
+				'user_id' => pno_get_queried_user_id(),
+			]
+		)
+		->get_template_part( 'profile' );
 
 	return ob_get_clean();
 
