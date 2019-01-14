@@ -361,3 +361,19 @@ function pno_listing_editing_form() {
 
 }
 add_shortcode( 'pno_listing_editing_form', 'pno_listing_editing_form' );
+
+/**
+ * Displays the profile page.
+ *
+ * @return string
+ */
+function pno_profile() {
+
+	ob_start();
+
+	posterno()->templates->get_template_part( 'profile' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_profile', 'pno_profile' );
