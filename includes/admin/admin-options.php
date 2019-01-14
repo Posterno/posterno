@@ -21,6 +21,7 @@ function pno_get_registered_settings_tabs() {
 	$tabs = [
 		'general'  => esc_html__( 'General' ),
 		'accounts' => esc_html__( 'Accounts' ),
+		'profiles' => esc_html__( 'Profiles' ),
 		'emails'   => esc_html__( 'Emails' ),
 		'listings' => esc_html__( 'Listings' ),
 	];
@@ -68,6 +69,10 @@ function pno_get_registered_settings_tabs_sections() {
 			'listings_redirects'  => esc_html__( 'Redirects' ),
 			'listings_content'    => esc_html__( 'Content' ),
 			'listings_maps'       => esc_html__( 'Maps' ),
+		],
+		'profiles' => [
+			'profiles_setup'   => esc_html__( 'Configuration' ),
+			'profiles_content' => esc_html__( 'Content' ),
 		],
 	];
 

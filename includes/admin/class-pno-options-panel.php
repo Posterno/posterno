@@ -147,7 +147,8 @@ class OptionsPanel {
 		$settings['emails_settings']        = $this->get_emails_settings();
 		$settings['emails_listings']        = $this->get_emails_listings_settings();
 
-		$settings['profiles_settings']   = $this->get_profiles_settings();
+		$settings['profiles_setup']      = $this->get_profiles_settings();
+		$settings['profiles_content']    = $this->get_profiles_content_settings();
 		$settings['listings_settings']   = $this->get_listings_settings();
 		$settings['listings_management'] = $this->get_listings_management_settings();
 		$settings['listings_submission'] = $this->get_listings_submission_settings();
@@ -427,8 +428,31 @@ class OptionsPanel {
 
 		$settings = [];
 
+		$settings[] = Field::make( 'checkbox', 'profiles_allow_guests', esc_html__( 'Allow guests to view profiles' ) )
+			->set_help_text( esc_html__( 'Enable this option to allow guests to view users profiles.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'profiles_allow_members', esc_html__( 'Allow members to view profiles' ) )
+			->set_help_text( esc_html__( 'Enable this option to allow members to view users profiles. If disabled, users can only see their own profile.' ) );
+
 		$settings[] = Field::make( 'checkbox', 'allow_avatars', esc_html__( 'Custom avatars' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow users to upload custom avatars for their profiles.' ) );
+
+		return $settings;
+
+	}
+
+	/**
+	 * Get profiles content settings.
+	 *
+	 * @return array
+	 */
+	private function get_profiles_content_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'set', 'profiles_content', esc_html__( 'Display submitted content' ) )
+			->set_options( 'pno_get_members_allowed_content_option' )
+			->set_help_text( esc_html__( 'Select what content should be displayed on users profiles.' ) );
 
 		return $settings;
 
