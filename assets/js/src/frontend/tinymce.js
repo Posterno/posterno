@@ -156,6 +156,12 @@
 								editor.insertContent('[pno_dashboard]');
 							}
 						},
+						{
+							text: pnotinymce.pages.profile,
+							onclick: function () {
+								editor.insertContent('[pno_profile]');
+							}
+						},
 
 					]
 				},

@@ -64,6 +64,7 @@ function pno_localize_tinymce_editor() {
 		'pages' => [
 			'title'     => esc_html__( 'Pages' ),
 			'dashboard' => esc_html__( 'Dashboard' ),
+			'profile'   => esc_html__( 'Profile' ),
 		],
 	];
 
