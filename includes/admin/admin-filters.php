@@ -45,6 +45,7 @@ function pno_highlight_pages( $post_states, $post ) {
 		case pno_get_listing_submission_page_id():
 		case pno_get_listing_editing_page_id():
 		case pno_get_dashboard_page_id():
+		case pno_get_profile_page_id():
 			$post_states['pno_page'] = $mark;
 			break;
 	}
