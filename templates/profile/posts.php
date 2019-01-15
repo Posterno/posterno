@@ -17,10 +17,13 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$is_paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
 $args = [
 	'post_type'   => 'post',
 	'post_status' => 'publish',
 	'author'      => $data->user_id,
+	'paged'       => $is_paged,
 ];
 
 $user_posts = new WP_Query( $args );
@@ -33,14 +36,15 @@ $user_posts = new WP_Query( $args );
 
 	if ( $user_posts->have_posts() ) {
 
+		$placeholder_enabled = pno_is_listing_placeholder_image_enabled();
+
 		echo '<ul class="list-unstyled">';
 
 		while ( $user_posts->have_posts() ) {
 
 			$user_posts->the_post();
 
-			$featured_img        = get_the_post_thumbnail_url( get_the_id(), false );
-			$placeholder_enabled = pno_is_listing_placeholder_image_enabled();
+			$featured_img = get_the_post_thumbnail_url( get_the_id(), false );
 
 			?>
 
@@ -82,6 +86,11 @@ $user_posts = new WP_Query( $args );
 		}
 
 		echo '</ul>';
+
+		// Display pagination.
+		posterno()->templates
+			->set_template_data( [ 'max_num_pages' => $user_posts->max_num_pages ] )
+			->get_template_part( 'listings/pagination' );
 
 	} else {
 

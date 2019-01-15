@@ -106,6 +106,20 @@ add_action(
 				)
 			);
 
+			$routes->addRoute(
+				new QueryRoute(
+					$page_slug . '{profile_id:[^/]+}/{profile_component:[a-zA-Z0-9_.-]+}/page/{paged:[a-zA-Z0-9_.-]+}',
+					function( array $matches ) use ( $profile_page_id ) {
+						return [
+							'profile_id'        => $matches['profile_id'],
+							'profile_component' => $matches['profile_component'],
+							'paged'             => $matches['paged'],
+							'page_id'           => $profile_page_id,
+						];
+					}
+				)
+			);
+
 		}
 	}
 );
