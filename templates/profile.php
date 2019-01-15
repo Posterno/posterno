@@ -109,6 +109,21 @@ $currently_active_item = pno_get_profile_currently_active_component( $navigation
 				</ul>
 			<?php endif; ?>
 
+			<?php
+
+				/**
+				 * Hook: loads the currently active profile page component by using the active component slug.
+				 * Eg: pno_profile_content_slot_{$slug} where {slug} is the slug of the active component.
+				 *
+				 * If the component is called "about", the action would be pno_profile_content_slot_about.
+				 *
+				 * @param string $user_id the user being displayed.
+				 * @param WP_User $user_details some details about the user.
+				 */
+				do_action( "pno_profile_content_slot_{$currently_active_item}", $user_id, $user_details );
+
+			?>
+
 		</div>
 
 	</div>
