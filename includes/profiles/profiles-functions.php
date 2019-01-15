@@ -56,25 +56,13 @@ function pno_get_user_fullname( $user_id_or_object = false ) {
  *
  * @return array
  */
-function pno_get_profile_navigation_items() {
+function pno_get_profile_components() {
 
 	$items = [
-		'about'    => [
-			'label'    => esc_html__( 'About' ),
-			'priority' => 1,
-		],
-		'posts'    => [
-			'label'    => esc_html__( 'Posts' ),
-			'priority' => 2,
-		],
-		'listings' => [
-			'label'    => esc_html__( 'Listings' ),
-			'priority' => 3,
-		],
-		'comments' => [
-			'label'    => esc_html__( 'Comments' ),
-			'priority' => 4,
-		],
+		'about'    => esc_html__( 'About' ),
+		'posts'    => esc_html__( 'Posts' ),
+		'listings' => esc_html__( 'Listings' ),
+		'comments' => esc_html__( 'Comments' ),
 	];
 
 	/**
@@ -83,12 +71,6 @@ function pno_get_profile_navigation_items() {
 	 * @param array $items the currently registered list of items.
 	 * @return array
 	 */
-	$items = apply_filters( 'pno_profile_navigation_items', $items );
-
-	if ( ! empty( $items ) ) {
-		uasort( $items, 'pno_sort_array_by_priority' );
-	}
-
-	return $items;
+	return apply_filters( 'pno_profile_components', $items );
 
 }

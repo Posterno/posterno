@@ -41,6 +41,7 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 	$tabs['loggedin']['pages']  = pno_nav_menu_get_loggedin_pages();
 	$tabs['loggedout']['label'] = __( 'Logged-Out' );
 	$tabs['loggedout']['pages'] = pno_nav_menu_get_loggedout_pages();
+	$tabs['profile']['pages']   = pno_nav_menu_get_profile_page_components();
 
 	$removed_args = array(
 		'action',
@@ -87,10 +88,16 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 			</ul>
 		</div>
 
+		<h4><?php esc_html_e( 'Profile page components' ); ?></h4>
+		<p><?php esc_html_e( 'These links are exclusive to the profile page menu and cannot be used anywhere else.' ); ?></p>
+
+		<div id="tabs-panel-posttype-<?php echo esc_attr( $post_type_name ); ?>-loggedout" class="tabs-panel tabs-panel-active">
+			<ul id="pno-menu-checklist-loggedout" class="categorychecklist form-no-clear">
+				<?php echo walk_nav_menu_tree( array_map( 'wp_setup_nav_menu_item', $tabs['profile']['pages'] ), 0, (object) $args ); ?>
+			</ul>
+		</div>
+
 		<p class="button-controls">
-			<span class="list-controls">
-				<a href="<?php echo esc_url( $select_all_url ); ?>#pno-menu" class="select-all"><?php esc_html_e( 'Select All' ); ?></a>
-			</span>
 			<span class="add-to-menu">
 				<input type="submit" <?php echo esc_attr( $disable_check ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e( 'Add to Menu' ); ?>" name="add-custom-menu-item" id="submit-pno-menu" />
 				<span class="spinner"></span>
@@ -180,6 +187,51 @@ function pno_nav_menu_get_loggedout_pages() {
 	);
 
 	$menu_items = apply_filters( 'pno_nav_menu_get_loggedout_pages', $menu_items );
+
+	if ( count( $menu_items ) < 1 ) {
+		return false;
+	}
+
+	$page_args = array();
+
+	foreach ( $menu_items as $item ) {
+		$page_args[ $item['slug'] ] = (object) array(
+			'ID'             => -1,
+			'post_title'     => $item['name'],
+			'post_author'    => 0,
+			'post_date'      => 0,
+			'post_excerpt'   => $item['slug'],
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'comment_status' => 'closed',
+			'guid'           => $item['link'],
+		);
+	}
+
+	return $page_args;
+
+}
+
+/**
+ * Create fake "post" objects for Posterno's profile page tabbed components for use in the WordPress "Menus" settings page.
+ *
+ * @return mixed
+ */
+function pno_nav_menu_get_profile_page_components() {
+
+	$items = pno_get_profile_components();
+
+	$menu_items = array();
+
+	foreach ( $items as $key => $label ) {
+		$menu_items[] = array(
+			'name' => esc_html( $label ),
+			'slug' => esc_attr( $key ),
+			'link' => '#',
+		);
+	}
+
+	$menu_items = apply_filters( 'pno_nav_menu_get_profile_components_pages', $menu_items );
 
 	if ( count( $menu_items ) < 1 ) {
 		return false;
