@@ -981,3 +981,9 @@ nav .pno-pagination {
 #pno-profile-wrapper .pno-profile-page-navigation {
   margin: 0;
   padding: 0; }
+
+#pno-profile-posts ul {
+  margin: 0;
+  padding: 0; }
+#pno-profile-posts .pno-post-img-wrapper img {
+  max-width: 100px; }
