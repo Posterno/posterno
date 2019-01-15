@@ -65,6 +65,30 @@ function pno_get_user_fullname( $user_id_or_object = false ) {
 }
 
 /**
+ * Retrieve the registration of a given member.
+ *
+ * @param mixed $user_id_or_object the user's to analyze.
+ * @return string|boolean
+ */
+function pno_get_user_registration_date( $user_id_or_object = false ) {
+
+	if ( ! $user_id_or_object ) {
+		return;
+	}
+
+	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id );
+
+	$date = false;
+
+	if ( isset( $user_info->user_registered ) ) {
+		$date = date_i18n( get_option( 'date_format' ), strtotime( $user_info->user_registered ) );
+	}
+
+	return $date;
+
+}
+
+/**
  * Retrieve the list of available navigation items for the profile page.
  *
  * @return array

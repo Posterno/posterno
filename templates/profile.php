@@ -73,11 +73,13 @@ $currently_active_item = pno_get_profile_currently_active_component( $navigation
 					?>
 
 					<?php if ( $name ) : ?>
-						<h5 class="card-title"><?php echo esc_html( $name ); ?></h5>
+						<h5 class="card-title mb-1"><?php echo esc_html( $name ); ?></h5>
 					<?php endif; ?>
 
+					<span class="badge badge-light"><?php printf( esc_html__( 'Member since: %s' ), esc_html( pno_get_user_registration_date( $user_details ) ) ); ?></span>
+
 					<?php if ( $description ) : ?>
-						<p class="card-text"><?php echo wp_kses_post( $description ); ?></p>
+						<p class="card-text mt-2"><?php echo wp_kses_post( $description ); ?></p>
 					<?php endif; ?>
 
 					<?php
