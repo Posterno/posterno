@@ -103,7 +103,7 @@ $currently_active_item = pno_get_profile_currently_active_component( $navigation
 				<ul class="nav nav-tabs pno-profile-page-navigation">
 					<?php foreach ( $navigation_items as $nav_item ) : ?>
 						<li class="nav-item">
-							<a class="nav-link <?php if ( $currently_active_item === $nav_item->post_name ) : ?>active<?php endif; ?>" href="<?php echo esc_url( pno_get_profile_component_url( $nav_item->post_name ) ); ?>"><?php echo esc_html( $nav_item->post_title ); ?></a>
+							<a class="nav-link <?php if ( $currently_active_item === $nav_item->post_name ) : ?>active<?php endif; ?>" href="<?php echo esc_url( pno_get_current_profile_component_url( $nav_item->post_name ) ); ?>"><?php echo esc_html( $nav_item->post_title ); ?></a>
 						</li>
 					<?php endforeach; ?>
 				</ul>

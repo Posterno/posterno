@@ -117,12 +117,44 @@ function pno_get_profile_currently_active_component( $components_menu ) {
 }
 
 /**
- * Get the url of a profile component.
+ * Retrieve the profile url of a given member by it's user id.
+ *
+ * @param string|int $user_id the id number of the member.
+ * @return boolean|string
+ */
+function pno_get_member_profile_url( $user_id ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$profile_page_id = pno_get_profile_page_id();
+	$permalink_base  = pno_get_option( 'profile_permalink' );
+	$url             = false;
+
+	if ( $profile_page_id ) {
+		$profile_page_url = untrailingslashit( get_permalink( $profile_page_id ) );
+		if ( $permalink_base === 'username' ) {
+			$user = get_user_by( 'id', $user_id );
+			if ( $user instanceof WP_User ) {
+				$url = trailingslashit( $profile_page_url . '/' . $user->data->user_login );
+			}
+		} else {
+			$url = trailingslashit( $profile_page_url . '/' . $user_id );
+		}
+	}
+
+	return $url;
+
+}
+
+/**
+ * Get the url of a profile component for the currently queried profile.
  *
  * @param string $component the name of the component.
  * @return string
  */
-function pno_get_profile_component_url( $component ) {
+function pno_get_current_profile_component_url( $component ) {
 
 	$components = pno_get_profile_components();
 
@@ -130,10 +162,7 @@ function pno_get_profile_component_url( $component ) {
 		return false;
 	}
 
-	$profile_page_id  = pno_get_profile_page_id();
-	$profile_page_url = get_permalink( $profile_page_id );
-	$profile_page_url = trailingslashit( $profile_page_url );
-	$profile_page_url = $profile_page_url . pno_get_queried_user_id() . '/' . $component;
+	$profile_page_url = untrailingslashit( pno_get_member_profile_url( pno_get_queried_user_id() ) ) . '/' . $component;
 
 	return trailingslashit( $profile_page_url );
 
