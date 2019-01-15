@@ -74,3 +74,19 @@ function pno_get_profile_components() {
 	return apply_filters( 'pno_profile_components', $items );
 
 }
+
+/**
+ * Get the currently active profile component.
+ *
+ * @param array $components_menu list of menu items defined into the admin panel.
+ * @return string
+ */
+function pno_get_profile_currently_active_component( $components_menu ) {
+
+	reset( $components_menu );
+
+	$active_item = $components_menu[ key( $components_menu ) ];
+
+	return $active_item->post_name;
+
+}
