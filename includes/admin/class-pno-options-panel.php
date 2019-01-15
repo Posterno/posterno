@@ -437,6 +437,15 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'allow_avatars', esc_html__( 'Custom avatars' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow users to upload custom avatars for their profiles.' ) );
 
+		$settings[] = Field::make( 'radio', 'profile_permalink', esc_html__( 'Profiles permalink base' ) )
+			->add_options(
+				[
+					'id'       => esc_html__( 'Display user ID' ),
+					'username' => esc_html__( 'Display username' ),
+				]
+			)
+			->set_help_text( esc_html__( 'These settings control the permalinks used for users profiles. These settings only apply when not using "plain" as permalinks for your website.' ) );
+
 		return $settings;
 
 	}

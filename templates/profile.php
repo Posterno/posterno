@@ -20,10 +20,10 @@ defined( 'ABSPATH' ) || exit;
 // Retrieve assigned user id.
 $user_id = isset( $data->user_id ) ? absint( $data->user_id ) : pno_get_queried_user_id();
 
-$user_details = get_userdata( $user_id );
-$name        = pno_get_user_fullname( $user_details );
-$description = get_user_meta( $user_id, 'description', true );
-$navigation_items = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
+$user_details          = get_userdata( $user_id );
+$name                  = pno_get_user_fullname( $user_details );
+$description           = get_user_meta( $user_id, 'description', true );
+$navigation_items      = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
 $currently_active_item = pno_get_profile_currently_active_component( $navigation_items );
 
 ?>
@@ -98,21 +98,15 @@ $currently_active_item = pno_get_profile_currently_active_component( $navigation
 		</div>
 
 		<div class="col-sm-9">
-
 			<?php if ( $navigation_items && is_array( $navigation_items ) ) : ?>
 				<ul class="nav nav-tabs pno-profile-page-navigation">
-
 					<?php foreach ( $navigation_items as $nav_item ) : ?>
-
 						<li class="nav-item">
 							<a class="nav-link <?php if ( $currently_active_item === $nav_item->post_name ) : ?>active<?php endif; ?>" href="#"><?php echo esc_html( $nav_item->post_title ); ?></a>
 						</li>
-
 					<?php endforeach; ?>
-
 				</ul>
 			<?php endif; ?>
-
 		</div>
 
 	</div>

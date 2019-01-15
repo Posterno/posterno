@@ -18,7 +18,24 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_get_queried_user_id() {
 
-	$user_id = get_current_user_id();
+	$queried_user = get_query_var( 'profile_id', false );
+	$user_id      = false;
+
+	if ( empty( $queried_user ) ) {
+		$user_id = get_current_user_id();
+	} elseif ( ! empty( $queried_user ) && ! is_numeric( $queried_user ) ) {
+
+		$permalink_base = pno_get_option( 'profile_permalink' );
+
+		if ( $permalink_base === 'username' ) {
+
+			$user = get_user_by( 'login', $queried_user );
+
+			if ( $user instanceof WP_User ) {
+				$user_id = absint( $user->data->ID );
+			}
+		}
+	}
 
 	return $user_id;
 

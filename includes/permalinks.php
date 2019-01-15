@@ -15,7 +15,8 @@ use Brain\Cortex\Route\RouteCollectionInterface;
 use Brain\Cortex\Route\QueryRoute;
 
 add_action(
-	'cortex.routes', function( RouteCollectionInterface $routes ) {
+	'cortex.routes',
+	function( RouteCollectionInterface $routes ) {
 
 		$dashboard_page_id = pno_get_dashboard_page_id();
 
@@ -52,6 +53,41 @@ add_action(
 							'dashboard_navigation_item' => $matches['dashboard_navigation_item'],
 							'page_id'                   => $dashboard_page_id,
 							'paged'                     => $matches['paged'],
+						];
+					}
+				)
+			);
+
+		}
+	}
+);
+
+add_action(
+	'cortex.routes',
+	function( RouteCollectionInterface $routes ) {
+
+		$profile_page_id = pno_get_profile_page_id();
+
+		if ( $profile_page_id ) {
+
+			$page_slug = esc_attr( get_post_field( 'post_name', absint( $profile_page_id ) ) );
+			$hierarchy = pno_get_full_page_hierarchy( $profile_page_id );
+
+			if ( ! empty( $hierarchy ) && is_array( $hierarchy ) ) {
+				$page_slug = '';
+				foreach ( array_reverse( $hierarchy ) as $page ) {
+					$parent_page_slug = esc_attr( get_post_field( 'post_name', intval( $page['id'] ) ) );
+					$page_slug       .= $parent_page_slug . '/';
+				}
+			}
+
+			$routes->addRoute(
+				new QueryRoute(
+					$page_slug . '{profile_id:.*}',
+					function( array $matches ) use ( $profile_page_id ) {
+						return [
+							'profile_id' => $matches['profile_id'],
+							'page_id'    => $profile_page_id,
 						];
 					}
 				)
