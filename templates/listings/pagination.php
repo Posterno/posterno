@@ -78,7 +78,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 
 				<?php else : ?>
 
-					<li class="page-item">
+					<li class="page-item <?php if ( $paged === 0 && $i === 1 ) : ?>active<?php endif; ?>">
 						<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $i ) ); ?>"><?php echo esc_html( $i ); ?></a>
 					</li>
 
@@ -90,7 +90,13 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 
 		?>
 
-		<?php if ( $paged < $pages && $showitems < $pages ) : ?>
+		<?php
+
+		if ( $paged < $pages && $showitems < $pages ) :
+
+			$paged = $paged === 0 ? $paged + 1 : $paged;
+
+			?>
 
 			<li class="page-item">
 				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged + 1 ) ); ?>"><?php esc_html_e( 'Next' ); ?></a>
