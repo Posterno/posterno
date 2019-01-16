@@ -20,6 +20,19 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_profile_about_page( $user_id, $user_details ) {
 
+	if ( ! $user_id ) {
+		return;
+	}
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'user_id'      => $user_id,
+				'user_details' => $user_details,
+			]
+		)
+		->get_template_part( 'profile/about' );
+
 }
 add_action( 'pno_profile_content_slot_about', 'pno_profile_about_page', 10, 2 );
 

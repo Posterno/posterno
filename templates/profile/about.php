@@ -17,4 +17,34 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$profile_fields = pno_get_public_profile_fields();
+
 ?>
+
+<div id="pno-profile-about" class="mt-4">
+
+	<?php if ( ! empty( $profile_fields ) ) : ?>
+
+		<ul class="list-group">
+
+			<?php
+			foreach ( $profile_fields as $field ) :
+
+				$value = true;
+
+				if ( ! $value ) {
+					continue;
+				}
+
+				?>
+				<li class="list-group-item">
+					<span class="field-name"><?php echo esc_html( $field['name'] ); ?></span>:
+					<?php echo $value; //phpcs:ignore ?>
+				</li>
+			<?php endforeach; ?>
+
+		</ul>
+
+	<?php endif; ?>
+
+</div>

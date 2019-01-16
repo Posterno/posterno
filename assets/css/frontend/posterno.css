@@ -993,3 +993,9 @@ nav .pno-pagination {
   padding: 0; }
   #pno-profile-comments ul li {
     border-bottom: 1px solid #f5f5f5; }
+
+#pno-profile-about ul {
+  margin: 0;
+  padding: 0; }
+  #pno-profile-about ul .field-name {
+    font-weight: 700; }

@@ -246,3 +246,62 @@ function pno_get_member_submitted_comments( $user_id ) {
 	return $comments;
 
 }
+
+/**
+ * Retrieve a list of all profile fields ready for display on the public profile page.
+ *
+ * @return array
+ */
+function pno_get_public_profile_fields() {
+
+	$fields = [];
+
+	$not_needed = [
+		'avatar',
+		'first_name',
+		'last_name',
+		'description',
+	];
+
+	/**
+	 * Filter: adjusts the query arguments for the profile fields.
+	 *
+	 * @param array $args
+	 * @return array
+	 */
+	$args = apply_filters(
+		'pno_public_profile_fields_args',
+		[
+			'number'                => 100,
+			'user_meta_key__not_in' => $not_needed,
+		]
+	);
+
+	$profile_fields = new PNO\Database\Queries\Profile_Fields( $args );
+
+	if ( ! empty( $profile_fields ) && isset( $profile_fields->items ) && is_array( $profile_fields->items ) ) {
+		foreach ( $profile_fields->items as $field ) {
+			$fields[ $field->get_object_meta_key() ] = [
+				'name'     => $field->get_name(),
+				'priority' => $field->get_priority(),
+				'meta_key' => $field->get_object_meta_key(),
+				'type'     => $field->get_type(),
+			];
+		}
+	}
+
+	/**
+	 * Filter: adjusts the list of public profile fields retrieved from the database.
+	 *
+	 * @param array $fields found fields.
+	 * @return array
+	 */
+	$fields = apply_filters( 'pno_public_profile_fields', $fields );
+
+	if ( ! empty( $fields ) ) {
+		uasort( $fields, 'pno_sort_array_by_priority' );
+	}
+
+	return $fields;
+
+}
