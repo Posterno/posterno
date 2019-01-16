@@ -17,4 +17,62 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$is_paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+$args = [
+	'post_type'      => 'listings',
+	'post_status'    => 'publish',
+	'posts_per_page' => pno_get_option( 'listings_per_page', 10 ),
+	'author'         => $data->user_id,
+	'paged'          => $is_paged,
+];
+
+$user_listings = new WP_Query( $args );
+
 ?>
+
+<div id="pno-profile-listings" class="mt-4">
+
+	<?php if ( $user_listings->have_posts() ) : ?>
+
+		<?php
+
+		while ( $user_listings->have_posts() ) {
+
+			$user_listings->the_post();
+
+			posterno()->templates->get_template_part( 'listings/card', 'list' );
+
+		}
+
+		// Display pagination.
+		posterno()->templates
+			->set_template_data( [ 'max_num_pages' => $user_listings->max_num_pages ] )
+			->get_template_part( 'listings/pagination' );
+
+		?>
+
+	<?php else : ?>
+
+		<?php
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'info',
+					'message' => sprintf( esc_html__( 'No listings have been submitted by %s' ), pno_get_user_first_name( $data->user_details ) ),
+				]
+			)
+			->get_template_part( 'message' );
+
+		?>
+
+	<?php
+
+	endif;
+
+	wp_reset_postdata();
+
+?>
+
+</div>
