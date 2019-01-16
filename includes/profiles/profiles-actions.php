@@ -36,8 +36,6 @@ function pno_profile_posts_page( $user_id, $user_details ) {
 		return;
 	}
 
-	ob_start();
-
 	posterno()->templates
 		->set_template_data(
 			[
@@ -46,10 +44,6 @@ function pno_profile_posts_page( $user_id, $user_details ) {
 			]
 		)
 		->get_template_part( 'profile/posts' );
-
-	$output = ob_get_clean();
-
-	echo $output;
 
 }
 add_action( 'pno_profile_content_slot_posts', 'pno_profile_posts_page', 10, 2 );
