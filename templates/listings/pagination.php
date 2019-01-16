@@ -52,7 +52,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 	<ul class="pagination pno-pagination <?php echo esc_attr( $custom_class ); ?>">
 
 		<?php if ( $paged > 2 && $paged > $range + 1 && $showitems < $pages ) : ?>
-			<li class="page-item disabled">
+			<li class="page-item">
 				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>"><?php esc_html_e( 'First' ); ?></a>
 			</li>
 		<?php endif; ?>
@@ -90,6 +90,15 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 
 		?>
 
+		<?php if ( $paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages ) : ?>
+			<li class="page-item disabled">
+				<a class="page-link" href="#" tabindex="-1" aria-disabled="true">...</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $pages ) ); ?>"><?php echo esc_html( $pages ); ?></a>
+			</li>
+		<?php endif; ?>
+
 		<?php
 
 		if ( $paged < $pages && $showitems < $pages ) :
@@ -102,12 +111,6 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged + 1 ) ); ?>"><?php esc_html_e( 'Next' ); ?></a>
 			</li>
 
-		<?php endif; ?>
-
-		<?php if ( $paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages ) : ?>
-			<li class="page-item">
-				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $pages ) ); ?>"><?php esc_html_e( 'Last' ); ?></a>
-			</li>
 		<?php endif; ?>
 
 	</ul>
