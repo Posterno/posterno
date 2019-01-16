@@ -213,3 +213,36 @@ function pno_get_current_profile_component_url( $component ) {
 	return trailingslashit( $profile_page_url );
 
 }
+
+/**
+ * Get comments submitted by a member given a user id.
+ *
+ * @param string|int $user_id the id number of the user.
+ * @return array
+ */
+function pno_get_member_submitted_comments( $user_id ) {
+
+	if ( ! $user_id ) {
+		return false;
+	}
+
+	/**
+	 * Filter: adjust the arguments for the get_comments function when retrieving member's submitted comments.
+	 *
+	 * @param array $args
+	 * @return array
+	 */
+	$args = apply_filters(
+		'pno_get_member_comments',
+		array(
+			'user_id' => $user_id,
+			'status'  => 'approve',
+			'number'  => '10',
+		)
+	);
+
+	$comments = get_comments( $args );
+
+	return $comments;
+
+}

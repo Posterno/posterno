@@ -72,3 +72,28 @@ function pno_profile_listings_page( $user_id, $user_details ) {
 
 }
 add_action( 'pno_profile_content_slot_listings', 'pno_profile_listings_page', 10, 2 );
+
+/**
+ * Displays the content of the "comments" component on profile pages.
+ *
+ * @param string|int $user_id the queried user's id.
+ * @param WP_User    $user_details some details about the user.
+ * @return void
+ */
+function pno_profile_comments_page( $user_id, $user_details ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'user_id'      => $user_id,
+				'user_details' => $user_details,
+			]
+		)
+		->get_template_part( 'profile/comments' );
+
+}
+add_action( 'pno_profile_content_slot_comments', 'pno_profile_comments_page', 10, 2 );
