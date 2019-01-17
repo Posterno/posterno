@@ -372,11 +372,17 @@ function pno_display_field_value( $type, $value ) {
  * @return string
  */
 function pno_display_field_text_value( $value ) {
-	if ( filter_var( $value, FILTER_VALIDATE_URL ) ) {
-		return '<a href="' . esc_url( $value ) . '" rel="nofollow" class="pno-user-field-link">' . esc_url( $value ) . '</a>';
-	} else {
-		return wp_kses_post( $value );
-	}
+	return wp_kses_post( $value );
+}
+
+/**
+ * Display the formatted content for the url field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_url_value( $value ) {
+	return '<a href="' . esc_url( $value ) . '" rel="nofollow" class="pno-user-field-link">' . esc_url( $value ) . '</a>';
 }
 
 /**
