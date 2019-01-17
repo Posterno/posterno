@@ -335,3 +335,76 @@ function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
 
 	return $menu_items;
 }
+
+/**
+ * Display the formatted value of a field.
+ *
+ * @param string $type the type of the field.
+ * @param string $value the content of the field.
+ * @return void
+ */
+function pno_display_field_value( $type, $value ) {
+
+	if ( ! $type || ! $value ) {
+		return;
+	}
+
+	$output = false;
+
+	$function_name = apply_filters( 'pno_display_field_value_func_name', "pno_display_field_{$type}_value", $type, $value );
+
+	if ( function_exists( $function_name ) ) {
+		$output = call_user_func( $function_name, $value );
+	}
+
+	if ( $output ) {
+		echo $output; //phpcs:ignore
+	}
+
+}
+
+/**
+ * Display the formatted content for a text field on the frontend.
+ *
+ * If the string contains an url, we display an anchor tag.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_text_value( $value ) {
+	if ( filter_var( $value, FILTER_VALIDATE_URL ) ) {
+		return '<a href="' . esc_url( $value ) . '" rel="nofollow" class="pno-user-field-link">' . esc_url( $value ) . '</a>';
+	} else {
+		return wp_kses_post( $value );
+	}
+}
+
+/**
+ * Display the formatted content for a textarea field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_textarea_value( $value ) {
+	return wp_kses_post( $value );
+}
+
+/**
+ * Display the formatted content for a textarea field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_editor_value( $value ) {
+	return wp_kses_post( $value );
+}
+
+/**
+ * Display the formatted content for the email field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_email_value( $value ) {
+	return antispambot( $value );
+}

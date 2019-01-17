@@ -30,7 +30,7 @@ $profile_fields = pno_get_public_profile_fields();
 			<?php
 			foreach ( $profile_fields as $field ) :
 
-				$value = true;
+				$value = pno_get_profile_field_value( $data->user_id, $field['meta_key'] );
 
 				if ( ! $value ) {
 					continue;
@@ -39,7 +39,7 @@ $profile_fields = pno_get_public_profile_fields();
 				?>
 				<li class="list-group-item">
 					<span class="field-name"><?php echo esc_html( $field['name'] ); ?></span>:
-					<?php echo $value; //phpcs:ignore ?>
+					<?php pno_display_field_value( $field['type'], $value ); //phpcs:ignore ?>
 				</li>
 			<?php endforeach; ?>
 

@@ -305,3 +305,87 @@ function pno_get_public_profile_fields() {
 	return $fields;
 
 }
+
+/**
+ * Retrieve a user's email address.
+ *
+ * @param string|boolean $user_id the id of the user.
+ * @return string|boolean
+ */
+function pno_get_user_email( $user_id = false ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user = get_userdata( $user_id );
+
+	$email = false;
+
+	if ( $user instanceof WP_User && isset( $user->user_email ) ) {
+		$email = $user->user_email;
+	}
+
+	return $email;
+
+}
+
+/**
+ * Retrieve a user's website.
+ *
+ * @param string|boolean $user_id the id of the user.
+ * @return string|boolean
+ */
+function pno_get_user_website( $user_id = false ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user = get_userdata( $user_id );
+
+	$website = false;
+
+	if ( $user instanceof WP_User && isset( $user->user_url ) ) {
+		$website = $user->user_url;
+	}
+
+	return $website;
+
+}
+
+/**
+ * Get the value of a profile field.
+ *
+ * @param string|int $user_id the id of the user.
+ * @param string     $meta_key the key of the field to retrieve.
+ * @return mixed
+ */
+function pno_get_profile_field_value( $user_id = false, $meta_key = false ) {
+
+	if ( ! $user_id || ! $meta_key ) {
+		return;
+	}
+
+	$value = false;
+
+	if ( pno_is_default_field( $meta_key ) ) {
+
+		switch ( $meta_key ) {
+			case 'email':
+				$value = pno_get_user_email( $user_id );
+				break;
+			case 'website':
+				$value = pno_get_user_website( $user_id );
+				break;
+		}
+
+	} else {
+
+		$value = carbon_get_user_meta( $user_id, $meta_key );
+
+	}
+
+	return $value;
+
+}
