@@ -191,8 +191,9 @@ function pno_install_profile_fields() {
 
 				$dbfield->add_item(
 					[
-						'post_id'  => $field_id,
-						'settings' => maybe_serialize( $db_settings ),
+						'post_id'       => $field_id,
+						'settings'      => maybe_serialize( $db_settings ),
+						'user_meta_key' => $field_key,
 					]
 				);
 
