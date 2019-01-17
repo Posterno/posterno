@@ -337,6 +337,7 @@ function pno_get_account_fields( $user_id = false ) {
 				'gif'  => 'image/gif',
 				'png'  => 'image/png',
 			],
+			'default_field' => true,
 		],
 		'first_name'  => [
 			'label'       => esc_html__( 'First name' ),
@@ -344,6 +345,7 @@ function pno_get_account_fields( $user_id = false ) {
 			'required'    => true,
 			'placeholder' => '',
 			'priority'    => 2,
+			'default_field' => true,
 		],
 		'last_name'   => [
 			'label'       => esc_html__( 'Last name' ),
@@ -351,6 +353,7 @@ function pno_get_account_fields( $user_id = false ) {
 			'required'    => true,
 			'placeholder' => '',
 			'priority'    => 3,
+			'default_field' => true,
 		],
 		'email'       => [
 			'label'       => esc_html__( 'Email address' ),
@@ -358,13 +361,15 @@ function pno_get_account_fields( $user_id = false ) {
 			'required'    => true,
 			'placeholder' => '',
 			'priority'    => 4,
+			'default_field' => true,
 		],
 		'website'     => [
 			'label'       => esc_html__( 'Website' ),
-			'type'        => 'text',
+			'type'        => 'url',
 			'required'    => false,
 			'placeholder' => '',
 			'priority'    => 5,
+			'default_field' => true,
 		],
 		'description' => [
 			'label'       => esc_html__( 'About me' ),
@@ -372,6 +377,7 @@ function pno_get_account_fields( $user_id = false ) {
 			'required'    => false,
 			'placeholder' => '',
 			'priority'    => 6,
+			'default_field' => true,
 		],
 	];
 

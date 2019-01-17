@@ -119,55 +119,13 @@ function pno_get_roles( $force = false, $admin = false ) {
  * @return void
  */
 function pno_install_profile_fields() {
+
 	// Bail if this was already done.
 	if ( get_option( 'pno_profile_fields_installed' ) ) {
 		return;
 	}
 
-	$registered_fields = [
-		'avatar'      => [
-			'label'       => esc_html__( 'Profile picture' ),
-			'type'        => 'file',
-			'required'    => false,
-			'placeholder' => '',
-			'priority'    => 1,
-		],
-		'first_name'  => [
-			'label'       => esc_html__( 'First name' ),
-			'type'        => 'text',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 2,
-		],
-		'last_name'   => [
-			'label'       => esc_html__( 'Last name' ),
-			'type'        => 'text',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 3,
-		],
-		'email'       => [
-			'label'       => esc_html__( 'Email address' ),
-			'type'        => 'email',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 4,
-		],
-		'website'     => [
-			'label'       => esc_html__( 'Website' ),
-			'type'        => 'text',
-			'required'    => false,
-			'placeholder' => '',
-			'priority'    => 5,
-		],
-		'description' => [
-			'label'       => esc_html__( 'About me' ),
-			'type'        => 'editor',
-			'required'    => false,
-			'placeholder' => '',
-			'priority'    => 6,
-		],
-	];
+	$registered_fields = wp_list_filter( pno_get_account_fields(), [ 'default_field' => true ] );
 
 	if ( ! is_array( $registered_fields ) ) {
 		return;
@@ -254,6 +212,7 @@ function pno_install_profile_fields() {
  * @return void
  */
 function pno_install_registration_fields() {
+
 	// Bail if this was already done.
 	if ( get_option( 'pno_registration_fields_installed' ) ) {
 		return;
