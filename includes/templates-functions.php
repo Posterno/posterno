@@ -501,9 +501,10 @@ function pno_display_field_number_value( $value ) {
 }
 
 /**
- * Display the formatted content for the number field on the frontend.
+ * Display the formatted content for the file field on the frontend.
  *
  * @param string $value the value to display.
+ * @param array  $field all the details about the field.
  * @return string
  */
 function pno_display_field_file_value( $value, $field ) {
