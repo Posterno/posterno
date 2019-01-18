@@ -210,12 +210,15 @@ function pno_adjust_wplogin_form_labels() {
 	}
 
 	add_filter(
-		'gettext', function ( $t, $text, $domain ) use ( $translated_text ) {
+		'gettext',
+		function ( $t, $text, $domain ) use ( $translated_text ) {
 			if ( 'Username or Email Address' === $text || 'Username' === $text ) {
 				return $translated_text;
 			}
 			return $t;
-		}, 20, 3
+		},
+		20,
+		3
 	);
 
 }

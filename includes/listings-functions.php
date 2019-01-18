@@ -238,7 +238,7 @@ function pno_the_listing_publish_date( $post = null ) {
 		$display_date = date_i18n( get_option( 'date_format' ), get_post_time( 'U', false, $post ) );
 	} else {
 		// translators: Placeholder %s is the relative, human readable time since the listing listing was posted.
-		$display_date = sprintf( esc_html__( 'Posted %s ago' ), human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) ) );
+		$display_date = human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) );
 	}
 	echo '<time datetime="' . esc_attr( get_post_time( 'Y-m-d', false, $post ) ) . '">' . wp_kses_post( $display_date ) . '</time>';
 }
@@ -255,7 +255,7 @@ function pno_get_the_listing_publish_date( $post = null ) {
 		return get_post_time( get_option( 'date_format' ) );
 	} else {
 		// translators: Placeholder %s is the relative, human readable time since the listing listing was posted.
-		return sprintf( __( 'Posted %s ago' ), human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) ) );
+		return human_time_diff( get_post_time( 'U', false, $post ), current_time( 'timestamp' ) );
 	}
 }
 
@@ -1110,6 +1110,18 @@ function pno_get_listing_categories( $listing_id = false ) {
 }
 
 /**
+ * Retrieve locations assigned to a listing.
+ *
+ * @param boolean|string $listing_id the id of the listing to inspect.
+ * @return array
+ */
+function pno_get_listing_locations( $listing_id = false ) {
+
+	return wp_get_post_terms( $listing_id, 'listings-locations' );
+
+}
+
+/**
  * Determine if listings can be featured.
  *
  * @return boolean
@@ -1127,5 +1139,19 @@ function pno_listings_can_be_featured() {
 function pno_listing_is_featured( $listing_id ) {
 
 	return (bool) get_post_meta( $listing_id, '_listing_is_featured', true );
+
+}
+
+/**
+ * Retrieve the list of media items assigned to a listing if any.
+ *
+ * @param string $listing_id the id of the listing to verify.
+ * @return mixed
+ */
+function pno_get_listing_media_items( $listing_id ) {
+
+	$items = carbon_get_post_meta( $listing_id, 'listing_gallery_images' );
+
+	return $items;
 
 }
