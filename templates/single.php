@@ -22,6 +22,11 @@ $categories = pno_get_listing_categories( $listing_id );
 $locations  = pno_get_listing_locations( $listing_id );
 $gallery    = pno_get_listing_media_items( $listing_id );
 
+// If a gallery is availabe, let's add the featured image too to the list.
+if ( ! empty( $gallery ) ) {
+	array_unshift( $gallery, get_post_thumbnail_id( $listing_id ) );
+}
+
 /**
  * Hook: triggers before the content of the single listing page is displayed.
  */
@@ -61,7 +66,7 @@ do_action( 'pno_before_single_listing' );
 		</nav>
 	<?php endif; ?>
 
-	<?php if ( has_post_thumbnail() ) : ?>
+	<?php if ( has_post_thumbnail() && ! is_array( $gallery ) || ( has_post_thumbnail() && empty( $gallery ) ) ) : ?>
 		<div class="listing-featured-image">
 			<?php the_post_thumbnail( 'full' ); ?>
 		</div>
@@ -81,7 +86,9 @@ do_action( 'pno_before_single_listing' );
 
 	?>
 
-	<?php the_content(); ?>
+	<div class="mt-4">
+		<?php the_content(); ?>
+	</div>
 
 	<div class="listing-meta-fields">
 
