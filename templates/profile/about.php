@@ -39,7 +39,7 @@ $profile_fields = pno_get_public_profile_fields();
 				?>
 				<li class="list-group-item">
 					<span class="field-name"><?php echo esc_html( $field['name'] ); ?></span>:
-					<?php pno_display_field_value( $field['type'], $value ); //phpcs:ignore ?>
+					<?php pno_display_field_value( $field['type'], $value, $field ); //phpcs:ignore ?>
 				</li>
 			<?php endforeach; ?>
 

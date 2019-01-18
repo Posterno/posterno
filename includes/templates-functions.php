@@ -341,9 +341,10 @@ function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
  *
  * @param string $type the type of the field.
  * @param string $value the content of the field.
+ * @param array  $field all the details about the field.
  * @return void
  */
-function pno_display_field_value( $type, $value ) {
+function pno_display_field_value( $type, $value, $field ) {
 
 	if ( ! $type || ! $value ) {
 		return;
@@ -351,10 +352,10 @@ function pno_display_field_value( $type, $value ) {
 
 	$output = false;
 
-	$function_name = apply_filters( 'pno_display_field_value_func_name', "pno_display_field_{$type}_value", $type, $value );
+	$function_name = apply_filters( 'pno_display_field_value_func_name', "pno_display_field_{$type}_value", $type, $value, $field );
 
 	if ( function_exists( $function_name ) ) {
-		$output = call_user_func( $function_name, $value );
+		$output = call_user_func( $function_name, $value, $field );
 	}
 
 	if ( $output ) {
@@ -413,4 +414,122 @@ function pno_display_field_editor_value( $value ) {
  */
 function pno_display_field_email_value( $value ) {
 	return antispambot( $value );
+}
+
+/**
+ * Display the formatted content for the checkbox field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_checkbox_value( $value ) {
+	return $value === true ? esc_html__( 'Yes' ) : esc_html__( 'No' );
+}
+
+/**
+ * Display the formatted content for the dropdown field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_select_value( $value, $field ) {
+
+	$options = isset( $field['options'] ) ? array_map( 'esc_attr', $field['options'] ) : [];
+
+	if ( array_key_exists( $value, $options ) ) {
+		$value = $options[ $value ];
+	}
+
+	return $value;
+}
+
+/**
+ * Display the formatted content for the radio field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_radio_value( $value, $field ) {
+	return pno_display_field_select_value( $value, $field );
+}
+
+/**
+ * Display the formatted content for the multiple checkboxes field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_multicheckbox_value( $value, $field ) {
+
+	$output = [];
+
+	$options = isset( $field['options'] ) ? array_map( 'esc_attr', $field['options'] ) : [];
+	$value   = is_array( $value ) ? array_map( 'esc_attr', $value ) : [];
+
+	foreach ( $value as $selected_option ) {
+		if ( array_key_exists( $selected_option, $options ) ) {
+			$output[] = esc_html( $options[ $selected_option ] );
+		}
+	}
+
+	return implode( ', ', $output );
+
+}
+
+/**
+ * Display the formatted content for the multiple selects field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_multiselect_value( $value, $field ) {
+	return pno_display_field_multicheckbox_value( $value, $field );
+}
+
+/**
+ * Display the formatted content for the number field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_number_value( $value ) {
+	return pno_display_field_text_value( $value );
+}
+
+/**
+ * Display the formatted content for the number field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_file_value( $value, $field ) {
+
+	$files = $value;
+
+	ob_start();
+
+	if ( is_array( $files ) ) {
+		posterno()->templates
+			->set_template_data(
+				[
+					'files' => $files,
+				]
+			)
+			->get_template_part( 'fields-output/file-field' );
+	} else {
+		posterno()->templates
+			->set_template_data(
+				[
+					'file_url' => $value,
+				]
+			)
+			->get_template_part( 'fields-output/file-field' );
+	}
+
+	return ob_get_clean();
+
 }

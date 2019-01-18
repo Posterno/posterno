@@ -286,6 +286,7 @@ function pno_get_public_profile_fields() {
 				'priority' => $field->get_priority(),
 				'meta_key' => $field->get_object_meta_key(),
 				'type'     => $field->get_type(),
+				'options'  => $field->get_options(),
 			];
 		}
 	}
@@ -379,7 +380,6 @@ function pno_get_profile_field_value( $user_id = false, $meta_key = false ) {
 				$value = pno_get_user_website( $user_id );
 				break;
 		}
-
 	} else {
 
 		$value = carbon_get_user_meta( $user_id, $meta_key );
