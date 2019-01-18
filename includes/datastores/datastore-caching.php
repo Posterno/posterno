@@ -14,6 +14,7 @@ namespace PNO\Datastores;
 use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Datastore\Post_Meta_Datastore;
 use Carbon_Fields\Datastore\Term_Meta_Datastore;
+use Carbon_Fields\Datastore\User_Meta_Datastore;
 use Carbon_Fields\Field\Field;
 use Carbon_Fields\Toolset\Key_Toolset;
 
@@ -84,6 +85,13 @@ final class EagerLoadingTermMetaDatastore extends Term_Meta_Datastore {
 }
 
 /**
+ * Class that hooks into the User meta storage system.
+ */
+final class EagerLoadingUserMetaDatastore extends User_Meta_Datastore {
+	use EagerLoadingMetaDatastore;
+}
+
+/**
  * Add caching to all containers that make use of the post meta datastore.
  */
 add_action(
@@ -95,6 +103,8 @@ add_action(
 				$container->set_datastore( new EagerLoadingPostMetaDatastore() );
 			} elseif ( $datastore instanceof Term_Meta_Datastore ) {
 				$container->set_datastore( new EagerLoadingTermMetaDatastore() );
+			} elseif ( $datastore instanceof User_Meta_Datastore ) {
+				$container->set_datastore( new EagerLoadingUserMetaDatastore() );
 			}
 		}
 	}
