@@ -52,7 +52,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 
 		$steps = array(
 			'submit' => array(
-				'name'     => esc_html__( 'Permanently delete this account' ),
+				'name'     => esc_html__( 'Permanently account' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
