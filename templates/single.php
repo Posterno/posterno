@@ -96,6 +96,15 @@ do_action( 'pno_before_single_listing' );
 		<?php the_content(); ?>
 	</div>
 
+	<?php
+
+	/**
+	 * Hook: triggers before the contact information of the single listing page is displayed.
+	 */
+	do_action( 'pno_before_single_listing_contact_information' );
+
+	?>
+
 	<div class="listing-contact-info">
 
 		<h4><?php esc_html_e( 'Contact information' ); ?></h4>
@@ -104,25 +113,25 @@ do_action( 'pno_before_single_listing' );
 			<div class="col-md-6">
 				<ul class="list-group list-group-flush m-0">
 					<?php if ( $address ) : ?>
-						<li class="list-group-item">
+						<li class="list-group-item pl-0">
 							<i class="fas fa-map-marker-alt mr-2"></i>
 							<?php echo esc_html( $address ); ?>
 						</li>
 					<?php endif; ?>
 					<?php if ( $contact_phone ) : ?>
-						<li class="list-group-item">
+						<li class="list-group-item pl-0">
 							<i class="fas fa-phone mr-2"></i>
 							<?php echo esc_html( $contact_phone ); ?>
 						</li>
 					<?php endif; ?>
 					<?php if ( $contact_email ) : ?>
-						<li class="list-group-item">
+						<li class="list-group-item pl-0">
 							<i class="fas fa-envelope mr-2"></i>
 							<?php pno_display_field_value( 'email', $contact_email ); ?>
 						</li>
 					<?php endif; ?>
 					<?php if ( $contact_website ) : ?>
-						<li class="list-group-item">
+						<li class="list-group-item pl-0">
 							<i class="fas fa-external-link-alt mr-2"></i>
 							<?php pno_display_field_value( 'url', $contact_website ); ?>
 						</li>
@@ -136,6 +145,15 @@ do_action( 'pno_before_single_listing' );
 		</div>
 
 	</div>
+
+	<?php
+
+	/**
+	 * Hook: triggers after the contact information of the single listing page is displayed.
+	 */
+	do_action( 'pno_after_single_listing_contact_information' );
+
+	?>
 
 </div>
 
