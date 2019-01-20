@@ -413,7 +413,7 @@ function pno_display_field_editor_value( $value ) {
  * @return string
  */
 function pno_display_field_email_value( $value ) {
-	return antispambot( $value );
+	return '<a href="mailto:' . $value . '">' . antispambot( $value ) . '</a>';
 }
 
 /**
