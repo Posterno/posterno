@@ -194,6 +194,7 @@ class Listing {
 		$settings = [];
 
 		$settings[] = Field::make( 'map', 'listing_location', esc_html__( 'Location' ) )
+			->set_datastore( new \PNO\Datastores\ListingAddress() )
 			->set_help_text( esc_html__( 'Search an address or drag and drop the pin on the map to select location.' ) );
 
 		$settings[] = Field::make( 'text', 'listing_zipcode', esc_html__( 'Zipcode' ) );
