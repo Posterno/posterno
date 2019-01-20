@@ -56,6 +56,7 @@ class ListingAddress extends Post_Meta_Datastore {
 			$lat         = pno_get_option( 'map_starting_lat', '40.7484405' );
 			$lng         = pno_get_option( 'map_starting_lng', '-73.9944191' );
 			$coordinates = "{$lat},{$lng}";
+			$address     = '';
 		}
 
 		$full_value = [];
