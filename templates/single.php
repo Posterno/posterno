@@ -90,11 +90,21 @@ do_action( 'pno_before_single_listing' );
 		<?php the_content(); ?>
 	</div>
 
-	<div class="listing-meta-fields">
+	<div class="listing-contact-info">
 
-		<ul class="list-group">
-			<li class="list-group-item"><span class="field-title">Field</span>: value</li>
-		</ul>
+		<h4><?php esc_html_e( 'Contact information' ); ?></h4>
+
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-group m-0">
+					<li class="list-group-item"><span class="field-title">Field</span>: value</li>
+				</ul>
+			</div>
+
+			<div class="col-md-6">
+
+			</div>
+		</div>
 
 	</div>
 
