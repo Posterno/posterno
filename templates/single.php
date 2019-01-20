@@ -34,6 +34,7 @@ $address_lng     = get_post_meta( $listing_id, '_listing_location_lng', true );
 $contact_email   = get_post_meta( $listing_id, '_listing_email', true );
 $contact_phone   = get_post_meta( $listing_id, '_listing_phone_number', true );
 $contact_website = get_post_meta( $listing_id, '_listing_website', true );
+$social_networks = carbon_get_post_meta( $listing_id, 'listing_social_profiles' );
 
 /**
  * Hook: triggers before the content of the single listing page is displayed.
@@ -136,6 +137,21 @@ do_action( 'pno_before_single_listing' );
 						<li class="list-group-item pl-0">
 							<i class="fas fa-external-link-alt mr-2"></i>
 							<?php pno_display_field_value( 'url', $contact_website ); ?>
+						</li>
+					<?php endif; ?>
+					<?php if ( $social_networks ) : ?>
+						<li class="list-group-item pl-0">
+							<?php
+
+								posterno()->templates
+									->set_template_data(
+										[
+											'networks' => $social_networks,
+										]
+									)
+									->get_template_part( 'fields-output/social-networks-field' );
+
+							?>
 						</li>
 					<?php endif; ?>
 				</ul>
