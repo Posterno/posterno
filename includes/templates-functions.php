@@ -344,7 +344,7 @@ function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
  * @param array  $field all the details about the field.
  * @return void
  */
-function pno_display_field_value( $type, $value, $field ) {
+function pno_display_field_value( $type, $value, $field = false ) {
 
 	if ( ! $type || ! $value ) {
 		return;

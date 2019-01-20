@@ -27,6 +27,12 @@ if ( ! empty( $gallery ) ) {
 	array_unshift( $gallery, get_post_thumbnail_id( $listing_id ) );
 }
 
+// Retrieve details about the listing.
+$address         = get_post_meta( $listing_id, '_listing_location_address', true );
+$contact_email   = get_post_meta( $listing_id, '_listing_email', true );
+$contact_phone   = get_post_meta( $listing_id, '_listing_phone_number', true );
+$contact_website = get_post_meta( $listing_id, '_listing_website', true );
+
 /**
  * Hook: triggers before the content of the single listing page is displayed.
  */
@@ -96,8 +102,31 @@ do_action( 'pno_before_single_listing' );
 
 		<div class="row">
 			<div class="col-md-6">
-				<ul class="list-group m-0">
-					<li class="list-group-item"><span class="field-title">Field</span>: value</li>
+				<ul class="list-group list-group-flush m-0">
+					<?php if ( $address ) : ?>
+						<li class="list-group-item">
+							<i class="fas fa-map-marker-alt mr-2"></i>
+							<?php echo esc_html( $address ); ?>
+						</li>
+					<?php endif; ?>
+					<?php if ( $contact_phone ) : ?>
+						<li class="list-group-item">
+							<i class="fas fa-phone mr-2"></i>
+							<?php echo esc_html( $contact_phone ); ?>
+						</li>
+					<?php endif; ?>
+					<?php if ( $contact_email ) : ?>
+						<li class="list-group-item">
+							<i class="fas fa-envelope mr-2"></i>
+							<?php pno_display_field_value( 'email', $contact_email ); ?>
+						</li>
+					<?php endif; ?>
+					<?php if ( $contact_website ) : ?>
+						<li class="list-group-item">
+							<i class="fas fa-external-link-alt mr-2"></i>
+							<?php pno_display_field_value( 'url', $contact_website ); ?>
+						</li>
+					<?php endif; ?>
 				</ul>
 			</div>
 
