@@ -68,7 +68,7 @@ function pno_load_admin_scripts() {
 	}
 
 	if ( $screen->id === 'pno_listings_fields' ) {
-		wp_enqueue_style('pno-editors-styling-post-type');
+		wp_enqueue_style( 'pno-editors-styling-post-type' );
 		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-listings-fields-settings-validation.min.js', [], $version, true );
 		wp_localize_script( 'pnocf-validation', 'pno_listing_cf', pno_get_listing_custom_fields_page_vars() );
 	}
@@ -157,6 +157,7 @@ function pno_load_frontend_scripts() {
 		'mapZoom'                          => pno_get_option( 'map_zoom', '12' ),
 		'internal_links_new_tab'           => (bool) pno_get_option( 'listing_open_new_tab', false ),
 		'internal_links_new_tab_selectors' => pno_get_internal_listing_links_selectors(),
+		'external_links_new_tab_selectors' => pno_get_external_listing_links_selectors(),
 		'labels'                           => [
 			'addressNotFound'         => esc_html__( 'Address not found, please try again.' ),
 			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.' ),

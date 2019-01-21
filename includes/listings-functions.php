@@ -1084,6 +1084,29 @@ function pno_get_internal_listing_links_selectors() {
 }
 
 /**
+ * Retrieve the list of html selectors that belong to external listings links.
+ * Each link contained within these selectors will be opened in a new tab if the browser settings allow it.
+ *
+ * @return array
+ */
+function pno_get_external_listing_links_selectors() {
+
+	$selectors = [
+		'.listing-contact-info a',
+		'.listing-custom-fields a',
+	];
+
+	/**
+	 * Filter: adjust the list of selectors that belong to external listing links.
+	 *
+	 * @param mixed $selectors the list of html selectors.
+	 * @return array
+	 */
+	return apply_filters( 'pno_external_listing_links_selectors', $selectors );
+
+}
+
+/**
  * Retrieve the type assigned to a listing.
  *
  * @param boolean|string $listing_id the id of the listing to inspect.
