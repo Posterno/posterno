@@ -17,6 +17,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+$socials = pno_get_registered_social_media();
+
 ?>
 
 <div class="pno-social-networks-list">
@@ -32,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
 				?>
 
 				<li class="list-inline-item">
-					<a href="<?php echo esc_url( $social['social_url'] ); ?>">
+					<a href="<?php echo esc_url( $social['social_url'] ); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo esc_html( $socials[ $social['social_id'] ] ); ?>">
 						<i class="fab fa-<?php echo esc_attr( $network_class ); ?>"></i>
 					</a>
 				</li>
