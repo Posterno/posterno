@@ -987,50 +987,52 @@ nav .pno-pagination {
   width: 100%;
   height: 200px; }
 
-.pno-social-networks-list .fa-behance {
-  color: #1769ff; }
-.pno-social-networks-list .fa-dribbble {
-  color: #ea4c89; }
-.pno-social-networks-list .fa-facebook {
-  color: #3b5998; }
-.pno-social-networks-list .fa-flickr {
-  color: #ff0084; }
-.pno-social-networks-list .fa-github {
-  color: #333333; }
-.pno-social-networks-list .fa-google-plus {
-  color: #dd4b39; }
-.pno-social-networks-list .fa-instagram {
-  color: #125688; }
-.pno-social-networks-list .fa-linkedin {
-  color: #007bb5; }
-.pno-social-networks-list .fa-pinterest {
-  color: #cb2027; }
-.pno-social-networks-list .fa-reddit {
-  color: #ff4500; }
-.pno-social-networks-list .fa-skype {
-  color: #00acf4; }
-.pno-social-networks-list .fa-snapchat {
-  color: #fffc00; }
-.pno-social-networks-list .fa-spotify {
-  color: #2ebd59; }
-.pno-social-networks-list .fa-stack-overflow {
-  color: #fe7a15; }
-.pno-social-networks-list .fa-telegram {
-  color: #0088cc; }
-.pno-social-networks-list .fa-tumblr {
-  color: #32506d; }
-.pno-social-networks-list .fa-twitter {
-  color: #00aced; }
-.pno-social-networks-list .fa-vimeo {
-  color: #162221; }
-.pno-social-networks-list .fa-vk {
-  color: #45668e; }
-.pno-social-networks-list .fa-whatsapp {
-  color: #43d854; }
-.pno-social-networks-list .fa-youtube {
-  color: #bb0000; }
-.pno-social-networks-list .fa-soundcloud {
-  color: #ff8800; }
+.pno-social-networks-list {
+  font-size: 18px; }
+  .pno-social-networks-list .fa-behance {
+    color: #1769ff; }
+  .pno-social-networks-list .fa-dribbble {
+    color: #ea4c89; }
+  .pno-social-networks-list .fa-facebook {
+    color: #3b5998; }
+  .pno-social-networks-list .fa-flickr {
+    color: #ff0084; }
+  .pno-social-networks-list .fa-github {
+    color: #333333; }
+  .pno-social-networks-list .fa-google-plus {
+    color: #dd4b39; }
+  .pno-social-networks-list .fa-instagram {
+    color: #125688; }
+  .pno-social-networks-list .fa-linkedin {
+    color: #007bb5; }
+  .pno-social-networks-list .fa-pinterest {
+    color: #cb2027; }
+  .pno-social-networks-list .fa-reddit {
+    color: #ff4500; }
+  .pno-social-networks-list .fa-skype {
+    color: #00acf4; }
+  .pno-social-networks-list .fa-snapchat {
+    color: #fffc00; }
+  .pno-social-networks-list .fa-spotify {
+    color: #2ebd59; }
+  .pno-social-networks-list .fa-stack-overflow {
+    color: #fe7a15; }
+  .pno-social-networks-list .fa-telegram {
+    color: #0088cc; }
+  .pno-social-networks-list .fa-tumblr {
+    color: #32506d; }
+  .pno-social-networks-list .fa-twitter {
+    color: #00aced; }
+  .pno-social-networks-list .fa-vimeo {
+    color: #162221; }
+  .pno-social-networks-list .fa-vk {
+    color: #45668e; }
+  .pno-social-networks-list .fa-whatsapp {
+    color: #43d854; }
+  .pno-social-networks-list .fa-youtube {
+    color: #bb0000; }
+  .pno-social-networks-list .fa-soundcloud {
+    color: #ff8800; }
 
 #pno-profile-wrapper .card img.avatar.card-img-top {
   max-height: 200px;
