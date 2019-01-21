@@ -175,13 +175,17 @@ do_action( 'pno_before_single_listing' );
 
 		<div class="listing-custom-fields mt-4">
 
-			<h4><?php esc_html_e( 'Additional info' ); ?></h4>
+			<h4><?php esc_html_e( 'Other information' ); ?></h4>
 
 			<ul class="list-group m-0">
 				<?php
 				foreach ( $custom_fields as $field ) :
 
-					$value = get_post_meta( $listing_id, '_' . $field['meta_key'], true );
+					if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
+						$value = wp_get_post_terms( $listing_id, esc_attr( $field['taxonomy'] ) );
+					} else {
+						$value = get_post_meta( $listing_id, '_' . $field['meta_key'], true );
+					}
 
 					if ( ! $value ) {
 						continue;

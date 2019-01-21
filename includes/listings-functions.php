@@ -1156,6 +1156,11 @@ function pno_get_listing_media_items( $listing_id ) {
 
 }
 
+/**
+ * Retrieve the list of custom listings fields ready for display on the frontend.
+ *
+ * @return array
+ */
 function pno_get_public_listings_fields() {
 
 	$fields = [];
@@ -1186,6 +1191,7 @@ function pno_get_public_listings_fields() {
 				'meta_key' => $field->get_object_meta_key(),
 				'type'     => $field->get_type(),
 				'options'  => $field->get_options(),
+				'taxonomy' => $field->get_taxonomy(),
 			];
 		}
 	}

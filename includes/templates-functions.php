@@ -351,6 +351,7 @@ function pno_display_field_value( $type, $value, $field = false ) {
 	}
 
 	$output = false;
+	$type   = strtolower( str_replace( '-', '_', $type ) );
 
 	$function_name = apply_filters( 'pno_display_field_value_func_name', "pno_display_field_{$type}_value", $type, $value, $field );
 
@@ -533,4 +534,62 @@ function pno_display_field_file_value( $value, $field ) {
 
 	return ob_get_clean();
 
+}
+
+/**
+ * Display the formatted content for the taxonomy field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_term_multiselect_value( $value, $field ) {
+
+	$taxonomy = isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? esc_attr( $field['taxonomy'] ) : false;
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'taxonomy' => $taxonomy,
+				'terms'    => $value,
+			]
+		)
+		->get_template_part( 'fields-output/taxonomy-field' );
+
+	ob_start();
+
+	return ob_get_clean();
+}
+
+/**
+ * Display the formatted content for the taxonomy field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_term_select_value( $value, $field ) {
+	return pno_display_field_term_multiselect_value( $value, $field );
+}
+
+/**
+ * Display the formatted content for the taxonomy field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_term_checklist_value( $value, $field ) {
+	return pno_display_field_term_multiselect_value( $value, $field );
+}
+
+/**
+ * Display the formatted content for the taxonomy field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_term_chain_dropdown_value( $value, $field ) {
+	return pno_display_field_term_multiselect_value( $value, $field );
 }
