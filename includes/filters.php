@@ -374,3 +374,26 @@ function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $f
 
 }
 add_filter( 'pno_form_validate_fields', 'pno_validate_amount_of_selected_categories', 10, 4 );
+
+/**
+ * Add custom classes to the body tag when viewing the single listing page.
+ *
+ * @param array $classes list of classes.
+ * @return array
+ */
+function pno_single_listing_body_classes( $classes ) {
+
+	global $post;
+
+	if ( is_singular( 'listings' ) ) {
+		$classes[] = 'pno-listing';
+
+		if ( pno_listing_is_featured( $post->ID ) ) {
+			$classes[] = 'pno-featured-listing';
+		}
+	}
+
+	return $classes;
+
+}
+add_filter( 'body_class', 'pno_single_listing_body_classes' );
