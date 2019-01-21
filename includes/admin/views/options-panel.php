@@ -25,9 +25,9 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 	<div class="wrap">
 		<h1><?php echo esc_html( $this->title ); ?></h1>
 		<ul class="title-links hidden-sm-and-down">
-			<li>
+			<!--<li>
 				<a href="https://posterno.com/addons" target="_blank" class="page-title-action"><?php esc_html_e( 'View Addons' ); ?></a>
-			</li>
+			</li>-->
 			<li>
 				<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
 			</li>
@@ -35,7 +35,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 	</div>
 </div>
 
-<div class="posterno-options-panel wrap carbon-<?php echo $container_css_class; ?>">
+<div class="posterno-options-panel wrap carbon-<?php echo esc_attr( $container_css_class ); ?>">
 
 	<h2 class="nav-tab-wrapper pno-nav-tab-wrapper">
 		<?php
@@ -63,18 +63,18 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 	<?php if ( $this->errors ) : ?>
 		<div class="carbon-wp-notice notice-error">
 			<?php foreach ( $this->errors as $error ) : ?>
-				<p><strong><?php echo $error; ?></strong></p>
+				<p><strong><?php echo esc_html( $error ); ?></strong></p>
 			<?php endforeach ?>
 		</div>
 	<?php elseif ( $this->notifications ) : ?>
 		<?php foreach ( $this->notifications as $notification ) : ?>
 			<div class="carbon-wp-notice notice-success">
-				<p><strong><?php echo $notification; ?></strong></p>
+				<p><strong><?php echo esc_html( $notification ); ?></strong></p>
 			</div>
 		<?php endforeach ?>
 	<?php endif; ?>
 
-	<form method="post" id="<?php echo $container_css_class; ?>-form" enctype="multipart/form-data" action="">
+	<form method="post" id="<?php echo esc_attr( $container_css_class ); ?>-form" enctype="multipart/form-data" action="">
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-2">
 				<div id="post-body-content">
@@ -82,7 +82,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 					<?php do_action( "{$container_id}_before_fields" ); ?>
 
 					<div class="postbox carbon-box" id="<?php echo $this->get_id(); ?>">
-						<fieldset class="inside <?php echo $container_css_class; ?>-container carbon-grid container-<?php echo $this->get_id(); ?>"></fieldset>
+						<fieldset class="inside <?php echo esc_attr( $container_css_class ); ?>-container carbon-grid container-<?php echo $this->get_id(); ?>"></fieldset>
 					</div>
 
 					<?php do_action( "{$container_id}_after_fields" ); ?>
