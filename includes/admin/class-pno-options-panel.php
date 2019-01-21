@@ -524,6 +524,9 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
 
+		$settings[] = Field::make( 'checkbox', 'listing_external_open_new_tab', esc_html__( 'Open external listings links in new tab' ) )
+			->set_help_text( esc_html__( 'Enable the option to open external listings links in a new browser tab. ' ) );
+
 		return $settings;
 
 	}

@@ -76,16 +76,18 @@
 	 * Open external listings links into a new tab.
 	*/
 	window.Posterno.openExternalLinksNewTab = function () {
-		$(window.Posterno.externalLinks).each(function () {
-			var a = new RegExp('/' + window.location.host + '/');
-			if (!a.test(this.href)) {
-				$(this).click(function (event) {
-					event.preventDefault();
-					event.stopPropagation();
-					window.open(this.href, '_blank');
-				});
-			}
-		});
+		if ( pno_settings.external_links_new_tab ) {
+			$(window.Posterno.externalLinks).each(function () {
+				var a = new RegExp('/' + window.location.host + '/');
+				if (!a.test(this.href)) {
+					$(this).click(function (event) {
+						event.preventDefault();
+						event.stopPropagation();
+						window.open(this.href, '_blank');
+					});
+				}
+			});
+		}
 	}
 
 	$(document).ready(function () {
