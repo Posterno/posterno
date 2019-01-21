@@ -36,6 +36,9 @@ $contact_phone   = get_post_meta( $listing_id, '_listing_phone_number', true );
 $contact_website = get_post_meta( $listing_id, '_listing_website', true );
 $social_networks = carbon_get_post_meta( $listing_id, 'listing_social_profiles' );
 
+// Retrieve all the custom fields if any.
+$custom_fields = pno_get_public_listings_fields();
+
 /**
  * Hook: triggers before the content of the single listing page is displayed.
  */
@@ -167,6 +170,36 @@ do_action( 'pno_before_single_listing' );
 		</div>
 
 	</div>
+
+	<?php if ( ! empty( $custom_fields ) ) : ?>
+
+		<div class="listing-custom-fields mt-4">
+
+			<h4><?php esc_html_e( 'Additional info' ); ?></h4>
+
+			<ul class="list-group m-0">
+				<?php
+				foreach ( $custom_fields as $field ) :
+
+					$value = get_post_meta( $listing_id, '_' . $field['meta_key'], true );
+
+					if ( ! $value ) {
+						continue;
+					}
+
+					?>
+					<li class="list-group-item">
+						<span class="field-name">
+							<strong><?php echo esc_html( $field['name'] ); ?></strong>
+						</span>:
+						<?php pno_display_field_value( $field['type'], $value, $field ); //phpcs:ignore ?>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+
+		</div>
+
+	<?php endif; ?>
 
 	<?php
 

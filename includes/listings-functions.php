@@ -1155,3 +1155,53 @@ function pno_get_listing_media_items( $listing_id ) {
 	return $items;
 
 }
+
+function pno_get_public_listings_fields() {
+
+	$fields = [];
+
+	$exclude = pno_get_registered_default_meta_keys();
+
+	/**
+	 * Filter: adjusts the query arguments for the listings fields query on the frontend fields.
+	 *
+	 * @param array $args
+	 * @return array
+	 */
+	$args = apply_filters(
+		'pno_public_listings_fields_args',
+		[
+			'number'                   => 100,
+			'listing_meta_key__not_in' => $exclude,
+		]
+	);
+
+	$listing_fields = new PNO\Database\Queries\Listing_Fields( $args );
+
+	if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
+		foreach ( $listing_fields->items as $field ) {
+			$fields[ $field->get_object_meta_key() ] = [
+				'name'     => $field->get_name(),
+				'priority' => $field->get_priority(),
+				'meta_key' => $field->get_object_meta_key(),
+				'type'     => $field->get_type(),
+				'options'  => $field->get_options(),
+			];
+		}
+	}
+
+	/**
+	 * Filter: adjusts the list of public listings fields retrieved from the database.
+	 *
+	 * @param array $fields found fields.
+	 * @return array
+	 */
+	$fields = apply_filters( 'pno_public_listing_fields', $fields );
+
+	if ( ! empty( $fields ) ) {
+		uasort( $fields, 'pno_sort_array_by_priority' );
+	}
+
+	return $fields;
+
+}
