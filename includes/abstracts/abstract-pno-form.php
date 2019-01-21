@@ -368,11 +368,16 @@ abstract class PNO_Form {
 					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
 				}
 				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect', 'term-chain-dropdown', 'listing-category', 'listing-tags' ), true ) ) {
-					if ( is_array( $values[ $group_key ][ $key ] ) ) {
-						$check_value = $values[ $group_key ][ $key ];
+
+					$term_value = json_decode( $values[ $group_key ][ $key ] );
+
+					if ( is_array( $term_value ) ) {
+						$check_value = $term_value;
 					} else {
-						$check_value = empty( $values[ $group_key ][ $key ] ) ? array() : array( $values[ $group_key ][ $key ] );
+						$check_value = empty( $term_value ) ? array() : $term_value;
 					}
+
+					var_dump( $check_value );
 
 					foreach ( $check_value as $term ) {
 						if ( ! term_exists( absint( $term ), $field['taxonomy'] ) ) {
