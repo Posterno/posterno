@@ -527,6 +527,9 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'listing_external_open_new_tab', esc_html__( 'Open external listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open external listings links in a new browser tab. ' ) );
 
+		$settings[] = Field::make( 'checkbox', 'listing_external_rel_attributes', esc_html__( 'Add noopener noreferrer and nofollow to external listings links' ) )
+			->set_help_text( esc_html__( 'Enable the option to add these attributes to external links. ' ) );
+
 		return $settings;
 
 	}

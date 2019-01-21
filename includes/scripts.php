@@ -158,6 +158,7 @@ function pno_load_frontend_scripts() {
 		'internal_links_new_tab'           => (bool) pno_get_option( 'listing_open_new_tab', false ),
 		'internal_links_new_tab_selectors' => pno_get_internal_listing_links_selectors(),
 		'external_links_new_tab'           => (bool) pno_get_option( 'listing_external_open_new_tab', false ),
+		'external_links_rel_attributes'    => (bool) pno_get_option( 'listing_external_rel_attributes', false ),
 		'external_links_new_tab_selectors' => pno_get_external_listing_links_selectors(),
 		'labels'                           => [
 			'addressNotFound'         => esc_html__( 'Address not found, please try again.' ),

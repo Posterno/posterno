@@ -76,18 +76,35 @@
 	 * Open external listings links into a new tab.
 	*/
 	window.Posterno.openExternalLinksNewTab = function () {
-		if ( pno_settings.external_links_new_tab ) {
-			$(window.Posterno.externalLinks).each(function () {
-				var a = new RegExp('/' + window.location.host + '/');
-				if (!a.test(this.href)) {
+		$(window.Posterno.externalLinks).each(function () {
+			if ( pno_settings.external_links_rel_attributes ) {
+				var a = $(this);
+				if (location.hostname !== this.hostname) {
+					var originalRel = (this.rel === undefined) ? '' : this.rel.toLowerCase();
+					var newRel = originalRel.split(" ");
+					if (originalRel.indexOf('noopener') === -1) {
+						newRel.push('noopener');
+					}
+					if (originalRel.indexOf('noreferrer') === -1) {
+						newRel.push('noreferrer');
+					}
+					if (originalRel.indexOf('nofollow') === -1) {
+						newRel.push('nofollow');
+					}
+					a.attr('rel', newRel.join(" ").trim());
+				}
+			}
+			if ( pno_settings.external_links_new_tab ) {
+				var anchor = new RegExp('/' + window.location.host + '/');
+				if (!anchor.test(this.href)) {
 					$(this).click(function (event) {
 						event.preventDefault();
 						event.stopPropagation();
 						window.open(this.href, '_blank');
 					});
 				}
-			});
-		}
+			}
+		});
 	}
 
 	$(document).ready(function () {
