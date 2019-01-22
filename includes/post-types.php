@@ -18,6 +18,21 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_setup_post_types() {
 
+	$slug = defined( 'PNO_LISTINGS_SLUG' ) ? PNO_LISTINGS_SLUG : 'listing';
+
+	$rewrite = array(
+		'slug'       => $slug,
+		'with_front' => true,
+		'pages'      => true,
+		'feeds'      => true,
+	);
+
+	if ( defined( 'PNO_DISABLE_REWRITE' ) ) {
+		$rewrite = false;
+	}
+
+	$archives = defined( 'PNO_DISABLE_ARCHIVE' ) && PNO_DISABLE_ARCHIVE ? false : true;
+
 	$labels = array(
 		'name'                  => _x( 'Listings', 'Post Type General Name', 'posterno' ),
 		'singular_name'         => _x( 'Listing', 'Post Type Singular Name', 'posterno' ),
@@ -59,11 +74,12 @@ function pno_setup_post_types() {
 		'show_in_admin_bar'   => true,
 		'show_in_nav_menus'   => true,
 		'can_export'          => true,
-		'has_archive'         => true,
+		'has_archive'         => $archives,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
 		'show_in_rest'        => true,
+		'rewrite'             => $rewrite,
 	);
 	register_post_type( 'listings', $args );
 
