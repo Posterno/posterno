@@ -593,3 +593,63 @@ function pno_display_field_term_checklist_value( $value, $field ) {
 function pno_display_field_term_chain_dropdown_value( $value, $field ) {
 	return pno_display_field_term_multiselect_value( $value, $field );
 }
+
+/**
+ * Displays the classes for the listing container element.
+ *
+ * @param string|array $class   One or more classes to add to the class list.
+ * @param int|WP_Post  $post_id Optional. Post ID or post object. Defaults to the global `$post`.
+ * @return void
+ */
+function pno_listing_class( $class = '', $post_id = null ) {
+	// Separates classes with a single space, collates classes for post DIV.
+	echo 'class="' . join( ' ', pno_get_listing_class( $class, $post_id ) ) . '"'; //phpcs:ignore
+}
+
+/**
+ * Retrieves an array of the class names for the listing container element.
+ *
+ * @param string|string[] $class   Space-separated string or array of class names to add to the class list.
+ * @param int|WP_Post     $post_id Optional. Post ID or post object.
+ * @return string[] Array of class names.
+ */
+function pno_get_listing_class( $class = '', $post_id = null ) {
+
+	$post = get_post( $post_id );
+
+	$classes = array();
+
+	if ( $class ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+		$classes = array_map( 'esc_attr', $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
+	}
+
+	if ( ! $post ) {
+		return $classes;
+	}
+
+	$classes[] = 'listing-' . $post->ID;
+
+	if ( pno_listing_is_featured( $post->ID ) ) {
+		$classes[] = 'listing-is-featured';
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filters the list of CSS class names for the current listing.
+	 *
+	 * @param string[] $classes An array of listing class names.
+	 * @param string[] $class   An array of additional class names added to the listing.
+	 * @param int      $post_id The post ID.
+	 */
+	$classes = apply_filters( 'pno_listing_class', $classes, $class, $post->ID );
+
+	return array_unique( $classes );
+
+}

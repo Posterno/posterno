@@ -29,7 +29,7 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 
 <?php if ( $featured_img ) : ?>
 
-	<div class="card flex-sm-row mb-4 pno-listing-card list-template">
+	<div <?php pno_listing_class( 'card flex-sm-row mb-4 pno-listing-card list-template' ); ?>>
 		<div class="listing-img-wrapper">
 
 			<?php if ( pno_listing_is_featured( get_the_id() ) ) : ?>
@@ -64,7 +64,7 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 
 <?php else : ?>
 
-	<div class="card flex-sm-row mb-4 pno-listing-card list-template">
+	<div <?php pno_listing_class( 'card flex-sm-row mb-4 pno-listing-card list-template' ); ?>>
 		<?php if ( $placeholder_enabled ) : ?>
 			<div class="listing-img-wrapper">
 				<?php if ( pno_listing_is_featured( get_the_id() ) ) : ?>

@@ -46,7 +46,7 @@ do_action( 'pno_before_single_listing' );
 
 ?>
 
-<div id="pno-single-listing" class="pno-single-listing-wrapper">
+<div id="pno-single-listing" <?php pno_listing_class( 'pno-single-listing-wrapper' ); ?>>
 
 	<?php if ( pno_listing_is_featured( $listing_id ) ) : ?>
 		<span class="badge badge-pill badge-warning featured-badge mb-3"><?php esc_html_e( 'Featured' ); ?></span>
