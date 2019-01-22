@@ -228,6 +228,18 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 
 				if ( $user_id && $get_user instanceof WP_User && $verification_key ) {
 
+					/**
+					 * Filters whether to allow a password to be reset.
+					 *
+					 * @param bool $allow   Whether to allow the password to be reset. Default true.
+					 * @param int  $user_id The ID of the user attempting to reset a password.
+					 */
+					$allow = apply_filters( 'allow_password_reset', true, $user_id );
+
+					if ( ! $allow ) {
+						throw new Exception( esc_html__( 'Password reset is not allowed for this user.' ) );
+					}
+
 					$verify_key = check_password_reset_key( $verification_key, $get_user->data->user_login );
 
 					if ( is_wp_error( $verify_key ) ) {
@@ -263,7 +275,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 							throw new Exception( $error_not_matching );
 						}
 
-						$user_id    = isset( $_GET['user_id'] ) && ! empty( $_GET['user_id'] ) ? (int) $_GET['user_id'] : false;
+						$user_id = isset( $_GET['user_id'] ) && ! empty( $_GET['user_id'] ) ? (int) $_GET['user_id'] : false;
 
 						wp_set_password( $password_1, $user_id );
 
@@ -326,6 +338,18 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 				}
 
 				if ( $user instanceof WP_User ) {
+
+					/**
+					 * Filters whether to allow a password to be reset.
+					 *
+					 * @param bool $allow   Whether to allow the password to be reset. Default true.
+					 * @param int  $user_id The ID of the user attempting to reset a password.
+					 */
+					$allow = apply_filters( 'allow_password_reset', true, $user->data->ID );
+
+					if ( ! $allow ) {
+						throw new Exception( esc_html__( 'Password reset is not allowed for this user.' ) );
+					}
 
 					// Generate a new password reset key for the selected user.
 					$password_reset_key = get_password_reset_key( $user );
