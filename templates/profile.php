@@ -33,7 +33,7 @@ if ( ! $members_allowed && absint( get_current_user_id() ) !== $user_id ) {
 	posterno()->templates
 		->set_template_data(
 			[
-				'type' => 'warning',
+				'type'    => 'warning',
 				'message' => esc_html__( 'You are not authorized to view the content of this page.' )
 			]
 		)
