@@ -392,7 +392,23 @@ function pno_register_listings_taxonomies() {
 		'items_list'                 => esc_html__( 'Listings types list' ),
 		'items_list_navigation'      => esc_html__( 'Listings type list navigation' ),
 	);
-	$args   = array(
+
+	/**
+	 * Filter: allows modification of the rewrite rules of the listings types taxonomy.
+	 *
+	 * @param array $args see https://codex.wordpress.org/Function_Reference/register_taxonomy.
+	 * @return array
+	 */
+	$rewrite = apply_filters(
+		'pno_listing_type_taxonomy_rewrite',
+		array(
+			'slug'         => 'listing-type',
+			'with_front'   => true,
+			'hierarchical' => false,
+		)
+	);
+
+	$args = array(
 		'labels'             => $labels,
 		'hierarchical'       => false,
 		'public'             => true,
@@ -403,6 +419,7 @@ function pno_register_listings_taxonomies() {
 		'show_in_quick_edit' => false,
 		'meta_box_cb'        => false,
 		'show_admin_column'  => false,
+		'rewrite'            => $rewrite,
 	);
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 
@@ -426,7 +443,23 @@ function pno_register_listings_taxonomies() {
 		'items_list'                 => esc_html__( 'Listings categories list' ),
 		'items_list_navigation'      => esc_html__( 'Listings category list navigation' ),
 	);
-	$args   = array(
+
+	/**
+	 * Filter: allows modification of the rewrite rules of the listings categories taxonomy.
+	 *
+	 * @param array $args see https://codex.wordpress.org/Function_Reference/register_taxonomy.
+	 * @return array
+	 */
+	$rewrite = apply_filters(
+		'pno_listing_category_taxonomy_rewrite',
+		array(
+			'slug'         => 'listing-category',
+			'with_front'   => true,
+			'hierarchical' => true,
+		)
+	);
+
+	$args = array(
 		'labels'            => $labels,
 		'hierarchical'      => true,
 		'public'            => true,
@@ -434,6 +467,7 @@ function pno_register_listings_taxonomies() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 		'show_in_rest'      => true,
+		'rewrite'           => $rewrite,
 	);
 	register_taxonomy( 'listings-categories', array( 'listings' ), $args );
 
@@ -457,7 +491,23 @@ function pno_register_listings_taxonomies() {
 		'items_list'                 => esc_html__( 'Listings locations list' ),
 		'items_list_navigation'      => esc_html__( 'Listings location list navigation' ),
 	);
-	$args   = array(
+
+	/**
+	 * Filter: allows modification of the rewrite rules of the listings locations taxonomy.
+	 *
+	 * @param array $args see https://codex.wordpress.org/Function_Reference/register_taxonomy.
+	 * @return array
+	 */
+	$rewrite = apply_filters(
+		'pno_listing_location_taxonomy_rewrite',
+		array(
+			'slug'         => 'listing-location',
+			'with_front'   => true,
+			'hierarchical' => true,
+		)
+	);
+
+	$args = array(
 		'labels'            => $labels,
 		'hierarchical'      => true,
 		'public'            => true,
@@ -465,6 +515,7 @@ function pno_register_listings_taxonomies() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 		'show_in_rest'      => true,
+		'rewrite'           => $rewrite,
 	);
 	register_taxonomy( 'listings-locations', array( 'listings' ), $args );
 
@@ -488,7 +539,23 @@ function pno_register_listings_taxonomies() {
 		'items_list'                 => esc_html__( 'Listings tags list' ),
 		'items_list_navigation'      => esc_html__( 'Listings tag list navigation' ),
 	);
-	$args   = array(
+
+	/**
+	 * Filter: allows modification of the rewrite rules of the listings tags taxonomy.
+	 *
+	 * @param array $args see https://codex.wordpress.org/Function_Reference/register_taxonomy.
+	 * @return array
+	 */
+	$rewrite = apply_filters(
+		'pno_listing_location_taxonomy_rewrite',
+		array(
+			'slug'         => 'listing-tag',
+			'with_front'   => true,
+			'hierarchical' => false,
+		)
+	);
+
+	$args = array(
 		'labels'            => $labels,
 		'hierarchical'      => false,
 		'public'            => true,
@@ -496,6 +563,7 @@ function pno_register_listings_taxonomies() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 		'show_in_rest'      => true,
+		'rewrite'           => $rewrite,
 	);
 	register_taxonomy( 'listings-tags', array( 'listings' ), $args );
 
