@@ -31,7 +31,7 @@ function pno_setup_post_types() {
 		$rewrite = false;
 	}
 
-	$archives = defined( 'PNO_DISABLE_ARCHIVE' ) && PNO_DISABLE_ARCHIVE ? false : true;
+	$archives = defined( 'PNO_ENABLE_ARCHIVE' ) && PNO_ENABLE_ARCHIVE === true ? true : false;
 
 	$labels = array(
 		'name'                  => _x( 'Listings', 'Post Type General Name', 'posterno' ),
