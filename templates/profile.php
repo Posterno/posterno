@@ -25,7 +25,7 @@ $name                  = pno_get_user_fullname( $user_details );
 $description           = get_user_meta( $user_id, 'description', true );
 $navigation_items      = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
 $currently_active_item = pno_get_profile_currently_active_component( $navigation_items );
-$members_allowed = pno_get_option( 'profiles_allow_members', false );
+$members_allowed       = pno_get_option( 'profiles_allow_members', false );
 
 // If members can't see other member's profiles other than their own, then show a message.
 if ( ! $members_allowed && absint( get_current_user_id() ) !== $user_id ) {
