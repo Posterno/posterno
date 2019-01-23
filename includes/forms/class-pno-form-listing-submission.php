@@ -356,6 +356,14 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					}
 				}
 
+				// Store location details.
+				if ( isset( $values['listing_location'] ) && ! empty( $values['listing_location'] ) ) {
+					$location_details = json_decode( $values['listing_location'] );
+					if ( isset( $location_details->coordinates->lat ) ) {
+						pno_update_listing_address( $location_details->coordinates->lat, $location_details->coordinates->lng, $location_details->address, $new_listing_id );
+					}
+				}
+
 				// Assign the selected listing type to the listing.
 				$listing_type = $this->get_submitted_listing_type_id();
 

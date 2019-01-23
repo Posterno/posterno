@@ -1234,3 +1234,27 @@ function pno_get_public_listings_fields() {
 	return $fields;
 
 }
+
+/**
+ * Updates the listing address and coordinates.
+ *
+ * @param string $lat coordinates.
+ * @param string $lng coordinates.
+ * @param string $address the listing address.
+ * @param string $listing_id the listing to update.
+ * @return void
+ */
+function pno_update_listing_address( $lat, $lng, $address, $listing_id ) {
+
+	if ( ! $lat || ! $lng || ! $address || ! $listing_id ) {
+		return;
+	}
+
+	$coordinates = "{$lat},{$lng}";
+
+	update_post_meta( $listing_id, '_listing_location_address', $address );
+	update_post_meta( $listing_id, '_listing_location_coordinates', $coordinates );
+	update_post_meta( $listing_id, '_listing_location_lat', $lat );
+	update_post_meta( $listing_id, '_listing_location_lng', $lng );
+
+}
