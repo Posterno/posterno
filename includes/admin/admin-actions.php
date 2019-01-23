@@ -278,3 +278,38 @@ function pno_trigger_administrator_approval_email( $post ) {
 
 }
 add_action( 'post_submitbox_misc_actions', 'pno_trigger_administrator_approval_email', 10, 1 );
+
+/**
+ * Send approval notification to the author of a listing if the administrator has approved the listing.
+ *
+ * @return void
+ */
+function pno_send_administrator_approval_email( $post_id ) {
+
+	$post_type = get_post_type( $post );
+
+	if ( $post_type !== 'listings' ) {
+		return;
+	}
+
+	$trigger = isset( $_POST['_listing_trigger_approval_email'] ) && $_POST['_listing_trigger_approval_email'] === 'on' ? true : false;
+
+	if ( $trigger ) {
+
+		$author_id = get_post_field( 'post_author', $post_id );
+		$author    = get_user_by( 'id', $author_id );
+
+		if ( $author instanceof WP_User ) {
+			pno_send_email(
+				'core_user_listing_approved',
+				$author->data->user_email,
+				[
+					'user_id'    => $author_id,
+					'listing_id' => $post_id,
+				]
+			);
+		}
+	}
+
+}
+add_action( 'save_post', 'pno_send_administrator_approval_email', 10, 1 );
