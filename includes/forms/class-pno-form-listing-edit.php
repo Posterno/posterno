@@ -317,7 +317,6 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 				}
 
 				// Assign terms.
-				// Assign terms.
 				if ( isset( $values['listing_regions'] ) && ! empty( $values['listing_regions'] ) ) {
 					$listing_region  = json_decode( $values['listing_regions'] );
 					$ancestors       = get_ancestors( $listing_region, 'listings-locations', 'taxonomy' );
@@ -348,6 +347,13 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 					}
 					if ( ! empty( $tags ) ) {
 						wp_set_object_terms( absint( $updated_listing_id ), $tags, 'listings-tags', true );
+					}
+				}
+
+				if ( isset( $values['listing_location'] ) && ! empty( $values['listing_location'] ) ) {
+					$location_details = json_decode( $values['listing_location'] );
+					if ( isset( $location_details->coordinates->lat ) ) {
+						pno_update_listing_address( $location_details->coordinates->lat, $location_details->coordinates->lng, $location_details->address, $updated_listing_id );
 					}
 				}
 
