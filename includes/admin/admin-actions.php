@@ -257,3 +257,24 @@ function pno_disable_listings_post_type_view_mode( $post_types ) {
 
 }
 add_action( 'view_mode_post_types', 'pno_disable_listings_post_type_view_mode' );
+
+/**
+ * Add a checkbox to the listings publish box letting administrators trigger the listings approval notification email.
+ *
+ * @param object $post the post object.
+ * @return void
+ */
+function pno_trigger_administrator_approval_email( $post ) {
+
+	$post_type = get_post_type( $post );
+
+	if ( $post_type !== 'listings' || get_post_status( $post ) !== 'pending' ) {
+		return;
+	}
+
+	$output = '<div class="carbon-field carbon-checkbox pno-publish-action"><div class="field-holder"><label><input type="checkbox" name="_listing_trigger_approval_email">' . esc_html__( 'Send approval notification' ) . '</label></div><em class="carbon-help-text">' . esc_html__( 'Enable the option to notify the author that the listing has been approved.' ) . '</em></div>';
+
+	echo $output; //phpcs:ignore
+
+}
+add_action( 'post_submitbox_misc_actions', 'pno_trigger_administrator_approval_email', 10, 1 );

@@ -54,3 +54,10 @@ body.post-type-listings .wp-list-table .column-status span.dashicons-clock {
   color: #ffb900; }
 body.post-type-listings td.column-featured span.dashicons-star-filled {
   color: #f1c40f; }
+
+.pno-publish-action {
+  background: #f8f8f8;
+  border-top: 1px solid #eaeaea;
+  margin-top: 15px !important; }
+  .pno-publish-action .field-holder {
+    margin-bottom: 5px; }
