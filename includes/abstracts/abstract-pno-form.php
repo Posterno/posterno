@@ -376,9 +376,6 @@ abstract class PNO_Form {
 					} else {
 						$check_value = empty( $term_value ) ? array() : $term_value;
 					}
-
-					var_dump( $check_value );
-
 					foreach ( $check_value as $term ) {
 						if ( ! term_exists( absint( $term ), $field['taxonomy'] ) ) {
 							// translators: Placeholder %s is the field label that is did not validate.
