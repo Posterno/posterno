@@ -227,6 +227,9 @@ function pno_email_get_type_schema() {
 		'core_user_listing_updated'   => [
 			'description' => esc_html__( 'Recipient has successfully updated a listing.' ),
 		],
+		'core_user_listing_approved' => [
+			'description' => esc_html__( 'Administrator has approved a listing for the recipient.' ),
+		],
 		'core_listing_expiring'   => [
 			'description' => esc_html__( 'Recipient\'s listing is about to expire.' ),
 		],
