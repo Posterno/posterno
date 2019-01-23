@@ -374,7 +374,7 @@ abstract class PNO_Form {
 					if ( is_array( $term_value ) ) {
 						$check_value = $term_value;
 					} else {
-						$check_value = empty( $term_value ) ? array() : $term_value;
+						$check_value = empty( $term_value ) ? array() : array( $term_value );
 					}
 					foreach ( $check_value as $term ) {
 						if ( ! term_exists( absint( $term ), $field['taxonomy'] ) ) {
