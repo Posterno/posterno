@@ -282,6 +282,7 @@ add_action( 'post_submitbox_misc_actions', 'pno_trigger_administrator_approval_e
 /**
  * Send approval notification to the author of a listing if the administrator has approved the listing.
  *
+ * @param string $post_id the id of the listing.
  * @return void
  */
 function pno_send_administrator_approval_email( $post_id ) {
