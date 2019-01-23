@@ -40,6 +40,10 @@ class PNO_Listings_Expiry {
 		add_action( 'auto-draft_to_publish', [ $this, 'set_expiry' ] );
 		add_action( 'expired_to_publish', [ $this, 'set_expiry' ] );
 
+		if ( ! pno_listing_submission_is_moderated() ) {
+			add_action( 'pno_after_listing_submission', [ $this, 'set_expiry_on_submission' ], 10, 3 );
+		}
+
 	}
 
 	/**
@@ -117,6 +121,31 @@ class PNO_Listings_Expiry {
 				$_POST['_listing_expires'] = $expires;
 			}
 		}
+
+	}
+
+	/**
+	 * Set expiration date to listings when no moderation is needed and listing
+	 * is submitted from the frontend.
+	 *
+	 * @param array  $values values submitted through the form.
+	 * @param string $new_listing_id the listing id.
+	 * @param object $form the form.
+	 * @return void
+	 */
+	public function set_expiry_on_submission( $values, $new_listing_id, $form ) {
+
+		// See if it is already set.
+		if ( metadata_exists( 'post', $new_listing_id, '_listing_expires' ) ) {
+			$expires = get_post_meta( $new_listing_id, '_listing_expires', true );
+			if ( $expires && strtotime( $expires ) < current_time( 'timestamp' ) ) {
+				update_post_meta( $new_listing_id, '_listing_expires', '' );
+			}
+		}
+
+		$expires = pno_calculate_listing_expiry( $new_listing_id );
+
+		update_post_meta( $new_listing_id, '_listing_expires', $expires );
 
 	}
 
