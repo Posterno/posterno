@@ -62,10 +62,23 @@ function pno_setup_post_types() {
 		'items_list_navigation' => __( 'Listings list navigation', 'posterno' ),
 		'filter_items_list'     => __( 'Filter listings list', 'posterno' ),
 	);
+
+	/**
+	 * Filter: determine supported components for the listings post type registration.
+	 *
+	 * @param array $supports the list of supported components.
+	 * @return array
+	 */
+	$supports = apply_filters( 'pno_listings_post_type_supports', array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ) );
+
+	if ( pno_get_option( 'listings_enable_comments', false ) ) {
+		$supports[] = 'comments';
+	}
+
 	$args   = array(
 		'label'               => __( 'Listing', 'posterno' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ),
+		'supports'            => $supports,
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
