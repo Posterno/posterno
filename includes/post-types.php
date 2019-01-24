@@ -69,13 +69,9 @@ function pno_setup_post_types() {
 	 * @param array $supports the list of supported components.
 	 * @return array
 	 */
-	$supports = apply_filters( 'pno_listings_post_type_supports', array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ) );
+	$supports = apply_filters( 'pno_listings_post_type_supports', array( 'title', 'editor', 'thumbnail', 'revisions', 'author', 'comments' ) );
 
-	if ( pno_get_option( 'listings_enable_comments', false ) ) {
-		$supports[] = 'comments';
-	}
-
-	$args   = array(
+	$args = array(
 		'label'               => __( 'Listing', 'posterno' ),
 		'labels'              => $labels,
 		'supports'            => $supports,

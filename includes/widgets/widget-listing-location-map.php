@@ -41,6 +41,6 @@ class ListingLocationMap extends Widget {
 	 * @return void
 	 */
 	public function front_end( $args, $instance ) {
-		echo $args['before_title'] . wp_kses( $instance['title'] ) . $args['after_title']; //phpcs:ignore
+		echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; //phpcs:ignore
 	}
 }

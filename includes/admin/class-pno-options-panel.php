@@ -530,8 +530,8 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'listing_external_rel_attributes', esc_html__( 'Add noopener noreferrer and nofollow to external listings links' ) )
 			->set_help_text( esc_html__( 'Enable the option to add these attributes to external links. ' ) );
 
-		$settings[] = Field::make( 'checkbox', 'listings_enable_comments', esc_html__( 'Enable comments for listings' ) )
-			->set_help_text( esc_html__( 'Enable the option to allow comments for listings.' ) );
+		$settings[] = Field::make( 'checkbox', 'listings_disable_comments', esc_html__( 'Disable comments for listings' ) )
+			->set_help_text( esc_html__( 'Enable the option to remove comments from listings.' ) );
 
 		return $settings;
 
