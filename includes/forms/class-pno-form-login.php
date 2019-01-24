@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -199,7 +201,7 @@ class PNO_Form_Login extends PNO_Form {
 			$authenticate = wp_authenticate( $username, $password );
 
 			if ( is_wp_error( $authenticate ) ) {
-				throw new Exception( $authenticate->get_error_message() );
+				throw new Exception( $authenticate->get_error_message(), $authenticate->get_error_code() );
 			} elseif ( $authenticate instanceof WP_User ) {
 				$this->user_id = $authenticate->data->ID;
 			}
@@ -208,7 +210,7 @@ class PNO_Form_Login extends PNO_Form {
 			$this->step ++;
 
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}
@@ -238,14 +240,14 @@ class PNO_Form_Login extends PNO_Form {
 			$user = wp_signon( $creds );
 
 			if ( is_wp_error( $user ) ) {
-				throw new Exception( $user->get_error_message() );
+				throw new Exception( $user->get_error_message(), $user->get_error_code() );
 			} else {
 				wp_safe_redirect( pno_get_login_redirect() );
 				exit;
 			}
 
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

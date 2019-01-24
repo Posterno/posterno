@@ -140,9 +140,14 @@ abstract class PNO_Form {
 	 * Adds an error.
 	 *
 	 * @param string $error The error message.
+	 * @param string $error_code option error code.
 	 */
-	public function add_error( $error ) {
-		$this->errors[] = $error;
+	public function add_error( $error, $error_code = false ) {
+		if ( $error_code ) {
+			$this->errors[ $error_code ] = $error;
+		} else {
+			$this->errors[] = $error;
+		}
 	}
 
 	/**

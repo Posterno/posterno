@@ -356,7 +356,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_components() {
 
 			// Component helpers are loaded before everything.
-			require_once PNO_PLUGIN_DIR . 'includes/pno-exception.php';
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-exception.php';
 			require_once PNO_PLUGIN_DIR . 'includes/component-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/class-component.php';
 			require_once PNO_PLUGIN_DIR . 'includes/database/class-base.php';
