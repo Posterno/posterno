@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -159,7 +161,7 @@ class PNO_Form_Account extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			$user_id = get_current_user_id();
@@ -205,7 +207,7 @@ class PNO_Form_Account extends PNO_Form {
 			$updated_user_id = wp_update_user( $user_data );
 
 			if ( is_wp_error( $updated_user_id ) ) {
-				throw new Exception( $updated_user_id->get_error_message() );
+				throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
 			}
 
 			// Update the avatar.
@@ -340,7 +342,7 @@ class PNO_Form_Account extends PNO_Form {
 			return;
 
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

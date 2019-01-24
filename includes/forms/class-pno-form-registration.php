@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -241,7 +243,7 @@ class PNO_Form_Registration extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			$values = $values['registration'];
@@ -278,7 +280,7 @@ class PNO_Form_Registration extends PNO_Form {
 			$new_user_id = wp_create_user( $username, $password, $email_address );
 
 			if ( is_wp_error( $new_user_id ) ) {
-				throw new Exception( $new_user_id->get_error_message() );
+				throw new Exception( $new_user_id->get_error_message(), $new_user_id->get_error_code() );
 			}
 
 			// Assign the role set into the registration form.
@@ -371,7 +373,7 @@ class PNO_Form_Registration extends PNO_Form {
 			$this->step ++;
 
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

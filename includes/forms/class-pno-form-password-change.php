@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -213,7 +215,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			$user = wp_get_current_user();
@@ -229,7 +231,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 				);
 
 				if ( is_wp_error( $updated_user_id ) ) {
-					throw new Exception( $updated_user_id->get_error_message() );
+					throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
 				} else {
 
 					/**
@@ -249,7 +251,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 				throw new Exception( __( 'The password you entered is incorrect.' ) );
 			}
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

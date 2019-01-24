@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -216,7 +218,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			// Reset the password given a valid key.
@@ -393,7 +395,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 				}
 			}
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

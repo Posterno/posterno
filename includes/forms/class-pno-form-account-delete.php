@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -131,7 +133,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 			'fields'       => $this->get_fields( 'account-delete' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-			'message' => $message,
+			'message'      => $message,
 			'submit_label' => esc_html__( 'Delete account' ),
 		];
 
@@ -172,7 +174,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			$user = wp_get_current_user();
@@ -192,7 +194,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 				throw new Exception( __( 'The password you entered is incorrect. Your account has not been deleted.' ) );
 			}
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}

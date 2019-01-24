@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\Exception;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -173,7 +175,7 @@ class PNO_Form_Data_Erasure extends PNO_Form {
 			$validation_status = $this->validate_fields( $values );
 
 			if ( is_wp_error( $validation_status ) ) {
-				throw new Exception( $validation_status->get_error_message() );
+				throw new Exception( $validation_status->get_error_message(), $validation_status->get_error_code() );
 			}
 
 			$user = wp_get_current_user();
@@ -185,7 +187,7 @@ class PNO_Form_Data_Erasure extends PNO_Form {
 				$request_id = wp_create_user_request( $user->data->user_email, 'remove_personal_data' );
 
 				if ( is_wp_error( $request_id ) ) {
-					throw new \Exception( $request_id->get_error_message() );
+					throw new \Exception( $request_id->get_error_message(), $request_id->get_error_code() );
 				} else {
 					wp_send_user_request( $request_id );
 
@@ -208,7 +210,7 @@ class PNO_Form_Data_Erasure extends PNO_Form {
 				throw new \Exception( __( 'The password you entered is incorrect.' ) );
 			}
 		} catch ( Exception $e ) {
-			$this->add_error( $e->getMessage() );
+			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}
