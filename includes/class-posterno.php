@@ -424,6 +424,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-expiry.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-featured.php';
 
+			// Widgets.
+			require_once PNO_PLUGIN_DIR . 'includes/register-widgets.php';
+			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-location-map.php';
+
 			// Theme Integration.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-theme-integration.php';
 
