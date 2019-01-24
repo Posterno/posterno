@@ -1034,6 +1034,10 @@ nav .pno-pagination {
   .pno-social-networks-list .fa-soundcloud {
     color: #ff8800; }
 
+.pno-widget-listing-location-map .pno-single-listing-map {
+  width: 100%;
+  height: 250px; }
+
 #pno-profile-wrapper .card img.avatar.card-img-top {
   max-height: 200px;
   object-fit: cover;

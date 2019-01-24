@@ -2,4 +2,4 @@
 
 import './single-listing-map'
 
-new Vue().$mount('#pno-single-listing')
+new Vue().$mount('#content')

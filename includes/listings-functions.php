@@ -1262,3 +1262,24 @@ function pno_update_listing_address( $lat, $lng, $address, $listing_id ) {
 	update_post_meta( $listing_id, '_listing_location_lng', $lng );
 
 }
+
+/**
+ * Retrieve the coordinates for a given listing.
+ *
+ * @param string $listing_id the listing for which we're going to get the coordinates.
+ * @return boolean|array
+ */
+function pno_get_listing_coordinates( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	$coordinates = [
+		'lat' => get_post_meta( $listing_id, '_listing_location_lat', true ),
+		'lng' => get_post_meta( $listing_id, '_listing_location_lng', true ),
+	];
+
+	return $coordinates;
+
+}

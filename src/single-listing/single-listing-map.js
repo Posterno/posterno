@@ -26,30 +26,37 @@ Vue.component( 'pno-single-listing-map', {
 			libraries: [ 'places' ]
 		}).then(function (googleMaps) {
 
-			vm.mapObject = new googleMaps.Map(document.querySelector('.pno-single-listing-map'), {
-				center: {
+			var mapContainers = document.querySelectorAll('.pno-single-listing-map'), i;
+
+			for (i = 0; i < mapContainers.length; ++i) {
+				//divs[i].style.color = "green";
+
+				vm.mapObject = new googleMaps.Map( mapContainers[i] , {
+					center: {
+						lat: parseFloat(vm.lat),
+						lng: parseFloat(vm.lng),
+					},
+					zoom: parseFloat(pno_settings.mapZoom),
+					fullscreenControl: false,
+					streetViewControl: false,
+					mapTypeControl: false,
+				})
+
+				// Create coordinates for the starting marker.
+				var myLatLng = {
 					lat: parseFloat(vm.lat),
 					lng: parseFloat(vm.lng),
-				},
-				zoom: parseFloat(pno_settings.mapZoom),
-				fullscreenControl: false,
-				streetViewControl: false,
-				mapTypeControl: false,
-			})
+				};
 
-			// Create coordinates for the starting marker.
-			var myLatLng = {
-				lat: parseFloat(vm.lat),
-				lng: parseFloat(vm.lng),
-			};
+				var marker = new googleMaps.Marker({
+					position: myLatLng,
+					map: vm.mapObject,
+					draggable: false,
+				});
 
-			var marker = new googleMaps.Marker({
-				position: myLatLng,
-				map: vm.mapObject,
-				draggable: false,
-			});
+				vm.markerObject = marker
 
-			vm.markerObject = marker
+			}
 
 		}).catch(function (error) {
 			console.error( error )

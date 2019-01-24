@@ -24,12 +24,12 @@ class ListingLocationMap extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_location_map_widget',
-			esc_html__( '[Posterno] Single listing location map' ),
-			esc_html__( 'Displays the location of the listing on the map. Works only on the single listing page.' ),
+			esc_html__( '[Posterno] Listing location map' ),
+			esc_html__( 'Displays the current listing\'s location on the map.' ),
 			array(
-				Field::make( 'text', 'title', 'Title' )->set_default_value( 'Hello World!' ),
-				Field::make( 'textarea', 'content', 'Content' )->set_default_value( 'Lorem Ipsum dolor sit amet' ),
-			)
+				Field::make( 'text', 'title', esc_html__( 'Title' ) )->set_default_value( esc_html__( 'Location' ) ),
+			),
+			'pno-widget-listing-location-map'
 		);
 	}
 
@@ -41,6 +41,24 @@ class ListingLocationMap extends Widget {
 	 * @return void
 	 */
 	public function front_end( $args, $instance ) {
+
 		echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; //phpcs:ignore
+
+		if ( ! is_singular( 'listings' ) ) {
+			posterno()->templates
+				->set_template_data(
+					[
+						'type'    => 'danger',
+						'message' => pno_get_widget_singular_restriction_message(),
+					]
+				)
+				->get_template_part( 'message' );
+				return;
+		}
+
+		posterno()->templates
+			->set_template_data( $args )
+			->get_template_part( 'widgets/listing-location-map' );
+
 	}
 }

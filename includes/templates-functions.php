@@ -653,3 +653,13 @@ function pno_get_listing_class( $class = '', $post_id = null ) {
 	return array_unique( $classes );
 
 }
+
+/**
+ * Retrieve the error message displayed within widgets that are not meant to be used
+ * outside the singular listings page.
+ *
+ * @return string
+ */
+function pno_get_widget_singular_restriction_message() {
+	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page.' );
+}
