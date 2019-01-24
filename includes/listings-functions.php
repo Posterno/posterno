@@ -790,12 +790,16 @@ function pno_get_listings_results_order_filters() {
 			'priority' => 2,
 		],
 		'title'  => [
-			'label'    => esc_html__( 'Title' ),
+			'label'    => esc_html__( 'Title A-Z' ),
 			'priority' => 3,
+		],
+		'title_za'  => [
+			'label'    => esc_html__( 'Title Z-A' ),
+			'priority' => 4,
 		],
 		'random' => [
 			'label'    => esc_html__( 'Random' ),
-			'priority' => 4,
+			'priority' => 5,
 		],
 	];
 

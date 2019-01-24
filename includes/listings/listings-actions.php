@@ -58,7 +58,7 @@ function pno_adjust_listings_query( $query ) {
 				case 'oldest':
 					$sorters = [
 						'menu_order' => 'ASC',
-						'date' => 'ASC',
+						'date'       => 'ASC',
 					];
 					break;
 				case 'title':
@@ -67,10 +67,25 @@ function pno_adjust_listings_query( $query ) {
 						'title'      => 'ASC',
 					];
 					break;
+				case 'title_za':
+					$sorters = [
+						'menu_order' => 'ASC',
+						'title'      => 'DESC',
+					];
+					break;
 				case 'random':
 					$sorters = 'rand';
 					break;
 			}
+
+			/**
+			 * Filter: adjust the value for the orderby query parameter when sorting listings.
+			 *
+			 * @param array $sorters the currently active sorters.
+			 * @param string $active_order the currently active order.
+			 * @return array
+			 */
+			$sorters = apply_filters( 'pno_pre_get_posts_active_sorters', $sorters, $active_order );
 
 			if ( isset( $sorters ) && ! empty( $sorters ) ) {
 				if ( ! in_array( $active_order, $enabled_featuring_sorters ) ) {
@@ -81,7 +96,6 @@ function pno_adjust_listings_query( $query ) {
 				}
 				$query->set( 'orderby', $sorters );
 			}
-
 		}
 	}
 }
