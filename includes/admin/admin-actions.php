@@ -287,7 +287,7 @@ add_action( 'post_submitbox_misc_actions', 'pno_trigger_administrator_approval_e
  */
 function pno_send_administrator_approval_email( $post_id ) {
 
-	$post_type = get_post_type( $post );
+	$post_type = get_post_type( $post_id );
 
 	if ( $post_type !== 'listings' ) {
 		return;
