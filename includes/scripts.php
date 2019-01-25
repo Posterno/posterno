@@ -120,7 +120,6 @@ function pno_load_frontend_scripts() {
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
 		wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], $version, true );
 		wp_register_script( 'pno-vue-listing-submission-form', 'http://localhost:8080/listing-submission-form.js', [], $version, true );
-		wp_register_script( 'pno-vue-single-listing', 'http://localhost:8080/single-listing.js', [], $version, true );
 	} else {
 		wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue', [], $version, true );
 	}
@@ -176,12 +175,6 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-vuejs' );
 		wp_enqueue_script( 'pno-vue-listing-submission-form' );
-	}
-
-	// Load vuejs scripts on the single listing page.
-	if ( is_singular( 'listings' ) ) {
-		wp_enqueue_script( 'pno-vuejs' );
-		wp_enqueue_script( 'pno-vue-single-listing' );
 	}
 
 	// Js settings for the submission form.

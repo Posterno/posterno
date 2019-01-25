@@ -161,11 +161,7 @@ do_action( 'pno_before_single_listing' );
 			</div>
 
 			<div class="col-md-6">
-				<pno-single-listing-map inline-template lat="<?php echo esc_attr( $address_lat ); ?>" lng="<?php echo esc_attr( $address_lng ); ?>">
-					<div class="single-map-wrapper">
-						<div class="pno-single-listing-map"></div>
-					</div>
-				</pno-single-listing-map>
+				<div class="pno-single-listing-map"></div>
 			</div>
 		</div>
 

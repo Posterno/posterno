@@ -17,8 +17,5 @@ module.exports = {
 			.entry('listing-submission-form')
 				.add('./src/listing-submission-form/main.js')
 				.end()
-			.entry('single-listing')
-				.add('./src/single-listing/main.js')
-				.end()
 	}
 }

@@ -25,8 +25,4 @@ $lng = isset( $coordinates['lng'] ) && ! empty( $coordinates['lng'] ) ? $coordin
 
 ?>
 
-<pno-single-listing-map inline-template lat="<?php echo esc_attr( $lat ); ?>" lng="<?php echo esc_attr( $lng ); ?>">
-	<div class="single-map-wrapper">
-		<div class="pno-single-listing-map"></div>
-	</div>
-</pno-single-listing-map>
+<div class="pno-single-listing-map"></div>
