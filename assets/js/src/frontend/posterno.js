@@ -11,6 +11,7 @@
 		window.Posterno.listingsLinks = pno_settings.internal_links_new_tab_selectors.join(",");
 		window.Posterno.externalLinks = pno_settings.external_links_new_tab_selectors.join(",");
 		window.Posterno.formSelectFields = $('.pno-field-multiselect select, .pno-select-searchable, .pno-field-term-select select, .pno-field-term-multiselect select');
+		window.Posterno.singleMaps = $('.pno-single-listing-map');
 	}
 
 	/**
@@ -107,6 +108,48 @@
 		});
 	}
 
+	/**
+	 * Create the maps within the single listing page.
+	 * At the moment only Google Maps is supported.
+	*/
+	window.Posterno.createSingleListingMap = function () {
+		$(window.Posterno.singleMaps).each(function () {
+
+			var singleMap = $(this)
+
+			if ( singleMap.length ) {
+
+				var singleLat = singleMap.data('lat')
+				var singleLng = singleMap.data('lng')
+				var singleZoom = singleMap.data('zoom')
+
+				var map = new google.maps.Map( singleMap[0], {
+					center: {
+						lat: parseFloat( singleLat ),
+						lng: parseFloat( singleLng )
+					},
+					zoom: parseFloat( singleZoom ),
+					fullscreenControl: false,
+					streetViewControl: false,
+					mapTypeControl: false,
+				});
+
+				// Create coordinates for the starting marker.
+				var singleLatLng = {
+					lat: parseFloat(singleLat),
+					lng: parseFloat(singleLng),
+				};
+
+				var marker = new google.maps.Marker({
+					position: singleLatLng,
+					map: map,
+				});
+
+			}
+
+		});
+	}
+
 	$(document).ready(function () {
 		window.Posterno.cacheSelectors()
 		window.Posterno.bootstrapTooltips()
@@ -114,6 +157,7 @@
 		window.Posterno.select2()
 		window.Posterno.openInternalLinksNewTab()
 		window.Posterno.openExternalLinksNewTab()
+		window.Posterno.createSingleListingMap()
 	});
 
 })(jQuery);

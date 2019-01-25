@@ -25,4 +25,4 @@ $lng = isset( $coordinates['lng'] ) && ! empty( $coordinates['lng'] ) ? $coordin
 
 ?>
 
-<div class="pno-single-listing-map"></div>
+<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $lat ); ?>" data-lng="<?php echo esc_attr( $lng ); ?>" data-zoom="12"></div>
