@@ -49,7 +49,7 @@ function pno_get_user_fullname( $user_id_or_object = false ) {
 		return;
 	}
 
-	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id );
+	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id_or_object );
 
 	if ( $user_info->first_name ) {
 
@@ -98,7 +98,7 @@ function pno_get_user_registration_date( $user_id_or_object = false ) {
 		return;
 	}
 
-	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id );
+	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id_or_object );
 
 	$date = false;
 

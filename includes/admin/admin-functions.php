@@ -556,12 +556,55 @@ function pno_get_members_allowed_content_option() {
 
 }
 
+/**
+ * Retrieve a list of profile fields for widget's association.
+ *
+ * @return array
+ */
+function pno_get_profile_fields_for_widget_association() {
 
+	$not_needed = [
+		'avatar',
+		'first_name',
+		'last_name',
+	];
 
+	$fields = remember_transient(
+		'pno_profile_fields_list_for_widget_association',
+		function () use ( $not_needed ) {
 
+			$found_fields = [];
 
+			/**
+			 * Filter: adjusts the query arguments for the profile fields.
+			 *
+			 * @param array $args
+			 * @return array
+			 */
+			$args = apply_filters(
+				'pno_public_profile_fields_args',
+				[
+					'number'                => 100,
+					'user_meta_key__not_in' => $not_needed,
+				]
+			);
 
+			$profile_fields = new PNO\Database\Queries\Profile_Fields( $args );
 
+			if ( ! empty( $profile_fields ) && isset( $profile_fields->items ) && is_array( $profile_fields->items ) ) {
+				foreach ( $profile_fields->items as $field ) {
+					$found_fields[ $field->get_object_meta_key() ] = $field->get_name();
+				}
+			}
+
+			return $found_fields;
+
+		}
+	);
+
+	return $fields;
+
+}
 
 
 function testme() {
