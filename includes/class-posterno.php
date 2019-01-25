@@ -430,6 +430,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-video.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-author.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-tags.php';
+			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-contact.php';
 
 			// Comments.
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-comments-controller.php';

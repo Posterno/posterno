@@ -21,5 +21,6 @@ function pno_register_widgets() {
 	register_widget( 'PNO\Widget\ListingVideo' );
 	register_widget( 'PNO\Widget\ListingAuthor' );
 	register_widget( 'PNO\Widget\ListingTags' );
+	register_widget( 'PNO\Widget\ListingContact' );
 }
 add_action( 'widgets_init', 'pno_register_widgets' );
