@@ -1038,6 +1038,21 @@ nav .pno-pagination {
   width: 100%;
   height: 300px; }
 
+.pno-widget-listing-video .embed-container {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  max-width: 100%; }
+  .pno-widget-listing-video .embed-container iframe,
+  .pno-widget-listing-video .embed-container object,
+  .pno-widget-listing-video .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
 #pno-profile-wrapper .card img.avatar.card-img-top {
   max-height: 200px;
   object-fit: cover;

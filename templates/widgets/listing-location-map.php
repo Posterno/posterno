@@ -17,7 +17,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$listing_id = get_queried_object_id();
+$listing_id  = get_queried_object_id();
 $coordinates = pno_get_listing_coordinates( $listing_id );
 
 $lat = isset( $coordinates['lat'] ) && ! empty( $coordinates['lat'] ) ? $coordinates['lat'] : false;

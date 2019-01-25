@@ -427,6 +427,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Widgets.
 			require_once PNO_PLUGIN_DIR . 'includes/register-widgets.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-location-map.php';
+			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-video.php';
 
 			// Comments.
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-comments-controller.php';
