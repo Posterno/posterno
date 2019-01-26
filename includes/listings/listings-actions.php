@@ -100,3 +100,33 @@ function pno_adjust_listings_query( $query ) {
 	}
 }
 add_action( 'pre_get_posts', 'pno_adjust_listings_query' );
+
+/**
+ * Prefill the values of the name and email fields of the listing's contact form
+ * with the currently logged in user's values.
+ *
+ * @param array $fields list of registered fields.
+ * @return array
+ */
+function pno_prefill_listings_contact_form( $fields ) {
+
+	if ( is_user_logged_in() ) {
+
+		$user_id = get_current_user_id();
+
+		$name  = pno_get_user_fullname( $user_id );
+		$email = pno_get_user_email( $user_id );
+
+		if ( isset( $fields['contact']['name'] ) ) {
+			$fields['contact']['name']['value'] = esc_html( $name );
+		}
+
+		if ( isset( $fields['contact']['email'] ) ) {
+			$fields['contact']['email']['value'] = sanitize_email( $email );
+		}
+	}
+
+	return $fields;
+
+}
+add_filter( 'pno_listing_contact_form_fields', 'pno_prefill_listings_contact_form' );
