@@ -174,9 +174,43 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 				throw new Exception( $validation_status->get_error_message() );
 			}
 
-			// Successful, show next step.
-			$this->step ++;
+			$listing              = get_queried_object();
+			$listing_id           = isset( $listing->ID ) ? absint( $listing->ID ) : false;
+			$listing_author_id    = isset( $listing->post_author ) ? absint( $listing->post_author ) : false;
+			$listing_author_email = pno_get_user_email( $listing_author_id );
 
+			$sender_name    = isset( $values['contact']['name'] ) ? sanitize_text_field( $values['contact']['name'] ) : false;
+			$sender_email   = isset( $values['contact']['email'] ) ? sanitize_email( $values['contact']['email'] ) : false;
+			$sender_message = isset( $values['contact']['message'] ) ? esc_html( $values['contact']['message'] ) : false;
+
+			if ( $sender_email && $sender_name && $sender_message ) {
+
+				pno_send_email(
+					'core_listing_author_contact_message',
+					$listing_author_email,
+					[
+						'user_id'    => $listing_author_id,
+						'listing_id' => $listing_id,
+					]
+				);
+
+				$message = esc_html__( 'Your message has been sent successfully.' );
+
+				/**
+				 * Allow developers to customize the message displayed after successfully sending a message to the listing's author.
+				 *
+				 * @param string $message the message.
+				 */
+				$message = apply_filters( 'pno_listing_contact_form_success_message', $message );
+
+				$this->unbind();
+				$this->set_as_successful();
+				$this->set_success_message( $message );
+				return;
+
+			} else {
+				throw new Exception( esc_html__( 'Something went wrong while sending the message.' ) );
+			}
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;
