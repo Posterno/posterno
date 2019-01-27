@@ -259,6 +259,16 @@ function pno_get_the_listing_publish_date( $post = null ) {
 	}
 }
 
+function pno_get_listing_last_modified_date( $post = null ) {
+	$date_format = pno_get_option( 'listing_date_format' );
+	if ( 'default' === $date_format ) {
+		return get_the_modified_date( get_option( 'date_format' ), $post );
+	} else {
+		// translators: Placeholder %s is the relative, human readable time since the listing listing was posted.
+		return human_time_diff( get_the_modified_date( 'U', $post ), current_time( 'timestamp' ) );
+	}
+}
+
 /**
  * Displays the expire date of the listing.
  *
