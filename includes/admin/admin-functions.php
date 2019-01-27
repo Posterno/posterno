@@ -579,6 +579,8 @@ function pno_get_profile_fields_for_widget_association() {
 		}
 	);
 
+	asort( $fields );
+
 	return $fields;
 
 }
@@ -635,6 +637,8 @@ function pno_get_listings_fields_for_widget_association() {
 	if ( ! empty( $fields ) && is_array( $fields ) ) {
 		$fields['last_updated'] = esc_html__( 'Last updated' );
 	}
+
+	asort( $fields );
 
 	return $fields;
 

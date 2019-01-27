@@ -71,7 +71,7 @@ function pno_get_registered_settings_tabs_sections() {
 			'listings_maps'       => esc_html__( 'Maps' ),
 		],
 		'profiles' => [
-			'profiles_setup'   => esc_html__( 'Configuration' ),
+			'profiles_setup' => esc_html__( 'Configuration' ),
 		],
 	];
 
