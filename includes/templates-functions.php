@@ -537,6 +537,29 @@ function pno_display_field_file_value( $value, $field ) {
 }
 
 /**
+ * Display the formatted content for the social profiles field on the frontend.
+ *
+ * @param string $value the value to display.
+ * @param array  $field all the details about the field.
+ * @return string
+ */
+function pno_display_field_social_profiles_value( $value, $field ) {
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'networks' => $value,
+			]
+		)
+		->get_template_part( 'fields-output/social-networks-field' );
+
+	return ob_get_clean();
+
+}
+
+/**
  * Display the formatted content for the taxonomy field on the frontend.
  *
  * @param string $value the value to display.

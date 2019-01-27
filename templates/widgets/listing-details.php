@@ -22,8 +22,6 @@ $listing_id = get_queried_object_id();
 // Prepare additional fields loop.
 $additional_fields = [];
 
-$has_last_update = false;
-
 if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) {
 
 	$fields_to_query = [];
@@ -48,6 +46,8 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 		}
 	}
 
+	$additional_fields = pno_sort_array_by_array( $additional_fields, $fields_to_query );
+
 }
 
 ?>
@@ -59,6 +59,12 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 		foreach ( $additional_fields as $meta_key => $field ) :
 
 			$value = get_post_meta( $listing_id, '_' . $meta_key, true );
+
+			if ( $meta_key === 'listing_social_media_profiles' ) {
+				$value = carbon_get_post_meta( $listing_id, 'listing_social_profiles' );
+			} elseif ( $meta_key === 'listing_email_address' ) {
+				$value = carbon_get_post_meta( $listing_id, 'listing_email' );
+			}
 
 			if ( ! $value ) {
 				continue;

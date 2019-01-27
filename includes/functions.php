@@ -628,3 +628,21 @@ function pno_calculate_listing_expiry( $listing_id = false ) {
 
 	return '';
 }
+
+/**
+ * Sorty an array by using the keys order specified into another array.
+ *
+ * @param array $array the array to sort.
+ * @param array $order_array the array that dictates the order.
+ * @return array
+ */
+function pno_sort_array_by_array( array $array, array $order_array ) {
+	$ordered = array();
+	foreach ( $order_array as $key ) {
+		if ( array_key_exists( $key, $array ) ) {
+			$ordered[ $key ] = $array[ $key ];
+			unset( $array[ $key ] );
+		}
+	}
+	return $ordered + $array;
+}
