@@ -63,10 +63,13 @@ function pno_email_tag_sitename( $email ) {
  * @return string
  */
 function pno_email_tag_username( $email ) {
-	$user     = get_user_by( 'id', $user_id );
+
 	$username = '';
-	if ( $user instanceof WP_User ) {
-		$username = $user->data->user_login;
+	if ( isset( $email->user_id ) ) {
+		$user = get_user_by( 'id', $email->user_id );
+		if ( $user instanceof WP_User ) {
+			$username = $user->data->user_login;
+		}
 	}
 	return $username;
 }
@@ -78,10 +81,12 @@ function pno_email_tag_username( $email ) {
  * @return string
  */
 function pno_email_tag_email( $email ) {
-	$user  = get_user_by( 'id', $user_id );
 	$email = '';
-	if ( $user instanceof WP_User ) {
-		$email = $user->data->user_email;
+	if ( isset( $email->user_id ) ) {
+		$user = get_user_by( 'id', $email->user_id );
+		if ( $user instanceof WP_User ) {
+			$email = $user->data->user_email;
+		}
 	}
 	return $email;
 }
@@ -93,7 +98,7 @@ function pno_email_tag_email( $email ) {
  * @return string
  */
 function pno_email_tag_password( $email ) {
-	return sanitize_text_field( $plain_text_password );
+	return isset( $email->plain_text_password ) ? sanitize_text_field( $email->plain_text_password ) : false;
 }
 
 /**
@@ -115,6 +120,10 @@ function pno_email_tag_login_page_url( $email ) {
  * @return string
  */
 function pno_email_tag_password_recovery_url( $email ) {
+
+	$user_id            = isset( $email->user_id ) ? absint( $email->user_id ) : false;
+	$password_reset_key = isset( $email->password_reset_key ) ? $email->password_reset_key : false;
+
 	$reset_page = pno_get_password_recovery_page_id();
 	$reset_page = get_permalink( $reset_page );
 	$reset_page = add_query_arg(
@@ -136,7 +145,7 @@ function pno_email_tag_password_recovery_url( $email ) {
  * @return string
  */
 function pno_email_tag_listing_id_number( $email ) {
-	return $listing_id ? absint( $listing_id ) : '-';
+	return isset( $email->listing_id ) ? absint( $email->listing_id ) : '-';
 }
 
 /**
@@ -146,7 +155,7 @@ function pno_email_tag_listing_id_number( $email ) {
  * @return string
  */
 function pno_email_tag_listing_title( $email ) {
-	return get_the_title( $listing_id );
+	return isset( $email->listing_id ) ? get_the_title( $email->listing_id ) : '-';
 }
 
 /**
@@ -156,7 +165,7 @@ function pno_email_tag_listing_title( $email ) {
  * @return string
  */
 function pno_email_tag_listing_submission_date( $email ) {
-	return get_the_date( get_option( 'date_format' ), $listing_id );
+	return isset( $email->listing_id ) ? get_the_date( get_option( 'date_format' ), $email->listing_id ) : '-';
 }
 
 /**
@@ -166,7 +175,7 @@ function pno_email_tag_listing_submission_date( $email ) {
  * @return string
  */
 function pno_email_tag_listing_url( $email ) {
-	return get_permalink( $listing_id );
+	return isset( $email->listing_id ) ? get_permalink( $email->listing_id ) : '';
 }
 
 /**
@@ -176,7 +185,7 @@ function pno_email_tag_listing_url( $email ) {
  * @return string
  */
 function pno_email_tag_listing_expiry_date( $email ) {
-	return pno_get_the_listing_expire_date( $listing_id );
+	return isset( $email->listing_id ) ? pno_get_the_listing_expire_date( $email->listing_id ) : 'N/A';
 }
 
 /**
