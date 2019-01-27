@@ -106,6 +106,7 @@ class Helper {
 			forget_transient( 'pno_profile_fields_list_for_widget_association' );
 		} elseif ( 'pno_listings_fields' === get_post_type( $post_id ) ) {
 			forget_transient( 'pno_admin_custom_listing_fields' );
+			forget_transient( 'pno_listings_fields_list_for_widget_association' );
 		}
 	}
 
@@ -119,6 +120,7 @@ class Helper {
 		forget_transient( 'pno_admin_custom_profile_fields' );
 		forget_transient( 'pno_admin_custom_listing_fields' );
 		forget_transient( 'pno_profile_fields_list_for_widget_association' );
+		forget_transient( 'pno_listings_fields_list_for_widget_association' );
 	}
 
 	/**

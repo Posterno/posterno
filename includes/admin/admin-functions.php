@@ -606,6 +606,63 @@ function pno_get_profile_fields_for_widget_association() {
 
 }
 
+/**
+ * Retrieve a list of listings fields for widget's association.
+ *
+ * @return array
+ */
+function pno_get_listings_fields_for_widget_association() {
+
+	$not_needed = [
+		'listing_title',
+		'listing_description',
+		'listing_opening_hours',
+		'listing_featured_image',
+		'listing_gallery',
+		'listing_location',
+	];
+
+	$fields = remember_transient(
+		'pno_listings_fields_list_for_widget_association',
+		function () use ( $not_needed ) {
+
+			$found_fields = [];
+
+			/**
+			 * Filter: adjusts the query arguments for the profile fields.
+			 *
+			 * @param array $args
+			 * @return array
+			 */
+			$args = apply_filters(
+				'pno_listings_fields_widget_association_args',
+				[
+					'number'                => 100,
+					'listing_meta_key__not_in' => $not_needed,
+				]
+			);
+
+			$listing_fields = new PNO\Database\Queries\Listing_Fields( $args );
+
+			if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
+				foreach ( $listing_fields->items as $field ) {
+					$found_fields[ $field->get_object_meta_key() ] = $field->get_name();
+				}
+			}
+
+			return $found_fields;
+
+		}
+	);
+
+	if ( ! empty( $fields ) && is_array( $fields ) ) {
+		$fields['last_updated'] = esc_html__( 'Last updated' );
+	}
+
+	return $fields;
+
+}
+
 
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
