@@ -461,6 +461,24 @@ class PNO_Emails {
 				'function'    => 'pno_email_tag_listing_url',
 				'listing'     => true,
 			),
+			array(
+				'name'        => esc_html__( 'Sender name' ),
+				'description' => esc_html__( 'Displays the name of the sender. Used for contact forms only.' ),
+				'tag'         => 'sender_name',
+				'function'    => 'pno_email_tag_sender_name',
+			),
+			array(
+				'name'        => esc_html__( 'Sender email' ),
+				'description' => esc_html__( 'Displays the email of the sender. Used for contact forms only.' ),
+				'tag'         => 'sender_email',
+				'function'    => 'pno_email_tag_sender_email',
+			),
+			array(
+				'name'        => esc_html__( 'Sender message' ),
+				'description' => esc_html__( 'Displays the message of the sender. Used for contact forms only.' ),
+				'tag'         => 'sender_message',
+				'function'    => 'pno_email_tag_sender_message',
+			),
 		);
 
 		/**
@@ -493,11 +511,8 @@ class PNO_Emails {
 			return $m[0];
 		}
 
-		if ( isset( $this->tags[ $tag ]['listing'] ) && $this->tags[ $tag ]['listing'] === true ) {
-			return call_user_func( $this->tags[ $tag ]['function'], $this->user_id, $this->listing_id, $tag );
-		} else {
-			return call_user_func( $this->tags[ $tag ]['function'], $this->user_id, $this->password_reset_key, $this->plain_text_password, $tag );
-		}
+		return call_user_func( $this->tags[ $tag ]['function'], $this, $tag );
+
 	}
 
 	/**

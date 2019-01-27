@@ -188,6 +188,39 @@ function pno_email_tag_listing_expiry_date( $user_id, $listing_id ) {
 }
 
 /**
+ * Displays the name of the sender of the message. This is usually used within contact forms.
+ * Example: the listing's contact form widget.
+ *
+ * @param PNO_Emails $email the email's object.
+ * @return string
+ */
+function pno_email_tag_sender_name( $email ) {
+	return isset( $email->sender_name ) ? esc_html( $email->sender_name ) : '';
+}
+
+/**
+ * Displays the email of the sender of the message. This is usually used within contact forms.
+ * Example: the listing's contact form widget.
+ *
+ * @param PNO_Emails $email the email's object.
+ * @return string
+ */
+function pno_email_tag_sender_email( $email ) {
+	return isset( $email->sender_email ) ? sanitize_email( $email->sender_email ) : '';
+}
+
+/**
+ * Displays the message of the sender. This is usually used within contact forms.
+ * Example: the listing's contact form widget.
+ *
+ * @param PNO_Emails $email the email's object.
+ * @return string
+ */
+function pno_email_tag_sender_message( $email ) {
+	return isset( $email->sender_message ) ? wp_strip_all_tags( stripslashes( $email->sender_message ) ) : '';
+}
+
+/**
  * Disable the email notification sent to the admin when a user changes the password.
  */
 if ( pno_get_option( 'disable_admin_password_recovery_email' ) && ! function_exists( 'wp_password_change_notification' ) ) {
@@ -227,14 +260,14 @@ function pno_email_get_type_schema() {
 		'core_user_listing_updated'   => [
 			'description' => esc_html__( 'Recipient has successfully updated a listing.' ),
 		],
-		'core_user_listing_approved' => [
+		'core_user_listing_approved'  => [
 			'description' => esc_html__( 'Administrator has approved a listing for the recipient.' ),
 		],
-		'core_listing_expiring'   => [
-			'description' => esc_html__( 'Recipient\'s listing is about to expire.' ),
+		'core_listing_expiring'       => [
+			'description' => __( 'Recipient\'s listing is about to expire.' ),
 		],
-		'core_listing_author_email' => [
-			'description' => esc_html__( 'Listing\'s author received an email.' ),
+		'core_listing_author_email'   => [
+			'description' => __( 'Listing\'s author received an email.' ),
 		],
 	);
 

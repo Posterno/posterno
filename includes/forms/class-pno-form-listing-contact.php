@@ -189,8 +189,11 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 					'core_listing_author_email',
 					$listing_author_email,
 					[
-						'user_id'    => $listing_author_id,
-						'listing_id' => $listing_id,
+						'user_id'        => $listing_author_id,
+						'listing_id'     => $listing_id,
+						'sender_name'    => $sender_name,
+						'sender_email'   => $sender_email,
+						'sender_message' => $sender_message,
 					]
 				);
 
