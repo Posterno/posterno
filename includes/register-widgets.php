@@ -20,7 +20,6 @@ function pno_register_widgets() {
 	register_widget( 'PNO\Widget\ListingLocationMap' );
 	register_widget( 'PNO\Widget\ListingVideo' );
 	register_widget( 'PNO\Widget\ListingAuthor' );
-	register_widget( 'PNO\Widget\ListingTags' );
 	register_widget( 'PNO\Widget\ListingContact' );
 	register_widget( 'PNO\Widget\ListingDetails' );
 	register_widget( 'PNO\Widget\ListingTaxonomies' );

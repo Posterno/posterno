@@ -428,7 +428,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-location-map.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-video.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-author.php';
-			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-tags.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-contact.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-details.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-taxonomies.php';
