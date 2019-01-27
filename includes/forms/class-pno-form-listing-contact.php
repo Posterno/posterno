@@ -186,7 +186,7 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 			if ( $sender_email && $sender_name && $sender_message ) {
 
 				pno_send_email(
-					'core_listing_author_contact_message',
+					'core_listing_author_email',
 					$listing_author_email,
 					[
 						'user_id'    => $listing_author_id,

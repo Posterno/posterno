@@ -233,8 +233,8 @@ function pno_email_get_type_schema() {
 		'core_listing_expiring'   => [
 			'description' => esc_html__( 'Recipient\'s listing is about to expire.' ),
 		],
-		'core_listing_author_contact_message' => [
-			'description' => esc_html__( 'Listing\'s author received a message.' ),
+		'core_listing_author_email' => [
+			'description' => esc_html__( 'Listing\'s author received an email.' ),
 		],
 	);
 
