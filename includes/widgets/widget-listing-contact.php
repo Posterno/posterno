@@ -28,6 +28,7 @@ class ListingContact extends Widget {
 			esc_html__( 'Displays a contact form through which members can send emails to the author of the listing.' ),
 			array(
 				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
+				Field::make( 'checkbox', 'require_login', esc_html__( 'Login required' ) )->set_help_text( esc_html__( 'Require visitors to be logged in to contact the author.' ) ),
 			),
 			'pno-widget-listing-contact'
 		);

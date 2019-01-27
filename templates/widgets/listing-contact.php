@@ -17,4 +17,27 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-echo posterno()->forms->get_form( 'listing-contact' );
+$login_required = isset( $data->require_login ) && $data->require_login === true ? true : false;
+
+if ( $login_required && ! is_user_logged_in() ) {
+
+	$login_page    = add_query_arg( [ 'redirect_to' => get_permalink() ], get_permalink( pno_get_login_page_id() ) );
+	$register_page = add_query_arg( [ 'redirect_to' => get_permalink() ], get_permalink( pno_get_registration_page_id() ) );
+
+	posterno()->templates
+		->set_template_data(
+			[
+				'type'    => 'warning',
+				'message' => sprintf( __( 'You need to be logged in to contact this listing\'s author. Please <a href="%1$s">login</a> or <a href="%2$s">register</a>.' ), esc_url( $login_page ), esc_url( $register_page ) ),
+			]
+		)
+		->get_template_part( 'message' );
+		return;
+
+} else {
+
+	echo posterno()->forms->get_form( 'listing-contact' );
+
+}
+
+
