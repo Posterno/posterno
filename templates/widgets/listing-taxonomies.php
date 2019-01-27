@@ -17,17 +17,16 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$listing_id = get_queried_object_id();
-$tags       = pno_get_listing_tags( $listing_id );
+$listing_id        = get_queried_object_id();
+$selected_taxonomy = isset( $data->taxonomy ) ? $data->taxonomy : false;
+$terms             = wp_get_post_terms( $listing_id, $selected_taxonomy );
 
-if ( ! empty( $tags ) && is_array( $tags ) ) {
-	foreach ( $tags as $tag ) :
-
+if ( ! empty( $terms ) && is_array( $terms ) ) {
+	foreach ( $terms as $found_term ) :
 		?>
-			<a href="<?php echo esc_url( get_term_link( $tag ) ); ?>" class="mr-1 mb-1">
-				<span class="badge badge-secondary"><?php echo esc_html( $tag->name ); ?></span>
+			<a href="<?php echo esc_url( get_term_link( $found_term ) ); ?>" class="mr-1 mb-1">
+				<span class="badge badge-secondary"><?php echo esc_html( $found_term->name ); ?></span>
 			</a>
 		<?php
-
 	endforeach;
 }

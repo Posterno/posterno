@@ -29,10 +29,6 @@ class ListingTaxonomies extends Widget {
 			array(
 				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
 				Field::make( 'select', 'taxonomy', esc_html__( 'Taxonomy to display' ) )->set_options( 'pno_get_registered_listings_taxonomies' ),
-				Field::make( 'text', 'number', esc_html__( 'Limit' ) )
-					->set_attribute( 'type', 'number' )
-					->set_attribute( 'min', '1' )
-					->set_help_text( esc_html__( 'Specify the maximum amount of terms to display. Leave blank to display all terms.' ) ),
 			),
 			'pno-widget-listing-taxonomies'
 		);
