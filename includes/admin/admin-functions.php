@@ -599,6 +599,10 @@ function pno_get_listings_fields_for_widget_association() {
 		'listing_featured_image',
 		'listing_gallery',
 		'listing_location',
+		'listing_categories',
+		'listing_tags',
+		'listing_regions',
+		'listing_video',
 	];
 
 	$fields = remember_transient(
@@ -625,6 +629,11 @@ function pno_get_listings_fields_for_widget_association() {
 
 			if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 				foreach ( $listing_fields->items as $field ) {
+
+					if ( ! empty( $field->get_taxonomy() ) ) {
+						continue;
+					}
+
 					$found_fields[ $field->get_object_meta_key() ] = $field->get_name();
 				}
 			}
