@@ -74,34 +74,6 @@ class PNO_Emails {
 	private $tags;
 
 	/**
-	 * The dynamic user id on which some tags are based.
-	 *
-	 * @var string
-	 */
-	private $user_id;
-
-	/**
-	 * The dynamic key for password reset.
-	 *
-	 * @var string
-	 */
-	private $password_reset_key;
-
-	/**
-	 * The password sent to the user upon signup.
-	 *
-	 * @var string
-	 */
-	private $plain_text_password;
-
-	/**
-	 * The dynamic listing id on which some tags are based.
-	 *
-	 * @var string
-	 */
-	private $listing_id;
-
-	/**
 	 * Get things started.
 	 */
 	public function __construct() {
@@ -431,28 +403,24 @@ class PNO_Emails {
 				'description' => esc_html__( 'Display listing ID number.' ),
 				'tag'         => 'listing_id_number',
 				'function'    => 'pno_email_tag_listing_id_number',
-				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing title' ),
 				'description' => esc_html__( 'Display listing title.' ),
 				'tag'         => 'listing_title',
 				'function'    => 'pno_email_tag_listing_title',
-				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing submission date' ),
 				'description' => esc_html__( 'Display listing submission date.' ),
 				'tag'         => 'listing_submission_date',
 				'function'    => 'pno_email_tag_listing_submission_date',
-				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing expiry date' ),
 				'description' => esc_html__( 'Display listing expiration date.' ),
 				'tag'         => 'listing_expiration_date',
 				'function'    => 'pno_email_tag_listing_expiry_date',
-				'listing'     => true,
 			),
 			array(
 				'name'        => esc_html__( 'Listing url' ),
