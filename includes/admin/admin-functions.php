@@ -582,7 +582,7 @@ function pno_get_profile_fields_for_widget_association() {
 			 * @return array
 			 */
 			$args = apply_filters(
-				'pno_public_profile_fields_args',
+				'pno_profile_fields_widget_association_args',
 				[
 					'number'                => 100,
 					'user_meta_key__not_in' => $not_needed,
@@ -629,7 +629,7 @@ function pno_get_listings_fields_for_widget_association() {
 			$found_fields = [];
 
 			/**
-			 * Filter: adjusts the query arguments for the profile fields.
+			 * Filter: adjusts the query arguments for the listings fields.
 			 *
 			 * @param array $args
 			 * @return array
