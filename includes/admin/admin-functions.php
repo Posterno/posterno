@@ -534,29 +534,6 @@ function pno_get_listings_featured_order_options() {
 }
 
 /**
- * Retrieve the options available for the "Display submitted content" option.
- *
- * @return array
- */
-function pno_get_members_allowed_content_option() {
-
-	$options = [
-		'posts'    => esc_html__( 'Posts' ),
-		'listings' => esc_html__( 'Listings' ),
-		'comments' => esc_html__( 'Comments' ),
-	];
-
-	/**
-	 * Filter: adjust the options available for the "Display submitted content" option.
-	 *
-	 * @param array $options list of defined options.
-	 * @return array
-	 */
-	return apply_filters( 'pno_members_allowed_content_options', $options );
-
-}
-
-/**
  * Retrieve a list of profile fields for widget's association.
  *
  * @return array

@@ -148,7 +148,6 @@ class OptionsPanel {
 		$settings['emails_listings']        = $this->get_emails_listings_settings();
 
 		$settings['profiles_setup']      = $this->get_profiles_settings();
-		$settings['profiles_content']    = $this->get_profiles_content_settings();
 		$settings['listings_settings']   = $this->get_listings_settings();
 		$settings['listings_management'] = $this->get_listings_management_settings();
 		$settings['listings_submission'] = $this->get_listings_submission_settings();
@@ -447,23 +446,6 @@ class OptionsPanel {
 				]
 			)
 			->set_help_text( esc_html__( 'These settings control the permalinks used for users profiles. These settings only apply when not using "plain" as permalinks for your website.' ) );
-
-		return $settings;
-
-	}
-
-	/**
-	 * Get profiles content settings.
-	 *
-	 * @return array
-	 */
-	private function get_profiles_content_settings() {
-
-		$settings = [];
-
-		$settings[] = Field::make( 'set', 'profiles_content', esc_html__( 'Display submitted content' ) )
-			->set_options( 'pno_get_members_allowed_content_option' )
-			->set_help_text( esc_html__( 'Select what content should be displayed on users profiles.' ) );
 
 		return $settings;
 

@@ -72,7 +72,6 @@ function pno_get_registered_settings_tabs_sections() {
 		],
 		'profiles' => [
 			'profiles_setup'   => esc_html__( 'Configuration' ),
-			'profiles_content' => esc_html__( 'Content' ),
 		],
 	];
 
