@@ -51,6 +51,9 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 			];
 		}
 	}
+
+	$additional_fields = pno_sort_array_by_array( $additional_fields, $fields_to_query );
+
 }
 
 ?>
