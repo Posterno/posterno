@@ -39,30 +39,30 @@ function pno_get_emails_tags_list() {
 /**
  * Parse the {website} tag into the email to display the site url.
  *
- * @param string $user_id the id of the user being processed.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_website( $user_id ) {
+function pno_email_tag_website( $email ) {
 	return home_url();
 }
 
 /**
  * Parse the {sitename} tag into the email to display the site name.
  *
- * @param string $user_id the id of the user being processed.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_sitename( $user_id ) {
+function pno_email_tag_sitename( $email ) {
 	return esc_html( get_bloginfo( 'name' ) );
 }
 
 /**
  * Parse the {username} tag into the email to display the user's username.
  *
- * @param string $user_id the id of the user being processed.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_username( $user_id ) {
+function pno_email_tag_username( $email ) {
 	$user     = get_user_by( 'id', $user_id );
 	$username = '';
 	if ( $user instanceof WP_User ) {
@@ -74,10 +74,10 @@ function pno_email_tag_username( $user_id ) {
 /**
  * Parse the {email} tag into the email to display the user's email.
  *
- * @param string $user_id the id of the user being processed.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_email( $user_id ) {
+function pno_email_tag_email( $email ) {
 	$user  = get_user_by( 'id', $user_id );
 	$email = '';
 	if ( $user instanceof WP_User ) {
@@ -89,22 +89,20 @@ function pno_email_tag_email( $user_id ) {
 /**
  * Parse the password tag within the emails.
  *
- * @param string  $user_id the id of the user being processed.
- * @param boolean $password_reset_key the password reset key.
- * @param string  $plain_text_password plain text password.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_password( $user_id = false, $password_reset_key = false, $plain_text_password ) {
+function pno_email_tag_password( $email ) {
 	return sanitize_text_field( $plain_text_password );
 }
 
 /**
  * Parse the {login_page_url} tag into the email to display the site login page url.
  *
- * @param string $user_id the id of the user being processed.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_login_page_url( $user_id = false ) {
+function pno_email_tag_login_page_url( $email ) {
 	$login_page_url = pno_get_login_page_id();
 	$login_page_url = get_permalink( $login_page_url );
 	return $login_page_url;
@@ -113,11 +111,10 @@ function pno_email_tag_login_page_url( $user_id = false ) {
 /**
  * Parse the {recovery_url} tag into the email to display personalized password recovery url.
  *
- * @param string  $user_id the id of the user being processed.
- * @param boolean $password_reset_key the password reset key.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_password_recovery_url( $user_id, $password_reset_key ) {
+function pno_email_tag_password_recovery_url( $email ) {
 	$reset_page = pno_get_password_recovery_page_id();
 	$reset_page = get_permalink( $reset_page );
 	$reset_page = add_query_arg(
@@ -135,55 +132,50 @@ function pno_email_tag_password_recovery_url( $user_id, $password_reset_key ) {
 /**
  * Display the ID number of a listing within emails.
  *
- * @param string $user_id id number of the user modifying the listing.
- * @param string $listing_id id number of the listing to display.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_listing_id_number( $user_id, $listing_id ) {
+function pno_email_tag_listing_id_number( $email ) {
 	return $listing_id ? absint( $listing_id ) : '-';
 }
 
 /**
  * Display title of the listing within emails.
  *
- * @param string $user_id id number of the user modifying the listing.
- * @param string $listing_id id number of the listing to display.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_listing_title( $user_id, $listing_id ) {
+function pno_email_tag_listing_title( $email ) {
 	return get_the_title( $listing_id );
 }
 
 /**
  * Display the publish date of the listing within emails.
  *
- * @param string $user_id id number of the user modifying the listing.
- * @param string $listing_id id number of the listing to display.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_listing_submission_date( $user_id, $listing_id ) {
+function pno_email_tag_listing_submission_date( $email ) {
 	return get_the_date( get_option( 'date_format' ), $listing_id );
 }
 
 /**
  * Display the url of the listing within emails.
  *
- * @param string $user_id id number of the user modifying the listing.
- * @param string $listing_id id number of the listing to display.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_listing_url( $user_id, $listing_id ) {
+function pno_email_tag_listing_url( $email ) {
 	return get_permalink( $listing_id );
 }
 
 /**
  * Display the listing expiration date within emails.
  *
- * @param string $user_id id number of the user modifying the listing.
- * @param string $listing_id id number of the listing to display.
+ * @param PNO_Emails $email the email's object.
  * @return string
  */
-function pno_email_tag_listing_expiry_date( $user_id, $listing_id ) {
+function pno_email_tag_listing_expiry_date( $email ) {
 	return pno_get_the_listing_expire_date( $listing_id );
 }
 
