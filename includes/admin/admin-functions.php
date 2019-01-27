@@ -649,6 +649,26 @@ function pno_get_listings_fields_for_widget_association() {
 
 }
 
+/**
+ * Retrieve a list of registered taxonomies for the listings post type.
+ *
+ * @return array
+ */
+function pno_get_registered_listings_taxonomies() {
+
+	$list = [];
+
+	$taxonomies = get_object_taxonomies( 'listings', 'objects' );
+
+	if ( ! empty( $taxonomies ) && is_array( $taxonomies ) ) {
+		foreach ( $taxonomies as $taxonomy ) {
+			$list[ $taxonomy->name ] = $taxonomy->label;
+		}
+	}
+
+	return $list;
+
+}
 
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {

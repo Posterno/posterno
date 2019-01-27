@@ -23,5 +23,6 @@ function pno_register_widgets() {
 	register_widget( 'PNO\Widget\ListingTags' );
 	register_widget( 'PNO\Widget\ListingContact' );
 	register_widget( 'PNO\Widget\ListingDetails' );
+	register_widget( 'PNO\Widget\ListingTaxonomies' );
 }
 add_action( 'widgets_init', 'pno_register_widgets' );
