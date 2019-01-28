@@ -28,6 +28,11 @@ class RecentListings extends Widget {
 			esc_html__( 'Displays the most recent listings.' ),
 			array(
 				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
+				Field::make( 'text', 'number', esc_html__( 'Limit' ) )
+					->set_attribute( 'type', 'number' )
+					->set_attribute( 'min', '0' )
+					->set_help_text( esc_html__( 'Specify the maximum amount of listings to display.' ) ),
+				Field::make( 'select', 'layout', esc_html__( 'Layout' ) )->set_options( 'pno_get_listings_layout_available_options' ),
 			),
 			'pno-widget-recent-listings'
 		);
