@@ -66,6 +66,7 @@ function pno_get_registered_settings_tabs_sections() {
 			'listings_settings'   => esc_html__( 'Configuration' ),
 			'listings_submission' => esc_html__( 'Submission' ),
 			'listings_management' => esc_html__( 'Management' ),
+			'listings_hours'      => esc_html__( 'Business hours' ),
 			'listings_maps'       => esc_html__( 'Maps' ),
 		],
 		'profiles' => [

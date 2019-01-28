@@ -152,6 +152,7 @@ class OptionsPanel {
 		$settings['listings_management'] = $this->get_listings_management_settings();
 		$settings['listings_submission'] = $this->get_listings_submission_settings();
 		$settings['listings_maps']       = $this->get_listings_map_settings();
+		$settings['listings_hours']      = $this->get_listings_business_hours_settings();
 
 		/**
 		 * Filter: add/remove/modify settings registered for the Posterno's options panel.
@@ -541,7 +542,6 @@ class OptionsPanel {
 			->set_value_type( 'url' )
 			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
 
-
 		return $settings;
 
 	}
@@ -660,6 +660,44 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'text', 'map_zoom', esc_html__( 'Starting map zoom level' ) )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ) );
+
+		return $settings;
+
+	}
+
+	/**
+	 * Get listings business hours settings.
+	 *
+	 * @return array
+	 */
+	public function get_listings_business_hours_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'radio', 'business_hours_layout', esc_html__( 'Display mode' ) )
+			->add_options(
+				[
+					'normal'       => esc_html__( 'Normal' ),
+					'consolidated' => esc_html__( 'Consolidated' ),
+				]
+			)
+			->set_help_text( esc_html__( 'Consolidated mode will group days with the same hours together.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'business_hours_abbr', esc_html__( 'Abbreviate days' ) )
+			->set_width( '25' )
+			->set_help_text( esc_html__( 'Enable this option to abbreviate the days (Monday becomes Mon).' ) );
+
+		$settings[] = Field::make( 'checkbox', 'business_hours_remove_zeroes', esc_html__( 'Remove zeroes from time format' ) )
+			->set_width( '25' )
+			->set_help_text( esc_html__( 'Enable this option to remove trailing zeroes from the time format: 9:00 AM becomes 9 AM.' ) );
+
+		$settings[] = Field::make( 'checkbox', 'business_hours_sunday_start', esc_html__( 'Start on Sunday' ) )
+			->set_width( '25' )
+			->set_help_text( esc_html__( 'Enable this option so that the week starts on Sunday (as opposed to Monday).' ) );
+
+		$settings[] = Field::make( 'checkbox', 'business_hours_today_only', esc_html__( 'Show today only' ) )
+			->set_width( '25' )
+			->set_help_text( esc_html__( 'Enable this option to show only the opening times of the current day.' ) );
 
 		return $settings;
 
