@@ -41,20 +41,20 @@ class BusinessHours {
 	public function __construct( $listing_id ) {
 
 		if ( ! $listing_id ) {
-			throw new Exception( 'Invalid listing id.' );
+			throw new \Exception( 'Invalid listing id.' );
 		}
 
 		$this->listing_id    = absint( $listing_id );
-		$this->opening_hours = $this->get_opening_hours();
+		$this->opening_hours = $this->find_opening_hours();
 
 	}
 
 	/**
-	 * Get the listing's opening hours from the database.
+	 * Find the listing's opening hours from the database.
 	 *
 	 * @return array
 	 */
-	public function get_opening_hours() {
+	public function find_opening_hours() {
 
 		$stored_hours = get_post_meta( $this->listing_id, '_listing_opening_hours', true );
 
@@ -67,12 +67,21 @@ class BusinessHours {
 	}
 
 	/**
+	 * Get the listing's opening hours in a formatted list ready for display on the frontend.
+	 *
+	 * @return array
+	 */
+	public function get_opening_hours() {
+
+	}
+
+	/**
 	 * Get the listing's opening hours on a specific date.
 	 *
-	 * @param DateTime $datetime the date to check.
+	 * @param \DateTime $datetime the date to check.
 	 * @return void
 	 */
-	public function get_opening_hours_on( DateTime $datetime ) {
+	public function get_opening_hours_on( \DateTime $datetime ) {
 
 	}
 
