@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles the listing taxonomies widget for the single listing page.
+ * Handles the recent listings widget.
  *
  * @package     posterno
  * @copyright   Copyright (c) 2018, Pressmodo, LLC
@@ -14,23 +14,22 @@ use Carbon_Fields\Widget;
 use Carbon_Fields\Field;
 
 /**
- * Registers the single listing video widget.
+ * Registers the recent listings widget.
  */
-class ListingTaxonomies extends Widget {
+class RecentListings extends Widget {
 
 	/**
 	 * Build the widget and it's settings.
 	 */
 	public function __construct() {
 		$this->setup(
-			'pno_listing_taxonomies_widget',
-			esc_html__( '[Posterno] Listing taxonomy terms' ),
-			esc_html__( 'Displays the current listing\'s attached taxonomies terms.' ),
+			'pno_recent_listings_widget',
+			esc_html__( '[Posterno] Recent listings' ),
+			esc_html__( 'Displays the most recent listings.' ),
 			array(
 				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'select', 'taxonomy', esc_html__( 'Taxonomy to display' ) )->set_options( 'pno_get_registered_listings_taxonomies' ),
 			),
-			'pno-widget-listing-taxonomies'
+			'pno-widget-recent-listings'
 		);
 	}
 
@@ -45,21 +44,9 @@ class ListingTaxonomies extends Widget {
 
 		echo $args['before_title'] . wp_kses_post( $instance['title'] ) . $args['after_title']; //phpcs:ignore
 
-		if ( ! is_singular( 'listings' ) ) {
-			posterno()->templates
-				->set_template_data(
-					[
-						'type'    => 'danger',
-						'message' => pno_get_widget_singular_restriction_message(),
-					]
-				)
-				->get_template_part( 'message' );
-				return;
-		}
-
 		posterno()->templates
 			->set_template_data( $instance )
-			->get_template_part( 'widgets/listing-taxonomies' );
+			->get_template_part( 'widgets/recent-listings' );
 
 	}
 }
