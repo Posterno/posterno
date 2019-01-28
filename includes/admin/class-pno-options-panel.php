@@ -151,9 +151,7 @@ class OptionsPanel {
 		$settings['listings_settings']   = $this->get_listings_settings();
 		$settings['listings_management'] = $this->get_listings_management_settings();
 		$settings['listings_submission'] = $this->get_listings_submission_settings();
-		$settings['listings_content']    = $this->get_listings_content_settings();
 		$settings['listings_maps']       = $this->get_listings_map_settings();
-		$settings['listings_redirects']  = $this->get_listings_redirects_settings();
 
 		/**
 		 * Filter: add/remove/modify settings registered for the Posterno's options panel.
@@ -474,24 +472,29 @@ class OptionsPanel {
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
+			->set_width( '33.33' )
 			->set_help_text( esc_html__( 'Enter the amount of listings you wish to display.' ) );
 
 		$settings[] = Field::make( 'select', 'listings_default_order', esc_html__( 'Order listings by' ) )
+			->set_width( '33.33' )
 			->set_options( 'pno_get_listings_order_options' );
 
 		$settings[] = Field::make( 'select', 'listings_layout', esc_html__( 'Default listings layout' ) )
+			->set_width( '33.33' )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
 		$settings[] = Field::make( 'separator', 'h2', esc_html__( 'Expiration' ) );
 
 		$settings[] = Field::make( 'text', 'listings_duration', esc_html__( 'Listings duration' ) )
 			->set_attribute( 'type', 'number' )
+			->set_width( '50' )
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Listings will display for the set number of days, then expire. Leave this field blank if you don\'t want listings to have an expiration date.' ) );
 
 		$days_threshold = apply_filters( 'pno_delete_expired_listings_days', 30 );
 
 		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.' ), $days_threshold ) )
+		->set_width( '50' )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.' ) );
 
 		$settings[] = Field::make( 'separator', 'h3', esc_html__( 'Featured status' ) );
@@ -503,6 +506,8 @@ class OptionsPanel {
 			->set_options( 'pno_get_listings_featured_order_options' )
 			->set_help_text( esc_html__( 'When changing sorting order within search results, featured listings can still be displayed at the top of the list.' ) );
 
+		$settings[] = Field::make( 'separator', 'h4', __( 'Internal & External linking' ) );
+
 		$settings[] = Field::make( 'checkbox', 'listing_open_new_tab', esc_html__( 'Open internal listings links in new tab' ) )
 			->set_help_text( esc_html__( 'Enable the option to open listings links in a new browser tab. ' ) );
 
@@ -512,8 +517,30 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'listing_external_rel_attributes', esc_html__( 'Add noopener noreferrer and nofollow to external listings links' ) )
 			->set_help_text( esc_html__( 'Enable the option to add these attributes to external links. ' ) );
 
+		$settings[] = Field::make( 'separator', 'h5', esc_html__( 'Content' ) );
+
 		$settings[] = Field::make( 'checkbox', 'listings_disable_comments', esc_html__( 'Disable comments for listings' ) )
 			->set_help_text( esc_html__( 'Enable the option to remove comments from listings.' ) );
+
+		$settings[] = Field::make( 'multiselect', 'listings_social_profiles', __( 'Allowed social profiles' ) )
+			->set_help_text( __( 'Select which social profiles to enable for listings.' ) )
+			->add_options( 'pno_get_registered_social_media' );
+
+		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
+			->set_help_text( esc_html__( 'Enable the option to display a placeholder image when a listing does not have a thumbnail.' ) );
+
+		$settings[] = Field::make( 'image', 'listing_image_placeholder_file', esc_html__( 'Custom placeholder image' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'listing_image_placeholder',
+						'value' => true,
+					),
+				)
+			)
+			->set_value_type( 'url' )
+			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
+
 
 		return $settings;
 
@@ -554,6 +581,10 @@ class OptionsPanel {
 					'yes_moderated' => esc_html__( 'Users can edit, but edits require admin approval' ),
 				]
 			);
+
+		$settings[] = Field::make( 'multiselect', 'listing_editing_redirect', esc_html__( 'Redirect after successful editing' ) )
+			->set_help_text( esc_html__( 'Select the page where you wish to redirect users after editing a listing. Leave blank to display a message only.' ) )
+			->add_options( 'pno_get_pages' );
 
 		return $settings;
 
@@ -597,37 +628,9 @@ class OptionsPanel {
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Specify the maximum amount of images your members can upload per listing.' ) );
 
-		return $settings;
-
-	}
-
-	/**
-	 * Get listings content settings.
-	 *
-	 * @return array
-	 */
-	private function get_listings_content_settings() {
-
-		$settings = [];
-
-		$settings[] = Field::make( 'multiselect', 'listings_social_profiles', __( 'Allowed social profiles' ) )
-			->set_help_text( __( 'Select which social profiles to enable for listings.' ) )
-			->add_options( 'pno_get_registered_social_media' );
-
-		$settings[] = Field::make( 'checkbox', 'listing_image_placeholder', esc_html__( 'Show thumbnail placeholder' ) )
-			->set_help_text( esc_html__( 'Enable the option to display a placeholder image when a listing does not have a thumbnail.' ) );
-
-		$settings[] = Field::make( 'image', 'listing_image_placeholder_file', esc_html__( 'Custom placeholder image' ) )
-			->set_conditional_logic(
-				array(
-					array(
-						'field' => 'listing_image_placeholder',
-						'value' => true,
-					),
-				)
-			)
-			->set_value_type( 'url' )
-			->set_help_text( esc_html__( 'Upload a custom image if you wish to customize the default placeholder.' ) );
+		$settings[] = Field::make( 'multiselect', 'listing_submission_redirect', esc_html__( 'Redirect after successful submission' ) )
+			->set_help_text( esc_html__( 'Select the page where you wish to redirect users after submitting a listing. Leave blank to display a message only.' ) )
+			->add_options( 'pno_get_pages' );
 
 		return $settings;
 
@@ -657,27 +660,6 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'text', 'map_zoom', esc_html__( 'Starting map zoom level' ) )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ) );
-
-		return $settings;
-
-	}
-
-	/**
-	 * Get listings redirects settings.
-	 *
-	 * @return array
-	 */
-	private function get_listings_redirects_settings() {
-
-		$settings = [];
-
-		$settings[] = Field::make( 'multiselect', 'listing_submission_redirect', esc_html__( 'After successful submission' ) )
-			->set_help_text( esc_html__( 'Select the page where you wish to redirect users after submitting a listing. Leave blank to display a message only.' ) )
-			->add_options( 'pno_get_pages' );
-
-		$settings[] = Field::make( 'multiselect', 'listing_editing_redirect', esc_html__( 'After successful editing' ) )
-			->set_help_text( esc_html__( 'Select the page where you wish to redirect users after editing a listing. Leave blank to display a message only.' ) )
-			->add_options( 'pno_get_pages' );
 
 		return $settings;
 
