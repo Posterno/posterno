@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e00b4442807585baa00bd10d760c60b2",
+    "content-hash": "cf02565296844a7e6bf5277a9fd8051e",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -528,6 +528,52 @@
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
+            "name": "rarst/wpdatetime",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Rarst/wpdatetime.git",
+                "reference": "d6e48db062f97788fba7ad150d66a3df5a0c9338"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Rarst/wpdatetime/zipball/d6e48db062f97788fba7ad150d66a3df5a0c9338",
+                "reference": "d6e48db062f97788fba7ad150d66a3df5a0c9338",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.10"
+            },
+            "require-dev": {
+                "brain/monkey": "^2.1",
+                "pds/skeleton": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rarst\\WordPress\\DateTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Savchenko",
+                    "homepage": "https://www.Rarst.net/"
+                }
+            ],
+            "description": "Extension of PHP’s DateTime and DateTimeZone classes for WordPress context.",
+            "keywords": [
+                "date",
+                "time",
+                "timezone",
+                "wordpress"
+            ],
+            "time": "2018-03-16T12:37:09+00:00"
+        },
+        {
             "name": "stevegrunwell/wp-cache-remember",
             "version": "v1.1.1",
             "source": {
@@ -580,7 +626,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rarst/wpdatetime": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

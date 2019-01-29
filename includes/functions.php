@@ -294,6 +294,27 @@ function pno_get_days_of_the_week() {
 }
 
 /**
+ * Retrieve an array with the days of the week in a shorter form.
+ *
+ * @return array
+ */
+function pno_get_days_of_the_week_short() {
+
+	$days = [
+		'monday'    => esc_html__( 'Mon' ),
+		'tuesday'   => esc_html__( 'Tue' ),
+		'wednesday' => esc_html__( 'Wed' ),
+		'thursday'  => esc_html__( 'Thu' ),
+		'friday'    => esc_html__( 'Fri' ),
+		'saturday'  => esc_html__( 'Sat' ),
+		'sunday'    => esc_html__( 'Sun' ),
+	];
+
+	return $days;
+
+}
+
+/**
  * Retrieve the queried listing type id during the submission process.
  *
  * @return mixed
