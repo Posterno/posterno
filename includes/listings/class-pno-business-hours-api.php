@@ -105,8 +105,6 @@ class BusinessHours {
 
 		foreach ( $this->opening_hours as $day => $raw_opening_hours ) {
 
-			print_r( $raw_opening_hours );
-
 			$operation = isset( $raw_opening_hours['operation'] ) ? $raw_opening_hours['operation'] : false;
 			$sets[]    = $this->raw_hour_to_opening_hours( $raw_opening_hours, $day, $operation );
 
@@ -133,16 +131,6 @@ class BusinessHours {
 		}
 
 		return $sets;
-
-	}
-
-	/**
-	 * Get the listing's opening hours on a specific date.
-	 *
-	 * @param \DateTime $datetime the date to check.
-	 * @return void
-	 */
-	public function get_opening_hours_on( \DateTime $datetime ) {
 
 	}
 
