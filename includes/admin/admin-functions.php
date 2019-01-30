@@ -675,7 +675,7 @@ function testme() {
 
 		$f = new \PNO\Listing\BusinessHours( '1875' );
 
-		print_r( $f->get_opening_hours()->to_string() );
+		print_r( $f->get_opening_hours() );
 
 		wp_die();
 	}

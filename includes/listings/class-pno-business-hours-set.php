@@ -70,23 +70,47 @@ class Set {
 	public $day_name;
 
 	/**
+	 * Holds the type of hours set. IE: hours, open all day, closed all day, appointment etc..
+	 *
+	 * @var string
+	 */
+	public $type;
+
+	/**
+	 * Flag to determine if this set belongs to today's date.
+	 *
+	 * @var boolean
+	 */
+	public $is_today = false;
+
+	/**
 	 * Get things started.
 	 *
-	 * @param DateTime $start opening time.
-	 * @param DateTime $end closing time.
+	 * @param DateTime       $start opening time.
+	 * @param DateTime       $end closing time.
+	 * @param string|boolean $type the type of operation in place for the day.
 	 */
-	public function __construct( DateTime $start = null, DateTime $end = null ) {
+	public function __construct( DateTime $start = null, DateTime $end = null, $type = false ) {
 
 		$this->start = $start;
 		$this->end   = $end;
 
-		if ( $start !== null & $end !== null ) {
+		$this->type = $type;
+
+		if ( $this->start && $this->end ) {
 
 			$this->day_of_week = (int) $this->start->format( 'N' );
-			$this->day_name    = $this->start->format( 'l' );
+			$this->day_name    = date_i18n( 'l', strtotime( $this->start->format( 'l' ) ) );
 			$this->start_time  = $this->start->format( 'g:i A' );
 			$this->end_time    = $this->end->format( 'g:i A' );
 
+			// Reset properties of the set if the timeset type does not have hours.
+			if ( $this->type !== 'hours' ) {
+				$this->start      = false;
+				$this->end        = false;
+				$this->start_time = false;
+				$this->end_time   = false;
+			}
 		}
 
 	}
@@ -132,6 +156,15 @@ class Set {
 			$end
 		);
 
+	}
+
+	/**
+	 * Determine if this set belongs to today's date.
+	 *
+	 * @return boolean
+	 */
+	public function is_today() {
+		return (bool) $this->is_today;
 	}
 
 }

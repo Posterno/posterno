@@ -95,18 +95,44 @@ class BusinessHours {
 	}
 
 	/**
-	 * Get the listing's opening hours in a formatted list ready for display on the frontend.
+	 * Get the listing's opening hours sets.
 	 *
 	 * @return array
 	 */
 	public function get_opening_hours() {
 
-		foreach ( $this->opening_hours as $raw_opening_hours ) {
-			$set = $this->raw_hour_to_opening_hours( $raw_opening_hours['opening'], $raw_opening_hours['closing'], 'monday' );
+		$sets = [];
 
-			print_r( $set );
-			exit;
+		foreach ( $this->opening_hours as $day => $raw_opening_hours ) {
+
+			print_r( $raw_opening_hours );
+
+			$operation = isset( $raw_opening_hours['operation'] ) ? $raw_opening_hours['operation'] : false;
+			$sets[]    = $this->raw_hour_to_opening_hours( $raw_opening_hours, $day, $operation );
+
+			$additional_times = isset( $raw_opening_hours['additional_times'] ) && ! empty( $raw_opening_hours['additional_times'] ) ? $raw_opening_hours['additional_times'] : false;
+
+			if ( $additional_times && is_array( $additional_times ) ) {
+				foreach ( $additional_times as $timeset ) {
+
+					$opening = isset( $timeset['opening'] ) ? $timeset['opening'] : false;
+					$closing = isset( $timeset['closing'] ) ? $timeset['closing'] : false;
+
+					if ( $opening && $closing ) {
+
+						$formatted_timeset = [
+							'opening' => $opening,
+							'closing' => $closing,
+						];
+
+						$sets[] = $this->raw_hour_to_opening_hours( $formatted_timeset, $day, $operation );
+
+					}
+				}
+			}
 		}
+
+		return $sets;
 
 	}
 
@@ -361,7 +387,7 @@ class BusinessHours {
 
 		$day_as_number = array_search( $day_of_week, $this->week_starts_on_sunday ? array_keys( $this->days_of_the_week_sunday_first ) : array_keys( pno_get_days_of_the_week() ) ) + 1;
 		$offset        = ( $day_as_number - $today ) + ( $offset_in_weeks * 7 );
-		$zone          = new \DateTimeZone( $this->timezone );
+		$zone          = WpDateTimeZone::getWpTimezone();
 
 		$date_time = new \DateTime( $time, $zone );
 
@@ -453,7 +479,15 @@ class BusinessHours {
 
 	}
 
-	private function start_and_end_to_opening_hours( \DateTime $start_time, \DateTime $end_time ) {
+	/**
+	 * Create the business hours set.
+	 *
+	 * @param \DateTime $start_time starting time.
+	 * @param \DateTime $end_time closing time.
+	 * @param boolean   $type type of operation in place for the day.
+	 * @return Set
+	 */
+	private function start_and_end_to_opening_hours( \DateTime $start_time, \DateTime $end_time, $type = false ) {
 
 		$after_midnight = false;
 
@@ -462,8 +496,12 @@ class BusinessHours {
 			$after_midnight = true;
 		}
 
-		$hours                 = new Set( $start_time, $end_time );
+		$hours                 = new Set( $start_time, $end_time, $type );
 		$hours->after_midnight = $after_midnight;
+
+		if ( $this->is_today( $start_time ) ) {
+			$hours->is_today = true;
+		}
 
 		return $hours;
 
@@ -472,22 +510,37 @@ class BusinessHours {
 	/**
 	 * Convert raw time sets to date time objects.
 	 *
-	 * @param string $opening opening hours of the timeset.
-	 * @param string $closing closing hours of the timeset.
+	 * @param string $raw_hours business hours of the timeset.
 	 * @param string $dayname the name of the day.
+	 * @param string $type the type of operation the business is using with that time set. Eg: hours, open all day, appointment, etc.
 	 * @return array
 	 */
-	private function raw_hour_to_opening_hours( $opening, $closing, $dayname ) {
+	private function raw_hour_to_opening_hours( $raw_hours, $dayname, $type = false ) {
 
-		//$start_indication = date( 'A', strtotime( $opening ) );
-		//$end_indication   = date( 'A', strtotime( $closing ) );
+		$opening = isset( $raw_hours['opening'] ) ? $raw_hours['opening'] : false;
+		$closing = isset( $raw_hours['closing'] ) ? $raw_hours['closing'] : false;
 
 		$start_time = $this->convert_to_date_in_week( $opening, $dayname, 0 );
 		$end_time   = $this->convert_to_date_in_week( $closing, $dayname, 0 );
 
-		$hours = $this->start_and_end_to_opening_hours( $start_time, $end_time );
+		if ( $type === 'hours' && $opening === false || ( $type === 'hours' && $closing === false ) ) {
+			$type = false;
+		}
+
+		$hours = $this->start_and_end_to_opening_hours( $start_time, $end_time, $type );
 
 		return $hours;
+
+	}
+
+	/**
+	 * Retrieve the opening hours set for today's date.
+	 *
+	 * @return array
+	 */
+	public function get_opening_hours_of_today() {
+
+		return wp_filter_object_list( $this->get_opening_hours(), [ 'is_today' => true ] );
 
 	}
 
