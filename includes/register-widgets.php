@@ -25,5 +25,6 @@ function pno_register_widgets() {
 	register_widget( 'PNO\Widget\ListingTaxonomies' );
 	register_widget( 'PNO\Widget\RecentListings' );
 	register_widget( 'PNO\Widget\FeaturedListings' );
+	register_widget( 'PNO\Widget\BusinessHours' );
 }
 add_action( 'widgets_init', 'pno_register_widgets' );

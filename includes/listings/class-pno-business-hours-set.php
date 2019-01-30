@@ -141,6 +141,15 @@ class Set {
 	 */
 	public function to_string( $format = 'g:i A', $separator = ' &mdash; ' ) {
 
+		if ( ! $this->start || ! $this->end ) {
+			if ( $this->type && array_key_exists( $this->type, pno_get_listing_time_slots() ) ) {
+				$timeslots = pno_get_listing_time_slots();
+				return $timeslots[ $this->type ];
+			} else {
+				return;
+			}
+		}
+
 		$start = $this->start->format( $format );
 		$end   = $this->end->format( $format );
 
@@ -165,6 +174,15 @@ class Set {
 	 */
 	public function is_today() {
 		return (bool) $this->is_today;
+	}
+
+	/**
+	 * Retrieve the name of the day assigned to the set.
+	 *
+	 * @return string
+	 */
+	public function get_day_name() {
+		return $this->day_name;
 	}
 
 }

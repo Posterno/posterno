@@ -673,9 +673,9 @@ function pno_get_registered_listings_taxonomies() {
 function testme() {
 	if ( isset( $_GET['testme'] ) ) {
 
-		$f = new \PNO\Listing\BusinessHours( '1875' );
+		$f = new \PNO\Listing\BusinessHours( '123' );
 
-		var_dump( $f->is_currently_open() );
+		var_dump( $f );
 
 		wp_die();
 	}

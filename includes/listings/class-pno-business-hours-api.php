@@ -95,6 +95,15 @@ class BusinessHours {
 	}
 
 	/**
+	 * Determine if the listing has business hours.
+	 *
+	 * @return boolean
+	 */
+	public function has_business_hours() {
+		return is_array( $this->opening_hours ) && ! empty( $this->opening_hours );
+	}
+
+	/**
 	 * Get the listing's opening hours sets.
 	 *
 	 * @return array

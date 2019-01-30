@@ -435,6 +435,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-taxonomies.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-recent-listings.php';
 			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-featured-listings.php';
+			require_once PNO_PLUGIN_DIR . 'includes/widgets/widget-listing-business-hours.php';
 			require_once PNO_PLUGIN_DIR . 'includes/register-widgets.php';
 
 			// Comments.
