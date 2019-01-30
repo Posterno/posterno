@@ -153,14 +153,19 @@ class BusinessHours {
 	 */
 	public function is_currently_open() {
 
-	}
+		$open = false;
 
-	/**
-	 * Verify if the listing is currently closed.
-	 *
-	 * @return boolean
-	 */
-	public function is_currently_closed() {
+		$todays_timesets = $this->get_opening_hours_of_today();
+
+		if ( is_array( $todays_timesets ) && ! empty( $todays_timesets ) ) {
+			foreach ( $todays_timesets as $timeset ) {
+				if ( $this->is_now_between_dates( $timeset->start, $timeset->end ) ) {
+					$open = true;
+				}
+			}
+		}
+
+		return $open;
 
 	}
 
