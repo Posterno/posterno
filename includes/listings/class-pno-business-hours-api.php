@@ -10,6 +10,7 @@
 
 namespace PNO\Listing;
 
+use PNO\Listing\BusinessHours\Set;
 use Rarst\WordPress\DateTime\WpDateTimeZone;
 
 // Exit if accessed directly.
@@ -99,6 +100,13 @@ class BusinessHours {
 	 * @return array
 	 */
 	public function get_opening_hours() {
+
+		foreach ( $this->opening_hours as $raw_opening_hours ) {
+			$set = $this->raw_hour_to_opening_hours( $raw_opening_hours['opening'], $raw_opening_hours['closing'], 'monday' );
+
+			print_r( $set );
+			exit;
+		}
 
 	}
 
@@ -353,7 +361,7 @@ class BusinessHours {
 
 		$day_as_number = array_search( $day_of_week, $this->week_starts_on_sunday ? array_keys( $this->days_of_the_week_sunday_first ) : array_keys( pno_get_days_of_the_week() ) ) + 1;
 		$offset        = ( $day_as_number - $today ) + ( $offset_in_weeks * 7 );
-		$zone          = WpDateTimeZone::getWpTimezone();
+		$zone          = new \DateTimeZone( $this->timezone );
 
 		$date_time = new \DateTime( $time, $zone );
 
@@ -442,6 +450,44 @@ class BusinessHours {
 			),
 			$zone
 		);
+
+	}
+
+	private function start_and_end_to_opening_hours( \DateTime $start_time, \DateTime $end_time ) {
+
+		$after_midnight = false;
+
+		if ( $end_time <= $start_time ) {
+			$end_time       = $this->add_days( $end_time, 1 );
+			$after_midnight = true;
+		}
+
+		$hours                 = new Set( $start_time, $end_time );
+		$hours->after_midnight = $after_midnight;
+
+		return $hours;
+
+	}
+
+	/**
+	 * Convert raw time sets to date time objects.
+	 *
+	 * @param string $opening opening hours of the timeset.
+	 * @param string $closing closing hours of the timeset.
+	 * @param string $dayname the name of the day.
+	 * @return array
+	 */
+	private function raw_hour_to_opening_hours( $opening, $closing, $dayname ) {
+
+		//$start_indication = date( 'A', strtotime( $opening ) );
+		//$end_indication   = date( 'A', strtotime( $closing ) );
+
+		$start_time = $this->convert_to_date_in_week( $opening, $dayname, 0 );
+		$end_time   = $this->convert_to_date_in_week( $closing, $dayname, 0 );
+
+		$hours = $this->start_and_end_to_opening_hours( $start_time, $end_time );
+
+		return $hours;
 
 	}
 

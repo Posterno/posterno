@@ -423,6 +423,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-terms-custom-fields.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-expiry.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-listings-featured.php';
+			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-business-hours-set.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/class-pno-business-hours-api.php';
 
 			// Widgets.
