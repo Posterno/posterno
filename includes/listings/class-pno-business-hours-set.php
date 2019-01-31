@@ -84,6 +84,13 @@ class Set {
 	public $is_today = false;
 
 	/**
+	 * List of additional sets for this day.
+	 *
+	 * @var array
+	 */
+	public $additional_sets = [];
+
+	/**
 	 * Get things started.
 	 *
 	 * @param DateTime       $start opening time.
@@ -156,9 +163,31 @@ class Set {
 		$start = $this->start->format( $format );
 		$end   = $this->end->format( $format );
 
-		if ( pno_get_option( 'business_hours_remove_zeroes' ) ) {
+		$remove_zeroes = pno_get_option( 'business_hours_remove_zeroes', false );
+
+		if ( $remove_zeroes ) {
 			$start = str_replace( ':00', '', $start );
 			$end   = str_replace( ':00', '', $end );
+		}
+
+		if ( $this->has_additional_sets() ) {
+			foreach ( $this->additional_sets as $set ) {
+				$end .= '<br/>';
+				$set_start = $set->start->format( $format );
+				$set_end   = $set->end->format( $format );
+
+				if ( $remove_zeroes ) {
+					$set_start = str_replace( ':00', '', $set_start );
+					$set_end   = str_replace( ':00', '', $set_end );
+				}
+
+				$end .= sprintf(
+					'%s%s%s',
+					$set_start,
+					$separator,
+					$set_end
+				);
+			}
 		}
 
 		return sprintf(
@@ -186,6 +215,15 @@ class Set {
 	 */
 	public function get_day_name() {
 		return $this->day_name;
+	}
+
+	/**
+	 * Verify if the day has additional timing sets.
+	 *
+	 * @return boolean
+	 */
+	public function has_additional_sets() {
+		return count( $this->additional_sets ) > 0;
 	}
 
 }

@@ -56,7 +56,7 @@ $opening_hours = $business_hours->get_opening_hours();
 			<?php endif; ?>
 			>
 				<td><strong><?php echo esc_html( $set->get_day_name() ); ?></strong></td>
-				<td><?php echo esc_html( $set->to_string() ); ?></td>
+				<td><?php echo wp_kses_post( $set->to_string() ); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>

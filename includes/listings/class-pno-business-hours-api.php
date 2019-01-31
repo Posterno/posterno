@@ -139,7 +139,7 @@ class BusinessHours {
 			}
 		}
 
-		if ( pno_get_option( 'business_hours_sunday_start' ) ) {
+		if ( pno_get_option( 'business_hours_sunday_start', false ) ) {
 			$sunday_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 7 ] );
 			if ( is_array( $sunday_sets ) && ! empty( $sunday_sets ) ) {
 				foreach ( $sunday_sets as $set_key => $sunday_set ) {
@@ -149,7 +149,7 @@ class BusinessHours {
 			}
 		}
 
-		if ( pno_get_option( 'business_hours_today_only' ) ) {
+		if ( pno_get_option( 'business_hours_today_only', false ) ) {
 			if ( is_array( $sets ) && ! empty( $sets ) ) {
 				foreach ( $sets as $set ) {
 					if ( $this->is_today( $set->start ) ) {
@@ -159,6 +159,8 @@ class BusinessHours {
 				}
 			}
 		}
+
+		$sets = $this->parse_multiple_timings_on_same_day( $sets );
 
 		return $sets;
 
@@ -564,6 +566,112 @@ class BusinessHours {
 	public function get_opening_hours_of_today() {
 
 		return wp_filter_object_list( $this->get_opening_hours(), [ 'is_today' => true ] );
+
+	}
+
+	/**
+	 * Ugly way to merge additional timing sets of a given day back into the main set.
+	 * Maybe try refactor this at a later point because it's ugly to watch :(
+	 *
+	 * @param array $sets the sets to parse.
+	 * @return array
+	 */
+	private function parse_multiple_timings_on_same_day( $sets = [] ) {
+
+		$mon_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 1 ] );
+		$tue_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 2 ] );
+		$wed_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 3 ] );
+		$thu_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 4 ] );
+		$fri_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 5 ] );
+		$sat_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 6 ] );
+		$sun_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 7 ] );
+
+		if ( count( $mon_sets ) > 1 ) {
+			$mon_main_set     = $mon_sets[ key( $mon_sets ) ];
+			$mon_main_set_key = absint( key( $mon_sets ) );
+			foreach ( $mon_sets as $mon_set_key => $mon_set ) {
+				$mon_set_key = absint( $mon_set_key );
+				if ( $mon_set_key !== $mon_main_set_key ) {
+					unset( $sets[ $mon_set_key ] );
+					$mon_main_set->additional_sets[] = $mon_set;
+				}
+			}
+			$sets[ $mon_main_set_key ] = $mon_main_set;
+		}
+		if ( count( $tue_sets ) > 1 ) {
+			$tue_main_set     = $tue_sets[ key( $tue_sets ) ];
+			$tue_main_set_key = absint( key( $tue_sets ) );
+			foreach ( $tue_sets as $tue_set_key => $tue_set ) {
+				$tue_set_key = absint( $tue_set_key );
+				if ( $tue_set_key !== $tue_main_set_key ) {
+					unset( $sets[ $tue_set_key ] );
+					$tue_main_set->additional_sets[] = $tue_set;
+				}
+			}
+			$sets[ $tue_main_set_key ] = $tue_main_set;
+		}
+		if ( count( $wed_sets ) > 1 ) {
+			$wed_main_set     = $wed_sets[ key( $wed_sets ) ];
+			$wed_main_set_key = absint( key( $wed_sets ) );
+			foreach ( $wed_sets as $wed_set_key => $wed_set ) {
+				$wed_set_key = absint( $wed_set_key );
+				if ( $wed_set_key !== $wed_main_set_key ) {
+					unset( $sets[ $wed_set_key ] );
+					$wed_main_set->additional_sets[] = $wed_set;
+				}
+			}
+			$sets[ $wed_main_set_key ] = $wed_main_set;
+		}
+		if ( count( $thu_sets ) > 1 ) {
+			$thu_main_set     = $thu_sets[ key( $thu_sets ) ];
+			$thu_main_set_key = absint( key( $thu_sets ) );
+			foreach ( $thu_sets as $thu_set_key => $thu_set ) {
+				$thu_set_key = absint( $thu_set_key );
+				if ( $thu_set_key !== $thu_main_set_key ) {
+					unset( $sets[ $thu_set_key ] );
+					$thu_main_set->additional_sets[] = $thu_set;
+				}
+			}
+			$sets[ $thu_main_set_key ] = $thu_main_set;
+		}
+		if ( count( $fri_sets ) > 1 ) {
+			$fri_main_set     = $fri_sets[ key( $fri_sets ) ];
+			$fri_main_set_key = absint( key( $fri_sets ) );
+			foreach ( $fri_sets as $fri_set_key => $fri_set ) {
+				$fri_set_key = absint( $fri_set_key );
+				if ( $fri_set_key !== $fri_main_set_key ) {
+					unset( $sets[ $fri_set_key ] );
+					$fri_main_set->additional_sets[] = $fri_set;
+				}
+			}
+			$sets[ $fri_main_set_key ] = $fri_main_set;
+		}
+		if ( count( $sat_sets ) > 1 ) {
+			$sat_main_set     = $sat_sets[ key( $sat_sets ) ];
+			$sat_main_set_key = absint( key( $sat_sets ) );
+			foreach ( $sat_sets as $sat_set_key => $sat_set ) {
+				$sat_set_key = absint( $sat_set_key );
+				if ( $sat_set_key !== $sat_main_set_key ) {
+					unset( $sets[ $sat_set_key ] );
+					$sat_main_set->additional_sets[] = $sat_set;
+				}
+			}
+			$sets[ $sat_main_set_key ] = $sat_main_set;
+		}
+		if ( count( $sun_sets ) > 1 ) {
+			$sun_main_set     = $sun_sets[ key( $sun_sets ) ];
+			$sun_main_set_key = absint( key( $sun_sets ) );
+			foreach ( $sun_sets as $sun_set_key => $sun_set ) {
+				$sun_set_key = absint( $sun_set_key );
+				if ( $sun_set_key !== $sun_main_set_key ) {
+					unset( $sets[ $sun_set_key ] );
+					$sun_main_set->additional_sets[] = $sun_set;
+				}
+			}
+			$sets[ $sun_main_set_key ] = $sun_main_set;
+		}
+
+		return $sets;
 
 	}
 
