@@ -674,15 +674,6 @@ class OptionsPanel {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'radio', 'business_hours_layout', esc_html__( 'Display mode' ) )
-			->add_options(
-				[
-					'normal'       => esc_html__( 'Normal' ),
-					'consolidated' => esc_html__( 'Consolidated' ),
-				]
-			)
-			->set_help_text( esc_html__( 'Consolidated mode will group days with the same hours together.' ) );
-
 		$settings[] = Field::make( 'checkbox', 'business_hours_abbr', esc_html__( 'Abbreviate days' ) )
 			->set_help_text( esc_html__( 'Enable this option to abbreviate the days (Monday becomes Mon).' ) );
 
