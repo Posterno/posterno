@@ -139,6 +139,14 @@ class BusinessHours {
 			}
 		}
 
+		if ( pno_get_option( 'business_hours_sunday_start' ) ) {
+			$sunday_sets = wp_filter_object_list( $sets, [ 'day_of_week' => 7 ] );
+			foreach ( $sunday_sets as $set_key => $sunday_set ) {
+				unset( $sets[ $set_key ] );
+			}
+			$sets = array_merge( $sunday_sets, $sets );
+		}
+
 		return $sets;
 
 	}
