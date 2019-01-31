@@ -161,7 +161,9 @@ do_action( 'pno_before_single_listing' );
 			</div>
 
 			<div class="col-md-6">
-				<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $address_lat ); ?>" data-lng="<?php echo esc_attr( $address_lng ); ?>" data-zoom="12"></div>
+				<?php if ( $address_lat && $address_lng ) : ?>
+					<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $address_lat ); ?>" data-lng="<?php echo esc_attr( $address_lng ); ?>" data-zoom="12"></div>
+				<?php endif; ?>
 			</div>
 		</div>
 
