@@ -39,7 +39,7 @@ $opening_hours = $business_hours->get_opening_hours();
 
 ?>
 
-<table class="table table-striped">
+<table class="table table-striped pno-business-hours">
 	<tbody>
 		<?php
 
@@ -50,8 +50,12 @@ $opening_hours = $business_hours->get_opening_hours();
 			}
 
 			?>
-			<tr>
-				<td><?php echo esc_html( $set->get_day_name() ); ?></td>
+			<tr
+			<?php if ( $set->is_today() ) : ?>
+			class="today"
+			<?php endif; ?>
+			>
+				<td><strong><?php echo esc_html( $set->get_day_name() ); ?></strong></td>
 				<td><?php echo esc_html( $set->to_string() ); ?></td>
 			</tr>
 		<?php endforeach; ?>

@@ -100,9 +100,12 @@ class Set {
 		if ( $this->start && $this->end ) {
 
 			$this->day_of_week = (int) $this->start->format( 'N' );
-			$this->day_name    = date_i18n( 'l', strtotime( $this->start->format( 'l' ) ) );
-			$this->start_time  = $this->start->format( 'g:i A' );
-			$this->end_time    = $this->end->format( 'g:i A' );
+
+			$format         = pno_get_option( 'business_hours_abbr', false ) ? 'D' : 'l';
+			$this->day_name = date_i18n( $format, strtotime( $this->start->format( 'l' ) ) );
+
+			$this->start_time = $this->start->format( 'g:i A' );
+			$this->end_time   = $this->end->format( 'g:i A' );
 
 			// Reset properties of the set if the timeset type does not have hours.
 			if ( $this->type !== 'hours' ) {
