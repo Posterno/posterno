@@ -383,3 +383,23 @@ function pno_profile() {
 
 }
 add_shortcode( 'pno_profile', 'pno_profile' );
+
+/**
+ * Displays a list of listings types.
+ *
+ * @param array  $atts attributes sent through the shortcode.
+ * @param string $content content of the shortcode.
+ * @return string
+ */
+function pno_listings_types_shortcode( $atts, $content = null ) {
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data( $atts )
+		->get_template_part( 'shortcodes/listing-types-list' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_listings_types', 'pno_listings_types_shortcode' );

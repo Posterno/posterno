@@ -167,6 +167,22 @@
 				},
 				// End pages.
 
+				// Listings.
+				{
+					text: pnotinymce.listings.title,
+					menu: [
+
+						{
+							text: pnotinymce.listings.types,
+							onclick: function () {
+								editor.insertContent('[pno_listings_types]');
+							}
+						},
+
+					]
+				},
+				// End Listings.
+
 			]
 		});
 	});
