@@ -443,3 +443,23 @@ function pno_featured_listings_shortcode( $atts, $content = null ) {
 
 }
 add_shortcode( 'pno_featured_listings', 'pno_featured_listings_shortcode' );
+
+/**
+ * Displays a list of listings categories.
+ *
+ * @param array  $atts attributes sent through the shortcode.
+ * @param string $content content of the shortcode.
+ * @return string
+ */
+function pno_listings_categories_shortcode( $atts, $content = null ) {
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data( $atts )
+		->get_template_part( 'shortcodes/listings-categories' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_listings_categories', 'pno_listings_categories_shortcode' );

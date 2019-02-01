@@ -1,5 +1,16 @@
 (function () {
 
+	var yesno = [
+		{
+			text: pnotinymce.options_yesno.yes,
+			value: 'yes'
+		},
+		{
+			text: pnotinymce.options_yesno.no,
+			value: 'no'
+		},
+	];
+
 	tinymce.PluginManager.add('pno_shortcodes_mce_button', function (editor, url) {
 		editor.addButton('pno_shortcodes_mce_button', {
 			title: pnotinymce.title,
@@ -186,6 +197,25 @@
 									],
 									onsubmit: function (e) {
 										editor.insertContent('[pno_featured_listings max="' + e.data.max + '"]');
+									}
+								});
+							}
+						},
+						{
+							text: pnotinymce.listings.categories.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.listings.categories.title,
+									body: [
+										{
+											type: 'listbox',
+											name: 'subcategories',
+											label: pnotinymce.listings.categories.subcategories,
+											values: yesno
+										},
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_listings_categories subcategories="' + e.data.subcategories + '"]');
 									}
 								});
 							}

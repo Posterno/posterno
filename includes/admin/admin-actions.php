@@ -48,6 +48,10 @@ function pno_localize_tinymce_editor() {
 			'submission'   => esc_html__( 'Listing submission form' ),
 			'editing'      => esc_html__( 'Listing editing form' ),
 		],
+		'options_yesno' => [
+			'yes' => esc_html__( 'Yes' ),
+			'no' => esc_html__( 'No' ),
+		],
 		'links'    => [
 			'title'  => esc_html__( 'Links' ),
 			'login'  => [
@@ -67,17 +71,21 @@ function pno_localize_tinymce_editor() {
 			'profile'   => esc_html__( 'Profile' ),
 		],
 		'listings' => [
-			'title'  => esc_html__( 'Listings' ),
-			'types'  => esc_html__( 'Listing types list' ),
-			'recent' => [
+			'title'      => esc_html__( 'Listings' ),
+			'types'      => esc_html__( 'Listing types list' ),
+			'recent'     => [
 				'title'  => esc_html__( 'Recent listings' ),
 				'max'    => esc_html__( 'Maximum amount' ),
 				'layout' => esc_html__( 'Layout' ),
 			],
-			'featured' => [
+			'featured'   => [
 				'title'  => esc_html__( 'Featured listings' ),
 				'max'    => esc_html__( 'Maximum amount' ),
 				'layout' => esc_html__( 'Layout' ),
+			],
+			'categories' => [
+				'title'         => esc_html__( 'Categories list' ),
+				'subcategories' => esc_html__( 'Display subcategories' ),
 			],
 		],
 	];
