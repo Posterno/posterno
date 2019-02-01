@@ -165,6 +165,31 @@
 								});
 							}
 						},
+						{
+							text: pnotinymce.listings.featured.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.listings.featured.title,
+									body: [
+										{
+											type: 'textbox',
+											name: 'max',
+											label: pnotinymce.listings.featured.max,
+											value: '10'
+										},
+										{
+											type: 'textbox',
+											name: 'layout',
+											label: pnotinymce.listings.featured.layout,
+											value: 'grid'
+										}
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_featured_listings max="' + e.data.max + '"]');
+									}
+								});
+							}
+						},
 
 					]
 				},

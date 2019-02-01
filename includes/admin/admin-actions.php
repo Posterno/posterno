@@ -74,6 +74,11 @@ function pno_localize_tinymce_editor() {
 				'max'    => esc_html__( 'Maximum amount' ),
 				'layout' => esc_html__( 'Layout' ),
 			],
+			'featured' => [
+				'title'  => esc_html__( 'Featured listings' ),
+				'max'    => esc_html__( 'Maximum amount' ),
+				'layout' => esc_html__( 'Layout' ),
+			],
 		],
 	];
 
