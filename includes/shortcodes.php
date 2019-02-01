@@ -403,3 +403,23 @@ function pno_listings_types_shortcode( $atts, $content = null ) {
 
 }
 add_shortcode( 'pno_listings_types', 'pno_listings_types_shortcode' );
+
+/**
+ * Displays a list of recent listings.
+ *
+ * @param array  $atts attributes sent through the shortcode.
+ * @param string $content content of the shortcode.
+ * @return string
+ */
+function pno_recent_listings_shortcode( $atts, $content = null ) {
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data( $atts )
+		->get_template_part( 'shortcodes/recent-listings' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_recent_listings', 'pno_recent_listings_shortcode' );

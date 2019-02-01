@@ -39,8 +39,8 @@ add_action( 'admin_head', 'pno_shortcodes_add_mce_button' );
 function pno_localize_tinymce_editor() {
 
 	$js_vars = [
-		'title' => esc_html__( 'Posterno shortcodes' ),
-		'forms' => [
+		'title'    => esc_html__( 'Posterno shortcodes' ),
+		'forms'    => [
 			'title'        => esc_html__( 'Forms' ),
 			'login'        => esc_html__( 'Login form' ),
 			'registration' => esc_html__( 'Registration form' ),
@@ -48,7 +48,7 @@ function pno_localize_tinymce_editor() {
 			'submission'   => esc_html__( 'Listing submission form' ),
 			'editing'      => esc_html__( 'Listing editing form' ),
 		],
-		'links' => [
+		'links'    => [
 			'title'  => esc_html__( 'Links' ),
 			'login'  => [
 				'title'    => esc_html__( 'Login link' ),
@@ -61,14 +61,19 @@ function pno_localize_tinymce_editor() {
 				'label'    => esc_html__( 'Link Label' ),
 			],
 		],
-		'pages' => [
+		'pages'    => [
 			'title'     => esc_html__( 'Pages' ),
 			'dashboard' => esc_html__( 'Dashboard' ),
 			'profile'   => esc_html__( 'Profile' ),
 		],
 		'listings' => [
-			'title' => esc_html__( 'Listings' ),
-			'types' => esc_html__( 'Listing types list' ),
+			'title'  => esc_html__( 'Listings' ),
+			'types'  => esc_html__( 'Listing types list' ),
+			'recent' => [
+				'title'  => esc_html__( 'Recent listings' ),
+				'max'    => esc_html__( 'Maximum amount' ),
+				'layout' => esc_html__( 'Layout' ),
+			],
 		],
 	];
 

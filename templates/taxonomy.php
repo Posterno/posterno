@@ -27,7 +27,7 @@ $description = term_description();
 
 // Determine the currently active listings layout.
 $layout = pno_get_listings_results_active_layout();
-$i = '';
+$i      = '';
 
 ?>
 

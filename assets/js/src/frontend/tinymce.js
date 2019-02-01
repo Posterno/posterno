@@ -1,43 +1,5 @@
 (function () {
 
-	// Default Values
-	var yes_no = [{
-			text: 'Yes',
-			value: 'yes'
-		},
-		{
-			text: 'No',
-			value: 'no'
-		},
-	];
-	var no_yes = [{
-			text: 'No',
-			value: 'no'
-		},
-		{
-			text: 'Yes',
-			value: 'yes'
-		},
-	];
-	var true_false = [{
-			text: 'Yes',
-			value: 'true'
-		},
-		{
-			text: 'No',
-			value: 'false'
-		},
-	];
-	var false_true = [{
-			text: 'No',
-			value: 'false'
-		},
-		{
-			text: 'Yes',
-			value: 'true'
-		},
-	];
-
 	tinymce.PluginManager.add('pno_shortcodes_mce_button', function (editor, url) {
 		editor.addButton('pno_shortcodes_mce_button', {
 			title: pnotinymce.title,
@@ -176,6 +138,31 @@
 							text: pnotinymce.listings.types,
 							onclick: function () {
 								editor.insertContent('[pno_listings_types]');
+							}
+						},
+						{
+							text: pnotinymce.listings.recent.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.listings.recent.title,
+									body: [
+										{
+											type: 'textbox',
+											name: 'max',
+											label: pnotinymce.listings.recent.max,
+											value: '10'
+										},
+										{
+											type: 'textbox',
+											name: 'layout',
+											label: pnotinymce.listings.recent.layout,
+											value: 'grid'
+										}
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_recent_listings max="' + e.data.max + '"]');
+									}
+								});
 							}
 						},
 
