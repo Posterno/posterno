@@ -39,8 +39,8 @@ add_action( 'admin_head', 'pno_shortcodes_add_mce_button' );
 function pno_localize_tinymce_editor() {
 
 	$js_vars = [
-		'title'    => esc_html__( 'Posterno shortcodes' ),
-		'forms'    => [
+		'title'         => esc_html__( 'Posterno shortcodes' ),
+		'forms'         => [
 			'title'        => esc_html__( 'Forms' ),
 			'login'        => esc_html__( 'Login form' ),
 			'registration' => esc_html__( 'Registration form' ),
@@ -50,9 +50,9 @@ function pno_localize_tinymce_editor() {
 		],
 		'options_yesno' => [
 			'yes' => esc_html__( 'Yes' ),
-			'no' => esc_html__( 'No' ),
+			'no'  => esc_html__( 'No' ),
 		],
-		'links'    => [
+		'links'         => [
 			'title'  => esc_html__( 'Links' ),
 			'login'  => [
 				'title'    => esc_html__( 'Login link' ),
@@ -65,12 +65,12 @@ function pno_localize_tinymce_editor() {
 				'label'    => esc_html__( 'Link Label' ),
 			],
 		],
-		'pages'    => [
+		'pages'         => [
 			'title'     => esc_html__( 'Pages' ),
 			'dashboard' => esc_html__( 'Dashboard' ),
 			'profile'   => esc_html__( 'Profile' ),
 		],
-		'listings' => [
+		'listings'      => [
 			'title'      => esc_html__( 'Listings' ),
 			'types'      => esc_html__( 'Listing types list' ),
 			'recent'     => [
@@ -87,12 +87,16 @@ function pno_localize_tinymce_editor() {
 				'title'         => esc_html__( 'Categories list' ),
 				'subcategories' => esc_html__( 'Display subcategories' ),
 			],
+			'locations'  => [
+				'title'        => esc_html__( 'Locations list' ),
+				'sublocations' => esc_html__( 'Display sub locations' ),
+			],
 		],
 	];
 
 	?>
 	<script type="text/javascript">
-		var pnotinymce = <?php echo json_encode( $js_vars ); ?>
+		var pnotinymce = <?php echo wp_json_encode( $js_vars ); ?>
 	</script>
 	<?php
 

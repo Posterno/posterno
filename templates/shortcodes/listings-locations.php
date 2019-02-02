@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 $terms = get_terms(
 	array(
-		'taxonomy'   => 'listings-categories',
+		'taxonomy'   => 'listings-locations',
 		'hide_empty' => false,
 		'parent'     => 0,
 	)
@@ -31,7 +31,7 @@ if ( ! is_array( $terms ) || empty( $terms ) ) {
 	return;
 }
 
-$show_subcategories = isset( $data->subcategories ) && $data->subcategories === 'yes' ? true : false;
+$show_sublocations = isset( $data->sublocations ) && $data->sublocations === 'yes' ? true : false;
 
 ?>
 
@@ -39,25 +39,25 @@ $show_subcategories = isset( $data->subcategories ) && $data->subcategories === 
 
 	<div class="row">
 
-	<?php foreach ( $terms as $listing_category ) : ?>
+	<?php foreach ( $terms as $listing_location ) : ?>
 
 		<div class="col-md-4">
 
 			<ul class="list-unstyled m-0 mb-3">
 				<li>
-					<a href="<?php echo esc_url( get_term_link( $listing_category ) ); ?>" class="d-block mb-2 parent-term">
-						<strong><?php echo esc_html( $listing_category->name ); ?></strong>
+					<a href="<?php echo esc_url( get_term_link( $listing_location ) ); ?>" class="d-block mb-2 parent-term">
+						<strong><?php echo esc_html( $listing_location->name ); ?></strong>
 
-						<?php if ( isset( $listing_category->count ) && absint( $listing_category->count ) > 0 ) : ?>
-							<span class="badge badge-pill badge-secondary ml-2"><?php echo absint( $listing_category->count ); ?></span>
+						<?php if ( isset( $listing_location->count ) && absint( $listing_location->count ) > 0 ) : ?>
+							<span class="badge badge-pill badge-secondary ml-2"><?php echo absint( $listing_location->count ); ?></span>
 						<?php endif; ?>
 					</a>
 
 					<?php
 
-					if ( $show_subcategories ) {
+					if ( $show_sublocations ) {
 
-						$children = get_term_children( $listing_category->term_id, 'listings-categories' );
+						$children = get_term_children( $listing_location->term_id, 'listings-locations' );
 
 						if ( ! empty( $children ) && is_array( $children ) ) {
 
@@ -65,16 +65,16 @@ $show_subcategories = isset( $data->subcategories ) && $data->subcategories === 
 
 							foreach ( $children as $child_term_id ) {
 
-								$child_category = get_term_by( 'id', absint( $child_term_id ), 'listings-categories' );
+								$child_location = get_term_by( 'id', absint( $child_term_id ), 'listings-locations' );
 
-								if ( $child_category instanceof WP_Term ) :
+								if ( $child_location instanceof WP_Term ) :
 									?>
 										<li class="d-flex justify-content-between align-items-center mb-1">
-											<a href="<?php echo esc_url( get_term_link( $child_category ) ); ?>">
-												<?php echo esc_html( $child_category->name ); ?>
+											<a href="<?php echo esc_url( get_term_link( $child_location ) ); ?>">
+												<?php echo esc_html( $child_location->name ); ?>
 											</a>
-											<?php if ( isset( $child_category->count ) && absint( $child_category->count ) > 0 ) : ?>
-												<span class="badge badge-pill badge-light"><?php echo absint( $child_category->count ); ?></span>
+											<?php if ( isset( $child_location->count ) && absint( $child_location->count ) > 0 ) : ?>
+												<span class="badge badge-pill badge-light"><?php echo absint( $child_location->count ); ?></span>
 											<?php endif; ?>
 										</li>
 									<?php

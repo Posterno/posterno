@@ -220,6 +220,25 @@
 								});
 							}
 						},
+						{
+							text: pnotinymce.listings.locations.title,
+							onclick: function () {
+								editor.windowManager.open({
+									title: pnotinymce.listings.locations.title,
+									body: [
+										{
+											type: 'listbox',
+											name: 'sublocations',
+											label: pnotinymce.listings.locations.sublocations,
+											values: yesno
+										},
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_listings_locations sublocations="' + e.data.sublocations + '"]');
+									}
+								});
+							}
+						},
 
 					]
 				},

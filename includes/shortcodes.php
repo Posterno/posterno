@@ -463,3 +463,23 @@ function pno_listings_categories_shortcode( $atts, $content = null ) {
 
 }
 add_shortcode( 'pno_listings_categories', 'pno_listings_categories_shortcode' );
+
+/**
+ * Displays a list of listings locations.
+ *
+ * @param array  $atts attributes sent through the shortcode.
+ * @param string $content content of the shortcode.
+ * @return string
+ */
+function pno_listings_locations_shortcode( $atts, $content = null ) {
+
+	ob_start();
+
+	posterno()->templates
+		->set_template_data( $atts )
+		->get_template_part( 'shortcodes/listings-locations' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_listings_locations', 'pno_listings_locations_shortcode' );
