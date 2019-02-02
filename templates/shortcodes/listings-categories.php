@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 $terms = get_terms(
 	array(
 		'taxonomy'   => 'listings-categories',
-		'hide_empty' => false,
+		'hide_empty' => true,
 		'parent'     => 0,
 	)
 );
@@ -68,13 +68,20 @@ $show_subcategories = isset( $data->subcategories ) && $data->subcategories === 
 								$child_category = get_term_by( 'id', absint( $child_term_id ), 'listings-categories' );
 
 								if ( $child_category instanceof WP_Term ) :
+
+									$listings_found = absint( $child_category->count );
+
+									if ( $listings_found <= 0 ) {
+										continue;
+									}
+
 									?>
 										<li class="d-flex justify-content-between align-items-center mb-1">
 											<a href="<?php echo esc_url( get_term_link( $child_category ) ); ?>">
 												<?php echo esc_html( $child_category->name ); ?>
 											</a>
-											<?php if ( isset( $child_category->count ) && absint( $child_category->count ) > 0 ) : ?>
-												<span class="badge badge-pill badge-light"><?php echo absint( $child_category->count ); ?></span>
+											<?php if ( $listings_found > 0 ) : ?>
+												<span class="badge badge-pill badge-light"><?php echo absint( $listings_found ); ?></span>
 											<?php endif; ?>
 										</li>
 									<?php
