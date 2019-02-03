@@ -26,6 +26,7 @@ function pno_load_admin_scripts() {
 	wp_register_style( 'pno-logo', $css_dir . 'admin-font.min.css', array(), $version );
 	wp_register_style( 'pno-editors-styling', $css_dir . 'admin-custom-fields-editor.min.css', [], $version );
 	wp_register_style( 'pno-editors-styling-post-type', $css_dir . 'admin-custom-fields-cpt.min.css', [], $version );
+	wp_register_style( 'pno-getting-started', $css_dir . 'admin-getting-started.min.css', [], $version );
 
 	wp_enqueue_style( 'pno-logo' );
 
@@ -75,6 +76,10 @@ function pno_load_admin_scripts() {
 
 	if ( $screen->id === 'pno_signup_fields' ) {
 		wp_enqueue_style( 'pno-editors-styling-post-type' );
+	}
+
+	if ( $screen->id === 'dashboard_page_pno-getting-started' ) {
+		wp_enqueue_style( 'pno-getting-started' );
 	}
 
 	$admin_style_screens = [
