@@ -265,10 +265,10 @@ function pno_email_get_type_schema() {
 			'description' => esc_html__( 'Administrator has approved a listing for the recipient.' ),
 		],
 		'core_listing_expiring'       => [
-			'description' => __( 'Listing is about to expire.' ),
+			'description' => esc_html__( 'Listing is about to expire.' ),
 		],
 		'core_listing_author_email'   => [
-			'description' => __( 'Listing author received an email.' ),
+			'description' => esc_html__( 'Listing author received an email.' ),
 		],
 	);
 
