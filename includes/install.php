@@ -61,6 +61,9 @@ function pno_run_install() {
 	pno_install_email_types();
 	pno_install_default_emails();
 
+	// Install default fields.
+	pno_install_listings_fields();
+
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
 

@@ -358,6 +358,8 @@ function pno_install_listings_fields() {
 		}
 	}
 
+	update_option( 'pno_listings_fields_installed', true );
+
 }
 
 /**
