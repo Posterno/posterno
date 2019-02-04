@@ -48,11 +48,12 @@ function pno_admin_rate_us( $footer_text ) {
 
 	if ( in_array( $screen->id, $checks ) ) {
 		$rate_text = sprintf(
-			__( 'Thank you for using <a href="%1$s" target="_blank">Posterno</a>! Please <a href="%2$s" target="_blank">rate us on WordPress.org</a>' ),
-			'https://posterno.com',
-			'https://wordpress.org/support/plugin/posterno/reviews/?rate=5#new-post'
+			/* translators: %s: Link to 5 star rating */
+			__( 'If you like <strong>Posterno</strong> please rate us on %s. It takes a minute and helps a lot. Thanks in advance!' ),
+			'<a href="https://wordpress.org/support/view/plugin-reviews/posterno?filter=5#postform" target="_blank" class="posterno-rating-link" style="text-decoration:none;" data-rated="' . esc_attr__( 'Thanks :)' ) . '">WordPress.org &#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 		);
-		return str_replace( '</span>', '', $footer_text ) . ' | ' . $rate_text . '</span> <span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span><span class="dashicons dashicons-star-filled footer-star"></span></span>';
+
+		return $rate_text;
 	} else {
 		return $footer_text;
 	}
