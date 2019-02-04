@@ -217,6 +217,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 				$this->setup_admin();
 			}
 
+			require_once PNO_PLUGIN_DIR . 'includes/install.php';
+
 		}
 
 		/**
