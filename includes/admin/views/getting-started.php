@@ -78,6 +78,40 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 			</div>
 
 			<div class="last-feature col">
+				<h3><?php esc_html_e( 'Don\'t miss out' ); ?></h3>
+				<p><?php esc_html_e( 'Be sure to sign up for the Posterno newsletter below to stay informed of important updates, news and offers. We don\'t spam and you can unsubscribe at any time.' ); ?></p>
+
+				<form action="https://posterno.us5.list-manage.com/subscribe/post?u=e68e0bb69f2cdf2dfd083856c&amp;id=3368f62228" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<table class="form-table pno-newsletter-form">
+						<tbody>
+							<tr valign="middle">
+								<td>
+									<input type="email" value="<?php echo esc_html( $email_address ); ?>" placeholder="<?php esc_html_e( 'Email address*' ); ?>" name="EMAIL" class="required email" required id="mce-EMAIL">
+								</td>
+								<td>
+									<div class="mc-field-group">
+										<input type="text" value="<?php echo esc_html( $first_name ); ?>" name="FNAME" class="" id="mce-FNAME" placeholder="<?php esc_html_e( 'First name' ); ?>">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div id="mce-responses" class="clear">
+										<div class="response" id="mce-error-response" style="display:none"></div>
+										<div class="response" id="mce-success-response" style="display:none"></div>
+									</div>
+									<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+									<div style="position: absolute; left: -5000px;" aria-hidden="true">
+										<input type="text" name="b_e68e0bb69f2cdf2dfd083856c_3368f62228" tabindex="-1" value="">
+									</div>
+									<div class="clear">
+										<input type="submit" value="<?php echo esc_html__( 'Subscribe' ); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 			</div>
 
 			<hr>
