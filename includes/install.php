@@ -54,15 +54,20 @@ function pno_run_install() {
 	pno_register_listings_taxonomies();
 	pno_register_email_taxonomy();
 
-	// Install required pages.
-	pno_install_pages();
-
 	// Install emails and schemas.
 	pno_install_email_types();
 	pno_install_default_emails();
 
 	// Install default fields.
 	pno_install_listings_fields();
+	pno_install_profile_fields();
+	pno_install_registration_fields();
+
+	// Load default options.
+	pno_install_default_settings();
+
+	// Install required pages.
+	pno_install_pages();
 
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
