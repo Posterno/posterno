@@ -56,7 +56,7 @@ function pno_run_install() {
 	flush_rewrite_rules();
 
 	// Update current version.
-	update_option( 'pno_version', WPUM_VERSION );
+	update_option( 'pno_version', PNO_VERSION );
 
 	// Add the transient to redirect.
 	set_transient( '_pno_activation_redirect', true, 30 );
