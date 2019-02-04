@@ -28,3 +28,5 @@
   margin-bottom: 0; }
 #pno-getting-started #mc-embedded-subscribe-form td {
   padding-right: 0px; }
+#pno-getting-started .social-links li {
+  display: inline-block; }

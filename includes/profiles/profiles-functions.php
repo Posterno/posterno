@@ -76,7 +76,7 @@ function pno_get_user_first_name( $user_id_or_object = false ) {
 		return;
 	}
 
-	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id );
+	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id_or_object );
 
 	if ( $user_info->first_name ) {
 		return $user_info->first_name;
