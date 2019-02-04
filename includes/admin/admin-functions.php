@@ -897,4 +897,44 @@ function pno_install_default_emails() {
 
 	}
 
+	$listing_approved_email_schema = get_term_by( 'slug', 'core_user_listing_approved', 'pno-email-type' );
+
+	if ( $listing_approved_email_schema instanceof WP_Term ) {
+
+		$listing_approved_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing on {sitename} has been approved.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} has been successfully approved.</p> <a href="{listing_url}">View your submission.</a>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_approved_email, $listing_approved_email_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$listing_expiring_email_schema = get_term_by( 'slug', 'core_listing_expiring', 'pno-email-type' );
+
+	if ( $listing_expiring_email_schema instanceof WP_Term ) {
+
+		$listing_expiring_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing is about to expire.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} expires on {listing_expiration_date}.</p>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_expiring_email, $listing_expiring_email_schema->term_id, 'pno-email-type' );
+
+	}
+
 }
