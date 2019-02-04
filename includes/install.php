@@ -39,6 +39,10 @@ register_activation_hook( PNO_PLUGIN_FILE, 'posterno_install' );
  */
 function pno_run_install() {
 
+	// Setup plugin's components.
+	pno_setup_components();
+	pno_install_component_database_tables();
+
 	// Setup the post types.
 	pno_setup_post_types();
 	pno_setup_listings_custom_fields_post_type();
