@@ -347,6 +347,16 @@ function pno_install_listings_fields() {
 				$db_settings['_listing_field_disable_branch_nodes'] = true;
 			}
 
+			// Media gallery field must be set as multiple by default.
+			if ( $key === 'listing_gallery' ) {
+				$db_settings['_listing_field_file_is_multiple'] = true;
+				$db_settings['_listing_field_file_extensions']  = 'jpg, png';
+			}
+
+			if ( $key === 'listing_featured_image' ) {
+				$db_settings['_listing_field_file_extensions'] = 'jpg, png';
+			}
+
 			$dbfield->add_item(
 				[
 					'post_id'          => $field_id,
