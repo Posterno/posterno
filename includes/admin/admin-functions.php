@@ -776,3 +776,145 @@ function pno_install_pages() {
 	}
 
 }
+
+/**
+ * Install default emails.
+ *
+ * @return void
+ */
+function pno_install_default_emails() {
+
+	if ( get_option( 'posterno_emails_installed', false ) ) {
+		return;
+	}
+
+	$registration_schema = get_term_by( 'slug', 'core_user_registration', 'pno-email-type' );
+
+	if ( $registration_schema instanceof WP_Term ) {
+
+		$registration_email = wp_insert_post(
+			array(
+				'post_title'     => 'Welcome to {sitename}',
+				'post_content'   => '<p>Hello {username}, and welcome to {sitename}. We’re thrilled to have you on board. </p>
+	<p>For reference, here\'s your login information:</p>
+	<p>Username: {username}<br />Login page: {login_page_url}<br />Password: {password}</p>
+	<p>Thanks,<br />{sitename}</p>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $registration_email, $registration_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$password_recovery_schema = get_term_by( 'slug', 'core_user_password_recovery', 'pno-email-type' );
+
+	if ( $password_recovery_schema instanceof WP_Term ) {
+
+		$password_recovery_email = wp_insert_post(
+			array(
+				'post_title'     => 'Reset your {sitename} password',
+				'post_content'   => '<p>Hello {username},</p>
+<p>You are receiving this message because you or somebody else has attempted to reset your password on {sitename}.</p>
+<p>If this was a mistake, just ignore this email and nothing will happen.</p>
+<p>To reset your password, visit the following address:</p>
+<p>{recovery_url}</p>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $password_recovery_email, $password_recovery_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$listing_author_email_schema = get_term_by( 'slug', 'core_listing_author_email', 'pno-email-type' );
+
+	if ( $listing_author_email_schema instanceof WP_Term ) {
+
+		$listing_author_email = wp_insert_post(
+			array(
+				'post_title'     => '{sitename}: You received a message from {sender_name}',
+				'post_content'   => '<p>Hello {username},</p>
+<p>You received a message from {sender_name}, regarding your listing: {listing_title} on {sitename}.</p>
+<p>Sender: {sender_name}</p>
+<p>Sender email: {sender_email}</p>
+<p>Message: {sender_message}</p>
+<p>Thanks,<br />{sitename}</p>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_author_email, $listing_author_email_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$listing_submitted_email_schema = get_term_by( 'slug', 'core_user_listing_submitted', 'pno-email-type' );
+
+	if ( $listing_submitted_email_schema instanceof WP_Term ) {
+
+		$listing_submitted_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing on {sitename} has been published.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} has been successfully submitted.</p> <a href="{listing_url}">View your submission.</a>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_submitted_email, $listing_submitted_email_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$listing_updated_email_schema = get_term_by( 'slug', 'core_user_listing_updated', 'pno-email-type' );
+
+	if ( $listing_updated_email_schema instanceof WP_Term ) {
+
+		$listing_updated_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing on {sitename} has been updated.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} has been successfully updated.</p> <a href="{listing_url}">View your submission.</a>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_updated_email, $listing_updated_email_schema->term_id, 'pno-email-type' );
+
+	}
+
+	$listing_approved_email_schema = get_term_by( 'slug', 'core_user_listing_updated', 'pno-email-type' );
+
+	if ( $listing_approved_email_schema instanceof WP_Term ) {
+
+		$listing_approved_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing on {sitename} has been updated.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} has been successfully updated.</p> <a href="{listing_url}">View your submission.</a>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_approved_email, $listing_approved_email_schema->term_id, 'pno-email-type' );
+
+	}
+
+}
