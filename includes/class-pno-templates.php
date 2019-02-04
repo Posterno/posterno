@@ -28,7 +28,7 @@ class PNO_Templates extends Gamajo_Template_Loader {
 	 *
 	 * @var string
 	 */
-	protected $theme_template_directory = 'pno';
+	protected $theme_template_directory = 'posterno';
 
 	/**
 	 * Current plugin's root directory.
