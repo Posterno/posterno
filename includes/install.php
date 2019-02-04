@@ -57,6 +57,9 @@ function pno_run_install() {
 	// Install required pages.
 	pno_install_pages();
 
+	// Install email schemas.
+	pno_install_email_types();
+
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
 
