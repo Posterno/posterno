@@ -54,6 +54,9 @@ function pno_run_install() {
 	pno_register_listings_taxonomies();
 	pno_register_email_taxonomy();
 
+	// Install required pages.
+	pno_install_pages();
+
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
 

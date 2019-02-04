@@ -620,7 +620,7 @@ function pno_get_listings_fields_for_widget_association() {
 			$args = apply_filters(
 				'pno_listings_fields_widget_association_args',
 				[
-					'number'                => 100,
+					'number'                   => 100,
 					'listing_meta_key__not_in' => $not_needed,
 				]
 			);
@@ -670,15 +670,109 @@ function pno_get_registered_listings_taxonomies() {
 
 }
 
-function testme() {
-	if ( isset( $_GET['testme'] ) ) {
+/**
+ * Determine whether or not we should install and create required pages.
+ *
+ * @return void
+ */
+function pno_install_pages() {
 
-		$f = new \PNO\Listing\BusinessHours( '123' );
+	if ( ! pno_get_option( 'login_page' ) ) {
+		$login = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Login' ),
+				'post_content'   => '[pno_login_form]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'login_page', [ $login ] );
+	}
 
-		var_dump( $f );
+	if ( ! pno_get_option( 'password_page' ) ) {
+		$psw = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Forgot password' ),
+				'post_content'   => '[pno_password_recovery_form]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'password_page', [ $psw ] );
+	}
 
-		wp_die();
+	if ( ! pno_get_option( 'registration_page' ) ) {
+		$registration_page = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Register' ),
+				'post_content'   => '[pno_registration_form]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'registration_page', [ $registration_page ] );
+	}
+
+	if ( ! pno_get_option( 'dashboard_page' ) ) {
+		$dashboard_page = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Dashboard' ),
+				'post_content'   => '[pno_dashboard]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'dashboard_page', [ $dashboard_page ] );
+	}
+
+	if ( ! pno_get_option( 'submission_page' ) ) {
+		$submission_page = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Submit listing' ),
+				'post_content'   => '[pno_listing_submission_form]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'submission_page', [ $submission_page ] );
+	}
+
+	if ( ! pno_get_option( 'editing_page' ) ) {
+		$editing_page = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Edit listing' ),
+				'post_content'   => '[pno_listing_editing_form]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'editing_page', [ $editing_page ] );
+	}
+
+	if ( ! pno_get_option( 'profile_page' ) ) {
+		$profile_page = wp_insert_post(
+			array(
+				'post_title'     => esc_html__( 'Profile' ),
+				'post_content'   => '[pno_profile]',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'page',
+				'comment_status' => 'closed',
+			)
+		);
+		pno_update_option( 'profile_page', [ $profile_page ] );
 	}
 
 }
-add_action( 'admin_init', 'testme' );
