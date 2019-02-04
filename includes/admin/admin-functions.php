@@ -937,4 +937,6 @@ function pno_install_default_emails() {
 
 	}
 
+	update_option( 'posterno_emails_installed', true );
+
 }
