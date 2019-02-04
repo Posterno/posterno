@@ -1,5 +1,4 @@
 <?php
-
 /**
  * All the functions that are only used within the admin panel.
  *
