@@ -2,7 +2,7 @@
 /**
  * The template for displaying the images gallery within the single listing page template.
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/gallery.php
+ * This template can be overridden by copying it to yourtheme/posterno/listings/gallery.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

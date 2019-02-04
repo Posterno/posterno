@@ -2,7 +2,7 @@
 /**
  * The template for displaying the results count and sorting options before the listings loop.
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/results-bar.php
+ * This template can be overridden by copying it to yourtheme/posterno/listings/results-bar.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

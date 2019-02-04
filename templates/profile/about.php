@@ -2,7 +2,7 @@
 /**
  * The template for displaying the about component content on profile pages.
  *
- * This template can be overridden by copying it to yourtheme/pno/profile/about.php
+ * This template can be overridden by copying it to yourtheme/posterno/profile/about.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

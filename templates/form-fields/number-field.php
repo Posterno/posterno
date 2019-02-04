@@ -2,7 +2,7 @@
 /**
  * The template for displaying the number field.
  *
- * This template can be overridden by copying it to yourtheme/pno/form-fields/number-field.php
+ * This template can be overridden by copying it to yourtheme/posterno/form-fields/number-field.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

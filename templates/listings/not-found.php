@@ -2,7 +2,7 @@
 /**
  * The template for displaying the "not found" message when no listings are found..
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/not-found.php
+ * This template can be overridden by copying it to yourtheme/posterno/listings/not-found.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

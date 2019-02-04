@@ -2,7 +2,7 @@
 /**
  * The template for displaying the results listings per page modifier within the listings loop.
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/results-listings-per-page.php
+ * This template can be overridden by copying it to yourtheme/posterno/listings/results-listings-per-page.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

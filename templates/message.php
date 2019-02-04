@@ -2,7 +2,7 @@
 /**
  * The template for displaying messages.
  *
- * This template can be overridden by copying it to yourtheme/pno/message.php
+ * This template can be overridden by copying it to yourtheme/posterno/message.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

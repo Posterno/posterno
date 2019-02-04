@@ -2,7 +2,7 @@
 /**
  * The template for displaying a listing card within the grid layout.
  *
- * This template can be overridden by copying it to yourtheme/pno/listings/grid-list.php
+ * This template can be overridden by copying it to yourtheme/posterno/listings/grid-list.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

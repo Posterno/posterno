@@ -2,7 +2,7 @@
 /**
  * The template for displaying the content of the recent listings shortcode.
  *
- * This template can be overridden by copying it to yourtheme/pno/shortcodes/recent-listings.php
+ * This template can be overridden by copying it to yourtheme/posterno/shortcodes/recent-listings.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

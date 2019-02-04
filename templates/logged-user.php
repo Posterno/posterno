@@ -2,7 +2,7 @@
 /**
  * The template for a quick intro to the currently logged in user.
  *
- * This template can be overridden by copying it to yourtheme/pno/logged-user.php
+ * This template can be overridden by copying it to yourtheme/posterno/logged-user.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

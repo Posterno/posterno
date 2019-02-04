@@ -2,7 +2,7 @@
 /**
  * The template for displaying the emails header.
  *
- * This template can be overridden by copying it to yourtheme/pno/emails/header.php
+ * This template can be overridden by copying it to yourtheme/posterno/emails/header.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

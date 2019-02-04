@@ -2,7 +2,7 @@
 /**
  * The template for displaying the editor field.
  *
- * This template can be overridden by copying it to yourtheme/pno/form-fields/editor-field.php
+ * This template can be overridden by copying it to yourtheme/posterno/form-fields/editor-field.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

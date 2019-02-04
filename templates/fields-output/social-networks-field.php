@@ -2,7 +2,7 @@
 /**
  * The template for displaying the output of the social networks fields content in profiles or listings pages.
  *
- * This template can be overridden by copying it to yourtheme/pno/output/social-networks-field.php
+ * This template can be overridden by copying it to yourtheme/posterno/output/social-networks-field.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

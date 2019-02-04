@@ -2,7 +2,7 @@
 /**
  * The template for displaying action links within the forms.
  *
- * This template can be overridden by copying it to yourtheme/pno/forms/action-links.php
+ * This template can be overridden by copying it to yourtheme/posterno/forms/action-links.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

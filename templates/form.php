@@ -2,7 +2,7 @@
 /**
  * The template for displaying pno's forms.
  *
- * This template can be overridden by copying it to yourtheme/pno/form.php
+ * This template can be overridden by copying it to yourtheme/posterno/form.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to

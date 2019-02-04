@@ -2,7 +2,7 @@
 /**
  * The template for displaying the emails content.
  *
- * This template can be overridden by copying it to yourtheme/pno/emails/body-default.php
+ * This template can be overridden by copying it to yourtheme/posterno/emails/body-default.php
  *
  * HOWEVER, on occasion PNO will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
