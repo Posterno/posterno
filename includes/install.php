@@ -39,6 +39,17 @@ register_activation_hook( PNO_PLUGIN_FILE, 'posterno_install' );
  */
 function pno_run_install() {
 
+	// Setup the post types.
+	pno_setup_post_types();
+	pno_setup_listings_custom_fields_post_type();
+	pno_setup_users_custom_fields_post_type();
+	pno_setup_registration_fields_post_type();
+	pno_setup_emails_post_type();
+
+	// Setup taxonomies.
+	pno_register_listings_taxonomies();
+	pno_register_email_taxonomy();
+
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
 
