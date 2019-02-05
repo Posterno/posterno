@@ -132,3 +132,27 @@ function pno_required_pages_settings_is_singular_notice() {
 
 }
 add_action( 'admin_head', 'pno_required_pages_settings_is_singular_notice' );
+
+/**
+ * Display an error notice if the permalink structure needs to change.
+ *
+ * @return void
+ */
+function pno_permalink_controller_notice() {
+
+	global $wp_rewrite;
+
+	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-options' || isset( $_GET['page'] ) && $_GET['page'] === 'pno-getting-started' ) {
+		return;
+	}
+
+	if ( empty( $wp_rewrite->permalink_structure ) ) {
+
+		$message = sprintf( __( '<strong>Posterno is almost ready</strong>. You must <a href="%s">update your permalink structure</a> to something other than the default for it to work.' ), admin_url( 'options-permalink.php' ) );
+
+		posterno()->admin_notices->register_notice( 'permalink_setting_error', 'error', $message, [ 'dismissible' => false ] );
+
+	}
+
+}
+add_action( 'admin_head', 'pno_permalink_controller_notice' );
