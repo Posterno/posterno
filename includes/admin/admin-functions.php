@@ -1002,3 +1002,93 @@ function pno_install_default_settings() {
 	update_option( 'posterno_settings_installed', true );
 
 }
+
+/**
+ * Automatically create a dashboard menu.
+ *
+ * @return void
+ */
+function pno_install_dashboard_menu() {
+
+	if ( get_option( 'posterno_dashboard_menu_installed', false ) ) {
+		return;
+	}
+
+	$dashboard_menu = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
+
+	if ( ! $dashboard_menu ) {
+
+		$menu_id = wp_create_nav_menu( esc_html__( 'Dashboard Menu' ) );
+
+		$dashboard_components = pno_get_dashboard_navigation_items();
+
+		foreach ( $dashboard_components as $key => $nav_item ) {
+
+			wp_update_nav_menu_item(
+				$menu_id,
+				0,
+				array(
+					'menu-item-title'   => esc_html( $nav_item['name'] ),
+					'menu-item-classes' => "pno-menu pno-{$key}-nav",
+					'menu-item-url'     => pno_get_dashboard_navigation_item_url( $key, $nav_item ),
+					'menu-item-status'  => 'publish',
+				)
+			);
+
+		}
+
+		if ( ! has_nav_menu( 'pno-dashboard-menu' ) ) {
+			$locations                       = get_theme_mod( 'nav_menu_locations' );
+			$locations['pno-dashboard-menu'] = $menu_id;
+			set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	}
+
+	update_option( 'posterno_dashboard_menu_installed', true );
+
+}
+
+/**
+ * Automatically create a profile menu.
+ *
+ * @return void
+ */
+function pno_install_profile_menu() {
+
+	if ( get_option( 'posterno_profile_menu_installed', false ) ) {
+		return;
+	}
+
+	$profile_menu = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
+
+	if ( ! $profile_menu ) {
+
+		$menu_id = wp_create_nav_menu( esc_html__( 'Profile Menu' ) );
+
+		$profile_components = pno_get_profile_components();
+
+		foreach ( $profile_components as $key => $nav_item ) {
+
+			wp_update_nav_menu_item(
+				$menu_id,
+				0,
+				array(
+					'menu-item-title'   => esc_html( $nav_item ),
+					'menu-item-classes' => "pno-menu pno-{$key}-nav",
+					'menu-item-url'     => '#',
+					'menu-item-status'  => 'publish',
+				)
+			);
+
+		}
+
+		if ( ! has_nav_menu( 'pno-profile-menu' ) ) {
+			$locations                     = get_theme_mod( 'nav_menu_locations' );
+			$locations['pno-profile-menu'] = $menu_id;
+			set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	}
+
+	update_option( 'posterno_profile_menu_installed', true );
+
+}
