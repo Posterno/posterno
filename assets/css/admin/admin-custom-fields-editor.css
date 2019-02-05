@@ -7,6 +7,22 @@ body.users_page_posterno-custom-registration-form #wpcontent {
   body.users_page_posterno-custom-registration-form #wpcontent #pno-custom-fields-editor .pno-admin-title-area .wrap h1 {
     margin: 15px 0; }
 
+.pno-admin-title-area {
+  background: url(../../imgs/logo.svg) top left 20px/60px 60px no-repeat #fff;
+  box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #DDD;
+  padding: 0px 20px 0px 95px !important; }
+  .pno-admin-title-area .wrap {
+    margin: 0; }
+    .pno-admin-title-area .wrap h1 {
+      display: inline-block;
+      padding: 0; }
+  .pno-admin-title-area .title-links {
+    display: inline-block;
+    margin: 10px 0 0 20px; }
+    .pno-admin-title-area .title-links li {
+      display: inline-block;
+      margin-bottom: 0; }
+
 #pno-custom-fields-editor-wrapper {
   margin: 20px; }
   #pno-custom-fields-editor-wrapper h1 img {

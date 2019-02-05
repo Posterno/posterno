@@ -10,6 +10,31 @@ body.users_page_posterno-custom-registration-form #wpcontent {
 	}
 }
 
+.pno-admin-title-area {
+	background: url(../../imgs/logo.svg) top left 20px/60px 60px no-repeat #fff;
+	box-shadow: 0 1px 0 rgba(200, 215, 225, 0.5), 0 1px 2px #DDD;
+	padding: 0px 20px 0px 95px !important;
+
+	.wrap {
+		margin: 0;
+
+		h1 {
+			display: inline-block;
+			padding: 0
+		}
+	}
+
+	.title-links {
+		display: inline-block;
+		margin: 10px 0 0 20px;
+
+		li {
+			display: inline-block;
+			margin-bottom: 0;
+		}
+	}
+}
+
 #pno-custom-fields-editor-wrapper {
 	margin: 20px;
 
