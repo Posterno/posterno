@@ -885,7 +885,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				if ( $field->get_type() === 'term-chain-dropdown' ) {
 					$fields[ $field->get_object_meta_key() ]['disable_branch_nodes'] = $field->is_branch_nodes_disabled();
 				}
+
 			}
+
+			var_dump( $field->get_allowed_mime_types() );
+
 		}
 	}
 

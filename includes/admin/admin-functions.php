@@ -188,6 +188,13 @@ function pno_install_profile_fields( $bypass = false ) {
 					$db_settings['_profile_is_default_field'] = true;
 				}
 
+				if ( $field_key === 'avatar' ) {
+					$db_settings['_profile_field_file_extensions'] = [
+						'image/jpeg',
+						'image/png',
+					];
+				}
+
 				$dbfield->add_item(
 					[
 						'post_id'       => $field_id,
@@ -353,11 +360,17 @@ function pno_install_listings_fields() {
 			// Media gallery field must be set as multiple by default.
 			if ( $key === 'listing_gallery' ) {
 				$db_settings['_listing_field_file_is_multiple'] = true;
-				$db_settings['_listing_field_file_extensions']  = 'jpg, png';
+				$db_settings['_listing_field_file_extensions']  = [
+					'image/jpeg',
+					'image/png',
+				];
 			}
 
 			if ( $key === 'listing_featured_image' ) {
-				$db_settings['_listing_field_file_extensions'] = 'jpg, png';
+				$db_settings['_listing_field_file_extensions'] = [
+					'image/jpeg',
+					'image/png',
+				];
 			}
 
 			$dbfield->add_item(
