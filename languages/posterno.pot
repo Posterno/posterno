@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posterno 0.1.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-02-05 11:29:03+00:00\n"
+"POT-Creation-Date: 2019-02-05 16:08:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -88,14 +88,14 @@ msgstr ""
 msgid "Username or email address"
 msgstr ""
 
-#: includes/actions.php:213 includes/admin/admin-functions.php:225
+#: includes/actions.php:213 includes/admin/admin-functions.php:232
 #: includes/emails/class-pno-emails.php:372 includes/fields-functions.php:165
 #: includes/templates-functions.php:32
 msgid "Username"
 msgstr ""
 
-#: includes/actions.php:215 includes/post-types.php:614
-#: includes/post-types.php:629 includes/templates-functions.php:37
+#: includes/actions.php:215 includes/post-types.php:615
+#: includes/post-types.php:630 includes/templates-functions.php:37
 msgid "Email"
 msgstr ""
 
@@ -166,12 +166,12 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: includes/admin/admin-actions.php:70 includes/admin/admin-functions.php:740
+#: includes/admin/admin-actions.php:70 includes/admin/admin-functions.php:753
 #: includes/functions.php:184
 msgid "Dashboard"
 msgstr ""
 
-#: includes/admin/admin-actions.php:71 includes/admin/admin-functions.php:782
+#: includes/admin/admin-actions.php:71 includes/admin/admin-functions.php:795
 #: includes/admin/admin-options.php:58
 #: includes/fields/integration/class-listing.php:69
 #: includes/fields/integration/class-listing.php:143
@@ -283,7 +283,7 @@ msgid "Logout"
 msgstr ""
 
 #: includes/admin/admin-dashboard-menu-editor.php:172
-#: includes/admin/admin-functions.php:698 includes/admin/admin-options.php:53
+#: includes/admin/admin-functions.php:711 includes/admin/admin-options.php:53
 #: includes/forms/class-pno-form-login.php:148 includes/shortcodes.php:27
 msgid "Login"
 msgstr ""
@@ -400,42 +400,42 @@ msgstr ""
 msgid "Username or Email"
 msgstr ""
 
-#: includes/admin/admin-functions.php:231
+#: includes/admin/admin-functions.php:238
 #: includes/fields/integration/class-listing.php:159
 #: includes/fields-functions.php:94 includes/fields-functions.php:172
 #: includes/fields-functions.php:359 includes/fields-functions.php:711
 msgid "Email address"
 msgstr ""
 
-#: includes/admin/admin-functions.php:237 includes/fields-functions.php:95
+#: includes/admin/admin-functions.php:244 includes/fields-functions.php:95
 #: includes/fields-functions.php:179
 #: includes/forms/class-pno-form-login.php:109
 msgid "Password"
 msgstr ""
 
-#: includes/admin/admin-functions.php:712
+#: includes/admin/admin-functions.php:725
 msgid "Forgot password"
 msgstr ""
 
-#: includes/admin/admin-functions.php:726
+#: includes/admin/admin-functions.php:739
 #: includes/forms/class-pno-form-registration.php:199
 msgid "Register"
 msgstr ""
 
-#: includes/admin/admin-functions.php:754
+#: includes/admin/admin-functions.php:767
 #: includes/forms/class-pno-form-listing-submission.php:197
 msgid "Submit listing"
 msgstr ""
 
-#: includes/admin/admin-functions.php:768 includes/post-types.php:48
+#: includes/admin/admin-functions.php:781 includes/post-types.php:48
 msgid "Edit listing"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1021
+#: includes/admin/admin-functions.php:1034
 msgid "Dashboard Menu"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1066
+#: includes/admin/admin-functions.php:1079
 msgid "Profile Menu"
 msgstr ""
 
@@ -534,7 +534,7 @@ msgid ""
 "href=\"%2$s\">settings panel</a>."
 msgstr ""
 
-#: includes/admin/admin-notices.php:151
+#: includes/admin/admin-notices.php:165
 msgid ""
 "<strong>Posterno is almost ready</strong>. You must <a href=\"%s\">update "
 "your permalink structure</a> to something other than the default for it to "
@@ -558,7 +558,7 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: includes/admin/admin-options.php:25 includes/post-types.php:613
+#: includes/admin/admin-options.php:25 includes/post-types.php:614
 msgid "Emails"
 msgstr ""
 
@@ -2322,41 +2322,41 @@ msgstr ""
 msgid "Allowed file types:"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:213
+#: includes/fields/settings/class-listing.php:214
 msgid ""
 "Specify which file types are supported by this field. Separate with comma "
 "to add multiple extensions. Eg: jpg, png."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:234
+#: includes/fields/settings/class-listing.php:235
 #: includes/fields/settings/class-profile.php:223
 msgid "Admin only?"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:235
+#: includes/fields/settings/class-listing.php:236
 msgid ""
 "Enable this option to allow only administrators to customize the field. "
 "Hidden fields will not visible within the listing submission form on the "
 "frontend."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:257
+#: includes/fields/settings/class-listing.php:258
 #: includes/fields/settings/class-profile.php:260
 #: includes/fields/settings/class-registration.php:121
 msgid "Field settings"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:289
+#: includes/fields/settings/class-listing.php:290
 #: includes/fields/settings/class-profile.php:292
 msgid "Advanced"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:296
+#: includes/fields/settings/class-listing.php:297
 #: includes/fields/settings/class-profile.php:299
 msgid "Unique meta key"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:298
+#: includes/fields/settings/class-listing.php:299
 msgid ""
 "The key must be unique for each field and written in lowercase with an "
 "underscore ( _ ) separating words e.g country_list or job_title. This will "
@@ -2539,7 +2539,7 @@ msgstr ""
 msgid "Listing category"
 msgstr ""
 
-#: includes/fields-functions.php:755 includes/post-types.php:535
+#: includes/fields-functions.php:755 includes/post-types.php:536
 msgid "Listing tags"
 msgstr ""
 
@@ -2563,15 +2563,15 @@ msgstr ""
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1064
+#: includes/fields-functions.php:1066
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1065
+#: includes/fields-functions.php:1067
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1066
+#: includes/fields-functions.php:1068
 msgid "Select Some Options"
 msgstr ""
 
@@ -3151,7 +3151,7 @@ msgstr ""
 msgid "Update listing"
 msgstr ""
 
-#: includes/post-types.php:50 includes/post-types.php:364
+#: includes/post-types.php:50 includes/post-types.php:365
 msgid "View listing"
 msgstr ""
 
@@ -3167,28 +3167,28 @@ msgstr ""
 msgid "No listings found."
 msgstr ""
 
-#: includes/post-types.php:54 includes/post-types.php:138
-#: includes/post-types.php:199 includes/post-types.php:625
+#: includes/post-types.php:54 includes/post-types.php:139
+#: includes/post-types.php:200 includes/post-types.php:626
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/post-types.php:55 includes/post-types.php:139
-#: includes/post-types.php:200
+#: includes/post-types.php:55 includes/post-types.php:140
+#: includes/post-types.php:201
 msgid "Featured Image"
 msgstr ""
 
-#: includes/post-types.php:56 includes/post-types.php:140
-#: includes/post-types.php:201
+#: includes/post-types.php:56 includes/post-types.php:141
+#: includes/post-types.php:202
 msgid "Set featured image"
 msgstr ""
 
-#: includes/post-types.php:57 includes/post-types.php:141
-#: includes/post-types.php:202
+#: includes/post-types.php:57 includes/post-types.php:142
+#: includes/post-types.php:203
 msgid "Remove featured image"
 msgstr ""
 
-#: includes/post-types.php:58 includes/post-types.php:142
-#: includes/post-types.php:203
+#: includes/post-types.php:58 includes/post-types.php:143
+#: includes/post-types.php:204
 msgid "Use as featured image"
 msgstr ""
 
@@ -3212,528 +3212,528 @@ msgstr ""
 msgid "Filter listings list"
 msgstr ""
 
-#: includes/post-types.php:106
+#: includes/post-types.php:107
 #. translators: Placeholder %s is the number of expired posts of this type.
 msgid "Expired <span class=\"count\">(%s)</span>"
 msgid_plural "Expired <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/post-types.php:121 includes/post-types.php:123
-#: includes/post-types.php:124 includes/post-types.php:125
+#: includes/post-types.php:122 includes/post-types.php:124
+#: includes/post-types.php:125 includes/post-types.php:126
 msgid "Listings custom fields"
 msgstr ""
 
-#: includes/post-types.php:122 includes/post-types.php:150
+#: includes/post-types.php:123 includes/post-types.php:151
 msgid "Listings custom field"
-msgstr ""
-
-#: includes/post-types.php:126 includes/post-types.php:187
-#: includes/post-types.php:248
-msgid "Item Attributes"
 msgstr ""
 
 #: includes/post-types.php:127 includes/post-types.php:188
 #: includes/post-types.php:249
+msgid "Item Attributes"
+msgstr ""
+
+#: includes/post-types.php:128 includes/post-types.php:189
+#: includes/post-types.php:250
 msgid "Parent Item:"
 msgstr ""
 
-#: includes/post-types.php:128
+#: includes/post-types.php:129
 msgid "All listings custom fields"
 msgstr ""
 
-#: includes/post-types.php:129 includes/post-types.php:130
+#: includes/post-types.php:130 includes/post-types.php:131
 msgid "Add new custom field"
-msgstr ""
-
-#: includes/post-types.php:131 includes/post-types.php:192
-#: includes/post-types.php:253
-msgid "New custom field"
 msgstr ""
 
 #: includes/post-types.php:132 includes/post-types.php:193
 #: includes/post-types.php:254
-msgid "Edit custom field"
+msgid "New custom field"
 msgstr ""
 
 #: includes/post-types.php:133 includes/post-types.php:194
 #: includes/post-types.php:255
-msgid "Update custom field"
+msgid "Edit custom field"
 msgstr ""
 
 #: includes/post-types.php:134 includes/post-types.php:195
 #: includes/post-types.php:256
-msgid "View custom field"
+msgid "Update custom field"
 msgstr ""
 
 #: includes/post-types.php:135 includes/post-types.php:196
 #: includes/post-types.php:257
-msgid "View custom fields"
+msgid "View custom field"
 msgstr ""
 
 #: includes/post-types.php:136 includes/post-types.php:197
 #: includes/post-types.php:258
-msgid "Search custom fields"
+msgid "View custom fields"
 msgstr ""
 
 #: includes/post-types.php:137 includes/post-types.php:198
-#: includes/post-types.php:624
+#: includes/post-types.php:259
+msgid "Search custom fields"
+msgstr ""
+
+#: includes/post-types.php:138 includes/post-types.php:199
+#: includes/post-types.php:625
 msgid "Not found"
 msgstr ""
 
-#: includes/post-types.php:143 includes/post-types.php:204
+#: includes/post-types.php:144 includes/post-types.php:205
 msgid "Insert into item"
 msgstr ""
 
-#: includes/post-types.php:144 includes/post-types.php:205
+#: includes/post-types.php:145 includes/post-types.php:206
 msgid "Uploaded to this item"
 msgstr ""
 
-#: includes/post-types.php:145 includes/post-types.php:206
+#: includes/post-types.php:146 includes/post-types.php:207
 msgid "Items list"
 msgstr ""
 
-#: includes/post-types.php:146 includes/post-types.php:207
+#: includes/post-types.php:147 includes/post-types.php:208
 msgid "Items list navigation"
 msgstr ""
 
-#: includes/post-types.php:147 includes/post-types.php:208
+#: includes/post-types.php:148 includes/post-types.php:209
 msgid "Filter items list"
 msgstr ""
 
-#: includes/post-types.php:182 includes/post-types.php:184
-#: includes/post-types.php:185 includes/post-types.php:186
+#: includes/post-types.php:183 includes/post-types.php:185
+#: includes/post-types.php:186 includes/post-types.php:187
 msgid "Profile custom fields"
 msgstr ""
 
-#: includes/post-types.php:183
+#: includes/post-types.php:184
 msgid "Profile custom field"
 msgstr ""
 
-#: includes/post-types.php:189
+#: includes/post-types.php:190
 msgid "All users custom fields"
 msgstr ""
 
-#: includes/post-types.php:190 includes/post-types.php:191
+#: includes/post-types.php:191 includes/post-types.php:192
 msgid "Add new profile field"
 msgstr ""
 
-#: includes/post-types.php:211
+#: includes/post-types.php:212
 msgid "Users custom field"
 msgstr ""
 
-#: includes/post-types.php:243 includes/post-types.php:245
-#: includes/post-types.php:246 includes/post-types.php:247
+#: includes/post-types.php:244 includes/post-types.php:246
+#: includes/post-types.php:247 includes/post-types.php:248
 msgid "Registration fields"
 msgstr ""
 
-#: includes/post-types.php:244
+#: includes/post-types.php:245
 msgid "Registration field"
 msgstr ""
 
-#: includes/post-types.php:250
+#: includes/post-types.php:251
 msgid "All registration fields"
 msgstr ""
 
-#: includes/post-types.php:251 includes/post-types.php:252
+#: includes/post-types.php:252 includes/post-types.php:253
 msgid "Add new registration field"
 msgstr ""
 
-#: includes/post-types.php:261
+#: includes/post-types.php:262
 msgid "Registration custom field"
 msgstr ""
 
-#: includes/post-types.php:296
+#: includes/post-types.php:297
 msgid "Enter profile field title here"
 msgstr ""
 
-#: includes/post-types.php:298
+#: includes/post-types.php:299
 msgid "Enter registration field title here"
 msgstr ""
 
-#: includes/post-types.php:300
+#: includes/post-types.php:301
 msgid "Enter email subject"
 msgstr ""
 
-#: includes/post-types.php:321 includes/post-types.php:322
+#: includes/post-types.php:322 includes/post-types.php:323
 msgid "Profile field updated."
 msgstr ""
 
-#: includes/post-types.php:323
+#: includes/post-types.php:324
 msgid "Profile field published."
 msgstr ""
 
-#: includes/post-types.php:324
+#: includes/post-types.php:325
 msgid "Profile field saved."
 msgstr ""
 
-#: includes/post-types.php:325
+#: includes/post-types.php:326
 msgid "Profile field submitted."
 msgstr ""
 
-#: includes/post-types.php:329 includes/post-types.php:330
+#: includes/post-types.php:330 includes/post-types.php:331
 msgid "Registration field updated."
 msgstr ""
 
-#: includes/post-types.php:331
+#: includes/post-types.php:332
 msgid "Registration field published."
 msgstr ""
 
-#: includes/post-types.php:332
+#: includes/post-types.php:333
 msgid "Registration field saved."
 msgstr ""
 
-#: includes/post-types.php:333
+#: includes/post-types.php:334
 msgid "Registration field submitted."
 msgstr ""
 
-#: includes/post-types.php:337 includes/post-types.php:338
+#: includes/post-types.php:338 includes/post-types.php:339
 msgid "Listing field updated."
 msgstr ""
 
-#: includes/post-types.php:339
+#: includes/post-types.php:340
 msgid "Listing field published."
 msgstr ""
 
-#: includes/post-types.php:340
+#: includes/post-types.php:341
 msgid "Listing field saved."
 msgstr ""
 
-#: includes/post-types.php:341
+#: includes/post-types.php:342
 msgid "Listing field submitted."
 msgstr ""
 
-#: includes/post-types.php:345 includes/post-types.php:346
+#: includes/post-types.php:346 includes/post-types.php:347
 msgid "Email updated."
 msgstr ""
 
-#: includes/post-types.php:347
+#: includes/post-types.php:348
 msgid "Email published."
 msgstr ""
 
-#: includes/post-types.php:348
+#: includes/post-types.php:349
 msgid "Email saved."
 msgstr ""
 
-#: includes/post-types.php:349
+#: includes/post-types.php:350
 msgid "Email submitted."
 msgstr ""
 
-#: includes/post-types.php:358
+#: includes/post-types.php:359
 msgid "Preview listing"
 msgstr ""
 
-#: includes/post-types.php:368 includes/post-types.php:369
+#: includes/post-types.php:369 includes/post-types.php:370
 msgid "Listing updated."
 msgstr ""
 
-#: includes/post-types.php:370
+#: includes/post-types.php:371
 msgid "Listing published."
 msgstr ""
 
-#: includes/post-types.php:371
+#: includes/post-types.php:372
 msgid "Listing saved."
 msgstr ""
 
-#: includes/post-types.php:372
+#: includes/post-types.php:373
 msgid "Listing submitted."
 msgstr ""
 
-#: includes/post-types.php:388
+#: includes/post-types.php:389
 msgid "Listing types"
 msgstr ""
 
-#: includes/post-types.php:389
+#: includes/post-types.php:390
 msgid "Listings type"
 msgstr ""
 
-#: includes/post-types.php:390
+#: includes/post-types.php:391
 msgid "Types"
 msgstr ""
 
-#: includes/post-types.php:391
+#: includes/post-types.php:392
 msgid "All listings types"
 msgstr ""
 
-#: includes/post-types.php:392
+#: includes/post-types.php:393
 msgid "New listings type"
 msgstr ""
 
-#: includes/post-types.php:393
+#: includes/post-types.php:394
 msgid "Add new listings type"
 msgstr ""
 
-#: includes/post-types.php:394
+#: includes/post-types.php:395
 msgid "Edit listings type"
 msgstr ""
 
-#: includes/post-types.php:395
+#: includes/post-types.php:396
 msgid "Update listings type"
 msgstr ""
 
-#: includes/post-types.php:396
+#: includes/post-types.php:397
 msgid "View listings type"
 msgstr ""
 
-#: includes/post-types.php:397
+#: includes/post-types.php:398
 msgid "Separate listings type with commas"
 msgstr ""
 
-#: includes/post-types.php:398
+#: includes/post-types.php:399
 msgid "Add or remove listings type"
 msgstr ""
 
-#: includes/post-types.php:399 includes/post-types.php:450
-#: includes/post-types.php:498 includes/post-types.php:546
+#: includes/post-types.php:400 includes/post-types.php:451
+#: includes/post-types.php:499 includes/post-types.php:547
 msgid "Choose from the most used"
 msgstr ""
 
-#: includes/post-types.php:400
+#: includes/post-types.php:401
 msgid "Popular listings types"
 msgstr ""
 
-#: includes/post-types.php:401
+#: includes/post-types.php:402
 msgid "Search listings types"
 msgstr ""
 
-#: includes/post-types.php:402 includes/post-types.php:453
-#: includes/post-types.php:501 includes/post-types.php:549
+#: includes/post-types.php:403 includes/post-types.php:454
+#: includes/post-types.php:502 includes/post-types.php:550
 msgid "Not Found"
 msgstr ""
 
-#: includes/post-types.php:403
+#: includes/post-types.php:404
 msgid "No listings types"
 msgstr ""
 
-#: includes/post-types.php:404
+#: includes/post-types.php:405
 msgid "Listings types list"
 msgstr ""
 
-#: includes/post-types.php:405
+#: includes/post-types.php:406
 msgid "Listings type list navigation"
 msgstr ""
 
-#: includes/post-types.php:439
+#: includes/post-types.php:440
 msgid "Listing categories"
 msgstr ""
 
-#: includes/post-types.php:440
+#: includes/post-types.php:441
 msgid "Listings category"
 msgstr ""
 
-#: includes/post-types.php:441
+#: includes/post-types.php:442
 msgid "Categories"
 msgstr ""
 
-#: includes/post-types.php:442
+#: includes/post-types.php:443
 msgid "All listings categories"
 msgstr ""
 
-#: includes/post-types.php:443
+#: includes/post-types.php:444
 msgid "New listings category"
 msgstr ""
 
-#: includes/post-types.php:444
+#: includes/post-types.php:445
 msgid "Add new listings category"
 msgstr ""
 
-#: includes/post-types.php:445
+#: includes/post-types.php:446
 msgid "Edit listings category"
 msgstr ""
 
-#: includes/post-types.php:446
+#: includes/post-types.php:447
 msgid "Update listings category"
 msgstr ""
 
-#: includes/post-types.php:447
+#: includes/post-types.php:448
 msgid "View listings category"
 msgstr ""
 
-#: includes/post-types.php:448
+#: includes/post-types.php:449
 msgid "Separate listings category with commas"
 msgstr ""
 
-#: includes/post-types.php:449
+#: includes/post-types.php:450
 msgid "Add or remove listings category"
 msgstr ""
 
-#: includes/post-types.php:451
+#: includes/post-types.php:452
 msgid "Popular listings categories"
 msgstr ""
 
-#: includes/post-types.php:452
+#: includes/post-types.php:453
 msgid "Search listings categories"
 msgstr ""
 
-#: includes/post-types.php:454
+#: includes/post-types.php:455
 msgid "No listings categories"
 msgstr ""
 
-#: includes/post-types.php:455
+#: includes/post-types.php:456
 msgid "Listings categories list"
 msgstr ""
 
-#: includes/post-types.php:456
+#: includes/post-types.php:457
 msgid "Listings category list navigation"
 msgstr ""
 
-#: includes/post-types.php:487
+#: includes/post-types.php:488
 msgid "Listing locations"
 msgstr ""
 
-#: includes/post-types.php:488
+#: includes/post-types.php:489
 msgid "Listings location"
 msgstr ""
 
-#: includes/post-types.php:489
+#: includes/post-types.php:490
 msgid "Locations"
 msgstr ""
 
-#: includes/post-types.php:490
+#: includes/post-types.php:491
 msgid "All listings locations"
 msgstr ""
 
-#: includes/post-types.php:491
+#: includes/post-types.php:492
 msgid "New listings location"
 msgstr ""
 
-#: includes/post-types.php:492
+#: includes/post-types.php:493
 msgid "Add new listings location"
 msgstr ""
 
-#: includes/post-types.php:493
+#: includes/post-types.php:494
 msgid "Edit listings location"
 msgstr ""
 
-#: includes/post-types.php:494
+#: includes/post-types.php:495
 msgid "Update listings location"
 msgstr ""
 
-#: includes/post-types.php:495
+#: includes/post-types.php:496
 msgid "View listings location"
 msgstr ""
 
-#: includes/post-types.php:496
+#: includes/post-types.php:497
 msgid "Separate listings location with commas"
 msgstr ""
 
-#: includes/post-types.php:497
+#: includes/post-types.php:498
 msgid "Add or remove listings location"
 msgstr ""
 
-#: includes/post-types.php:499
+#: includes/post-types.php:500
 msgid "Popular listings locations"
 msgstr ""
 
-#: includes/post-types.php:500
+#: includes/post-types.php:501
 msgid "Search listings locations"
 msgstr ""
 
-#: includes/post-types.php:502
+#: includes/post-types.php:503
 msgid "No listings locations"
 msgstr ""
 
-#: includes/post-types.php:503
+#: includes/post-types.php:504
 msgid "Listings locations list"
 msgstr ""
 
-#: includes/post-types.php:504
+#: includes/post-types.php:505
 msgid "Listings location list navigation"
 msgstr ""
 
-#: includes/post-types.php:536
+#: includes/post-types.php:537
 msgid "Listings tag"
 msgstr ""
 
-#: includes/post-types.php:537
+#: includes/post-types.php:538
 msgid "Tags"
 msgstr ""
 
-#: includes/post-types.php:538
+#: includes/post-types.php:539
 msgid "All listings tags"
 msgstr ""
 
-#: includes/post-types.php:539
+#: includes/post-types.php:540
 msgid "New listings tag"
 msgstr ""
 
-#: includes/post-types.php:540
+#: includes/post-types.php:541
 msgid "Add new listings tag"
 msgstr ""
 
-#: includes/post-types.php:541
+#: includes/post-types.php:542
 msgid "Edit listings tag"
 msgstr ""
 
-#: includes/post-types.php:542
+#: includes/post-types.php:543
 msgid "Update listings tag"
 msgstr ""
 
-#: includes/post-types.php:543
+#: includes/post-types.php:544
 msgid "View listings tag"
 msgstr ""
 
-#: includes/post-types.php:544
+#: includes/post-types.php:545
 msgid "Separate listings tag with commas"
 msgstr ""
 
-#: includes/post-types.php:545
+#: includes/post-types.php:546
 msgid "Add or remove listings tag"
 msgstr ""
 
-#: includes/post-types.php:547
+#: includes/post-types.php:548
 msgid "Popular listings tags"
 msgstr ""
 
-#: includes/post-types.php:548
+#: includes/post-types.php:549
 msgid "Search listings tags"
 msgstr ""
 
-#: includes/post-types.php:550
+#: includes/post-types.php:551
 msgid "No listings tags"
 msgstr ""
 
-#: includes/post-types.php:551
+#: includes/post-types.php:552
 msgid "Listings tags list"
 msgstr ""
 
-#: includes/post-types.php:552
+#: includes/post-types.php:553
 msgid "Listings tag list navigation"
 msgstr ""
 
-#: includes/post-types.php:615
+#: includes/post-types.php:616
 msgid "All emails"
 msgstr ""
 
-#: includes/post-types.php:616
+#: includes/post-types.php:617
 msgid "Add new Posterno email"
 msgstr ""
 
-#: includes/post-types.php:617
+#: includes/post-types.php:618
 msgid "Add new email"
 msgstr ""
 
-#: includes/post-types.php:618
+#: includes/post-types.php:619
 msgid "New Posterno email"
 msgstr ""
 
-#: includes/post-types.php:619
+#: includes/post-types.php:620
 msgid "Edit Posterno email"
 msgstr ""
 
-#: includes/post-types.php:620
+#: includes/post-types.php:621
 msgid "Update Posterno email"
 msgstr ""
 
-#: includes/post-types.php:621
+#: includes/post-types.php:622
 msgid "View email"
 msgstr ""
 
-#: includes/post-types.php:622
+#: includes/post-types.php:623
 msgid "View emails"
 msgstr ""
 
-#: includes/post-types.php:623
+#: includes/post-types.php:624
 msgid "Search emails"
 msgstr ""
 
@@ -3749,15 +3749,15 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/scripts.php:174
+#: includes/scripts.php:171
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:175
+#: includes/scripts.php:172
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:176
+#: includes/scripts.php:173
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 
@@ -4204,7 +4204,7 @@ msgctxt "Post Type General Name"
 msgid "Listings"
 msgstr ""
 
-#: includes/post-types.php:611
+#: includes/post-types.php:612
 msgctxt "Post Type General Name"
 msgid "Posterno emails"
 msgstr ""
@@ -4214,102 +4214,102 @@ msgctxt "Post Type Singular Name"
 msgid "Listing"
 msgstr ""
 
-#: includes/post-types.php:612
+#: includes/post-types.php:613
 msgctxt "Post Type Singular Name"
 msgid "Email"
 msgstr ""
 
-#: includes/post-types.php:98 includes/post-types.php:594
+#: includes/post-types.php:99 includes/post-types.php:595
 msgctxt "post status"
 msgid "Expired"
 msgstr ""
 
-#: includes/post-types.php:593
+#: includes/post-types.php:594
 msgctxt "post status"
 msgid "Draft"
 msgstr ""
 
-#: includes/post-types.php:595
+#: includes/post-types.php:596
 msgctxt "post status"
 msgid "Pending approval"
 msgstr ""
 
-#: includes/post-types.php:596
+#: includes/post-types.php:597
 msgctxt "post status"
 msgid "Published"
 msgstr ""
 
-#: includes/post-types.php:662
+#: includes/post-types.php:663
 msgctxt "email type taxonomy label"
 msgid "New Email Situation"
 msgstr ""
 
-#: includes/post-types.php:663
+#: includes/post-types.php:664
 msgctxt "email type taxonomy label"
 msgid "All Email Situations"
 msgstr ""
 
-#: includes/post-types.php:664
+#: includes/post-types.php:665
 msgctxt "email type taxonomy label"
 msgid "Edit Email Situations"
 msgstr ""
 
-#: includes/post-types.php:665
+#: includes/post-types.php:666
 msgctxt "email type taxonomy label"
 msgid "Email list"
 msgstr ""
 
-#: includes/post-types.php:666
+#: includes/post-types.php:667
 msgctxt "email type taxonomy label"
 msgid "Email list navigation"
 msgstr ""
 
-#: includes/post-types.php:667
+#: includes/post-types.php:668
 msgctxt "email type taxonomy label"
 msgid "Situations"
 msgstr ""
 
-#: includes/post-types.php:669
+#: includes/post-types.php:670
 msgctxt "email type taxonomy label"
 msgid "New email situation name"
 msgstr ""
 
-#: includes/post-types.php:670
+#: includes/post-types.php:671
 msgctxt "email type taxonomy label"
 msgid "No email situations found."
 msgstr ""
 
-#: includes/post-types.php:671
+#: includes/post-types.php:672
 msgctxt "email type taxonomy label"
 msgid "No email situations"
 msgstr ""
 
-#: includes/post-types.php:672
+#: includes/post-types.php:673
 msgctxt "email type taxonomy label"
 msgid "Popular Email Situation"
 msgstr ""
 
-#: includes/post-types.php:673
+#: includes/post-types.php:674
 msgctxt "email type taxonomy label"
 msgid "Search Emails"
 msgstr ""
 
-#: includes/post-types.php:675
+#: includes/post-types.php:676
 msgctxt "email type taxonomy label"
 msgid "Update Email Situation"
 msgstr ""
 
-#: includes/post-types.php:676
+#: includes/post-types.php:677
 msgctxt "email type taxonomy label"
 msgid "View Email Situation"
 msgstr ""
 
-#: includes/post-types.php:668
+#: includes/post-types.php:669
 msgctxt "email type taxonomy name"
 msgid "Situation"
 msgstr ""
 
-#: includes/post-types.php:674
+#: includes/post-types.php:675
 msgctxt "email type taxonomy singular name"
 msgid "Email"
 msgstr ""

@@ -33,8 +33,8 @@ $pagination = paginate_links(
 		'end_size'     => 2,
 		'mid_size'     => 1,
 		'prev_next'    => true,
-		'prev_text'    => sprintf( '<i></i> %1$s', esc_html__( 'Newer Posts', 'wp-user-manager', 'posterno' ) ),
-		'next_text'    => sprintf( '%1$s <i></i>', esc_html__( 'Older Posts', 'wp-user-manager', 'posterno' ) ),
+		'prev_text'    => sprintf( '<i></i> %1$s', esc_html__( 'Newer Posts', 'posterno', 'posterno' ) ),
+		'next_text'    => sprintf( '%1$s <i></i>', esc_html__( 'Older Posts', 'posterno', 'posterno' ) ),
 		'add_args'     => false,
 		'add_fragment' => '',
 	)

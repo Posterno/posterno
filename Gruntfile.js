@@ -208,6 +208,7 @@ module.exports = function (grunt) {
 					'includes/**',
 					'languages/**',
 					'templates/**',
+					'vendor/**',
 					'*.php',
 					'*.txt'
 				],
@@ -255,4 +256,5 @@ module.exports = function (grunt) {
 
 	// Build task(s).
 	grunt.registerTask('build', ['cssmin', 'uglify', 'force:checktextdomain', 'makepot', 'clean', 'copy', 'compress']);
+
 };

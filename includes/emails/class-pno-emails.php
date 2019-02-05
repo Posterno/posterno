@@ -2,7 +2,7 @@
 /**
  * Handles all the email templates the PNO sends.
  *
- * @package     wp-user-manager
+ * @package     posterno
  * @copyright   Copyright (c) 2018, Alessandro Tesoro
  * @license     https://opensource.org/licenses/GPL-3.0 GNU Public License
  */
