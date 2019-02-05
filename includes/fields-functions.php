@@ -888,8 +888,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 			}
 
-			var_dump( $field->get_allowed_mime_types() );
-
 		}
 	}
 
