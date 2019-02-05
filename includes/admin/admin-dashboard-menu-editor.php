@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  * @return void
  */
 function pno_dashboard_menu_metabox() {
-	add_meta_box( 'add-wpum-nav-menu', esc_html__( 'Posterno', 'posterno' ), 'pno_dashboard_do_wp_nav_menu_metabox', 'nav-menus', 'side', 'default' );
+	add_meta_box( 'add-pno-nav-menu', esc_html__( 'Posterno', 'posterno' ), 'pno_dashboard_do_wp_nav_menu_metabox', 'nav-menus', 'side', 'default' );
 	add_action( 'admin_print_footer_scripts', 'pno_menu_metabox_editor_scripts' );
 }
 add_action( 'load-nav-menus.php', 'pno_dashboard_menu_metabox' );

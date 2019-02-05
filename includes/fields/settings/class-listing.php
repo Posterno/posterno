@@ -199,7 +199,8 @@ class Listing {
 			)
 			->set_help_text( esc_html__( 'Enter the maximum file size (in bytes) allowed for uploads through this field. Leave blank to use server settings.', 'posterno' ) );
 
-		$settings[] = Field::make( 'text', 'listing_field_file_extensions', esc_html__( 'Allowed file types:', 'posterno' ) )
+		$settings[] = Field::make( 'multiselect', 'listing_field_file_extensions', esc_html__( 'Allowed file types:', 'posterno' ) )
+			->add_options( 'pno_get_human_readable_mime_types' )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
