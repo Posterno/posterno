@@ -1,5 +1,5 @@
 #pno-getting-started .pno-badge {
-  background: #fff;
+  background: url("../../imgs/logo.svg") center 24px/85px 85px no-repeat #fff;
   -webkit-background-size: 85px 85px;
   font-size: 14px;
   text-align: center;
