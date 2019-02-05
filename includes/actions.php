@@ -19,6 +19,8 @@ defined( 'ABSPATH' ) || exit;
 function pno_after_theme_setup_load() {
 
 	\Carbon_Fields\Carbon_Fields::boot();
+	$sidebar_manager = \Carbon_Fields\Carbon_Fields::resolve( 'sidebar_manager' );
+	remove_action( 'admin_enqueue_scripts', array( $sidebar_manager, 'enqueue_scripts' ) );
 
 	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu' ) );
 	register_nav_menu( 'pno-profile-menu', esc_html__( 'Posterno Profile Menu' ) );
