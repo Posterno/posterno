@@ -60,7 +60,7 @@ function pno_run_install() {
 
 	// Install default fields.
 	pno_install_listings_fields();
-	pno_install_profile_fields();
+	pno_install_profile_fields( true );
 	pno_install_registration_fields();
 
 	// Load default options.

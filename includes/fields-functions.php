@@ -322,7 +322,7 @@ function pno_get_registration_fields() {
  * @param string $user_id user id.
  * @return array
  */
-function pno_get_account_fields( $user_id = false ) {
+function pno_get_account_fields( $user_id = false, $bypass = false ) {
 
 	$fields = [
 		'avatar'      => [
@@ -484,7 +484,7 @@ function pno_get_account_fields( $user_id = false ) {
 	}
 
 	// Remove the avatar field when option disabled.
-	if ( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) ) {
+	if ( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) && ! $bypass ) {
 		unset( $fields['avatar'] );
 	}
 

@@ -117,14 +117,14 @@ function pno_get_roles( $force = false, $admin = false ) {
  *
  * @return void
  */
-function pno_install_profile_fields() {
+function pno_install_profile_fields( $bypass = false ) {
 
 	// Bail if this was already done.
 	if ( get_option( 'pno_profile_fields_installed' ) ) {
 		return;
 	}
 
-	$registered_fields = wp_list_filter( pno_get_account_fields(), [ 'default_field' => true ] );
+	$registered_fields = wp_list_filter( pno_get_account_fields( false, $bypass ), [ 'default_field' => true ] );
 
 	if ( ! is_array( $registered_fields ) ) {
 		return;
