@@ -87,7 +87,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'editable'  => esc_html__( 'Editable' ),
 				'actions'   => esc_html__( 'Actions' ),
 				'not_found' => esc_html__( 'No fields yet, click the button above to add fields.' ),
-				'edit'      => esc_html__( 'Edit field' ),
+				'edit'      => esc_html__( 'Edit' ),
 				'role'      => esc_html__( 'User role' ),
 				'delete'    => esc_html__( 'Delete' ),
 				'roles'     => [

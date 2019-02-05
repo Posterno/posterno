@@ -80,8 +80,6 @@ body.users_page_posterno-custom-registration-form #wpcontent {
 
 			a.button {
 				margin-right: 5px;
-				width: 2em;
-				padding: 0;
 
 				span {
 					margin-top: 4px;
@@ -90,9 +88,7 @@ body.users_page_posterno-custom-registration-form #wpcontent {
 				}
 
 				&.error:hover {
-					span {
-						color: #dc3232;
-					}
+					border-color: #dc3232;
 				}
 			}
 
