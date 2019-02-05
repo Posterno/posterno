@@ -142,7 +142,21 @@ function pno_permalink_controller_notice() {
 
 	global $wp_rewrite;
 
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'posterno-options' || isset( $_GET['page'] ) && $_GET['page'] === 'pno-getting-started' ) {
+	$screen = get_current_screen();
+
+	$excluded = [
+		'users_page_posterno-custom-profile-fields',
+		'users_page_posterno-custom-registration-form',
+		'listings_page_posterno-custom-listings-fields',
+		'settings_page_posterno-options',
+		'admin_page_posterno-options[accounts]',
+		'admin_page_posterno-options[profiles]',
+		'admin_page_posterno-options[emails]',
+		'admin_page_posterno-options[listings]',
+		'dashboard_page_pno-getting-started',
+	];
+
+	if ( in_array( $screen->id, $excluded ) ) {
 		return;
 	}
 
