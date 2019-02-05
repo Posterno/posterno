@@ -24,11 +24,11 @@ class ListingTaxonomies extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_taxonomies_widget',
-			esc_html__( '[Posterno] Listing taxonomy terms' ),
-			esc_html__( 'Displays the current listing\'s attached taxonomies terms.' ),
+			esc_html__( '[Posterno] Listing taxonomy terms', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s attached taxonomies terms.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'select', 'taxonomy', esc_html__( 'Taxonomy to display' ) )->set_options( 'pno_get_registered_listings_taxonomies' ),
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
+				Field::make( 'select', 'taxonomy', esc_html__( 'Taxonomy to display', 'posterno' ) )->set_options( 'pno_get_registered_listings_taxonomies' ),
 			),
 			'pno-widget-listing-taxonomies'
 		);

@@ -69,7 +69,7 @@ $active_day       = key( $days_of_the_week );
 								<div class="col-sm-5">
 									<div class="form-group">
 										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].opening" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
-											<input type="text" class="form-control" name="pno_opening_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Opening time' ); ?>" @input="onInput" >
+											<input type="text" class="form-control" name="pno_opening_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Opening time', 'posterno' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
 								</div>
@@ -77,7 +77,7 @@ $active_day       = key( $days_of_the_week );
 								<div class="col-sm-5">
 									<div class="form-group">
 										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].closing" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
-											<input type="text" class="form-control" name="pno_closing_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Closing time' ); ?>" @input="onInput" >
+											<input type="text" class="form-control" name="pno_closing_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Closing time', 'posterno' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
 								</div>
@@ -89,7 +89,7 @@ $active_day       = key( $days_of_the_week );
 								</div>
 							</div>
 
-							<button type="button" v-if="canEnterHours( '<?php echo esc_attr( $day ); ?>' )" class="btn btn-secondary btn-sm" @click="addHours( '<?php echo esc_attr( $day ); ?>' )"><?php esc_html_e( 'Add hours' ); ?></button>
+							<button type="button" v-if="canEnterHours( '<?php echo esc_attr( $day ); ?>' )" class="btn btn-secondary btn-sm" @click="addHours( '<?php echo esc_attr( $day ); ?>' )"><?php esc_html_e( 'Add hours', 'posterno' ); ?></button>
 
 						</div>
 

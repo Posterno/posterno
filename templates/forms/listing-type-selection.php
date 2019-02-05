@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
 						<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
 					<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
 						<button type="submit" class="btn btn-primary mb-3">
-						<?php echo esc_html__( 'Select &rarr;' ); ?>
+						<?php echo esc_html__( 'Select &rarr;', 'posterno' ); ?>
 						</button>
 					</form>
 				</div>

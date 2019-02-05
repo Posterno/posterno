@@ -35,8 +35,8 @@ $listings_categories_associated = pno_get_listings_categories_for_submission_sel
 			<?php if ( pno_get_option( 'submission_categories_multiple' ) ) : ?>:multiple="true"<?php endif; ?>
 			:options="options"
 			value-consists-of="ALL"
-			no-results-text="<?php esc_html_e( 'No results found' ); ?>"
-			no-options-text="<?php esc_html_e( 'No options available.' ); ?>"
+			no-results-text="<?php esc_html_e( 'No results found', 'posterno' ); ?>"
+			no-options-text="<?php esc_html_e( 'No options available.', 'posterno' ); ?>"
 			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
 		/>
 	</div>

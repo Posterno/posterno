@@ -181,22 +181,22 @@ function pno_get_dashboard_navigation_items() {
 
 	$items = [
 		'dashboard'    => [
-			'name' => esc_html__( 'Dashboard' ),
+			'name' => esc_html__( 'Dashboard', 'posterno' ),
 		],
 		'listings'     => [
-			'name' => esc_html__( 'Manage listings' ),
+			'name' => esc_html__( 'Manage listings', 'posterno' ),
 		],
 		'edit-account' => [
-			'name' => esc_html__( 'Account details' ),
+			'name' => esc_html__( 'Account details', 'posterno' ),
 		],
 		'password'     => [
-			'name' => esc_html__( 'Change password' ),
+			'name' => esc_html__( 'Change password', 'posterno' ),
 		],
 		'privacy'      => [
-			'name' => esc_html__( 'Privacy settings' ),
+			'name' => esc_html__( 'Privacy settings', 'posterno' ),
 		],
 		'logout'       => [
-			'name' => esc_html__( 'Logout' ),
+			'name' => esc_html__( 'Logout', 'posterno' ),
 		],
 	];
 
@@ -223,24 +223,24 @@ function pno_get_dashboard_navigation_items() {
 function pno_get_registered_social_media() {
 
 	$socials = [
-		'facebook'       => esc_html__( 'Facebook' ),
-		'twitter'        => esc_html__( 'Twitter' ),
-		'google-plus'    => esc_html__( 'Google+' ),
-		'linkedin'       => esc_html__( 'LinkedIn' ),
-		'pinterest'      => esc_html__( 'Pinterest' ),
-		'instagram'      => esc_html__( 'Instagram' ),
-		'tumblr'         => esc_html__( 'Tumblr' ),
-		'flickr'         => esc_html__( 'Flickr' ),
-		'snapchat'       => esc_html__( 'Snapchat' ),
-		'reddit'         => esc_html__( 'Reddit' ),
-		'youtube'        => esc_html__( 'Youtube' ),
-		'vimeo'          => esc_html__( 'Vimeo' ),
-		'github'         => esc_html__( 'Github' ),
-		'dribbble'       => esc_html__( 'Dribbble' ),
-		'behance'        => esc_html__( 'Behance' ),
-		'soundcloud'     => esc_html__( 'SoundCloud' ),
-		'stack-overflow' => esc_html__( 'Stack Overflow' ),
-		'whatsapp'       => esc_html__( 'Whatsapp' ),
+		'facebook'       => esc_html__( 'Facebook', 'posterno' ),
+		'twitter'        => esc_html__( 'Twitter', 'posterno' ),
+		'google-plus'    => esc_html__( 'Google+', 'posterno' ),
+		'linkedin'       => esc_html__( 'LinkedIn', 'posterno' ),
+		'pinterest'      => esc_html__( 'Pinterest', 'posterno' ),
+		'instagram'      => esc_html__( 'Instagram', 'posterno' ),
+		'tumblr'         => esc_html__( 'Tumblr', 'posterno' ),
+		'flickr'         => esc_html__( 'Flickr', 'posterno' ),
+		'snapchat'       => esc_html__( 'Snapchat', 'posterno' ),
+		'reddit'         => esc_html__( 'Reddit', 'posterno' ),
+		'youtube'        => esc_html__( 'Youtube', 'posterno' ),
+		'vimeo'          => esc_html__( 'Vimeo', 'posterno' ),
+		'github'         => esc_html__( 'Github', 'posterno' ),
+		'dribbble'       => esc_html__( 'Dribbble', 'posterno' ),
+		'behance'        => esc_html__( 'Behance', 'posterno' ),
+		'soundcloud'     => esc_html__( 'SoundCloud', 'posterno' ),
+		'stack-overflow' => esc_html__( 'Stack Overflow', 'posterno' ),
+		'whatsapp'       => esc_html__( 'Whatsapp', 'posterno' ),
 	];
 
 	/**
@@ -265,8 +265,8 @@ function pno_get_registered_social_media() {
 function pno_get_am_pm_declaration() {
 
 	$timings = [
-		'am' => esc_html__( 'AM' ),
-		'pm' => esc_html__( 'PM' ),
+		'am' => esc_html__( 'AM', 'posterno' ),
+		'pm' => esc_html__( 'PM', 'posterno' ),
 	];
 
 	return $timings;
@@ -280,13 +280,13 @@ function pno_get_am_pm_declaration() {
 function pno_get_days_of_the_week() {
 
 	$days = [
-		'monday'    => esc_html__( 'Monday' ),
-		'tuesday'   => esc_html__( 'Tuesday' ),
-		'wednesday' => esc_html__( 'Wednesday' ),
-		'thursday'  => esc_html__( 'Thursday' ),
-		'friday'    => esc_html__( 'Friday' ),
-		'saturday'  => esc_html__( 'Saturday' ),
-		'sunday'    => esc_html__( 'Sunday' ),
+		'monday'    => esc_html__( 'Monday', 'posterno' ),
+		'tuesday'   => esc_html__( 'Tuesday', 'posterno' ),
+		'wednesday' => esc_html__( 'Wednesday', 'posterno' ),
+		'thursday'  => esc_html__( 'Thursday', 'posterno' ),
+		'friday'    => esc_html__( 'Friday', 'posterno' ),
+		'saturday'  => esc_html__( 'Saturday', 'posterno' ),
+		'sunday'    => esc_html__( 'Sunday', 'posterno' ),
 	];
 
 	return $days;
@@ -301,13 +301,13 @@ function pno_get_days_of_the_week() {
 function pno_get_days_of_the_week_short() {
 
 	$days = [
-		'monday'    => esc_html__( 'Mon' ),
-		'tuesday'   => esc_html__( 'Tue' ),
-		'wednesday' => esc_html__( 'Wed' ),
-		'thursday'  => esc_html__( 'Thu' ),
-		'friday'    => esc_html__( 'Fri' ),
-		'saturday'  => esc_html__( 'Sat' ),
-		'sunday'    => esc_html__( 'Sun' ),
+		'monday'    => esc_html__( 'Mon', 'posterno' ),
+		'tuesday'   => esc_html__( 'Tue', 'posterno' ),
+		'wednesday' => esc_html__( 'Wed', 'posterno' ),
+		'thursday'  => esc_html__( 'Thu', 'posterno' ),
+		'friday'    => esc_html__( 'Fri', 'posterno' ),
+		'saturday'  => esc_html__( 'Sat', 'posterno' ),
+		'sunday'    => esc_html__( 'Sun', 'posterno' ),
 	];
 
 	return $days;
@@ -463,7 +463,7 @@ function pno_get_term_top_most_parent( $term_id, $taxonomy ) {
 function pno_get_registered_maps_providers() {
 
 	$providers = [
-		'googlemaps' => esc_html__( 'Google maps' ),
+		'googlemaps' => esc_html__( 'Google maps', 'posterno' ),
 	];
 
 	/**
@@ -513,10 +513,10 @@ function pno_get_listing_updated_message() {
 
 	$status = pno_published_listings_can_be_edited();
 
-	$message = esc_html__( 'Listing successfully updated.' );
+	$message = esc_html__( 'Listing successfully updated.', 'posterno' );
 
 	if ( $status === 'yes_moderated' ) {
-		$message = esc_html__( 'Listing successfully updated. An administrator will review your submission and you\'ll receive an email notification once your listing is approved.' );
+		$message = esc_html__( 'Listing successfully updated. An administrator will review your submission and you\'ll receive an email notification once your listing is approved.', 'posterno' );
 	}
 
 	/**

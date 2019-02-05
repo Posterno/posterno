@@ -26,7 +26,7 @@ if ( ! $listing_media ) {
 		->set_template_data(
 			[
 				'type'    => 'info',
-				'message' => esc_html__( 'This listing does not have any video attached.' ),
+				'message' => esc_html__( 'This listing does not have any video attached.', 'posterno' ),
 			]
 		)
 		->get_template_part( 'message' );

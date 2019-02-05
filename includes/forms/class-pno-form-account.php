@@ -54,13 +54,13 @@ class PNO_Form_Account extends PNO_Form {
 
 		$steps = array(
 			'submit'  => array(
-				'name'     => __( 'Account settings' ),
+				'name'     => __( 'Account settings', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
 			'updated' => array(
-				'name'     => __( 'Account settings' ),
+				'name'     => __( 'Account settings', 'posterno' ),
 				'view'     => array( $this, 'updated' ),
 				'handler'  => false,
 				'priority' => 11,
@@ -121,7 +121,7 @@ class PNO_Form_Account extends PNO_Form {
 			'fields'       => $this->get_fields( 'account' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-			'submit_label' => esc_html__( 'Save changes' ),
+			'submit_label' => esc_html__( 'Save changes', 'posterno' ),
 		];
 
 		posterno()->templates
@@ -335,7 +335,7 @@ class PNO_Form_Account extends PNO_Form {
 			 *
 			 * @param string $message the message that appears after account update.
 			 */
-			$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.' ) );
+			$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.', 'posterno' ) );
 
 			$this->set_as_successful();
 			$this->set_success_message( $message );

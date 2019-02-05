@@ -49,8 +49,8 @@ function pno_admin_rate_us( $footer_text ) {
 	if ( in_array( $screen->id, $checks ) ) {
 		$rate_text = sprintf(
 			/* translators: %s: Link to 5 star rating */
-			__( 'If you like <strong>Posterno</strong> please rate us on %s. It takes a minute and helps a lot. Thanks in advance!' ),
-			'<a href="https://wordpress.org/support/view/plugin-reviews/posterno?filter=5#postform" target="_blank" class="posterno-rating-link" style="text-decoration:none;" data-rated="' . esc_attr__( 'Thanks :)' ) . '">WordPress.org &#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+			__( 'If you like <strong>Posterno</strong> please rate us on %s. It takes a minute and helps a lot. Thanks in advance!', 'posterno' ),
+			'<a href="https://wordpress.org/support/view/plugin-reviews/posterno?filter=5#postform" target="_blank" class="posterno-rating-link" style="text-decoration:none;" data-rated="' . esc_attr__( 'Thanks :)', 'posterno' ) . '">WordPress.org &#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 		);
 
 		return $rate_text;

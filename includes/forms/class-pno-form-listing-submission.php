@@ -66,19 +66,19 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 
 		$steps = array(
 			'listing-type'      => array(
-				'name'     => esc_html__( 'Select a listing type' ),
+				'name'     => esc_html__( 'Select a listing type', 'posterno' ),
 				'view'     => array( $this, 'type' ),
 				'handler'  => array( $this, 'type_handler' ),
 				'priority' => 10,
 			),
 			'listing-details'   => array(
-				'name'     => esc_html__( 'Listing details' ),
+				'name'     => esc_html__( 'Listing details', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 20,
 			),
 			'listing-submitted' => array(
-				'name'     => esc_html__( 'Listing successfully submitted.' ),
+				'name'     => esc_html__( 'Listing successfully submitted.', 'posterno' ),
 				'view'     => array( $this, 'success' ),
 				'handler'  => false,
 				'priority' => 30,
@@ -137,7 +137,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 					'fields'       => false,
 					'step'         => $this->get_step(),
 					'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-					'submit_label' => esc_html__( 'Continue' ),
+					'submit_label' => esc_html__( 'Continue', 'posterno' ),
 				]
 			)
 			->get_template_part( 'forms/listing-type-selection' );
@@ -171,7 +171,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 				$this->listing_type_id = $type_id;
 				$this->step ++;
 			} else {
-				throw new Exception( esc_html__( 'Something went wrong.' ) );
+				throw new Exception( esc_html__( 'Something went wrong.', 'posterno' ) );
 			}
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage() );
@@ -194,7 +194,7 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 			'fields'       => $this->get_fields( 'listing-details' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-			'submit_label' => esc_html__( 'Submit listing' ),
+			'submit_label' => esc_html__( 'Submit listing', 'posterno' ),
 			'form_type'    => 'listing',
 
 		];
@@ -499,10 +499,10 @@ class PNO_Form_Listing_Submission extends PNO_Form {
 	 */
 	public function success() {
 
-		$message = sprintf( __( 'Listing successfully submitted. <a href="%s">View your listing.</a>' ), get_permalink( $this->new_listing_id ) );
+		$message = sprintf( __( 'Listing successfully submitted. <a href="%s">View your listing.</a>', 'posterno' ), get_permalink( $this->new_listing_id ) );
 
 		if ( pno_listing_submission_is_moderated() ) {
-			$message = esc_html__( 'Listing successfully submitted. Your listing will be visible once approved.' );
+			$message = esc_html__( 'Listing successfully submitted. Your listing will be visible once approved.', 'posterno' );
 		}
 
 		/**

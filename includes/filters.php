@@ -26,7 +26,7 @@ function pno_authentication( $user, $username, $password ) {
 	if ( $authentication_method === 'username' ) {
 
 		if ( is_email( $username ) ) {
-			return new WP_Error( 'username_only', __( 'Invalid username or incorrect password.' ) );
+			return new WP_Error( 'username_only', __( 'Invalid username or incorrect password.', 'posterno' ) );
 		}
 		return wp_authenticate_username_password( null, $username, $password );
 
@@ -41,7 +41,7 @@ function pno_authentication( $user, $username, $password ) {
 				return wp_authenticate_username_password( null, $username, $password );
 			}
 		} else {
-			return new WP_Error( 'email_only', __( 'Invalid email address or incorrect password.' ) );
+			return new WP_Error( 'email_only', __( 'Invalid email address or incorrect password.', 'posterno' ) );
 		}
 	}
 
@@ -366,7 +366,7 @@ function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $f
 		$categories_amount  = count( $listing_categories );
 
 		if ( is_array( $listing_categories ) && $categories_amount > $max_selection ) {
-			return new WP_Error( 'max-categories-reached', sprintf( esc_html__( 'The maximum amount of categories you are allowed to select is %1$s, you have selected %2$s.' ), $max_selection, $categories_amount ) );
+			return new WP_Error( 'max-categories-reached', sprintf( esc_html__( 'The maximum amount of categories you are allowed to select is %1$s, you have selected %2$s.', 'posterno' ), $max_selection, $categories_amount ) );
 		}
 	}
 

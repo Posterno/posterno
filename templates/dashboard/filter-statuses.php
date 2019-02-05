@@ -18,14 +18,14 @@
 defined( 'ABSPATH' ) || exit;
 
 $statuses = pno_get_dashboard_listings_statuses();
-$statuses = [ 'all' => esc_html__( 'All listings' ) ] + $statuses;
+$statuses = [ 'all' => esc_html__( 'All listings', 'posterno' ) ] + $statuses;
 
 $active_status       = pno_get_dashboard_active_listings_status();
 $active_status_label = $statuses[ $active_status ];
 
 ?>
 <div class="dropdown pno-dashboard-status-filter">
-	<span><?php esc_html_e( 'Status:' ); ?></span>
+	<span><?php esc_html_e( 'Status:', 'posterno' ); ?></span>
 	<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		<?php echo esc_html( $active_status_label ); ?>
 	</button>

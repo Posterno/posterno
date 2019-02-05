@@ -70,7 +70,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 
 		$steps = array(
 			'listing-details' => array(
-				'name'     => esc_html__( 'Listing details' ),
+				'name'     => esc_html__( 'Listing details', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 20,
@@ -154,7 +154,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 			'fields'       => $this->get_fields( 'listing-details' ),
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
-			'submit_label' => esc_html__( 'Save changes' ),
+			'submit_label' => esc_html__( 'Save changes', 'posterno' ),
 			'form_type'    => 'listing',
 
 		];

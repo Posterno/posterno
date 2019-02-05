@@ -44,8 +44,8 @@ class GettingStarted {
 	public function admin_menus() {
 
 		add_dashboard_page(
-			__( 'Getting started with Posterno' ),
-			__( 'Getting started with Posterno' ),
+			__( 'Getting started with Posterno', 'posterno' ),
+			__( 'Getting started with Posterno', 'posterno' ),
 			$this->minimum_capability,
 			'pno-getting-started',
 			array( $this, 'getting_started_screen' )
@@ -74,7 +74,7 @@ class GettingStarted {
 		?>
 		<h2 class="nav-tab-wrapper">
 			<a class="nav-tab <?php echo $selected === 'pno-getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'pno-getting-started' ), 'index.php' ) ) ); ?>">
-				<?php esc_html_e( 'Getting Started' ); ?>
+				<?php esc_html_e( 'Getting Started', 'posterno' ); ?>
 			</a>
 		</h2>
 		<?php

@@ -24,7 +24,7 @@ function pno_login_link( $atts, $content = null ) {
 		shortcode_atts(
 			array(
 				'redirect' => '',
-				'label'    => esc_html__( 'Login' ),
+				'label'    => esc_html__( 'Login', 'posterno' ),
 			),
 			$atts
 		)
@@ -52,7 +52,7 @@ function pno_logout_link( $atts, $content = null ) {
 		shortcode_atts(
 			array(
 				'redirect' => '',
-				'label'    => esc_html__( 'Logout' ),
+				'label'    => esc_html__( 'Logout', 'posterno' ),
 			),
 			$atts
 		)
@@ -304,7 +304,7 @@ function pno_listing_submission_form() {
 		 * @param string $message the restriction message.
 		 * @param bool|string $restricted wether it's restricted or not and what type of restriction.
 		 */
-		$message = apply_filters( 'pno_submission_restriction_message', esc_html__( 'Access to this page is restricted.' ), $restricted );
+		$message = apply_filters( 'pno_submission_restriction_message', esc_html__( 'Access to this page is restricted.', 'posterno' ), $restricted );
 
 		posterno()->templates
 			->set_template_data(
@@ -350,7 +350,7 @@ function pno_listing_editing_form() {
 			->set_template_data(
 				[
 					'type'    => 'warning',
-					'message' => esc_html__( 'You are not authorized to access this page.' ),
+					'message' => esc_html__( 'You are not authorized to access this page.', 'posterno' ),
 				]
 			)
 			->get_template_part( 'message' );

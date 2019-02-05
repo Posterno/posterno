@@ -40,8 +40,8 @@ class Listing {
 	 */
 	public function __construct() {
 
-		$this->opening_at = esc_html__( 'Opening at:' );
-		$this->closing_at = esc_html__( 'Closing at:' );
+		$this->opening_at = esc_html__( 'Opening at:', 'posterno' );
+		$this->closing_at = esc_html__( 'Closing at:', 'posterno' );
 
 	}
 
@@ -65,11 +65,11 @@ class Listing {
 	public function register_listings_settings() {
 
 		$social_profiles_labels = array(
-			'plural_name'   => esc_html__( 'Profiles' ),
-			'singular_name' => esc_html__( 'Profile' ),
+			'plural_name'   => esc_html__( 'Profiles', 'posterno' ),
+			'singular_name' => esc_html__( 'Profile', 'posterno' ),
 		);
 
-		$container = Container::make( 'post_meta', esc_html__( 'Listing settings' ) )
+		$container = Container::make( 'post_meta', esc_html__( 'Listing settings', 'posterno' ) )
 			->where( 'post_type', '=', 'listings' );
 
 		foreach ( $this->get_listing_settings_tabs() as $key => $tab ) {
@@ -114,10 +114,10 @@ class Listing {
 	public function get_listing_settings_tabs() {
 
 		$tabs = [
-			'details'  => esc_html__( 'Details' ),
-			'location' => esc_html__( 'Location' ),
-			'media'    => esc_html__( 'Media' ),
-			'hours'    => esc_html__( 'Opening Hours' ),
+			'details'  => esc_html__( 'Details', 'posterno' ),
+			'location' => esc_html__( 'Location', 'posterno' ),
+			'media'    => esc_html__( 'Media', 'posterno' ),
+			'hours'    => esc_html__( 'Opening Hours', 'posterno' ),
 		];
 
 		/**
@@ -139,14 +139,14 @@ class Listing {
 	public function get_listing_details_settings() {
 
 		$social_profiles_labels = array(
-			'plural_name'   => esc_html__( 'Profiles' ),
-			'singular_name' => esc_html__( 'Profile' ),
+			'plural_name'   => esc_html__( 'Profiles', 'posterno' ),
+			'singular_name' => esc_html__( 'Profile', 'posterno' ),
 		);
 
 		$settings = [];
 
 		if ( function_exists( 'pno_get_listings_types_for_association' ) && ! empty( pno_get_listings_types_for_association() ) ) {
-			$settings[] = Field::make( 'radio', 'listing_type', esc_html__( 'Listing type' ) )
+			$settings[] = Field::make( 'radio', 'listing_type', esc_html__( 'Listing type', 'posterno' ) )
 				->set_datastore( new \PNO\Datastores\ListingType() )
 				->set_required( true )
 				->set_classes( 'inline-radio-selector' )
@@ -155,20 +155,20 @@ class Listing {
 				);
 		}
 
-		$settings[] = Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number' ) )->set_width( 33.33 );
-		$settings[] = Field::make( 'text', 'listing_email', esc_html__( 'Email address' ) )->set_width( 33.33 );
-		$settings[] = Field::make( 'text', 'listing_website', esc_html__( 'Website' ) )->set_width( 33.33 );
+		$settings[] = Field::make( 'text', 'listing_phone_number', esc_html__( 'Phone number', 'posterno' ) )->set_width( 33.33 );
+		$settings[] = Field::make( 'text', 'listing_email', esc_html__( 'Email address', 'posterno' ) )->set_width( 33.33 );
+		$settings[] = Field::make( 'text', 'listing_website', esc_html__( 'Website', 'posterno' ) )->set_width( 33.33 );
 
-		$settings[] = Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles' ) )
+		$settings[] = Field::make( 'complex', 'listing_social_profiles', esc_html__( 'Social profiles', 'posterno' ) )
 			->set_datastore( new \PNO\Datastores\SerializeComplexField() )
 			->setup_labels( $social_profiles_labels )
 			->set_collapsed( true )
 			->add_fields(
 				array(
-					Field::make( 'select', 'social_id', esc_html__( 'Network' ) )
+					Field::make( 'select', 'social_id', esc_html__( 'Network', 'posterno' ) )
 						->add_options( 'pno_get_registered_social_media' )
 						->set_width( 50 ),
-					Field::make( 'text', 'social_url', esc_html__( 'Profile url' ) )->set_width( 50 ),
+					Field::make( 'text', 'social_url', esc_html__( 'Profile url', 'posterno' ) )->set_width( 50 ),
 				)
 			);
 
@@ -193,11 +193,11 @@ class Listing {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'map', 'listing_location', esc_html__( 'Location' ) )
+		$settings[] = Field::make( 'map', 'listing_location', esc_html__( 'Location', 'posterno' ) )
 			->set_datastore( new \PNO\Datastores\ListingAddress() )
-			->set_help_text( esc_html__( 'Search an address or drag and drop the pin on the map to select location.' ) );
+			->set_help_text( esc_html__( 'Search an address or drag and drop the pin on the map to select location.', 'posterno' ) );
 
-		$settings[] = Field::make( 'text', 'listing_zipcode', esc_html__( 'Zipcode' ) );
+		$settings[] = Field::make( 'text', 'listing_zipcode', esc_html__( 'Zipcode', 'posterno' ) );
 
 		/**
 		 * Allow developers to customize the settings for the listings post type.
@@ -220,14 +220,14 @@ class Listing {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'media_gallery', 'listing_gallery_images', esc_html__( 'Images' ) )
+		$settings[] = Field::make( 'media_gallery', 'listing_gallery_images', esc_html__( 'Images', 'posterno' ) )
 			->set_datastore( new \PNO\Datastores\SerializeComplexField() )
 			->set_type( array( 'image' ) );
 
-		$settings[] = Field::make( 'oembed', 'listing_media_embed', esc_html__( 'Embed' ) )
+		$settings[] = Field::make( 'oembed', 'listing_media_embed', esc_html__( 'Embed', 'posterno' ) )
 			->set_help_text(
 				sprintf(
-					__( 'Embed videos, images, tweets, audio, and other content into the listing by simply providing the url of the source. <a href="%s" target="_blank">View list of supported embeds.</a>' ),
+					__( 'Embed videos, images, tweets, audio, and other content into the listing by simply providing the url of the source. <a href="%s" target="_blank">View list of supported embeds.</a>', 'posterno' ),
 					'https://codex.wordpress.org/Embeds'
 				)
 			);
@@ -301,7 +301,7 @@ class Listing {
 				->set_picker_options( $this->get_timepicker_config() )
 				->set_width( 50 );
 
-			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings' ) )
+			$fields[] = Field::make( 'complex', $day_string . '_additional_times', esc_html__( 'Additional timings', 'posterno' ) )
 				->set_conditional_logic(
 					array(
 						'relation' => 'AND',
@@ -429,7 +429,7 @@ class Listing {
 		);
 
 		if ( ! empty( $admin_fields ) ) {
-			Container::make( 'post_meta', esc_html__( 'Additional settings' ) )
+			Container::make( 'post_meta', esc_html__( 'Additional settings', 'posterno' ) )
 				->where( 'post_type', '=', 'listings' )
 				->add_fields( $admin_fields );
 		}

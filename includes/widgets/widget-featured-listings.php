@@ -24,15 +24,15 @@ class FeaturedListings extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_featured_listings_widget',
-			esc_html__( '[Posterno] Featured listings' ),
-			esc_html__( 'Displays the featured listings.' ),
+			esc_html__( '[Posterno] Featured listings', 'posterno' ),
+			esc_html__( 'Displays the featured listings.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'text', 'number', esc_html__( 'Limit' ) )
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
+				Field::make( 'text', 'number', esc_html__( 'Limit', 'posterno' ) )
 					->set_attribute( 'type', 'number' )
 					->set_attribute( 'min', '0' )
-					->set_help_text( esc_html__( 'Specify the maximum amount of listings to display.' ) ),
-				Field::make( 'select', 'layout', esc_html__( 'Layout' ) )->set_options( 'pno_get_listings_layout_available_options' ),
+					->set_help_text( esc_html__( 'Specify the maximum amount of listings to display.', 'posterno' ) ),
+				Field::make( 'select', 'layout', esc_html__( 'Layout', 'posterno' ) )->set_options( 'pno_get_listings_layout_available_options' ),
 			),
 			'pno-widget-featured-listings'
 		);

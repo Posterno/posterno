@@ -383,15 +383,15 @@ function pno_get_listings_actions() {
 
 	$actions = [
 		'edit'   => [
-			'title'    => esc_html__( 'Edit' ),
+			'title'    => esc_html__( 'Edit', 'posterno' ),
 			'priority' => 1,
 		],
 		'view'   => [
-			'title'    => esc_html__( 'View' ),
+			'title'    => esc_html__( 'View', 'posterno' ),
 			'priority' => 2,
 		],
 		'delete' => [
-			'title'    => esc_html__( 'Delete' ),
+			'title'    => esc_html__( 'Delete', 'posterno' ),
 			'priority' => 100,
 		],
 	];
@@ -559,10 +559,10 @@ function pno_get_selectable_subcategories_count() {
 function pno_get_listing_time_slots() {
 
 	$time_slots = [
-		'hours'          => esc_html__( 'Enter hours' ),
-		'open_all_day'   => esc_html__( 'Open all day' ),
-		'closed_all_day' => esc_html__( 'Closed all day' ),
-		'appointment'    => esc_html__( 'Appointment only' ),
+		'hours'          => esc_html__( 'Enter hours', 'posterno' ),
+		'open_all_day'   => esc_html__( 'Open all day', 'posterno' ),
+		'closed_all_day' => esc_html__( 'Closed all day', 'posterno' ),
+		'appointment'    => esc_html__( 'Appointment only', 'posterno' ),
 	];
 
 	/**
@@ -792,23 +792,23 @@ function pno_get_listings_results_order_filters() {
 
 	$filters = [
 		'newest' => [
-			'label'    => esc_html__( 'Newest first' ),
+			'label'    => esc_html__( 'Newest first', 'posterno' ),
 			'priority' => 1,
 		],
 		'oldest' => [
-			'label'    => esc_html__( 'Oldest first' ),
+			'label'    => esc_html__( 'Oldest first', 'posterno' ),
 			'priority' => 2,
 		],
 		'title'  => [
-			'label'    => esc_html__( 'Title A-Z' ),
+			'label'    => esc_html__( 'Title A-Z', 'posterno' ),
 			'priority' => 3,
 		],
 		'title_za'  => [
-			'label'    => esc_html__( 'Title Z-A' ),
+			'label'    => esc_html__( 'Title Z-A', 'posterno' ),
 			'priority' => 4,
 		],
 		'random' => [
-			'label'    => esc_html__( 'Random' ),
+			'label'    => esc_html__( 'Random', 'posterno' ),
 			'priority' => 5,
 		],
 	];
@@ -877,12 +877,12 @@ function pno_get_listings_layout_options() {
 
 	$options = [
 		'list' => [
-			'label'    => esc_html__( 'List layout' ),
+			'label'    => esc_html__( 'List layout', 'posterno' ),
 			'icon'     => 'fas fa-list-ul',
 			'priority' => 1,
 		],
 		'grid' => [
-			'label'    => esc_html__( 'Grid layout' ),
+			'label'    => esc_html__( 'Grid layout', 'posterno' ),
 			'icon'     => 'fas fa-th',
 			'priority' => 2,
 		],

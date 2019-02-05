@@ -24,10 +24,10 @@ class BusinessHours extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_business_hours_widget',
-			esc_html__( '[Posterno] Listing business hours' ),
-			esc_html__( 'Displays the current listing\'s business hours.' ),
+			esc_html__( '[Posterno] Listing business hours', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s business hours.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
 			),
 			'pno-widget-business-hours'
 		);

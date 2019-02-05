@@ -69,13 +69,13 @@ class PNO_Listings_Expiry {
 
 		$format = get_option( 'date_format' );
 
-		Container::make( 'post_meta', esc_html__( 'Expiry' ) )
+		Container::make( 'post_meta', esc_html__( 'Expiry', 'posterno' ) )
 			->where( 'post_type', '=', 'listings' )
 			->set_context( 'side' )
 			->set_priority( 'low' )
 			->add_fields(
 				array(
-					Field::make( 'date', 'listing_expires', esc_html__( 'Listing expiry date' ) )
+					Field::make( 'date', 'listing_expires', esc_html__( 'Listing expiry date', 'posterno' ) )
 						->set_input_format( $format, $format )
 						->set_storage_format( 'Y-m-d' )
 						->set_attribute( 'placeholder', pno_calculate_listing_expiry() ),

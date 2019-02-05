@@ -26,7 +26,7 @@ if ( ! $business_hours->has_business_hours() ) {
 		->set_template_data(
 			[
 				'type'    => 'info',
-				'message' => esc_html__( 'This listing does not have business hours set.' ),
+				'message' => esc_html__( 'This listing does not have business hours set.', 'posterno' ),
 			]
 		)
 		->get_template_part( 'message' );

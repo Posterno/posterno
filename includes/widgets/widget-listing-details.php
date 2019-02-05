@@ -24,20 +24,20 @@ class ListingDetails extends Widget {
 	public function __construct() {
 
 		$labels = array(
-			'plural_name'   => esc_html__( 'fields' ),
-			'singular_name' => esc_html__( 'field' ),
+			'plural_name'   => esc_html__( 'fields', 'posterno' ),
+			'singular_name' => esc_html__( 'field', 'posterno' ),
 		);
 
 		$this->setup(
 			'pno_listing_details_widget',
-			esc_html__( '[Posterno] Listing details' ),
-			esc_html__( 'Displays the current listing\'s details and custom fields.' ),
+			esc_html__( '[Posterno] Listing details', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s details and custom fields.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'complex', 'additional_fields', esc_html__( 'Display additional fields' ) )
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
+				Field::make( 'complex', 'additional_fields', esc_html__( 'Display additional fields', 'posterno' ) )
 					->add_fields(
 						array(
-							Field::make( 'select', 'field_id', esc_html__( 'Select field' ) )->set_options( 'pno_get_listings_fields_for_widget_association' ),
+							Field::make( 'select', 'field_id', esc_html__( 'Select field', 'posterno' ) )->set_options( 'pno_get_listings_fields_for_widget_association' ),
 						)
 					)
 					->setup_labels( $labels ),

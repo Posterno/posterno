@@ -27,7 +27,7 @@ if ( empty( $layouts ) ) {
 
 ?>
 
-<div class="btn-group" role="group" aria-label="<?php esc_html_e( 'Results layout' ); ?>">
+<div class="btn-group" role="group" aria-label="<?php esc_html_e( 'Results layout', 'posterno' ); ?>">
 
 	<?php
 

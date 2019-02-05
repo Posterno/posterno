@@ -109,7 +109,7 @@ if ( $data->form->is_successful() ) {
 					<label for="pno-field-<?php echo esc_attr( $field->get_object_meta_key() ); ?>">
 						<?php echo esc_html( $field->get_label() ); ?>
 							<?php if ( ! $field->is_required() ) : ?>
-								<span class="pno-optional"><?php esc_html_e( '(optional)' ); ?></span>
+								<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
 							<?php endif; ?>
 					</label>
 				<?php endif; ?>
@@ -134,7 +134,7 @@ if ( $data->form->is_successful() ) {
 
 					?>
 					<small class="form-text text-muted">
-					<?php printf( esc_html__( 'Maximum file size: %s.' ), pno_max_upload_size( $size ) ); ?>
+					<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $size ) ); ?>
 					</small>
 				<?php endif; ?>
 

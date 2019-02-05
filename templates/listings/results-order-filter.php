@@ -30,7 +30,7 @@ $active_filter = isset( $filters[ $active ] ) ? $filters[ $active ] : $filters[ 
 
 <div class="dropdown">
 	<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="pno-results-order-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<?php echo esc_html( sprintf( __( 'Sort by: %s' ), $active_filter['label'] ) ); ?>
+		<?php echo esc_html( sprintf( __( 'Sort by: %s', 'posterno' ), $active_filter['label'] ) ); ?>
 	</button>
 	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="pno-results-order-filter">
 		<?php foreach ( $filters as $filter_id => $filter ) : ?>

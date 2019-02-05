@@ -138,11 +138,29 @@ module.exports = function (grunt) {
 			}
 		},
 
+		addtextdomain: {
+			target: {
+				files: {
+					src: [
+						'*.php',
+						'**/*.php',
+						'!node_modules/**',
+						'!tests/**',
+						'!vendor/**',
+						'!src/**',
+						'!.sass-cache/**',
+						'!public/**',
+						'!assets/**'
+					]
+				}
+			}
+		},
+
 		makepot: {
 			target: {
 				options: {
 					domainPath: '/languages/', // Where to save the POT file.
-					exclude: ['build/.*'],
+					exclude: ['build/.*', 'vendor/.*', 'node_modules/.*'],
 					mainFile: 'posterno.php', // Main project file.
 					potFilename: 'posterno.pot', // Name of the POT file.
 					potHeaders: {

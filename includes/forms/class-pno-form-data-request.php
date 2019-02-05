@@ -54,7 +54,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 
 		$steps = array(
 			'submit'           => array(
-				'name'     => esc_html__( 'Download your data' ),
+				'name'     => esc_html__( 'Download your data', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
@@ -91,8 +91,8 @@ class PNO_Form_Data_Request extends PNO_Form {
 		$fields = array(
 			'data-request' => array(
 				'current_password' => array(
-					'label'       => esc_html__( 'Current password' ),
-					'description' => esc_html__( 'Enter your current password to confim export of your personal data.' ),
+					'label'       => esc_html__( 'Current password', 'posterno' ),
+					'description' => esc_html__( 'Enter your current password to confim export of your personal data.', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
@@ -123,7 +123,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 		$message = apply_filters(
 			'pno_data_request_form_message',
 			sprintf(
-				__( 'You can request a file with the information that we believe is most relevant and useful to you. You’ll get an email sent to %s with a link when it’s ready to be downloaded.' ),
+				__( 'You can request a file with the information that we believe is most relevant and useful to you. You’ll get an email sent to %s with a link when it’s ready to be downloaded.', 'posterno' ),
 				'<strong>' . antispambot( $user->data->user_email ) . '</strong>'
 			)
 		);
@@ -135,7 +135,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 			'message'      => $message,
-			'submit_label' => esc_html__( 'Request data' ),
+			'submit_label' => esc_html__( 'Request data', 'posterno' ),
 		];
 
 		posterno()->templates
@@ -191,7 +191,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 				} else {
 					wp_send_user_request( $request_id );
 
-					$message = sprintf( esc_html__( 'A confirmation email has been sent to %s. Click the link within the email to confirm your export request.' ), '<strong>' . $user->data->user_email . '</strong>' );
+					$message = sprintf( esc_html__( 'A confirmation email has been sent to %s. Click the link within the email to confirm your export request.', 'posterno' ), '<strong>' . $user->data->user_email . '</strong>' );
 
 					/**
 					 * Allow developers to customize the data request form success message.
@@ -208,7 +208,7 @@ class PNO_Form_Data_Request extends PNO_Form {
 
 				}
 			} else {
-				throw new Exception( __( 'The password you entered is incorrect.' ) );
+				throw new Exception( __( 'The password you entered is incorrect.', 'posterno' ) );
 			}
 
 		} catch ( Exception $e ) {

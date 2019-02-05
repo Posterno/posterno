@@ -38,24 +38,24 @@ class PNO_Emails_Editor_Settings {
 		$datastore = new PNO\Datastores\DataCompressor();
 		$datastore->set_storage_metakey( 'email_settings' );
 
-		Container::make( 'post_meta', esc_html__( 'Notification settings' ) )
+		Container::make( 'post_meta', esc_html__( 'Notification settings', 'posterno' ) )
 			->set_context( 'carbon_fields_after_title' )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_emails' )
 			->add_fields( array(
-				Field::make( 'text', 'heading', esc_html__( 'Email heading title' ) ),
+				Field::make( 'text', 'heading', esc_html__( 'Email heading title', 'posterno' ) ),
 			) );
 
-		Container::make( 'post_meta', esc_html__( 'Administrator notification' ) )
+		Container::make( 'post_meta', esc_html__( 'Administrator notification', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_emails' )
 			->add_fields(
 				array(
 
-					Field::make( 'checkbox', 'has_admin_notification', __( 'Notify administrator' ) )
-						->set_help_text( esc_html__( 'Enable this option to send an email notification to the administrator.' ) ),
+					Field::make( 'checkbox', 'has_admin_notification', __( 'Notify administrator', 'posterno' ) )
+						->set_help_text( esc_html__( 'Enable this option to send an email notification to the administrator.', 'posterno' ) ),
 
-					Field::make( 'text', 'administrator_notification_subject', esc_html__( 'Administrator notification subject' ) )
+					Field::make( 'text', 'administrator_notification_subject', esc_html__( 'Administrator notification subject', 'posterno' ) )
 						->set_conditional_logic(
 							array(
 								'relation' => 'AND',
@@ -66,9 +66,9 @@ class PNO_Emails_Editor_Settings {
 								),
 							)
 						)
-						->set_help_text( esc_html__( 'Enter the subject of the notification sent to the administrators.' ) ),
+						->set_help_text( esc_html__( 'Enter the subject of the notification sent to the administrators.', 'posterno' ) ),
 
-					Field::make( 'rich_text', 'administrator_notification', esc_html__( 'Administrator notification content' ) )
+					Field::make( 'rich_text', 'administrator_notification', esc_html__( 'Administrator notification content', 'posterno' ) )
 						->set_conditional_logic(
 							array(
 								'relation' => 'AND',
@@ -79,11 +79,11 @@ class PNO_Emails_Editor_Settings {
 								),
 							)
 						)
-						->set_help_text( esc_html__( 'Enter the content of the notification sent to the administrators.' ) ),
+						->set_help_text( esc_html__( 'Enter the content of the notification sent to the administrators.', 'posterno' ) ),
 				)
 			);
 
-		Container::make( 'post_meta', esc_html__( 'Available email template tags:' ) )
+		Container::make( 'post_meta', esc_html__( 'Available email template tags:', 'posterno' ) )
 			->where( 'post_type', '=', 'pno_emails' )
 			->set_context( 'carbon_fields_after_title' )
 			->set_context( 'side' )
@@ -95,7 +95,7 @@ class PNO_Emails_Editor_Settings {
 				)
 			);
 
-		Container::make( 'post_meta', esc_html__( 'Situations' ) )
+		Container::make( 'post_meta', esc_html__( 'Situations', 'posterno' ) )
 			->where( 'post_type', '=', 'pno_emails' )
 			->set_context( 'side' )
 			->set_priority( 'default' )

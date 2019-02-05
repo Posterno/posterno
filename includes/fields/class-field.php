@@ -209,7 +209,7 @@ class Field {
 		if ( method_exists( $this, 'get_' . $key ) ) {
 			return call_user_func( array( $this, 'get_' . $key ) );
 		} else {
-			throw new \InvalidArgumentException( sprintf( __( 'Can\'t get property %s' ), $key ) );
+			throw new \InvalidArgumentException( sprintf( __( 'Can\'t get property %s', 'posterno' ), $key ) );
 		}
 	}
 

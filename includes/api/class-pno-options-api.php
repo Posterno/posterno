@@ -90,7 +90,7 @@ class PNO_Options_Api extends WP_REST_Controller {
 	 */
 	public function get_options_permission() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'rest_forbidden', esc_html__( 'Posterno: Permission Denied.' ), array( 'status' => 401 ) );
+			return new WP_Error( 'rest_forbidden', esc_html__( 'Posterno: Permission Denied.', 'posterno' ), array( 'status' => 401 ) );
 		}
 		return true;
 	}
@@ -267,15 +267,15 @@ class PNO_Options_Api extends WP_REST_Controller {
 	public function send_test_mail( WP_REST_Request $request ) {
 
 		$email_address = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : false;
-		$error_message = esc_html__( 'Something went wrong while sending the test email. Please verify the email address you typed is correct or check your server logs.' );
+		$error_message = esc_html__( 'Something went wrong while sending the test email. Please verify the email address you typed is correct or check your server logs.', 'posterno' );
 		$sent          = false;
 
 		if ( is_email( $email_address ) ) {
 
-			$subject = esc_html__( 'Test email from Posterno' );
-			$message = esc_html__( 'The following is a simple test email to verify that emails are correctly being delivered from your website.' );
+			$subject = esc_html__( 'Test email from Posterno', 'posterno' );
+			$message = esc_html__( 'The following is a simple test email to verify that emails are correctly being delivered from your website.', 'posterno' );
 
-			posterno()->emails->__set( 'heading', esc_html__( 'Test email' ) );
+			posterno()->emails->__set( 'heading', esc_html__( 'Test email', 'posterno' ) );
 
 			$sent = posterno()->emails->send( $email_address, $subject, $message );
 

@@ -24,11 +24,11 @@ class ListingContact extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_contact_widget',
-			esc_html__( '[Posterno] Listing contact form' ),
-			esc_html__( 'Displays a contact form through which members can send emails to the author of the listing.' ),
+			esc_html__( '[Posterno] Listing contact form', 'posterno' ),
+			esc_html__( 'Displays a contact form through which members can send emails to the author of the listing.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'checkbox', 'require_login', esc_html__( 'Login required' ) )->set_help_text( esc_html__( 'Require visitors to be logged in to contact the author.' ) ),
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
+				Field::make( 'checkbox', 'require_login', esc_html__( 'Login required', 'posterno' ) )->set_help_text( esc_html__( 'Require visitors to be logged in to contact the author.', 'posterno' ) ),
 			),
 			'pno-widget-listing-contact'
 		);

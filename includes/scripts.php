@@ -171,9 +171,9 @@ function pno_load_frontend_scripts() {
 		'external_links_rel_attributes'    => (bool) pno_get_option( 'listing_external_rel_attributes', false ),
 		'external_links_new_tab_selectors' => pno_get_external_listing_links_selectors(),
 		'labels'                           => [
-			'addressNotFound'         => esc_html__( 'Address not found, please try again.' ),
-			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.' ),
-			'geolocationNotSupported' => esc_html__( 'Your browser doesn\'t support geolocation.' ),
+			'addressNotFound'         => esc_html__( 'Address not found, please try again.', 'posterno' ),
+			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.', 'posterno' ),
+			'geolocationNotSupported' => esc_html__( 'Your browser doesn\'t support geolocation.', 'posterno' ),
 		],
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );

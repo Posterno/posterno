@@ -77,7 +77,7 @@ $user_posts = new WP_Query( $args );
 						the_excerpt();
 					}
 					?>
-					<a href="<?php the_permalink(); ?>" class="btn btn-secondary btn-sm"><?php esc_html_e( 'Read more' ); ?></a>
+					<a href="<?php the_permalink(); ?>" class="btn btn-secondary btn-sm"><?php esc_html_e( 'Read more', 'posterno' ); ?></a>
 				</div>
 			</li>
 
@@ -98,7 +98,7 @@ $user_posts = new WP_Query( $args );
 			->set_template_data(
 				[
 					'type'    => 'info',
-					'message' => sprintf( esc_html__( 'No posts have been submitted by %s' ), pno_get_user_first_name( $data->user_details ) ),
+					'message' => sprintf( esc_html__( 'No posts have been submitted by %s', 'posterno' ), pno_get_user_first_name( $data->user_details ) ),
 				]
 			)
 			->get_template_part( 'message' );

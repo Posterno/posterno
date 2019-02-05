@@ -77,12 +77,12 @@ class PNO_Avatars {
 	 * @return void
 	 */
 	public function avatar_field() {
-		Container::make( 'user_meta', esc_html__( 'Profile picture & cover' ) )
+		Container::make( 'user_meta', esc_html__( 'Profile picture & cover', 'posterno' ) )
 			->add_fields(
 				array(
-					Field::make( 'image', 'current_user_avatar', esc_html__( 'Custom user avatar' ) )
+					Field::make( 'image', 'current_user_avatar', esc_html__( 'Custom user avatar', 'posterno' ) )
 						->set_value_type( 'url' ),
-					Field::make( 'image', 'user_cover', esc_html__( 'Custom profile cover image' ) )
+					Field::make( 'image', 'user_cover', esc_html__( 'Custom profile cover image', 'posterno' ) )
 						->set_value_type( 'url' ),
 				)
 			);

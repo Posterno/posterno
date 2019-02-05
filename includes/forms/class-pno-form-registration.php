@@ -108,7 +108,7 @@ class PNO_Form_Registration extends PNO_Form {
 			$contains_digit   = preg_match( '/\d/', $password_1 );
 			$contains_special = preg_match( '/[^a-zA-Z\d]/', $password_1 );
 			if ( ! $contains_letter || ! $contains_digit || ! $contains_special || strlen( $password_1 ) < 8 ) {
-				return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.' ) );
+				return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.', 'posterno' ) );
 			}
 		}
 
@@ -116,7 +116,7 @@ class PNO_Form_Registration extends PNO_Form {
 			$password_1 = $values['registration']['password'];
 			$password_2 = $values['registration']['password'];
 			if ( $password_1 !== $password_2 ) {
-				return new WP_Error( 'passwords-not-matching', esc_html__( 'Passwords do not match.' ) );
+				return new WP_Error( 'passwords-not-matching', esc_html__( 'Passwords do not match.', 'posterno' ) );
 			}
 		}
 
@@ -135,7 +135,7 @@ class PNO_Form_Registration extends PNO_Form {
 	public function validate_honeypot( $pass, $fields, $values, $form ) {
 		if ( $form == $this->form_name && isset( $values['registration']['robo'] ) ) {
 			if ( ! empty( $values['registration']['robo'] ) ) {
-				return new WP_Error( 'honeypot-validation-error', esc_html__( 'Failed honeypot validation.' ) );
+				return new WP_Error( 'honeypot-validation-error', esc_html__( 'Failed honeypot validation.', 'posterno' ) );
 			}
 		}
 		return $pass;
@@ -159,7 +159,7 @@ class PNO_Form_Registration extends PNO_Form {
 				$available_roles[] = $role['value'];
 			}
 			if ( is_array( $available_roles ) && ! in_array( $role_field, $available_roles ) ) {
-				return new WP_Error( 'role-validation-error', __( 'Select a valid role from the list.' ) );
+				return new WP_Error( 'role-validation-error', __( 'Select a valid role from the list.', 'posterno' ) );
 			}
 		}
 		return $pass;
@@ -196,7 +196,7 @@ class PNO_Form_Registration extends PNO_Form {
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'registration' ),
 					'step'         => $this->get_step(),
-					'submit_label' => esc_html__( 'Register' ),
+					'submit_label' => esc_html__( 'Register', 'posterno' ),
 				]
 			)
 			->get_template_part( 'form' );
@@ -361,7 +361,7 @@ class PNO_Form_Registration extends PNO_Form {
 				 *
 				 * @param string $message the message that appears after registration.
 				 */
-				$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.' ) );
+				$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.', 'posterno' ) );
 
 				$this->set_as_successful();
 				$this->set_success_message( $success_message );

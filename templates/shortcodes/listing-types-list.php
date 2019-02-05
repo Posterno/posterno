@@ -47,7 +47,7 @@ if ( empty( $terms ) ) {
 						<p class="card-text"><?php echo wp_kses_post( $listing_type->description ); ?></p>
 					<?php endif; ?>
 
-					<a href="<?php echo esc_url( get_term_link( $listing_type ) ); ?>" class="btn btn-secondary btn-sm"><?php esc_html_e( 'Browse listings' ); ?></a>
+					<a href="<?php echo esc_url( get_term_link( $listing_type ) ); ?>" class="btn btn-secondary btn-sm"><?php esc_html_e( 'Browse listings', 'posterno' ); ?></a>
 
 				</div>
 			</div>

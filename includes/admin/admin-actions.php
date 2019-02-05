@@ -39,57 +39,57 @@ add_action( 'admin_head', 'pno_shortcodes_add_mce_button' );
 function pno_localize_tinymce_editor() {
 
 	$js_vars = [
-		'title'         => esc_html__( 'Posterno shortcodes' ),
+		'title'         => esc_html__( 'Posterno shortcodes', 'posterno' ),
 		'forms'         => [
-			'title'        => esc_html__( 'Forms' ),
-			'login'        => esc_html__( 'Login form' ),
-			'registration' => esc_html__( 'Registration form' ),
-			'password'     => esc_html__( 'Password recovery form' ),
-			'submission'   => esc_html__( 'Listing submission form' ),
-			'editing'      => esc_html__( 'Listing editing form' ),
+			'title'        => esc_html__( 'Forms', 'posterno' ),
+			'login'        => esc_html__( 'Login form', 'posterno' ),
+			'registration' => esc_html__( 'Registration form', 'posterno' ),
+			'password'     => esc_html__( 'Password recovery form', 'posterno' ),
+			'submission'   => esc_html__( 'Listing submission form', 'posterno' ),
+			'editing'      => esc_html__( 'Listing editing form', 'posterno' ),
 		],
 		'options_yesno' => [
-			'yes' => esc_html__( 'Yes' ),
-			'no'  => esc_html__( 'No' ),
+			'yes' => esc_html__( 'Yes', 'posterno' ),
+			'no'  => esc_html__( 'No', 'posterno' ),
 		],
 		'links'         => [
-			'title'  => esc_html__( 'Links' ),
+			'title'  => esc_html__( 'Links', 'posterno' ),
 			'login'  => [
-				'title'    => esc_html__( 'Login link' ),
-				'redirect' => esc_html__( 'Redirect after login (optional)' ),
-				'label'    => esc_html__( 'Link Label' ),
+				'title'    => esc_html__( 'Login link', 'posterno' ),
+				'redirect' => esc_html__( 'Redirect after login (optional)', 'posterno' ),
+				'label'    => esc_html__( 'Link Label', 'posterno' ),
 			],
 			'logout' => [
-				'title'    => esc_html__( 'Logout link' ),
-				'redirect' => esc_html__( 'Redirect after logout (optional)' ),
-				'label'    => esc_html__( 'Link Label' ),
+				'title'    => esc_html__( 'Logout link', 'posterno' ),
+				'redirect' => esc_html__( 'Redirect after logout (optional)', 'posterno' ),
+				'label'    => esc_html__( 'Link Label', 'posterno' ),
 			],
 		],
 		'pages'         => [
-			'title'     => esc_html__( 'Pages' ),
-			'dashboard' => esc_html__( 'Dashboard' ),
-			'profile'   => esc_html__( 'Profile' ),
+			'title'     => esc_html__( 'Pages', 'posterno' ),
+			'dashboard' => esc_html__( 'Dashboard', 'posterno' ),
+			'profile'   => esc_html__( 'Profile', 'posterno' ),
 		],
 		'listings'      => [
-			'title'      => esc_html__( 'Listings' ),
-			'types'      => esc_html__( 'Listing types list' ),
+			'title'      => esc_html__( 'Listings', 'posterno' ),
+			'types'      => esc_html__( 'Listing types list', 'posterno' ),
 			'recent'     => [
-				'title'  => esc_html__( 'Recent listings' ),
-				'max'    => esc_html__( 'Maximum amount' ),
-				'layout' => esc_html__( 'Layout' ),
+				'title'  => esc_html__( 'Recent listings', 'posterno' ),
+				'max'    => esc_html__( 'Maximum amount', 'posterno' ),
+				'layout' => esc_html__( 'Layout', 'posterno' ),
 			],
 			'featured'   => [
-				'title'  => esc_html__( 'Featured listings' ),
-				'max'    => esc_html__( 'Maximum amount' ),
-				'layout' => esc_html__( 'Layout' ),
+				'title'  => esc_html__( 'Featured listings', 'posterno' ),
+				'max'    => esc_html__( 'Maximum amount', 'posterno' ),
+				'layout' => esc_html__( 'Layout', 'posterno' ),
 			],
 			'categories' => [
-				'title'         => esc_html__( 'Categories list' ),
-				'subcategories' => esc_html__( 'Display subcategories' ),
+				'title'         => esc_html__( 'Categories list', 'posterno' ),
+				'subcategories' => esc_html__( 'Display subcategories', 'posterno' ),
 			],
 			'locations'  => [
-				'title'        => esc_html__( 'Locations list' ),
-				'sublocations' => esc_html__( 'Display sub locations' ),
+				'title'        => esc_html__( 'Locations list', 'posterno' ),
+				'sublocations' => esc_html__( 'Display sub locations', 'posterno' ),
 			],
 		],
 	];
@@ -153,17 +153,17 @@ function pno_after_custom_fields_post_title() {
 	if ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_users_fields' ) {
 
 		$admin_url = admin_url( 'users.php?page=posterno-custom-profile-fields' );
-		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All profile fields' ) . '</a>';
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All profile fields', 'posterno' ) . '</a>';
 
 	} elseif ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_signup_fields' ) {
 
 		$admin_url = admin_url( 'users.php?page=posterno-custom-registration-form' );
-		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All registration form fields' ) . '</a>';
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All registration form fields', 'posterno' ) . '</a>';
 
 	} elseif ( $post instanceof WP_Post && isset( $post->post_type ) && $post->post_type == 'pno_listings_fields' ) {
 
 		$admin_url = admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' );
-		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All listings fields' ) . '</a>';
+		echo '<br/><span class="dashicons dashicons-editor-table"></span> <a href="' . esc_url( $admin_url ) . '">' . esc_html__( 'All listings fields', 'posterno' ) . '</a>';
 
 	}
 
@@ -298,7 +298,7 @@ function pno_trigger_administrator_approval_email( $post ) {
 		return;
 	}
 
-	$output = '<div class="carbon-field carbon-checkbox pno-publish-action"><div class="field-holder"><label><input type="checkbox" name="_listing_trigger_approval_email">' . esc_html__( 'Send approval notification' ) . '</label></div><em class="carbon-help-text">' . esc_html__( 'Enable the option to notify the author that the listing has been approved.' ) . '</em></div>';
+	$output = '<div class="carbon-field carbon-checkbox pno-publish-action"><div class="field-holder"><label><input type="checkbox" name="_listing_trigger_approval_email">' . esc_html__( 'Send approval notification', 'posterno' ) . '</label></div><em class="carbon-help-text">' . esc_html__( 'Enable the option to notify the author that the listing has been approved.', 'posterno' ) . '</em></div>';
 
 	echo $output; //phpcs:ignore
 

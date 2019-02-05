@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="pno-template manage-listings">
 
-	<h2><?php esc_html_e( 'Manage listings' ); ?></h2>
+	<h2><?php esc_html_e( 'Manage listings', 'posterno' ); ?></h2>
 
 	<?php
 
@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 		<div class="col-12 col-sm-12 col-md-4 text-sm-left text-md-right">
 			<?php if ( $data->submission_page && pno_can_user_submit_listings() ) : ?>
-				<a class="btn btn-primary btn-sm" href="<?php echo esc_url( get_permalink( $data->submission_page ) ); ?>" role="button"><i class="fas fa-plus-circle mr-1"></i> <?php esc_html_e( 'Add listing' ); ?></a>
+				<a class="btn btn-primary btn-sm" href="<?php echo esc_url( get_permalink( $data->submission_page ) ); ?>" role="button"><i class="fas fa-plus-circle mr-1"></i> <?php esc_html_e( 'Add listing', 'posterno' ); ?></a>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -127,7 +127,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php else : ?>
 				<tr class="no-items">
 					<td class="colspanchange" colspan="<?php echo count( $data->columns ); ?>">
-						<?php esc_html_e( 'No listings found.' ); ?>
+						<?php esc_html_e( 'No listings found.', 'posterno' ); ?>
 					</td>
 				</tr>
 			<?php endif; ?>

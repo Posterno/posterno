@@ -34,7 +34,7 @@ if ( ! $members_allowed && absint( get_current_user_id() ) !== $user_id ) {
 		->set_template_data(
 			[
 				'type'    => 'warning',
-				'message' => esc_html__( 'You are not authorized to view the content of this page.' )
+				'message' => esc_html__( 'You are not authorized to view the content of this page.', 'posterno' )
 			]
 		)
 		->get_template_part( 'message' );
@@ -93,7 +93,7 @@ if ( ! $members_allowed && absint( get_current_user_id() ) !== $user_id ) {
 						<h5 class="card-title mb-1"><?php echo esc_html( $name ); ?></h5>
 					<?php endif; ?>
 
-					<span class="badge badge-light"><?php printf( esc_html__( 'Member since: %s' ), esc_html( pno_get_user_registration_date( $user_details ) ) ); ?></span>
+					<span class="badge badge-light"><?php printf( esc_html__( 'Member since: %s', 'posterno' ), esc_html( pno_get_user_registration_date( $user_details ) ) ); ?></span>
 
 					<?php if ( $description ) : ?>
 						<p class="card-text mt-2"><?php echo wp_kses_post( $description ); ?></p>

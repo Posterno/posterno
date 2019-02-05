@@ -75,9 +75,9 @@ function pno_get_login_methods() {
 	return apply_filters(
 		'pno_get_login_methods',
 		array(
-			'username'       => __( 'Username only' ),
-			'email'          => __( 'Email only' ),
-			'username_email' => __( 'Username or Email' ),
+			'username'       => __( 'Username only', 'posterno' ),
+			'email'          => __( 'Email only', 'posterno' ),
+			'username_email' => __( 'Username or Email', 'posterno' ),
 		)
 	);
 }
@@ -222,19 +222,19 @@ function pno_install_registration_fields() {
 
 	$registered_fields = [
 		'username' => [
-			'label'    => esc_html__( 'Username' ),
+			'label'    => esc_html__( 'Username', 'posterno' ),
 			'type'     => 'text',
 			'required' => true,
 			'priority' => 1,
 		],
 		'email'    => [
-			'label'    => esc_html__( 'Email address' ),
+			'label'    => esc_html__( 'Email address', 'posterno' ),
 			'type'     => 'email',
 			'required' => true,
 			'priority' => 2,
 		],
 		'password' => [
-			'label'    => esc_html__( 'Password' ),
+			'label'    => esc_html__( 'Password', 'posterno' ),
 			'type'     => 'password',
 			'required' => true,
 			'priority' => 3,
@@ -695,7 +695,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'login_page' ) ) {
 		$login = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Login' ),
+				'post_title'     => esc_html__( 'Login', 'posterno' ),
 				'post_content'   => '[pno_login_form]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -709,7 +709,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'password_page' ) ) {
 		$psw = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Forgot password' ),
+				'post_title'     => esc_html__( 'Forgot password', 'posterno' ),
 				'post_content'   => '[pno_password_recovery_form]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -723,7 +723,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'registration_page' ) ) {
 		$registration_page = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Register' ),
+				'post_title'     => esc_html__( 'Register', 'posterno' ),
 				'post_content'   => '[pno_registration_form]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -737,7 +737,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'dashboard_page' ) ) {
 		$dashboard_page = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Dashboard' ),
+				'post_title'     => esc_html__( 'Dashboard', 'posterno' ),
 				'post_content'   => '[pno_dashboard]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -751,7 +751,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'submission_page' ) ) {
 		$submission_page = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Submit listing' ),
+				'post_title'     => esc_html__( 'Submit listing', 'posterno' ),
 				'post_content'   => '[pno_listing_submission_form]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -765,7 +765,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'editing_page' ) ) {
 		$editing_page = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Edit listing' ),
+				'post_title'     => esc_html__( 'Edit listing', 'posterno' ),
 				'post_content'   => '[pno_listing_editing_form]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -779,7 +779,7 @@ function pno_install_pages() {
 	if ( ! pno_get_option( 'profile_page' ) ) {
 		$profile_page = wp_insert_post(
 			array(
-				'post_title'     => esc_html__( 'Profile' ),
+				'post_title'     => esc_html__( 'Profile', 'posterno' ),
 				'post_content'   => '[pno_profile]',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
@@ -1018,7 +1018,7 @@ function pno_install_dashboard_menu() {
 
 	if ( ! $dashboard_menu ) {
 
-		$menu_id = wp_create_nav_menu( esc_html__( 'Dashboard Menu' ) );
+		$menu_id = wp_create_nav_menu( esc_html__( 'Dashboard Menu', 'posterno' ) );
 
 		$dashboard_components = pno_get_dashboard_navigation_items();
 
@@ -1063,7 +1063,7 @@ function pno_install_profile_menu() {
 
 	if ( ! $profile_menu ) {
 
-		$menu_id = wp_create_nav_menu( esc_html__( 'Profile Menu' ) );
+		$menu_id = wp_create_nav_menu( esc_html__( 'Profile Menu', 'posterno' ) );
 
 		$profile_components = pno_get_profile_components();
 

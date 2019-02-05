@@ -21,18 +21,18 @@ defined( 'ABSPATH' ) || exit;
 <ul class="pno-action-links">
 	<?php if ( isset( $data->login_link ) && $data->login_link === true ) : ?>
 		<li>
-			<?php echo apply_filters( 'pno_login_link_label', sprintf( __( 'Already have an account? <a href="%s">Sign In &raquo;</a>' ), esc_url( get_permalink( pno_get_login_page_id() ) ) ) ); ?>
+			<?php echo apply_filters( 'pno_login_link_label', sprintf( __( 'Already have an account? <a href="%s">Sign In &raquo;</a>', 'posterno' ), esc_url( get_permalink( pno_get_login_page_id() ) ) ) ); ?>
 		</li>
 	<?php endif; ?>
 	<?php if ( isset( $data->register_link ) && $data->register_link === true ) : ?>
 		<li>
-			<?php echo apply_filters( 'pno_registration_link_label', sprintf( __( 'Don\'t have an account? <a href="%s">Signup Now &raquo;</a>' ), esc_url( get_permalink( pno_get_registration_page_id() ) ) ) ); ?>
+			<?php echo apply_filters( 'pno_registration_link_label', sprintf( __( 'Don\'t have an account? <a href="%s">Signup Now &raquo;</a>', 'posterno' ), esc_url( get_permalink( pno_get_registration_page_id() ) ) ) ); ?>
 		</li>
 	<?php endif; ?>
 	<?php if ( isset( $data->psw_link ) && $data->psw_link === true ) : ?>
 		<li>
 			<a href="<?php echo esc_url( get_permalink( pno_get_password_recovery_page_id() ) ); ?>">
-				<?php echo apply_filters( 'pno_password_link_label', __( 'Lost your password?' ) ); ?>
+				<?php echo apply_filters( 'pno_password_link_label', __( 'Lost your password?', 'posterno' ) ); ?>
 			</a>
 		</li>
 	<?php endif; ?>

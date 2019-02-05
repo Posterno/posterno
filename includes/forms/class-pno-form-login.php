@@ -63,7 +63,7 @@ class PNO_Form_Login extends PNO_Form {
 			'pno_login_steps',
 			array(
 				'submit' => array(
-					'name'     => __( 'Submit Details' ),
+					'name'     => __( 'Submit Details', 'posterno' ),
 					'view'     => array( $this, 'submit' ),
 					'handler'  => array( $this, 'submit_handler' ),
 					'priority' => 10,
@@ -106,14 +106,14 @@ class PNO_Form_Login extends PNO_Form {
 					'priority'    => 1,
 				),
 				'password' => array(
-					'label'       => __( 'Password' ),
+					'label'       => __( 'Password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
 				),
 				'remember' => array(
-					'label'    => __( 'Remember me' ),
+					'label'    => __( 'Remember me', 'posterno' ),
 					'type'     => 'checkbox',
 					'required' => false,
 					'priority' => 3,
@@ -145,7 +145,7 @@ class PNO_Form_Login extends PNO_Form {
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'login' ),
 					'step'         => $this->get_step(),
-					'submit_label' => esc_html__( 'Login' ),
+					'submit_label' => esc_html__( 'Login', 'posterno' ),
 				]
 			)
 			->get_template_part( 'form' );

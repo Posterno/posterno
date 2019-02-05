@@ -33,8 +33,8 @@ $pagination = paginate_links(
 		'end_size'     => 2,
 		'mid_size'     => 1,
 		'prev_next'    => true,
-		'prev_text'    => sprintf( '<i></i> %1$s', esc_html__( 'Newer Posts', 'wp-user-manager' ) ),
-		'next_text'    => sprintf( '%1$s <i></i>', esc_html__( 'Older Posts', 'wp-user-manager' ) ),
+		'prev_text'    => sprintf( '<i></i> %1$s', esc_html__( 'Newer Posts', 'wp-user-manager', 'posterno' ) ),
+		'next_text'    => sprintf( '%1$s <i></i>', esc_html__( 'Older Posts', 'wp-user-manager', 'posterno' ) ),
 		'add_args'     => false,
 		'add_fragment' => '',
 	)
@@ -48,18 +48,18 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 
 ?>
 
-<nav aria-label="<?php esc_html_e( 'Pagination' ); ?>">
+<nav aria-label="<?php esc_html_e( 'Pagination', 'posterno' ); ?>">
 	<ul class="pagination pno-pagination <?php echo esc_attr( $custom_class ); ?>">
 
 		<?php if ( $paged > 2 && $paged > $range + 1 && $showitems < $pages ) : ?>
 			<li class="page-item">
-				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>"><?php esc_html_e( 'First' ); ?></a>
+				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>"><?php esc_html_e( 'First', 'posterno' ); ?></a>
 			</li>
 		<?php endif; ?>
 
 		<?php if ( $paged > 1 && $showitems < $pages ) : ?>
 			<li class="page-item">
-				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged - 1 ) ); ?>"><?php esc_html_e( 'Previous' ); ?></a>
+				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged - 1 ) ); ?>"><?php esc_html_e( 'Previous', 'posterno' ); ?></a>
 			</li>
 		<?php endif; ?>
 
@@ -73,7 +73,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 					?>
 
 					<li class="page-item active">
-						<a class="page-link" href="#"><?php echo esc_html( $i ); ?> <span class="sr-only"><?php esc_html_e( '(current)' ); ?></span></a>
+						<a class="page-link" href="#"><?php echo esc_html( $i ); ?> <span class="sr-only"><?php esc_html_e( '(current)', 'posterno' ); ?></span></a>
 					</li>
 
 				<?php else : ?>
@@ -108,7 +108,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 			?>
 
 			<li class="page-item">
-				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged + 1 ) ); ?>"><?php esc_html_e( 'Next' ); ?></a>
+				<a class="page-link" href="<?php echo esc_url( get_pagenum_link( $paged + 1 ) ); ?>"><?php esc_html_e( 'Next', 'posterno' ); ?></a>
 			</li>
 
 		<?php endif; ?>

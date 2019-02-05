@@ -137,7 +137,7 @@ final class PN_Requirements_Check {
 	 * @return void
 	 */
 	private function unmet_requirements_text() {
-		esc_html_e( 'This plugin is not fully active.' );
+		esc_html_e( 'This plugin is not fully active.', 'posterno' );
 	}
 
 	/**
@@ -147,7 +147,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_description_text() {
-		return esc_html__( 'Requires %1$s (%2$s), but (%3$s) is installed.' );
+		return esc_html__( 'Requires %1$s (%2$s), but (%3$s) is installed.', 'posterno' );
 	}
 
 	/**
@@ -157,7 +157,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_missing_text() {
-		return esc_html__( 'Requires %1$s (%2$s), but it appears to be missing.' );
+		return esc_html__( 'Requires %1$s (%2$s), but it appears to be missing.', 'posterno' );
 	}
 
 	/**
@@ -167,7 +167,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_link() {
-		return esc_html__( 'Requirements' );
+		return esc_html__( 'Requirements', 'posterno' );
 	}
 
 	/**
@@ -177,7 +177,7 @@ final class PN_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_label() {
-		return esc_html__( 'Posterno Requirements' );
+		return esc_html__( 'Posterno Requirements', 'posterno' );
 	}
 
 	/**

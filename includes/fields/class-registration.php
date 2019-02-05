@@ -181,11 +181,11 @@ class Registration extends Field {
 		}
 
 		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s', 'posterno' ), 'name' ) );
 		}
 
 		if ( ! isset( $args['profile_field_id'] ) || empty( $args['profile_field_id'] ) ) {
-			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'profile_field_id' ) );
+			throw new InvalidArgumentException( sprintf( __( 'Can\'t find property %s', 'posterno' ), 'profile_field_id' ) );
 		}
 
 		$field_args = [

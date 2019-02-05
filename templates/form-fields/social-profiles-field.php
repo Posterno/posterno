@@ -33,7 +33,7 @@ $registered_networks = pno_get_registered_social_media();
 		<div>
 			<div class="form-row" v-for="(option, index) in definedSocialProfiles" :key="index">
 				<div class="col-md-6">
-					<pno-select2 inline-template v-model="definedSocialProfiles[index].social" data-placeholder="<?php esc_html_e( 'Select network' ); ?>">
+					<pno-select2 inline-template v-model="definedSocialProfiles[index].social" data-placeholder="<?php esc_html_e( 'Select network', 'posterno' ); ?>">
 						<div class="pno-select2-wrapper">
 							<select class="form-control">
 								<?php if ( is_array( $enabled_networks ) && ! empty( $enabled_networks ) ) : ?>
@@ -66,7 +66,7 @@ $registered_networks = pno_get_registered_social_media();
 
 			<div class="text-right">
 				<button class="btn btn-light btn-sm" type="button" @click="addNewSocialProfile()">
-					<?php esc_html_e( 'Add new profile' ); ?>
+					<?php esc_html_e( 'Add new profile', 'posterno' ); ?>
 				</button>
 			</div>
 

@@ -56,7 +56,7 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 			'pno_listing_contact_form_steps',
 			array(
 				'submit' => array(
-					'name'     => __( 'Submit Details' ),
+					'name'     => __( 'Submit Details', 'posterno' ),
 					'view'     => array( $this, 'submit' ),
 					'handler'  => array( $this, 'submit_handler' ),
 					'priority' => 10,
@@ -86,21 +86,21 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 		$fields = array(
 			'contact' => array(
 				'name'    => array(
-					'label'       => esc_html__( 'Your name' ),
+					'label'       => esc_html__( 'Your name', 'posterno' ),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
 				),
 				'email'   => array(
-					'label'       => esc_html__( 'Your email address' ),
+					'label'       => esc_html__( 'Your email address', 'posterno' ),
 					'type'        => 'email',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 2,
 				),
 				'message' => array(
-					'label'       => esc_html__( 'Message' ),
+					'label'       => esc_html__( 'Message', 'posterno' ),
 					'type'        => 'textarea',
 					'required'    => true,
 					'placeholder' => '',
@@ -133,7 +133,7 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'contact' ),
 					'step'         => $this->get_step(),
-					'submit_label' => esc_html__( 'Send email' ),
+					'submit_label' => esc_html__( 'Send email', 'posterno' ),
 				]
 			)
 			->get_template_part( 'form' );
@@ -197,7 +197,7 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 					]
 				);
 
-				$message = esc_html__( 'Your message has been sent successfully.' );
+				$message = esc_html__( 'Your message has been sent successfully.', 'posterno' );
 
 				/**
 				 * Allow developers to customize the message displayed after successfully sending a message to the listing's author.
@@ -212,7 +212,7 @@ class PNO_Form_Listing_Contact extends PNO_Form {
 				return;
 
 			} else {
-				throw new Exception( esc_html__( 'Something went wrong while sending the message.' ) );
+				throw new Exception( esc_html__( 'Something went wrong while sending the message.', 'posterno' ) );
 			}
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage(), $e->getErrorCode() );

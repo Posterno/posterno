@@ -28,7 +28,7 @@ if ( $login_required && ! is_user_logged_in() ) {
 		->set_template_data(
 			[
 				'type'    => 'warning',
-				'message' => sprintf( __( 'You need to be logged in to contact this listing\'s author. Please <a href="%1$s">login</a> or <a href="%2$s">register</a>.' ), esc_url( $login_page ), esc_url( $register_page ) ),
+				'message' => sprintf( __( 'You need to be logged in to contact this listing\'s author. Please <a href="%1$s">login</a> or <a href="%2$s">register</a>.', 'posterno' ), esc_url( $login_page ), esc_url( $register_page ) ),
 			]
 		)
 		->get_template_part( 'message' );

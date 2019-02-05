@@ -62,12 +62,12 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
 						array(
 							'name' => array(
-								'description' => __( 'Field name.' ),
+								'description' => __( 'Field name.', 'posterno' ),
 								'required'    => true,
 								'type'        => 'string',
 							),
 							'type' => array(
-								'description' => __( 'Field type.' ),
+								'description' => __( 'Field type.', 'posterno' ),
 								'required'    => true,
 								'type'        => 'string',
 							),
@@ -84,7 +84,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			array(
 				'args'   => array(
 					'id' => array(
-						'description' => __( 'Unique identifier for the resource.' ),
+						'description' => __( 'Unique identifier for the resource.', 'posterno' ),
 						'type'        => 'integer',
 					),
 				),
@@ -142,7 +142,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 				$response = $this->prepare_item_for_response( $post, $request );
 
 				if ( isset( $request['exclude'] ) && ! is_array( $request['exclude'] ) ) {
-					return new WP_Error( 'posterno_rest_cannot_exclude', __( 'Cannot exclude fields. Parameter must be an array.' ), array( 'status' => 400 ) );
+					return new WP_Error( 'posterno_rest_cannot_exclude', __( 'Cannot exclude fields. Parameter must be an array.', 'posterno' ), array( 'status' => 400 ) );
 				}
 
 				if ( isset( $request['exclude'] ) && is_array( $request['exclude'] ) && isset( $response->data['meta'] ) && in_array( $response->data['meta'], $request['exclude'] ) ) {
@@ -261,7 +261,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 	public function create_item( $request ) {
 
 		if ( ! empty( $request['id'] ) ) {
-			return new WP_Error( 'posterno_rest_cannot_create_exists', __( 'Cannot create existing field.' ), array( 'status' => 400 ) );
+			return new WP_Error( 'posterno_rest_cannot_create_exists', __( 'Cannot create existing field.', 'posterno' ), array( 'status' => 400 ) );
 		}
 
 		$field_name     = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
@@ -271,11 +271,11 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$field_type             = isset( $request['type'] ) && isset( $registered_field_types[ $request['type'] ] ) ? sanitize_text_field( $request['type'] ) : false;
 
 		if ( ! $field_name ) {
-			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.' ), 422 );
+			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.', 'posterno' ), 422 );
 		}
 
 		if ( ! $field_type ) {
-			return new WP_REST_Response( esc_html__( 'Invalid field type.' ), 422 );
+			return new WP_REST_Response( esc_html__( 'Invalid field type.', 'posterno' ), 422 );
 		}
 
 		$field = new PNO\Field\Profile();
@@ -311,7 +311,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$field_id = isset( $request['id'] ) && ! empty( $request['id'] ) ? absint( $request['id'] ) : false;
 
 		if ( ! $field_id ) {
-			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
+			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 		}
 
 		$field = new PNO\Field\Profile( $field_id );
@@ -321,7 +321,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			if ( $field->can_delete() ) {
 				$field->delete();
 			} else {
-				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.' ), 422 );
+				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 			}
 		}
 
@@ -340,7 +340,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$fields = isset( $_POST['fields'] ) && is_array( $_POST['fields'] ) ? $_POST['fields'] : false;
 
 		if ( ! $fields ) {
-			return new WP_REST_Response( esc_html__( 'Something went wrong while updating the order of the fields, please contact support.' ), 422 );
+			return new WP_REST_Response( esc_html__( 'Something went wrong while updating the order of the fields, please contact support.', 'posterno' ), 422 );
 		}
 
 		foreach ( $fields as $key => $field ) {
@@ -369,72 +369,72 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'id'                 => array(
-					'description' => __( 'Unique identifier for the object.' ),
+					'description' => __( 'Unique identifier for the object.', 'posterno' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
 				'name'               => array(
-					'description' => __( 'The name for the profile field.' ),
+					'description' => __( 'The name for the profile field.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'label'              => array(
-					'description' => __( 'The optional label for the profile field used within forms.' ),
+					'description' => __( 'The optional label for the profile field used within forms.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'meta'               => array(
-					'description' => __( 'The user meta key for the field used to store users information.' ),
+					'description' => __( 'The user meta key for the field used to store users information.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'priority'           => array(
-					'description' => __( 'The priority number assigned to the field used to defined the order within forms.' ),
+					'description' => __( 'The priority number assigned to the field used to defined the order within forms.', 'posterno' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'default'            => array(
-					'description' => __( 'Flag to determine if the field is a default field.' ),
+					'description' => __( 'Flag to determine if the field is a default field.', 'posterno' ),
 					'type'        => 'boolean',
 					'default'     => false,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'type'               => array(
-					'description' => __( 'Field type.' ),
+					'description' => __( 'Field type.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'description'        => array(
-					'description' => __( 'Field description.' ),
+					'description' => __( 'Field description.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'placeholder'        => array(
-					'description' => __( 'Field placeholder.' ),
+					'description' => __( 'Field placeholder.', 'posterno' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'required'           => array(
-					'description' => __( 'Flag to determine if the field is required when displayed within forms.' ),
+					'description' => __( 'Flag to determine if the field is required when displayed within forms.', 'posterno' ),
 					'type'        => 'boolean',
 					'default'     => false,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'read_only'          => array(
-					'description' => __( 'Flag to determine if the field is read-only when displayed within forms.' ),
+					'description' => __( 'Flag to determine if the field is read-only when displayed within forms.', 'posterno' ),
 					'type'        => 'boolean',
 					'default'     => false,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'admin_only'         => array(
-					'description' => __( 'Flag to determine if the field is admin only and hidden from forms.' ),
+					'description' => __( 'Flag to determine if the field is admin only and hidden from forms.', 'posterno' ),
 					'type'        => 'boolean',
 					'default'     => false,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'selectable_options' => array(
-					'description' => __( 'Holds selectable options if the field needs them. Example: dropdown or multiselect fields.' ),
+					'description' => __( 'Holds selectable options if the field needs them. Example: dropdown or multiselect fields.', 'posterno' ),
 					'type'        => 'array',
 					'items'       => array(
 						'type' => 'string',
@@ -458,7 +458,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		$query_params = parent::get_collection_params();
 
 		$query_params['exclude'] = array(
-			'description' => esc_html__( 'Limit results by excluding fields by meta key.' ),
+			'description' => esc_html__( 'Limit results by excluding fields by meta key.', 'posterno' ),
 			'type'        => 'array',
 			'required'    => false,
 		);

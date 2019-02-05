@@ -71,7 +71,7 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 			</a>
 		</h4>
 		<?php if ( $display_since ) : ?>
-			<?php echo esc_html( sprintf( __( 'Member since: %s' ), pno_get_user_registration_date( $listing_author_id ) ) ); ?>
+			<?php echo esc_html( sprintf( __( 'Member since: %s', 'posterno' ), pno_get_user_registration_date( $listing_author_id ) ) ); ?>
 		<?php endif; ?>
 	</div>
 </div>

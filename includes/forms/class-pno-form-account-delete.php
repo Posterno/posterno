@@ -54,7 +54,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 
 		$steps = array(
 			'submit' => array(
-				'name'     => esc_html__( 'Permanently account' ),
+				'name'     => esc_html__( 'Permanently account', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
@@ -91,8 +91,8 @@ class PNO_Form_Account_Delete extends PNO_Form {
 		$fields = array(
 			'account-delete' => array(
 				'password_current' => array(
-					'label'       => esc_html__( 'Current password' ),
-					'description' => esc_html__( 'Enter your current password to confirm cancellation of your account.' ),
+					'label'       => esc_html__( 'Current password', 'posterno' ),
+					'description' => esc_html__( 'Enter your current password to confirm cancellation of your account.', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
@@ -125,7 +125,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 		 * @param string $message
 		 * @return string
 		 */
-		$message = apply_filters( 'pno_delete_account_form_message', esc_html__( 'The account will no longer be available, and all data in the account will be permanently deleted.' ) );
+		$message = apply_filters( 'pno_delete_account_form_message', esc_html__( 'The account will no longer be available, and all data in the account will be permanently deleted.', 'posterno' ) );
 
 		$data = [
 			'form'         => $this,
@@ -134,7 +134,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 			'step'         => $this->get_step(),
 			'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 			'message'      => $message,
-			'submit_label' => esc_html__( 'Delete account' ),
+			'submit_label' => esc_html__( 'Delete account', 'posterno' ),
 		];
 
 		posterno()->templates
@@ -191,7 +191,7 @@ class PNO_Form_Account_Delete extends PNO_Form {
 					exit;
 				}
 			} else {
-				throw new Exception( __( 'The password you entered is incorrect. Your account has not been deleted.' ) );
+				throw new Exception( __( 'The password you entered is incorrect. Your account has not been deleted.', 'posterno' ) );
 			}
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage(), $e->getErrorCode() );

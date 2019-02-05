@@ -88,28 +88,28 @@ function pno_is_default_field( $key ) {
 function pno_get_registered_field_types( $exclude = [] ) {
 
 	$types = [
-		'text'                  => esc_html__( 'Single text line' ),
-		'textarea'              => esc_html__( 'Textarea' ),
-		'checkbox'              => esc_html__( 'Checkbox' ),
-		'email'                 => esc_html__( 'Email address' ),
-		'password'              => esc_html__( 'Password' ),
-		'url'                   => esc_html__( 'Website' ),
-		'select'                => esc_html__( 'Dropdown' ),
-		'radio'                 => esc_html__( 'Radio' ),
-		'number'                => esc_html__( 'Number' ),
-		'multiselect'           => esc_html__( 'Multiselect' ),
-		'multicheckbox'         => esc_html__( 'Multiple checkboxes' ),
-		'file'                  => esc_html__( 'File' ),
-		'editor'                => esc_html__( 'Text editor' ),
-		'social-profiles'       => esc_html__( 'Social profiles selector' ),
-		'listing-category'      => esc_html__( 'Listing category selector' ),
-		'listing-tags'          => esc_html__( 'Listing tags selector' ),
-		'term-select'           => esc_html__( 'Taxonomy dropdown' ),
-		'term-multiselect'      => esc_html__( 'Taxonomy multiselect' ),
-		'term-checklist'        => esc_html__( 'Taxonomy check list' ),
-		'term-chain-dropdown'   => esc_html__( 'Taxonomy chain dropdown' ),
-		'listing-opening-hours' => esc_html__( 'Opening hours' ),
-		'listing-location'      => esc_html__( 'Map' ),
+		'text'                  => esc_html__( 'Single text line', 'posterno' ),
+		'textarea'              => esc_html__( 'Textarea', 'posterno' ),
+		'checkbox'              => esc_html__( 'Checkbox', 'posterno' ),
+		'email'                 => esc_html__( 'Email address', 'posterno' ),
+		'password'              => esc_html__( 'Password', 'posterno' ),
+		'url'                   => esc_html__( 'Website', 'posterno' ),
+		'select'                => esc_html__( 'Dropdown', 'posterno' ),
+		'radio'                 => esc_html__( 'Radio', 'posterno' ),
+		'number'                => esc_html__( 'Number', 'posterno' ),
+		'multiselect'           => esc_html__( 'Multiselect', 'posterno' ),
+		'multicheckbox'         => esc_html__( 'Multiple checkboxes', 'posterno' ),
+		'file'                  => esc_html__( 'File', 'posterno' ),
+		'editor'                => esc_html__( 'Text editor', 'posterno' ),
+		'social-profiles'       => esc_html__( 'Social profiles selector', 'posterno' ),
+		'listing-category'      => esc_html__( 'Listing category selector', 'posterno' ),
+		'listing-tags'          => esc_html__( 'Listing tags selector', 'posterno' ),
+		'term-select'           => esc_html__( 'Taxonomy dropdown', 'posterno' ),
+		'term-multiselect'      => esc_html__( 'Taxonomy multiselect', 'posterno' ),
+		'term-checklist'        => esc_html__( 'Taxonomy check list', 'posterno' ),
+		'term-chain-dropdown'   => esc_html__( 'Taxonomy chain dropdown', 'posterno' ),
+		'listing-opening-hours' => esc_html__( 'Opening hours', 'posterno' ),
+		'listing-location'      => esc_html__( 'Map', 'posterno' ),
 	];
 
 	/**
@@ -162,21 +162,21 @@ function pno_get_registration_fields() {
 
 	$fields = array(
 		'username' => array(
-			'label'       => esc_html__( 'Username' ),
+			'label'       => esc_html__( 'Username', 'posterno' ),
 			'type'        => 'text',
 			'required'    => true,
 			'placeholder' => '',
 			'priority'    => 1,
 		),
 		'email'    => array(
-			'label'       => __( 'Email address' ),
+			'label'       => __( 'Email address', 'posterno' ),
 			'type'        => 'email',
 			'required'    => true,
 			'placeholder' => '',
 			'priority'    => 2,
 		),
 		'password' => array(
-			'label'    => __( 'Password' ),
+			'label'    => __( 'Password', 'posterno' ),
 			'type'     => 'password',
 			'required' => true,
 			'priority' => 3,
@@ -185,7 +185,7 @@ function pno_get_registration_fields() {
 
 	if ( pno_get_option( 'enable_role_selection' ) ) {
 		$fields['role'] = array(
-			'label'    => __( 'Register as:' ),
+			'label'    => __( 'Register as:', 'posterno' ),
 			'type'     => 'select',
 			'required' => true,
 			'options'  => pno_get_allowed_user_roles(),
@@ -195,7 +195,7 @@ function pno_get_registration_fields() {
 	}
 
 	$fields['robo'] = [
-		'label'    => esc_html__( 'If you\'re human leave this blank:' ),
+		'label'    => esc_html__( 'If you\'re human leave this blank:', 'posterno' ),
 		'type'     => 'text',
 		'required' => false,
 		'priority' => 100,
@@ -207,7 +207,7 @@ function pno_get_registration_fields() {
 		$terms_page = is_array( $terms_page ) && isset( $terms_page['value'] ) ? $terms_page['value'] : false;
 		if ( $terms_page ) {
 			$fields['terms'] = array(
-				'label'    => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.' ), get_permalink( $terms_page ) ) ),
+				'label'    => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.', 'posterno' ), get_permalink( $terms_page ) ) ),
 				'type'     => 'checkbox',
 				'required' => true,
 				'priority' => 101,
@@ -218,7 +218,7 @@ function pno_get_registration_fields() {
 	// Add privacy checkbox if privacy page is enabled.
 	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
 		$fields['privacy'] = array(
-			'label'    => apply_filters( 'pno_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'label'    => apply_filters( 'pno_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.', 'posterno' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
 			'type'     => 'checkbox',
 			'required' => true,
 			'priority' => 102,
@@ -228,7 +228,7 @@ function pno_get_registration_fields() {
 	// Add a password confirmation field.
 	if ( pno_get_option( 'verify_password' ) && ! pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
 		$fields['password_confirm'] = array(
-			'label'    => esc_html__( 'Confirm password' ),
+			'label'    => esc_html__( 'Confirm password', 'posterno' ),
 			'type'     => 'password',
 			'required' => true,
 			'priority' => $fields['password']['priority'] + 1,
@@ -326,7 +326,7 @@ function pno_get_account_fields( $user_id = false ) {
 
 	$fields = [
 		'avatar'      => [
-			'label'              => esc_html__( 'Profile picture' ),
+			'label'              => esc_html__( 'Profile picture', 'posterno' ),
 			'type'               => 'file',
 			'required'           => false,
 			'placeholder'        => '',
@@ -337,46 +337,46 @@ function pno_get_account_fields( $user_id = false ) {
 				'gif'  => 'image/gif',
 				'png'  => 'image/png',
 			],
-			'default_field' => true,
+			'default_field'      => true,
 		],
 		'first_name'  => [
-			'label'       => esc_html__( 'First name' ),
-			'type'        => 'text',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 2,
+			'label'         => esc_html__( 'First name', 'posterno' ),
+			'type'          => 'text',
+			'required'      => true,
+			'placeholder'   => '',
+			'priority'      => 2,
 			'default_field' => true,
 		],
 		'last_name'   => [
-			'label'       => esc_html__( 'Last name' ),
-			'type'        => 'text',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 3,
+			'label'         => esc_html__( 'Last name', 'posterno' ),
+			'type'          => 'text',
+			'required'      => true,
+			'placeholder'   => '',
+			'priority'      => 3,
 			'default_field' => true,
 		],
 		'email'       => [
-			'label'       => esc_html__( 'Email address' ),
-			'type'        => 'email',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 4,
+			'label'         => esc_html__( 'Email address', 'posterno' ),
+			'type'          => 'email',
+			'required'      => true,
+			'placeholder'   => '',
+			'priority'      => 4,
 			'default_field' => true,
 		],
 		'website'     => [
-			'label'       => esc_html__( 'Website' ),
-			'type'        => 'url',
-			'required'    => false,
-			'placeholder' => '',
-			'priority'    => 5,
+			'label'         => esc_html__( 'Website', 'posterno' ),
+			'type'          => 'url',
+			'required'      => false,
+			'placeholder'   => '',
+			'priority'      => 5,
 			'default_field' => true,
 		],
 		'description' => [
-			'label'       => esc_html__( 'About me' ),
-			'type'        => 'editor',
-			'required'    => false,
-			'placeholder' => '',
-			'priority'    => 6,
+			'label'         => esc_html__( 'About me', 'posterno' ),
+			'type'          => 'editor',
+			'required'      => false,
+			'placeholder'   => '',
+			'priority'      => 6,
 			'default_field' => true,
 		],
 	];
@@ -694,56 +694,56 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 	$fields = [
 		'listing_title'                 => [
-			'label'         => esc_html__( 'Listing title' ),
+			'label'         => esc_html__( 'Listing title', 'posterno' ),
 			'type'          => 'text',
 			'required'      => true,
 			'priority'      => 1,
 			'default_field' => true,
 		],
 		'listing_description'           => [
-			'label'         => esc_html__( 'Description' ),
+			'label'         => esc_html__( 'Description', 'posterno' ),
 			'type'          => 'editor',
 			'required'      => true,
 			'priority'      => 2,
 			'default_field' => true,
 		],
 		'listing_email_address'         => [
-			'label'         => esc_html__( 'Email address' ),
+			'label'         => esc_html__( 'Email address', 'posterno' ),
 			'type'          => 'email',
 			'required'      => false,
 			'priority'      => 3,
 			'default_field' => true,
 		],
 		'listing_phone_number'          => [
-			'label'         => esc_html__( 'Phone number' ),
+			'label'         => esc_html__( 'Phone number', 'posterno' ),
 			'type'          => 'text',
 			'required'      => false,
 			'priority'      => 4,
 			'default_field' => true,
 		],
 		'listing_website'               => [
-			'label'         => esc_html__( 'Website' ),
+			'label'         => esc_html__( 'Website', 'posterno' ),
 			'type'          => 'url',
 			'required'      => false,
 			'priority'      => 5,
 			'default_field' => true,
 		],
 		'listing_video'                 => [
-			'label'         => esc_html__( 'Video' ),
+			'label'         => esc_html__( 'Video', 'posterno' ),
 			'type'          => 'url',
 			'required'      => false,
 			'priority'      => 6,
 			'default_field' => true,
 		],
 		'listing_social_media_profiles' => [
-			'label'         => esc_html__( 'Social media profiles' ),
+			'label'         => esc_html__( 'Social media profiles', 'posterno' ),
 			'type'          => 'social-profiles',
 			'required'      => false,
 			'priority'      => 7,
 			'default_field' => true,
 		],
 		'listing_categories'            => [
-			'label'         => esc_html__( 'Listing category' ),
+			'label'         => esc_html__( 'Listing category', 'posterno' ),
 			'type'          => 'listing-category',
 			'taxonomy'      => 'listings-categories',
 			'required'      => true,
@@ -752,30 +752,30 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'default_field' => true,
 		],
 		'listing_tags'                  => [
-			'label'         => esc_html__( 'Listing tags' ),
+			'label'         => esc_html__( 'Listing tags', 'posterno' ),
 			'type'          => 'listing-tags',
 			'required'      => true,
 			'priority'      => 9,
 			'default_field' => true,
 		],
 		'listing_regions'               => [
-			'label'         => esc_html__( 'Listing regions' ),
+			'label'         => esc_html__( 'Listing regions', 'posterno' ),
 			'type'          => 'term-chain-dropdown',
 			'taxonomy'      => 'listings-locations',
-			'placeholder'   => esc_html__( 'Select a region' ),
+			'placeholder'   => esc_html__( 'Select a region', 'posterno' ),
 			'required'      => true,
 			'priority'      => 10,
 			'default_field' => true,
 		],
 		'listing_opening_hours'         => [
-			'label'         => esc_html__( 'Hours of operation' ),
+			'label'         => esc_html__( 'Hours of operation', 'posterno' ),
 			'type'          => 'listing-opening-hours',
 			'required'      => false,
 			'priority'      => 11,
 			'default_field' => true,
 		],
 		'listing_featured_image'        => [
-			'label'              => esc_html__( 'Featured image' ),
+			'label'              => esc_html__( 'Featured image', 'posterno' ),
 			'type'               => 'file',
 			'required'           => true,
 			'priority'           => 12,
@@ -783,7 +783,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'dropzone_max_files' => 1,
 		],
 		'listing_gallery'               => [
-			'label'         => esc_html__( 'Gallery images' ),
+			'label'         => esc_html__( 'Gallery images', 'posterno' ),
 			'type'          => 'file',
 			'multiple'      => true,
 			'required'      => true,
@@ -791,14 +791,14 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'default_field' => true,
 		],
 		'listing_zipcode'               => [
-			'label'         => esc_html__( 'Zipcode' ),
+			'label'         => esc_html__( 'Zipcode', 'posterno' ),
 			'type'          => 'text',
 			'required'      => false,
 			'priority'      => 14,
 			'default_field' => true,
 		],
 		'listing_location'              => [
-			'label'         => esc_html__( 'Location' ),
+			'label'         => esc_html__( 'Location', 'posterno' ),
 			'type'          => 'listing-location',
 			'required'      => false,
 			'priority'      => 15,
@@ -1061,9 +1061,9 @@ function pno_dropdown_categories( $args = '' ) {
 		'value'           => 'id',
 		'multiple'        => true,
 		'show_option_all' => false,
-		'placeholder'     => __( 'Choose a category&hellip;' ),
-		'no_results_text' => __( 'No results match' ),
-		'multiple_text'   => __( 'Select Some Options' ),
+		'placeholder'     => __( 'Choose a category&hellip;', 'posterno' ),
+		'no_results_text' => __( 'No results match', 'posterno' ),
+		'multiple_text'   => __( 'Select Some Options', 'posterno' ),
 	);
 
 	$r = wp_parse_args( $args, $defaults );

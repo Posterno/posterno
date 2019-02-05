@@ -26,8 +26,8 @@ function pno_after_theme_setup_load() {
 		add_theme_support( 'menus' );
 	}
 
-	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu' ) );
-	register_nav_menu( 'pno-profile-menu', esc_html__( 'Posterno Profile Menu' ) );
+	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu', 'posterno' ) );
+	register_nav_menu( 'pno-profile-menu', esc_html__( 'Posterno Profile Menu', 'posterno' ) );
 
 }
 add_action( 'after_setup_theme', 'pno_after_theme_setup_load', 20 );
@@ -80,7 +80,7 @@ function pno_display_restricted_access_message( $form ) {
 
 	$message = apply_filters(
 		'pno_login_form_restricted_message',
-		sprintf( __( 'You need to be logged in to access the "%1$s" page. Please login below or <a href="%2$s">register</a>.' ), $page_title, get_permalink( pno_get_registration_page_id() ) )
+		sprintf( __( 'You need to be logged in to access the "%1$s" page. Please login below or <a href="%2$s">register</a>.', 'posterno' ), $page_title, get_permalink( pno_get_registration_page_id() ) )
 	);
 
 	$data = [
@@ -207,12 +207,12 @@ add_action( 'wp_head', 'pno_version_in_header' );
 function pno_adjust_wplogin_form_labels() {
 
 	$login_method    = pno_get_option( 'login_method' );
-	$translated_text = esc_html__( 'Username or email address' );
+	$translated_text = esc_html__( 'Username or email address', 'posterno' );
 
 	if ( $login_method === 'username' ) {
-		$translated_text = esc_html__( 'Username' );
+		$translated_text = esc_html__( 'Username', 'posterno' );
 	} elseif ( $login_method === 'email' ) {
-		$translated_text = esc_html__( 'Email' );
+		$translated_text = esc_html__( 'Email', 'posterno' );
 	}
 
 	add_filter(

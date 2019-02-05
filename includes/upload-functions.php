@@ -98,12 +98,12 @@ function pno_upload_file( $file, $args = array() ) {
 		$file_size = $file['size'];
 		$max_size  = absint( $args['max_size'] );
 		if ( $file_size > $max_size ) {
-			return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" exceeds the maximum file size of: %2$s' ), $file['name'], size_format( $max_size ) ) );
+			return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" exceeds the maximum file size of: %2$s', 'posterno' ), $file['name'], size_format( $max_size ) ) );
 		}
 	}
 
 	if ( is_array( $file_extension ) && isset( $file_extension['type'] ) && ! in_array( $file_extension['type'], $allowed_mime_types ) ) {
-		return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" needs to be one of the following file types: %2$s' ), $file['name'], implode( ', ', array_values( $allowed_mime_types ) ) ) );
+		return new WP_Error( 'upload', sprintf( __( 'Uploaded file "%1$s" needs to be one of the following file types: %2$s', 'posterno' ), $file['name'], implode( ', ', array_values( $allowed_mime_types ) ) ) );
 	} else {
 		$upload = wp_handle_upload( $file, apply_filters( 'submit_pno_handle_upload_overrides', array( 'test_form' => false ) ) );
 		if ( ! empty( $upload['error'] ) ) {

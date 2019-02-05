@@ -367,10 +367,10 @@ abstract class PNO_Form {
 			foreach ( $group_fields as $key => $field ) {
 				if ( $field['required'] && empty( $values[ $group_key ][ $key ] ) ) {
 					// translators: Placeholder %s is the label for the required field.
-					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'posterno' ), $field['label'] ) );
 				}
 				if ( $field['required'] && $values[ $group_key ][ $key ] === '[]' && in_array( $field['type'], array( 'term-chain-dropdown', 'listing-category', 'listing-tags', 'social-profiles' ), true ) ) {
-					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field' ), $field['label'] ) );
+					return new WP_Error( 'validation-error', sprintf( __( '%s is a required field', 'posterno' ), $field['label'] ) );
 				}
 				if ( ! empty( $field['taxonomy'] ) && in_array( $field['type'], array( 'term-checklist', 'term-select', 'term-multiselect', 'term-chain-dropdown', 'listing-category', 'listing-tags' ), true ) ) {
 
@@ -384,7 +384,7 @@ abstract class PNO_Form {
 					foreach ( $check_value as $term ) {
 						if ( ! term_exists( absint( $term ), $field['taxonomy'] ) ) {
 							// translators: Placeholder %s is the field label that is did not validate.
-							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid' ), $field['label'] ) );
+							return new WP_Error( 'validation-error', sprintf( __( '%s is invalid', 'posterno' ), $field['label'] ) );
 						}
 					}
 				}
@@ -404,7 +404,7 @@ abstract class PNO_Form {
 							}
 							$file_url = esc_url( $file_url, array( 'http', 'https' ) );
 							if ( empty( $file_url ) ) {
-								throw new Exception( __( 'Invalid attachment provided.' ) );
+								throw new Exception( __( 'Invalid attachment provided.', 'posterno' ) );
 							}
 						}
 					}
@@ -421,7 +421,7 @@ abstract class PNO_Form {
 							$file_info = wp_check_filetype( $file_url );
 							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'], true ) ) {
 								// translators: Placeholder %1$s is field label; %2$s is the file mime type; %3$s is the allowed mime-types.
-								throw new Exception( sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
+								throw new Exception( sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s', 'posterno' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}
 						}
 					}

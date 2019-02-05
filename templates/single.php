@@ -49,7 +49,7 @@ do_action( 'pno_before_single_listing' );
 <div id="pno-single-listing" <?php pno_listing_class( 'pno-single-listing-wrapper' ); ?>>
 
 	<?php if ( pno_listing_is_featured( $listing_id ) ) : ?>
-		<span class="badge badge-pill badge-warning featured-badge mb-3"><?php esc_html_e( 'Featured' ); ?></span>
+		<span class="badge badge-pill badge-warning featured-badge mb-3"><?php esc_html_e( 'Featured', 'posterno' ); ?></span>
 	<?php endif; ?>
 
 	<?php if ( ! empty( $categories ) && is_array( $categories ) ) : ?>
@@ -113,7 +113,7 @@ do_action( 'pno_before_single_listing' );
 
 	<div class="listing-contact-info">
 
-		<h4><?php esc_html_e( 'Contact information' ); ?></h4>
+		<h4><?php esc_html_e( 'Contact information', 'posterno' ); ?></h4>
 
 		<div class="row">
 			<div class="col-md-6">
@@ -173,7 +173,7 @@ do_action( 'pno_before_single_listing' );
 
 		<div class="listing-custom-fields mt-4">
 
-			<h4><?php esc_html_e( 'Other information' ); ?></h4>
+			<h4><?php esc_html_e( 'Other information', 'posterno' ); ?></h4>
 
 			<ul class="list-group m-0">
 				<?php

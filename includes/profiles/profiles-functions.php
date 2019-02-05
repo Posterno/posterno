@@ -118,10 +118,10 @@ function pno_get_user_registration_date( $user_id_or_object = false ) {
 function pno_get_profile_components() {
 
 	$items = [
-		'about'    => esc_html__( 'About' ),
-		'posts'    => esc_html__( 'Posts' ),
-		'listings' => esc_html__( 'Listings' ),
-		'comments' => esc_html__( 'Comments' ),
+		'about'    => esc_html__( 'About', 'posterno' ),
+		'posts'    => esc_html__( 'Posts', 'posterno' ),
+		'listings' => esc_html__( 'Listings', 'posterno' ),
+		'comments' => esc_html__( 'Comments', 'posterno' ),
 	];
 
 	/**

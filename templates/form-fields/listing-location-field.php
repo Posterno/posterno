@@ -46,15 +46,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="form-row mb-3" v-show="customCoordinates">
 			<div class="col">
-				<label for="custom-lat"><?php esc_html_e( 'Latitude' ); ?></label>
-				<input type="text" id="custom-lat" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude' ); ?>" @input="enableCoordinatesSave()">
+				<label for="custom-lat"><?php esc_html_e( 'Latitude', 'posterno' ); ?></label>
+				<input type="text" id="custom-lat" class="form-control" v-model="coordinates.lat" placeholder="<?php esc_html_e( 'Latitude', 'posterno' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col">
-				<label for="custom-lng"><?php esc_html_e( 'Longitude' ); ?></label>
-				<input type="text" id="custom-lng" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude' ); ?>" @input="enableCoordinatesSave()">
+				<label for="custom-lng"><?php esc_html_e( 'Longitude', 'posterno' ); ?></label>
+				<input type="text" id="custom-lng" class="form-control" v-model="coordinates.lng" placeholder="<?php esc_html_e( 'Longitude', 'posterno' ); ?>" @input="enableCoordinatesSave()">
 			</div>
 			<div class="col-md-12 mt-3">
-				<button type="button" class="btn btn-secondary btn-block" @click="saveCustomCoordinates()" :disabled="coordinatesBtnDisabled"><?php esc_html_e( 'Save coordinates' ); ?></button>
+				<button type="button" class="btn btn-secondary btn-block" @click="saveCustomCoordinates()" :disabled="coordinatesBtnDisabled"><?php esc_html_e( 'Save coordinates', 'posterno' ); ?></button>
 			</div>
 		</div>
 
@@ -62,21 +62,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a class="nav-item nav-link" href="#" @click.prevent.stop="togglePinLock()">
 				<span v-if="pinLock === true">
 					<i class="fas fa-lock mr-2"></i>
-					<?php esc_html_e( 'Unlock pin location' ); ?>
+					<?php esc_html_e( 'Unlock pin location', 'posterno' ); ?>
 				</span>
 				<span v-else>
 					<i class="fas fa-lock-open mr-2"></i>
-					<?php esc_html_e( 'Lock pin location' ); ?>
+					<?php esc_html_e( 'Lock pin location', 'posterno' ); ?>
 				</span>
 			</a>
 			<a class="nav-item nav-link" href="#" @click.prevent.stop="toggleCustomCoordinates()">
 				<span v-if="customCoordinates === true">
 					<i class="fas fa-times-circle mr-2"></i>
-					<?php esc_html_e( 'Hide coordinates' ); ?>
+					<?php esc_html_e( 'Hide coordinates', 'posterno' ); ?>
 				</span>
 				<span v-else>
 					<i class="fas fa-map-pin mr-2"></i>
-					<?php esc_html_e( 'Enter coordinates' ); ?>
+					<?php esc_html_e( 'Enter coordinates', 'posterno' ); ?>
 				</span>
 			</a>
 		</nav>

@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  * @return void
  */
 function pno_dashboard_menu_metabox() {
-	add_meta_box( 'add-wpum-nav-menu', esc_html__( 'Posterno' ), 'pno_dashboard_do_wp_nav_menu_metabox', 'nav-menus', 'side', 'default' );
+	add_meta_box( 'add-wpum-nav-menu', esc_html__( 'Posterno', 'posterno' ), 'pno_dashboard_do_wp_nav_menu_metabox', 'nav-menus', 'side', 'default' );
 	add_action( 'admin_print_footer_scripts', 'pno_menu_metabox_editor_scripts' );
 }
 add_action( 'load-nav-menus.php', 'pno_dashboard_menu_metabox' );
@@ -37,9 +37,9 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 	$tabs           = array();
 	$post_type_name = 'posterno';
 
-	$tabs['loggedin']['label']  = __( 'Logged-In' );
+	$tabs['loggedin']['label']  = __( 'Logged-In', 'posterno' );
 	$tabs['loggedin']['pages']  = pno_nav_menu_get_loggedin_pages();
-	$tabs['loggedout']['label'] = __( 'Logged-Out' );
+	$tabs['loggedout']['label'] = __( 'Logged-Out', 'posterno' );
 	$tabs['loggedout']['pages'] = pno_nav_menu_get_loggedout_pages();
 	$tabs['profile']['pages']   = pno_nav_menu_get_profile_page_components();
 
@@ -70,8 +70,8 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 
 	<div id="pno-menu" class="posttypediv">
 
-		<h4><?php esc_html_e( 'Logged-In' ); ?></h4>
-		<p><?php esc_html_e( 'Logged-In links are relative to the current user, and are not visible to visitors who are not logged in.' ); ?></p>
+		<h4><?php esc_html_e( 'Logged-In', 'posterno' ); ?></h4>
+		<p><?php esc_html_e( 'Logged-In links are relative to the current user, and are not visible to visitors who are not logged in.', 'posterno' ); ?></p>
 
 		<div id="tabs-panel-posttype-<?php echo esc_attr( $post_type_name ); ?>-loggedin" class="tabs-panel tabs-panel-active">
 			<ul id="pno-menu-checklist-loggedin" class="categorychecklist form-no-clear">
@@ -79,8 +79,8 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 			</ul>
 		</div>
 
-		<h4><?php esc_html_e( 'Logged-Out' ); ?></h4>
-		<p><?php esc_html_e( 'Logged-Out links are not visible to users who are logged in.' ); ?></p>
+		<h4><?php esc_html_e( 'Logged-Out', 'posterno' ); ?></h4>
+		<p><?php esc_html_e( 'Logged-Out links are not visible to users who are logged in.', 'posterno' ); ?></p>
 
 		<div id="tabs-panel-posttype-<?php echo esc_attr( $post_type_name ); ?>-loggedout" class="tabs-panel tabs-panel-active">
 			<ul id="pno-menu-checklist-loggedout" class="categorychecklist form-no-clear">
@@ -88,8 +88,8 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 			</ul>
 		</div>
 
-		<h4><?php esc_html_e( 'Profile page components' ); ?></h4>
-		<p><?php esc_html_e( 'These links are exclusive to the profile page menu and cannot be used anywhere else.' ); ?></p>
+		<h4><?php esc_html_e( 'Profile page components', 'posterno' ); ?></h4>
+		<p><?php esc_html_e( 'These links are exclusive to the profile page menu and cannot be used anywhere else.', 'posterno' ); ?></p>
 
 		<div id="tabs-panel-posttype-<?php echo esc_attr( $post_type_name ); ?>-loggedout" class="tabs-panel tabs-panel-active">
 			<ul id="pno-menu-checklist-loggedout" class="categorychecklist form-no-clear">
@@ -99,7 +99,7 @@ function pno_dashboard_do_wp_nav_menu_metabox() {
 
 		<p class="button-controls">
 			<span class="add-to-menu">
-				<input type="submit" <?php echo esc_attr( $disable_check ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e( 'Add to Menu' ); ?>" name="add-custom-menu-item" id="submit-pno-menu" />
+				<input type="submit" <?php echo esc_attr( $disable_check ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e( 'Add to Menu', 'posterno' ); ?>" name="add-custom-menu-item" id="submit-pno-menu" />
 				<span class="spinner"></span>
 			</span>
 		</p>
@@ -128,7 +128,7 @@ function pno_nav_menu_get_loggedin_pages() {
 	}
 
 	$menu_items[] = array(
-		'name' => esc_html__( 'Logout' ),
+		'name' => esc_html__( 'Logout', 'posterno' ),
 		'slug' => 'logout',
 		'link' => wp_logout_url(),
 	);
@@ -169,19 +169,19 @@ function pno_nav_menu_get_loggedout_pages() {
 	$menu_items = array();
 
 	$menu_items[] = array(
-		'name' => esc_html__( 'Login' ),
+		'name' => esc_html__( 'Login', 'posterno' ),
 		'slug' => 'login',
 		'link' => get_permalink( pno_get_login_page_id() ),
 	);
 
 	$menu_items[] = array(
-		'name' => esc_html__( 'Lost password' ),
+		'name' => esc_html__( 'Lost password', 'posterno' ),
 		'slug' => 'lost-password',
 		'link' => get_permalink( pno_get_password_recovery_page_id() ),
 	);
 
 	$menu_items[] = array(
-		'name' => esc_html__( 'Registration' ),
+		'name' => esc_html__( 'Registration', 'posterno' ),
 		'slug' => 'registration',
 		'link' => get_permalink( pno_get_registration_page_id() ),
 	);

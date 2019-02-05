@@ -174,8 +174,8 @@ class PNO_Emails {
 	 */
 	public function get_templates() {
 		$templates = array(
-			'default' => esc_html__( 'Default Template' ),
-			'none'    => __( 'No template, plain text only' ),
+			'default' => esc_html__( 'Default Template', 'posterno' ),
+			'none'    => __( 'No template, plain text only', 'posterno' ),
 		);
 		return apply_filters( 'pno_email_templates', $templates );
 	}
@@ -257,7 +257,7 @@ class PNO_Emails {
 	public function send( $to, $subject, $message, $attachments = '' ) {
 
 		if ( ! did_action( 'init' ) && ! did_action( 'admin_init' ) ) {
-			_doing_it_wrong( __FUNCTION__, __( 'You cannot send emails with PNO_Emails until init/admin_init has been reached' ), null );
+			_doing_it_wrong( __FUNCTION__, __( 'You cannot send emails with PNO_Emails until init/admin_init has been reached', 'posterno' ), null );
 			return false;
 		}
 
@@ -357,93 +357,93 @@ class PNO_Emails {
 
 		$email_tags = array(
 			array(
-				'name'        => esc_html__( 'Website name' ),
-				'description' => esc_html__( 'Display the name of the website.' ),
+				'name'        => esc_html__( 'Website name', 'posterno' ),
+				'description' => esc_html__( 'Display the name of the website.', 'posterno' ),
 				'tag'         => 'sitename',
 				'function'    => 'pno_email_tag_sitename',
 			),
 			array(
-				'name'        => esc_html__( 'Website URL' ),
-				'description' => esc_html__( 'The website url.' ),
+				'name'        => esc_html__( 'Website URL', 'posterno' ),
+				'description' => esc_html__( 'The website url.', 'posterno' ),
 				'tag'         => 'website',
 				'function'    => 'pno_email_tag_website',
 			),
 			array(
-				'name'        => esc_html__( 'Username' ),
-				'description' => esc_html__( 'Display the user\'s username.' ),
+				'name'        => esc_html__( 'Username', 'posterno' ),
+				'description' => esc_html__( 'Display the user\'s username.', 'posterno' ),
 				'tag'         => 'username',
 				'function'    => 'pno_email_tag_username',
 			),
 			array(
-				'name'        => esc_html__( 'User email' ),
-				'description' => esc_html__( 'Display the user\'s email.' ),
+				'name'        => esc_html__( 'User email', 'posterno' ),
+				'description' => esc_html__( 'Display the user\'s email.', 'posterno' ),
 				'tag'         => 'email',
 				'function'    => 'pno_email_tag_email',
 			),
 			array(
-				'name'        => esc_html__( 'Plain text password' ),
-				'description' => esc_html__( 'Display the password randomly generated at signup or the password chosen by the user.' ),
+				'name'        => esc_html__( 'Plain text password', 'posterno' ),
+				'description' => esc_html__( 'Display the password randomly generated at signup or the password chosen by the user.', 'posterno' ),
 				'tag'         => 'password',
 				'function'    => 'pno_email_tag_password',
 			),
 			array(
-				'name'        => esc_html__( 'Login page url' ),
-				'description' => esc_html__( 'Display the login page url.' ),
+				'name'        => esc_html__( 'Login page url', 'posterno' ),
+				'description' => esc_html__( 'Display the login page url.', 'posterno' ),
 				'tag'         => 'login_page_url',
 				'function'    => 'pno_email_tag_login_page_url',
 			),
 			array(
-				'name'        => esc_html__( 'Password recovery url' ),
-				'description' => esc_html__( 'Display the password recovery url.' ),
+				'name'        => esc_html__( 'Password recovery url', 'posterno' ),
+				'description' => esc_html__( 'Display the password recovery url.', 'posterno' ),
 				'tag'         => 'recovery_url',
 				'function'    => 'pno_email_tag_password_recovery_url',
 			),
 			array(
-				'name'        => esc_html__( 'Listing ID' ),
-				'description' => esc_html__( 'Display listing ID number.' ),
+				'name'        => esc_html__( 'Listing ID', 'posterno' ),
+				'description' => esc_html__( 'Display listing ID number.', 'posterno' ),
 				'tag'         => 'listing_id_number',
 				'function'    => 'pno_email_tag_listing_id_number',
 			),
 			array(
-				'name'        => esc_html__( 'Listing title' ),
-				'description' => esc_html__( 'Display listing title.' ),
+				'name'        => esc_html__( 'Listing title', 'posterno' ),
+				'description' => esc_html__( 'Display listing title.', 'posterno' ),
 				'tag'         => 'listing_title',
 				'function'    => 'pno_email_tag_listing_title',
 			),
 			array(
-				'name'        => esc_html__( 'Listing submission date' ),
-				'description' => esc_html__( 'Display listing submission date.' ),
+				'name'        => esc_html__( 'Listing submission date', 'posterno' ),
+				'description' => esc_html__( 'Display listing submission date.', 'posterno' ),
 				'tag'         => 'listing_submission_date',
 				'function'    => 'pno_email_tag_listing_submission_date',
 			),
 			array(
-				'name'        => esc_html__( 'Listing expiry date' ),
-				'description' => esc_html__( 'Display listing expiration date.' ),
+				'name'        => esc_html__( 'Listing expiry date', 'posterno' ),
+				'description' => esc_html__( 'Display listing expiration date.', 'posterno' ),
 				'tag'         => 'listing_expiration_date',
 				'function'    => 'pno_email_tag_listing_expiry_date',
 			),
 			array(
-				'name'        => esc_html__( 'Listing url' ),
-				'description' => esc_html__( 'Display listing url.' ),
+				'name'        => esc_html__( 'Listing url', 'posterno' ),
+				'description' => esc_html__( 'Display listing url.', 'posterno' ),
 				'tag'         => 'listing_url',
 				'function'    => 'pno_email_tag_listing_url',
 				'listing'     => true,
 			),
 			array(
-				'name'        => esc_html__( 'Sender name' ),
-				'description' => esc_html__( 'Displays the name of the sender. Used for contact forms only.' ),
+				'name'        => esc_html__( 'Sender name', 'posterno' ),
+				'description' => esc_html__( 'Displays the name of the sender. Used for contact forms only.', 'posterno' ),
 				'tag'         => 'sender_name',
 				'function'    => 'pno_email_tag_sender_name',
 			),
 			array(
-				'name'        => esc_html__( 'Sender email' ),
-				'description' => esc_html__( 'Displays the email of the sender. Used for contact forms only.' ),
+				'name'        => esc_html__( 'Sender email', 'posterno' ),
+				'description' => esc_html__( 'Displays the email of the sender. Used for contact forms only.', 'posterno' ),
 				'tag'         => 'sender_email',
 				'function'    => 'pno_email_tag_sender_email',
 			),
 			array(
-				'name'        => esc_html__( 'Sender message' ),
-				'description' => esc_html__( 'Displays the message of the sender. Used for contact forms only.' ),
+				'name'        => esc_html__( 'Sender message', 'posterno' ),
+				'description' => esc_html__( 'Displays the message of the sender. Used for contact forms only.', 'posterno' ),
 				'tag'         => 'sender_message',
 				'function'    => 'pno_email_tag_sender_message',
 			),

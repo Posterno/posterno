@@ -24,10 +24,10 @@ class ListingLocationMap extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_location_map_widget',
-			esc_html__( '[Posterno] Listing location map' ),
-			esc_html__( 'Displays the current listing\'s location on the map.' ),
+			esc_html__( '[Posterno] Listing location map', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s location on the map.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) )->set_default_value( esc_html__( 'Location' ) ),
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) )->set_default_value( esc_html__( 'Location', 'posterno' ) ),
 			),
 			'pno-widget-listing-location-map'
 		);

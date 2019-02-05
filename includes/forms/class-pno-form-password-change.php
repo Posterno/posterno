@@ -56,13 +56,13 @@ class PNO_Form_Password_Change extends PNO_Form {
 
 		$steps = array(
 			'submit'  => array(
-				'name'     => esc_html__( 'Change password' ),
+				'name'     => esc_html__( 'Change password', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
 			),
 			'updated' => array(
-				'name'     => esc_html__( 'Change password' ),
+				'name'     => esc_html__( 'Change password', 'posterno' ),
 				'view'     => array( $this, 'updated' ),
 				'handler'  => false,
 				'priority' => 11,
@@ -99,21 +99,21 @@ class PNO_Form_Password_Change extends PNO_Form {
 		$fields = array(
 			'password-change' => array(
 				'password_current'    => array(
-					'label'       => esc_html__( 'Current password' ),
+					'label'       => esc_html__( 'Current password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 0,
 				),
 				'password'        => array(
-					'label'       => esc_html__( 'New password' ),
+					'label'       => esc_html__( 'New password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
 				),
 				'password_confirm' => array(
-					'label'       => esc_html__( 'Repeat new password' ),
+					'label'       => esc_html__( 'Repeat new password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
@@ -148,7 +148,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 			$contains_digit   = preg_match( '/\d/', $password_1 );
 			$contains_special = preg_match( '/[^a-zA-Z\d]/', $password_1 );
 			if ( ! $contains_letter || ! $contains_digit || ! $contains_special || strlen( $password_1 ) < 8 ) {
-				return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.' ) );
+				return new WP_Error( 'password-validation-error', esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.', 'posterno' ) );
 			}
 		}
 
@@ -156,7 +156,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 			$password_1 = $values['password-change']['password'];
 			$password_2 = $values['password-change']['password'];
 			if ( $password_1 !== $password_2 ) {
-				return new WP_Error( 'passwords-not-matching', esc_html__( 'Passwords do not match.' ) );
+				return new WP_Error( 'passwords-not-matching', esc_html__( 'Passwords do not match.', 'posterno' ) );
 			}
 		}
 		return $pass;
@@ -176,7 +176,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 					'action'       => $this->get_action(),
 					'fields'       => $this->get_fields( 'password-change' ),
 					'step'         => $this->get_step(),
-					'submit_label' => esc_html__( 'Change password' ),
+					'submit_label' => esc_html__( 'Change password', 'posterno' ),
 					'title'        => $this->steps[ $this->get_step_key( $this->get_step() ) ]['name'],
 				]
 			)
@@ -240,7 +240,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 					 * @param string $message the message.
 					 * @return string
 					 */
-					$message = apply_filters( 'pno_password_change_confirmation_message', esc_html__( 'Password successfully updated.' ) );
+					$message = apply_filters( 'pno_password_change_confirmation_message', esc_html__( 'Password successfully updated.', 'posterno' ) );
 
 					$this->unbind();
 					$this->set_as_successful();
@@ -248,7 +248,7 @@ class PNO_Form_Password_Change extends PNO_Form {
 					return;
 				}
 			} else {
-				throw new Exception( __( 'The password you entered is incorrect.' ) );
+				throw new Exception( __( 'The password you entered is incorrect.', 'posterno' ) );
 			}
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage(), $e->getErrorCode() );

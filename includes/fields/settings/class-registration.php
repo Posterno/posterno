@@ -38,7 +38,7 @@ class Registration {
 	public function get_settings_tabs() {
 
 		$tabs = [
-			'general' => esc_html__( 'General' ),
+			'general' => esc_html__( 'General', 'posterno' ),
 		];
 
 		/**
@@ -75,7 +75,7 @@ class Registration {
 				)
 			);
 
-		$settings[] = Field::make( 'checkbox', 'registration_field_is_required', esc_html__( 'Set as required' ) )
+		$settings[] = Field::make( 'checkbox', 'registration_field_is_required', esc_html__( 'Set as required', 'posterno' ) )
 			->set_conditional_logic(
 				array(
 					'relation' => 'AND',
@@ -86,16 +86,16 @@ class Registration {
 					),
 				)
 			)
-			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.' ) );
+			->set_help_text( esc_html__( 'Enable this option so the field must be filled before the form can be processed.', 'posterno' ) );
 
-		$settings[] = Field::make( 'text', 'registration_field_label', esc_html__( 'Custom form label' ) )
-			->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.' ) );
+		$settings[] = Field::make( 'text', 'registration_field_label', esc_html__( 'Custom form label', 'posterno' ) )
+			->set_help_text( esc_html__( 'This text will be used as label within the registration forms. Leave blank to use the field title.', 'posterno' ) );
 
-		$settings[] = Field::make( 'text', 'registration_field_placeholder', esc_html__( 'Placeholder' ) )
-			->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.' ) );
+		$settings[] = Field::make( 'text', 'registration_field_placeholder', esc_html__( 'Placeholder', 'posterno' ) )
+			->set_help_text( esc_html__( 'This text will appear within the field when empty. Leave blank if not needed.', 'posterno' ) );
 
-		$settings[] = Field::make( 'textarea', 'registration_field_description', esc_html__( 'Field description' ) )
-			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.' ) );
+		$settings[] = Field::make( 'textarea', 'registration_field_description', esc_html__( 'Field description', 'posterno' ) )
+			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.', 'posterno' ) );
 
 		/**
 		 * Allow developers to customize the settings for the registration field post type.
@@ -118,7 +118,7 @@ class Registration {
 		$datastore = new \PNO\Datastores\CustomFieldSettings();
 		$datastore->set_custom_field_type( 'registration' );
 
-		$container = Container::make( 'post_meta', esc_html__( 'Field settings' ) )
+		$container = Container::make( 'post_meta', esc_html__( 'Field settings', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_signup_fields' );
 

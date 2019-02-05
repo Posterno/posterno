@@ -43,14 +43,14 @@ class PNO_Listings_Featured {
 	 */
 	public function register_settings() {
 
-		Container::make( 'post_meta', esc_html__( 'Featured' ) )
+		Container::make( 'post_meta', esc_html__( 'Featured', 'posterno' ) )
 			->where( 'post_type', '=', 'listings' )
 			->set_context( 'side' )
 			->set_priority( 'low' )
 			->add_fields(
 				array(
-					Field::make( 'checkbox', 'listing_is_featured', esc_html__( 'Listing is featured' ) )
-						->help_text( esc_html__( 'Featured listings will show at the top of the list during searches, and can be styled differently.' ) ),
+					Field::make( 'checkbox', 'listing_is_featured', esc_html__( 'Listing is featured', 'posterno' ) )
+						->help_text( esc_html__( 'Featured listings will show at the top of the list during searches, and can be styled differently.', 'posterno' ) ),
 				)
 			);
 

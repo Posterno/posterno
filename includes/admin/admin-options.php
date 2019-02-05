@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit;
 function pno_get_registered_settings_tabs() {
 
 	$tabs = [
-		'general'  => esc_html__( 'General' ),
-		'accounts' => esc_html__( 'Accounts' ),
-		'profiles' => esc_html__( 'Profiles' ),
-		'emails'   => esc_html__( 'Emails' ),
-		'listings' => esc_html__( 'Listings' ),
+		'general'  => esc_html__( 'General', 'posterno' ),
+		'accounts' => esc_html__( 'Accounts', 'posterno' ),
+		'profiles' => esc_html__( 'Profiles', 'posterno' ),
+		'emails'   => esc_html__( 'Emails', 'posterno' ),
+		'listings' => esc_html__( 'Listings', 'posterno' ),
 	];
 
 	/**
@@ -46,31 +46,31 @@ function pno_get_registered_settings_tabs_sections() {
 
 	$sections = [
 		'general'  => [
-			'pages' => esc_html__( 'Pages setup' ),
-			'theme' => esc_html__( 'Theme' ),
+			'pages' => esc_html__( 'Pages setup', 'posterno' ),
+			'theme' => esc_html__( 'Theme', 'posterno' ),
 		],
 		'accounts' => [
-			'login'                  => esc_html__( 'Login' ),
-			'registration'           => esc_html__( 'Registration' ),
-			'password_recovery_form' => esc_html__( 'Password recovery' ),
-			'redirects'              => esc_html__( 'Redirects' ),
-			'privacy'                => esc_html__( 'Privacy' ),
-			'profiles_settings'      => esc_html__( 'Profile' ),
+			'login'                  => esc_html__( 'Login', 'posterno' ),
+			'registration'           => esc_html__( 'Registration', 'posterno' ),
+			'password_recovery_form' => esc_html__( 'Password recovery', 'posterno' ),
+			'redirects'              => esc_html__( 'Redirects', 'posterno' ),
+			'privacy'                => esc_html__( 'Privacy', 'posterno' ),
+			'profiles_settings'      => esc_html__( 'Profile', 'posterno' ),
 		],
 		'emails'   => [
-			'emails_settings' => esc_html__( 'Configuration' ),
-			'emails_listings' => esc_html__( 'Listings' ),
-			'emails_test'     => esc_html__( 'Send test email' ),
+			'emails_settings' => esc_html__( 'Configuration', 'posterno' ),
+			'emails_listings' => esc_html__( 'Listings', 'posterno' ),
+			'emails_test'     => esc_html__( 'Send test email', 'posterno' ),
 		],
 		'listings' => [
-			'listings_settings'   => esc_html__( 'Configuration' ),
-			'listings_submission' => esc_html__( 'Submission' ),
-			'listings_management' => esc_html__( 'Management' ),
-			'listings_hours'      => esc_html__( 'Business hours' ),
-			'listings_maps'       => esc_html__( 'Maps' ),
+			'listings_settings'   => esc_html__( 'Configuration', 'posterno' ),
+			'listings_submission' => esc_html__( 'Submission', 'posterno' ),
+			'listings_management' => esc_html__( 'Management', 'posterno' ),
+			'listings_hours'      => esc_html__( 'Business hours', 'posterno' ),
+			'listings_maps'       => esc_html__( 'Maps', 'posterno' ),
 		],
 		'profiles' => [
-			'profiles_setup' => esc_html__( 'Configuration' ),
+			'profiles_setup' => esc_html__( 'Configuration', 'posterno' ),
 		],
 	];
 

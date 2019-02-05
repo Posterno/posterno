@@ -95,7 +95,7 @@ function pno_setup_post_types() {
 	register_post_status(
 		'expired',
 		array(
-			'label'                     => _x( 'Expired', 'post status' ),
+			'label'                     => _x( 'Expired', 'post status', 'posterno' ),
 			'public'                    => true,
 			'protected'                 => true,
 			'exclude_from_search'       => true,
@@ -103,7 +103,7 @@ function pno_setup_post_types() {
 			'show_in_admin_status_list' => true,
 			'post_type'                 => array( 'listings' ),
 			// translators: Placeholder %s is the number of expired posts of this type.
-			'label_count'               => _n_noop( 'Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>' ),
+			'label_count'               => _n_noop( 'Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>', 'posterno' ),
 		)
 	);
 
@@ -118,36 +118,36 @@ add_action( 'init', 'pno_setup_post_types', 0 );
 function pno_setup_listings_custom_fields_post_type() {
 
 	$labels = array(
-		'name'                  => esc_html__( 'Listings custom fields' ),
-		'singular_name'         => esc_html__( 'Listings custom field' ),
-		'menu_name'             => esc_html__( 'Listings custom fields' ),
-		'name_admin_bar'        => esc_html__( 'Listings custom fields' ),
-		'archives'              => esc_html__( 'Listings custom fields' ),
-		'attributes'            => esc_html__( 'Item Attributes' ),
-		'parent_item_colon'     => esc_html__( 'Parent Item:' ),
-		'all_items'             => esc_html__( 'All listings custom fields' ),
-		'add_new_item'          => esc_html__( 'Add new custom field' ),
-		'add_new'               => esc_html__( 'Add new custom field' ),
-		'new_item'              => esc_html__( 'New custom field' ),
-		'edit_item'             => esc_html__( 'Edit custom field' ),
-		'update_item'           => esc_html__( 'Update custom field' ),
-		'view_item'             => esc_html__( 'View custom field' ),
-		'view_items'            => esc_html__( 'View custom fields' ),
-		'search_items'          => esc_html__( 'Search custom fields' ),
-		'not_found'             => esc_html__( 'Not found' ),
-		'not_found_in_trash'    => esc_html__( 'Not found in Trash' ),
-		'featured_image'        => esc_html__( 'Featured Image' ),
-		'set_featured_image'    => esc_html__( 'Set featured image' ),
-		'remove_featured_image' => esc_html__( 'Remove featured image' ),
-		'use_featured_image'    => esc_html__( 'Use as featured image' ),
-		'insert_into_item'      => esc_html__( 'Insert into item' ),
-		'uploaded_to_this_item' => esc_html__( 'Uploaded to this item' ),
-		'items_list'            => esc_html__( 'Items list' ),
-		'items_list_navigation' => esc_html__( 'Items list navigation' ),
-		'filter_items_list'     => esc_html__( 'Filter items list' ),
+		'name'                  => esc_html__( 'Listings custom fields', 'posterno' ),
+		'singular_name'         => esc_html__( 'Listings custom field', 'posterno' ),
+		'menu_name'             => esc_html__( 'Listings custom fields', 'posterno' ),
+		'name_admin_bar'        => esc_html__( 'Listings custom fields', 'posterno' ),
+		'archives'              => esc_html__( 'Listings custom fields', 'posterno' ),
+		'attributes'            => esc_html__( 'Item Attributes', 'posterno' ),
+		'parent_item_colon'     => esc_html__( 'Parent Item:', 'posterno' ),
+		'all_items'             => esc_html__( 'All listings custom fields', 'posterno' ),
+		'add_new_item'          => esc_html__( 'Add new custom field', 'posterno' ),
+		'add_new'               => esc_html__( 'Add new custom field', 'posterno' ),
+		'new_item'              => esc_html__( 'New custom field', 'posterno' ),
+		'edit_item'             => esc_html__( 'Edit custom field', 'posterno' ),
+		'update_item'           => esc_html__( 'Update custom field', 'posterno' ),
+		'view_item'             => esc_html__( 'View custom field', 'posterno' ),
+		'view_items'            => esc_html__( 'View custom fields', 'posterno' ),
+		'search_items'          => esc_html__( 'Search custom fields', 'posterno' ),
+		'not_found'             => esc_html__( 'Not found', 'posterno' ),
+		'not_found_in_trash'    => esc_html__( 'Not found in Trash', 'posterno' ),
+		'featured_image'        => esc_html__( 'Featured Image', 'posterno' ),
+		'set_featured_image'    => esc_html__( 'Set featured image', 'posterno' ),
+		'remove_featured_image' => esc_html__( 'Remove featured image', 'posterno' ),
+		'use_featured_image'    => esc_html__( 'Use as featured image', 'posterno' ),
+		'insert_into_item'      => esc_html__( 'Insert into item', 'posterno' ),
+		'uploaded_to_this_item' => esc_html__( 'Uploaded to this item', 'posterno' ),
+		'items_list'            => esc_html__( 'Items list', 'posterno' ),
+		'items_list_navigation' => esc_html__( 'Items list navigation', 'posterno' ),
+		'filter_items_list'     => esc_html__( 'Filter items list', 'posterno' ),
 	);
 	$args   = array(
-		'label'               => esc_html__( 'Listings custom field' ),
+		'label'               => esc_html__( 'Listings custom field', 'posterno' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
 		'hierarchical'        => false,
@@ -179,36 +179,36 @@ add_action( 'init', 'pno_setup_listings_custom_fields_post_type', 0 );
 function pno_setup_users_custom_fields_post_type() {
 
 	$labels = array(
-		'name'                  => esc_html__( 'Profile custom fields' ),
-		'singular_name'         => esc_html__( 'Profile custom field' ),
-		'menu_name'             => esc_html__( 'Profile custom fields' ),
-		'name_admin_bar'        => esc_html__( 'Profile custom fields' ),
-		'archives'              => esc_html__( 'Profile custom fields' ),
-		'attributes'            => esc_html__( 'Item Attributes' ),
-		'parent_item_colon'     => esc_html__( 'Parent Item:' ),
-		'all_items'             => esc_html__( 'All users custom fields' ),
-		'add_new_item'          => esc_html__( 'Add new profile field' ),
-		'add_new'               => esc_html__( 'Add new profile field' ),
-		'new_item'              => esc_html__( 'New custom field' ),
-		'edit_item'             => esc_html__( 'Edit custom field' ),
-		'update_item'           => esc_html__( 'Update custom field' ),
-		'view_item'             => esc_html__( 'View custom field' ),
-		'view_items'            => esc_html__( 'View custom fields' ),
-		'search_items'          => esc_html__( 'Search custom fields' ),
-		'not_found'             => esc_html__( 'Not found' ),
-		'not_found_in_trash'    => esc_html__( 'Not found in Trash' ),
-		'featured_image'        => esc_html__( 'Featured Image' ),
-		'set_featured_image'    => esc_html__( 'Set featured image' ),
-		'remove_featured_image' => esc_html__( 'Remove featured image' ),
-		'use_featured_image'    => esc_html__( 'Use as featured image' ),
-		'insert_into_item'      => esc_html__( 'Insert into item' ),
-		'uploaded_to_this_item' => esc_html__( 'Uploaded to this item' ),
-		'items_list'            => esc_html__( 'Items list' ),
-		'items_list_navigation' => esc_html__( 'Items list navigation' ),
-		'filter_items_list'     => esc_html__( 'Filter items list' ),
+		'name'                  => esc_html__( 'Profile custom fields', 'posterno' ),
+		'singular_name'         => esc_html__( 'Profile custom field', 'posterno' ),
+		'menu_name'             => esc_html__( 'Profile custom fields', 'posterno' ),
+		'name_admin_bar'        => esc_html__( 'Profile custom fields', 'posterno' ),
+		'archives'              => esc_html__( 'Profile custom fields', 'posterno' ),
+		'attributes'            => esc_html__( 'Item Attributes', 'posterno' ),
+		'parent_item_colon'     => esc_html__( 'Parent Item:', 'posterno' ),
+		'all_items'             => esc_html__( 'All users custom fields', 'posterno' ),
+		'add_new_item'          => esc_html__( 'Add new profile field', 'posterno' ),
+		'add_new'               => esc_html__( 'Add new profile field', 'posterno' ),
+		'new_item'              => esc_html__( 'New custom field', 'posterno' ),
+		'edit_item'             => esc_html__( 'Edit custom field', 'posterno' ),
+		'update_item'           => esc_html__( 'Update custom field', 'posterno' ),
+		'view_item'             => esc_html__( 'View custom field', 'posterno' ),
+		'view_items'            => esc_html__( 'View custom fields', 'posterno' ),
+		'search_items'          => esc_html__( 'Search custom fields', 'posterno' ),
+		'not_found'             => esc_html__( 'Not found', 'posterno' ),
+		'not_found_in_trash'    => esc_html__( 'Not found in Trash', 'posterno' ),
+		'featured_image'        => esc_html__( 'Featured Image', 'posterno' ),
+		'set_featured_image'    => esc_html__( 'Set featured image', 'posterno' ),
+		'remove_featured_image' => esc_html__( 'Remove featured image', 'posterno' ),
+		'use_featured_image'    => esc_html__( 'Use as featured image', 'posterno' ),
+		'insert_into_item'      => esc_html__( 'Insert into item', 'posterno' ),
+		'uploaded_to_this_item' => esc_html__( 'Uploaded to this item', 'posterno' ),
+		'items_list'            => esc_html__( 'Items list', 'posterno' ),
+		'items_list_navigation' => esc_html__( 'Items list navigation', 'posterno' ),
+		'filter_items_list'     => esc_html__( 'Filter items list', 'posterno' ),
 	);
 	$args   = array(
-		'label'               => esc_html__( 'Users custom field' ),
+		'label'               => esc_html__( 'Users custom field', 'posterno' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
 		'hierarchical'        => false,
@@ -240,25 +240,25 @@ add_action( 'init', 'pno_setup_users_custom_fields_post_type', 0 );
 function pno_setup_registration_fields_post_type() {
 
 	$labels = array(
-		'name'              => esc_html__( 'Registration fields' ),
-		'singular_name'     => esc_html__( 'Registration field' ),
-		'menu_name'         => esc_html__( 'Registration fields' ),
-		'name_admin_bar'    => esc_html__( 'Registration fields' ),
-		'archives'          => esc_html__( 'Registration fields' ),
-		'attributes'        => esc_html__( 'Item Attributes' ),
-		'parent_item_colon' => esc_html__( 'Parent Item:' ),
-		'all_items'         => esc_html__( 'All registration fields' ),
-		'add_new_item'      => esc_html__( 'Add new registration field' ),
-		'add_new'           => esc_html__( 'Add new registration field' ),
-		'new_item'          => esc_html__( 'New custom field' ),
-		'edit_item'         => esc_html__( 'Edit custom field' ),
-		'update_item'       => esc_html__( 'Update custom field' ),
-		'view_item'         => esc_html__( 'View custom field' ),
-		'view_items'        => esc_html__( 'View custom fields' ),
-		'search_items'      => esc_html__( 'Search custom fields' ),
+		'name'              => esc_html__( 'Registration fields', 'posterno' ),
+		'singular_name'     => esc_html__( 'Registration field', 'posterno' ),
+		'menu_name'         => esc_html__( 'Registration fields', 'posterno' ),
+		'name_admin_bar'    => esc_html__( 'Registration fields', 'posterno' ),
+		'archives'          => esc_html__( 'Registration fields', 'posterno' ),
+		'attributes'        => esc_html__( 'Item Attributes', 'posterno' ),
+		'parent_item_colon' => esc_html__( 'Parent Item:', 'posterno' ),
+		'all_items'         => esc_html__( 'All registration fields', 'posterno' ),
+		'add_new_item'      => esc_html__( 'Add new registration field', 'posterno' ),
+		'add_new'           => esc_html__( 'Add new registration field', 'posterno' ),
+		'new_item'          => esc_html__( 'New custom field', 'posterno' ),
+		'edit_item'         => esc_html__( 'Edit custom field', 'posterno' ),
+		'update_item'       => esc_html__( 'Update custom field', 'posterno' ),
+		'view_item'         => esc_html__( 'View custom field', 'posterno' ),
+		'view_items'        => esc_html__( 'View custom fields', 'posterno' ),
+		'search_items'      => esc_html__( 'Search custom fields', 'posterno' ),
 	);
 	$args   = array(
-		'label'               => esc_html__( 'Registration custom field' ),
+		'label'               => esc_html__( 'Registration custom field', 'posterno' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
 		'hierarchical'        => false,
@@ -293,11 +293,11 @@ function pno_user_fields_change_default_title( $title ) {
 	$screen = get_current_screen();
 
 	if ( 'pno_users_fields' == $screen->post_type ) {
-		$title = esc_html__( 'Enter profile field title here' );
+		$title = esc_html__( 'Enter profile field title here', 'posterno' );
 	} elseif ( 'pno_signup_fields' == $screen->post_type ) {
-		$title = esc_html__( 'Enter registration field title here' );
+		$title = esc_html__( 'Enter registration field title here', 'posterno' );
 	} elseif ( 'pno_emails' == $screen->post_type ) {
-		$title = esc_html__( 'Enter email subject' );
+		$title = esc_html__( 'Enter email subject', 'posterno' );
 	}
 
 	return $title;
@@ -318,35 +318,35 @@ function pno_updated_messages( $messages ) {
 	global $post, $post_ID;
 
 	$messages['pno_users_fields'] = array(
-		1 => esc_html__( 'Profile field updated.' ),
-		4 => esc_html__( 'Profile field updated.' ),
-		6 => esc_html__( 'Profile field published.' ),
-		7 => esc_html__( 'Profile field saved.' ),
-		8 => esc_html__( 'Profile field submitted.' ),
+		1 => esc_html__( 'Profile field updated.', 'posterno' ),
+		4 => esc_html__( 'Profile field updated.', 'posterno' ),
+		6 => esc_html__( 'Profile field published.', 'posterno' ),
+		7 => esc_html__( 'Profile field saved.', 'posterno' ),
+		8 => esc_html__( 'Profile field submitted.', 'posterno' ),
 	);
 
 	$messages['pno_signup_fields'] = array(
-		1 => esc_html__( 'Registration field updated.' ),
-		4 => esc_html__( 'Registration field updated.' ),
-		6 => esc_html__( 'Registration field published.' ),
-		7 => esc_html__( 'Registration field saved.' ),
-		8 => esc_html__( 'Registration field submitted.' ),
+		1 => esc_html__( 'Registration field updated.', 'posterno' ),
+		4 => esc_html__( 'Registration field updated.', 'posterno' ),
+		6 => esc_html__( 'Registration field published.', 'posterno' ),
+		7 => esc_html__( 'Registration field saved.', 'posterno' ),
+		8 => esc_html__( 'Registration field submitted.', 'posterno' ),
 	);
 
 	$messages['pno_listings_fields'] = [
-		1 => esc_html__( 'Listing field updated.' ),
-		4 => esc_html__( 'Listing field updated.' ),
-		6 => esc_html__( 'Listing field published.' ),
-		7 => esc_html__( 'Listing field saved.' ),
-		8 => esc_html__( 'Listing field submitted.' ),
+		1 => esc_html__( 'Listing field updated.', 'posterno' ),
+		4 => esc_html__( 'Listing field updated.', 'posterno' ),
+		6 => esc_html__( 'Listing field published.', 'posterno' ),
+		7 => esc_html__( 'Listing field saved.', 'posterno' ),
+		8 => esc_html__( 'Listing field submitted.', 'posterno' ),
 	];
 
 	$messages['pno_emails'] = [
-		1 => esc_html__( 'Email updated.' ),
-		4 => esc_html__( 'Email updated.' ),
-		6 => esc_html__( 'Email published.' ),
-		7 => esc_html__( 'Email saved.' ),
-		8 => esc_html__( 'Email submitted.' ),
+		1 => esc_html__( 'Email updated.', 'posterno' ),
+		4 => esc_html__( 'Email updated.', 'posterno' ),
+		6 => esc_html__( 'Email published.', 'posterno' ),
+		7 => esc_html__( 'Email saved.', 'posterno' ),
+		8 => esc_html__( 'Email submitted.', 'posterno' ),
 	];
 
 	$preview_url = get_preview_post_link( $post );
@@ -355,21 +355,21 @@ function pno_updated_messages( $messages ) {
 	$preview_listing_link_html = sprintf(
 		' <a target="_blank" href="%1$s">%2$s</a>',
 		esc_url( $preview_url ),
-		__( 'Preview listing' )
+		__( 'Preview listing', 'posterno' )
 	);
 
 	$view_listing_link_html = sprintf(
 		' <a href="%1$s">%2$s</a>',
 		esc_url( $permalink ),
-		__( 'View listing' )
+		__( 'View listing', 'posterno' )
 	);
 
 	$messages['listings'] = [
-		1 => esc_html__( 'Listing updated.' ) . $view_listing_link_html,
-		4 => esc_html__( 'Listing updated.' ),
-		6 => esc_html__( 'Listing published.' ) . $view_listing_link_html,
-		7 => esc_html__( 'Listing saved.' ),
-		8 => esc_html__( 'Listing submitted.' ) . $preview_listing_link_html,
+		1 => esc_html__( 'Listing updated.', 'posterno' ) . $view_listing_link_html,
+		4 => esc_html__( 'Listing updated.', 'posterno' ),
+		6 => esc_html__( 'Listing published.', 'posterno' ) . $view_listing_link_html,
+		7 => esc_html__( 'Listing saved.', 'posterno' ),
+		8 => esc_html__( 'Listing submitted.', 'posterno' ) . $preview_listing_link_html,
 	];
 
 	return $messages;
@@ -385,24 +385,24 @@ add_filter( 'post_updated_messages', 'pno_updated_messages' );
 function pno_register_listings_taxonomies() {
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listing types' ),
-		'singular_name'              => esc_html__( 'Listings type' ),
-		'menu_name'                  => esc_html__( 'Types' ),
-		'all_items'                  => esc_html__( 'All listings types' ),
-		'new_item_name'              => esc_html__( 'New listings type' ),
-		'add_new_item'               => esc_html__( 'Add new listings type' ),
-		'edit_item'                  => esc_html__( 'Edit listings type' ),
-		'update_item'                => esc_html__( 'Update listings type' ),
-		'view_item'                  => esc_html__( 'View listings type' ),
-		'separate_items_with_commas' => esc_html__( 'Separate listings type with commas' ),
-		'add_or_remove_items'        => esc_html__( 'Add or remove listings type' ),
-		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
-		'popular_items'              => esc_html__( 'Popular listings types' ),
-		'search_items'               => esc_html__( 'Search listings types' ),
-		'not_found'                  => esc_html__( 'Not Found' ),
-		'no_terms'                   => esc_html__( 'No listings types' ),
-		'items_list'                 => esc_html__( 'Listings types list' ),
-		'items_list_navigation'      => esc_html__( 'Listings type list navigation' ),
+		'name'                       => esc_html__( 'Listing types', 'posterno' ),
+		'singular_name'              => esc_html__( 'Listings type', 'posterno' ),
+		'menu_name'                  => esc_html__( 'Types', 'posterno' ),
+		'all_items'                  => esc_html__( 'All listings types', 'posterno' ),
+		'new_item_name'              => esc_html__( 'New listings type', 'posterno' ),
+		'add_new_item'               => esc_html__( 'Add new listings type', 'posterno' ),
+		'edit_item'                  => esc_html__( 'Edit listings type', 'posterno' ),
+		'update_item'                => esc_html__( 'Update listings type', 'posterno' ),
+		'view_item'                  => esc_html__( 'View listings type', 'posterno' ),
+		'separate_items_with_commas' => esc_html__( 'Separate listings type with commas', 'posterno' ),
+		'add_or_remove_items'        => esc_html__( 'Add or remove listings type', 'posterno' ),
+		'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'posterno' ),
+		'popular_items'              => esc_html__( 'Popular listings types', 'posterno' ),
+		'search_items'               => esc_html__( 'Search listings types', 'posterno' ),
+		'not_found'                  => esc_html__( 'Not Found', 'posterno' ),
+		'no_terms'                   => esc_html__( 'No listings types', 'posterno' ),
+		'items_list'                 => esc_html__( 'Listings types list', 'posterno' ),
+		'items_list_navigation'      => esc_html__( 'Listings type list navigation', 'posterno' ),
 	);
 
 	/**
@@ -436,24 +436,24 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-types', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listing categories' ),
-		'singular_name'              => esc_html__( 'Listings category' ),
-		'menu_name'                  => esc_html__( 'Categories' ),
-		'all_items'                  => esc_html__( 'All listings categories' ),
-		'new_item_name'              => esc_html__( 'New listings category' ),
-		'add_new_item'               => esc_html__( 'Add new listings category' ),
-		'edit_item'                  => esc_html__( 'Edit listings category' ),
-		'update_item'                => esc_html__( 'Update listings category' ),
-		'view_item'                  => esc_html__( 'View listings category' ),
-		'separate_items_with_commas' => esc_html__( 'Separate listings category with commas' ),
-		'add_or_remove_items'        => esc_html__( 'Add or remove listings category' ),
-		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
-		'popular_items'              => esc_html__( 'Popular listings categories' ),
-		'search_items'               => esc_html__( 'Search listings categories' ),
-		'not_found'                  => esc_html__( 'Not Found' ),
-		'no_terms'                   => esc_html__( 'No listings categories' ),
-		'items_list'                 => esc_html__( 'Listings categories list' ),
-		'items_list_navigation'      => esc_html__( 'Listings category list navigation' ),
+		'name'                       => esc_html__( 'Listing categories', 'posterno' ),
+		'singular_name'              => esc_html__( 'Listings category', 'posterno' ),
+		'menu_name'                  => esc_html__( 'Categories', 'posterno' ),
+		'all_items'                  => esc_html__( 'All listings categories', 'posterno' ),
+		'new_item_name'              => esc_html__( 'New listings category', 'posterno' ),
+		'add_new_item'               => esc_html__( 'Add new listings category', 'posterno' ),
+		'edit_item'                  => esc_html__( 'Edit listings category', 'posterno' ),
+		'update_item'                => esc_html__( 'Update listings category', 'posterno' ),
+		'view_item'                  => esc_html__( 'View listings category', 'posterno' ),
+		'separate_items_with_commas' => esc_html__( 'Separate listings category with commas', 'posterno' ),
+		'add_or_remove_items'        => esc_html__( 'Add or remove listings category', 'posterno' ),
+		'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'posterno' ),
+		'popular_items'              => esc_html__( 'Popular listings categories', 'posterno' ),
+		'search_items'               => esc_html__( 'Search listings categories', 'posterno' ),
+		'not_found'                  => esc_html__( 'Not Found', 'posterno' ),
+		'no_terms'                   => esc_html__( 'No listings categories', 'posterno' ),
+		'items_list'                 => esc_html__( 'Listings categories list', 'posterno' ),
+		'items_list_navigation'      => esc_html__( 'Listings category list navigation', 'posterno' ),
 	);
 
 	/**
@@ -484,24 +484,24 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-categories', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listing locations' ),
-		'singular_name'              => esc_html__( 'Listings location' ),
-		'menu_name'                  => esc_html__( 'Locations' ),
-		'all_items'                  => esc_html__( 'All listings locations' ),
-		'new_item_name'              => esc_html__( 'New listings location' ),
-		'add_new_item'               => esc_html__( 'Add new listings location' ),
-		'edit_item'                  => esc_html__( 'Edit listings location' ),
-		'update_item'                => esc_html__( 'Update listings location' ),
-		'view_item'                  => esc_html__( 'View listings location' ),
-		'separate_items_with_commas' => esc_html__( 'Separate listings location with commas' ),
-		'add_or_remove_items'        => esc_html__( 'Add or remove listings location' ),
-		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
-		'popular_items'              => esc_html__( 'Popular listings locations' ),
-		'search_items'               => esc_html__( 'Search listings locations' ),
-		'not_found'                  => esc_html__( 'Not Found' ),
-		'no_terms'                   => esc_html__( 'No listings locations' ),
-		'items_list'                 => esc_html__( 'Listings locations list' ),
-		'items_list_navigation'      => esc_html__( 'Listings location list navigation' ),
+		'name'                       => esc_html__( 'Listing locations', 'posterno' ),
+		'singular_name'              => esc_html__( 'Listings location', 'posterno' ),
+		'menu_name'                  => esc_html__( 'Locations', 'posterno' ),
+		'all_items'                  => esc_html__( 'All listings locations', 'posterno' ),
+		'new_item_name'              => esc_html__( 'New listings location', 'posterno' ),
+		'add_new_item'               => esc_html__( 'Add new listings location', 'posterno' ),
+		'edit_item'                  => esc_html__( 'Edit listings location', 'posterno' ),
+		'update_item'                => esc_html__( 'Update listings location', 'posterno' ),
+		'view_item'                  => esc_html__( 'View listings location', 'posterno' ),
+		'separate_items_with_commas' => esc_html__( 'Separate listings location with commas', 'posterno' ),
+		'add_or_remove_items'        => esc_html__( 'Add or remove listings location', 'posterno' ),
+		'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'posterno' ),
+		'popular_items'              => esc_html__( 'Popular listings locations', 'posterno' ),
+		'search_items'               => esc_html__( 'Search listings locations', 'posterno' ),
+		'not_found'                  => esc_html__( 'Not Found', 'posterno' ),
+		'no_terms'                   => esc_html__( 'No listings locations', 'posterno' ),
+		'items_list'                 => esc_html__( 'Listings locations list', 'posterno' ),
+		'items_list_navigation'      => esc_html__( 'Listings location list navigation', 'posterno' ),
 	);
 
 	/**
@@ -532,24 +532,24 @@ function pno_register_listings_taxonomies() {
 	register_taxonomy( 'listings-locations', array( 'listings' ), $args );
 
 	$labels = array(
-		'name'                       => esc_html__( 'Listing tags' ),
-		'singular_name'              => esc_html__( 'Listings tag' ),
-		'menu_name'                  => esc_html__( 'Tags' ),
-		'all_items'                  => esc_html__( 'All listings tags' ),
-		'new_item_name'              => esc_html__( 'New listings tag' ),
-		'add_new_item'               => esc_html__( 'Add new listings tag' ),
-		'edit_item'                  => esc_html__( 'Edit listings tag' ),
-		'update_item'                => esc_html__( 'Update listings tag' ),
-		'view_item'                  => esc_html__( 'View listings tag' ),
-		'separate_items_with_commas' => esc_html__( 'Separate listings tag with commas' ),
-		'add_or_remove_items'        => esc_html__( 'Add or remove listings tag' ),
-		'choose_from_most_used'      => esc_html__( 'Choose from the most used' ),
-		'popular_items'              => esc_html__( 'Popular listings tags' ),
-		'search_items'               => esc_html__( 'Search listings tags' ),
-		'not_found'                  => esc_html__( 'Not Found' ),
-		'no_terms'                   => esc_html__( 'No listings tags' ),
-		'items_list'                 => esc_html__( 'Listings tags list' ),
-		'items_list_navigation'      => esc_html__( 'Listings tag list navigation' ),
+		'name'                       => esc_html__( 'Listing tags', 'posterno' ),
+		'singular_name'              => esc_html__( 'Listings tag', 'posterno' ),
+		'menu_name'                  => esc_html__( 'Tags', 'posterno' ),
+		'all_items'                  => esc_html__( 'All listings tags', 'posterno' ),
+		'new_item_name'              => esc_html__( 'New listings tag', 'posterno' ),
+		'add_new_item'               => esc_html__( 'Add new listings tag', 'posterno' ),
+		'edit_item'                  => esc_html__( 'Edit listings tag', 'posterno' ),
+		'update_item'                => esc_html__( 'Update listings tag', 'posterno' ),
+		'view_item'                  => esc_html__( 'View listings tag', 'posterno' ),
+		'separate_items_with_commas' => esc_html__( 'Separate listings tag with commas', 'posterno' ),
+		'add_or_remove_items'        => esc_html__( 'Add or remove listings tag', 'posterno' ),
+		'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'posterno' ),
+		'popular_items'              => esc_html__( 'Popular listings tags', 'posterno' ),
+		'search_items'               => esc_html__( 'Search listings tags', 'posterno' ),
+		'not_found'                  => esc_html__( 'Not Found', 'posterno' ),
+		'no_terms'                   => esc_html__( 'No listings tags', 'posterno' ),
+		'items_list'                 => esc_html__( 'Listings tags list', 'posterno' ),
+		'items_list_navigation'      => esc_html__( 'Listings tag list navigation', 'posterno' ),
 	);
 
 	/**
@@ -590,10 +590,10 @@ add_action( 'init', 'pno_register_listings_taxonomies', 0 );
 function pno_get_listing_post_statuses() {
 
 	$statuses = [
-		'draft'   => _x( 'Draft', 'post status' ),
-		'expired' => _x( 'Expired', 'post status' ),
-		'pending' => _x( 'Pending approval', 'post status' ),
-		'publish' => _x( 'Published', 'post status' ),
+		'draft'   => _x( 'Draft', 'post status', 'posterno' ),
+		'expired' => _x( 'Expired', 'post status', 'posterno' ),
+		'pending' => _x( 'Pending approval', 'post status', 'posterno' ),
+		'publish' => _x( 'Published', 'post status', 'posterno' ),
 	];
 
 	return apply_filters( 'pno_listing_post_statuses', $statuses );

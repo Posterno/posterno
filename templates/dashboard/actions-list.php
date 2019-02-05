@@ -111,16 +111,16 @@ if ( empty( $actions ) ) {
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="pno-delete-listing-title-<?php echo absint( $data->id ); ?>"><?php esc_html_e( 'Delete listing' ); ?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e( 'Close' ); ?>">
+				<h5 class="modal-title" id="pno-delete-listing-title-<?php echo absint( $data->id ); ?>"><?php esc_html_e( 'Delete listing', 'posterno' ); ?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e( 'Close', 'posterno' ); ?>">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p><?php echo sprintf( esc_html__( 'Are you sure you want to delete the "%s" listing? This action cannot be undone.' ), '<strong>' . esc_html( pno_get_the_listing_title( $data->id ) ) . '</strong>' ); ?></p>
+				<p><?php echo sprintf( esc_html__( 'Are you sure you want to delete the "%s" listing? This action cannot be undone.', 'posterno' ), '<strong>' . esc_html( pno_get_the_listing_title( $data->id ) ) . '</strong>' ); ?></p>
 			</div>
 			<div class="modal-footer">
-				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e( 'Delete listing' ); ?></a>
+				<a href="<?php echo esc_url( pno_get_listing_action_url( $data->id, $action_id ) ); ?>" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i><?php esc_html_e( 'Delete listing', 'posterno' ); ?></a>
 			</div>
 		</div>
 	</div>

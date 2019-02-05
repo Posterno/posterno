@@ -248,27 +248,27 @@ function pno_email_get_type_schema() {
 
 	$types = array(
 		'core_user_registration'      => [
-			'description' => esc_html__( 'Recipient has registered for an account.' ),
+			'description' => esc_html__( 'Recipient has registered for an account.', 'posterno' ),
 			'unsubscribe' => false,
 		],
 		'core_user_password_recovery' => [
-			'description' => esc_html__( 'Recipient has forgotten his password.' ),
+			'description' => esc_html__( 'Recipient has forgotten his password.', 'posterno' ),
 			'unsubscribe' => false,
 		],
 		'core_user_listing_submitted' => [
-			'description' => esc_html__( 'Recipient has successfully submitted a listing.' ),
+			'description' => esc_html__( 'Recipient has successfully submitted a listing.', 'posterno' ),
 		],
 		'core_user_listing_updated'   => [
-			'description' => esc_html__( 'Recipient has successfully updated a listing.' ),
+			'description' => esc_html__( 'Recipient has successfully updated a listing.', 'posterno' ),
 		],
 		'core_user_listing_approved'  => [
-			'description' => esc_html__( 'Administrator has approved a listing for the recipient.' ),
+			'description' => esc_html__( 'Administrator has approved a listing for the recipient.', 'posterno' ),
 		],
 		'core_listing_expiring'       => [
-			'description' => esc_html__( 'Listing is about to expire.' ),
+			'description' => esc_html__( 'Listing is about to expire.', 'posterno' ),
 		],
 		'core_listing_author_email'   => [
-			'description' => esc_html__( 'Listing author received an email.' ),
+			'description' => esc_html__( 'Listing author received an email.', 'posterno' ),
 		],
 	);
 

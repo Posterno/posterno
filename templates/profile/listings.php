@@ -60,7 +60,7 @@ $user_listings = new WP_Query( $args );
 			->set_template_data(
 				[
 					'type'    => 'info',
-					'message' => sprintf( esc_html__( 'No listings have been submitted by %s' ), pno_get_user_first_name( $data->user_details ) ),
+					'message' => sprintf( esc_html__( 'No listings have been submitted by %s', 'posterno' ), pno_get_user_first_name( $data->user_details ) ),
 				]
 			)
 			->get_template_part( 'message' );

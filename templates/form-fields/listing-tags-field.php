@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="pno-loading" v-else-if="! tagsAreAvailable() && loading"></div>
 
 		<div class="alert alert-info" role="alert" v-else-if="! tagsAreAvailable() && ! loading">
-			<?php esc_html_e( 'Select a category to display related tags.' ); ?>
+			<?php esc_html_e( 'Select a category to display related tags.', 'posterno' ); ?>
 		</div>
 
 	</div>

@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 function pno_plugin_register_erasers( $erasers = array() ) {
 
 	$erasers[] = array(
-		'eraser_friendly_name' => esc_html__( 'Additional account details' ),
+		'eraser_friendly_name' => esc_html__( 'Additional account details', 'posterno' ),
 		'callback'             => 'pno_plugin_profile_data_eraser',
 	);
 
@@ -89,7 +89,7 @@ function pno_plugin_profile_data_eraser( $email_address, $page = 1 ) {
 							if ( $field_to_remove ) {
 								$items_removed = true;
 							} else {
-								$messages[]     = sprintf( esc_html__( 'Your "%s" was unable to be removed at this time.' ), $profile_field->get_name() );
+								$messages[]     = sprintf( esc_html__( 'Your "%s" was unable to be removed at this time.', 'posterno' ), $profile_field->get_name() );
 								$items_retained = true;
 							}
 						}

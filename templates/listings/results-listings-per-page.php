@@ -24,11 +24,11 @@ $current_option           = pno_get_listings_results_per_page_active_option();
 
 <div class="dropdown">
 	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="pno-listings-per-page-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<?php echo sprintf( esc_html__( 'Show %s results' ), absint( $current_option ) ); ?>
+		<?php echo sprintf( esc_html__( 'Show %s results', 'posterno' ), absint( $current_option ) ); ?>
 	</a>
 	<div class="dropdown-menu" aria-labelledby="pno-listings-per-page-menu">
 		<?php foreach ( $results_per_page_options as $option ) : ?>
-			<a class="dropdown-item <?php if ( absint( $current_option ) === absint( $option ) ) : ?>active<?php endif; ?>" href="<?php echo esc_url( pno_get_listings_results_per_page_option_link( $option ) ); ?>"><?php echo sprintf( esc_html__( 'Show %s' ), absint( $option ) ); ?></a>
+			<a class="dropdown-item <?php if ( absint( $current_option ) === absint( $option ) ) : ?>active<?php endif; ?>" href="<?php echo esc_url( pno_get_listings_results_per_page_option_link( $option ) ); ?>"><?php echo sprintf( esc_html__( 'Show %s', 'posterno' ), absint( $option ) ); ?></a>
 		<?php endforeach; ?>
 	</div>
 </div>

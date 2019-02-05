@@ -24,21 +24,21 @@ class ListingAuthor extends Widget {
 	public function __construct() {
 
 		$labels = array(
-			'plural_name'   => esc_html__( 'fields' ),
-			'singular_name' => esc_html__( 'field' ),
+			'plural_name'   => esc_html__( 'fields', 'posterno' ),
+			'singular_name' => esc_html__( 'field', 'posterno' ),
 		);
 
 		$this->setup(
 			'pno_listing_author_widget',
-			esc_html__( '[Posterno] Listing Author' ),
-			esc_html__( 'Displays the current listing\'s author and his details.' ),
+			esc_html__( '[Posterno] Listing Author', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s author and his details.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
-				Field::make( 'checkbox', 'display_member_since', esc_html__( 'Display registration date' ) )->set_default_value( true ),
-				Field::make( 'complex', 'additional_fields', esc_html__( 'Display additional fields' ) )
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
+				Field::make( 'checkbox', 'display_member_since', esc_html__( 'Display registration date', 'posterno' ) )->set_default_value( true ),
+				Field::make( 'complex', 'additional_fields', esc_html__( 'Display additional fields', 'posterno' ) )
 					->add_fields(
 						array(
-							Field::make( 'select', 'field_id', esc_html__( 'Select profile field' ) )->set_options( 'pno_get_profile_fields_for_widget_association' ),
+							Field::make( 'select', 'field_id', esc_html__( 'Select profile field', 'posterno' ) )->set_options( 'pno_get_profile_fields_for_widget_association' ),
 						)
 					)
 					->setup_labels( $labels ),

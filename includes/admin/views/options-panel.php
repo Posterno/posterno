@@ -26,10 +26,10 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 		<h1><?php echo esc_html( $this->title ); ?></h1>
 		<ul class="title-links hidden-sm-and-down">
 			<!--<li>
-				<a href="https://posterno.com/addons" target="_blank" class="page-title-action"><?php esc_html_e( 'View Addons' ); ?></a>
+				<a href="https://posterno.com/addons" target="_blank" class="page-title-action"><?php esc_html_e( 'View Addons', 'posterno' ); ?></a>
 			</li>-->
 			<li>
-				<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
+				<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation', 'posterno' ); ?></a>
 			</li>
 		</ul>
 	</div>

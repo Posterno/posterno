@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit;
 function pno_get_listings_table_columns() {
 
 	$columns = [
-		'name'    => esc_html__( 'Listing name' ),
-		'date'    => esc_html__( 'Date posted' ),
-		'expires' => esc_html__( 'Expires' ),
-		'status'  => esc_html__( 'Status' ),
-		'actions' => esc_html__( 'Actions' ),
+		'name'    => esc_html__( 'Listing name', 'posterno' ),
+		'date'    => esc_html__( 'Date posted', 'posterno' ),
+		'expires' => esc_html__( 'Expires', 'posterno' ),
+		'status'  => esc_html__( 'Status', 'posterno' ),
+		'actions' => esc_html__( 'Actions', 'posterno' ),
 	];
 
 	/**

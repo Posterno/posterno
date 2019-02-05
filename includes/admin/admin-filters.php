@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  * @return array
  */
 function pno_add_settings_link( $links ) {
-	$settings_link = '<a href="' . admin_url( 'edit.php?post_type=listings&page=posterno-settings' ) . '">' . esc_html__( 'Settings' ) . '</a>';
+	$settings_link = '<a href="' . admin_url( 'edit.php?post_type=listings&page=posterno-settings' ) . '">' . esc_html__( 'Settings', 'posterno' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -52,12 +52,12 @@ function pno_plugin_row_meta( $plugin_meta, $plugin_file ) {
 					), 'https://docs.posterno.com'
 				)
 			),
-			__( 'Documentation' )
+			__( 'Documentation', 'posterno' )
 		),
 		sprintf(
 			'<a href="%1$s" target="_blank">%2$s</a>',
 			esc_url( 'https://wordpress.org/support/view/plugin-reviews/posterno?filter=5#postform' ),
-			__( 'Rate us' )
+			__( 'Rate us', 'posterno' )
 		),
 	);
 
@@ -182,7 +182,7 @@ function pno_emails_post_type_columns( $columns ) {
 
 	unset( $columns['date'] );
 
-	$columns['situations'] = esc_html__( 'Situations' );
+	$columns['situations'] = esc_html__( 'Situations', 'posterno' );
 
 	return $columns;
 }
@@ -198,19 +198,19 @@ add_filter( 'manage_pno_emails_posts_columns', 'pno_emails_post_type_columns' );
 function pno_post_types_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
 
 	$bulk_messages['listings'] = array(
-		'updated'   => _n( '%s listing updated.', '%s listings updated.', $bulk_counts['updated'] ),
-		'locked'    => _n( '%s listing not updated, somebody is editing it.', '%s listings not updated, somebody is editing them.', $bulk_counts['locked'] ),
-		'deleted'   => _n( '%s listing permanently deleted.', '%s listings permanently deleted.', $bulk_counts['deleted'] ),
-		'trashed'   => _n( '%s listing moved to the trash.', '%s listings moved to the trash.', $bulk_counts['trashed'] ),
-		'untrashed' => _n( '%s listing restored from the trash.', '%s listings restored from the trash.', $bulk_counts['untrashed'] ),
+		'updated'   => _n( '%s listing updated.', '%s listings updated.', $bulk_counts['updated'], 'posterno' ),
+		'locked'    => _n( '%s listing not updated, somebody is editing it.', '%s listings not updated, somebody is editing them.', $bulk_counts['locked'], 'posterno' ),
+		'deleted'   => _n( '%s listing permanently deleted.', '%s listings permanently deleted.', $bulk_counts['deleted'], 'posterno' ),
+		'trashed'   => _n( '%s listing moved to the trash.', '%s listings moved to the trash.', $bulk_counts['trashed'], 'posterno' ),
+		'untrashed' => _n( '%s listing restored from the trash.', '%s listings restored from the trash.', $bulk_counts['untrashed'], 'posterno' ),
 	);
 
 	$bulk_messages['pno_emails'] = array(
-		'updated'   => _n( '%s email updated.', '%s emails updated.', $bulk_counts['updated'] ),
-		'locked'    => _n( '%s email not updated, somebody is editing it.', '%s emails not updated, somebody is editing them.', $bulk_counts['locked'] ),
-		'deleted'   => _n( '%s email permanently deleted.', '%s emails permanently deleted.', $bulk_counts['deleted'] ),
-		'trashed'   => _n( '%s email moved to the trash.', '%s emails moved to the trash.', $bulk_counts['trashed'] ),
-		'untrashed' => _n( '%s email restored from the trash.', '%s emails restored from the trash.', $bulk_counts['untrashed'] ),
+		'updated'   => _n( '%s email updated.', '%s emails updated.', $bulk_counts['updated'], 'posterno' ),
+		'locked'    => _n( '%s email not updated, somebody is editing it.', '%s emails not updated, somebody is editing them.', $bulk_counts['locked'], 'posterno' ),
+		'deleted'   => _n( '%s email permanently deleted.', '%s emails permanently deleted.', $bulk_counts['deleted'], 'posterno' ),
+		'trashed'   => _n( '%s email moved to the trash.', '%s emails moved to the trash.', $bulk_counts['trashed'], 'posterno' ),
+		'untrashed' => _n( '%s email restored from the trash.', '%s emails restored from the trash.', $bulk_counts['untrashed'], 'posterno' ),
 	);
 
 	return $bulk_messages;

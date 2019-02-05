@@ -54,7 +54,7 @@ $comments = pno_get_member_submitted_comments( $data->user_id );
 			->set_template_data(
 				[
 					'type'    => 'info',
-					'message' => sprintf( esc_html__( '%s has not made any comment yet.' ), pno_get_user_first_name( $data->user_details ) ),
+					'message' => sprintf( esc_html__( '%s has not made any comment yet.', 'posterno' ), pno_get_user_first_name( $data->user_details ) ),
 				]
 			)
 			->get_template_part( 'message' );

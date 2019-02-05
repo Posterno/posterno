@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 function pno_plugin_register_exporters( $exporters ) {
 
 	$exporters[] = array(
-		'exporter_friendly_name' => esc_html__( 'Additional account details' ),
+		'exporter_friendly_name' => esc_html__( 'Additional account details', 'posterno' ),
 		'callback'               => 'pno_export_profile_fields_user_data',
 	);
 
@@ -45,7 +45,7 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 
 		$item_id     = "additional-user-data-{$user->ID}";
 		$group_id    = 'user';
-		$group_label = esc_html__( 'Additional account details' );
+		$group_label = esc_html__( 'Additional account details', 'posterno' );
 		$data        = array();
 
 		$fields_query_args = [
@@ -73,7 +73,7 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 						$value = $profile_field->get_value();
 
 						if ( $profile_field->get_type() == 'checkbox' ) {
-							$value = esc_html__( 'Yes' );
+							$value = esc_html__( 'Yes', 'posterno' );
 						} elseif ( $profile_field->get_type() == 'multiselect' || $profile_field->get_type() == 'multicheckbox' ) {
 
 							$stored_field_options = $profile_field->get_options();

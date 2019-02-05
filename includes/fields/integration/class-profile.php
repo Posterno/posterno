@@ -84,7 +84,7 @@ class Profile {
 							if ( $custom_profile_field->is_multiple() ) {
 								$admin_fields[] = Field::make( 'complex', $custom_profile_field->get_object_meta_key() )->add_fields(
 									array(
-										Field::make( 'text', 'url', esc_html__( 'File url' ) ),
+										Field::make( 'text', 'url', esc_html__( 'File url', 'posterno' ) ),
 										Field::make( 'hidden', 'path' ),
 									)
 								);
@@ -107,7 +107,7 @@ class Profile {
 		);
 
 		if ( ! empty( $admin_fields ) ) {
-			Container::make( 'user_meta', esc_html__( 'Additional details' ) )
+			Container::make( 'user_meta', esc_html__( 'Additional details', 'posterno' ) )
 				->add_fields( $admin_fields );
 		}
 

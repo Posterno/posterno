@@ -24,10 +24,10 @@ class ListingVideo extends Widget {
 	public function __construct() {
 		$this->setup(
 			'pno_listing_video_widget',
-			esc_html__( '[Posterno] Listing video' ),
-			esc_html__( 'Displays the current listing\'s attached video.' ),
+			esc_html__( '[Posterno] Listing video', 'posterno' ),
+			esc_html__( 'Displays the current listing\'s attached video.', 'posterno' ),
 			array(
-				Field::make( 'text', 'title', esc_html__( 'Title' ) ),
+				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
 			),
 			'pno-widget-listing-video'
 		);

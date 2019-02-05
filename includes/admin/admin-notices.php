@@ -28,7 +28,7 @@ function pno_avatar_field_is_disabled_notice() {
 
 		if ( $post instanceof WP_Post && isset( $post->ID ) && $field->get_object_meta_key() === 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
 
-			$message = esc_html__( 'The avatar field is currently disabled. You can enable it through the plugin\'s settings.' );
+			$message = esc_html__( 'The avatar field is currently disabled. You can enable it through the plugin\'s settings.', 'posterno' );
 
 			posterno()->admin_notices->register_notice( 'avatar_disabled', 'info', $message, [ 'dismissible' => false ] );
 
@@ -51,7 +51,7 @@ function pno_password_settings_controller_notice() {
 
 	if ( pno_get_option( 'disable_password' ) && pno_get_option( 'verify_password' ) ) {
 
-		$message = esc_html__( 'Posterno: you have enabled the "Disable custom passwords during registration" setting, please disable the "Enable password confirmation" option.' );
+		$message = esc_html__( 'Posterno: you have enabled the "Disable custom passwords during registration" setting, please disable the "Enable password confirmation" option.', 'posterno' );
 
 		posterno()->admin_notices->register_notice( 'psw_setting_error', 'error', $message, [ 'dismissible' => false ] );
 
@@ -76,7 +76,7 @@ function pno_avatar_globally_disabled_notice() {
 		$admin_url     = admin_url( 'options-discussion.php#show_avatars' );
 		$pno_admin_url = admin_url( 'options-general.php?page=posterno-options' );
 
-		$message = sprintf( __( 'Posterno: avatars <a href="%1$s">are currently globally disabled</a> onto your site, please <a href="%1$s">enable avatars</a> onto your site or <a href="%2$s">disable Posterno\'s built-in custom avatars</a>.' ), $admin_url, $pno_admin_url );
+		$message = sprintf( __( 'Posterno: avatars <a href="%1$s">are currently globally disabled</a> onto your site, please <a href="%1$s">enable avatars</a> onto your site or <a href="%2$s">disable Posterno\'s built-in custom avatars</a>.', 'posterno' ), $admin_url, $pno_admin_url );
 
 		posterno()->admin_notices->register_notice( 'avatar_setting_error', 'error', $message, [ 'dismissible' => false ] );
 
@@ -99,20 +99,20 @@ function pno_required_pages_settings_is_singular_notice() {
 	}
 
 	$settings = [
-		'login_page'                  => esc_html__( 'Login page' ),
-		'password_page'               => esc_html__( 'Password recovery page' ),
-		'registration_page'           => esc_html__( 'Registration page' ),
-		'dashboard_page'              => esc_html__( 'Dashboard page' ),
-		'submission_page'             => esc_html__( 'Listing submission page' ),
-		'editing_page'                => esc_html__( 'Listing editing page' ),
-		'profile_page'                => esc_html__( 'Public profile page' ),
-		'terms_page'                  => esc_html__( 'Terms Page:' ),
-		'login_redirect'              => esc_html__( 'After login' ),
-		'logout_redirect'             => esc_html__( 'After logout' ),
-		'registration_redirect'       => esc_html__( 'After registration' ),
-		'cancellation_redirect'       => esc_html__( 'After account cancellation' ),
-		'listing_submission_redirect' => esc_html__( 'After successful submission' ),
-		'listing_editing_redirect'    => esc_html__( 'After successful editing' ),
+		'login_page'                  => esc_html__( 'Login page', 'posterno' ),
+		'password_page'               => esc_html__( 'Password recovery page', 'posterno' ),
+		'registration_page'           => esc_html__( 'Registration page', 'posterno' ),
+		'dashboard_page'              => esc_html__( 'Dashboard page', 'posterno' ),
+		'submission_page'             => esc_html__( 'Listing submission page', 'posterno' ),
+		'editing_page'                => esc_html__( 'Listing editing page', 'posterno' ),
+		'profile_page'                => esc_html__( 'Public profile page', 'posterno' ),
+		'terms_page'                  => esc_html__( 'Terms Page:', 'posterno' ),
+		'login_redirect'              => esc_html__( 'After login', 'posterno' ),
+		'logout_redirect'             => esc_html__( 'After logout', 'posterno' ),
+		'registration_redirect'       => esc_html__( 'After registration', 'posterno' ),
+		'cancellation_redirect'       => esc_html__( 'After account cancellation', 'posterno' ),
+		'listing_submission_redirect' => esc_html__( 'After successful submission', 'posterno' ),
+		'listing_editing_redirect'    => esc_html__( 'After successful editing', 'posterno' ),
 	];
 
 	$settings = apply_filters( 'pno_singular_page_options_list', $settings );
@@ -123,7 +123,7 @@ function pno_required_pages_settings_is_singular_notice() {
 
 		if ( is_array( $option ) && count( $option ) > 1 ) {
 
-			$message = sprintf( __( 'Posterno: the setting <strong>"%1$s"</strong> can only have 1 page selected. Please correct the issue by selecting only one page into the <a href="%2$s">settings panel</a>.' ), $label, admin_url( 'options-general.php?page=posterno-options' ) );
+			$message = sprintf( __( 'Posterno: the setting <strong>"%1$s"</strong> can only have 1 page selected. Please correct the issue by selecting only one page into the <a href="%2$s">settings panel</a>.', 'posterno' ), $label, admin_url( 'options-general.php?page=posterno-options' ) );
 
 			posterno()->admin_notices->register_notice( "pno_setting_error_{$key}", 'error', $message, [ 'dismissible' => false ] );
 
@@ -148,7 +148,7 @@ function pno_permalink_controller_notice() {
 
 	if ( empty( $wp_rewrite->permalink_structure ) ) {
 
-		$message = sprintf( __( '<strong>Posterno is almost ready</strong>. You must <a href="%s">update your permalink structure</a> to something other than the default for it to work.' ), admin_url( 'options-permalink.php' ) );
+		$message = sprintf( __( '<strong>Posterno is almost ready</strong>. You must <a href="%s">update your permalink structure</a> to something other than the default for it to work.', 'posterno' ), admin_url( 'options-permalink.php' ) );
 
 		posterno()->admin_notices->register_notice( 'permalink_setting_error', 'error', $message, [ 'dismissible' => false ] );
 

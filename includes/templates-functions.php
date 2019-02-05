@@ -29,14 +29,14 @@ function pno_get_form_id( $form ) {
  */
 function pno_get_login_label() {
 
-	$label = esc_html__( 'Username' );
+	$label = esc_html__( 'Username', 'posterno' );
 
 	$login_method = pno_get_option( 'login_method' );
 
 	if ( $login_method === 'email' ) {
-		$label = esc_html__( 'Email' );
+		$label = esc_html__( 'Email', 'posterno' );
 	} elseif ( $login_method === 'username_email' ) {
-		$label = esc_html__( 'Username or email' );
+		$label = esc_html__( 'Username or email', 'posterno' );
 	}
 
 	return $label;
@@ -424,7 +424,7 @@ function pno_display_field_email_value( $value ) {
  * @return string
  */
 function pno_display_field_checkbox_value( $value ) {
-	return $value === true ? esc_html__( 'Yes' ) : esc_html__( 'No' );
+	return $value === true ? esc_html__( 'Yes', 'posterno' ) : esc_html__( 'No', 'posterno' );
 }
 
 /**
@@ -684,5 +684,5 @@ function pno_get_listing_class( $class = '', $post_id = null ) {
  * @return string
  */
 function pno_get_widget_singular_restriction_message() {
-	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page.' );
+	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page.', 'posterno' );
 }

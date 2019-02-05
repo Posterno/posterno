@@ -21,7 +21,7 @@ posterno()->templates
 	->set_template_data(
 		[
 			'type'    => 'info',
-			'message' => esc_html__( 'No listings were found at this location.' ),
+			'message' => esc_html__( 'No listings were found at this location.', 'posterno' ),
 		]
 	)
 	->get_template_part( 'message' );

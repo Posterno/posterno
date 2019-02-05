@@ -54,7 +54,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 
 		$steps = array(
 			'submit' => array(
-				'name'     => esc_html__( 'Password recovery details request' ),
+				'name'     => esc_html__( 'Password recovery details request', 'posterno' ),
 				'view'     => array( $this, 'submit' ),
 				'handler'  => array( $this, 'submit_handler' ),
 				'priority' => 10,
@@ -91,7 +91,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 		$fields = array(
 			'user'     => array(
 				'username_email' => array(
-					'label'       => __( 'Username or email' ),
+					'label'       => __( 'Username or email', 'posterno' ),
 					'type'        => 'text',
 					'required'    => true,
 					'placeholder' => '',
@@ -100,14 +100,14 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 			),
 			'password' => array(
 				'password'   => array(
-					'label'       => __( 'New password' ),
+					'label'       => __( 'New password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 1,
 				),
 				'password_confirm' => array(
-					'label'       => __( 'Re-enter new password' ),
+					'label'       => __( 'Re-enter new password', 'posterno' ),
 					'type'        => 'password',
 					'required'    => true,
 					'placeholder' => '',
@@ -151,7 +151,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 		 *
 		 * @param string $message the message to display.
 		 */
-		$message = apply_filters( 'pno_lost_password_message', esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.' ) );
+		$message = apply_filters( 'pno_lost_password_message', esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'posterno' ) );
 
 		if ( $this->is_recovery_mode() ) {
 
@@ -161,7 +161,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 			 *
 			 * @param string $message
 			 */
-			$message = apply_filters( 'pno_change_password_message', esc_html__( 'Create a new password for the account.' ) );
+			$message = apply_filters( 'pno_change_password_message', esc_html__( 'Create a new password for the account.', 'posterno' ) );
 		}
 
 		posterno()->templates
@@ -171,7 +171,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 					'action'       => $this->get_action(),
 					'fields'       => $this->is_recovery_mode() ? $this->get_fields( 'password' ) : $this->get_fields( 'user' ),
 					'step'         => $this->get_step(),
-					'submit_label' => esc_html__( 'Reset password' ),
+					'submit_label' => esc_html__( 'Reset password', 'posterno' ),
 					'message'      => $message,
 				]
 			)
@@ -239,7 +239,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 					$allow = apply_filters( 'allow_password_reset', true, $user_id );
 
 					if ( ! $allow ) {
-						throw new Exception( esc_html__( 'Password reset is not allowed for this user.' ) );
+						throw new Exception( esc_html__( 'Password reset is not allowed for this user.', 'posterno' ) );
 					}
 
 					$verify_key = check_password_reset_key( $verification_key, $get_user->data->user_login );
@@ -253,7 +253,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 						 * @param string $message the error message.
 						 * @return string the new message.
 						 */
-						$error_message = apply_filters( 'pno_password_recovery_key_invalid_message', esc_html__( 'The reset key is wrong or expired. Please check that you used the right reset link or request a new one.' ) );
+						$error_message = apply_filters( 'pno_password_recovery_key_invalid_message', esc_html__( 'The reset key is wrong or expired. Please check that you used the right reset link or request a new one.', 'posterno' ) );
 
 						throw new Exception( $error_message );
 
@@ -264,7 +264,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 
 						if ( $password_1 !== $password_2 ) {
 
-							$error_not_matching = esc_html__( 'Passwords do not match.' );
+							$error_not_matching = esc_html__( 'Passwords do not match.', 'posterno' );
 
 							/**
 							 * Allow developers to customize the password recovery psw not matching message.
@@ -285,7 +285,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 						$sessions = WP_Session_Tokens::get_instance( $user_id );
 						$sessions->destroy_all();
 
-						$success_message = esc_html__( 'Password successfully reset.' ) . ' ' . '<a href="' . esc_url( get_permalink( pno_get_login_page_id() ) ) . '">' . esc_html__( 'Login now &raquo;' ) . '</a>';
+						$success_message = esc_html__( 'Password successfully reset.', 'posterno' ) . ' ' . '<a href="' . esc_url( get_permalink( pno_get_login_page_id() ) ) . '">' . esc_html__( 'Login now &raquo;', 'posterno' ) . '</a>';
 
 						/**
 						 * Allow developers to customize the password recovery success message.
@@ -309,7 +309,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 					 * @param string $message the error message.
 					 * @return string the new message.
 					 */
-					$invalid_link = apply_filters( 'pno_password_recovery_invalid_link_message', esc_html__( 'The link you followed may be broken. Please check that you used the right reset link or request a new one.' ) );
+					$invalid_link = apply_filters( 'pno_password_recovery_invalid_link_message', esc_html__( 'The link you followed may be broken. Please check that you used the right reset link or request a new one.', 'posterno' ) );
 
 					throw new Exception( $invalid_link );
 
@@ -327,7 +327,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 					 * @param string $message the error message.
 					 * @return string the new message.
 					 */
-					$user_not_found_message = apply_filters( 'pno_password_recovery_invalid_user', esc_html__( 'A user with this username or email does not exist. Please check your entry and try again.' ) );
+					$user_not_found_message = apply_filters( 'pno_password_recovery_invalid_user', esc_html__( 'A user with this username or email does not exist. Please check your entry and try again.', 'posterno' ) );
 
 					throw new Exception( $user_not_found_message );
 				}
@@ -350,7 +350,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 					$allow = apply_filters( 'allow_password_reset', true, $user->data->ID );
 
 					if ( ! $allow ) {
-						throw new Exception( esc_html__( 'Password reset is not allowed for this user.' ) );
+						throw new Exception( esc_html__( 'Password reset is not allowed for this user.', 'posterno' ) );
 					}
 
 					// Generate a new password reset key for the selected user.
@@ -374,7 +374,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 						);
 
 						$masked_email    = pno_mask_email_address( $user->data->user_email );
-						$success_message = sprintf( esc_html__( 'We\'ve sent an email to %s with password reset instructions.' ), '<strong>' . $masked_email . '</strong>' );
+						$success_message = sprintf( esc_html__( 'We\'ve sent an email to %s with password reset instructions.', 'posterno' ), '<strong>' . $masked_email . '</strong>' );
 
 						/**
 						 * Allow developers to customize the success message for the password
@@ -391,7 +391,7 @@ class PNO_Form_Password_Recovery extends PNO_Form {
 						return;
 					}
 				} else {
-					throw new Exception( esc_html__( 'Something went wrong.' ) );
+					throw new Exception( esc_html__( 'Something went wrong.', 'posterno' ) );
 				}
 			}
 		} catch ( Exception $e ) {

@@ -37,7 +37,7 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 */
 	public function get_items_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'posterno_rest_cannot_view', esc_html__( 'Sorry, you cannot list resources.', 'posterno' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -49,7 +49,7 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 */
 	public function create_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_create', esc_html__( 'Sorry, you are not allowed to create resources.' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'posterno_rest_cannot_create', esc_html__( 'Sorry, you are not allowed to create resources.', 'posterno' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -61,7 +61,7 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 */
 	public function update_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_update', esc_html__( 'Sorry, you cannot update resources.' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'posterno_rest_cannot_update', esc_html__( 'Sorry, you cannot update resources.', 'posterno' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -73,7 +73,7 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 */
 	public function delete_item_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_delete', esc_html__( 'Sorry, you cannot delete resources.' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'posterno_rest_cannot_delete', esc_html__( 'Sorry, you cannot delete resources.', 'posterno' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}
@@ -85,7 +85,7 @@ abstract class PNO_REST_Controller extends WP_REST_Controller {
 	 */
 	public function batch_items_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return new WP_Error( 'posterno_rest_cannot_batch', esc_html__( 'Sorry, you cannot work with batch resources.' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'posterno_rest_cannot_batch', esc_html__( 'Sorry, you cannot work with batch resources.', 'posterno' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 		return true;
 	}

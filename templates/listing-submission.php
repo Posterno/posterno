@@ -36,7 +36,7 @@ defined( 'ABSPATH' ) || exit;
 			->set_template_data(
 				[
 					'form'         => $data->form,
-					'submit_label' => esc_html__( 'Submit listing &rarr;' ),
+					'submit_label' => esc_html__( 'Submit listing &rarr;', 'posterno' ),
 				]
 			)
 			->get_template_part( 'form' );
@@ -48,7 +48,7 @@ defined( 'ABSPATH' ) || exit;
 				[
 					'title'        => 'title',
 					'form'         => $data->form,
-					'submit_label' => esc_html__( 'Continue &rarr;' ),
+					'submit_label' => esc_html__( 'Continue &rarr;', 'posterno' ),
 				]
 			)
 			->get_template_part( 'forms/listing-type-selection' );

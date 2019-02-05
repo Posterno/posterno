@@ -68,7 +68,7 @@ if ( $listings->have_posts() ) {
 		->set_template_data(
 			[
 				'type'    => 'info',
-				'message' => esc_html__( 'No listings have been found.' ),
+				'message' => esc_html__( 'No listings have been found.', 'posterno' ),
 			]
 		)
 		->get_template_part( 'message' );

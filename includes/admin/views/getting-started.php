@@ -18,11 +18,11 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 
 <div class="wrap about-wrap" id="pno-getting-started">
 
-	<h1><?php esc_html_e( 'Welcome to Posterno (Beta)' ); ?></h1>
+	<h1><?php esc_html_e( 'Welcome to Posterno (Beta)', 'posterno' ); ?></h1>
 
 	<div class="about-text">
 
-		<?php echo sprintf( __( 'Posterno provides you the tools you need to create any kind of listings & classifieds directory. Check out the <a href="%1$s" target="_blank">plugin documentation</a> for a comprehensive introduction to your new plugin.' ), 'https://docs.posterno.com' ); ?>
+		<?php echo sprintf( __( 'Posterno provides you the tools you need to create any kind of listings & classifieds directory. Check out the <a href="%1$s" target="_blank">plugin documentation</a> for a comprehensive introduction to your new plugin.', 'posterno' ), 'https://docs.posterno.com' ); ?>
 
 	</div>
 
@@ -35,34 +35,34 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 		</li>
 	</ul>
 
-	<div class="pno-badge"><?php printf( esc_html__( 'Version %s' ), esc_attr( PNO_VERSION ) ); ?></div>
+	<div class="pno-badge"><?php printf( esc_html__( 'Version %s', 'posterno' ), esc_attr( PNO_VERSION ) ); ?></div>
 
 	<?php $this->tabs(); ?>
 
-	<p class="about-description"><?php esc_html_e( 'With just a few quick clicks, you’ll be creating your directory in no time! ' ); ?></p>
+	<p class="about-description"><?php esc_html_e( 'With just a few quick clicks, you’ll be creating your directory in no time! ', 'posterno' ); ?></p>
 
 	<div id="welcome-panel" class="welcome-panel" style="padding-top:0px;">
 		<div class="welcome-panel-content">
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column">
-					<h4><?php esc_html_e( 'Configure Posterno' ); ?></h4>
+					<h4><?php esc_html_e( 'Configure Posterno', 'posterno' ); ?></h4>
 					<ul>
-						<li><a href="<?php echo esc_url( admin_url( 'options-general.php?page=posterno-options' ) ); ?>" class="welcome-icon dashicons-admin-generic" target="_blank"><?php esc_html_e( 'Posterno options panel' ); ?></a></li>
-						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=pno_emails' ) ); ?>" class="welcome-icon dashicons-email-alt" target="_blank"><?php esc_html_e( 'Setup email notifications' ); ?></a></li>
-						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings' ) ); ?>" class="welcome-icon dashicons-plus-alt" target="_blank"><?php esc_html_e( 'Add listings' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'options-general.php?page=posterno-options' ) ); ?>" class="welcome-icon dashicons-admin-generic" target="_blank"><?php esc_html_e( 'Posterno options panel', 'posterno' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=pno_emails' ) ); ?>" class="welcome-icon dashicons-email-alt" target="_blank"><?php esc_html_e( 'Setup email notifications', 'posterno' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings' ) ); ?>" class="welcome-icon dashicons-plus-alt" target="_blank"><?php esc_html_e( 'Add listings', 'posterno' ); ?></a></li>
 					</ul>
 				</div>
 				<div class="welcome-panel-column">
-					<h4><?php esc_html_e( 'Customize fields' ); ?></h4>
+					<h4><?php esc_html_e( 'Customize fields', 'posterno' ); ?></h4>
 					<ul>
-						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ) ); ?>" class="welcome-icon dashicons-admin-settings" target="_blank"><?php esc_html_e( 'Customize listings fields' ); ?></a></li>
-						<li><a href="<?php echo esc_url( admin_url( 'users.php?page=posterno-custom-profile-fields' ) ); ?>" class="welcome-icon dashicons-admin-users" target="_blank"><?php esc_html_e( 'Customize profile fields' ); ?></a></li>
-						<li><a href="<?php echo esc_url( admin_url( 'users.php?page=posterno-custom-registration-form' ) ); ?>" class="welcome-icon dashicons-groups" target="_blank"><?php esc_html_e( 'Customize registration form' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ) ); ?>" class="welcome-icon dashicons-admin-settings" target="_blank"><?php esc_html_e( 'Customize listings fields', 'posterno' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'users.php?page=posterno-custom-profile-fields' ) ); ?>" class="welcome-icon dashicons-admin-users" target="_blank"><?php esc_html_e( 'Customize profile fields', 'posterno' ); ?></a></li>
+						<li><a href="<?php echo esc_url( admin_url( 'users.php?page=posterno-custom-registration-form' ) ); ?>" class="welcome-icon dashicons-groups" target="_blank"><?php esc_html_e( 'Customize registration form', 'posterno' ); ?></a></li>
 					</ul>
 				</div>
 				<div class="welcome-panel-column welcome-panel-last">
-					<h4><?php esc_html_e( 'Documentation' ); ?></h4>
-					<p class="welcome-icon welcome-learn-more"><?php echo sprintf( __( 'Looking for help? <a href="%s" target="_blank">Posterno documentation</a> has got you covered.' ), 'https://docs.posterno.com' ); ?> <br/><br/><a href="https://docs.posterno.com" class="button" target="_blank"><?php esc_html_e( 'Read documentation' ); ?></a></p>
+					<h4><?php esc_html_e( 'Documentation', 'posterno' ); ?></h4>
+					<p class="welcome-icon welcome-learn-more"><?php echo sprintf( __( 'Looking for help? <a href="%s" target="_blank">Posterno documentation</a> has got you covered.', 'posterno' ), 'https://docs.posterno.com' ); ?> <br/><br/><a href="https://docs.posterno.com" class="button" target="_blank"><?php esc_html_e( 'Read documentation', 'posterno' ); ?></a></p>
 				</div>
 			</div>
 		</div>
@@ -73,24 +73,24 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 		<div class="feature-section  two-col">
 
 			<div class="col">
-				<h3><?php esc_html_e( 'Looking for help ?' ); ?></h3>
-				<p><?php echo sprintf( __( 'If you have a question, issue or bug with the Posterno please <a href="%1$s" target="_blank">open a topic in the support forum</a>. Make sure you <a href="%2$s" target="_blank">read the documentation</a> first. We also welcome your feedback and feature requests.' ), 'https://wordpress.org/support/plugin/posterno/', 'https://docs.posterno.com' ); ?></p>
+				<h3><?php esc_html_e( 'Looking for help ?', 'posterno' ); ?></h3>
+				<p><?php echo sprintf( __( 'If you have a question, issue or bug with the Posterno please <a href="%1$s" target="_blank">open a topic in the support forum</a>. Make sure you <a href="%2$s" target="_blank">read the documentation</a> first. We also welcome your feedback and feature requests.', 'posterno' ), 'https://wordpress.org/support/plugin/posterno/', 'https://docs.posterno.com' ); ?></p>
 			</div>
 
 			<div class="last-feature col">
-				<h3><?php esc_html_e( 'Don\'t miss out' ); ?></h3>
-				<p><?php esc_html_e( 'Be sure to sign up for the Posterno newsletter below to stay informed of important updates, news and offers. We don\'t spam and you can unsubscribe at any time.' ); ?></p>
+				<h3><?php esc_html_e( 'Don\'t miss out', 'posterno' ); ?></h3>
+				<p><?php esc_html_e( 'Be sure to sign up for the Posterno newsletter below to stay informed of important updates, news and offers. We don\'t spam and you can unsubscribe at any time.', 'posterno' ); ?></p>
 
 				<form action="https://posterno.us5.list-manage.com/subscribe/post?u=e68e0bb69f2cdf2dfd083856c&amp;id=3368f62228" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 					<table class="form-table pno-newsletter-form">
 						<tbody>
 							<tr valign="middle">
 								<td>
-									<input type="email" value="<?php echo esc_html( $email_address ); ?>" placeholder="<?php esc_html_e( 'Email address*' ); ?>" name="EMAIL" class="required email" required id="mce-EMAIL">
+									<input type="email" value="<?php echo esc_html( $email_address ); ?>" placeholder="<?php esc_html_e( 'Email address*', 'posterno' ); ?>" name="EMAIL" class="required email" required id="mce-EMAIL">
 								</td>
 								<td>
 									<div class="mc-field-group">
-										<input type="text" value="<?php echo esc_html( $first_name ); ?>" name="FNAME" class="" id="mce-FNAME" placeholder="<?php esc_html_e( 'First name' ); ?>">
+										<input type="text" value="<?php echo esc_html( $first_name ); ?>" name="FNAME" class="" id="mce-FNAME" placeholder="<?php esc_html_e( 'First name', 'posterno' ); ?>">
 									</div>
 								</td>
 							</tr>
@@ -105,7 +105,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 										<input type="text" name="b_e68e0bb69f2cdf2dfd083856c_3368f62228" tabindex="-1" value="">
 									</div>
 									<div class="clear">
-										<input type="submit" value="<?php echo esc_html__( 'Subscribe' ); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
+										<input type="submit" value="<?php echo esc_html__( 'Subscribe', 'posterno' ); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
 									</div>
 								</td>
 							</tr>
@@ -117,7 +117,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 			<hr>
 
 			<div class="return-to-dashboard">
-				<a href="https://posterno.com" target="_blank"><?php esc_html_e( 'Visit the Posterno website to find out more' ); ?> &rarr;</a>
+				<a href="https://posterno.com" target="_blank"><?php esc_html_e( 'Visit the Posterno website to find out more', 'posterno' ); ?> &rarr;</a>
 			</div>
 
 		</div>

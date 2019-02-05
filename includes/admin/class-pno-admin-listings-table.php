@@ -45,19 +45,19 @@ class ListingsTable {
 
 		unset( $columns['date'] );
 
-		$columns['status'] = '<div data-balloon="' . esc_html__( 'Status' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-info"></span></div>';
+		$columns['status'] = '<div data-balloon="' . esc_html__( 'Status', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-info"></span></div>';
 
 		if ( pno_listings_can_be_featured() ) {
-			$columns['featured'] = '<div data-balloon="' . esc_html__( 'Featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
+			$columns['featured'] = '<div data-balloon="' . esc_html__( 'Featured', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
 		}
 
-		$columns['posted'] = esc_html__( 'Posted' );
+		$columns['posted'] = esc_html__( 'Posted', 'posterno' );
 
 		if ( pno_listings_can_expire() ) {
-			$columns['expires'] = esc_html__( 'Expires' );
+			$columns['expires'] = esc_html__( 'Expires', 'posterno' );
 		}
 
-		$columns['type'] = esc_html__( 'Type' );
+		$columns['type'] = esc_html__( 'Type', 'posterno' );
 
 		return $columns;
 
@@ -93,7 +93,7 @@ class ListingsTable {
 				admin_url( 'user-edit.php' )
 			);
 
-			echo wp_sprintf( __( 'By: %1$s' ), '<strong><a href="' . esc_url( $admin_url ) . '">' . esc_html( $author_name ) . '</a></strong>' );
+			echo wp_sprintf( __( 'By: %1$s', 'posterno' ), '<strong><a href="' . esc_url( $admin_url ) . '">' . esc_html( $author_name ) . '</a></strong>' );
 
 		} elseif ( $column === 'type' ) {
 
@@ -117,7 +117,7 @@ class ListingsTable {
 		} elseif ( $column === 'featured' ) {
 
 			if ( pno_listing_is_featured( $listing_id ) ) {
-				echo '<div data-balloon="' . esc_html__( 'Listing is featured' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
+				echo '<div data-balloon="' . esc_html__( 'Listing is featured', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-star-filled"></span></div>';
 			} else {
 				echo '–';
 			}
@@ -127,11 +127,11 @@ class ListingsTable {
 			$status = get_post_status( $listing_id );
 
 			if ( $status === 'publish' ) {
-				echo '<div data-balloon="' . esc_html__( 'Active' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-yes"></span></div>';
+				echo '<div data-balloon="' . esc_html__( 'Active', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-yes"></span></div>';
 			} elseif ( $status === 'expired' ) {
-				echo '<div data-balloon="' . esc_html__( 'Expired' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-dismiss"></span></div>';
+				echo '<div data-balloon="' . esc_html__( 'Expired', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-dismiss"></span></div>';
 			} elseif ( $status === 'pending' ) {
-				echo '<div data-balloon="' . esc_html__( 'Pending approval' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-clock"></span></div>';
+				echo '<div data-balloon="' . esc_html__( 'Pending approval', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-clock"></span></div>';
 			} else {
 				echo '–';
 			}

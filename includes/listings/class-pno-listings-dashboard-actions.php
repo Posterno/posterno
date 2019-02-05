@@ -92,7 +92,7 @@ class PNO_Listings_Dashboard_Actions {
 
 		switch ( $status ) {
 			case 'listing-deleted':
-				$message = apply_filters( 'pno_listing_deleted_message', esc_html__( 'Listing successfully deleted.' ) );
+				$message = apply_filters( 'pno_listing_deleted_message', esc_html__( 'Listing successfully deleted.', 'posterno' ) );
 				break;
 			case 'listing-updated':
 				$message = pno_get_listing_updated_message();

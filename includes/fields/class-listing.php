@@ -172,7 +172,7 @@ class Listing extends Field {
 		}
 
 		if ( ! isset( $args['name'] ) || empty( $args['name'] ) ) {
-			throw new \InvalidArgumentException( sprintf( __( 'Can\'t find property %s' ), 'name' ) );
+			throw new \InvalidArgumentException( sprintf( __( 'Can\'t find property %s', 'posterno' ), 'name' ) );
 		}
 
 		if ( ! isset( $args['meta'] ) || empty( $args['meta'] ) ) {
@@ -189,7 +189,7 @@ class Listing extends Field {
 
 		if ( isset( $args['meta'] ) && ! empty( $args['meta'] ) ) {
 			if ( $this->field_meta_key_exists( $args['meta'] ) ) {
-				return new \WP_Error( 'field-meta-exists', esc_html__( 'A field with the same meta key has been found. Please choose a different name.' ) );
+				return new \WP_Error( 'field-meta-exists', esc_html__( 'A field with the same meta key has been found. Please choose a different name.', 'posterno' ) );
 			}
 		}
 

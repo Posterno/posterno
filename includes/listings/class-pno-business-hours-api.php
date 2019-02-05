@@ -280,23 +280,23 @@ class BusinessHours {
 		$string = array();
 
 		if ( absint( $diff->y ) > 0 ) {
-			array_push( $string, $diff->y . ' ' . __( _n( 'year', 'years', absint( $diff->y ) ) ) );
+			array_push( $string, $diff->y . ' ' . __( _n( 'year', 'years', absint( $diff->y ), 'posterno' ) ) );
 		}
 		if ( absint( $diff->m ) > 0 ) {
-			array_push( $string, $diff->m . ' ' . __( _n( 'month', 'months', absint( $diff->m ) ) ) );
+			array_push( $string, $diff->m . ' ' . __( _n( 'month', 'months', absint( $diff->m ), 'posterno' ) ) );
 		}
 		if ( absint( $diff->d ) > 0 ) {
-			array_push( $string, $diff->d . ' ' . __( _n( 'day', 'days', absint( $diff->d ) ) ) );
+			array_push( $string, $diff->d . ' ' . __( _n( 'day', 'days', absint( $diff->d ), 'posterno' ) ) );
 		}
 		if ( absint( $diff->h ) > 0 ) {
-			array_push( $string, $diff->h . ' ' . __( _n( 'hour', 'hours', absint( $diff->h ) ) ) );
+			array_push( $string, $diff->h . ' ' . __( _n( 'hour', 'hours', absint( $diff->h ), 'posterno' ) ) );
 		}
 		if ( absint( $diff->i ) > 0 ) {
-			array_push( $string, $diff->i . ' ' . __( _n( 'minute', 'minutes', absint( $diff->i ) ) ) );
+			array_push( $string, $diff->i . ' ' . __( _n( 'minute', 'minutes', absint( $diff->i ), 'posterno' ) ) );
 		}
 
 		if ( count( $string ) === 0 ) {
-			return 1 . ' ' . __( 'minute' );
+			return 1 . ' ' . __( 'minute', 'posterno' );
 		}
 
 		return join( ', ', $string );

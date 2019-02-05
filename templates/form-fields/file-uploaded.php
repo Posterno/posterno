@@ -37,7 +37,7 @@ $extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $
 			<li class="list-group-item d-flex justify-content-between align-items-center">
 				<img src="<?php echo esc_url( $image_src ); ?>" />
 				<a class="pno-remove-uploaded-file btn btn-secondary btn-sm mt-2 mb-2" href="#">
-					<?php esc_html_e( 'Remove' ); ?>
+					<?php esc_html_e( 'Remove', 'posterno' ); ?>
 				</a>
 			</li>
 		</ul>
@@ -48,7 +48,7 @@ $extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $
 					<?php echo esc_html( basename( $image_src ) ); ?>
 				</code>
 				<a class="pno-remove-uploaded-file btn btn-secondary btn-sm" href="#">
-					<?php esc_html_e( 'Remove' ); ?>
+					<?php esc_html_e( 'Remove', 'posterno' ); ?>
 				</a>
 			</li>
 		</ul>
