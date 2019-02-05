@@ -22,6 +22,10 @@ function pno_after_theme_setup_load() {
 	$sidebar_manager = \Carbon_Fields\Carbon_Fields::resolve( 'sidebar_manager' );
 	remove_action( 'admin_enqueue_scripts', array( $sidebar_manager, 'enqueue_scripts' ) );
 
+	if ( ! current_theme_supports( 'menus' ) ) {
+		add_theme_support( 'menus' );
+	}
+
 	register_nav_menu( 'pno-dashboard-menu', esc_html__( 'Posterno Dashboard Menu' ) );
 	register_nav_menu( 'pno-profile-menu', esc_html__( 'Posterno Profile Menu' ) );
 
