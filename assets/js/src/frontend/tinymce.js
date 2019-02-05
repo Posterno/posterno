@@ -14,8 +14,8 @@
 	tinymce.PluginManager.add('pno_shortcodes_mce_button', function (editor, url) {
 		editor.addButton('pno_shortcodes_mce_button', {
 			title: pnotinymce.title,
+			text: pnotinymce.title,
 			type: 'menubutton',
-			icon: 'icon pno-shortcodes-icon',
 			menu: [
 
 				/** Forms **/

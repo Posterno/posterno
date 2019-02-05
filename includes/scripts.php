@@ -23,12 +23,9 @@ function pno_load_admin_scripts() {
 	$css_dir = PNO_PLUGIN_URL . 'assets/css/admin/';
 	$version = PNO_VERSION;
 
-	wp_register_style( 'pno-logo', $css_dir . 'admin-font.min.css', array(), $version );
 	wp_register_style( 'pno-editors-styling', $css_dir . 'admin-custom-fields-editor.min.css', [], $version );
 	wp_register_style( 'pno-editors-styling-post-type', $css_dir . 'admin-custom-fields-cpt.min.css', [], $version );
 	wp_register_style( 'pno-getting-started', $css_dir . 'admin-getting-started.min.css', [], $version );
-
-	wp_enqueue_style( 'pno-logo' );
 
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
 
