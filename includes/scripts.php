@@ -26,21 +26,29 @@ function pno_load_admin_scripts() {
 	wp_register_style( 'pno-editors-styling', $css_dir . 'admin-custom-fields-editor.min.css', [], $version );
 	wp_register_style( 'pno-editors-styling-post-type', $css_dir . 'admin-custom-fields-cpt.min.css', [], $version );
 	wp_register_style( 'pno-getting-started', $css_dir . 'admin-getting-started.min.css', [], $version );
+	wp_register_style( 'pno-vendors-chunk', PNO_PLUGIN_URL . 'dist/css/chunk-vendors.css', [], $version );
 
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
 
 		// Register the custom fields page scripts.
-		wp_register_script( 'pno-custom-fields-page', 'http://localhost:8080/custom-fields-editor.js', [], $version, true );
 		wp_register_script( 'pno-registration-form-editor', 'http://localhost:8080/registration-form-editor.js', [], $version, true );
 		wp_register_script( 'pno-profile-fields-editor', 'http://localhost:8080/profile-fields.js', [], $version, true );
 		wp_register_script( 'pno-listings-fields-editor', 'http://localhost:8080/listings-fields-editor.js', [], $version, true );
 
 	} else {
 
+		wp_register_script( 'pno-vue-vendors-chunk', PNO_PLUGIN_URL . 'dist/js/chunk-vendors.js', [], $version, true );
+		wp_register_script( 'pno-registration-form-editor', PNO_PLUGIN_URL . 'dist/js/registration-form-editor.js', [ 'pno-vue-vendors-chunk' ], $version, true );
+		wp_register_script( 'pno-profile-fields-editor', PNO_PLUGIN_URL . 'dist/js/profile-fields.js', [ 'pno-vue-vendors-chunk' ], $version, true );
+		wp_register_script( 'pno-listings-fields-editor', PNO_PLUGIN_URL . 'dist/js/listings-fields-editor.js', [ 'pno-vue-vendors-chunk' ], $version, true );
+
 	}
 
 	// Load scripts for the registration form editor page.
 	if ( $screen->id === 'users_page_posterno-custom-registration-form' ) {
+		if ( ! defined( 'PNO_VUE_DEV' ) || defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV !== true ) {
+			wp_enqueue_style( 'pno-vendors-chunk' );
+		}
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-registration-form-editor' );
 		wp_localize_script( 'pno-registration-form-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
@@ -48,18 +56,27 @@ function pno_load_admin_scripts() {
 
 	// Load scritps for the profile fields editor page.
 	if ( $screen->id === 'users_page_posterno-custom-profile-fields' ) {
+		if ( ! defined( 'PNO_VUE_DEV' ) || defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV !== true ) {
+			wp_enqueue_style( 'pno-vendors-chunk' );
+		}
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-profile-fields-editor' );
 		wp_localize_script( 'pno-profile-fields-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
 	if ( $screen->id === 'listings_page_posterno-custom-listings-fields' ) {
+		if ( ! defined( 'PNO_VUE_DEV' ) || defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV !== true ) {
+			wp_enqueue_style( 'pno-vendors-chunk' );
+		}
 		wp_enqueue_style( 'pno-editors-styling' );
 		wp_enqueue_script( 'pno-listings-fields-editor' );
 		wp_localize_script( 'pno-listings-fields-editor', 'pno_fields_editor', pno_get_custom_fields_editor_js_vars() );
 	}
 
 	if ( $screen->id === 'pno_users_fields' ) {
+		if ( ! defined( 'PNO_VUE_DEV' ) || defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV !== true ) {
+			wp_enqueue_style( 'pno-vendors-chunk' );
+		}
 		wp_enqueue_style( 'pno-editors-styling-post-type' );
 		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-profile-fields-settings-validation.min.js', [], $version, true );
 		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
