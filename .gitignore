@@ -6,6 +6,7 @@ node_modules/
 *.tar.gz
 *.zip
 build
+dist
 
 # Logs
 logs

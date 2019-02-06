@@ -1,4 +1,13 @@
 module.exports = {
+	configureWebpack: config => {
+		config.output.filename = '[name].js'
+		config.output.chunkFilename = '[name].js'
+	},
+	css: {
+		extract: {
+			filename: '[name].css',
+		},
+	},
 	// see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
 	chainWebpack: config => {
 		// If you wish to remove the standard entry point
