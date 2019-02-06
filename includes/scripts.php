@@ -142,6 +142,8 @@ function pno_load_frontend_scripts() {
 		wp_register_script( 'pno-vue-listing-submission-form', 'http://localhost:8080/listing-submission-form.js', [], $version, true );
 	} else {
 		wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue', [], $version, true );
+		wp_register_script( 'pno-vue-vendors-chunk', PNO_PLUGIN_URL . 'dist/js/chunk-vendors.js', [], $version, true );
+		wp_register_script( 'pno-vue-listing-submission-form', PNO_PLUGIN_URL . 'dist/js/listing-submission-form.js', [ 'pno-vue-vendors-chunk' ], $version, true );
 	}
 
 	wp_enqueue_script( 'jquery' );
