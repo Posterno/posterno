@@ -209,6 +209,9 @@ module.exports = function (grunt) {
 					'languages/**',
 					'templates/**',
 					'vendor/**',
+					'dist/**',
+					'!dist/favicon.ico',
+					'!dist/index.html',
 					'*.php',
 					'*.txt'
 				],
