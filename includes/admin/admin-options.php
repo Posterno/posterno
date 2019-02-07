@@ -48,6 +48,7 @@ function pno_get_registered_settings_tabs_sections() {
 		'general'  => [
 			'pages' => esc_html__( 'Pages setup', 'posterno' ),
 			'theme' => esc_html__( 'Theme', 'posterno' ),
+			'misc'  => esc_html__( 'Miscellaneous', 'posterno' ),
 		],
 		'accounts' => [
 			'login'                  => esc_html__( 'Login', 'posterno' ),

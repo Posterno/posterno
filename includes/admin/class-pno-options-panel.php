@@ -139,6 +139,7 @@ class OptionsPanel {
 
 		$settings['pages']                  = $this->get_pages_settings();
 		$settings['theme']                  = $this->get_theme_settings();
+		$settings['misc']                   = $this->get_misc_settings();
 		$settings['login']                  = $this->get_login_settings();
 		$settings['registration']           = $this->get_registration_settings();
 		$settings['password_recovery_form'] = $this->get_password_recovery_form_settings();
@@ -685,6 +686,22 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'checkbox', 'business_hours_today_only', esc_html__( 'Show today only', 'posterno' ) )
 			->set_help_text( esc_html__( 'Enable this option to show only the opening times of the current day.', 'posterno' ) );
+
+		return $settings;
+
+	}
+
+	/**
+	 * Get misc settings.
+	 *
+	 * @return array
+	 */
+	public function get_misc_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'checkbox', 'uninstall_on_delete', esc_html__( 'Remove data on uninstall?', 'posterno' ) )
+			->set_help_text( esc_html__( 'Check this box if you would like Posterno to completely remove all of its data when the plugin is deleted.', 'posterno' ) );
 
 		return $settings;
 

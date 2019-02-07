@@ -106,6 +106,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->forms         = PNO_Forms::instance();
 
 			self::maybe_schedule_cron_jobs();
+			register_deactivation_hook( PNO_PLUGIN_FILE, array( __CLASS__, 'unschedule_cron_jobs' ) );
 
 			// Return the instance.
 			return self::$instance;
