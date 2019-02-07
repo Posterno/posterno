@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posterno 0.1.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-02-06 10:55:23+00:00\n"
+"POT-Creation-Date: 2019-02-07 16:36:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -172,14 +172,14 @@ msgid "Dashboard"
 msgstr ""
 
 #: includes/admin/admin-actions.php:71 includes/admin/admin-functions.php:795
-#: includes/admin/admin-options.php:58
+#: includes/admin/admin-options.php:59
 #: includes/fields/integration/class-listing.php:69
 #: includes/fields/integration/class-listing.php:143
 msgid "Profile"
 msgstr ""
 
 #: includes/admin/admin-actions.php:74 includes/admin/admin-options.php:26
-#: includes/admin/admin-options.php:62 includes/post-types.php:39
+#: includes/admin/admin-options.php:63 includes/post-types.php:39
 #: includes/post-types.php:44 includes/profiles/profiles-functions.php:123
 msgid "Listings"
 msgstr ""
@@ -197,7 +197,7 @@ msgid "Maximum amount"
 msgstr ""
 
 #: includes/admin/admin-actions.php:79 includes/admin/admin-actions.php:84
-#: includes/admin/class-pno-options-panel.php:471
+#: includes/admin/class-pno-options-panel.php:472
 #: includes/widgets/widget-featured-listings.php:35
 #: includes/widgets/widget-recent-listings.php:35
 msgid "Layout"
@@ -283,7 +283,7 @@ msgid "Logout"
 msgstr ""
 
 #: includes/admin/admin-dashboard-menu-editor.php:172
-#: includes/admin/admin-functions.php:711 includes/admin/admin-options.php:53
+#: includes/admin/admin-functions.php:711 includes/admin/admin-options.php:54
 #: includes/forms/class-pno-form-login.php:148 includes/shortcodes.php:27
 msgid "Login"
 msgstr ""
@@ -293,7 +293,7 @@ msgid "Lost password"
 msgstr ""
 
 #: includes/admin/admin-dashboard-menu-editor.php:184
-#: includes/admin/admin-options.php:54
+#: includes/admin/admin-options.php:55
 msgid "Registration"
 msgstr ""
 
@@ -460,62 +460,62 @@ msgid ""
 msgstr ""
 
 #: includes/admin/admin-notices.php:102
-#: includes/admin/class-pno-options-panel.php:177
+#: includes/admin/class-pno-options-panel.php:178
 msgid "Login page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:103
-#: includes/admin/class-pno-options-panel.php:181
+#: includes/admin/class-pno-options-panel.php:182
 msgid "Password recovery page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:104
-#: includes/admin/class-pno-options-panel.php:185
+#: includes/admin/class-pno-options-panel.php:186
 msgid "Registration page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:105
-#: includes/admin/class-pno-options-panel.php:189
+#: includes/admin/class-pno-options-panel.php:190
 msgid "Dashboard page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:106
-#: includes/admin/class-pno-options-panel.php:193
+#: includes/admin/class-pno-options-panel.php:194
 msgid "Listing submission page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:107
-#: includes/admin/class-pno-options-panel.php:197
+#: includes/admin/class-pno-options-panel.php:198
 msgid "Listing editing page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:108
-#: includes/admin/class-pno-options-panel.php:201
+#: includes/admin/class-pno-options-panel.php:202
 msgid "Public profile page"
 msgstr ""
 
 #: includes/admin/admin-notices.php:109
-#: includes/admin/class-pno-options-panel.php:281
+#: includes/admin/class-pno-options-panel.php:282
 msgid "Terms Page:"
 msgstr ""
 
 #: includes/admin/admin-notices.php:110
-#: includes/admin/class-pno-options-panel.php:329
+#: includes/admin/class-pno-options-panel.php:330
 msgid "After login"
 msgstr ""
 
 #: includes/admin/admin-notices.php:111
-#: includes/admin/class-pno-options-panel.php:333
+#: includes/admin/class-pno-options-panel.php:334
 msgid "After logout"
 msgstr ""
 
 #: includes/admin/admin-notices.php:112
-#: includes/admin/class-pno-options-panel.php:337
+#: includes/admin/class-pno-options-panel.php:338
 msgid "After registration"
 msgstr ""
 
 #: includes/admin/admin-notices.php:113
-#: includes/admin/class-pno-options-panel.php:341
+#: includes/admin/class-pno-options-panel.php:342
 msgid "After account cancellation"
 msgstr ""
 
@@ -570,41 +570,45 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: includes/admin/admin-options.php:55
-msgid "Password recovery"
+#: includes/admin/admin-options.php:51
+msgid "Miscellaneous"
 msgstr ""
 
 #: includes/admin/admin-options.php:56
-msgid "Redirects"
+msgid "Password recovery"
 msgstr ""
 
 #: includes/admin/admin-options.php:57
+msgid "Redirects"
+msgstr ""
+
+#: includes/admin/admin-options.php:58
 #: includes/admin/custom-fields/display-custom-fields.php:86
 msgid "Privacy"
 msgstr ""
 
-#: includes/admin/admin-options.php:61 includes/admin/admin-options.php:66
-#: includes/admin/admin-options.php:73
+#: includes/admin/admin-options.php:62 includes/admin/admin-options.php:67
+#: includes/admin/admin-options.php:74
 msgid "Configuration"
 msgstr ""
 
-#: includes/admin/admin-options.php:63
+#: includes/admin/admin-options.php:64
 msgid "Send test email"
 msgstr ""
 
-#: includes/admin/admin-options.php:67
+#: includes/admin/admin-options.php:68
 msgid "Submission"
 msgstr ""
 
-#: includes/admin/admin-options.php:68
+#: includes/admin/admin-options.php:69
 msgid "Management"
 msgstr ""
 
-#: includes/admin/admin-options.php:69
+#: includes/admin/admin-options.php:70
 msgid "Business hours"
 msgstr ""
 
-#: includes/admin/admin-options.php:70
+#: includes/admin/admin-options.php:71
 msgid "Maps"
 msgstr ""
 
@@ -699,730 +703,740 @@ msgstr ""
 msgid "Posterno settings"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:178
+#: includes/admin/class-pno-options-panel.php:179
 msgid "Select the page where you have added the login form shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:182
+#: includes/admin/class-pno-options-panel.php:183
 msgid "Select the page where you have added the password recovery form shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:186
+#: includes/admin/class-pno-options-panel.php:187
 msgid "Select the page where you have added the registration form shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:190
+#: includes/admin/class-pno-options-panel.php:191
 msgid "Select the page where you have added the dashboard shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:194
+#: includes/admin/class-pno-options-panel.php:195
 msgid "Select the page where you have added the listing submission form shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:198
+#: includes/admin/class-pno-options-panel.php:199
 msgid "Select the page where you have added the listing editing form shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:202
+#: includes/admin/class-pno-options-panel.php:203
 msgid "Select the page where you have added the profile shortcode."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:218
+#: includes/admin/class-pno-options-panel.php:219
 msgid "Include Bootstrap css"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:219
-#: includes/admin/class-pno-options-panel.php:222
+#: includes/admin/class-pno-options-panel.php:220
+#: includes/admin/class-pno-options-panel.php:223
 msgid ""
 "Posterno uses bootstrap 4 for styling all of the elements. Disable these "
 "options if your theme already makes use of bootstrap."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:221
+#: includes/admin/class-pno-options-panel.php:222
 msgid "Include Bootstrap scripts"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:237
+#: includes/admin/class-pno-options-panel.php:238
 msgid "Allow users to login with:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:240
-#: includes/admin/class-pno-options-panel.php:310
+#: includes/admin/class-pno-options-panel.php:241
+#: includes/admin/class-pno-options-panel.php:311
 msgid "Show registration page link"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:241
+#: includes/admin/class-pno-options-panel.php:242
 msgid ""
 "Enable the option to display a link to the registration page within the "
 "login form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:243
+#: includes/admin/class-pno-options-panel.php:244
 msgid "Show lost password link"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:244
+#: includes/admin/class-pno-options-panel.php:245
 msgid ""
 "Enable the option to display a link to the password recovery within the "
 "login form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:259
+#: includes/admin/class-pno-options-panel.php:260
 msgid "Disable username during registration:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:260
+#: includes/admin/class-pno-options-panel.php:261
 msgid ""
 "Enable this option to disable the username field within the registration "
 "form. The email address will be used as username for the new user."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:262
+#: includes/admin/class-pno-options-panel.php:263
 msgid "Disable custom passwords during registration:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:263
+#: includes/admin/class-pno-options-panel.php:264
 msgid ""
 "Enable this option to disable passwords within the registration form. A "
 "randomly generated password will be sent to the user."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:265
+#: includes/admin/class-pno-options-panel.php:266
 msgid "Enable password confirmation:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:266
+#: includes/admin/class-pno-options-panel.php:267
 msgid ""
 "Enable this option to add a password confirmation field within the "
 "registration form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:268
+#: includes/admin/class-pno-options-panel.php:269
 msgid "Require strong passwords:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:269
+#: includes/admin/class-pno-options-panel.php:270
 msgid "Enable this option to require strong passwords for accounts."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:271
+#: includes/admin/class-pno-options-panel.php:272
 msgid "Allow role section:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:272
+#: includes/admin/class-pno-options-panel.php:273
 msgid "Enable to allow users to select a user role on registration."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:274
+#: includes/admin/class-pno-options-panel.php:275
 msgid "Allowed Roles:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:275
+#: includes/admin/class-pno-options-panel.php:276
 msgid "Select which roles can be selected upon registration."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:278
+#: includes/admin/class-pno-options-panel.php:279
 msgid "Enable terms & conditions:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:279
+#: includes/admin/class-pno-options-panel.php:280
 msgid "Enable to force users to agree to your terms before registering an account."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:282
+#: includes/admin/class-pno-options-panel.php:283
 msgid "Select the page that contains your terms."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:285
+#: includes/admin/class-pno-options-panel.php:286
 msgid "Login after registration:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:286
+#: includes/admin/class-pno-options-panel.php:287
 msgid "Enable this option to automatically authenticate users after registration."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:288
+#: includes/admin/class-pno-options-panel.php:289
 msgid "Show login link?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:289
+#: includes/admin/class-pno-options-panel.php:290
 msgid ""
 "Enable the option to display a link to the login page within the "
 "registration form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:291
+#: includes/admin/class-pno-options-panel.php:292
 msgid "Show lost password link?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:292
+#: includes/admin/class-pno-options-panel.php:293
 msgid ""
 "Enable the option to display a link to the password recovery within the "
 "registration form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:307
+#: includes/admin/class-pno-options-panel.php:308
 msgid "Show login link"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:308
+#: includes/admin/class-pno-options-panel.php:309
 msgid ""
 "Enable the option to display a link to the login page within the password "
 "recovery form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:311
+#: includes/admin/class-pno-options-panel.php:312
 msgid ""
 "Enable the option to display a link to the registration page within the "
 "password recovery form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:326
+#: includes/admin/class-pno-options-panel.php:327
 msgid "Redirect wp-login to frontend"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:327
+#: includes/admin/class-pno-options-panel.php:328
 msgid "Enable the option to redirect wp-login/wp-admin to the frontend login form."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:330
+#: includes/admin/class-pno-options-panel.php:331
 msgid "Select the page where you want to redirect users after they login."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:334
+#: includes/admin/class-pno-options-panel.php:335
 msgid ""
 "Select the page where you want to redirect users after they logout. If "
 "empty will return to your homepage."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:338
+#: includes/admin/class-pno-options-panel.php:339
 msgid ""
 "Select the page where you want to redirect users after they register. If "
 "empty a message will be displayed instead."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:342
+#: includes/admin/class-pno-options-panel.php:343
 msgid ""
 "Select the page where you want to redirect users after they delete their "
 "account. If empty will return to your homepage."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:358
+#: includes/admin/class-pno-options-panel.php:359
 msgid "Allow users to delete their own account"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:359
+#: includes/admin/class-pno-options-panel.php:360
 msgid ""
 "Enable the option to display a section within the dashboard for users to "
 "delete their own account."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:361
+#: includes/admin/class-pno-options-panel.php:362
 msgid "Allow users to request a copy of their own data"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:362
+#: includes/admin/class-pno-options-panel.php:363
 msgid ""
 "Enable the option to allow the user to request an export of personal data "
 "from the dashboard page."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:364
+#: includes/admin/class-pno-options-panel.php:365
 msgid "Allow users to request erasure of their own data"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:365
+#: includes/admin/class-pno-options-panel.php:366
 msgid ""
 "Enable the option to allow the user to request erasure of personal data "
 "from the dashboard page."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:380
+#: includes/admin/class-pno-options-panel.php:381
 msgid "From name:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:381
+#: includes/admin/class-pno-options-panel.php:382
 msgid ""
 "The name emails are said to come from. This should probably be your site "
 "name."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:383
+#: includes/admin/class-pno-options-panel.php:384
 msgid "From email:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:384
+#: includes/admin/class-pno-options-panel.php:385
 msgid "This will act as the \"from\" and \"reply-to\" address."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:386
-msgid "Choose Options"
+#: includes/admin/class-pno-options-panel.php:387
+msgid "Template"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:387
+#: includes/admin/class-pno-options-panel.php:388
 msgid "Select the email template you wish to use for all emails sent by Posterno."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:390
+#: includes/admin/class-pno-options-panel.php:391
 msgid "Disable admin password recovery email:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:391
+#: includes/admin/class-pno-options-panel.php:392
 msgid ""
 "Enable this option to stop receiving notifications when a new user resets "
 "his password."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:406
+#: includes/admin/class-pno-options-panel.php:407
 msgid "Notice of expiring listing"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:408
+#: includes/admin/class-pno-options-panel.php:409
 msgid "Enable this option to send notices when a listing is about to expire."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:410
+#: includes/admin/class-pno-options-panel.php:411
 msgid "Notice of expiring listing period (days)"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:413
+#: includes/admin/class-pno-options-panel.php:414
 msgid "Number of days"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:429
+#: includes/admin/class-pno-options-panel.php:430
 msgid "Override posts author url with Posterno's profile url"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:431
+#: includes/admin/class-pno-options-panel.php:432
 msgid "Allow guests to view profiles"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:432
+#: includes/admin/class-pno-options-panel.php:433
 msgid "Enable this option to allow guests to view users profiles."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:434
+#: includes/admin/class-pno-options-panel.php:435
 msgid "Allow members to view profiles"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:435
+#: includes/admin/class-pno-options-panel.php:436
 msgid ""
 "Enable this option to allow members to view users profiles. If disabled, "
 "users can only see their own profile."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:437
+#: includes/admin/class-pno-options-panel.php:438
 msgid "Custom avatars"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:438
+#: includes/admin/class-pno-options-panel.php:439
 msgid ""
 "Enable this option to allow users to upload custom avatars for their "
 "profiles."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:440
+#: includes/admin/class-pno-options-panel.php:441
 msgid "Profiles permalink base"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:443
+#: includes/admin/class-pno-options-panel.php:444
 msgid "Display user ID"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:444
+#: includes/admin/class-pno-options-panel.php:445
 msgid "Display username"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:447
+#: includes/admin/class-pno-options-panel.php:448
 msgid ""
 "These settings control the permalinks used for users profiles. These "
 "settings only apply when not using \"plain\" as permalinks for your website."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:462
+#: includes/admin/class-pno-options-panel.php:463
 msgid "Date format:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:463
+#: includes/admin/class-pno-options-panel.php:464
 msgid ""
 "Choose how you want the published date for listings to be displayed on the "
 "front-end."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:466
+#: includes/admin/class-pno-options-panel.php:467
 msgid "Relative to the current date (e.g., 1 day, 1 week, 1 month ago)"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:467
+#: includes/admin/class-pno-options-panel.php:468
 msgid "Default date format as defined in Settings"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:473
+#: includes/admin/class-pno-options-panel.php:474
 msgid "Listings per page"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:477
+#: includes/admin/class-pno-options-panel.php:478
 msgid "Enter the amount of listings you wish to display."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:479
+#: includes/admin/class-pno-options-panel.php:480
 msgid "Order listings by"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:483
+#: includes/admin/class-pno-options-panel.php:484
 msgid "Default listings layout"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:487
+#: includes/admin/class-pno-options-panel.php:488
 msgid "Expiration"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:489
+#: includes/admin/class-pno-options-panel.php:490
 msgid "Listings duration"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:493
+#: includes/admin/class-pno-options-panel.php:494
 msgid ""
 "Listings will display for the set number of days, then expire. Leave this "
 "field blank if you don't want listings to have an expiration date."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:497
+#: includes/admin/class-pno-options-panel.php:498
 msgid "Automatically delete expired listings older than %s days."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:499
+#: includes/admin/class-pno-options-panel.php:500
 msgid ""
 "Enable the option to automatically delete expired listings after a "
 "threshold."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:501
+#: includes/admin/class-pno-options-panel.php:502
 msgid "Featured status"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:503
+#: includes/admin/class-pno-options-panel.php:504
 msgid "Listings can be featured"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:504
+#: includes/admin/class-pno-options-panel.php:505
 msgid "Enable the option to allow listings to be marked as featured. "
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:506
+#: includes/admin/class-pno-options-panel.php:507
 msgid "Move featured listings at the top of the list when sorting by:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:508
+#: includes/admin/class-pno-options-panel.php:509
 msgid ""
 "When changing sorting order within search results, featured listings can "
 "still be displayed at the top of the list."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:510
+#: includes/admin/class-pno-options-panel.php:511
 msgid "Internal & External linking"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:512
+#: includes/admin/class-pno-options-panel.php:513
 msgid "Open internal listings links in new tab"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:513
+#: includes/admin/class-pno-options-panel.php:514
 msgid "Enable the option to open listings links in a new browser tab. "
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:515
+#: includes/admin/class-pno-options-panel.php:516
 msgid "Open external listings links in new tab"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:516
+#: includes/admin/class-pno-options-panel.php:517
 msgid "Enable the option to open external listings links in a new browser tab. "
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:518
+#: includes/admin/class-pno-options-panel.php:519
 msgid "Add noopener noreferrer and nofollow to external listings links"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:519
+#: includes/admin/class-pno-options-panel.php:520
 msgid "Enable the option to add these attributes to external links. "
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:521
+#: includes/admin/class-pno-options-panel.php:522
 msgid "Content"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:523
+#: includes/admin/class-pno-options-panel.php:524
 msgid "Disable comments for listings"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:524
+#: includes/admin/class-pno-options-panel.php:525
 msgid "Enable the option to remove comments from listings."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:526
+#: includes/admin/class-pno-options-panel.php:527
 msgid "Allowed social profiles"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:527
+#: includes/admin/class-pno-options-panel.php:528
 msgid "Select which social profiles to enable for listings."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:530
+#: includes/admin/class-pno-options-panel.php:531
 msgid "Show thumbnail placeholder"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:531
+#: includes/admin/class-pno-options-panel.php:532
 msgid ""
 "Enable the option to display a placeholder image when a listing does not "
 "have a thumbnail."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:533
+#: includes/admin/class-pno-options-panel.php:534
 msgid "Custom placeholder image"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:543
+#: includes/admin/class-pno-options-panel.php:544
 msgid "Upload a custom image if you wish to customize the default placeholder."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:558
+#: includes/admin/class-pno-options-panel.php:559
 msgid "Listings per page in dashboard"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:561
+#: includes/admin/class-pno-options-panel.php:562
 msgid ""
 "Enter the amount of listings you wish to display when users are managing "
 "their listings."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:563
+#: includes/admin/class-pno-options-panel.php:564
 msgid "Listings can be edited"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:564
+#: includes/admin/class-pno-options-panel.php:565
 msgid "Enable the option to allow users to edit their own listings."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:566
+#: includes/admin/class-pno-options-panel.php:567
 msgid "Listings can be deleted"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:567
+#: includes/admin/class-pno-options-panel.php:568
 msgid "Enable the option to allow users to delete their own listings."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:569
+#: includes/admin/class-pno-options-panel.php:570
 msgid "Permanently delete listings"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:570
+#: includes/admin/class-pno-options-panel.php:571
 msgid ""
 "Enable the option to permanently delete listings from the database instead "
 "of trashing them."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:572
+#: includes/admin/class-pno-options-panel.php:573
 msgid "Allow pending edits"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:573
+#: includes/admin/class-pno-options-panel.php:574
 msgid ""
 "Enable the option to allow editing of pending listings. Users can continue "
 "to edit pending listings until they are approved by an admin."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:575
+#: includes/admin/class-pno-options-panel.php:576
 msgid "Allow published edits"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:576
+#: includes/admin/class-pno-options-panel.php:577
 msgid ""
 "Choose whether published listings can be edited and if edits require admin "
 "approval. When moderation is required, the original listings will be "
 "unpublished while edits await admin approval."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:579
+#: includes/admin/class-pno-options-panel.php:580
 msgid "Users cannot edit"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:580
+#: includes/admin/class-pno-options-panel.php:581
 msgid "Users can edit without admin approval"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:581
+#: includes/admin/class-pno-options-panel.php:582
 msgid "Users can edit, but edits require admin approval"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:585
+#: includes/admin/class-pno-options-panel.php:586
 msgid "Redirect after successful editing"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:586
+#: includes/admin/class-pno-options-panel.php:587
 msgid ""
 "Select the page where you wish to redirect users after editing a listing. "
 "Leave blank to display a message only."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:602
+#: includes/admin/class-pno-options-panel.php:603
 msgid "Allowed roles"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:603
+#: includes/admin/class-pno-options-panel.php:604
 msgid "Select which roles can submit listings. Leave blank if not needed."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:606
+#: includes/admin/class-pno-options-panel.php:607
 msgid "Categories to type association"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:607
+#: includes/admin/class-pno-options-panel.php:608
 msgid ""
 "Enable this option to allow selection of categories belonging to the chosen "
 "listing type during submission."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:609
+#: includes/admin/class-pno-options-panel.php:610
 msgid "Categories disable branch nodes"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:610
+#: includes/admin/class-pno-options-panel.php:611
 msgid ""
 "Enable this option so that branch nodes (Parent terms) are collapsible and "
 "not selectable during submission."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:612
+#: includes/admin/class-pno-options-panel.php:613
 msgid "Allow multiple categories"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:613
+#: includes/admin/class-pno-options-panel.php:614
 msgid ""
 "Enable this option to allow multiple categories to be selected through the "
 "dropdown during submission."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:615
+#: includes/admin/class-pno-options-panel.php:616
 msgid "Tags to categories association"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:616
+#: includes/admin/class-pno-options-panel.php:617
 msgid ""
 "Enable this option to allow selection of tags belonging to the chosen "
 "listing categories during submission."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:618
+#: includes/admin/class-pno-options-panel.php:619
 msgid "How many categories?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:621
+#: includes/admin/class-pno-options-panel.php:622
 msgid ""
 "Specify how many categories users can select for their listings (eg: 5). "
 "Leave blank if not needed."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:623
+#: includes/admin/class-pno-options-panel.php:624
 msgid "Moderate new listings"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:624
+#: includes/admin/class-pno-options-panel.php:625
 msgid "Enable the option to require admin approval of all new listing submissions."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:626
+#: includes/admin/class-pno-options-panel.php:627
 msgid "How many images?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:629
+#: includes/admin/class-pno-options-panel.php:630
 msgid "Specify the maximum amount of images your members can upload per listing."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:631
+#: includes/admin/class-pno-options-panel.php:632
 msgid "Redirect after successful submission"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:632
+#: includes/admin/class-pno-options-panel.php:633
 msgid ""
 "Select the page where you wish to redirect users after submitting a "
 "listing. Leave blank to display a message only."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:648
+#: includes/admin/class-pno-options-panel.php:649
 msgid "Map provider"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:649
+#: includes/admin/class-pno-options-panel.php:650
 msgid "Select which maps provider to use across the website."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:652
+#: includes/admin/class-pno-options-panel.php:653
 msgid "Google Maps API Key"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:653
+#: includes/admin/class-pno-options-panel.php:654
 msgid ""
 "Google requires an API key to display maps. Acquire an API key from the <a "
 "href=\"https://developers.google.com/maps/documentation/geocoding/get-api-"
 "key\">Google Maps API developer site.</a>"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:655
+#: includes/admin/class-pno-options-panel.php:656
 msgid "Starting address latitude"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:656
+#: includes/admin/class-pno-options-panel.php:657
 msgid "Pick a starting position for the map. Eg: 40.7484405"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:658
+#: includes/admin/class-pno-options-panel.php:659
 msgid "Starting address longitude"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:659
+#: includes/admin/class-pno-options-panel.php:660
 msgid "Pick a starting position for the map. Eg: -73.9944191"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:661
+#: includes/admin/class-pno-options-panel.php:662
 msgid "Starting map zoom level"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:662
+#: includes/admin/class-pno-options-panel.php:663
 msgid "Pick a starting zoom level for the map. Eg: 12"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:677
+#: includes/admin/class-pno-options-panel.php:678
 msgid "Abbreviate days"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:678
+#: includes/admin/class-pno-options-panel.php:679
 msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:680
+#: includes/admin/class-pno-options-panel.php:681
 msgid "Remove zeroes from time format"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:681
+#: includes/admin/class-pno-options-panel.php:682
 msgid ""
 "Enable this option to remove trailing zeroes from the time format: 9:00 AM "
 "becomes 9 AM."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:683
+#: includes/admin/class-pno-options-panel.php:684
 msgid "Start on Sunday"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:684
+#: includes/admin/class-pno-options-panel.php:685
 msgid "Enable this option so that the week starts on Sunday (as opposed to Monday)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:686
+#: includes/admin/class-pno-options-panel.php:687
 msgid "Show today only"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:687
+#: includes/admin/class-pno-options-panel.php:688
 msgid "Enable this option to show only the opening times of the current day."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:703
+msgid "Remove data on uninstall?"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:704
+msgid ""
+"Check this box if you would like Posterno to completely remove all of its "
+"data when the plugin is deleted."
 msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:59
@@ -1853,7 +1867,7 @@ msgstr ""
 msgid "Custom profile cover image"
 msgstr ""
 
-#: includes/class-posterno.php:127 includes/class-posterno.php:138
+#: includes/class-posterno.php:128 includes/class-posterno.php:139
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
@@ -3749,15 +3763,15 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/scripts.php:171
+#: includes/scripts.php:190
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:172
+#: includes/scripts.php:191
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:173
+#: includes/scripts.php:192
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 
