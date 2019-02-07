@@ -1,6 +1,6 @@
 === Posterno - Listings Directory & Classifieds ===
 Contributors: posterno, alessandro.tesoro
-Tags: newsletter
+Tags: business directory, listings, classifieds, directory, listing, local business directory, listings directory, link directory, member directory, staff directory, real estate, job listing, googlemap, profile, profiles, yelp clone, tripadvisor clone, yellow pages clone, car listings, auto listings, members, profile, community, user profile, user registration
 Requires at least: 4.9.6
 Tested up to: 5.0
 Requires PHP: 5.5+
