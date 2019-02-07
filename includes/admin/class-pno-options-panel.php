@@ -384,7 +384,7 @@ class OptionsPanel {
 		$settings[] = Field::make( 'text', 'from_email', esc_html__( 'From email:', 'posterno' ) )
 			->set_help_text( esc_html__( 'This will act as the "from" and "reply-to" address.', 'posterno' ) );
 
-		$settings[] = Field::make( 'select', 'email_template', __( 'Choose Options', 'posterno' ) )
+		$settings[] = Field::make( 'select', 'email_template', __( 'Template', 'posterno' ) )
 			->set_help_text( esc_html__( 'Select the email template you wish to use for all emails sent by Posterno.', 'posterno' ) )
 			->set_options( 'pno_get_email_templates' );
 
