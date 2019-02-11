@@ -60,7 +60,7 @@ Free support is provided only through the [support forum](https://wordpress.org/
 
 Support for premium addons is provided exclusively [through the premium support platform](https://posterno.com/support/).
 
-Before opening a [support topic](https://wordpress.org/support/plugin/posterno) please read the [faqs](#) and [documentation](http://docs.posterno.com/).
+Before opening a [support topic](https://wordpress.org/support/plugin/posterno) please read the [faqs](https://docs.posterno.com/category/445-faq-tutorials) and [documentation](http://docs.posterno.com/).
 
 == Installation ==
 
@@ -69,11 +69,11 @@ Before opening a [support topic](https://wordpress.org/support/plugin/posterno) 
 * PHP version 5.5 or greater (PHP 7.2 or greater is recommended)
 * MySQL version 5.0 or greater (MySQL 5.6 or greater is recommended)
 
-Visit the [Posterno server requirements documentation](https://docs.posterno.com/) for a detailed list of server requirements.
+Visit the [Posterno server requirements documentation](https://docs.posterno.com/article/440-requirements) for a detailed list of server requirements.
 
 = Automatic installation =
 
-Visit the [Posterno automatic installation documentation](https://docs.posterno.com/) for detailed instructions.
+Visit the [Posterno automatic installation documentation](https://docs.posterno.com/article/435-automatic-installation) for detailed instructions.
 
 = Manual installation =
 
@@ -105,7 +105,7 @@ Get in touch with us via email at [posterno.com](https://posterno.com/contacts) 
 
 = Is Posterno GDPR compliant? =
 
-Please refer to the [official documentation for gdpr compliance](#).
+Please refer to the [official documentation for gdpr compliance](https://docs.posterno.com/article/536-is-posterno-gdpr-compliant).
 
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
