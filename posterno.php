@@ -4,7 +4,6 @@
  * Plugin URI:      https://posterno.com
  * Description:     The world’s #1 platform that helps you create any kind of listings directory. Beautifully.
  * Author:          Posterno, Alessandro Tesoro
- * Author URI:      https://posterno.com
  * Text Domain:     posterno
  * Domain Path:     /languages
  * Version:         0.1.0
