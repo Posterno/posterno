@@ -16,7 +16,7 @@ Posterno is the #1 WordPress directory plugin that helps you create any kind of 
 
 With endless flexibility, Posterno allows you to create, manage and monetize a directory site for any purpose and showcase listings such as Cars, Hotels, Properties, Restaurants, Events, Travel Tours, etc. Your imagination is the only limit.
 
-[Website](https://posterno.com) | [Addons](https://posterno.com/addons) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
+[Website](https://posterno.com) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
 
 = Fully featured =
 
@@ -39,14 +39,6 @@ Members can register on your site to create user profiles. A user dashboard is p
 - [Feature](#).
 
 Read more about our features on [posterno.com](https://posterno.com)
-
-= Add-ons =
-
-The core Posterno plugin is free and always will be. It covers enough functionalities to run a simple listings directory site.
-
-Additional, advanced functionalities are available through add-ons. Not only do these extend the usefulness of the core plugin, they also help fund the development and support of core.
-
-[View all extensions](https://posterno.com/addons)
 
 = Built with developers in mind =
 
