@@ -16,11 +16,11 @@ Posterno is the #1 WordPress directory plugin that helps you create any kind of 
 
 With endless flexibility, Posterno allows you to create, manage and monetize a directory site for any purpose and showcase listings such as Cars, Hotels, Properties, Restaurants, Events, Travel Tours, etc. Your imagination is the only limit.
 
-[Website](https://posterno.com) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
+[Website](https://posterno.com) | [Full features list](https://posterno.com/features) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
 
 = Fully featured =
 
-Listings can have all the features you could ever wish - descriptions, photos, maps, video, categories, keywords, business hours and more.
+Listings can have all the features you could ever wish - descriptions, photos, maps, video, categories, keywords, business hours and more. [Explore the powerful features](https://posterno.com/features/) that enable you to build the top-notch directory that you want.
 
 = Unlimited custom fields =
 
@@ -34,11 +34,11 @@ Built with SEO in mind to outperform your competitors in search engines thanks t
 
 Members can register on your site to create user profiles. A user dashboard is provided to each registered user and listing owner. Your members will never have to see the WordPress admin panel in order to, login, register, change password and customize their profile.
 
-= All Features Included =
+= Email notifications =
 
-- [Feature](#).
+Posterno provides customizable email templates for each email that can be sent to users after a certain event/trigger happens. You also have access to merge tags for emails, they render bits of information about the website, the user or the listing.
 
-Read more about our features on [posterno.com](https://posterno.com)
+**Read more about our features on [posterno.com](https://posterno.com/features/)**
 
 = Built with developers in mind =
 
@@ -89,7 +89,7 @@ Support for premium addons is provided exclusively [through the premium support 
 
 Posterno has been designed and coded to seamlessly integrate with any properly coded WordPress theme. Furthermore Posterno uses bootstrap 4 for styling all of the elements. However, each theme is coded differently and the quality of the code can vary. To avoid potential issues and conflicts, Posterno provides the ability to disable the built-in styling through the options panel. If your theme is properly coded, Posterno should adapt itself to your site layout. Although we cannot guarantee that the plugin works with all themes.
 
-= Where can I request new features, eCommerce themes and extensions? =
+= Where can I request new features, themes and extensions? =
 
 Get in touch with us via email at [posterno.com](https://posterno.com/contacts) or open a topic into the support forum](https://wordpress.org/support/plugin/posterno).
 
