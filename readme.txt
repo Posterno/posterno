@@ -52,6 +52,16 @@ Support for premium addons is provided exclusively [through the premium support 
 
 Before opening a [support topic](https://wordpress.org/support/plugin/posterno) please read the [faqs](https://docs.posterno.com/category/445-faq-tutorials) and [documentation](http://docs.posterno.com/).
 
+== Screenshots ==
+
+1. Frontend members dashboard
+2. Frontend listing submission form only some fields are displayed in the screenshot.
+3. Frontend listing submission form only some fields are displayed in the screenshot.
+4. Frontend members public profiles
+5. Frontend registration form
+6. Frontend login form
+7. Frontend password recovery form
+
 == Installation ==
 
 = Minimum Requirements =
