@@ -1,5 +1,5 @@
 === Posterno - Listings Directory & Classifieds ===
-Contributors: posterno, alessandro.tesoro
+Contributors: alessandro.tesoro, posterno
 Tags: business directory, listings, classifieds, directory, listing, local business directory, listings directory, link directory, member directory, staff directory, real estate, job listing, googlemap, profile, profiles, yelp clone, tripadvisor clone, yellow pages clone, car listings, auto listings, members, profile, community, user profile, user registration
 Requires at least: 4.9.6
 Tested up to: 5.0
@@ -51,8 +51,6 @@ Additional, advanced functionalities are available through add-ons. Not only do 
 = Built with developers in mind =
 
 Developers have access to a large collection of actions and filters ready to be used to customize and extend Posterno. The integrated templating system that allows developers to easily customize all the templates of the plugin.
-
-A developers specific documentation will be available soon with more information.
 
 = Support =
 
