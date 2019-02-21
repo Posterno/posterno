@@ -7,6 +7,7 @@ Requires PHP: 5.5+
 Stable tag: 0.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Plugin URI: https://posterno.com
 
 Posterno is a powerful, extendable directory plugin that helps you create any kind of listings & classifieds directory like Yelp or Tripadvisor.
 
