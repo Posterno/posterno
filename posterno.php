@@ -35,7 +35,6 @@ defined( 'ABSPATH' ) || exit;
  */
 final class PN_Requirements_Check {
 
-
 	/**
 	 * Plugin file
 	 *
@@ -94,6 +93,7 @@ final class PN_Requirements_Check {
 		$this->met()
 			? $this->load()
 			: $this->quit();
+
 	}
 
 	/**
@@ -196,24 +196,23 @@ final class PN_Requirements_Check {
 	 * @since 0.1.0
 	 */
 	public function plugin_row_notice() {
-		?>
-<tr class="active <?php echo esc_attr( $this->unmet_requirements_name() ); ?>-row">
-	<th class="check-column">
-		<span class="dashicons dashicons-warning"></span>
-	</th>
-	<td class="column-primary">
-		<?php $this->unmet_requirements_text(); ?>
-	</td>
-	<td class="column-description">
-		<?php $this->unmet_requirements_description(); ?>
-	</td>
-</tr>
+		?><tr class="active <?php echo esc_attr( $this->unmet_requirements_name() ); ?>-row">
+		<th class="check-column">
+			<span class="dashicons dashicons-warning"></span>
+		</th>
+		<td class="column-primary">
+			<?php $this->unmet_requirements_text(); ?>
+		</td>
+		<td class="column-description">
+			<?php $this->unmet_requirements_description(); ?>
+		</td>
+		</tr>
 		<?php
-
 	}
 
 	/**
 	 * Plugin agnostic method used to output all unmet requirement information
+	 *
 	 */
 	private function unmet_requirements_description() {
 		foreach ( $this->requirements as $properties ) {
@@ -257,68 +256,33 @@ final class PN_Requirements_Check {
 		$name = $this->unmet_requirements_name();
 		?>
 
-<style id="<?php echo esc_attr( $name ); ?>">
-	.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th,
-	.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] td,
-	.plugins .
+		<style id="<?php echo esc_attr( $name ); ?>">
+			.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th,
+			.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] td,
+			.plugins .<?php echo esc_html( $name ); ?>-row th,
+			.plugins .<?php echo esc_html( $name ); ?>-row td {
+				background: #fff5f5;
+			}
+			.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th {
+				box-shadow: none;
+			}
+			.plugins .<?php echo esc_html( $name ); ?>-row th span {
+				margin-left: 6px;
+				color: #dc3232;
+			}
+			.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th,
+			.plugins .<?php echo esc_html( $name ); ?>-row th.check-column {
+				border-left: 4px solid #dc3232 !important;
+			}
+			.plugins .<?php echo esc_html( $name ); ?>-row .column-description p {
+				margin: 0;
+				padding: 0;
+			}
+			.plugins .<?php echo esc_html( $name ); ?>-row .column-description p:not(:last-of-type) {
+				margin-bottom: 8px;
+			}
+		</style>
 		<?php
-		echo esc_html( $name );
-		?>
-				-row th,
-	.plugins .
-		<?php
-		echo esc_html( $name );
-
-		?>
-				-row td {
-		background: #fff5f5;
-	}
-
-	.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th {
-		box-shadow: none;
-	}
-
-	.plugins .
-		<?php
-		echo esc_html( $name );
-
-		?>
-				-row th span {
-		margin-left: 6px;
-		color: #dc3232;
-	}
-
-	.plugins tr[data-plugin="<?php echo esc_html( $this->base ); ?>"] th,
-	.plugins .
-		<?php
-		echo esc_html( $name );
-
-		?>
-				-row th.check-column {
-		border-left: 4px solid #dc3232 !important;
-	}
-
-	.plugins .
-		<?php
-		echo esc_html( $name );
-
-		?>
-				-row .column-description p {
-		margin: 0;
-		padding: 0;
-	}
-
-	.plugins .
-		<?php
-		echo esc_html( $name );
-
-		?>
-				-row .column-description p:not(:last-of-type) {
-		margin-bottom: 8px;
-	}
-</style>
-		<?php
-
 	}
 
 	/**
@@ -330,9 +294,9 @@ final class PN_Requirements_Check {
 	public function plugin_row_links( $links = array() ) {
 		// Add the Requirements link.
 		$links['requirements'] =
-		'<a href="' . esc_url( $this->unmet_requirements_url() ) . '" aria-label="' . esc_attr( $this->unmet_requirements_label() ) . '">'
-		. esc_html( $this->unmet_requirements_link() )
-		. '</a>';
+			'<a href="' . esc_url( $this->unmet_requirements_url() ) . '" aria-label="' . esc_attr( $this->unmet_requirements_label() ) . '">'
+			. esc_html( $this->unmet_requirements_link() )
+			. '</a>';
 		// Return links with Requirements link.
 		return $links;
 	}
@@ -361,8 +325,7 @@ final class PN_Requirements_Check {
 			// Merge to original array.
 			if ( ! empty( $version ) ) {
 				$this->requirements[ $dependency ] = array_merge(
-					$this->requirements[ $dependency ],
-					array(
+					$this->requirements[ $dependency ], array(
 						'current' => $version,
 						'checked' => true,
 						'met'     => version_compare( $version, $properties['minimum'], '>=' ),
@@ -402,6 +365,7 @@ final class PN_Requirements_Check {
 	public function load_textdomain() {
 		load_plugin_textdomain( 'posterno', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
+
 }
 
 new PN_Requirements_Check();
