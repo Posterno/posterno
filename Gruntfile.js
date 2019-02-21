@@ -229,7 +229,7 @@ module.exports = function (grunt) {
 					archive: './build/<%= pkg.name %>.zip'
 				},
 				expand: true,
-				cwd: 'build/<%= pkg.name %>/',
+				cwd: 'build/<%= pkg.version %>/',
 				src: ['**/*'],
 				dest: '<%= pkg.name %>/'
 			}
