@@ -197,7 +197,8 @@ module.exports = function (grunt) {
 
 		// Clean up build directory
 		clean: {
-			main: ['build/<%= pkg.name %>']
+			main: ['build/**'],
+			composer: ['build/<%= pkg.version %>/vendor/nikic/fast-route/test']
 		},
 
 		// Copy the plugin into the build directory
@@ -215,7 +216,7 @@ module.exports = function (grunt) {
 					'*.php',
 					'*.txt'
 				],
-				dest: 'build/<%= pkg.name %>/'
+				dest: 'build/<%= pkg.version %>/'
 			}
 		},
 
@@ -258,6 +259,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Build task(s).
-	grunt.registerTask('build', ['cssmin', 'uglify', 'force:checktextdomain', 'makepot', 'clean', 'copy', 'compress']);
+	grunt.registerTask('build', ['cssmin', 'uglify', 'force:checktextdomain', 'makepot', 'clean', 'copy', 'clean:composer', 'compress']);
 
 };
