@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posterno 0.1.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-02-21 16:31:25+00:00\n"
+"POT-Creation-Date: 2019-02-21 20:08:52+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3932,23 +3932,23 @@ msgstr ""
 msgid "Displays the most recent listings."
 msgstr ""
 
-#: posterno.php:139
+#: posterno.php:140
 msgid "This plugin is not fully active."
 msgstr ""
 
-#: posterno.php:149
+#: posterno.php:150
 msgid "Requires %1$s (%2$s), but (%3$s) is installed."
 msgstr ""
 
-#: posterno.php:159
+#: posterno.php:160
 msgid "Requires %1$s (%2$s), but it appears to be missing."
 msgstr ""
 
-#: posterno.php:169
+#: posterno.php:170
 msgid "Requirements"
 msgstr ""
 
-#: posterno.php:179
+#: posterno.php:180
 msgid "Posterno Requirements"
 msgstr ""
 

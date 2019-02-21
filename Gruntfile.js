@@ -214,7 +214,8 @@ module.exports = function (grunt) {
 					'!dist/favicon.ico',
 					'!dist/index.html',
 					'*.php',
-					'*.txt'
+					'*.txt',
+					'*.png',
 				],
 				dest: 'build/<%= pkg.version %>/'
 			}
