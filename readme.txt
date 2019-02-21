@@ -18,6 +18,10 @@ With endless flexibility, Posterno allows you to create, manage and monetize a d
 
 [Website](https://posterno.com) | [Full features list](https://posterno.com/features) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
 
+**Please Note**: This is a beta testing version of this plugin. Therefore there may be some bugs that you come across. Please report any bugs through [the contact form here](https://posterno.com/contacts/).
+
+**Please avoid reviewing the plugin until we've reached the stable version 1.0.0 :) thank you.**
+
 = Fully featured =
 
 Listings can have all the features you could ever wish - descriptions, photos, maps, video, categories, keywords, business hours and more. [Explore the powerful features](https://posterno.com/features/) that enable you to build the top-notch directory that you want.
