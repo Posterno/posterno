@@ -171,7 +171,7 @@
 										}
 									],
 									onsubmit: function (e) {
-										editor.insertContent('[pno_recent_listings max="' + e.data.max + '"]');
+										editor.insertContent('[pno_recent_listings max="' + e.data.max + '" layout="' + e.data.layout + '"]');
 									}
 								});
 							}
@@ -196,7 +196,7 @@
 										}
 									],
 									onsubmit: function (e) {
-										editor.insertContent('[pno_featured_listings max="' + e.data.max + '"]');
+										editor.insertContent('[pno_featured_listings max="' + e.data.max + '" layout="' + e.data.layout + '"]');
 									}
 								});
 							}
