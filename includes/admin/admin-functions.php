@@ -1012,6 +1012,9 @@ function pno_install_default_settings() {
 
 	}
 
+	pno_update_option( 'from_email', get_option( 'admin_email' ) );
+	pno_update_option( 'from_name', get_option( 'blogname' ) );
+
 	update_option( 'posterno_settings_installed', true );
 
 }
