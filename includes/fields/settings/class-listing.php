@@ -232,8 +232,18 @@ class Listing {
 	public function get_permissions_settings() {
 		$settings = [];
 
-		$settings[] = Field::make( 'checkbox', 'listing_field_is_admin_only', esc_html__( 'Admin only?', 'posterno' ) )
-			->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not visible within the listing submission form on the frontend.', 'posterno' ) );
+		$disable_admin_only      = false;
+		$current_field           = $this->get_current_field();
+		$admin_only_disabled_for = [ 'listing_title' ];
+
+		if ( in_array( $current_field, $admin_only_disabled_for ) ) {
+			$disable_admin_only = true;
+		}
+
+		if ( ! $disable_admin_only ) {
+			$settings[] = Field::make( 'checkbox', 'listing_field_is_admin_only', esc_html__( 'Admin only?', 'posterno' ) )
+				->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not visible within the listing submission form on the frontend.', 'posterno' ) );
+		}
 
 		/**
 		 * Allow developers to customize the settings for the listings custom fields post type.
@@ -299,6 +309,31 @@ class Listing {
 						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about the listings into the database of your website.', 'posterno' ) ),
 				)
 			);
+
+	}
+
+	/**
+	 * Determine the field currently being edited in the admin panel.
+	 *
+	 * @return boolean|string
+	 */
+	private function get_current_field() {
+
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$meta     = false;
+
+		if ( $field_id ) {
+			$listing_field = new \PNO\Field\Listing( $field_id );
+			if ( $listing_field instanceof \PNO\Field\Listing ) {
+				$meta = $listing_field->get_object_meta_key();
+			}
+		}
+
+		return $meta;
 
 	}
 
