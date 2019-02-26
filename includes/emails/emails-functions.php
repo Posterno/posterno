@@ -43,7 +43,7 @@ function pno_get_emails_tags_list() {
  * @return string
  */
 function pno_email_tag_website( $email ) {
-	return home_url();
+	return html_entity_decode( home_url() );
 }
 
 /**
@@ -53,7 +53,7 @@ function pno_email_tag_website( $email ) {
  * @return string
  */
 function pno_email_tag_sitename( $email ) {
-	return esc_html( get_bloginfo( 'name' ) );
+	return wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
 }
 
 /**
@@ -110,7 +110,7 @@ function pno_email_tag_password( $email ) {
 function pno_email_tag_login_page_url( $email ) {
 	$login_page_url = pno_get_login_page_id();
 	$login_page_url = get_permalink( $login_page_url );
-	return $login_page_url;
+	return html_entity_decode( $login_page_url );
 }
 
 /**
@@ -135,7 +135,7 @@ function pno_email_tag_password_recovery_url( $email ) {
 		$reset_page
 	);
 	$output     = $reset_page;
-	return $output;
+	return html_entity_decode( $output );
 }
 
 /**
@@ -175,7 +175,7 @@ function pno_email_tag_listing_submission_date( $email ) {
  * @return string
  */
 function pno_email_tag_listing_url( $email ) {
-	return isset( $email->listing_id ) ? get_permalink( $email->listing_id ) : '';
+	return isset( $email->listing_id ) ? html_entity_decode( get_permalink( $email->listing_id ) ) : '';
 }
 
 /**
