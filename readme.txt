@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.1
 Requires PHP: 5.5+
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -117,6 +117,17 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 == Screenshots ==
 
 == Changelog ==
+
+= 0.1.2 Open beta release =
+
+- tweak: decode retrieved urls for email tags.
+- tweak: add site's name and site's admin email to email options during plugin first installation.
+- tweak: automatically enable expiry notification email during plugin first installation.
+- tweak: listing title field should not have the "admin only" setting.
+- tweak: the listing tags field should not have an options generator setting.
+- fix: login fails when username is an email address and login method is set to "username only"
+- fix: parameters missed when using the recent and featured shortcode from the shortcodes editor.
+- fix: profile page not loading when username has spaces.
 
 = 0.1.1 Open beta release =
 
