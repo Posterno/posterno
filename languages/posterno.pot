@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.1.1\n"
+"Project-Id-Version: Posterno 0.1.2\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-02-23 09:36:42+00:00\n"
+"POT-Creation-Date: 2019-02-26 13:13:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -431,11 +431,11 @@ msgstr ""
 msgid "Edit listing"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1034
+#: includes/admin/admin-functions.php:1037
 msgid "Dashboard Menu"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1079
+#: includes/admin/admin-functions.php:1082
 msgid "Profile Menu"
 msgstr ""
 
@@ -2192,98 +2192,98 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:70
+#: includes/fields/settings/class-listing.php:71
 #: includes/fields/settings/class-profile.php:70
 msgid "Field type"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:73
+#: includes/fields/settings/class-listing.php:74
 msgid ""
 "The selected field type determines how the field will look onto the listing "
 "submission forms."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:75
+#: includes/fields/settings/class-listing.php:76
 msgid "Taxonomy ID"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:86
+#: includes/fields/settings/class-listing.php:87
 msgid ""
 "Enter the name of the taxonomy which terms will be displayed within the "
 "dropdown."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:88
+#: includes/fields/settings/class-listing.php:96
 #: includes/fields/settings/class-profile.php:89
 msgid "Field selectable options"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:100
+#: includes/fields/settings/class-listing.php:108
 #: includes/fields/settings/class-profile.php:101
 msgid "Add options for this field type."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:103
+#: includes/fields/settings/class-listing.php:111
 #: includes/fields/settings/class-profile.php:104
 msgid "Option title"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:103
+#: includes/fields/settings/class-listing.php:111
 #: includes/fields/settings/class-profile.php:104
 msgid "Enter the title of this option."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:118
+#: includes/fields/settings/class-listing.php:123
 #: includes/fields/settings/class-profile.php:119
 msgid "Allow multiple files"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:129
+#: includes/fields/settings/class-listing.php:134
 #: includes/fields/settings/class-profile.php:130
 msgid ""
 "Enable this option to allow users to upload multiple files through this "
 "field."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:132
+#: includes/fields/settings/class-listing.php:137
 msgid "Disable branch nodes"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:143
+#: includes/fields/settings/class-listing.php:148
 msgid ""
 "Enable this option so that branch nodes (Parent terms) are collapsible and "
 "not selectable."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:145
+#: includes/fields/settings/class-listing.php:150
 msgid "Allow multiple values"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:156
+#: includes/fields/settings/class-listing.php:161
 msgid ""
 "Enable this option to allow multiple values to be selected through the "
 "dropdown."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:158
+#: includes/fields/settings/class-listing.php:163
 #: includes/fields/settings/class-profile.php:133
 #: includes/fields/settings/class-registration.php:91
 msgid "Custom form label"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:159
+#: includes/fields/settings/class-listing.php:164
 msgid ""
 "This text will be used as label within the listing submission forms. Leave "
 "blank to use the field title."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:161
+#: includes/fields/settings/class-listing.php:166
 #: includes/fields/settings/class-profile.php:136
 #: includes/fields/settings/class-registration.php:94
 msgid "Placeholder"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:162
+#: includes/fields/settings/class-listing.php:167
 #: includes/fields/settings/class-profile.php:137
 #: includes/fields/settings/class-registration.php:95
 msgid ""
@@ -2291,13 +2291,13 @@ msgid ""
 "needed."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:164
+#: includes/fields/settings/class-listing.php:169
 #: includes/fields/settings/class-profile.php:139
 #: includes/fields/settings/class-registration.php:97
 msgid "Field description"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:165
+#: includes/fields/settings/class-listing.php:170
 #: includes/fields/settings/class-profile.php:140
 #: includes/fields/settings/class-registration.php:98
 msgid ""
@@ -2305,13 +2305,13 @@ msgid ""
 "blank if not needed."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:186
+#: includes/fields/settings/class-listing.php:191
 #: includes/fields/settings/class-profile.php:160
 #: includes/fields/settings/class-registration.php:78
 msgid "Set as required"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:187
+#: includes/fields/settings/class-listing.php:192
 #: includes/fields/settings/class-profile.php:161
 #: includes/fields/settings/class-registration.php:89
 msgid ""
@@ -2319,58 +2319,58 @@ msgid ""
 "processed."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:189
+#: includes/fields/settings/class-listing.php:194
 #: includes/fields/settings/class-profile.php:163
 msgid "Upload max size:"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:200
+#: includes/fields/settings/class-listing.php:205
 #: includes/fields/settings/class-profile.php:174
 msgid ""
 "Enter the maximum file size (in bytes) allowed for uploads through this "
 "field. Leave blank to use server settings."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:202
+#: includes/fields/settings/class-listing.php:207
 #: includes/fields/settings/class-profile.php:176
 msgid "Allowed file types:"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:214
+#: includes/fields/settings/class-listing.php:219
 msgid ""
 "Specify which file types are supported by this field. Separate with comma "
 "to add multiple extensions. Eg: jpg, png."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:235
+#: includes/fields/settings/class-listing.php:249
 #: includes/fields/settings/class-profile.php:223
 msgid "Admin only?"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:236
+#: includes/fields/settings/class-listing.php:250
 msgid ""
 "Enable this option to allow only administrators to customize the field. "
 "Hidden fields will not visible within the listing submission form on the "
 "frontend."
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:258
+#: includes/fields/settings/class-listing.php:273
 #: includes/fields/settings/class-profile.php:260
 #: includes/fields/settings/class-registration.php:121
 msgid "Field settings"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:290
+#: includes/fields/settings/class-listing.php:305
 #: includes/fields/settings/class-profile.php:292
 msgid "Advanced"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:297
+#: includes/fields/settings/class-listing.php:312
 #: includes/fields/settings/class-profile.php:299
 msgid "Unique meta key"
 msgstr ""
 
-#: includes/fields/settings/class-listing.php:299
+#: includes/fields/settings/class-listing.php:314
 msgid ""
 "The key must be unique for each field and written in lowercase with an "
 "underscore ( _ ) separating words e.g country_list or job_title. This will "
@@ -2589,15 +2589,11 @@ msgstr ""
 msgid "Select Some Options"
 msgstr ""
 
-#: includes/filters.php:29
-msgid "Invalid username or incorrect password."
-msgstr ""
-
-#: includes/filters.php:44
+#: includes/filters.php:45
 msgid "Invalid email address or incorrect password."
 msgstr ""
 
-#: includes/filters.php:369
+#: includes/filters.php:370
 msgid ""
 "The maximum amount of categories you are allowed to select is %1$s, you "
 "have selected %2$s."

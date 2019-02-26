@@ -1,6 +1,6 @@
 # [Posterno](https://posterno.com) #
 
-![Plugin Version](https://img.shields.io/wordpress/plugin/v/posterno.svg?maxAge=2592000) ![Total Downloads](https://img.shields.io/wordpress/plugin/dt/posterno.svg?maxAge=2592000) ![Plugin Rating](https://img.shields.io/wordpress/plugin/r/posterno.svg?maxAge=2592000) ![WordPress Compatibility](https://img.shields.io/wordpress/v/posterno.svg?maxAge=2592000) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Posterno/posterno/blob/master/license.txt)
+![Plugin Version](https://img.shields.io/wordpress/plugin/v/posterno.svg?color=%235c6ac5&label=Latest%20release) ![Downloads](https://img.shields.io/wordpress/plugin/dm/posterno.svg?color=%2346b450&label=Downloads) ![Rating](https://img.shields.io/wordpress/plugin/rating/posterno.svg?color=%2346b450&label=Rating) ![tested](https://img.shields.io/wordpress/plugin/tested/posterno.svg?color=%2346b450&label=WordPress)
 
 ### Welcome to our GitHub Repository
 
