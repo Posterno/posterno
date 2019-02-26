@@ -190,7 +190,7 @@ function pno_get_member_profile_url( $user_id ) {
 		}
 	}
 
-	return $url;
+	return esc_url( $url );
 
 }
 
