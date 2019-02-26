@@ -25,11 +25,12 @@ function pno_authentication( $user, $username, $password ) {
 
 	if ( $authentication_method === 'username' ) {
 
-		if ( is_email( $username ) ) {
-			return new WP_Error( 'username_only', __( 'Invalid username or incorrect password.', 'posterno' ) );
-		}
-		return wp_authenticate_username_password( null, $username, $password );
+		$user = get_user_by( 'login', $username );
 
+		if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ) {
+			$username = $user->user_login;
+			return wp_authenticate_username_password( null, $username, $password );
+		}
 	} elseif ( $authentication_method === 'email' ) {
 
 		if ( ! empty( $username ) && is_email( $username ) ) {
