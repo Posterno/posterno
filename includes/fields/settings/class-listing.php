@@ -62,7 +62,8 @@ class Listing {
 	 */
 	public function get_general_settings() {
 
-		$settings = [];
+		$settings      = [];
+		$current_field = $this->get_current_field();
 
 		$settings[] = Field::make( 'hidden', 'listing_field_priority' );
 		$settings[] = Field::make( 'hidden', 'listing_field_is_default' );
@@ -85,26 +86,33 @@ class Listing {
 			)
 			->set_help_text( esc_html__( 'Enter the name of the taxonomy which terms will be displayed within the dropdown.', 'posterno' ) );
 
-		$settings[] = Field::make( 'complex', 'listing_field_selectable_options', esc_html__( 'Field selectable options', 'posterno' ) )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
-					array(
-						'field'   => 'listing_field_type',
-						'value'   => pno_get_multi_options_field_types(),
-						'compare' => 'IN',
-					),
-				)
-			)
-			->set_layout( 'tabbed-vertical' )
-			->set_help_text( esc_html__( 'Add options for this field type.', 'posterno' ) )
-			->add_fields(
-				array(
-					Field::make( 'text', 'option_title', esc_html__( 'Option title', 'posterno' ) )->set_help_text( esc_html__( 'Enter the title of this option.', 'posterno' ) ),
-				)
-			);
+		$options_disabled_for       = [ 'listing_tags' ];
+		$options_generator_disabled = false;
+		if ( in_array( $current_field, $options_disabled_for, true ) ) {
+			$options_generator_disabled = true;
+		}
 
-		$current_field                 = $this->get_current_field();
+		if ( ! $options_generator_disabled ) {
+			$settings[] = Field::make( 'complex', 'listing_field_selectable_options', esc_html__( 'Field selectable options', 'posterno' ) )
+				->set_conditional_logic(
+					array(
+						'relation' => 'AND',
+						array(
+							'field'   => 'listing_field_type',
+							'value'   => pno_get_multi_options_field_types(),
+							'compare' => 'IN',
+						),
+					)
+				)
+				->set_layout( 'tabbed-vertical' )
+				->set_help_text( esc_html__( 'Add options for this field type.', 'posterno' ) )
+				->add_fields(
+					array(
+						Field::make( 'text', 'option_title', esc_html__( 'Option title', 'posterno' ) )->set_help_text( esc_html__( 'Enter the title of this option.', 'posterno' ) ),
+					)
+				);
+		}
+
 		$disable_multiple_setting      = false;
 		$multiple_setting_disabled_for = [ 'listing_featured_image' ];
 		if ( in_array( $current_field, $multiple_setting_disabled_for ) ) {
