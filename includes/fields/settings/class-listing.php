@@ -104,14 +104,11 @@ class Listing {
 				)
 			);
 
-		$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
-		$disable_multiple_setting = false;
-
-		if ( $field_id ) {
-			$listing_field = new \PNO\Field\Listing( $field_id );
-			if ( $listing_field instanceof \PNO\Field\Listing && $listing_field->get_object_meta_key() === 'listing_featured_image' ) {
-				$disable_multiple_setting = true;
-			}
+		$current_field                 = $this->get_current_field();
+		$disable_multiple_setting      = false;
+		$multiple_setting_disabled_for = [ 'listing_featured_image' ];
+		if ( in_array( $current_field, $multiple_setting_disabled_for ) ) {
+			$disable_multiple_setting = true;
 		}
 
 		if ( ! $disable_multiple_setting ) {
