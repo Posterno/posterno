@@ -428,6 +428,7 @@ class OptionsPanel {
 		$settings = [];
 
 		$settings[] = Field::make( 'checkbox', 'profiles_replace_author', __( 'Override posts author url with Posterno\'s profile url', 'posterno' ) );
+		$settings[] = Field::make( 'checkbox', 'profiles_replace_comments_author', __( 'Override comment author url with Posterno\'s profile url', 'posterno' ) );
 
 		$settings[] = Field::make( 'checkbox', 'profiles_allow_guests', esc_html__( 'Allow guests to view profiles', 'posterno' ) )
 			->set_help_text( esc_html__( 'Enable this option to allow guests to view users profiles.', 'posterno' ) );

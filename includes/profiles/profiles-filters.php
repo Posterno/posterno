@@ -26,3 +26,23 @@ function pno_replace_author_link( $link, $author_id, $author_nicename ) {
 if ( pno_get_option( 'profiles_replace_author', false ) ) {
 	add_filter( 'author_link', 'pno_replace_author_link', 10, 3 );
 }
+
+/**
+ * Replace the comment author's URL with Posterno's profile url.
+ *
+ * @param string     $url     The comment author's URL.
+ * @param int        $id      The comment ID.
+ * @param WP_Comment $comment The comment object.
+ */
+function pno_replace_comment_author_url( $url, $id, $comment ) {
+
+	if ( ! empty( $comment ) && isset( $comment->user_id ) && $comment->user_id > 0 ) {
+		$url = pno_get_member_profile_url( $comment->user_id );
+	}
+
+	return $url;
+
+}
+if ( pno_get_option( 'profiles_replace_comments_author', false ) ) {
+	add_filter( 'get_comment_author_url', 'pno_replace_comment_author_url', 10, 3 );
+}
