@@ -339,12 +339,13 @@ function pno_listing_editing_form() {
 	$user_id    = is_user_logged_in() ? get_current_user_id() : false;
 	$listing_id = pno_get_queried_listing_editable_id();
 
-	if ( pno_can_user_submit_listings() && pno_is_user_owner_of_listing( $user_id, $listing_id ) && ! pno_is_listing_pending_approval( $listing_id ) || ( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $user_id, $listing_id ) && pno_pending_listings_can_be_edited() ) ) {
-
-		//phpcs:ignore
-		echo posterno()->forms->get_form( 'listing-edit' );
-
-	} else {
+	if (
+		! is_user_logged_in() ||
+		! is_page( pno_get_listing_editing_page_id() ) ||
+		! $listing_id ||
+		! pno_is_user_owner_of_listing( $user_id, $listing_id ) ||
+		pno_is_listing_expired( $listing_id ) ||
+		( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $user_id, $listing_id ) && ! pno_pending_listings_can_be_edited() ) ) {
 
 		posterno()->templates
 			->set_template_data(
@@ -354,6 +355,11 @@ function pno_listing_editing_form() {
 				]
 			)
 			->get_template_part( 'message' );
+
+	} else {
+
+		//phpcs:ignore
+		echo posterno()->forms->get_form( 'listing-edit' );
 
 	}
 
