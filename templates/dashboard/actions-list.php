@@ -11,6 +11,7 @@
  * the readme will list any important changes.
  *
  * @version 1.0.0
+ * @package posterno
  */
 
 // Exit if accessed directly.
@@ -66,7 +67,7 @@ if ( empty( $actions ) ) {
 
 				elseif ( $action_id === 'edit' ) :
 
-					if ( ! pno_pending_listings_can_be_edited() && pno_is_listing_pending_approval( $data->id ) ) {
+					if ( ! pno_pending_listings_can_be_edited() && pno_is_listing_pending_approval( $data->id ) || ( pno_is_listing_expired( $data->id ) ) ) {
 						continue;
 					}
 

@@ -776,6 +776,16 @@ function pno_is_listing_pending_approval( $listing_id ) {
 }
 
 /**
+ * Determine if a listing is expired.
+ *
+ * @param string $listing_id the id of the listing to verify.
+ * @return boolean
+ */
+function pno_is_listing_expired( $listing_id ) {
+	return get_post_type( $listing_id ) === 'listings' && get_post_status( $listing_id ) === 'expired';
+}
+
+/**
  * Retrieve the ID number of the listing that is about to get edited.
  *
  * @return mixed
