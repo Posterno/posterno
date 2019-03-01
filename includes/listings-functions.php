@@ -154,9 +154,10 @@ function pno_assign_type_to_listing( $listing_id, $type_id ) {
  * Retrieve the listings submitted by a specific user given a user id.
  *
  * @param string $user_id the user for which we're going to retrieve listings.
+ * @param array  $statuses the post status to include in the query.
  * @return WP_Query
  */
-function pno_get_user_submitted_listings( $user_id ) {
+function pno_get_user_submitted_listings( $user_id, $statuses = [ 'publish', 'pending', 'expired' ] ) {
 
 	if ( ! $user_id ) {
 		return false;
@@ -168,7 +169,7 @@ function pno_get_user_submitted_listings( $user_id ) {
 		'post_type'      => 'listings',
 		'posts_per_page' => absint( pno_get_listings_per_page_dashboard() ),
 		'author'         => absint( $user_id ),
-		'post_status'    => [ 'publish', 'pending' ],
+		'post_status'    => $statuses,
 		'fields'         => 'ids',
 		'paged'          => $paged,
 	];
@@ -791,23 +792,23 @@ function pno_get_queried_listing_editable_id() {
 function pno_get_listings_results_order_filters() {
 
 	$filters = [
-		'newest' => [
+		'newest'   => [
 			'label'    => esc_html__( 'Newest first', 'posterno' ),
 			'priority' => 1,
 		],
-		'oldest' => [
+		'oldest'   => [
 			'label'    => esc_html__( 'Oldest first', 'posterno' ),
 			'priority' => 2,
 		],
-		'title'  => [
+		'title'    => [
 			'label'    => esc_html__( 'Title A-Z', 'posterno' ),
 			'priority' => 3,
 		],
-		'title_za'  => [
+		'title_za' => [
 			'label'    => esc_html__( 'Title Z-A', 'posterno' ),
 			'priority' => 4,
 		],
-		'random' => [
+		'random'   => [
 			'label'    => esc_html__( 'Random', 'posterno' ),
 			'priority' => 5,
 		],
