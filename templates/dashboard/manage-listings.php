@@ -87,7 +87,7 @@ defined( 'ABSPATH' ) || exit;
 
 											?>
 
-											<span class="pno-listing-status-<?php echo esc_attr( $status_id ); ?>">
+											<span class="badge badge-light pno-listing-status-<?php echo esc_attr( $status_id ); ?>">
 												<?php echo esc_html( $current_status ); ?>
 											</span>
 
