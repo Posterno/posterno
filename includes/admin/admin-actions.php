@@ -417,3 +417,27 @@ function pno_mark_listing_as_expired() {
 
 }
 add_action( 'admin_init', 'pno_mark_listing_as_expired', 10, 1 );
+
+/**
+ * Show count of pending listings within the "Listings" menu item in the admin panel.
+ *
+ * @return void
+ */
+function pno_show_pending_listings_count_bubble() {
+
+	global $menu;
+
+	$pending_count = \PNO\Cache\Helper::get_listings_count();
+
+	if ( empty( $pending_count ) ) {
+		return;
+	}
+
+	$listings_menu_item = wp_list_filter( $menu, [ 2 => 'edit.php?post_type=listings' ] );
+
+	if ( ! empty( $listings_menu_item ) && is_array( $listings_menu_item ) ) {
+		//phpcs:ignore
+		$menu[ key( $listings_menu_item ) ][0] .= " <span class='awaiting-mod update-plugins count-" . esc_attr( $pending_count ) . "'><span class='pending-count'>" . absint( number_format_i18n( $pending_count ) ) . '</span></span>';
+	}
+}
+add_action( 'admin_menu', 'pno_show_pending_listings_count_bubble' );
