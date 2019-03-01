@@ -170,3 +170,26 @@ function pno_permalink_controller_notice() {
 
 }
 add_action( 'admin_head', 'pno_permalink_controller_notice' );
+
+/**
+ * Display a notice when a listing is successfully marked as expired in the admin panel.
+ *
+ * @return void
+ */
+add_action(
+	'admin_notices',
+	function () {
+
+		$post_id = isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ? absint( $_GET['post'] ) : false;
+		$trigger = isset( $_GET['marked-expired'] ) && $_GET['marked-expired'] === '1' ? true : false;
+
+		if ( $post_id && $trigger && current_user_can( 'edit_posts' ) ) {
+			?>
+			<div class="notice notice-success is-dismissible">
+				<p><?php esc_html_e( 'Listing successfully marked as expired.' ); ?></p>
+			</div>
+			<?php
+		}
+
+	}
+);
