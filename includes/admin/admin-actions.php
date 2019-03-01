@@ -199,49 +199,6 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 add_action( 'wp_trash_post', 'pno_force_delete_on_custom_fields_trash', 9999 );
 
 /**
- * Display the list of listings post statuses into the admin panel.
- *
- * @return void
- */
-function pno_display_listings_post_statuses_list() {
-
-	global $post, $post_type;
-
-	// Abort if we're on the wrong post type, but only if we got a restriction.
-	if ( 'listings' !== $post_type ) {
-		return;
-	}
-
-	// Get all non-builtin post status and add them as <option>.
-	$options = '';
-	$display = '';
-
-	foreach ( pno_get_listing_post_statuses() as $status => $name ) {
-		$selected = selected( $post->post_status, $status, false );
-		// If we one of our custom post status is selected, remember it.
-		if ( $selected ) {
-			$display = $name;
-		}
-		// Build the options.
-		$options .= "<option{$selected} value='{$status}'>" . esc_html( $name ) . '</option>';
-	}
-	?>
-	<script type="text/javascript">
-		jQuery( document ).ready( function($) {
-			<?php if ( ! empty( $display ) ) : ?>
-				jQuery( '#post-status-display' ).html( <?php echo wp_json_encode( $display ); ?> );
-			<?php endif; ?>
-			var select = jQuery( '#post-status-select' ).find( 'select' );
-			jQuery( select ).html( <?php echo wp_json_encode( $options ); ?> );
-		} );
-	</script>
-	<?php
-}
-foreach ( array( 'post', 'post-new' ) as $hook ) {
-	add_action( "admin_footer-{$hook}.php", 'pno_display_listings_post_statuses_list' );
-}
-
-/**
  * Define the content for the custom column for the pno emails post type.
  *
  * @param string $column the name of the column.
