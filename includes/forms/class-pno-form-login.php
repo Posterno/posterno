@@ -58,6 +58,7 @@ class PNO_Form_Login extends PNO_Form {
 	public function __construct() {
 
 		add_action( 'wp', array( $this, 'process' ) );
+		add_filter( 'pno_form_validate_fields', [ $this, 'validate_honeypot' ], 10, 4 );
 
 		$this->steps = (array) apply_filters(
 			'pno_login_steps',
@@ -118,6 +119,12 @@ class PNO_Form_Login extends PNO_Form {
 					'required' => false,
 					'priority' => 3,
 				),
+				'robo'     => [
+					'label'    => esc_html__( 'If you\'re human leave this blank:', 'posterno' ),
+					'type'     => 'text',
+					'required' => false,
+					'priority' => 100,
+				],
 			),
 		);
 
@@ -231,7 +238,7 @@ class PNO_Form_Login extends PNO_Form {
 			$username = $values['login']['username'];
 			$password = $values['login']['password'];
 
-			$creds    = [
+			$creds = [
 				'user_login'    => $username,
 				'user_password' => $password,
 				'remember'      => $values['login']['remember'] ? true : false,
@@ -245,7 +252,6 @@ class PNO_Form_Login extends PNO_Form {
 				wp_safe_redirect( pno_get_login_redirect() );
 				exit;
 			}
-
 		} catch ( Exception $e ) {
 			$this->add_error( $e->getMessage(), $e->getErrorCode() );
 			return;

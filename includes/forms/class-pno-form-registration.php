@@ -124,24 +124,6 @@ class PNO_Form_Registration extends PNO_Form {
 	}
 
 	/**
-	 * Validate the honeypot field.
-	 *
-	 * @param boolean $pass pass validation or not.
-	 * @param array   $fields all fields belonging to the form.
-	 * @param array   $values values sent through the form.
-	 * @param string  $form form's name.
-	 * @return mixed
-	 */
-	public function validate_honeypot( $pass, $fields, $values, $form ) {
-		if ( $form == $this->form_name && isset( $values['registration']['robo'] ) ) {
-			if ( ! empty( $values['registration']['robo'] ) ) {
-				return new WP_Error( 'honeypot-validation-error', esc_html__( 'Failed honeypot validation.', 'posterno' ) );
-			}
-		}
-		return $pass;
-	}
-
-	/**
 	 * Validate role on submission.
 	 *
 	 * @param boolean $pass pass validation or not.

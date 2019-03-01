@@ -745,4 +745,22 @@ abstract class PNO_Form {
 
 	}
 
+	/**
+	 * Validate the honeypot field.
+	 *
+	 * @param boolean $pass pass validation or not.
+	 * @param array   $fields all fields belonging to the form.
+	 * @param array   $values values sent through the form.
+	 * @param string  $form form's name.
+	 * @return mixed
+	 */
+	public function validate_honeypot( $pass, $fields, $values, $form ) {
+		if ( $form === $this->form_name && isset( $values[ $this->form_name ]['robo'] ) ) {
+			if ( ! empty( $values[ $this->form_name ]['robo'] ) ) {
+				return new WP_Error( 'honeypot-validation-error', esc_html__( 'Failed honeypot validation.', 'posterno' ) );
+			}
+		}
+		return $pass;
+	}
+
 }
