@@ -297,3 +297,80 @@ function pno_send_administrator_approval_email( $post_id ) {
 
 }
 add_action( 'save_post', 'pno_send_administrator_approval_email', 10, 1 );
+
+/**
+ * Add a button to the listing post type publishing box to mark listings as expired.
+ *
+ * @param object $post the post object.
+ * @return void
+ */
+function pno_mark_expired_listing_button( $post ) {
+
+	$post_type = get_post_type( $post );
+
+	if ( $post_type !== 'listings' || get_post_status( $post ) === 'expired' || ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+
+	$url = add_query_arg(
+		[
+			'listing_action' => 'set-as-expired',
+		],
+		get_edit_post_link( $post->ID )
+	);
+
+	include PNO_PLUGIN_DIR . 'includes/admin/views/mark-as-expired-button.php';
+
+}
+add_action( 'post_submitbox_misc_actions', 'pno_mark_expired_listing_button', 9, 1 );
+
+/**
+ * Update the status of a listing to "expired" when expressively triggered from the admin panel.
+ *
+ * @return void
+ */
+function pno_mark_listing_as_expired() {
+
+	global $pagenow;
+
+	if ( $pagenow !== 'post.php' ) {
+		return;
+	}
+
+	$post_id = isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ? absint( $_GET['post'] ) : false;
+	$trigger = isset( $_GET['listing_action'] ) && $_GET['listing_action'] === 'set-as-expired' ? true : false;
+
+	$post_type = get_post_type( $post_id );
+
+	$redirect_link = get_edit_post_link( $post_id );
+
+	if ( $post_type !== 'listings' ) {
+		return;
+	}
+
+	if ( $trigger && $post_id && is_admin() && current_user_can( 'edit_posts' ) ) {
+
+		wp_update_post(
+			array(
+				'ID'          => $post_id,
+				'post_status' => 'expired',
+			)
+		);
+
+		$redirect_link = admin_url( 'post.php' );
+		$redirect_link = add_query_arg(
+			[
+				'post'           => $post_id,
+				'action'         => 'edit',
+				'marked-expired' => true,
+			],
+			$redirect_link
+		);
+
+		wp_safe_redirect( $redirect_link );
+		exit;
+
+	}
+
+}
+add_action( 'admin_init', 'pno_mark_listing_as_expired', 10, 1 );
