@@ -402,26 +402,19 @@ abstract class PNO_Form {
 							if ( is_array( $file_url ) && isset( $file_url['url'] ) ) {
 								$file_url = $file_url['url'];
 							}
+
+							if ( isset( $field['allowed_mime_types'] ) && !empty( $field['allowed_mime_types'] ) ) {
+								$file_url  = current( explode( '?', $file_url ) );
+								$file_info = wp_check_filetype( $file_url );
+
+								if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'], true ) ) {
+									// translators: Placeholder %1$s is field label; %2$s is the file mime type; %3$s is the allowed mime-types.
+									throw new Exception( sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s', 'posterno' ), $field['label'], $file_info['ext'], implode( ', ', array_values( $field['allowed_mime_types'] ) ) ) );
+								}
+							}
 							$file_url = esc_url( $file_url, array( 'http', 'https' ) );
 							if ( empty( $file_url ) ) {
 								throw new Exception( __( 'Invalid attachment provided.', 'posterno' ) );
-							}
-						}
-					}
-				}
-				if ( 'file' === $field['type'] && ! empty( $field['allowed_mime_types'] ) ) {
-					if ( is_array( $values[ $group_key ][ $key ] ) ) {
-						$check_value = array_filter( $values[ $group_key ][ $key ] );
-					} else {
-						$check_value = array_filter( array( $values[ $group_key ][ $key ] ) );
-					}
-					if ( ! empty( $check_value ) ) {
-						foreach ( $check_value as $file_url ) {
-							$file_url  = current( explode( '?', $file_url ) );
-							$file_info = wp_check_filetype( $file_url );
-							if ( ! is_numeric( $file_url ) && $file_info && ! in_array( $file_info['type'], $field['allowed_mime_types'], true ) ) {
-								// translators: Placeholder %1$s is field label; %2$s is the file mime type; %3$s is the allowed mime-types.
-								throw new Exception( sprintf( __( '"%1$s" (filetype %2$s) needs to be one of the following file types: %3$s', 'posterno' ), $field['label'], $file_info['ext'], implode( ', ', array_keys( $field['allowed_mime_types'] ) ) ) );
 							}
 						}
 					}
