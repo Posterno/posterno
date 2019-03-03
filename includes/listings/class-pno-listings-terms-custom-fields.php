@@ -38,6 +38,10 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public static function register_type_settings() {
 
+		if ( ! pno_get_option( 'submission_categories_associated', false ) ) {
+			return;
+		}
+
 		Container::make( 'term_meta', esc_html__( 'Listing type settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-types' )
 			->add_fields(
