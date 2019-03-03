@@ -106,7 +106,7 @@ Posterno has been designed and coded to seamlessly integrate with any properly c
 
 = Where can I request new features, themes and extensions? =
 
-Get in touch with us via email at [posterno.com](https://posterno.com/contacts) or open a topic into the support forum](https://wordpress.org/support/plugin/posterno).
+Get in touch with us via email at [posterno.com](https://posterno.com/contacts) or open a topic into the [support forum](https://wordpress.org/support/plugin/posterno).
 
 = Is Posterno GDPR compliant? =
 
