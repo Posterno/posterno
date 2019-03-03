@@ -61,6 +61,10 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public static function register_categories_settings() {
 
+		if ( ! pno_get_option( 'submission_tags_associated', false ) ) {
+			return;
+		}
+
 		Container::make( 'term_meta', esc_html__( 'Listing categories settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-categories' )
 			->add_fields(
