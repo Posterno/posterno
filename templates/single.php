@@ -51,17 +51,8 @@ do_action( 'pno_before_single_listing' );
 	<?php
 
 	if ( pno_are_expired_listings_public() && pno_is_listing_expired( $listing_id ) ) {
-
-		posterno()->templates
-			->set_template_data(
-				[
-					'type'    => 'info',
-					'message' => esc_html__( 'Sorry, this listing is no longer available.' ),
-				]
-			)
-			->get_template_part( 'message' );
+		posterno()->templates->get_template_part( 'listings/expired' );
 		return;
-
 	}
 
 	?>

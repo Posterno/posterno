@@ -502,6 +502,14 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Enable the option to keep expired listings visible and still crawlable by search engines.', 'posterno' ) );
 
 		$settings[] = Field::make( 'select', 'expired_listings_sidebar', esc_html__( 'Single listing page sidebar', 'posterno' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'expired_listings_are_public',
+						'value' => true,
+					),
+				)
+			)
 			->set_options( 'pno_get_registered_sidebars' )
 			->set_help_text( esc_html__( 'When expired listings are public, you can decide to hide the content of the sidebar within the single listing page (If your theme provides one). Select the sidebar you wish to hide here.', 'posterno' ) );
 
