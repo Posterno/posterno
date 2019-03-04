@@ -347,7 +347,7 @@ function pno_disable_listing_type_submission_selection_step( $steps ) {
 add_filter( 'pno_listing_submission_form_steps', 'pno_disable_listing_type_submission_selection_step' );
 
 /**
- * Restrict the amount of categories the user can select when submitting or editing a listing from the fronted.
+ * Restrict the amount of categories and tags the user can select when submitting or editing a listing from the fronted.
  *
  * @param boolean $pass whether validation should pass or not.
  * @param array   $fields all fields defined into the form.
