@@ -532,20 +532,20 @@ function pno_get_selectable_categories_count() {
 }
 
 /**
- * Retrieve the amount of maximum selectable subcategories for listings.
+ * Retrieve the amount of maximum selectable tags for listings.
  *
  * @return mixed
  */
-function pno_get_selectable_subcategories_count() {
+function pno_get_selectable_tags_count() {
 
 	/**
-	 * Allow developers to adjust the maximum amount of selectable subcategories for
+	 * Allow developers to adjust the maximum amount of selectable tags for
 	 * listings within the listing submission form.
 	 *
 	 * @param string $max_selection count.
 	 * @return int
 	 */
-	$max_selection = apply_filters( 'pno_selectable_subcategories_count', absint( pno_get_option( 'submission_subcategories_amount' ) ) );
+	$max_selection = apply_filters( 'pno_selectable_tags_count', absint( pno_get_option( 'submission_tags_amount' ) ) );
 	$max_selection = is_int( $max_selection ) ? $max_selection : false;
 
 	return $max_selection;

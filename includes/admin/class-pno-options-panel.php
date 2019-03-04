@@ -622,6 +622,11 @@ class OptionsPanel {
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Specify how many categories users can select for their listings (eg: 5). Leave blank if not needed.', 'posterno' ) );
 
+		$settings[] = Field::make( 'text', 'submission_tags_amount', esc_html__( 'How many tags?', 'posterno' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
+			->set_help_text( esc_html__( 'Specify how many tags users can select for their listings (eg: 5). Leave blank if not needed.', 'posterno' ) );
+
 		$settings[] = Field::make( 'checkbox', 'submission_moderated', esc_html__( 'Moderate new listings', 'posterno' ) )
 			->set_help_text( esc_html__( 'Enable the option to require admin approval of all new listing submissions.', 'posterno' ) );
 

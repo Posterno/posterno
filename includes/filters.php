@@ -371,6 +371,18 @@ function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $f
 		}
 	}
 
+	if ( in_array( $form, $forms ) && ! empty( pno_get_option( 'submission_tags_amount' ) ) && isset( $values['listing-details']['listing_tags'] ) && ! empty( $values['listing-details']['listing_tags'] ) ) {
+
+		$max_tags     = pno_get_selectable_tags_count();
+		$listing_tags = json_decode( $values['listing-details']['listing_tags'] );
+		$listing_tags = array_map( 'absint', $listing_tags );
+		$tags_amount  = count( $listing_tags );
+
+		if ( is_array( $listing_tags ) && $tags_amount > $max_tags ) {
+			return new WP_Error( 'max-tags-reached', sprintf( esc_html__( 'The maximum amount of tags you are allowed to select is %1$s, you have selected %2$s.', 'posterno' ), $max_tags, $tags_amount ) );
+		}
+	}
+
 	return $pass;
 
 }
