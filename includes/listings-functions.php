@@ -1304,3 +1304,12 @@ function pno_get_listing_coordinates( $listing_id ) {
 	return $coordinates;
 
 }
+
+/**
+ * Determine if expired listings should still be publicly visible and crawable by search engines.
+ *
+ * @return boolean
+ */
+function pno_are_expired_listings_public() {
+	return pno_get_option( 'expired_listings_are_public', false ) ? true : false;
+}

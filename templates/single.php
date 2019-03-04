@@ -48,6 +48,24 @@ do_action( 'pno_before_single_listing' );
 
 <div id="pno-single-listing" <?php pno_listing_class( 'pno-single-listing-wrapper' ); ?>>
 
+	<?php
+
+	if ( pno_are_expired_listings_public() && pno_is_listing_expired( $listing_id ) ) {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'info',
+					'message' => esc_html__( 'Sorry, this listing is no longer available.' ),
+				]
+			)
+			->get_template_part( 'message' );
+		return;
+
+	}
+
+	?>
+
 	<?php if ( pno_listing_is_featured( $listing_id ) ) : ?>
 		<span class="badge badge-pill badge-warning featured-badge mb-3"><?php esc_html_e( 'Featured', 'posterno' ); ?></span>
 	<?php endif; ?>
