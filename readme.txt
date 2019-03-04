@@ -138,6 +138,11 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Fix: expired listings not visible in the frontend dashboard when "all listings" status is selected.
 - Fix: uploaded file mime type verification would sometimes fail.
 
+The following documentation articles have been updated/created:
+
+[Listings expiry](https://docs.posterno.com/article/468-listings-expiry)
+[How to make expired listings visible](https://docs.posterno.com/article/548-how-to-make-expired-listings-visible)
+
 = 0.1.2 Open beta release =
 
 - tweak: decode retrieved urls for email tags.
