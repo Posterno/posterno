@@ -1108,3 +1108,28 @@ function pno_install_profile_menu() {
 	update_option( 'posterno_profile_menu_installed', true );
 
 }
+
+/**
+ * Retrieve the list of sidebars registered on the site.
+ *
+ * @return array
+ */
+function pno_get_registered_sidebars() {
+
+	global $wp_registered_sidebars;
+
+	$sidebars = [
+		'' => '',
+	];
+
+	if ( empty( $wp_registered_sidebars ) ) {
+		return $sidebars;
+	}
+
+	foreach ( $wp_registered_sidebars as $sidebar ) {
+		$sidebars[ esc_attr( $sidebar['id'] ) ] = esc_html( $sidebar['name'] );
+	}
+
+	return $sidebars;
+
+}

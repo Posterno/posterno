@@ -490,19 +490,20 @@ class OptionsPanel {
 
 		$settings[] = Field::make( 'text', 'listings_duration', esc_html__( 'Listings duration', 'posterno' ) )
 			->set_attribute( 'type', 'number' )
-			->set_width( '33.33' )
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Listings will display for the set number of days, then expire. Leave this field blank if you don\'t want listings to have an expiration date.', 'posterno' ) );
 
 		$days_threshold = apply_filters( 'pno_delete_expired_listings_days', 30 );
 
 		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.', 'posterno' ), $days_threshold ) )
-		->set_width( '33.33' )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.', 'posterno' ) );
 
 		$settings[] = Field::make( 'checkbox', 'expired_listings_are_public', esc_html__( 'Make expired listings visible' ) )
-			->set_width( '33.33' )
-				->set_help_text( esc_html__( 'Enable the option to keep expired listings visible and still crawlable by search engines.', 'posterno' ) );
+			->set_help_text( esc_html__( 'Enable the option to keep expired listings visible and still crawlable by search engines.', 'posterno' ) );
+
+		$settings[] = Field::make( 'select', 'expired_listings_sidebar', esc_html__( 'Single listing page sidebar', 'posterno' ) )
+			->set_options( 'pno_get_registered_sidebars' )
+			->set_help_text( esc_html__( 'When expired listings are public, you can decide to hide the content of the sidebar within the single listing page (If your theme provides one). Select the sidebar you wish to hide here.', 'posterno' ) );
 
 		$settings[] = Field::make( 'separator', 'h3', esc_html__( 'Featured status', 'posterno' ) );
 

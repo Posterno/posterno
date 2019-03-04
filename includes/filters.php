@@ -410,3 +410,27 @@ function pno_single_listing_body_classes( $classes ) {
 
 }
 add_filter( 'body_class', 'pno_single_listing_body_classes' );
+
+/**
+ * Hide the sidebar on the single listing page when expired listings are public
+ * and the current listing is expired.
+ *
+ * @param array $sidebars_widgets list of registered listings.
+ * @return array
+ */
+function pno_hide_sidebar_for_expired_listings( $sidebars_widgets ) {
+
+	global $post;
+
+	if (
+		pno_are_expired_listings_public() &&
+		is_singular( 'listings' ) &&
+		pno_is_listing_expired( $post->ID ) &&
+		! empty( pno_get_option( 'expired_listings_sidebar' ) ) ) {
+			$sidebars_widgets[ pno_get_option( 'expired_listings_sidebar' ) ] = null;
+	}
+
+	return $sidebars_widgets;
+
+}
+add_filter( 'sidebars_widgets', 'pno_hide_sidebar_for_expired_listings' );
