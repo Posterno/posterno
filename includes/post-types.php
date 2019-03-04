@@ -97,7 +97,7 @@ function pno_setup_post_types() {
 		'expired',
 		array(
 			'label'                     => _x( 'Expired', 'post status', 'posterno' ),
-			'public'                    => true,
+			'public'                    => pno_get_option( 'expired_listings_are_public', false ) ? true : false,
 			'protected'                 => true,
 			'exclude_from_search'       => true,
 			'show_in_admin_all_list'    => true,
