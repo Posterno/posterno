@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.1
 Requires PHP: 5.5+
-Stable tag: 0.1.2
+Stable tag: 0.2.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -117,6 +117,26 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 == Screenshots ==
 
 == Changelog ==
+
+= 0.2.0 Open beta release =
+
+- Added: honeypot antispam protection to login form.
+- Added: listing status in dashboard is now highlighted.
+- Added: button to mark listings as expired in the admin panel.
+- Added: Ability to replace the comment author's URL with Posterno's public profile url.
+- Added: count of pending listings is now displayed within the admin dashboard menu.
+- Added: ability to limit the maximum amount of selectable tags during submission.
+- Added: control whether expired listings are still visible and crawable by search engines.
+- Added: when expired listings are public a notice will now be displayed informing the user that the listing is expired.
+- Added: ability to hide the sidebar on the listing page when expired listings are public.
+- Tweak: if tags association is disabled, the setting field is hidden from the taxonomy panel.
+- Tweak: if categories association is disabled, the setting field is hidden from the taxonomy panel.
+- Tweak: removed obsolete code from frontend javascript file.
+- Tweak: display a warning message when a user attempts to edit an expired listing.
+- Tweak: check permissions to edit a listing before even loading the form.
+- Tweak: when a listing is expired, hide the edit action from the frontend dashboard.
+- Fix: expired listings not visible in the frontend dashboard when "all listings" status is selected.
+- Fix: uploaded file mime type verification would sometimes fail.
 
 = 0.1.2 Open beta release =
 
