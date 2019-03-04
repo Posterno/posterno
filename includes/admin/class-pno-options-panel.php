@@ -498,7 +498,7 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'delete_expired_listings', sprintf( esc_html__( 'Automatically delete expired listings older than %s days.', 'posterno' ), $days_threshold ) )
 			->set_help_text( esc_html__( 'Enable the option to automatically delete expired listings after a threshold.', 'posterno' ) );
 
-		$settings[] = Field::make( 'checkbox', 'expired_listings_are_public', esc_html__( 'Make expired listings visible' ) )
+		$settings[] = Field::make( 'checkbox', 'expired_listings_are_public', esc_html__( 'Make expired listings visible', 'posterno' ) )
 			->set_help_text( esc_html__( 'Enable the option to keep expired listings visible and still crawlable by search engines.', 'posterno' ) );
 
 		$settings[] = Field::make( 'select', 'expired_listings_sidebar', esc_html__( 'Single listing page sidebar', 'posterno' ) )

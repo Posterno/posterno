@@ -186,7 +186,7 @@ add_action(
 		if ( $post_id && $trigger && current_user_can( 'edit_posts' ) ) {
 			?>
 			<div class="notice notice-success is-dismissible">
-				<p><?php esc_html_e( 'Listing successfully marked as expired.' ); ?></p>
+				<p><?php esc_html_e( 'Listing successfully marked as expired.', 'posterno' ); ?></p>
 			</div>
 			<?php
 		}
