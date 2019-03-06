@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf8a28b76585dcb2d19f04075a3be737",
+    "content-hash": "289e34344ae4cacf01ee1ad0e7e04544",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -448,7 +448,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "485f8d5c12514e72d41fc1c7cda77849fab39623",
+                "reference": "411bada737314d4526f4cabe5b1a2ec790995564",
                 "shasum": null
             },
             "require": {
