@@ -6,7 +6,8 @@
     "alessandrotesoro/wp-notices": "^1.0",
     "stevegrunwell/wp-cache-remember": "^1.1",
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
-    "rarst/wpdatetime": "dev-master"
+    "rarst/wpdatetime": "dev-master",
+    "posterno/schema": "dev-master"
   },
   "minimum-stability": "dev",
   "extra": {

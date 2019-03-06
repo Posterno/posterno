@@ -59,6 +59,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		public $emails;
 
 		/**
+		 * Handles integration of the schema component.
+		 *
+		 * @var PNO\Schema
+		 */
+		public $schema;
+
+		/**
 		 * Posterno Components array
 		 *
 		 * @var array
@@ -104,6 +111,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->templates     = new PNO_Templates();
 			self::$instance->emails        = new PNO_Emails();
 			self::$instance->forms         = PNO_Forms::instance();
+			self::$instance->schema        = PNO\SchemaComponent::instance();
+
+			// Internal components init.
+			self::$instance->schema->init();
 
 			self::maybe_schedule_cron_jobs();
 			register_deactivation_hook( PNO_PLUGIN_FILE, array( __CLASS__, 'unschedule_cron_jobs' ) );

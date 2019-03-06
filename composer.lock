@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf02565296844a7e6bf5277a9fd8051e",
+    "content-hash": "77b595f3e8440163f12ac4d032146b31",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -443,6 +443,69 @@
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
+            "name": "posterno/schema",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-schema",
+                "reference": "2b0d2789141f649caad3f92a6a6e48dedda29591",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "graham-campbell/analyzer": "^1.1",
+                "larapack/dd": "^1.1",
+                "league/flysystem": "^1.0",
+                "phpunit/phpunit": "^6.0",
+                "pressmodo/phpcs-config": "dev-master",
+                "scrutinizer/ocular": "^1.5",
+                "symfony/console": "^3.2",
+                "symfony/css-selector": "^3.2",
+                "symfony/dom-crawler": "^3.2",
+                "twig/twig": "^1.28"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "PNO\\": "includes/classes/"
+                },
+                "files": [
+                    "includes/bootstrap-component.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Posterno\\SchemaOrg\\Generator\\": "generator"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ],
+                "generate": [
+                    "php ./generate.php generate"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "posterno-schema is a Posterno component that provides integration for rich snippets via json-ld.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ]
+        },
+        {
             "name": "pressmodo/carbon-fields-custom-options-container",
             "version": "0.1.0",
             "source": {
@@ -627,7 +690,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rarst/wpdatetime": 20
+        "rarst/wpdatetime": 20,
+        "posterno/schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
