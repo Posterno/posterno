@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\SchemaOrg\Schema;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -257,3 +259,16 @@ function pno_restrict_access_to_listings_submission_page() {
 	}
 }
 add_action( 'template_redirect', 'pno_restrict_access_to_listings_submission_page' );
+
+
+function test() {
+
+	$localBusiness = Schema::localBusiness()
+		->name('Spatie')
+		->email('info@spatie.be')
+		->contactPoint(Schema::contactPoint()->areaServed('Worldwide'));
+
+	var_dump( $localBusiness );exit;
+
+}
+add_action( 'admin_init', 'test' );

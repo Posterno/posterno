@@ -10,6 +10,15 @@
     "posterno/schema": "dev-master"
   },
   "minimum-stability": "dev",
+  "repositories": [
+    {
+        "type": "path",
+        "url": "../posterno-schema",
+        "options": {
+            "symlink": true
+        }
+    }
+],
   "extra": {
     "installer-paths": {
       "includes/utils/{$name}/": [

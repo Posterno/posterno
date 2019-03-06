@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77b595f3e8440163f12ac4d032146b31",
+    "content-hash": "bf8a28b76585dcb2d19f04075a3be737",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -448,7 +448,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "2b0d2789141f649caad3f92a6a6e48dedda29591",
+                "reference": "485f8d5c12514e72d41fc1c7cda77849fab39623",
                 "shasum": null
             },
             "require": {
@@ -471,15 +471,12 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "PNO\\": "includes/classes/"
-                },
-                "files": [
-                    "includes/bootstrap-component.php"
-                ]
+                    "PNO\\SchemaOrg\\": "src"
+                }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Posterno\\SchemaOrg\\Generator\\": "generator"
+                    "PNO\\SchemaOrg\\Generator\\": "generator"
                 }
             },
             "scripts": {
@@ -495,15 +492,18 @@
             },
             "authors": [
                 {
-                    "name": "Posterno",
-                    "email": "hello@posterno.com"
+                    "name": "Pressmodo",
+                    "email": "hello@pressmodo.com"
                 }
             ],
-            "description": "posterno-schema is a Posterno component that provides integration for rich snippets via json-ld.",
-            "homepage": "https://posterno.com",
+            "description": "Pressmodo Scaffold",
+            "homepage": "https://pressmodo.com",
             "keywords": [
                 "wordpress"
-            ]
+            ],
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "pressmodo/carbon-fields-custom-options-container",
