@@ -111,10 +111,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->templates     = new PNO_Templates();
 			self::$instance->emails        = new PNO_Emails();
 			self::$instance->forms         = PNO_Forms::instance();
-			//self::$instance->schema        = PNO\SchemaComponent::instance();
+			self::$instance->schema        = new PNO\SchemaOrg\Component\SchemaComponent();
 
 			// Internal components init.
-			//self::$instance->schema->init();
+			self::$instance->schema->init();
 
 			self::maybe_schedule_cron_jobs();
 			register_deactivation_hook( PNO_PLUGIN_FILE, array( __CLASS__, 'unschedule_cron_jobs' ) );
