@@ -448,7 +448,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "411bada737314d4526f4cabe5b1a2ec790995564",
+                "reference": "fd508d8c52397101e464eb00391be195be0d8c50",
                 "shasum": null
             },
             "require": {
@@ -471,7 +471,7 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "PNO\\SchemaOrg\\": "src"
+                    "PNO\\SchemaOrg\\": "includes"
                 }
             },
             "autoload-dev": {

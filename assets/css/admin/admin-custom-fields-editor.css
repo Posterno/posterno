@@ -1,10 +1,12 @@
 body.users_page_posterno-custom-profile-fields #wpcontent,
 body.listings_page_posterno-custom-listings-fields #wpcontent,
-body.users_page_posterno-custom-registration-form #wpcontent {
+body.users_page_posterno-custom-registration-form #wpcontent,
+body.listings_page_posterno-listings-schema #wpcontent {
   padding-left: 0; }
-  body.users_page_posterno-custom-profile-fields #wpcontent #pno-custom-fields-editor .pno-admin-title-area .wrap h1,
-  body.listings_page_posterno-custom-listings-fields #wpcontent #pno-custom-fields-editor .pno-admin-title-area .wrap h1,
-  body.users_page_posterno-custom-registration-form #wpcontent #pno-custom-fields-editor .pno-admin-title-area .wrap h1 {
+  body.users_page_posterno-custom-profile-fields #wpcontent .pno-admin-title-area .wrap h1,
+  body.listings_page_posterno-custom-listings-fields #wpcontent .pno-admin-title-area .wrap h1,
+  body.users_page_posterno-custom-registration-form #wpcontent .pno-admin-title-area .wrap h1,
+  body.listings_page_posterno-listings-schema #wpcontent .pno-admin-title-area .wrap h1 {
     margin: 15px 0; }
 
 .pno-admin-title-area {
