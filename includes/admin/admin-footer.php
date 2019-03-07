@@ -21,8 +21,6 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_admin_rate_us( $footer_text ) {
 
-	global $typenow;
-
 	$screen = get_current_screen();
 
 	$checks = [
@@ -43,7 +41,8 @@ function pno_admin_rate_us( $footer_text ) {
 		'settings_page_posterno-options',
 		'admin_page_posterno-options[accounts]',
 		'admin_page_posterno-options[emails]',
-		'admin_page_posterno-options[listings]'
+		'admin_page_posterno-options[listings]',
+		'listings_page_posterno-listings-schema',
 	];
 
 	if ( in_array( $screen->id, $checks ) ) {
