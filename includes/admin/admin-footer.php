@@ -14,10 +14,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Add rating links to the admin dashboard.
  *
- * @since       0.1.0
- * @global      string $typenow
- * @param       string $footer_text The existing footer text
- * @return      string
+ * @param  string $footer_text The existing footer text.
+ * @return string
  */
 function pno_admin_rate_us( $footer_text ) {
 

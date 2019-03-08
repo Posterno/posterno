@@ -8,8 +8,6 @@
  * @since       0.1.0
  */
 
-use PNO\SchemaOrg\Schema;
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
