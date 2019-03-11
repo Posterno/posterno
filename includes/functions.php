@@ -667,3 +667,27 @@ function pno_sort_array_by_array( array $array, array $order_array ) {
 	}
 	return $ordered + $array;
 }
+
+/**
+ * Search a multidimensional array by a given key => value pairing.
+ *
+ * @param array  $array the array to search.
+ * @param string $key the key where we're performing the search.
+ * @param string $value the value to look for.
+ * @return array
+ */
+function pno_search_in_array( $array, $key, $value ) {
+	$results = array();
+
+	if ( is_array( $array ) ) {
+		if ( isset( $array[ $key ] ) && $array[ $key ] == $value ) {
+			$results[] = $array;
+		}
+
+		foreach ( $array as $subarray ) {
+			$results = array_merge( $results, pno_search_in_array( $subarray, $key, $value ) );
+		}
+	}
+
+	return $results;
+}
