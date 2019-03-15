@@ -260,6 +260,12 @@ function pno_get_the_listing_publish_date( $post = null ) {
 	}
 }
 
+/**
+ * Gets the modified date of the listing.
+ *
+ * @param int|WP_Post $post (default: null).
+ * @return string|int|false
+ */
 function pno_get_listing_last_modified_date( $post = null ) {
 	$date_format = pno_get_option( 'listing_date_format' );
 	if ( 'default' === $date_format ) {
