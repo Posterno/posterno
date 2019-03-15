@@ -96,15 +96,6 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 	}
 
 	/**
-	 * Retrieve the ID of the listing we're going to modify.
-	 *
-	 * @return mixed
-	 */
-	private function get_listing_id() {
-		return isset( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false;
-	}
-
-	/**
 	 * Retrieve the ID of the user currently logged in.
 	 *
 	 * @return mixed
