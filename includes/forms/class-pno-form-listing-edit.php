@@ -66,16 +66,6 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 
 		$this->user_id = $this->get_user_id();
 
-		if (
-			! is_user_logged_in() ||
-			! is_page( pno_get_listing_editing_page_id() ) ||
-			! $this->listing_id ||
-			! pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) ||
-			pno_is_listing_expired( $this->listing_id ) ||
-			( pno_is_listing_pending_approval( $this->listing_id ) && pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) && ! pno_pending_listings_can_be_edited() ) ) {
-			return;
-		}
-
 		add_action( 'wp', array( $this, 'process' ) );
 
 		$steps = array(
@@ -127,6 +117,16 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 	 * Initializes the fields used in the form.
 	 */
 	public function init_fields() {
+
+		if (
+			! is_user_logged_in() ||
+			! is_page( pno_get_listing_editing_page_id() ) ||
+			! $this->listing_id ||
+			! pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) ||
+			pno_is_listing_expired( $this->listing_id ) ||
+			( pno_is_listing_pending_approval( $this->listing_id ) && pno_is_user_owner_of_listing( $this->user_id, $this->listing_id ) && ! pno_pending_listings_can_be_edited() ) ) {
+			return;
+		}
 
 		if ( $this->fields ) {
 			return;
