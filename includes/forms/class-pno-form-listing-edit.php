@@ -537,7 +537,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 	private function is_moderation_required() {
 		$status = pno_published_listings_can_be_edited();
 		if ( $status === 'yes' ) {
-			return 'published';
+			return 'publish';
 		} else {
 			return 'pending';
 		}
