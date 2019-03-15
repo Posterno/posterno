@@ -27,7 +27,7 @@ class PNO_Form_Listing_Edit extends PNO_Form {
 	 * Stores static instance of class.
 	 *
 	 * @access protected
-	 * @var PNO_Form_Listing_Editi The single instance of the class
+	 * @var PNO_Form_Listing_Edit The single instance of the class
 	 */
 	protected static $_instance = null;
 
