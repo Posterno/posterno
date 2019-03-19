@@ -691,3 +691,30 @@ function pno_search_in_array( $array, $key, $value ) {
 
 	return $results;
 }
+
+/**
+ * Helper function, determine if a string starts with specific characters.
+ *
+ * @param string $haystack whole string to search.
+ * @param string $needle the characters that needs to be found.
+ * @return boolean
+ */
+function pno_starts_with( $haystack, $needle ) {
+	$length = strlen( $needle );
+	return ( substr( $haystack, 0, $length ) === $needle );
+}
+
+/**
+ * Helper function, determine if a string ends with specific characters.
+ *
+ * @param string $haystack whole string to search.
+ * @param string $needle the characters that needs to be found.
+ * @return boolean
+ */
+function pno_ends_with( $haystack, $needle ) {
+	$length = strlen( $needle );
+	if ( $length === 0 ) {
+		return true;
+	}
+	return ( substr( $haystack, -$length ) === $needle );
+}
