@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "804fab43fce6f8a15e1045270288179b",
+    "content-hash": "10ee2af3d822e18641a91555220a638c",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -444,12 +444,17 @@
         },
         {
             "name": "posterno/posterno-schema",
-            "version": "dev-master",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-schema.git",
+                "reference": "b9e79a242d0987885ca1799682a17a8cb1ff3c2e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../posterno-schema",
-                "reference": "96ce340a0fbbdf66933ea1c2ae3b9598089ab7b0",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-schema/zipball/b9e79a242d0987885ca1799682a17a8cb1ff3c2e",
+                "reference": "b9e79a242d0987885ca1799682a17a8cb1ff3c2e",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -465,14 +470,7 @@
                     "PNO\\SchemaOrg\\": "includes"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Pressmodo",
@@ -484,9 +482,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-03-21T12:15:16+00:00"
         },
         {
             "name": "pressmodo/carbon-fields-custom-options-container",
@@ -673,8 +669,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rarst/wpdatetime": 20,
-        "posterno/posterno-schema": 20
+        "rarst/wpdatetime": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
