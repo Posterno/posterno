@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10ee2af3d822e18641a91555220a638c",
+    "content-hash": "1267ed277250bc25ab2300591e8301fc",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -444,17 +444,12 @@
         },
         {
             "name": "posterno/posterno-schema",
-            "version": "0.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Posterno/posterno-schema.git",
-                "reference": "b9e79a242d0987885ca1799682a17a8cb1ff3c2e"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Posterno/posterno-schema/zipball/b9e79a242d0987885ca1799682a17a8cb1ff3c2e",
+                "type": "path",
+                "url": "../posterno-schema",
                 "reference": "b9e79a242d0987885ca1799682a17a8cb1ff3c2e",
-                "shasum": ""
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -470,7 +465,14 @@
                     "PNO\\SchemaOrg\\": "includes"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
             "authors": [
                 {
                     "name": "Pressmodo",
@@ -482,7 +484,9 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2019-03-21T12:15:16+00:00"
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "pressmodo/carbon-fields-custom-options-container",
@@ -669,7 +673,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rarst/wpdatetime": 20
+        "rarst/wpdatetime": 20,
+        "posterno/posterno-schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
