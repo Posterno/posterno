@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "289e34344ae4cacf01ee1ad0e7e04544",
+    "content-hash": "804fab43fce6f8a15e1045270288179b",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -443,12 +443,12 @@
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
-            "name": "posterno/schema",
+            "name": "posterno/posterno-schema",
             "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "fd508d8c52397101e464eb00391be195be0d8c50",
+                "reference": "96ce340a0fbbdf66933ea1c2ae3b9598089ab7b0",
                 "shasum": null
             },
             "require": {
@@ -457,26 +457,12 @@
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
-                "graham-campbell/analyzer": "^1.1",
-                "larapack/dd": "^1.1",
-                "league/flysystem": "^1.0",
-                "phpunit/phpunit": "^6.0",
-                "pressmodo/phpcs-config": "dev-master",
-                "scrutinizer/ocular": "^1.5",
-                "symfony/console": "^3.2",
-                "symfony/css-selector": "^3.2",
-                "symfony/dom-crawler": "^3.2",
-                "twig/twig": "^1.28"
+                "pressmodo/phpcs-config": "dev-master"
             },
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
                     "PNO\\SchemaOrg\\": "includes"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "PNO\\SchemaOrg\\Generator\\": "generator"
                 }
             },
             "scripts": {
@@ -485,9 +471,6 @@
                 ],
                 "lint-fix": [
                     "phpcbf ."
-                ],
-                "generate": [
-                    "php ./generate.php generate"
                 ]
             },
             "authors": [
@@ -691,7 +674,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rarst/wpdatetime": 20,
-        "posterno/schema": 20
+        "posterno/posterno-schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

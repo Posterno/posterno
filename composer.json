@@ -7,29 +7,25 @@
     "stevegrunwell/wp-cache-remember": "^1.1",
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
-    "posterno/schema": "dev-master"
+    "posterno/posterno-schema": "dev-master"
   },
   "minimum-stability": "dev",
-  "repositories": [{
-    "type": "path",
-    "url": "../posterno-schema",
-    "options": {
-      "symlink": true
-    },
-    "package": {
-      "name": "posterno/schema",
-      "version": "master",
-      "source": {
-        "url": "git@github.com:Posterno/posterno-schema.git",
-        "type": "git",
-        "reference": "master"
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../posterno-schema",
+      "options": {
+        "symlink": true
       }
     }
-  }],
+  ],
   "extra": {
     "installer-paths": {
       "includes/utils/{$name}/": [
         "stevegrunwell/wp-cache-remember"
+      ],
+      "vendor/posterno/{$name}/": [
+        "posterno/posterno-schema"
       ]
     }
   }
