@@ -1,5 +1,6 @@
 {
   "components": [
-    "posterno/posterno-schema"
+    "posterno/posterno-schema",
+    "posterno/posterno-geocoder"
   ]
 }

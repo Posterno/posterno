@@ -448,7 +448,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "b9e79a242d0987885ca1799682a17a8cb1ff3c2e",
+                "reference": "8ffaf28b83195474ff4b117cb0e4f8c2a11ea8e7",
                 "shasum": null
             },
             "require": {
@@ -475,12 +475,12 @@
             },
             "authors": [
                 {
-                    "name": "Pressmodo",
-                    "email": "hello@pressmodo.com"
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
                 }
             ],
-            "description": "Pressmodo Scaffold",
-            "homepage": "https://pressmodo.com",
+            "description": "Posterno schema",
+            "homepage": "https://posterno.com",
             "keywords": [
                 "wordpress"
             ],
