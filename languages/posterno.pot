@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.2.0\n"
+"Project-Id-Version: Posterno 0.3.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-03-22 15:39:49+00:00\n"
+"POT-Creation-Date: 2019-03-24 13:18:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2163,34 +2163,6 @@ msgid "Customize properties"
 msgstr ""
 
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:116
-msgid "Customize structure"
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:117
-msgid "Schema structure"
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:118
-msgid "Update structure"
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:119
-msgid "Import properties"
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:120
-msgid ""
-"Properties successfully updated. Click on the \"Customize properties\" tab "
-"to finish customizing the schema."
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:121
-msgid ""
-"Structure properties successfully updated. You can now make further changes "
-"to the structure if needed."
-msgstr ""
-
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:122
 msgid "Available fields"
 msgstr ""
 

@@ -129,6 +129,11 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Fix: detect editing permissions before loading the fields of the editing form.
 - Fix: listing status set to published instead of publish.
 
+The following documentation articles have been updated/created:
+
+[Schema integration](https://docs.posterno.com/category/549-schema-integration)
+[Geocoding documentation](https://docs.posterno.com/category/556-geocoding)
+
 = 0.2.0 Open beta release =
 
 - Added: honeypot antispam protection to login form.
