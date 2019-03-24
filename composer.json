@@ -7,13 +7,21 @@
     "stevegrunwell/wp-cache-remember": "^1.1",
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
-    "posterno/posterno-schema": "@dev"
+    "posterno/posterno-schema": "@dev",
+    "posterno/posterno-geocoder": "dev-master"
   },
   "minimum-stability": "dev",
   "repositories": [
     {
       "type": "path",
       "url": "../posterno-schema",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "../posterno-geocoder",
       "options": {
         "symlink": true
       }
@@ -25,7 +33,8 @@
         "stevegrunwell/wp-cache-remember"
       ],
       "includes/components/{$name}/": [
-        "posterno/posterno-schema"
+        "posterno/posterno-schema",
+        "posterno/posterno-geocoder"
       ]
     }
   }

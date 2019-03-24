@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.1
 Requires PHP: 5.5+
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -117,6 +117,17 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 == Screenshots ==
 
 == Changelog ==
+
+= 0.3.0 Open beta release =
+
+- Added: structured data (schema) integration editor for listings.
+- Added: automatically geocode listing's address when coordinates change.
+- Added: (dev) Get the user's last name only, by id.
+- Tweak: (dev) added new helper functions.
+- Fix: (dev) pno_get_listing_author() function returning wrong value.
+- Fix: deleted code no longer needed.
+- Fix: detect editing permissions before loading the fields of the editing form.
+- Fix: listing status set to published instead of publish.
 
 = 0.2.0 Open beta release =
 
