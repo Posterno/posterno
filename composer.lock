@@ -636,7 +636,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-geocoder",
-                "reference": "c94f46e7e8bdeeb33f305e1da28af601b076a0fa",
+                "reference": "8aca6d26490a059a7f2f003b385312418b577853",
                 "shasum": null
             },
             "require": {
@@ -682,7 +682,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "2118c184d2b3cd156fb5e24ebcd76a3fab678921",
+                "reference": "311190611f560f2c60793b123e08db4b00573d3c",
                 "shasum": null
             },
             "require": {

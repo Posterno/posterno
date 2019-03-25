@@ -31,7 +31,7 @@ Listings can have all the features you could ever wish - descriptions, photos, m
 
 Posterno provides you the flexibility to set an unlimited amount of custom fields for your listings, profiles and registration form. Your site can easily accommodate all the areas you’d like to advertise.
 
-= Built to rank (soon) =
+= Built to rank =
 
 Built with SEO in mind to outperform your competitors in search engines thanks to the integration of JSON-LD for structured data (rich snippets). Rest assured your site will rank well in the SERPs with eye catching results.
 
