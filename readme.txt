@@ -118,6 +118,16 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.3.1 Open beta release =
+
+- Tweak: uninstall schemas when deleting plugin.
+- Tweak: When wp-login.php is locked, all privacy requests functionalities are now confirmed and handled on the fronted dashboard.
+- Tweak: improved storage of the file field by pushing all attached files into a single meta value.
+- Tweak: geocoding now triggers on frontend submission form too.
+- Fix: listing file field displaying numeric value instead of file name/url.
+- Fix: escaping of listings post statues in classic editor window.
+- Fix: trigger schema geocoding only when api keys are available.
+
 = 0.3.0 Open beta release =
 
 - Added: structured data (schema) integration editor for listings.
