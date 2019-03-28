@@ -29,17 +29,20 @@ $files_to_display = isset( $data->files ) ? $data->files : $data->file_url;
 			<?php
 			foreach ( $files_to_display as $file ) :
 
-				$extension = substr( strrchr( $file['url'], '.' ), 1 );
+				$file_url = isset( $file['value'] ) ? $file['value'] : false;
+				$file_url = is_numeric( $file_url ) ? wp_get_attachment_url( $file_url ) : $file_url;
+
+				$extension = substr( strrchr( $file_url, '.' ), 1 );
 
 				if ( 'image' === wp_ext2type( $extension ) ) :
 					?>
 					<div class="col-12 col-md-4">
-						<img src="<?php echo esc_url( $file['url'] ); ?>" />
+						<img src="<?php echo esc_url( $file_url ); ?>" />
 					</div>
 				<?php else : ?>
 					<div class="col-12">
 						<code>
-							<?php echo esc_html( basename( $file['url'] ) ); ?>
+							<?php echo esc_html( basename( $file_url ) ); ?>
 						</code>
 					</div>
 				<?php

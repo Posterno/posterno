@@ -409,7 +409,7 @@ class Listing {
 							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
 						} elseif ( $type == 'file' ) {
 							if ( $custom_listing_field->is_multiple() ) {
-								$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+								$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
 							} else {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
 							}
