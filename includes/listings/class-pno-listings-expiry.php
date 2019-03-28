@@ -145,7 +145,7 @@ class PNO_Listings_Expiry {
 
 		$expires = pno_calculate_listing_expiry( $new_listing_id );
 
-		update_post_meta( $new_listing_id, '_listing_expires', $expires );
+		update_post_meta( $new_listing_id, '_listing_expires', date( 'Y-m-d', strtotime( $expires ) ) );
 
 	}
 
