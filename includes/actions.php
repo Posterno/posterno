@@ -150,7 +150,7 @@ function pno_load_dashboard_privacy() {
 	if ( $confirmed_request ) {
 
 		$data = [
-			'message' => esc_html__( 'Your request has been successfully confirmed, an administrator will send you an email with further details.' ),
+			'message' => esc_html__( 'Your request has been successfully confirmed, an administrator will send you an email with further details.', 'posterno' ),
 			'type'    => 'success',
 		];
 
