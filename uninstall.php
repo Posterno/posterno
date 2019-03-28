@@ -25,7 +25,7 @@ if ( pno_get_option( 'uninstall_on_delete', false ) ) {
 
 	// Delete custom post types and taxonomies.
 	$taxonomies = array( 'listings-types', 'listings-categories', 'listings-locations', 'listings-tags', 'pno-email-type' );
-	$post_types = array( 'listings', 'pno_emails', 'pno_listings_fields', 'pno_users_fields', 'pno_signup_fields' );
+	$post_types = array( 'listings', 'pno_emails', 'pno_listings_fields', 'pno_users_fields', 'pno_signup_fields', 'pno_schema' );
 
 	// Delete post types.
 	foreach ( $post_types as $post_type ) {
