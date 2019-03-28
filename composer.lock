@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21d7155fb30c435e4a857830e43dd5aa",
+    "content-hash": "c52c889b63777d12e95ac856ff8a39d6",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -636,7 +636,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-geocoder",
-                "reference": "8aca6d26490a059a7f2f003b385312418b577853",
+                "reference": "73d1beffc15692cd60d6cf789a7af26a42c1195f",
                 "shasum": null
             },
             "require": {
@@ -986,8 +986,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rarst/wpdatetime": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-geocoder": 20
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
