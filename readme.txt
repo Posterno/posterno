@@ -125,7 +125,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Tweak: improved storage of the file field by pushing all attached files into a single meta value.
 - Tweak: geocoding now triggers on frontend submission form too.
 - Fix: listing file field displaying numeric value instead of file name/url.
-- Fix: escaping of listings post statues in classic editor window.
+- Fix: escaping of listings post statuses in classic editor window.
 - Fix: trigger schema geocoding only when api keys are available.
 - Fix: listing expiry date stored in wrong format when submitting listing on the frontend.
 
