@@ -145,6 +145,21 @@ add_action( 'pno_dashboard_tab_content_password', 'pno_load_dashboard_password_d
  */
 function pno_load_dashboard_privacy() {
 
+	$confirmed_request = isset( $_GET['privacy_request'] ) && $_GET['privacy_request'] === 'confirmed' ? true : false;
+
+	if ( $confirmed_request ) {
+
+		$data = [
+			'message' => esc_html__( 'Your request has been successfully confirmed, an administrator will send you an email with further details.' ),
+			'type'    => 'success',
+		];
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'message' );
+
+	}
+
 	if ( pno_get_option( 'allow_data_request' ) ) {
 		echo do_shortcode( '[pno_request_data_form]' );
 	}
@@ -257,3 +272,43 @@ function pno_restrict_access_to_listings_submission_page() {
 	}
 }
 add_action( 'template_redirect', 'pno_restrict_access_to_listings_submission_page' );
+
+/**
+ * Detect incoming privacy requests verifications when wp-login.php is disabled and redirect
+ * to the member's privacy dashboard page after verification and approval.
+ *
+ * @return void
+ */
+function pno_detect_privacy_action_request() {
+
+	if ( ! pno_get_option( 'redirect_wp_login' ) ) {
+		return;
+	}
+
+	$action = isset( $_GET['action'] ) && $_GET['action'] === 'confirmaction' ? true : false;
+
+	if ( ! $action ) {
+		return;
+	}
+
+	$request_id  = isset( $_GET['request_id'] ) ? sanitize_text_field( $_GET['request_id'] ) : false;
+	$request_key = isset( $_GET['confirm_key'] ) ? sanitize_text_field( $_GET['confirm_key'] ) : false;
+
+	if ( $request_id && $request_key ) {
+
+		$valid = wp_validate_user_request_key( $request_id, $request_key );
+
+		if ( ! is_wp_error( $valid ) ) {
+
+			_wp_privacy_account_request_confirmed( $request_id );
+
+			_wp_privacy_send_request_confirmation_notification( $request_id );
+
+			$url = add_query_arg( [ 'privacy_request' => 'confirmed' ], trailingslashit( get_permalink( pno_get_dashboard_page_id() ) . '/privacy' ) );
+			wp_safe_redirect( $url );
+			exit;
+		}
+	}
+
+}
+add_action( 'init', 'pno_detect_privacy_action_request' );
