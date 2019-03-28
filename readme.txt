@@ -127,6 +127,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Fix: listing file field displaying numeric value instead of file name/url.
 - Fix: escaping of listings post statues in classic editor window.
 - Fix: trigger schema geocoding only when api keys are available.
+- Fix: listing expiry date stored in wrong format when submitting listing on the frontend.
 
 = 0.3.0 Open beta release =
 
