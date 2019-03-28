@@ -55,18 +55,20 @@ $files_to_display = isset( $data->files ) ? $data->files : $data->file_url;
 
 		<?php
 
-		$extension = substr( strrchr( $files_to_display, '.' ), 1 );
+		$single_file = is_numeric( $files_to_display ) ? wp_get_attachment_url( $files_to_display ) : $files_to_display;
+
+		$extension = substr( strrchr( $single_file, '.' ), 1 );
 
 		if ( 'image' === wp_ext2type( $extension ) ) :
 			?>
 			<div class="row">
 				<div class="col-12 col-md-4">
-					<img src="<?php echo esc_url( $files_to_display ); ?>" />
+					<img src="<?php echo esc_url( $single_file ); ?>" />
 				</div>
 			</div>
 		<?php else : ?>
 			<code>
-				<?php echo esc_html( basename( $files_to_display ) ); ?>
+				<?php echo esc_html( basename( $single_file ) ); ?>
 			</code>
 		<?php endif; ?>
 

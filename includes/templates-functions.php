@@ -526,7 +526,7 @@ function pno_display_field_file_value( $value, $field ) {
 		posterno()->templates
 			->set_template_data(
 				[
-					'file_url' => $value,
+					'file_url' => $files,
 				]
 			)
 			->get_template_part( 'fields-output/file-field' );
