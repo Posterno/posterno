@@ -342,9 +342,10 @@ function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
  * @param string $type the type of the field.
  * @param string $value the content of the field.
  * @param array  $field all the details about the field.
+ * @param boolean $return whether or not we should be returning the output instead of displaying it.
  * @return void
  */
-function pno_display_field_value( $type, $value, $field = false ) {
+function pno_display_field_value( $type, $value, $field = false, $return = false ) {
 
 	if ( ! $type || ! $value ) {
 		return;
@@ -357,6 +358,10 @@ function pno_display_field_value( $type, $value, $field = false ) {
 
 	if ( function_exists( $function_name ) ) {
 		$output = call_user_func( $function_name, $value, $field );
+	}
+
+	if ( $output && $return === true ) {
+		return $output;
 	}
 
 	if ( $output ) {
