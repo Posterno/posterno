@@ -405,8 +405,10 @@ class Listing {
 							continue;
 						}
 
-						if ( $type == 'select' || $type == 'set' || $type == 'multiselect' || $type == 'radio' ) {
+						if ( $type == 'set' || $type == 'multiselect' ) {
 							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
+						} elseif ( $type == 'select' || $type == 'radio' ) {
+							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
 						} elseif ( $type == 'file' ) {
 							if ( $custom_listing_field->is_multiple() ) {
 								$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
