@@ -1147,9 +1147,10 @@ function pno_get_listings_fields( $exclude = [] ) {
 			if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 				foreach ( $listing_fields->items as $field ) {
 					$found_fields[] = [
-						'name' => $field->get_name(),
-						'type' => $field->get_type(),
-						'meta' => $field->get_object_meta_key(),
+						'name'    => $field->get_name(),
+						'type'    => $field->get_type(),
+						'meta'    => $field->get_object_meta_key(),
+						'options' => $field->get_options(),
 					];
 				}
 			}
