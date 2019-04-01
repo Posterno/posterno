@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c52c889b63777d12e95ac856ff8a39d6",
+    "content-hash": "6738b9fdb405457f51f8ba0d1b2d9d26",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -723,6 +723,48 @@
             }
         },
         {
+            "name": "posterno/posterno-third-party",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-third-party",
+                "reference": "8c74c3ef7261f16bac29fe6b5e468ae648506944",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "files": [
+                    "3rd-party.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component that provides integration with third party plugins.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "pressmodo/carbon-fields-custom-options-container",
             "version": "0.1.0",
             "source": {
@@ -987,7 +1029,8 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-schema": 20
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-third-party": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
