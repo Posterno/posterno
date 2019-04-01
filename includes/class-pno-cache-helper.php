@@ -125,6 +125,7 @@ class Helper {
 		forget_transient( 'pno_admin_custom_listing_fields' );
 		forget_transient( 'pno_profile_fields_list_for_widget_association' );
 		forget_transient( 'pno_listings_fields_list_for_widget_association' );
+		forget_transient( 'pno_get_listings_fields' );
 	}
 
 	/**
