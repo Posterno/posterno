@@ -153,7 +153,7 @@ class Field {
 	 *
 	 * @var mixed
 	 */
-	protected $options = false;
+	protected $options = [];
 
 	/**
 	 * Allowed mime types for upload of file fields.
