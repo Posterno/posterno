@@ -1123,3 +1123,50 @@ function pno_dropdown_categories( $args = '' ) {
 	return $output;
 
 }
+
+/**
+ * Helper function to retrieve all listings fields available within the database.
+ *
+ * @param array $exclude list of fields to exclude by meta key.
+ * @return array
+ */
+function pno_get_listings_fields( $exclude = [] ) {
+
+	$fields = remember_transient(
+		'pno_get_listings_fields',
+		function () {
+
+			$found_fields = [];
+
+			$args = [
+				'number' => 300,
+			];
+
+			$listing_fields = new PNO\Database\Queries\Listing_Fields( $args );
+
+			if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
+				foreach ( $listing_fields->items as $field ) {
+					$found_fields[] = [
+						'name' => $field->get_name(),
+						'type' => $field->get_type(),
+						'meta' => $field->get_object_meta_key(),
+					];
+				}
+			}
+
+			return $found_fields;
+
+		}
+	);
+
+	if ( ! empty( $exclude ) && is_array( $exclude ) ) {
+		foreach ( $fields as $key => $field ) {
+			if ( in_array( $field['meta'], $exclude ) ) {
+				unset( $fields[ $key ] );
+			}
+		}
+	}
+
+	return $fields;
+
+}
