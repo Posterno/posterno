@@ -48,6 +48,24 @@ function check_for_expired_listings() {
 			$job_data['ID']          = $listings_id;
 			$job_data['post_status'] = 'expired';
 			wp_update_post( $job_data );
+
+			$author_id = pno_get_listing_author( $listings_id );
+
+			if ( $author_id ) {
+
+				$user = get_user_by( 'id', $author_id );
+
+				if ( isset( $user->user_email ) ) {
+					pno_send_email(
+						'core_listing_expired',
+						$user->user_email,
+						[
+							'user_id'    => $author_id,
+							'listing_id' => $listings_id,
+						]
+					);
+				}
+			}
 		}
 	}
 
