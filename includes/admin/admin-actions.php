@@ -448,7 +448,7 @@ add_action( 'admin_init', 'pno_mark_listing_as_expired', 10, 1 );
 
 /**
  * Notify the listing author one of his listings is expired.
- * Triggers when the administrator clicks the "Send author listing expired notification" button.
+ * Triggers when the administrator clicks the "Send listing expired notification" button.
  *
  * @return void
  */
