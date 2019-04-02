@@ -267,6 +267,9 @@ function pno_email_get_type_schema() {
 		'core_listing_expiring'       => [
 			'description' => esc_html__( 'Listing is about to expire.', 'posterno' ),
 		],
+		'core_listing_expired'        => [
+			'description' => esc_html__( 'Listing is expired.', 'posterno' ),
+		],
 		'core_listing_author_email'   => [
 			'description' => esc_html__( 'Listing author received an email.', 'posterno' ),
 		],
