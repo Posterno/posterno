@@ -965,6 +965,26 @@ function pno_install_default_emails() {
 
 	}
 
+	$listing_expired_email_schema = get_term_by( 'slug', 'core_listing_expired', 'pno-email-type' );
+
+	if ( $listing_expired_email_schema instanceof WP_Term ) {
+
+		$listing_expired_email = wp_insert_post(
+			array(
+				'post_title'     => 'Your listing is expired.',
+				'post_content'   => '<p>Hello {username},</p>
+<p>Your listing: {listing_title} on {sitename} is expired.</p>',
+				'post_status'    => 'publish',
+				'post_author'    => get_current_user_id(),
+				'post_type'      => 'pno_emails',
+				'comment_status' => 'closed',
+			)
+		);
+
+		wp_set_object_terms( $listing_expired_email, $listing_expired_email_schema->term_id, 'pno-email-type' );
+
+	}
+
 	update_option( 'posterno_emails_installed', true );
 
 }
