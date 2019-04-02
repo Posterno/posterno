@@ -368,6 +368,32 @@ function pno_mark_expired_listing_button( $post ) {
 add_action( 'post_submitbox_misc_actions', 'pno_mark_expired_listing_button', 9, 1 );
 
 /**
+ * Add a button to the listing post type publishing box to manually trigger the expired email.
+ *
+ * @param object $post the post object.
+ * @return void
+ */
+function pno_add_send_expired_email_button( $post ) {
+
+	$post_type = get_post_type( $post );
+
+	if ( $post_type !== 'listings' || get_post_status( $post ) !== 'expired' || ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+
+	$url = add_query_arg(
+		[
+			'listing_action' => 'send-expired-email',
+		],
+		get_edit_post_link( $post->ID )
+	);
+
+	include PNO_PLUGIN_DIR . 'includes/admin/views/send-expired-email-button.php';
+
+}
+add_action( 'post_submitbox_misc_actions', 'pno_add_send_expired_email_button', 9, 1 );
+
+/**
  * Update the status of a listing to "expired" when expressively triggered from the admin panel.
  *
  * @return void
