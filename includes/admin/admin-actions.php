@@ -388,6 +388,8 @@ function pno_add_send_expired_email_button( $post ) {
 		get_edit_post_link( $post->ID )
 	);
 
+	$url = wp_nonce_url( $url, 'send-expired-email' );
+
 	include PNO_PLUGIN_DIR . 'includes/admin/views/send-expired-email-button.php';
 
 }
@@ -443,6 +445,67 @@ function pno_mark_listing_as_expired() {
 
 }
 add_action( 'admin_init', 'pno_mark_listing_as_expired', 10, 1 );
+
+/**
+ * Notify the listing author one of his listings is expired.
+ * Triggers when the administrator clicks the "Send author listing expired notification" button.
+ *
+ * @return void
+ */
+function pno_admin_notify_author_listing_is_expired() {
+
+	global $pagenow;
+
+	if ( $pagenow !== 'post.php' ) {
+		return;
+	}
+
+	$post_id       = isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ? absint( $_GET['post'] ) : false;
+	$trigger       = isset( $_GET['listing_action'] ) && $_GET['listing_action'] === 'send-expired-email' ? true : false;
+	$post_type     = get_post_type( $post_id );
+	$redirect_link = get_edit_post_link( $post_id );
+
+	if ( $post_type !== 'listings' ) {
+		return;
+	}
+
+	if ( $trigger && $post_id && is_admin() && current_user_can( 'edit_posts' ) && wp_verify_nonce( $_GET['_wpnonce'], 'send-expired-email' ) ) {
+
+		$author_id = pno_get_listing_author( $post_id );
+
+		if ( $author_id ) {
+
+			$user = get_user_by( 'id', $author_id );
+
+			if ( isset( $user->user_email ) ) {
+				pno_send_email(
+					'core_listing_expired',
+					$user->user_email,
+					[
+						'user_id'    => $author_id,
+						'listing_id' => $post_id,
+					]
+				);
+			}
+		}
+
+		$redirect_link = admin_url( 'post.php' );
+		$redirect_link = add_query_arg(
+			[
+				'post'                      => $post_id,
+				'action'                    => 'edit',
+				'expired-notification-sent' => true,
+			],
+			$redirect_link
+		);
+
+		wp_safe_redirect( $redirect_link );
+		exit;
+
+	}
+
+}
+add_action( 'admin_init', 'pno_admin_notify_author_listing_is_expired' );
 
 /**
  * Show count of pending listings within the "Listings" menu item in the admin panel.

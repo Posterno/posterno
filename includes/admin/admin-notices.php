@@ -193,3 +193,26 @@ add_action(
 
 	}
 );
+
+/**
+ * Display a notice when the listing expired notification is triggered from the admin panel.
+ *
+ * @return void
+ */
+add_action(
+	'admin_notices',
+	function () {
+
+		$post_id = isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$trigger = isset( $_GET['expired-notification-sent'] ) && $_GET['expired-notification-sent'] === '1' ? true : false; //phpcs:ignore
+
+		if ( $post_id && $trigger && current_user_can( 'edit_posts' ) ) {
+			?>
+			<div class="notice notice-success is-dismissible">
+				<p><?php esc_html_e( 'Author has been notified.', 'posterno' ); ?></p>
+			</div>
+			<?php
+		}
+
+	}
+);

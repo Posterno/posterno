@@ -14,5 +14,5 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <div class="misc-pub-section">
-	<a href="<?php echo esc_url( $url ); ?>" class="button"><?php esc_html_e( 'Notify author the listing is expired', 'posterno' ); ?></a>
+	<a href="<?php echo esc_url( $url ); ?>" class="button"><?php esc_html_e( 'Send author listing expired notification', 'posterno' ); ?></a>
 </div>
