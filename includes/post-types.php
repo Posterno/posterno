@@ -404,7 +404,7 @@ function pno_register_listings_taxonomies() {
 		'no_terms'                   => esc_html__( 'No listings types', 'posterno' ),
 		'items_list'                 => esc_html__( 'Listings types list', 'posterno' ),
 		'items_list_navigation'      => esc_html__( 'Listings type list navigation', 'posterno' ),
-		'back_to_items'              => esc_html__( '&larr; Back to types' ),
+		'back_to_items'              => esc_html__( '&larr; Back to types', 'posterno' ),
 	);
 
 	/**
@@ -456,7 +456,7 @@ function pno_register_listings_taxonomies() {
 		'no_terms'                   => esc_html__( 'No listings categories', 'posterno' ),
 		'items_list'                 => esc_html__( 'Listings categories list', 'posterno' ),
 		'items_list_navigation'      => esc_html__( 'Listings category list navigation', 'posterno' ),
-		'back_to_items'              => esc_html__( '&larr; Back to categories' ),
+		'back_to_items'              => esc_html__( '&larr; Back to categories', 'posterno' ),
 	);
 
 	/**
@@ -505,7 +505,7 @@ function pno_register_listings_taxonomies() {
 		'no_terms'                   => esc_html__( 'No listings locations', 'posterno' ),
 		'items_list'                 => esc_html__( 'Listings locations list', 'posterno' ),
 		'items_list_navigation'      => esc_html__( 'Listings location list navigation', 'posterno' ),
-		'back_to_items'              => esc_html__( '&larr; Back to locations' ),
+		'back_to_items'              => esc_html__( '&larr; Back to locations', 'posterno' ),
 	);
 
 	/**
@@ -554,7 +554,7 @@ function pno_register_listings_taxonomies() {
 		'no_terms'                   => esc_html__( 'No listings tags', 'posterno' ),
 		'items_list'                 => esc_html__( 'Listings tags list', 'posterno' ),
 		'items_list_navigation'      => esc_html__( 'Listings tag list navigation', 'posterno' ),
-		'back_to_items'              => esc_html__( '&larr; Back to tags' ),
+		'back_to_items'              => esc_html__( '&larr; Back to tags', 'posterno' ),
 	);
 
 	/**

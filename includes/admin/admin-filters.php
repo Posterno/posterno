@@ -240,42 +240,42 @@ function pno_updated_term_messages( $messages ) {
 
 	$messages['listings-types'] = array(
 		0 => '',
-		1 => __( 'Type added.' ),
-		2 => __( 'Type deleted.' ),
-		3 => __( 'Type updated.' ),
-		4 => __( 'Type not added.' ),
-		5 => __( 'Type not updated.' ),
-		6 => __( 'Types deleted.' ),
+		1 => __( 'Type added.', 'posterno' ),
+		2 => __( 'Type deleted.', 'posterno' ),
+		3 => __( 'Type updated.', 'posterno' ),
+		4 => __( 'Type not added.', 'posterno' ),
+		5 => __( 'Type not updated.', 'posterno' ),
+		6 => __( 'Types deleted.', 'posterno' ),
 	);
 
 	$messages['listings-categories'] = array(
 		0 => '',
-		1 => __( 'Category added.' ),
-		2 => __( 'Category deleted.' ),
-		3 => __( 'Category updated.' ),
-		4 => __( 'Category not added.' ),
-		5 => __( 'Category not updated.' ),
-		6 => __( 'Categories deleted.' ),
+		1 => __( 'Category added.', 'posterno' ),
+		2 => __( 'Category deleted.', 'posterno' ),
+		3 => __( 'Category updated.', 'posterno' ),
+		4 => __( 'Category not added.', 'posterno' ),
+		5 => __( 'Category not updated.', 'posterno' ),
+		6 => __( 'Categories deleted.', 'posterno' ),
 	);
 
 	$messages['listings-locations'] = array(
 		0 => '',
-		1 => __( 'Location added.' ),
-		2 => __( 'Location deleted.' ),
-		3 => __( 'Location updated.' ),
-		4 => __( 'Location not added.' ),
-		5 => __( 'Location not updated.' ),
-		6 => __( 'Locations deleted.' ),
+		1 => __( 'Location added.', 'posterno' ),
+		2 => __( 'Location deleted.', 'posterno' ),
+		3 => __( 'Location updated.', 'posterno' ),
+		4 => __( 'Location not added.', 'posterno' ),
+		5 => __( 'Location not updated.', 'posterno' ),
+		6 => __( 'Locations deleted.', 'posterno' ),
 	);
 
 	$messages['listings-tags'] = array(
 		0 => '',
-		1 => __( 'Tag added.' ),
-		2 => __( 'Tag deleted.' ),
-		3 => __( 'Tag updated.' ),
-		4 => __( 'Tag not added.' ),
-		5 => __( 'Tag not updated.' ),
-		6 => __( 'Tags deleted.' ),
+		1 => __( 'Tag added.', 'posterno' ),
+		2 => __( 'Tag deleted.', 'posterno' ),
+		3 => __( 'Tag updated.', 'posterno' ),
+		4 => __( 'Tag not added.', 'posterno' ),
+		5 => __( 'Tag not updated.', 'posterno' ),
+		6 => __( 'Tags deleted.', 'posterno' ),
 	);
 
 	return $messages;
