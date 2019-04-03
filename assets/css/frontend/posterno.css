@@ -933,6 +933,15 @@ form.pno-form-has-errors .field-has-errors {
   .pno-listing-types-list .term-icon i {
     color: #007bff; }
 
+.pno-listings-terms-list .parent-term .term-icon {
+  background: #f5f5f5;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0;

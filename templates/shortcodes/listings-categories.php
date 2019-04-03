@@ -39,15 +39,25 @@ $show_subcategories = isset( $data->subcategories ) && $data->subcategories === 
 
 	<div class="row">
 
-	<?php foreach ( $terms as $listing_category ) : ?>
+	<?php
+
+	foreach ( $terms as $listing_category ) :
+
+		$icon = carbon_get_term_meta( $listing_category->term_id, 'term_icon' );
+
+	?>
 
 		<div class="col-md-4">
 
 			<ul class="list-unstyled m-0 mb-3">
 				<li>
 					<a href="<?php echo esc_url( get_term_link( $listing_category ) ); ?>" class="d-block mb-2 parent-term">
+						<?php if ( $icon ) : ?>
+							<span class="term-icon rounded-circle">
+								<i class="<?php echo esc_attr( $icon ); ?>"></i>
+							</span>
+						<?php endif; ?>
 						<strong><?php echo esc_html( $listing_category->name ); ?></strong>
-
 						<?php if ( isset( $listing_category->count ) && absint( $listing_category->count ) > 0 ) : ?>
 							<span class="badge badge-pill badge-secondary ml-2"><?php echo absint( $listing_category->count ); ?></span>
 						<?php endif; ?>
