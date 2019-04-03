@@ -24,7 +24,9 @@ $show_sublocations = $data->show_sublocations;
 ?>
 
 <div class="card">
-	<img src="<?php echo esc_url( $data->image ); ?>" class="card-img-top" alt="<?php echo esc_attr( $listing_location->name ); ?>">
+	<a href="<?php echo esc_url( get_term_link( $listing_location ) ); ?>">
+		<img src="<?php echo esc_url( $data->image ); ?>" class="card-img-top" alt="<?php echo esc_attr( $listing_location->name ); ?>">
+	</a>
 	<div class="card-body">
 		<h5 class="card-title mb-0">
 			<a href="<?php echo esc_url( get_term_link( $listing_location ) ); ?>" class="d-flex justify-content-between align-items-center mb-0 parent-term">
