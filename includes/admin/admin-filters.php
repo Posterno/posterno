@@ -29,7 +29,7 @@ add_filter( 'plugin_action_links_' . PNO_PLUGIN_BASE, 'pno_add_settings_link' );
  *
  * @since 1.4
  *
- * @param array $plugin_meta An array of the plugin's metadata.
+ * @param array  $plugin_meta An array of the plugin's metadata.
  * @param string $plugin_file Path to the plugin file, relative to the plugins directory.
  *
  * @return array
@@ -46,10 +46,11 @@ function pno_plugin_row_meta( $plugin_meta, $plugin_file ) {
 			esc_url(
 				add_query_arg(
 					array(
-						//'utm_source'   => 'plugins-page',
-						//'utm_medium'   => 'plugin-row',
-						//'utm_campaign' => 'admin',
-					), 'https://docs.posterno.com'
+						// 'utm_source'   => 'plugins-page',
+						// 'utm_medium'   => 'plugin-row',
+						// 'utm_campaign' => 'admin',
+					),
+					'https://docs.posterno.com'
 				)
 			),
 			__( 'Documentation', 'posterno' )
@@ -228,3 +229,56 @@ function pno_set_cb_admin_gmaps_api_key() {
 	return pno_get_option( 'google_maps_api_key' );
 }
 add_filter( 'carbon_fields_map_field_api_key', 'pno_set_cb_admin_gmaps_api_key' );
+
+/**
+ * Customize the labels displayed when updating taxonomies.
+ *
+ * @param array $messages list of messages.
+ * @return array
+ */
+function pno_updated_term_messages( $messages ) {
+
+	$messages['listings-types'] = array(
+		0 => '',
+		1 => __( 'Type added.' ),
+		2 => __( 'Type deleted.' ),
+		3 => __( 'Type updated.' ),
+		4 => __( 'Type not added.' ),
+		5 => __( 'Type not updated.' ),
+		6 => __( 'Types deleted.' ),
+	);
+
+	$messages['listings-categories'] = array(
+		0 => '',
+		1 => __( 'Category added.' ),
+		2 => __( 'Category deleted.' ),
+		3 => __( 'Category updated.' ),
+		4 => __( 'Category not added.' ),
+		5 => __( 'Category not updated.' ),
+		6 => __( 'Categories deleted.' ),
+	);
+
+	$messages['listings-locations'] = array(
+		0 => '',
+		1 => __( 'Location added.' ),
+		2 => __( 'Location deleted.' ),
+		3 => __( 'Location updated.' ),
+		4 => __( 'Location not added.' ),
+		5 => __( 'Location not updated.' ),
+		6 => __( 'Locations deleted.' ),
+	);
+
+	$messages['listings-tags'] = array(
+		0 => '',
+		1 => __( 'Tag added.' ),
+		2 => __( 'Tag deleted.' ),
+		3 => __( 'Tag updated.' ),
+		4 => __( 'Tag not added.' ),
+		5 => __( 'Tag not updated.' ),
+		6 => __( 'Tags deleted.' ),
+	);
+
+	return $messages;
+
+}
+add_filter( 'term_updated_messages', 'pno_updated_term_messages' );
