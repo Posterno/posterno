@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.1
 Requires PHP: 5.5+
-Stable tag: 0.3.1
+Stable tag: 0.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -117,6 +117,26 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 == Screenshots ==
 
 == Changelog ==
+
+= 0.4.0 Open beta release =
+
+- Added: listings custom fields are available as dynamic variables for Yoast SEO meta tags.
+- Added: Jetpack sitemap compatibility.
+- Added: new email situation "Listing expired" triggered when a listing expires.
+- Added: ability to manually notify listing's author when a listing is expired.
+- Added: featured image and icon to listings categories, types and locations.
+- Added: listing types in submission form now display an icon when selected.
+- Added: listing types and categories list shortcodes now display an icon when selected.
+- Added: listing locations list shortcode now displays a featured image when selected.
+- Tweak: customized labels of taxonomy terms update messages and edit window "back" link.
+- Fix: multiselect fields not displaying stored values correctly.
+- Fix: dropdown/radio/checkboxes not storing data in proper way.
+- Fix: could not register dropdown field within the editor.
+
+The following documentation articles have been updated/created:
+
+[Yoast template variables](https://docs.posterno.com/article/560-yoast-seo-template-variables)
+[Listing expired email](https://docs.posterno.com/article/561-listing-expired-email)
 
 = 0.3.1 Open beta release =
 
