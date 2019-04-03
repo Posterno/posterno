@@ -35,20 +35,29 @@ if ( empty( $terms ) ) {
 
 <div class="row pno-listing-types-list">
 
-	<?php foreach ( $terms as $listing_type ) : ?>
+	<?php
+
+	foreach ( $terms as $listing_type ) :
+
+		$icon = carbon_get_term_meta( $listing_type->term_id, 'term_icon' );
+
+		?>
 
 		<div class="col-sm-4">
 			<div class="card">
 				<div class="card-body text-center">
+					<?php if ( $icon ) : ?>
+						<div class="term-icon rounded-circle">
+							<i class="<?php echo esc_attr( $icon ); ?>"></i>
+						</div>
+					<?php endif; ?>
 
 					<h5 class="card-title mt-3 mb-3"><?php echo esc_html( $listing_type->name ); ?></h5>
 
 					<?php if ( ! empty( $listing_type->description ) ) : ?>
 						<p class="card-text"><?php echo wp_kses_post( $listing_type->description ); ?></p>
 					<?php endif; ?>
-
 					<a href="<?php echo esc_url( get_term_link( $listing_type ) ); ?>" class="btn btn-secondary btn-sm"><?php esc_html_e( 'Browse listings', 'posterno' ); ?></a>
-
 				</div>
 			</div>
 		</div>
