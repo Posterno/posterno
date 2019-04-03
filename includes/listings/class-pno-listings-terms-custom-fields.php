@@ -45,6 +45,7 @@ class PNO_Listing_Terms_Custom_Fields {
 			->set_help_text( esc_html__( 'Custom css class of an icon. Eg: calendar-week', 'posterno' ) );
 
 		$fields[] = Field::make( 'image', 'term_image', esc_html__( 'Featured image' ) )
+			->set_value_type( 'url' )
 			->set_help_text( esc_html__( 'The featured image is not prominent by default; however, some themes may show it.' ) );
 
 		return $fields;

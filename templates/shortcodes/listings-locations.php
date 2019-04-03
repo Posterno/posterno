@@ -58,6 +58,7 @@ $show_sublocations = isset( $data->sublocations ) && $data->sublocations === 'ye
 						[
 							'listing_location'  => $listing_location,
 							'show_sublocations' => $show_sublocations,
+							'image'             => $image,
 						]
 					)
 					->get_template_part( 'shortcodes/locations/image-list' );
