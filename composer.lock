@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dc4232f0ac9cb4b84b520ec96ca27fa",
+    "content-hash": "7d1c0b0b3e1574f33824a72bd3f966a8",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -677,6 +677,51 @@
             }
         },
         {
+            "name": "posterno/posterno-maps",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-maps",
+                "reference": "b3341fdfe84b087372b659d9373d580a7a370276",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "PressmodoPluginScaffold\\": "includes/classes/"
+                },
+                "files": [
+                    "component-loader.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component that provides maps related functionalities for all supported providers.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "posterno/posterno-schema",
             "version": "dev-master",
             "dist": {
@@ -1030,7 +1075,8 @@
         "rarst/wpdatetime": 20,
         "posterno/posterno-geocoder": 20,
         "posterno/posterno-third-party": 20,
-        "posterno/posterno-schema": 20
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-maps": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
