@@ -679,6 +679,8 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Pick a starting position for the map. Eg: -73.9944191', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'map_zoom', esc_html__( 'Starting map zoom level', 'posterno' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12', 'posterno' ) );
 
 		return $settings;
