@@ -9,7 +9,8 @@
     "rarst/wpdatetime": "dev-master",
     "posterno/posterno-geocoder": "@dev",
     "posterno/posterno-third-party": "@dev",
-    "posterno/posterno-schema": "@dev"
+    "posterno/posterno-schema": "@dev",
+    "posterno/posterno-maps": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
@@ -32,6 +33,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../posterno-maps",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "extra": {
@@ -42,7 +50,8 @@
       "includes/components/{$name}/": [
         "posterno/posterno-schema",
         "posterno/posterno-geocoder",
-        "posterno/posterno-third-party"
+        "posterno/posterno-third-party",
+        "posterno/posterno-maps"
       ]
     }
   }

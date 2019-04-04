@@ -2,6 +2,7 @@
   "components": [
     "posterno/posterno-schema",
     "posterno/posterno-geocoder",
+    "posterno/posterno-maps",
     "posterno/posterno-third-party"
   ]
 }
