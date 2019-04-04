@@ -683,6 +683,11 @@ class OptionsPanel {
 			->set_attribute( 'min', '0' )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12', 'posterno' ) );
 
+		$settings[] = Field::make( 'text', 'single_listing_map_zoom', esc_html__( 'Single listing page map zoom level' ) )
+			->set_attribute( 'type', 'number' )
+			->set_attribute( 'min', '0' )
+			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ) );
+
 		return $settings;
 
 	}
