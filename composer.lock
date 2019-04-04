@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6738b9fdb405457f51f8ba0d1b2d9d26",
+    "content-hash": "4dc4232f0ac9cb4b84b520ec96ca27fa",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -399,12 +399,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "31ea59d632d3ac145300fffb2873a195172c0814"
+                "reference": "a346647434953deb5bd599d92922b2d225e25170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/31ea59d632d3ac145300fffb2873a195172c0814",
-                "reference": "31ea59d632d3ac145300fffb2873a195172c0814",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/a346647434953deb5bd599d92922b2d225e25170",
+                "reference": "a346647434953deb5bd599d92922b2d225e25170",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +462,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-02-20T09:29:56+00:00"
+            "time": "2019-04-01T06:40:32+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -636,7 +636,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-geocoder",
-                "reference": "73d1beffc15692cd60d6cf789a7af26a42c1195f",
+                "reference": "a11b4715509fe022e401c35bbcd5578372296db9",
                 "shasum": null
             },
             "require": {
@@ -682,7 +682,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "311190611f560f2c60793b123e08db4b00573d3c",
+                "reference": "f047f009c237674715606cb4a342b27300d5c474",
                 "shasum": null
             },
             "require": {
@@ -728,7 +728,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-third-party",
-                "reference": "8c74c3ef7261f16bac29fe6b5e468ae648506944",
+                "reference": "d20cde5531a33cdf3b2e805fe7a17f9ccdb2eced",
                 "shasum": null
             },
             "require": {
@@ -1029,8 +1029,8 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-third-party": 20
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

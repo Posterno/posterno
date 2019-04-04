@@ -8,8 +8,8 @@
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
     "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-schema": "@dev",
-    "posterno/posterno-third-party": "dev-master"
+    "posterno/posterno-third-party": "@dev",
+    "posterno/posterno-schema": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
