@@ -692,7 +692,7 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "PressmodoPluginScaffold\\": "includes/classes/"
+                    "PNO\\MapsProvider\\": "includes"
                 },
                 "files": [
                     "component-loader.php"

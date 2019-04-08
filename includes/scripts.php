@@ -133,7 +133,6 @@ function pno_load_frontend_scripts() {
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
 	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
-	wp_register_script( 'pno-googlemap', 'https://maps.googleapis.com/maps/api/js?key=' . pno_get_option( 'google_maps_api_key' ), false, $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/frontend/posterno.min.js', array( 'jquery' ), $version, true );
 
 	// Register vuejs related scripts.
@@ -163,11 +162,6 @@ function pno_load_frontend_scripts() {
 	if ( is_page( pno_get_dashboard_page_id() ) || is_page( pno_get_registration_page_id() ) ) {
 		wp_enqueue_style( 'pno-select2-style' );
 		wp_enqueue_script( 'pno-select2' );
-	}
-
-	// Load the maps api within the single listing page.
-	if ( is_singular( 'listings' ) ) {
-		wp_enqueue_script( 'pno-googlemap' );
 	}
 
 	// Register pno's own stylesheet.
