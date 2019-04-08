@@ -673,20 +673,29 @@ class OptionsPanel {
 			->set_help_text( __( 'Google requires an API key to display maps. Acquire an API key from the <a href="https://developers.google.com/maps/documentation/geocoding/get-api-key">Google Maps API developer site.</a>', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'map_starting_lat', esc_html__( 'Starting address latitude', 'posterno' ) )
+			->set_width( 50 )
 			->set_help_text( esc_html__( 'Pick a starting position for the map. Eg: 40.7484405', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'map_starting_lng', esc_html__( 'Starting address longitude', 'posterno' ) )
+			->set_width( 50 )
 			->set_help_text( esc_html__( 'Pick a starting position for the map. Eg: -73.9944191', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'map_zoom', esc_html__( 'Starting map zoom level', 'posterno' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
+			->set_width( 50 )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'single_listing_map_zoom', esc_html__( 'Single listing page map zoom level' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
+			->set_width( 50 )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ) );
+
+		$settings[] = Field::make( 'separator', 'hmaps', __( 'Maps display', 'posterno' ) );
+
+		$settings[] = Field::make( 'set', 'taxonomy_maps', esc_html__( 'Display map within the following taxonomy pages:' ) )
+			->set_options( 'pno_get_registered_listings_taxonomies' );
 
 		return $settings;
 
