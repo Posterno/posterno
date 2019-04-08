@@ -1153,3 +1153,46 @@ function pno_get_registered_sidebars() {
 	return $sidebars;
 
 }
+
+/**
+ * Get the list of registered marker types.
+ *
+ * @return array
+ */
+function pno_get_registered_marker_types() {
+
+	$types = [
+		'default'        => esc_html__( 'Default' ),
+		'category'       => esc_html__( 'Category icon' ),
+		'category_image' => esc_html__( 'Category icon plus image' ),
+		'custom'         => esc_html__( 'Custom field' ),
+	];
+
+	/**
+	 * Filter: determines the options available to define the type of map marker used.
+	 *
+	 * @param array $types registered types.
+	 * @return array $types
+	 */
+	return apply_filters( 'pno_marker_types', $types );
+
+}
+
+/**
+ * Get image fields for association with the marker image setting field.
+ *
+ * @return array
+ */
+function pno_get_marker_image_fields() {
+
+	$image_fields = [];
+
+	$fields = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'file' ] );
+
+	foreach ( $fields as $field ) {
+		$image_fields[ $field['meta'] ] = $field['name'];
+	}
+
+	return $image_fields;
+
+}

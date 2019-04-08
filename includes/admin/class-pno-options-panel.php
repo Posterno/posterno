@@ -697,6 +697,34 @@ class OptionsPanel {
 		$settings[] = Field::make( 'set', 'taxonomy_maps', esc_html__( 'Display map within the following taxonomy pages:' ) )
 			->set_options( 'pno_get_registered_listings_taxonomies' );
 
+		$settings[] = Field::make( 'radio', 'marker_type', esc_html__( 'Marker Type' ) )
+			->set_help_text( esc_html__( 'Select the map markers style to use.' ) )
+			->set_options( 'pno_get_registered_marker_types' );
+
+		$settings[] = Field::make( 'select', 'marker_category_image_field', esc_html__( 'Marker image field' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'marker_type',
+						'value' => 'category_image',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Select from which field the image for the marker should be retrieved.' ) )
+			->add_options( 'pno_get_marker_image_fields' );
+
+		$settings[] = Field::make( 'select', 'marker_custom_field', esc_html__( 'Marker custom field' ) )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'marker_type',
+						'value' => 'custom',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Select which fields\'s content should be displayed within the marker.' ) )
+			->add_options( 'pno_get_roles' );
+
 		return $settings;
 
 	}
