@@ -1196,3 +1196,30 @@ function pno_get_marker_image_fields() {
 	return $image_fields;
 
 }
+
+/**
+ * Get fields for association with the marker custom setting field.
+ *
+ * @return array
+ */
+function pno_get_marker_text_fields() {
+
+	$fields = [];
+
+	$text_fields     = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'text' ] );
+	$textarea_fields = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'textarea' ] );
+	$radio_fields    = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'radio' ] );
+	$select_fields   = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'select' ] );
+	$number_fields   = wp_list_filter( pno_get_listings_fields(), [ 'type' => 'number' ] );
+
+	$all_fields = array_merge( $text_fields, $textarea_fields, $radio_fields, $select_fields, $number_fields );
+
+	foreach ( $all_fields as $field ) {
+		$fields[ $field['meta'] ] = $field['name'];
+	}
+
+	unset( $fields['listing_title'] );
+
+	return $fields;
+
+}

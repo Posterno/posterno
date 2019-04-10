@@ -723,7 +723,7 @@ class OptionsPanel {
 				)
 			)
 			->set_help_text( esc_html__( 'Select which fields\'s content should be displayed within the marker.' ) )
-			->add_options( 'pno_get_roles' );
+			->add_options( 'pno_get_marker_text_fields' );
 
 		return $settings;
 
