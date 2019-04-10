@@ -1164,7 +1164,8 @@ function pno_get_registered_marker_types() {
 	$types = [
 		'default'        => esc_html__( 'Default' ),
 		'category'       => esc_html__( 'Category icon' ),
-		'category_image' => esc_html__( 'Category icon plus image' ),
+		'image'          => esc_html__( 'Featured image' ),
+		'image_category' => esc_html__( 'Featured image and category icon' ),
 		'custom'         => esc_html__( 'Custom field' ),
 	];
 

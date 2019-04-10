@@ -706,7 +706,7 @@ class OptionsPanel {
 				array(
 					array(
 						'field' => 'marker_type',
-						'value' => 'category_image',
+						'value' => 'image',
 					),
 				)
 			)
