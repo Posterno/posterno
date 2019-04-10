@@ -1319,3 +1319,25 @@ function pno_get_listing_coordinates( $listing_id ) {
 function pno_are_expired_listings_public() {
 	return pno_get_option( 'expired_listings_are_public', false ) ? true : false;
 }
+
+/**
+ * Load the marker icon for a given listing.
+ *
+ * @param string $listing_id the id of the listing.
+ * @return string|boolean
+ */
+function pno_get_listing_marker_category_icon( $listing_id ) {
+
+	if ( ! $listing_id ) {
+		return;
+	}
+
+	$categories = pno_get_listing_categories( $listing_id );
+
+	if ( is_array( $categories ) && ! empty( $categories ) ) {
+		return carbon_get_term_meta( $categories[0]->term_id, 'term_icon' );
+	}
+
+	return false;
+
+}
