@@ -1,6 +1,9 @@
 .pno-map-marker {
 	position: relative;
 	cursor: pointer;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
 	svg {
 		fill: #ef3652;
@@ -16,6 +19,49 @@
 		top: 11px;
 	}
 
+	&.marker-image {
+		transform: translate(-50%, -50%) rotate(-45deg);
+		border-radius: 50% 50% 50% 0;
+		text-align: center;
+		background-color: #fff;
+		color: #fff;
+		box-shadow: 0 0 5px rgba(0, 0, 0, .47);
+		width: 48px;
+		height: 48px;
+
+		* {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+
+		>div {
+			background-color: #fff;
+			transform: translate(-50%, -50%) rotate(45deg);
+			border-radius: 50%;
+			border: 3px solid;
+			width: 100%;
+			height: 100%;
+			box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1) inset;
+			border-color: #fff;
+
+			>* {
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		img {
+			border-radius: 50%;
+			width: 100%;
+			height: 100%;
+			display: inline;
+			padding: 0;
+			border: 0;
+			box-shadow: none;
+			vertical-align: middle;
+		}
+
+	}
 }
 
 .pno-map-marker__shadow {
@@ -25,7 +71,7 @@
 	height: 10px;
 	border-radius: 50%;
 	transform: rotateX(55deg);
-    content: ' ';
+	content: ' ';
 	display: block;
 	z-index: -1 !important;
 	margin: -6px auto 0;
