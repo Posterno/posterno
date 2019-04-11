@@ -1341,3 +1341,17 @@ function pno_get_listing_marker_category_icon( $listing_id ) {
 	return false;
 
 }
+
+/**
+ * Determine if maps are enabled for a given taxonomy.
+ *
+ * @param string $taxonomy the taxonomy to verify.
+ * @return boolean
+ */
+function pno_is_map_enabled_for_taxonomy( $taxonomy ) {
+
+	$maps = pno_get_option( 'taxonomy_maps', [] );
+
+	return in_array( $taxonomy, $maps, true );
+
+}

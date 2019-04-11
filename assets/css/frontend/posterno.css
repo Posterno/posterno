@@ -1116,6 +1116,10 @@ nav .pno-pagination {
   #pno-profile-about ul .field-name {
     font-weight: 700; }
 
+.pno-taxonomy-map {
+  width: 100%;
+  height: 400px; }
+
 .pno-map-marker {
   position: relative;
   cursor: pointer;
