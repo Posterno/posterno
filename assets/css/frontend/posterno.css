@@ -1128,6 +1128,9 @@ nav .pno-pagination {
   transform: translate(-50%, -50%); }
   .pno-map-marker svg {
     fill: #ef3652; }
+  .pno-map-marker.geolocated-marker svg {
+    height: 50px;
+    width: 50px; }
   .pno-map-marker i {
     color: #fff;
     font-size: 16px;
