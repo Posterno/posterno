@@ -182,6 +182,7 @@ function pno_load_frontend_scripts() {
 		'external_links_new_tab_selectors' => pno_get_external_listing_links_selectors(),
 		'labels'                           => [
 			'requestGeolocation'      => esc_html__( 'Find my location' ),
+			'youHere'                 => esc_html__( 'You are here.' ),
 			'addressNotFound'         => esc_html__( 'Address not found, please try again.', 'posterno' ),
 			'geolocationFailed'       => esc_html__( 'The geolocation service failed or was disabled.', 'posterno' ),
 			'geolocationNotSupported' => esc_html__( 'Your browser doesn\'t support geolocation.', 'posterno' ),
