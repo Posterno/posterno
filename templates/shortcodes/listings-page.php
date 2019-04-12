@@ -28,6 +28,13 @@ $args = [
 
 $query = new WP_Query( $args );
 
+/**
+ * Hook: loads before the content of the listings page shortcode.
+ *
+ * @param WP_Query $query the query loaded for the shortcode.
+ */
+do_action( 'pno_before_listings_page', $query );
+
 ?>
 
 <div class="pno-taxonomy-wrapper">
@@ -84,3 +91,12 @@ $query = new WP_Query( $args );
 	</div>
 
 </div>
+
+<?php
+
+/**
+ * Hook: loads after the content of the listings page shortcode.
+ *
+ * @param WP_Query $query the query loaded for the shortcode.
+ */
+do_action( 'pno_after_listings_page', $query );

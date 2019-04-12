@@ -499,6 +499,8 @@ add_shortcode( 'pno_listings_locations', 'pno_listings_locations_shortcode' );
  */
 function pno_listings_page_shortcode( $atts, $content = null ) {
 
+	wp_enqueue_script( 'pno-listings-page-googlemap' );
+
 	ob_start();
 
 	posterno()->templates
