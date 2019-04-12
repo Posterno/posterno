@@ -7,10 +7,10 @@
     "stevegrunwell/wp-cache-remember": "^1.1",
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
-    "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-third-party": "@dev",
     "posterno/posterno-schema": "@dev",
-    "posterno/posterno-maps": "@dev"
+    "posterno/posterno-maps": "@dev",
+    "posterno/posterno-third-party": "@dev",
+    "posterno/posterno-geocoder": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{

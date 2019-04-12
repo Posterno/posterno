@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.4.0\n"
+"Project-Id-Version: Posterno 0.5.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-04-03 13:22:32+00:00\n"
+"POT-Creation-Date: 2019-04-12 12:01:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -188,68 +188,72 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: includes/admin/admin-actions.php:74 includes/admin/admin-options.php:26
+#: includes/admin/admin-actions.php:72
+msgid "Recent listings page"
+msgstr ""
+
+#: includes/admin/admin-actions.php:75 includes/admin/admin-options.php:26
 #: includes/admin/admin-options.php:63 includes/post-types.php:39
 #: includes/post-types.php:44 includes/profiles/profiles-functions.php:145
 msgid "Listings"
 msgstr ""
 
-#: includes/admin/admin-actions.php:75
+#: includes/admin/admin-actions.php:76
 msgid "Listing types list"
 msgstr ""
 
-#: includes/admin/admin-actions.php:77
+#: includes/admin/admin-actions.php:78
 msgid "Recent listings"
 msgstr ""
 
-#: includes/admin/admin-actions.php:78 includes/admin/admin-actions.php:83
+#: includes/admin/admin-actions.php:79 includes/admin/admin-actions.php:84
 msgid "Maximum amount"
 msgstr ""
 
-#: includes/admin/admin-actions.php:79 includes/admin/admin-actions.php:84
+#: includes/admin/admin-actions.php:80 includes/admin/admin-actions.php:85
 #: includes/admin/class-pno-options-panel.php:473
 #: includes/widgets/widget-featured-listings.php:35
 #: includes/widgets/widget-recent-listings.php:35
 msgid "Layout"
 msgstr ""
 
-#: includes/admin/admin-actions.php:82
+#: includes/admin/admin-actions.php:83
 msgid "Featured listings"
 msgstr ""
 
-#: includes/admin/admin-actions.php:87
+#: includes/admin/admin-actions.php:88
 msgid "Categories list"
 msgstr ""
 
-#: includes/admin/admin-actions.php:88
+#: includes/admin/admin-actions.php:89
 msgid "Display subcategories"
 msgstr ""
 
-#: includes/admin/admin-actions.php:91
+#: includes/admin/admin-actions.php:92
 msgid "Locations list"
 msgstr ""
 
-#: includes/admin/admin-actions.php:92
+#: includes/admin/admin-actions.php:93
 msgid "Display sub locations"
 msgstr ""
 
-#: includes/admin/admin-actions.php:156
+#: includes/admin/admin-actions.php:157
 msgid "All profile fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:161
+#: includes/admin/admin-actions.php:162
 msgid "All registration form fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:166
+#: includes/admin/admin-actions.php:167
 msgid "All listings fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:301
+#: includes/admin/admin-actions.php:302
 msgid "Send approval notification"
 msgstr ""
 
-#: includes/admin/admin-actions.php:301
+#: includes/admin/admin-actions.php:302
 msgid "Enable the option to notify the author that the listing has been approved."
 msgstr ""
 
@@ -544,6 +548,23 @@ msgstr ""
 
 #: includes/admin/admin-functions.php:1102
 msgid "Profile Menu"
+msgstr ""
+
+#: includes/admin/admin-functions.php:1165
+#: includes/admin/custom-fields/display-custom-fields.php:85
+msgid "Default"
+msgstr ""
+
+#: includes/admin/admin-functions.php:1166
+msgid "Category icon"
+msgstr ""
+
+#: includes/admin/admin-functions.php:1167
+msgid "Image"
+msgstr ""
+
+#: includes/admin/admin-functions.php:1168
+msgid "Custom field (text)"
 msgstr ""
 
 #: includes/admin/admin-notices.php:31
@@ -1526,65 +1547,102 @@ msgstr ""
 msgid "Starting address latitude"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:676
+#: includes/admin/class-pno-options-panel.php:677
 msgid "Pick a starting position for the map. Eg: 40.7484405"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:678
+#: includes/admin/class-pno-options-panel.php:679
 msgid "Starting address longitude"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:679
+#: includes/admin/class-pno-options-panel.php:681
 msgid "Pick a starting position for the map. Eg: -73.9944191"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:681
+#: includes/admin/class-pno-options-panel.php:683
 msgid "Starting map zoom level"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:682
+#: includes/admin/class-pno-options-panel.php:687
+#: includes/admin/class-pno-options-panel.php:693
 msgid "Pick a starting zoom level for the map. Eg: 12"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:697
-msgid "Abbreviate days"
+#: includes/admin/class-pno-options-panel.php:689
+msgid "Single listing page map zoom level"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:698
-msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
+#: includes/admin/class-pno-options-panel.php:695
+msgid "Maps display"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:697
+msgid "Display map within the following taxonomy pages:"
 msgstr ""
 
 #: includes/admin/class-pno-options-panel.php:700
-msgid "Remove zeroes from time format"
+msgid "Marker Type"
 msgstr ""
 
 #: includes/admin/class-pno-options-panel.php:701
+msgid "Select the map markers style to use."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:704
+msgid "Marker image field"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:713
+msgid "Select from which field the image for the marker should be retrieved."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:716
+msgid "Marker custom field"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:725
+msgid "Select which fields's content should be displayed within the marker."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:741
+msgid "Abbreviate days"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:742
+msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:744
+msgid "Remove zeroes from time format"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:745
 msgid ""
 "Enable this option to remove trailing zeroes from the time format: 9:00 AM "
 "becomes 9 AM."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:703
+#: includes/admin/class-pno-options-panel.php:747
 msgid "Start on Sunday"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:704
+#: includes/admin/class-pno-options-panel.php:748
 msgid "Enable this option so that the week starts on Sunday (as opposed to Monday)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:706
+#: includes/admin/class-pno-options-panel.php:750
 msgid "Show today only"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:707
+#: includes/admin/class-pno-options-panel.php:751
 msgid "Enable this option to show only the opening times of the current day."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:722
+#: includes/admin/class-pno-options-panel.php:766
 msgid "Remove data on uninstall?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:723
+#: includes/admin/class-pno-options-panel.php:767
 msgid ""
 "Check this box if you would like Posterno to completely remove all of its "
 "data when the plugin is deleted."
@@ -1651,10 +1709,6 @@ msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:84
 msgid "Required"
-msgstr ""
-
-#: includes/admin/custom-fields/display-custom-fields.php:85
-msgid "Default"
 msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:87
@@ -4212,15 +4266,23 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/scripts.php:190
+#: includes/scripts.php:184
+msgid "Find my location"
+msgstr ""
+
+#: includes/scripts.php:185
+msgid "You are here."
+msgstr ""
+
+#: includes/scripts.php:186
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:191
+#: includes/scripts.php:187
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:192
+#: includes/scripts.php:188
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 

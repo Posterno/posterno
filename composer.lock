@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d1c0b0b3e1574f33824a72bd3f966a8",
+    "content-hash": "f2fa589e7bcbd7a280dc9543ea171b88",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -682,7 +682,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-maps",
-                "reference": "b3341fdfe84b087372b659d9373d580a7a370276",
+                "reference": "978e065436716fdd1d6a6474fc2920216f20b402",
                 "shasum": null
             },
             "require": {
@@ -773,7 +773,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-third-party",
-                "reference": "d20cde5531a33cdf3b2e805fe7a17f9ccdb2eced",
+                "reference": "47e1b4847d641872421f1004025dae46adf7146c",
                 "shasum": null
             },
             "require": {
@@ -1073,10 +1073,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rarst/wpdatetime": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-third-party": 20,
         "posterno/posterno-schema": 20,
-        "posterno/posterno-maps": 20
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-geocoder": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -686,22 +686,22 @@ class OptionsPanel {
 			->set_width( 50 )
 			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12', 'posterno' ) );
 
-		$settings[] = Field::make( 'text', 'single_listing_map_zoom', esc_html__( 'Single listing page map zoom level' ) )
+		$settings[] = Field::make( 'text', 'single_listing_map_zoom', esc_html__( 'Single listing page map zoom level', 'posterno' ) )
 			->set_attribute( 'type', 'number' )
 			->set_attribute( 'min', '0' )
 			->set_width( 50 )
-			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12' ) );
+			->set_help_text( esc_html__( 'Pick a starting zoom level for the map. Eg: 12', 'posterno' ) );
 
 		$settings[] = Field::make( 'separator', 'hmaps', __( 'Maps display', 'posterno' ) );
 
-		$settings[] = Field::make( 'set', 'taxonomy_maps', esc_html__( 'Display map within the following taxonomy pages:' ) )
+		$settings[] = Field::make( 'set', 'taxonomy_maps', esc_html__( 'Display map within the following taxonomy pages:', 'posterno' ) )
 			->set_options( 'pno_get_registered_listings_taxonomies' );
 
-		$settings[] = Field::make( 'radio', 'marker_type', esc_html__( 'Marker Type' ) )
-			->set_help_text( esc_html__( 'Select the map markers style to use.' ) )
+		$settings[] = Field::make( 'radio', 'marker_type', esc_html__( 'Marker Type', 'posterno' ) )
+			->set_help_text( esc_html__( 'Select the map markers style to use.', 'posterno' ) )
 			->set_options( 'pno_get_registered_marker_types' );
 
-		$settings[] = Field::make( 'select', 'marker_category_image_field', esc_html__( 'Marker image field' ) )
+		$settings[] = Field::make( 'select', 'marker_category_image_field', esc_html__( 'Marker image field', 'posterno' ) )
 			->set_conditional_logic(
 				array(
 					array(
@@ -710,10 +710,10 @@ class OptionsPanel {
 					),
 				)
 			)
-			->set_help_text( esc_html__( 'Select from which field the image for the marker should be retrieved.' ) )
+			->set_help_text( esc_html__( 'Select from which field the image for the marker should be retrieved.', 'posterno' ) )
 			->add_options( 'pno_get_marker_image_fields' );
 
-		$settings[] = Field::make( 'select', 'marker_custom_field', esc_html__( 'Marker custom field' ) )
+		$settings[] = Field::make( 'select', 'marker_custom_field', esc_html__( 'Marker custom field', 'posterno' ) )
 			->set_conditional_logic(
 				array(
 					array(
@@ -722,7 +722,7 @@ class OptionsPanel {
 					),
 				)
 			)
-			->set_help_text( esc_html__( 'Select which fields\'s content should be displayed within the marker.' ) )
+			->set_help_text( esc_html__( 'Select which fields\'s content should be displayed within the marker.', 'posterno' ) )
 			->add_options( 'pno_get_marker_text_fields' );
 
 		return $settings;

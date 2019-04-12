@@ -1162,10 +1162,10 @@ function pno_get_registered_sidebars() {
 function pno_get_registered_marker_types() {
 
 	$types = [
-		'default'  => esc_html__( 'Default' ),
-		'category' => esc_html__( 'Category icon' ),
-		'image'    => esc_html__( 'Image' ),
-		'custom'   => esc_html__( 'Custom field (text)' ),
+		'default'  => esc_html__( 'Default', 'posterno' ),
+		'category' => esc_html__( 'Category icon', 'posterno' ),
+		'image'    => esc_html__( 'Image', 'posterno' ),
+		'custom'   => esc_html__( 'Custom field (text)', 'posterno' ),
 	];
 
 	/**
