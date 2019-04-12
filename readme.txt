@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.1
 Requires PHP: 5.5+
-Stable tag: 0.4.0
+Stable tag: 0.5.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -117,6 +117,27 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 == Screenshots ==
 
 == Changelog ==
+
+= 0.5.0 Open beta release =
+
+- Added: setting to control zoom level of single listing page map.
+- Added: support for google maps on all taxonomy pages.
+- Added: new pno_listings_page shortcode to display recent listings with filters, pagination and map.
+- Added: option to individually toggle (enable/disable) maps on taxonomy pages.
+- Added: ability to choose style of maps markers (default, category icon, featured image, custom field).
+- Added: featured image map marker, supports display of any custom "file" listing field.
+- Added: custom field map marker, supports display of data from any text, radio, dropdown field.
+- Added: all map markers are customizable via template files.
+- Added: map markers infowindow content is customizable via template files.
+- Added: geolocation button onto maps for taxonomy pages and listings page shortcode map.
+
+The following documentation articles have been updated/created:
+
+[Listings page shortcode](https://docs.posterno.com/article/565-listings-page-shortcode)
+[How to display or disable maps](https://docs.posterno.com/article/562-how-to-display-or-disable-maps)
+[Map markers customization](https://docs.posterno.com/article/563-map-markers-customization)
+[Setting up zoom levels](https://docs.posterno.com/article/564-setting-up-zoom-levels)
+[Add icons to categories](https://docs.posterno.com/article/478-listings-categories)
 
 = 0.4.0 Open beta release =
 
