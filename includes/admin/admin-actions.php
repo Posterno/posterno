@@ -69,6 +69,7 @@ function pno_localize_tinymce_editor() {
 			'title'     => esc_html__( 'Pages', 'posterno' ),
 			'dashboard' => esc_html__( 'Dashboard', 'posterno' ),
 			'profile'   => esc_html__( 'Profile', 'posterno' ),
+			'listings'  => esc_html__( 'Recent listings page', 'posterno' ),
 		],
 		'listings'      => [
 			'title'      => esc_html__( 'Listings', 'posterno' ),

@@ -135,6 +135,12 @@
 								editor.insertContent('[pno_profile]');
 							}
 						},
+						{
+							text: pnotinymce.pages.listings,
+							onclick: function () {
+								editor.insertContent('[pno_listings_page]');
+							}
+						},
 
 					]
 				},
