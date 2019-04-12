@@ -19,6 +19,12 @@ defined( 'ABSPATH' ) || exit;
 
 global $wp_query;
 
+$the_query = $wp_query;
+
+if ( isset( $data->custom_query ) && ! empty( $data->custom_query ) ) {
+	$the_query = $data->custom_query;
+}
+
 ?>
 
 <div class="pno-results-bar mb-4">
@@ -33,9 +39,9 @@ global $wp_query;
 					posterno()->templates
 						->set_template_data(
 							[
-								'total'    => absint( $wp_query->found_posts ),
-								'per_page' => absint( $wp_query->query_vars['posts_per_page'] ),
-								'current'  => absint( max( 1, $wp_query->get( 'paged', 1 ) ) ),
+								'total'    => absint( $the_query->found_posts ),
+								'per_page' => absint( $the_query->query_vars['posts_per_page'] ),
+								'current'  => absint( max( 1, $the_query->get( 'paged', 1 ) ) ),
 							]
 						)
 						->get_template_part( 'listings/results', 'count' );
