@@ -118,6 +118,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.5.1 Open beta release =
+
+- Added: option to disable map bounds centering.
+- Added: ability to hide recent listings shortcode map.
+- Added: disable maps widget and single listing map when maps killswitch enabled.
+- Added: disable all maps when maps killswitch enabled.
+
 = 0.5.0 Open beta release =
 
 - Added: setting to control zoom level of single listing page map.
