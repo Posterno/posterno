@@ -17,7 +17,12 @@ defined( 'ABSPATH' ) || exit;
  * @return void
  */
 function pno_register_widgets() {
-	register_widget( 'PNO\Widget\ListingLocationMap' );
+
+	$maps_disabled = current_theme_supports( 'posterno_disable_maps' );
+
+	if ( ! $maps_disabled ) {
+		register_widget( 'PNO\Widget\ListingLocationMap' );
+	}
 	register_widget( 'PNO\Widget\ListingVideo' );
 	register_widget( 'PNO\Widget\ListingAuthor' );
 	register_widget( 'PNO\Widget\ListingContact' );

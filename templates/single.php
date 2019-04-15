@@ -39,6 +39,9 @@ $social_networks = carbon_get_post_meta( $listing_id, 'listing_social_profiles' 
 // Retrieve all the custom fields if any.
 $custom_fields = pno_get_public_listings_fields();
 
+// Are maps disabled?
+$maps_disabled = current_theme_supports( 'posterno_disable_maps' );
+
 /**
  * Hook: triggers before the content of the single listing page is displayed.
  */
@@ -169,11 +172,13 @@ do_action( 'pno_before_single_listing' );
 				</ul>
 			</div>
 
+			<?php if ( ! $maps_disabled ) : ?>
 			<div class="col-md-6">
 				<?php if ( $address_lat && $address_lng ) : ?>
 					<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $address_lat ); ?>" data-lng="<?php echo esc_attr( $address_lng ); ?>" data-zoom="12"></div>
 				<?php endif; ?>
 			</div>
+			<?php endif; ?>
 		</div>
 
 	</div>
