@@ -698,9 +698,9 @@ class OptionsPanel {
 			->set_width( 50 )
 			->set_options( 'pno_get_registered_listings_taxonomies' );
 
-		$settings[] = Field::make( 'checkbox', 'disable_bounds_center', esc_html__( 'Disable automatic bounds centering' ) )
+		$settings[] = Field::make( 'checkbox', 'disable_bounds_center', esc_html__( 'Disable automatic bounds centering', 'posterno' ) )
 			->set_width( 50 )
-			->set_help_text( esc_html__( 'Enable this option to prevent the map from automatically center itself based on all markers visible on the map.' ) );
+			->set_help_text( esc_html__( 'Enable this option to prevent the map from automatically center itself based on all markers visible on the map.', 'posterno' ) );
 
 		$settings[] = Field::make( 'radio', 'marker_type', esc_html__( 'Marker Type', 'posterno' ) )
 			->set_help_text( esc_html__( 'Select the map markers style to use.', 'posterno' ) )
