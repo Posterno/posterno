@@ -175,6 +175,7 @@ function pno_load_frontend_scripts() {
 		'startingLatitude'                 => pno_get_option( 'map_starting_lat', '40.7484405' ),
 		'startingLongitude'                => pno_get_option( 'map_starting_lng', '-73.9944191' ),
 		'mapZoom'                          => pno_get_option( 'map_zoom', '12' ),
+		'boundsDisabled'                   => pno_get_option( 'disable_bounds_center', false ),
 		'internal_links_new_tab'           => (bool) pno_get_option( 'listing_open_new_tab', false ),
 		'internal_links_new_tab_selectors' => pno_get_internal_listing_links_selectors(),
 		'external_links_new_tab'           => (bool) pno_get_option( 'listing_external_open_new_tab', false ),
