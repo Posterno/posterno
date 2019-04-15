@@ -92,6 +92,9 @@ function pno_localize_tinymce_editor() {
 				'title'        => esc_html__( 'Locations list', 'posterno' ),
 				'sublocations' => esc_html__( 'Display sub locations', 'posterno' ),
 			],
+			'map'        => [
+				'enable' => esc_html__( 'Enable map' ),
+			],
 		],
 	];
 

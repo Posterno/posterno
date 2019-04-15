@@ -138,7 +138,20 @@
 						{
 							text: pnotinymce.pages.listings,
 							onclick: function () {
-								editor.insertContent('[pno_listings_page]');
+								editor.windowManager.open({
+									title: pnotinymce.pages.listings,
+									body: [
+										{
+											type: 'listbox',
+											name: 'map',
+											label: pnotinymce.listings.map.enable,
+											values: yesno
+										},
+									],
+									onsubmit: function (e) {
+										editor.insertContent('[pno_listings_page map="' + e.data.map + '"]');
+									}
+								});
 							}
 						},
 

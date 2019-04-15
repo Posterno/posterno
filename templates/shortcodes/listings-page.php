@@ -32,8 +32,9 @@ $query = new WP_Query( $args );
  * Hook: loads before the content of the listings page shortcode.
  *
  * @param WP_Query $query the query loaded for the shortcode.
+ * @param object $atts list of attributes sent through the shortcode.
  */
-do_action( 'pno_before_listings_page', $query );
+do_action( 'pno_before_listings_page', $query, $data );
 
 ?>
 
@@ -98,5 +99,6 @@ do_action( 'pno_before_listings_page', $query );
  * Hook: loads after the content of the listings page shortcode.
  *
  * @param WP_Query $query the query loaded for the shortcode.
+ * @param object $atts list of attributes sent through the shortcode.
  */
-do_action( 'pno_after_listings_page', $query );
+do_action( 'pno_after_listings_page', $query, $data );
