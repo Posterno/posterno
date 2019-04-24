@@ -330,8 +330,12 @@ function pno_get_full_page_hierarchy( $page_id ) {
 function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
 
 	$locations  = get_nav_menu_locations();
-	$object     = wp_get_nav_menu_object( $locations[ $location ] );
-	$menu_items = wp_get_nav_menu_items( $object->name, $args );
+	$menu_items = [];
+
+	if ( isset( $locations[ $location ] ) ) {
+		$object     = wp_get_nav_menu_object( $locations[ $location ] );
+		$menu_items = wp_get_nav_menu_items( $object->name, $args );
+	}
 
 	return $menu_items;
 }
