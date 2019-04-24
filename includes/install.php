@@ -69,10 +69,6 @@ function pno_run_install() {
 	// Install required pages.
 	pno_install_pages();
 
-	// Install menus.
-	pno_install_dashboard_menu();
-	pno_install_profile_menu();
-
 	// Store plugin installation date.
 	add_option( 'pno_activation_date', strtotime( 'now' ) );
 

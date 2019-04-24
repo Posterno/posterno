@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.5.0\n"
+"Project-Id-Version: Posterno 0.5.1\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-04-12 12:01:41+00:00\n"
+"POT-Creation-Date: 2019-04-15 10:08:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -237,23 +237,27 @@ msgstr ""
 msgid "Display sub locations"
 msgstr ""
 
-#: includes/admin/admin-actions.php:157
+#: includes/admin/admin-actions.php:96
+msgid "Enable map"
+msgstr ""
+
+#: includes/admin/admin-actions.php:160
 msgid "All profile fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:162
+#: includes/admin/admin-actions.php:165
 msgid "All registration form fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:167
+#: includes/admin/admin-actions.php:170
 msgid "All listings fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:302
+#: includes/admin/admin-actions.php:305
 msgid "Send approval notification"
 msgstr ""
 
-#: includes/admin/admin-actions.php:302
+#: includes/admin/admin-actions.php:305
 msgid "Enable the option to notify the author that the listing has been approved."
 msgstr ""
 
@@ -786,7 +790,7 @@ msgstr ""
 #: templates/listings/card-grid.php:36 templates/listings/card-grid.php:72
 #: templates/listings/card-grid.php:87 templates/listings/card-list.php:36
 #: templates/listings/card-list.php:71 templates/listings/card-list.php:85
-#: templates/single.php:61
+#: templates/single.php:64
 msgid "Featured"
 msgstr ""
 
@@ -1580,69 +1584,79 @@ msgstr ""
 msgid "Display map within the following taxonomy pages:"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:700
+#: includes/admin/class-pno-options-panel.php:701
+msgid "Disable automatic bounds centering"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:703
+msgid ""
+"Enable this option to prevent the map from automatically center itself "
+"based on all markers visible on the map."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:705
 msgid "Marker Type"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:701
+#: includes/admin/class-pno-options-panel.php:706
 msgid "Select the map markers style to use."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:704
+#: includes/admin/class-pno-options-panel.php:709
 msgid "Marker image field"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:713
+#: includes/admin/class-pno-options-panel.php:718
 msgid "Select from which field the image for the marker should be retrieved."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:716
+#: includes/admin/class-pno-options-panel.php:721
 msgid "Marker custom field"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:725
+#: includes/admin/class-pno-options-panel.php:730
 msgid "Select which fields's content should be displayed within the marker."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:741
+#: includes/admin/class-pno-options-panel.php:746
 msgid "Abbreviate days"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:742
+#: includes/admin/class-pno-options-panel.php:747
 msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:744
+#: includes/admin/class-pno-options-panel.php:749
 msgid "Remove zeroes from time format"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:745
+#: includes/admin/class-pno-options-panel.php:750
 msgid ""
 "Enable this option to remove trailing zeroes from the time format: 9:00 AM "
 "becomes 9 AM."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:747
+#: includes/admin/class-pno-options-panel.php:752
 msgid "Start on Sunday"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:748
+#: includes/admin/class-pno-options-panel.php:753
 msgid "Enable this option so that the week starts on Sunday (as opposed to Monday)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:750
+#: includes/admin/class-pno-options-panel.php:755
 msgid "Show today only"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:751
+#: includes/admin/class-pno-options-panel.php:756
 msgid "Enable this option to show only the opening times of the current day."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:766
+#: includes/admin/class-pno-options-panel.php:771
 msgid "Remove data on uninstall?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:767
+#: includes/admin/class-pno-options-panel.php:772
 msgid ""
 "Check this box if you would like Posterno to completely remove all of its "
 "data when the plugin is deleted."
@@ -4266,23 +4280,23 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/scripts.php:184
+#: includes/scripts.php:185
 msgid "Find my location"
 msgstr ""
 
-#: includes/scripts.php:185
+#: includes/scripts.php:186
 msgid "You are here."
 msgstr ""
 
-#: includes/scripts.php:186
+#: includes/scripts.php:187
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:187
+#: includes/scripts.php:188
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:188
+#: includes/scripts.php:189
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 
@@ -4691,11 +4705,11 @@ msgstr ""
 msgid "Browse listings"
 msgstr ""
 
-#: templates/single.php:125
+#: templates/single.php:128
 msgid "Contact information"
 msgstr ""
 
-#: templates/single.php:185
+#: templates/single.php:190
 msgid "Other information"
 msgstr ""
 

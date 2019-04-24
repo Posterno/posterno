@@ -9,8 +9,8 @@
     "rarst/wpdatetime": "dev-master",
     "posterno/posterno-schema": "@dev",
     "posterno/posterno-maps": "@dev",
-    "posterno/posterno-third-party": "@dev",
-    "posterno/posterno-geocoder": "@dev"
+    "posterno/posterno-geocoder": "@dev",
+    "posterno/posterno-third-party": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{

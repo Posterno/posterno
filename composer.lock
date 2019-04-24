@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2fa589e7bcbd7a280dc9543ea171b88",
+    "content-hash": "eb4a685737a8dd52e74519fbe6832560",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -282,12 +282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "fa745406c2f48210693ba05f11280a1473037b2f"
+                "reference": "bf595424e4d442a190582e088985dc835a789071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/fa745406c2f48210693ba05f11280a1473037b2f",
-                "reference": "fa745406c2f48210693ba05f11280a1473037b2f",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/bf595424e4d442a190582e088985dc835a789071",
+                "reference": "bf595424e4d442a190582e088985dc835a789071",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-02-26T17:21:14+00:00"
+            "time": "2019-04-15T08:22:37+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -682,7 +682,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-maps",
-                "reference": "978e065436716fdd1d6a6474fc2920216f20b402",
+                "reference": "4496e6fe7cd92ec096dc9dc917ef34090a9b07ae",
                 "shasum": null
             },
             "require": {
@@ -1075,8 +1075,8 @@
         "rarst/wpdatetime": 20,
         "posterno/posterno-schema": 20,
         "posterno/posterno-maps": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-geocoder": 20
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-third-party": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
