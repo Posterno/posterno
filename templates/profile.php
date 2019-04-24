@@ -20,10 +20,16 @@ defined( 'ABSPATH' ) || exit;
 // Retrieve assigned user id.
 $user_id = isset( $data->user_id ) ? absint( $data->user_id ) : pno_get_queried_user_id();
 
-$user_details          = get_userdata( $user_id );
-$name                  = pno_get_user_fullname( $user_details );
-$description           = get_user_meta( $user_id, 'description', true );
-$navigation_items      = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
+$user_details = get_userdata( $user_id );
+$name         = pno_get_user_fullname( $user_details );
+$description  = get_user_meta( $user_id, 'description', true );
+
+$navigation_items = pno_get_nav_menu_items_by_location( 'pno-profile-menu' );
+
+if ( empty( $navigation_items ) ) {
+	$navigation_items = pno_get_placeholder_profile_menu();
+}
+
 $currently_active_item = pno_get_profile_currently_active_component( $navigation_items );
 $members_allowed       = pno_get_option( 'profiles_allow_members', false );
 

@@ -725,3 +725,27 @@ function pno_get_placeholder_dashboard_menu() {
 	return $items;
 
 }
+
+/**
+ * Creates a fake menu items list for the profile page.
+ * This is used when no menu is selected for the profile menu location.
+ *
+ * @return array
+ */
+function pno_get_placeholder_profile_menu() {
+
+	$items = [];
+
+	$components = pno_get_profile_components();
+
+	foreach ( $components as $key => $label ) {
+
+		$items[ $key ] = (object) [
+			'post_title' => $label,
+			'post_name'  => $key,
+		];
+	}
+
+	return $items;
+
+}
