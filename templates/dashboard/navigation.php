@@ -18,6 +18,10 @@ defined( 'ABSPATH' ) || exit;
 
 $dashboard_tabs = pno_get_nav_menu_items_by_location( 'pno-dashboard-menu' );
 
+if ( empty( $dashboard_tabs ) ) {
+	$dashboard_tabs = pno_get_placeholder_dashboard_menu();
+}
+
 ?>
 
 <div class="list-group">

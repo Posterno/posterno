@@ -209,6 +209,10 @@ function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	$base_url = rtrim( get_permalink( pno_get_dashboard_page_id() ), '/' );
 
+	if ( $key === 'dashboard' ) {
+		return $base_url;
+	}
+
 	// We use information stored in the CSS class to determine what kind of
 	// menu item this is, and how it should be treated.
 	if ( isset( $item->classes ) && ! empty( $item->classes ) ) {
@@ -343,9 +347,9 @@ function pno_get_nav_menu_items_by_location( $location, $args = [] ) {
 /**
  * Display the formatted value of a field.
  *
- * @param string $type the type of the field.
- * @param string $value the content of the field.
- * @param array  $field all the details about the field.
+ * @param string  $type the type of the field.
+ * @param string  $value the content of the field.
+ * @param array   $field all the details about the field.
  * @param boolean $return whether or not we should be returning the output instead of displaying it.
  * @return void
  */
@@ -694,4 +698,30 @@ function pno_get_listing_class( $class = '', $post_id = null ) {
  */
 function pno_get_widget_singular_restriction_message() {
 	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page.', 'posterno' );
+}
+
+/**
+ * Creates a fake menu items list for the dashboard page.
+ * This is used when no menu is selected for the dashboard menu location.
+ *
+ * @return array
+ */
+function pno_get_placeholder_dashboard_menu() {
+
+	$items = [];
+
+	$dashboard_items = pno_get_dashboard_navigation_items();
+
+	foreach ( $dashboard_items as $key => $item ) {
+		$items[] = (object) [
+			'pno_identifier' => esc_attr( $key ),
+			'classes'        => [],
+			'url'            => pno_get_dashboard_navigation_item_url( $key, $item ),
+			'post_name'      => esc_attr( $key ),
+			'title'          => esc_html( $item['name'] ),
+		];
+	}
+
+	return $items;
+
 }
