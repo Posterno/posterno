@@ -29,6 +29,7 @@ class PNO_Listing_Terms_Custom_Fields {
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_type_settings' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_categories_settings' ] );
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_locations_settings' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_tags_settings' ] );
 
 	}
 
@@ -111,6 +112,19 @@ class PNO_Listing_Terms_Custom_Fields {
 
 		Container::make( 'term_meta', esc_html__( 'Listing location settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-locations' )
+			->add_fields( $this->get_common_settings() );
+
+	}
+
+	/**
+	 * Add settings to the listings tags taxonomy.
+	 *
+	 * @return void
+	 */
+	public function register_tags_settings() {
+
+		Container::make( 'term_meta', esc_html__( 'Listing tag settings', 'posterno' ) )
+			->where( 'term_taxonomy', '=', 'listings-tags' )
 			->add_fields( $this->get_common_settings() );
 
 	}
