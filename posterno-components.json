@@ -3,6 +3,7 @@
     "posterno/posterno-schema",
     "posterno/posterno-geocoder",
     "posterno/posterno-maps",
-    "posterno/posterno-third-party"
+    "posterno/posterno-third-party",
+    "posterno/posterno-forms"
   ]
 }

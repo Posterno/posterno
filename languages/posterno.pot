@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.5.1\n"
+"Project-Id-Version: Posterno 0.6.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-04-15 10:08:02+00:00\n"
+"POT-Creation-Date: 2019-04-24 10:35:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -140,11 +140,11 @@ msgstr ""
 
 #: includes/admin/admin-actions.php:52
 #: includes/admin/admin-privacy-export.php:76
-#: includes/templates-functions.php:432
+#: includes/templates-functions.php:440
 msgid "Yes"
 msgstr ""
 
-#: includes/admin/admin-actions.php:53 includes/templates-functions.php:432
+#: includes/admin/admin-actions.php:53 includes/templates-functions.php:440
 msgid "No"
 msgstr ""
 
@@ -3068,7 +3068,7 @@ msgid "Hours of operation"
 msgstr ""
 
 #: includes/fields-functions.php:778
-#: includes/listings/class-pno-listings-terms-custom-fields.php:47
+#: includes/listings/class-pno-listings-terms-custom-fields.php:48
 msgid "Featured image"
 msgstr ""
 
@@ -3550,50 +3550,54 @@ msgid ""
 "be styled differently."
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:44
+#: includes/listings/class-pno-listings-terms-custom-fields.php:45
 msgid "Custom icon class"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:45
+#: includes/listings/class-pno-listings-terms-custom-fields.php:46
 msgid "Custom css class of an icon. Eg: calendar-week"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:49
+#: includes/listings/class-pno-listings-terms-custom-fields.php:50
 msgid ""
 "The featured image is not prominent by default; however, some themes may "
 "show it."
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:65
+#: includes/listings/class-pno-listings-terms-custom-fields.php:66
 msgid "Associated categories"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:66
+#: includes/listings/class-pno-listings-terms-custom-fields.php:67
 msgid ""
 "Select one or more listings categories that you wish to assign to this "
 "listing type."
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:72
+#: includes/listings/class-pno-listings-terms-custom-fields.php:73
 msgid "Listing type settings"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:92
+#: includes/listings/class-pno-listings-terms-custom-fields.php:93
 msgid "Associated listing tags"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:93
+#: includes/listings/class-pno-listings-terms-custom-fields.php:94
 msgid ""
 "Select one or more listings tags that you wish to assign to this listing "
 "category."
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:99
+#: includes/listings/class-pno-listings-terms-custom-fields.php:100
 msgid "Listing categories settings"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:112
+#: includes/listings/class-pno-listings-terms-custom-fields.php:113
 msgid "Listing location settings"
+msgstr ""
+
+#: includes/listings/class-pno-listings-terms-custom-fields.php:126
+msgid "Listing tag settings"
 msgstr ""
 
 #: includes/listings/dashboard-functions.php:22
@@ -4308,7 +4312,7 @@ msgstr ""
 msgid "You are not authorized to access this page."
 msgstr ""
 
-#: includes/templates-functions.php:692
+#: includes/templates-functions.php:700
 msgid ""
 "This widget can only be used when within a sidebar for the sigle listing "
 "page."
@@ -4693,11 +4697,11 @@ msgstr ""
 msgid "No posts have been submitted by %s"
 msgstr ""
 
-#: templates/profile.php:37
+#: templates/profile.php:43
 msgid "You are not authorized to view the content of this page."
 msgstr ""
 
-#: templates/profile.php:96 templates/widgets/listing-author.php:74
+#: templates/profile.php:102 templates/widgets/listing-author.php:74
 msgid "Member since: %s"
 msgstr ""
 

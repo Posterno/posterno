@@ -8,9 +8,10 @@
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
     "posterno/posterno-schema": "@dev",
+    "posterno/posterno-third-party": "@dev",
     "posterno/posterno-maps": "@dev",
     "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-third-party": "@dev"
+    "posterno/posterno-forms": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
@@ -40,6 +41,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../posterno-forms",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "extra": {
@@ -51,7 +59,8 @@
         "posterno/posterno-schema",
         "posterno/posterno-geocoder",
         "posterno/posterno-third-party",
-        "posterno/posterno-maps"
+        "posterno/posterno-maps",
+        "posterno/posterno-forms"
       ]
     }
   }

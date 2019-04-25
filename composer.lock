@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb4a685737a8dd52e74519fbe6832560",
+    "content-hash": "a97e664812be4cadfd8c1ea8f9bcf882",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -631,6 +631,52 @@
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
+            "name": "posterno/posterno-forms",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-forms",
+                "reference": "920429cf3757923d84e892c1d9e33658427aec69",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "PNO\\Forms\\": "includes"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Component that provides all the frontend forms display and processing functionalities.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "posterno/posterno-geocoder",
             "version": "dev-master",
             "dist": {
@@ -1074,9 +1120,10 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "posterno/posterno-schema": 20,
+        "posterno/posterno-third-party": 20,
         "posterno/posterno-maps": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-third-party": 20
+        "posterno/posterno-forms": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
