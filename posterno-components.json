@@ -4,6 +4,7 @@
     "posterno/posterno-geocoder",
     "posterno/posterno-maps",
     "posterno/posterno-third-party",
-    "posterno/posterno-forms"
+    "posterno/posterno-forms",
+    "posterno/posterno-validator"
   ]
 }

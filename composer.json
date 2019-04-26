@@ -11,8 +11,8 @@
     "posterno/posterno-third-party": "@dev",
     "posterno/posterno-maps": "@dev",
     "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-forms": "@dev",
-    "posterno/posterno-validator": "@dev"
+    "posterno/posterno-validator": "@dev",
+    "posterno/posterno-forms": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{

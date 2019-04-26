@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "680fca90823f06d23545fbf24dcde36b",
+    "content-hash": "bb905fb2ab845532e9ea07a73cb2ddf0",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -631,13 +631,18 @@
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
-            "name": "posterno/posterno-forms",
-            "version": "dev-master",
+            "name": "posterno/posterno-dom",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-dom.git",
+                "reference": "6ef45a0d17de380e1b04c01ac587f8fda528e8b5"
+            },
             "dist": {
-                "type": "path",
-                "url": "../posterno-forms",
-                "reference": "920429cf3757923d84e892c1d9e33658427aec69",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-dom/zipball/6ef45a0d17de380e1b04c01ac587f8fda528e8b5",
+                "reference": "6ef45a0d17de380e1b04c01ac587f8fda528e8b5",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -650,7 +655,52 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "PNO\\Forms\\": "includes"
+                    "PNO\\Dom\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Component for generating, rendering and parsing DOM elements.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2019-04-26T12:14:28+00:00"
+        },
+        {
+            "name": "posterno/posterno-forms",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-forms",
+                "reference": "cc0e4dcce666a4aa63a5546517890c8754a86ae8",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6",
+                "posterno/posterno-dom": "^0.1.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "installer-paths": {
+                    "vendor/posterno/{$name}/": [
+                        "posterno/posterno-dom"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PNO\\Form\\": "src/"
                 }
             },
             "scripts": {
@@ -1178,8 +1228,8 @@
         "posterno/posterno-third-party": 20,
         "posterno/posterno-maps": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-validator": 20
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-forms": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
