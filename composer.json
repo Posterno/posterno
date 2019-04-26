@@ -11,7 +11,8 @@
     "posterno/posterno-third-party": "@dev",
     "posterno/posterno-maps": "@dev",
     "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-forms": "@dev"
+    "posterno/posterno-forms": "@dev",
+    "posterno/posterno-validator": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
@@ -48,6 +49,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../posterno-validator",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "extra": {
@@ -60,7 +68,8 @@
         "posterno/posterno-geocoder",
         "posterno/posterno-third-party",
         "posterno/posterno-maps",
-        "posterno/posterno-forms"
+        "posterno/posterno-forms",
+        "posterno/posterno-validator"
       ]
     }
   }

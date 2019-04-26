@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a97e664812be4cadfd8c1ea8f9bcf882",
+    "content-hash": "680fca90823f06d23545fbf24dcde36b",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -856,6 +856,61 @@
             }
         },
         {
+            "name": "posterno/posterno-validator",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-validator",
+                "reference": "54873c527dcde634d3b94d646b00b5747b7c3580",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "phpunit/phpunit": "^7",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "PNO\\Validator\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "PNO\\Validator\\Test\\": "tests/"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ],
+                "test": [
+                    "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component for validating values and returning the appropriate result message.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "pressmodo/carbon-fields-custom-options-container",
             "version": "0.1.0",
             "source": {
@@ -1123,7 +1178,8 @@
         "posterno/posterno-third-party": 20,
         "posterno/posterno-maps": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-forms": 20
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
