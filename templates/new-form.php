@@ -17,8 +17,6 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-var_dump( $data->form->getAllErrors() );
-
 ?>
 
 <div class="pno-form-container">
