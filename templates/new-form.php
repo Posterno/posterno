@@ -31,6 +31,19 @@ var_dump( $data->form->getAllErrors() );
 		<p><?php echo wp_kses_post( $data->message ); ?></p>
 	<?php endif; ?>
 
+	<?php
+	if ( ! empty( $data->form->getAllErrors() ) ) {
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'danger',
+					'message' => wp_kses_post( esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' ) ),
+				]
+			)
+			->get_template_part( 'message' );
+	}
+	?>
+
 	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="pno-form-<?php echo esc_attr( $data->form_name ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->form->getFields() as $field ) : ?>
