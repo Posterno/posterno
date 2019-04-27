@@ -179,11 +179,24 @@ class LoginForm {
 
 				$username = $this->form->getFieldValue( 'username' );
 				$password = $this->form->getFieldValue( 'password' );
+				$remember_me = $this->form->getField( 'remember' );
 
-				$authenticate = wp_authenticate( $username, $password );
+				var_dump( $remember_me );
+				exit;
 
-				if ( is_wp_error( $authenticate ) ) {
-					throw new Exception( $authenticate->get_error_message(), $authenticate->get_error_code() );
+				$creds = [
+					'user_login'    => $username,
+					'user_password' => $password,
+					'remember'      => $values['login']['remember'] ? true : false,
+				];
+
+				$user = wp_signon( $creds );
+
+				if ( is_wp_error( $user ) ) {
+					throw new Exception( $user->get_error_message(), $user->get_error_code() );
+				} else {
+					wp_safe_redirect( pno_get_login_redirect() );
+					exit;
 				}
 
 			}
