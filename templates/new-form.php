@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php echo wp_kses_post( $data->message ); ?></p>
 	<?php endif; ?>
 
-	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="" enctype="multipart/form-data">
+	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="pno-form-<?php echo esc_attr( $data->form_name ); ?>" enctype="multipart/form-data">
 
 		<?php foreach ( $data->form->getFields() as $field ) : ?>
 
@@ -60,6 +60,9 @@ defined( 'ABSPATH' ) || exit;
 				<?php endif; ?>
 
 			</div>
+
+			<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form_name ); ?>" />
+			<?php wp_nonce_field( 'verify_' . esc_attr( $data->form_name ) . '_form', esc_attr( $data->form_name ) . '_nonce' ); ?>
 
 		<?php endforeach; ?>
 
