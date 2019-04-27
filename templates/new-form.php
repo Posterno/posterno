@@ -69,10 +69,10 @@ var_dump( $data->form->getAllErrors() );
 
 			</div>
 
-			<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form_name ); ?>" />
-			<?php wp_nonce_field( 'verify_' . esc_attr( $data->form_name ) . '_form', esc_attr( $data->form_name ) . '_nonce' ); ?>
-
 		<?php endforeach; ?>
+
+		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form_name ); ?>" />
+		<?php wp_nonce_field( 'verify_' . esc_attr( $data->form_name ) . '_form', esc_attr( $data->form_name ) . '_nonce' ); ?>
 
 	</form>
 
