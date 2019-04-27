@@ -5,6 +5,7 @@
     "posterno/posterno-maps",
     "posterno/posterno-third-party",
     "posterno/posterno-forms",
-    "posterno/posterno-validator"
+    "posterno/posterno-validator",
+    "posterno/posterno-dom"
   ]
 }

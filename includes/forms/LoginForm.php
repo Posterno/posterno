@@ -100,7 +100,7 @@ class LoginForm {
 				'value'      => esc_html__( 'Login', 'posterno' ),
 				'attributes' => [
 					'class' => 'btn btn-primary',
-					'test' => "<script>console.log('lollo')</script>"
+					'test' => "<script>alert('lollo')</script>"
 				],
 			],
 		];
