@@ -30,12 +30,19 @@ defined( 'ABSPATH' ) || exit;
 	<?php endif; ?>
 
 	<?php
-	if ( ! empty( $data->form->getAllErrors() ) ) {
+	if ( ! empty( $data->form->getAllErrors() ) || ! empty( $data->form->getProcessingError() ) ) {
+
+		$error_message = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
+
+		if ( ! empty( $data->form->getProcessingError() ) ) {
+			$error_message = $data->form->getProcessingError();
+		}
+
 		posterno()->templates
 			->set_template_data(
 				[
 					'type'    => 'danger',
-					'message' => wp_kses_post( esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' ) ),
+					'message' => wp_kses_post( $error_message ),
 				]
 			)
 			->get_template_part( 'message' );

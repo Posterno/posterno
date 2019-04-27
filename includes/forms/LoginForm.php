@@ -12,6 +12,7 @@ namespace PNO\Forms;
 
 use PNO\Form\Form;
 use PNO\Validator;
+use PNO\Exception;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -99,7 +100,7 @@ class LoginForm {
 				'type'       => 'button',
 				'value'      => esc_html__( 'Login', 'posterno' ),
 				'attributes' => [
-					'class' => 'btn btn-primary'
+					'class' => 'btn btn-primary',
 				],
 			],
 		];
@@ -161,20 +162,35 @@ class LoginForm {
 	 * @return void
 	 */
 	public function process() {
+		try {
 
-		//phpcs:ignore
-		if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+			//phpcs:ignore
+			if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+				return;
+			}
+
+			if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
+				return;
+			}
+
+			$this->form->setFieldValues( $_POST );
+
+			if ( $this->form->isValid() ) {
+
+				$username = $this->form->getFieldValue( 'username' );
+				$password = $this->form->getFieldValue( 'password' );
+
+				$authenticate = wp_authenticate( $username, $password );
+
+				if ( is_wp_error( $authenticate ) ) {
+					throw new Exception( $authenticate->get_error_message(), $authenticate->get_error_code() );
+				}
+
+			}
+		} catch ( Exception $e ) {
+			$this->form->setProcessingError( $e->getMessage() );
 			return;
 		}
-
-		if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
-			return;
-		}
-
-		$this->form->setFieldValues( $_POST );
-
-		var_dump( $this->form->isValid() );
-
 	}
 
 }
