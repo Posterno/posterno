@@ -17,6 +17,8 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+var_dump( $data->form->getAllErrors() );
+
 ?>
 
 <div class="pno-form-container">
@@ -44,6 +46,12 @@ defined( 'ABSPATH' ) || exit;
 				<?php endif; ?>
 
 				<?php echo $field->render(); ?>
+
+				<?php if ( $field->hasErrors() ) : ?>
+					<div class="invalid-feedback">
+						<?php echo esc_html( $field->getFirstErrorMessage() ); ?>
+					</div>
+				<?php endif; ?>
 
 				<?php
 

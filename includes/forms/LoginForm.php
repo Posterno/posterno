@@ -88,7 +88,7 @@ class LoginForm {
 				],
 			],
 			'remember' => array(
-				'type'       => 'check',
+				'type'       => 'checkbox',
 				'label'      => esc_html__( 'Remember me', 'posterno' ),
 				'required'   => false,
 				'attributes' => [
@@ -100,6 +100,7 @@ class LoginForm {
 				'value'      => esc_html__( 'Login', 'posterno' ),
 				'attributes' => [
 					'class' => 'btn btn-primary',
+					'test' => "<script>console.log('lollo')</script>"
 				],
 			],
 		];
@@ -128,6 +129,8 @@ class LoginForm {
 				->get_template_part( 'logged-user' );
 
 		} else {
+
+			$this->form->prepareForView();
 
 			posterno()->templates
 				->set_template_data(
@@ -171,7 +174,7 @@ class LoginForm {
 
 		$this->form->setFieldValues( $_POST );
 
-		print_r( $this->form );
+		var_dump( $this->form->isValid() );
 
 	}
 
