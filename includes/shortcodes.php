@@ -109,7 +109,7 @@ function pno_login_form() {
 
 	return ob_get_clean();
 }
-add_shortcode( 'pno_login_form', 'pno_login_form' );
+//add_shortcode( 'pno_login_form', 'pno_login_form' );
 
 /**
  * Display the registration form.

@@ -507,18 +507,22 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 /**
  * Retrieve the classes for a given form field as an array.
  *
- * @param PNO\Form\Field $field field object.
- * @param string         $class optional classes.
+ * @param PNO\Form\Element $field field object.
+ * @param string           $class optional classes.
  * @return array
  */
 function pno_get_form_field_class( $field, $class = '' ) {
 
 	$classes = [ 'pno-field' ];
 
-	$classes[] = 'pno-field-' . sanitize_title( strtolower( $field->get_object_meta_key() ) );
+	$classes[] = 'pno-field-' . sanitize_title( strtolower( $field->getName() ) );
 
-	$classes[] = 'pno-field-' . $field->get_type();
+	$classes[] = 'pno-field-' . $field->getType();
 	$classes[] = 'form-group';
+
+	if ( $field->getType() === 'checkbox' ) {
+		$classes[] = 'form-check';
+	}
 
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );
@@ -548,57 +552,6 @@ function pno_get_form_field_class( $field, $class = '' ) {
  */
 function pno_form_field_class( $field, $class = '' ) {
 	echo 'class="' . join( ' ', pno_get_form_field_class( $field, $class ) ) . '"'; //phpcs:ignore
-}
-
-/**
- * Retrieve classes for a PNO\Form\Field input.
- *
- * @param PNO\Form\Field $field field object.
- * @param string         $class additional classes if any.
- * @return array
- */
-function pno_get_form_field_input_class( $field, $class = '' ) {
-
-	$classes = [ 'form-control' ];
-
-	if ( $field->get_type() === 'textarea' ) {
-		$classes[] = 'input-text';
-	} elseif ( $field->get_type() === 'checkbox' || $field->get_type() === 'multicheckbox' || $field->get_type() === 'term-checklist' || $field->get_type() === 'term-chain-dropdown' ) {
-		$classes[] = 'custom-control-input';
-	} elseif ( $field->get_type() === 'select' || $field->get_type() === 'term-select' || $field->get_type() === 'term-multiselect' ) {
-		$classes[] = 'custom-select';
-	} else {
-		$classes[] = 'input-' . $field->get_type();
-	}
-
-	if ( isset( $class ) && ! empty( $class ) ) {
-		$classes[] = esc_attr( $class );
-	}
-
-	$classes = array_map( 'esc_attr', $classes );
-
-	/**
-	 * Filters the list of CSS classes for the current form field input.
-	 *
-	 * @param array $classes the list of classes.
-	 * @param array $field the field being processed.
-	 * @param string $class additional classes if any.
-	 */
-	$classes = apply_filters( 'pno_form_field_input_classes', $classes, $field, $class );
-
-	return array_unique( $classes );
-
-}
-
-/**
- * Display classes for a form field input element.
- *
- * @param PNO\Form\Field $field field object.
- * @param string         $class optional classes.
- * @return void
- */
-function pno_form_field_input_class( $field, $class = '' ) {
-	echo 'class="' . join( ' ', pno_get_form_field_input_class( $field, $class ) ) . '"'; //phpcs:ignore
 }
 
 /**
