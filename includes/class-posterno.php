@@ -288,7 +288,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_forms() {
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
 
-			require_once PNO_PLUGIN_DIR . 'includes/forms/LoginForm.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/Login.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/ForgotPassword.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';

@@ -47,6 +47,19 @@ defined( 'ABSPATH' ) || exit;
 			)
 			->get_template_part( 'message' );
 	}
+
+	if ( ! empty( $data->form->getSuccessMessage() ) ) {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'success',
+					'message' => wp_kses_post( $data->form->getSuccessMessage() ),
+				]
+			)
+			->get_template_part( 'message' );
+
+	}
 	?>
 
 	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="pno-form-<?php echo esc_attr( $data->form_name ); ?>" enctype="multipart/form-data">

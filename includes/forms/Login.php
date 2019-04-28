@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The class of the login form.
  */
-class LoginForm {
+class Login {
 
 	/**
 	 * The form object containing all the details about the form.
@@ -230,4 +230,4 @@ class LoginForm {
 
 }
 
-( new LoginForm() )->init();
+( new Login() )->init();

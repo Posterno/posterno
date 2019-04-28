@@ -35,6 +35,12 @@
 
 	</rule>
 
+	<rule ref="WordPress-Core">
+        <exclude name="Generic.Files.LowercasedFilename" />
+        <exclude name="WordPress.NamingConventions.ValidVariableName" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName" />
+    </rule>
+
 	<!-- Let's also check that everything is properly documented. -->
 	<rule ref="WordPress-Core" />
 	<rule ref="WordPress-Docs"/>
