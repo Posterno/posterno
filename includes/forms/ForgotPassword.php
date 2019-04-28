@@ -270,7 +270,7 @@ class ForgotPassword {
 			if ( $this->form->isValid() ) {
 
 				$username = $this->form->getFieldValue( 'username_email' );
-				$user = false;
+				$user     = false;
 
 				// Update the password step.
 				if ( $this->isRecoveryMode() ) {
