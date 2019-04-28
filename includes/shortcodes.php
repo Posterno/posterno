@@ -132,25 +132,6 @@ function pno_account_form() {
 add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
 
 /**
- * Displays the user's data erasure form.
- *
- * @return string
- */
-function pno_request_data_erasure_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-		//phpcs:ignore
-		echo posterno()->forms->get_form( 'data-erasure' );
-	}
-
-	return ob_get_clean();
-
-}
-//add_shortcode( 'pno_request_data_erasure_form', 'pno_request_data_erasure_form' );
-
-/**
  * Displays the listing submission form.
  *
  * @return string
