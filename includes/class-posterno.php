@@ -110,8 +110,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->admin_notices = TDP\WP_Notice::instance();
 			self::$instance->templates     = new PNO_Templates();
 			self::$instance->emails        = new PNO_Emails();
-			self::$instance->forms         = PNO_Forms::instance();
-			self::$instance->schema        = new PNO\SchemaOrg\Component\SchemaComponent();
+			// self::$instance->forms         = PNO_Forms::instance();
+			self::$instance->schema = new PNO\SchemaOrg\Component\SchemaComponent();
 
 			// Internal components init.
 			self::$instance->schema->init();
@@ -221,8 +221,14 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_components();
 			$this->setup_functions();
 			$this->setup_objects();
-			$this->setup_forms();
 			$this->setup_api();
+
+			add_action(
+				'init',
+				function () {
+					$this->setup_forms();
+				}
+			);
 
 			// Admin.
 			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
@@ -294,6 +300,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DeleteAccount.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/Registration.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';

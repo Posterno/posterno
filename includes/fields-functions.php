@@ -160,57 +160,63 @@ function pno_get_multi_options_field_types() {
  */
 function pno_get_registration_fields() {
 
-	$fields = array(
-		'username' => array(
-			'label'       => esc_html__( 'Username', 'posterno' ),
-			'type'        => 'text',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 1,
-		),
-		'email'    => array(
-			'label'       => __( 'Email address', 'posterno' ),
-			'type'        => 'email',
-			'required'    => true,
-			'placeholder' => '',
-			'priority'    => 2,
-		),
-		'password' => array(
-			'label'    => __( 'Password', 'posterno' ),
-			'type'     => 'password',
-			'required' => true,
-			'priority' => 3,
-		),
-	);
+	$fields = [
+		'username' => [
+			'type'       => 'text',
+			'label'      => esc_html__( 'Username', 'posterno' ),
+			'required'   => true,
+			'priority'   => 1,
+			'attributes' => [
+				'class' => 'form-control',
+			],
+		],
+		'email'    => [
+			'type'       => 'email',
+			'label'      => esc_html__( 'Email address', 'posterno' ),
+			'required'   => true,
+			'priority'   => 2,
+			'attributes' => [
+				'class' => 'form-control',
+			],
+		],
+		'password' => [
+			'type'       => 'password',
+			'label'      => esc_html__( 'Password', 'posterno' ),
+			'required'   => true,
+			'priority'   => 3,
+			'attributes' => [
+				'class' => 'form-control',
+			],
+		],
+	];
 
 	if ( pno_get_option( 'enable_role_selection' ) ) {
 		$fields['role'] = array(
-			'label'    => __( 'Register as:', 'posterno' ),
-			'type'     => 'select',
-			'required' => true,
-			'options'  => pno_get_allowed_user_roles(),
-			'priority' => 99,
-			'value'    => get_option( 'default_role' ),
+			'label'      => esc_html__( 'Register as:', 'posterno' ),
+			'type'       => 'select',
+			'required'   => true,
+			'values'     => pno_get_allowed_user_roles(),
+			'priority'   => 99,
+			'value'      => get_option( 'default_role' ),
+			'attributes' => [
+				'class' => 'custom-select',
+			],
 		);
 	}
-
-	$fields['robo'] = [
-		'label'    => esc_html__( 'If you\'re human leave this blank:', 'posterno' ),
-		'type'     => 'text',
-		'required' => false,
-		'priority' => 100,
-	];
 
 	// Add a terms field is enabled.
 	if ( pno_get_option( 'enable_terms' ) ) {
 		$terms_page = pno_get_option( 'terms_page' );
-		$terms_page = is_array( $terms_page ) && isset( $terms_page['value'] ) ? $terms_page['value'] : false;
+		$terms_page = is_array( $terms_page ) && isset( $terms_page[0] ) ? $terms_page[0] : false;
 		if ( $terms_page ) {
 			$fields['terms'] = array(
-				'label'    => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.', 'posterno' ), get_permalink( $terms_page ) ) ),
-				'type'     => 'checkbox',
-				'required' => true,
-				'priority' => 101,
+				'label'      => apply_filters( 'pno_terms_text', sprintf( __( 'By registering to this website you agree to the <a href="%s" target="_blank">terms &amp; conditions</a>.', 'posterno' ), get_permalink( $terms_page ) ) ),
+				'type'       => 'checkbox',
+				'required'   => true,
+				'priority'   => 101,
+				'attributes' => [
+					'class' => 'custom-control-input',
+				],
 			);
 		}
 	}
@@ -218,23 +224,30 @@ function pno_get_registration_fields() {
 	// Add privacy checkbox if privacy page is enabled.
 	if ( get_option( 'wp_page_for_privacy_policy' ) ) {
 		$fields['privacy'] = array(
-			'label'    => apply_filters( 'pno_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.', 'posterno' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
-			'type'     => 'checkbox',
-			'required' => true,
-			'priority' => 102,
+			'label'      => apply_filters( 'pno_privacy_text', sprintf( __( 'I have read and accept the <a href="%1$s" target="_blank">privacy policy</a> and allow "%2$s" to collect and store the data I submit through this form.', 'posterno' ), get_permalink( get_option( 'wp_page_for_privacy_policy' ) ), get_bloginfo( 'name' ) ) ),
+			'type'       => 'checkbox',
+			'required'   => true,
+			'priority'   => 102,
+			'attributes' => [
+				'class' => 'custom-control-input',
+			],
 		);
 	}
 
 	// Add a password confirmation field.
 	if ( pno_get_option( 'verify_password' ) && ! pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
 		$fields['password_confirm'] = array(
-			'label'    => esc_html__( 'Confirm password', 'posterno' ),
-			'type'     => 'password',
-			'required' => true,
-			'priority' => $fields['password']['priority'] + 1,
+			'label'      => esc_html__( 'Confirm password', 'posterno' ),
+			'type'       => 'password',
+			'required'   => true,
+			'priority'   => $fields['password']['priority'] + 1,
+			'attributes' => [
+				'class' => 'form-control',
+			],
 		);
 	}
 
+	/*
 	// Now inject fields data from the database and add new fields if any.
 	$fields_query_args = [
 		'post_type'              => 'pno_signup_fields',
@@ -287,6 +300,7 @@ function pno_get_registration_fields() {
 		wp_reset_postdata();
 
 	}
+	*/
 
 	// Remove username field if the option is enabled.
 	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
@@ -521,7 +535,7 @@ function pno_get_form_field_class( $field, $class = '' ) {
 	$classes[] = 'form-group';
 
 	if ( $field->getType() === 'checkbox' ) {
-		$classes[] = 'form-check';
+		$classes[] = 'custom-control custom-checkbox';
 	}
 
 	if ( isset( $class ) && ! empty( $class ) ) {

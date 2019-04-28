@@ -110,7 +110,7 @@ function pno_registration_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_registration_form', 'pno_registration_form' );
+//add_shortcode( 'pno_registration_form', 'pno_registration_form' );
 
 /**
  * Displays the account customization form.
