@@ -95,6 +95,17 @@ class LoginForm {
 					'class' => 'form-check-input',
 				],
 			),
+			/**
+			 * Honeypot field.
+			 */
+			'hp-comments' => [
+				'type'       => 'text',
+				'label'      => 'Comments',
+				'validators' => new Validator\BeEmpty(),
+				'attributes' => [
+					'class' => 'form-control',
+				],
+			],
 			'submit'   => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Login', 'posterno' ),
