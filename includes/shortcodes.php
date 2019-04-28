@@ -82,36 +82,6 @@ function pno_dashboard() {
 add_shortcode( 'pno_dashboard', 'pno_dashboard' );
 
 /**
- * Displays the login form to visitors and display a notice to logged in users.
- *
- * @return string
- */
-function pno_login_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-
-		$data = [
-			'user' => wp_get_current_user(),
-		];
-
-		posterno()->templates
-			->set_template_data( $data )
-			->get_template_part( 'logged-user' );
-
-	} else {
-
-		//phpcs:ignore
-		echo posterno()->forms->get_form( 'login' );
-
-	}
-
-	return ob_get_clean();
-}
-//add_shortcode( 'pno_login_form', 'pno_login_form' );
-
-/**
  * Display the registration form.
  *
  * @return string
