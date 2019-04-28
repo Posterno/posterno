@@ -100,7 +100,7 @@ class LoginForm {
 			 */
 			'hp-comments' => [
 				'type'       => 'text',
-				'label'      => 'Comments',
+				'label'      => esc_html__( 'If you\'re human leave this blank:', 'posterno' ),
 				'validators' => new Validator\BeEmpty(),
 				'attributes' => [
 					'class' => 'form-control',
