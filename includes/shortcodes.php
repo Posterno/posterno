@@ -149,7 +149,7 @@ function pno_change_password_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_change_password_form', 'pno_change_password_form' );
+//add_shortcode( 'pno_change_password_form', 'pno_change_password_form' );
 
 /**
  * Displays the user's data request form.
