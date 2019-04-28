@@ -40,9 +40,7 @@ class LoginForm {
 	 * Get things started.
 	 */
 	public function __construct() {
-
 		$this->form = Form::createFromConfig( $this->getFields() );
-
 	}
 
 	/**
@@ -90,6 +88,7 @@ class LoginForm {
 			],
 			'remember' => array(
 				'type'       => 'checkbox',
+				'value'      => 1,
 				'label'      => esc_html__( 'Remember me', 'posterno' ),
 				'required'   => false,
 				'attributes' => [
@@ -105,7 +104,13 @@ class LoginForm {
 			],
 		];
 
-		return $fields;
+		/**
+		 * Filter: allows customization of the fields for the login form.
+		 *
+		 * @param array $fields the list of fields.
+		 * @return array
+		 */
+		return apply_filters( 'pno_login_form_fields', $fields );
 
 	}
 
@@ -159,6 +164,7 @@ class LoginForm {
 	/**
 	 * Process the form.
 	 *
+	 * @throws Exception When there's an error during credentials process.
 	 * @return void
 	 */
 	public function process() {
@@ -177,17 +183,14 @@ class LoginForm {
 
 			if ( $this->form->isValid() ) {
 
-				$username = $this->form->getFieldValue( 'username' );
-				$password = $this->form->getFieldValue( 'password' );
-				$remember_me = $this->form->getField( 'remember' );
-
-				var_dump( $remember_me );
-				exit;
+				$username    = $this->form->getFieldValue( 'username' );
+				$password    = $this->form->getFieldValue( 'password' );
+				$remember_me = $this->form->getFieldValue( 'remember' );
 
 				$creds = [
 					'user_login'    => $username,
 					'user_password' => $password,
-					'remember'      => $values['login']['remember'] ? true : false,
+					'remember'      => $remember_me,
 				];
 
 				$user = wp_signon( $creds );
@@ -198,10 +201,9 @@ class LoginForm {
 					wp_safe_redirect( pno_get_login_redirect() );
 					exit;
 				}
-
 			}
 		} catch ( Exception $e ) {
-			$this->form->setProcessingError( $e->getMessage() );
+			$this->form->setProcessingError( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
 	}
