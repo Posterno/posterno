@@ -18,7 +18,7 @@ use PNO\Exception;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The class of the login form.
+ * The class of the password change form.
  */
 class ChangePassword {
 

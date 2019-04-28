@@ -149,7 +149,7 @@ function pno_request_data_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_request_data_form', 'pno_request_data_form' );
+//add_shortcode( 'pno_request_data_form', 'pno_request_data_form' );
 
 /**
  * Displays the user's data erasure form.
@@ -168,7 +168,7 @@ function pno_request_data_erasure_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_request_data_erasure_form', 'pno_request_data_erasure_form' );
+//add_shortcode( 'pno_request_data_erasure_form', 'pno_request_data_erasure_form' );
 
 /**
  * Displays the account cancellation form.
@@ -187,7 +187,7 @@ function pno_delete_account_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_delete_account_form', 'pno_delete_account_form' );
+//add_shortcode( 'pno_delete_account_form', 'pno_delete_account_form' );
 
 /**
  * Displays the listing submission form.
