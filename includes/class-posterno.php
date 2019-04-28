@@ -293,6 +293,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms/ChangePassword.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DeleteAccount.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';
