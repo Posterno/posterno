@@ -70,23 +70,25 @@ class LoginForm {
 	protected function getFields() {
 
 		$fields = [
-			'username' => [
+			'username'    => [
 				'type'       => 'text',
 				'label'      => pno_get_login_label(),
 				'required'   => true,
 				'attributes' => [
 					'class' => 'form-control',
 				],
+				'priority'   => 1,
 			],
-			'password' => [
+			'password'    => [
 				'type'       => 'password',
 				'label'      => esc_html__( 'Password', 'posterno' ),
 				'required'   => true,
 				'attributes' => [
 					'class' => 'form-control',
 				],
+				'priority'   => 2,
 			],
-			'remember' => array(
+			'remember'    => array(
 				'type'       => 'checkbox',
 				'value'      => 1,
 				'label'      => esc_html__( 'Remember me', 'posterno' ),
@@ -94,6 +96,7 @@ class LoginForm {
 				'attributes' => [
 					'class' => 'form-check-input',
 				],
+				'priority'   => 3,
 			),
 			/**
 			 * Honeypot field.
@@ -105,13 +108,15 @@ class LoginForm {
 				'attributes' => [
 					'class' => 'form-control',
 				],
+				'priority'   => 4,
 			],
-			'submit'   => [
+			'submit'      => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Login', 'posterno' ),
 				'attributes' => [
 					'class' => 'btn btn-primary',
 				],
+				'priority'   => 100,
 			],
 		];
 
@@ -121,7 +126,11 @@ class LoginForm {
 		 * @param array $fields the list of fields.
 		 * @return array
 		 */
-		return apply_filters( 'pno_login_form_fields', $fields );
+		$fields = apply_filters( 'pno_login_form_fields', $fields );
+
+		uasort( $fields, 'pno_sort_array_by_priority' );
+
+		return $fields;
 
 	}
 
