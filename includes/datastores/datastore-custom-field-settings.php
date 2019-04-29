@@ -205,7 +205,7 @@ class CustomFieldSettings extends Post_Meta_Datastore {
 		$field_exists = $field->get_item_by( 'post_id', $this->get_object_id() );
 
 		if ( $field_exists ) {
-			$settings = $field_exists->get_settings();
+			$settings = $field_exists->getSettings();
 		}
 
 		return $settings;
