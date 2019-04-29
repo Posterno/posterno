@@ -81,7 +81,7 @@ class Profile_Fields extends Query {
 	 * @access public
 	 * @var mixed
 	 */
-	protected $item_shape = '\\PNO\\Field\\Profile';
+	protected $item_shape = '\\PNO\\Entities\\Field\\Profile';
 
 	/** Cache *****************************************************************/
 

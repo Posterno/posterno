@@ -81,7 +81,7 @@ class Registration_Fields extends Query {
 	 * @access public
 	 * @var mixed
 	 */
-	protected $item_shape = '\\PNO\\Field\\Registration';
+	protected $item_shape = '\\PNO\\Entities\Field\\Registration';
 
 	/** Cache *****************************************************************/
 

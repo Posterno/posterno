@@ -534,3 +534,18 @@ function pno_show_pending_listings_count_bubble() {
 	}
 }
 add_action( 'admin_menu', 'pno_show_pending_listings_count_bubble' );
+
+add_action( 'admin_init', function() {
+
+	if ( isset( $_GET['tt'] ) ) {
+
+		$fields_query = new PNO\Database\Queries\Registration_Fields( [ 'number' => 100 ] );
+
+		print_r( $fields_query );
+
+		foreach ( $fields_query->items as $field ) {
+			var_dump( $field->getSetting( 'is_required' ) );
+		}
+		exit;
+	}
+} );

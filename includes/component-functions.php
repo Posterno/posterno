@@ -107,7 +107,7 @@ function pno_setup_components() {
 			'schema' => '\\PNO\\Database\\Schema\\Profile_Fields',
 			'table'  => '\\PNO\\Database\\Tables\\Profile_Fields',
 			'query'  => '\\PNO\\Database\\Queries\\Profile_Fields',
-			'object' => '\\PNO\\Field\\Profile',
+			'object' => '\\PNO\\Entities\\Field\\Profile',
 			'meta'   => false,
 		)
 	);
@@ -118,7 +118,7 @@ function pno_setup_components() {
 			'schema' => '\\PNO\\Database\\Schema\\Registration_Fields',
 			'table' => '\\PNO\\Database\\Tables\\Registration_Fields',
 			'query' => '\\PNO\\Database\\Queries\\Registration_Fields',
-			'object' => '\\PNO\\Field\\Registration',
+			'object' => '\\PNO\\Entities\\Field\\Registration',
 			'meta' => false,
 		)
 	);
