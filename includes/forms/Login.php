@@ -94,7 +94,7 @@ class Login {
 				'label'      => esc_html__( 'Remember me', 'posterno' ),
 				'required'   => false,
 				'attributes' => [
-					'class' => 'form-check-input',
+					'class' => 'custom-control-input',
 				],
 				'priority'   => 3,
 			),
