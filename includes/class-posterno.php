@@ -265,7 +265,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		private function setup_utilities() {
-			require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-field-object.php';
 			require_once PNO_PLUGIN_DIR . '/includes/utils/wp-cache-remember/wp-cache-remember.php';
 
 			require_once PNO_PLUGIN_DIR . 'includes/datastores/datastore-caching.php';
