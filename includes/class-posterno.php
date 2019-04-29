@@ -301,11 +301,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/Registration.php';
-
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-registration.php';
-			require_once PNO_PLUGIN_DIR . 'includes/fields/class-listing.php';
 		}
 
 		/**
@@ -434,6 +429,10 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/walkers/class-pno-walker-menu-checklist.php';
 
 			// Fields.
+			require_once PNO_PLUGIN_DIR . 'includes/fields/class-field.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/class-profile.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/class-registration.php';
+			require_once PNO_PLUGIN_DIR . 'includes/fields/class-listing.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-profile.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-registration.php';
 			require_once PNO_PLUGIN_DIR . 'includes/fields/settings/class-listing.php';

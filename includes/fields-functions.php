@@ -247,7 +247,6 @@ function pno_get_registration_fields() {
 		);
 	}
 
-	/*
 	// Now inject fields data from the database and add new fields if any.
 	$fields_query_args = [
 		'post_type'              => 'pno_signup_fields',
@@ -270,11 +269,11 @@ function pno_get_registration_fields() {
 			if ( $field instanceof PNO\Field\Registration && $field->get_post_id() > 0 ) {
 
 				if ( pno_is_default_field( $field->get_object_meta_key() ) && isset( $fields[ $field->get_object_meta_key() ] ) ) {
-
-					$fields[ $field->get_object_meta_key() ]['label']       = $field->get_label();
-					$fields[ $field->get_object_meta_key() ]['description'] = $field->get_description();
-					$fields[ $field->get_object_meta_key() ]['placeholder'] = $field->get_placeholder();
-
+					$fields[ $field->get_object_meta_key() ]['label'] = $field->get_label();
+					$fields[ $field->get_object_meta_key() ]['hint']  = $field->get_description();
+					if ( $field->get_placeholder() ) {
+						$fields[ $field->get_object_meta_key() ]['attributes']['placeholder'] = $field->get_placeholder();
+					}
 					if ( $field->get_priority() ) {
 						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
 					}
@@ -282,17 +281,21 @@ function pno_get_registration_fields() {
 
 					// The field does not exist so we now add it to the list of fields.
 					$fields[ $field->get_object_meta_key() ] = [
-						'label'       => $field->get_label(),
-						'type'        => $field->get_type(),
-						'description' => $field->get_description(),
-						'placeholder' => $field->get_placeholder(),
-						'required'    => $field->is_required(),
-						'priority'    => $field->get_priority(),
+						'label'    => $field->get_label(),
+						'type'     => $field->get_type(),
+						'hint'     => $field->get_description(),
+						'required' => $field->is_required(),
+						'priority' => $field->get_priority(),
 					];
-
-					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
+					if ( $field->get_placeholder() ) {
+						$fields[ $field->get_object_meta_key() ]['attributes']['placeholder'] = $field->get_placeholder();
 					}
+					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->get_object_meta_key() ]['values'] = $field->get_options();
+					}
+
+					$fields[ $field->get_object_meta_key() ]['attributes']['class'] = 'form-control';
+
 				}
 			}
 		}
@@ -300,7 +303,6 @@ function pno_get_registration_fields() {
 		wp_reset_postdata();
 
 	}
-	*/
 
 	// Remove username field if the option is enabled.
 	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
@@ -396,7 +398,7 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 	];
 
 	// Load fields from the database and merge it with the default settings.
-	$fields_query = new PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
+	$fields_query = new \PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 
@@ -404,7 +406,7 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 
 			$field = $account_field;
 
-			if ( $field instanceof PNO\Field\Profile && ! empty( $field->get_object_meta_key() ) ) {
+			if ( $field instanceof \PNO\Field\Profile && ! empty( $field->get_object_meta_key() ) ) {
 
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
