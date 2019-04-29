@@ -288,15 +288,13 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 		}
 
-		$field = new PNO\Field\Profile( $field_id );
+		$field       = new \PNO\Database\Queries\Profile_Fields();
+		$found_field = $field->get_item_by( 'post_id', $field_id );
 
-		if ( $field instanceof PNO\Field\Profile && $field->get_post_id() > 0 ) {
-
-			if ( $field->can_delete() ) {
-				$field->delete();
-			} else {
-				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
-			}
+		if ( $found_field instanceof \PNO\Entities\Field\Profile && $found_field->getPostID() > 0 && $found_field->canDelete() ) {
+			$found_field::delete( $found_field->getPostID() );
+		} else {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 		}
 
 		return rest_ensure_response( $field_id );
