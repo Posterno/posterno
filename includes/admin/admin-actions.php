@@ -183,13 +183,11 @@ add_action( 'edit_form_before_permalink', 'pno_after_custom_fields_post_title' )
 function pno_force_delete_on_custom_fields_trash( $post_id ) {
 
 	if ( get_post_type( $post_id ) === 'pno_users_fields' ) {
-		$field = new PNO\Field\Profile( $post_id );
-		$field->delete();
+		\PNO\Entities\Field\Profile::delete( $post_id );
 		wp_safe_redirect( admin_url( 'users.php?page=posterno-custom-profile-fields&trashed=true' ) );
 		exit;
 	} elseif ( get_post_type( $post_id ) === 'pno_signup_fields' ) {
-		$field = new PNO\Field\Registration( $post_id );
-		$field->delete();
+		\PNO\Entities\Field\Registration::delete( $post_id );
 		wp_safe_redirect( admin_url( 'users.php?page=posterno-custom-registration-form&trashed=true' ) );
 		exit;
 	} elseif ( get_post_type( $post_id ) === 'pno_listings_fields' ) {

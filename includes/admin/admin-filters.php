@@ -108,13 +108,15 @@ function pno_prevent_default_fields_cancellation( $caps, $cap, $user_id, $args )
 	}
 
 	if ( in_array( get_post_type( $args[0] ), [ 'pno_users_fields' ], true ) ) {
-		$field = new PNO\Field\Profile( $args[0] );
-		if ( $field instanceof PNO\Field\Profile && ! $field->can_delete() ) {
+		$field       = new \PNO\Database\Queries\Profile_Fields();
+		$found_field = $field->get_item_by( 'post_id', $args[0] );
+		if ( $found_field instanceof \PNO\Entities\Field\Profile && ! $found_field->canDelete() ) {
 			$caps[] = 'do_not_allow';
 		}
 	} elseif ( in_array( get_post_type( $args[0] ), [ 'pno_signup_fields' ], true ) ) {
-		$field = new PNO\Field\Registration( $args[0] );
-		if ( $field instanceof PNO\Field\Registration && ! $field->can_delete() ) {
+		$field       = new \PNO\Database\Queries\Registration_Fields();
+		$found_field = $field->get_item_by( 'post_id', $args[0] );
+		if ( $found_field instanceof \PNO\Entities\Field\Registration && ! $found_field->canDelete() ) {
 			$caps[] = 'do_not_allow';
 		}
 	} elseif ( in_array( get_post_type( $args[0] ), [ 'pno_listings_fields' ], true ) ) {
