@@ -258,6 +258,7 @@ function pno_get_registration_fields() {
 		'fields'                 => 'ids',
 	];
 
+	/*
 	$fields_query = new PNO\Database\Queries\Registration_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
@@ -302,7 +303,7 @@ function pno_get_registration_fields() {
 
 		wp_reset_postdata();
 
-	}
+	}*/
 
 	// Remove username field if the option is enabled.
 	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
