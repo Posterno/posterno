@@ -254,9 +254,7 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Invalid field type.', 'posterno' ), 422 );
 		}
 
-		$field = new PNO\Field\Profile();
-
-		$new_field = $field->create(
+		$new_field = \PNO\Entities\Field\Profile::create(
 			[
 				'name'     => $field_name,
 				'priority' => $field_priority,

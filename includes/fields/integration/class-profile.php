@@ -39,6 +39,7 @@ class Profile {
 	 */
 	public function register_profile_fields() {
 
+		/*
 		$admin_fields = remember_transient(
 			'pno_admin_custom_profile_fields',
 			function () {
@@ -104,11 +105,11 @@ class Profile {
 				return $admin_fields;
 
 			}
-		);
+		);*/
 
 		if ( ! empty( $admin_fields ) ) {
 			Container::make( 'user_meta', esc_html__( 'Additional details', 'posterno' ) )
-				->add_fields( $admin_fields );
+				->add_fields( [] );
 		}
 
 	}
