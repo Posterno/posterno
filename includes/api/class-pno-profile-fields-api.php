@@ -318,8 +318,11 @@ class PNO_Profile_Fields_Api extends PNO_REST_Controller {
 		foreach ( $fields as $key => $field ) {
 			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
 			if ( $field_id ) {
-				$field = new PNO\Field\Profile( $field_id );
-				$field->update_priority( absint( $key ) + 1 );
+				$profile_field = new \PNO\Database\Queries\Profile_Fields();
+				$found_field   = $profile_field->get_item_by( 'post_id', $field_id );
+				if ( $found_field->getPostID() > 0 ) {
+					$found_field->setPriority( absint( $key ) + 1 );
+				}
 			}
 		}
 
