@@ -224,7 +224,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_api();
 
 			add_action(
-				'init',
+				'wp_loaded',
 				function () {
 					$this->setup_forms();
 				}
@@ -300,6 +300,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
 			require_once PNO_PLUGIN_DIR . 'includes/forms/Registration.php';
+			require_once PNO_PLUGIN_DIR . 'includes/forms/Account.php';
+
 		}
 
 		/**

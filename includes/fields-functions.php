@@ -308,7 +308,6 @@ function pno_get_registration_fields() {
 				}
 			}
 		}
-
 	}
 
 	// Remove username field if the option is enabled.
@@ -342,7 +341,6 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 			'label'              => esc_html__( 'Profile picture', 'posterno' ),
 			'type'               => 'file',
 			'required'           => false,
-			'placeholder'        => '',
 			'priority'           => 1,
 			'allowed_mime_types' => [
 				'jpg'  => 'image/jpeg',
@@ -351,46 +349,59 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				'png'  => 'image/png',
 			],
 			'default_field'      => true,
+			'attributes'         => [
+				'class' => 'form-control',
+			],
 		],
 		'first_name'  => [
 			'label'         => esc_html__( 'First name', 'posterno' ),
 			'type'          => 'text',
 			'required'      => true,
-			'placeholder'   => '',
 			'priority'      => 2,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'last_name'   => [
 			'label'         => esc_html__( 'Last name', 'posterno' ),
 			'type'          => 'text',
 			'required'      => true,
-			'placeholder'   => '',
 			'priority'      => 3,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'email'       => [
 			'label'         => esc_html__( 'Email address', 'posterno' ),
 			'type'          => 'email',
 			'required'      => true,
-			'placeholder'   => '',
 			'priority'      => 4,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'website'     => [
 			'label'         => esc_html__( 'Website', 'posterno' ),
 			'type'          => 'url',
 			'required'      => false,
-			'placeholder'   => '',
 			'priority'      => 5,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'description' => [
 			'label'         => esc_html__( 'About me', 'posterno' ),
 			'type'          => 'editor',
 			'required'      => false,
-			'placeholder'   => '',
 			'priority'      => 6,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 	];
 
@@ -398,66 +409,58 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 	$fields_query = new \PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
-
 		foreach ( $fields_query->items as $account_field ) {
-
 			$field = $account_field;
-
-			if ( $field instanceof \PNO\Field\Profile && ! empty( $field->get_object_meta_key() ) ) {
+			if ( $field instanceof \PNO\Entities\Field\Profile && ! empty( $field->getObjectMetaKey() ) ) {
 
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
-				if ( isset( $fields[ $field->get_object_meta_key() ] ) ) {
-
-					if ( $field->is_admin_only() === true ) {
-						unset( $fields[ $field->get_object_meta_key() ] );
+				if ( isset( $fields[ $field->getObjectMetaKey() ] ) ) {
+					if ( $field->isAdminOnly() === true ) {
+						unset( $fields[ $field->getObjectMetaKey() ] );
 						continue;
 					}
-
-					$fields[ $field->get_object_meta_key() ]['label']       = $field->get_label();
-					$fields[ $field->get_object_meta_key() ]['description'] = $field->get_description();
-					$fields[ $field->get_object_meta_key() ]['placeholder'] = $field->get_placeholder();
-					$fields[ $field->get_object_meta_key() ]['readonly']    = $field->is_readonly();
-
-					if ( $field->get_object_meta_key() !== 'email' ) {
-						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
+					if ( $field->getObjectMetaKey() !== 'email' ) {
+						$fields[ $field->getObjectMetaKey() ]['required'] = $field->isRequired();
 					}
 				} else {
-
-					if ( $field->is_admin_only() === true ) {
+					if ( $field->isAdminOnly() === true ) {
 						continue;
 					}
-
-					// The field does not exist so we now add it to the list of fields.
-					$fields[ $field->get_object_meta_key() ] = [
-						'label'       => $field->get_label(),
-						'type'        => $field->get_type(),
-						'description' => $field->get_description(),
-						'placeholder' => $field->get_placeholder(),
-						'readonly'    => $field->is_readonly(),
-						'required'    => $field->is_required(),
-						'priority'    => $field->get_priority(),
-					];
-
-					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
-					}
 				}
 
-				if ( $field->get_priority() ) {
-					$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
+				// The field does not exist so we now add it to the list of fields.
+				$fields[ $field->getObjectMetaKey() ] = [
+					'label'      => $field->getTitle(),
+					'type'       => $field->getType(),
+					'hint'       => $field->getDescription(),
+					'readonly'   => $field->isReadOnly(),
+					'required'   => $field->isRequired(),
+					'priority'   => $field->getPriority(),
+					'attributes' => [
+						'class'       => 'form-control',
+						'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
+					],
+				];
+
+				if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['values'] = $field->getOptions();
 				}
 
-				if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
-					$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
+				if ( $field->getPriority() ) {
+					$fields[ $field->getObjectMetaKey() ]['priority'] = $field->getPriority();
 				}
 
-				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
-					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
+				if ( $field->getType() == 'file' && ! empty( $field->getMaxSize() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['max_size'] = $field->getMaxSize();
 				}
 
-				if ( $field->get_type() === 'file' && $field->is_multiple() ) {
-					$fields[ $field->get_object_meta_key() ]['multiple'] = true;
+				if ( $field->getType() === 'file' && ! empty( $field->getAllowedMimeTypes() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['allowed_mime_types'] = $field->getAllowedMimeTypes();
+				}
+
+				if ( $field->getType() === 'file' && $field->isMultiple() ) {
+					$fields[ $field->getObjectMetaKey() ]['multiple'] = true;
 				}
 			}
 		}
@@ -500,16 +503,6 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 	if ( ! pno_get_option( 'allow_avatars' ) && isset( $fields['avatar'] ) && ! $bypass ) {
 		unset( $fields['avatar'] );
 	}
-
-	/**
-	 * Allows developers to register or deregister custom fields within the
-	 * user's account editing form. Fields here are yet to be formatted for the form functionality.
-	 *
-	 * @param array $fields the list of fields.
-	 * @param mixed $user_id if a user id is given we load the matching user meta.
-	 * @return array list of fields yet to be formatted.
-	 */
-	$fields = apply_filters( 'pno_account_fields', $fields, $user_id );
 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 

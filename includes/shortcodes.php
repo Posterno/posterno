@@ -98,7 +98,7 @@ function pno_account_form() {
 	return ob_get_clean();
 
 }
-add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
+// add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
 
 /**
  * Displays the listing submission form.
