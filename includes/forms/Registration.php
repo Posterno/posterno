@@ -223,6 +223,32 @@ class Registration {
 					$user->set_role( $this->form->getFieldValue( 'role' ) );
 				}
 
+				// Now process all other custom fields.
+				foreach ( $this->form->toArray() as $key => $value ) {
+					if ( in_array( $key, $this->fieldsToSkip() ) ) {
+						continue;
+					}
+					if ( pno_is_default_field( $key ) ) {
+						if ( $key == 'website' ) {
+							update_user_meta( $new_user_id, 'user_url', $value );
+						} else {
+							update_user_meta( $new_user_id, $key, $value );
+						}
+					} else {
+
+						$field      = $this->form->getField( $key );
+						$field_type = $field->getType();
+
+						if ( $field_type === 'checkbox' ) {
+							if ( $value === '1' ) {
+								carbon_set_user_meta( $new_user_id, $key, true );
+							}
+						} else {
+							carbon_set_user_meta( $new_user_id, $key, $value );
+						}
+					}
+				}
+
 				/**
 				 * Allow developers to extend the signup process before firing
 				 * the registration confirmation email.
@@ -278,6 +304,28 @@ class Registration {
 			$this->form->setProcessingError( $e->getMessage(), $e->getErrorCode() );
 			return;
 		}
+	}
+
+	/**
+	 * List of fields to skip during saving process of custom fields loop.
+	 *
+	 * @return array
+	 */
+	private function fieldsToSkip() {
+
+		$fields = [
+			'email',
+			'password',
+			'username',
+			'hp-comments',
+			'terms',
+			'role',
+			'privacy',
+			'password_confirm',
+		];
+
+		return $fields;
+
 	}
 
 }
