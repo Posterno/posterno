@@ -48,58 +48,44 @@ function pno_export_profile_fields_user_data( $email_address, $page = 1 ) {
 		$group_label = esc_html__( 'Additional account details', 'posterno' );
 		$data        = array();
 
-		$fields_query_args = [
-			'post_type'              => 'pno_users_fields',
-			'posts_per_page'         => 100,
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'post_status'            => 'publish',
-			'fields'                 => 'ids',
-		];
+		$fields_query = new PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
 
-		$fields_query = new WP_Query( $fields_query_args );
+		if ( isset( $fields_query->items ) && is_array( $fields_query->items ) && ! empty( $fields_query->items ) ) {
 
-		if ( is_array( $fields_query->get_posts() ) && ! empty( $fields_query->get_posts() ) ) {
+			foreach ( $fields_query->items as $field ) {
 
-			foreach ( $fields_query->get_posts() as $field_id ) {
+				if ( ! pno_is_default_field( $field->getObjectMetaKey() ) || $field->getObjectMetaKey() == 'avatar' ) {
 
-				$profile_field = new PNO\Field\Profile( $field_id, $user->ID );
+					$field->loadValue( $user->ID );
 
-				if ( $profile_field instanceof PNO\Field\Profile && $profile_field->get_post_id() > 0 ) {
+					$value = $field->getValue();
 
-					if ( ! pno_is_default_field( $profile_field->get_object_meta_key() ) || $profile_field->get_object_meta_key() == 'avatar' ) {
+					if ( $field->getType() == 'checkbox' ) {
+						$value = esc_html__( 'Yes', 'posterno' );
+					} elseif ( $field->getType() == 'multiselect' || $field->getType() == 'multicheckbox' ) {
 
-						$value = $profile_field->get_value();
+						$stored_field_options = $field->getOptions();
+						$stored_options       = [];
 
-						if ( $profile_field->get_type() == 'checkbox' ) {
-							$value = esc_html__( 'Yes', 'posterno' );
-						} elseif ( $profile_field->get_type() == 'multiselect' || $profile_field->get_type() == 'multicheckbox' ) {
-
-							$stored_field_options = $profile_field->get_options();
-							$stored_options       = [];
-							$found_options_labels = [];
-
-							foreach ( $stored_field_options as $key => $stored_option ) {
-								$stored_options[ $key ] = $stored_option;
-							}
-
-							$values = [];
-
-							foreach ( $value as $user_stored_value ) {
-								$values[] = $stored_options[ $user_stored_value ];
-							}
-
-							$value = implode( ', ', $values );
-
+						foreach ( $stored_field_options as $key => $stored_option ) {
+							$stored_options[ $key ] = $stored_option;
 						}
 
-						$data[] = array(
-							'name'  => $profile_field->get_name(),
-							'value' => $value,
-						);
+						$values = [];
+
+						foreach ( $value as $user_stored_value ) {
+							$values[] = $stored_options[ $user_stored_value ];
+						}
+
+						$value = implode( ', ', $values );
 
 					}
+
+					$data[] = array(
+						'name'  => $field->getTitle(),
+						'value' => $value,
+					);
+
 				}
 			}
 		}

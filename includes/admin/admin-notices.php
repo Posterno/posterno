@@ -24,9 +24,9 @@ function pno_avatar_field_is_disabled_notice() {
 
 		global $post;
 
-		$field = new PNO\Field\Profile( $post->ID );
+		$field = \PNO\Entities\Field\Profile::getFromID( $post->ID );
 
-		if ( $post instanceof WP_Post && isset( $post->ID ) && $field->get_object_meta_key() === 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
+		if ( $post instanceof WP_Post && isset( $post->ID ) && $field->getObjectMetaKey() === 'avatar' && ! pno_get_option( 'allow_avatars' ) ) {
 
 			$message = esc_html__( 'The avatar field is currently disabled. You can enable it through the plugin\'s settings.', 'posterno' );
 

@@ -54,44 +54,29 @@ function pno_plugin_profile_data_eraser( $email_address, $page = 1 ) {
 
 	if ( $user && $user->ID ) {
 
-		$fields_query_args = [
-			'post_type'              => 'pno_users_fields',
-			'posts_per_page'         => 100,
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-			'post_status'            => 'publish',
-			'fields'                 => 'ids',
-		];
+		$fields_query = new PNO\Database\Queries\Profile_Fields( [ 'number' => 100 ] );
 
-		$fields_query = new WP_Query( $fields_query_args );
+		if ( isset( $fields_query->items ) && is_array( $fields_query->items ) && ! empty( $fields_query->items ) ) {
+			foreach ( $fields_query->items as $field ) {
 
-		if ( is_array( $fields_query->get_posts() ) && ! empty( $fields_query->get_posts() ) ) {
+				if ( ! pno_is_default_field( $field->getObjectMetaKey() ) || $field->getObjectMetaKey() == 'avatar' ) {
 
-			foreach ( $fields_query->get_posts() as $field_id ) {
+					$field->loadValue( $user->ID );
 
-				$profile_field = new PNO\Field\Profile( $field_id, $user->ID );
+					if ( ! empty( $field->getValue() ) ) {
+						$meta = $field->getObjectMetaKey();
 
-				if ( $profile_field instanceof PNO\Field\Profile && $profile_field->get_post_id() > 0 ) {
+						if ( $meta === 'avatar' ) {
+							$meta = 'current_user_avatar';
+						}
 
-					if ( ! pno_is_default_field( $profile_field->get_object_meta_key() ) || $profile_field->get_object_meta_key() == 'avatar' ) {
+						$field_to_remove = delete_user_meta( $user->ID, '_' . $meta );
 
-						if ( ! empty( $profile_field->get_value() ) ) {
-
-							$meta = $profile_field->get_object_meta_key();
-
-							if ( $meta === 'avatar' ) {
-								$meta = 'current_user_avatar';
-							}
-
-							$field_to_remove = delete_user_meta( $user->ID, '_' . $meta );
-
-							if ( $field_to_remove ) {
-								$items_removed = true;
-							} else {
-								$messages[]     = sprintf( esc_html__( 'Your "%s" was unable to be removed at this time.', 'posterno' ), $profile_field->get_name() );
-								$items_retained = true;
-							}
+						if ( $field_to_remove ) {
+							$items_removed = true;
+						} else {
+							$messages[]     = sprintf( esc_html__( 'Your "%s" was unable to be removed at this time.', 'posterno' ), $field->getTitle() );
+							$items_retained = true;
 						}
 					}
 				}
