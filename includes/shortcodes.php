@@ -185,6 +185,23 @@ function pno_change_password_form() {
 add_shortcode( 'pno_change_password_form', 'pno_change_password_form' );
 
 /**
+ * Displays the account customization form.
+ *
+ * @return string
+ */
+function pno_account_customization_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'account' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_account_customization_form', 'pno_account_customization_form' );
+
+/**
  * Displays the dashboard for the listings.
  *
  * @return string
@@ -199,25 +216,6 @@ function pno_dashboard() {
 
 }
 add_shortcode( 'pno_dashboard', 'pno_dashboard' );
-
-/**
- * Displays the account customization form.
- *
- * @return string
- */
-function pno_account_form() {
-
-	ob_start();
-
-	if ( is_user_logged_in() ) {
-		//phpcs:ignore
-		echo posterno()->forms->get_form( 'account' );
-	}
-
-	return ob_get_clean();
-
-}
-// add_shortcode( 'pno_account_customization_form', 'pno_account_form' );
 
 /**
  * Displays the listing submission form.
