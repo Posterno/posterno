@@ -258,7 +258,6 @@ function pno_get_registration_fields() {
 		'fields'                 => 'ids',
 	];
 
-	/*
 	$fields_query = new PNO\Database\Queries\Registration_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
@@ -267,43 +266,41 @@ function pno_get_registration_fields() {
 
 			$field = $registration_field;
 
-			if ( $field instanceof PNO\Field\Registration && $field->get_post_id() > 0 ) {
+			if ( $field instanceof \PNO\Entities\Field\Registration && $field->getPostID() > 0 ) {
 
-				if ( pno_is_default_field( $field->get_object_meta_key() ) && isset( $fields[ $field->get_object_meta_key() ] ) ) {
-					$fields[ $field->get_object_meta_key() ]['label'] = $field->get_label();
-					$fields[ $field->get_object_meta_key() ]['hint']  = $field->get_description();
-					if ( $field->get_placeholder() ) {
-						$fields[ $field->get_object_meta_key() ]['attributes']['placeholder'] = $field->get_placeholder();
+				if ( pno_is_default_field( $field->getObjectMetaKey() ) && isset( $fields[ $field->getObjectMetaKey() ] ) ) {
+					$fields[ $field->getObjectMetaKey() ]['label'] = $field->getTitle();
+					$fields[ $field->getObjectMetaKey() ]['hint']  = $field->getDescription();
+					if ( $field->getPlaceholder() ) {
+						$fields[ $field->getObjectMetaKey() ]['attributes']['placeholder'] = $field->getPlaceholder();
 					}
-					if ( $field->get_priority() ) {
-						$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
+					if ( $field->getPriority() ) {
+						$fields[ $field->getObjectMetaKey() ]['priority'] = $field->getPriority();
 					}
 				} else {
 
 					// The field does not exist so we now add it to the list of fields.
-					$fields[ $field->get_object_meta_key() ] = [
-						'label'    => $field->get_label(),
-						'type'     => $field->get_type(),
-						'hint'     => $field->get_description(),
-						'required' => $field->is_required(),
-						'priority' => $field->get_priority(),
+					$fields[ $field->getObjectMetaKey() ] = [
+						'label'    => $field->getTitle(),
+						'type'     => $field->getType(),
+						'hint'     => $field->getDescription(),
+						'required' => $field->isRequired(),
+						'priority' => $field->getPriority(),
 					];
-					if ( $field->get_placeholder() ) {
-						$fields[ $field->get_object_meta_key() ]['attributes']['placeholder'] = $field->get_placeholder();
+					if ( $field->getPlaceholder() ) {
+						$fields[ $field->getObjectMetaKey() ]['attributes']['placeholder'] = $field->getPlaceholder();
 					}
-					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_object_meta_key() ]['values'] = $field->get_options();
+					if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->getObjectMetaKey() ]['values'] = $field->get_options();
 					}
 
-					$fields[ $field->get_object_meta_key() ]['attributes']['class'] = 'form-control';
+					$fields[ $field->getObjectMetaKey() ]['attributes']['class'] = 'form-control';
 
 				}
 			}
 		}
 
-		wp_reset_postdata();
-
-	}*/
+	}
 
 	// Remove username field if the option is enabled.
 	if ( pno_get_option( 'disable_username' ) && isset( $fields['username'] ) ) {
