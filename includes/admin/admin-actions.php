@@ -191,8 +191,7 @@ function pno_force_delete_on_custom_fields_trash( $post_id ) {
 		wp_safe_redirect( admin_url( 'users.php?page=posterno-custom-registration-form&trashed=true' ) );
 		exit;
 	} elseif ( get_post_type( $post_id ) === 'pno_listings_fields' ) {
-		$field = new PNO\Field\Listing( $post_id );
-		$field->delete();
+		\PNO\Entities\Field\Listing::delete( $post_id );
 		wp_safe_redirect( admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields&trashed=true' ) );
 		exit;
 	}
