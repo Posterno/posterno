@@ -109,8 +109,8 @@ class Profile {
 		$disable_multiple_setting = false;
 
 		if ( $field_id ) {
-			$profile_field = new \PNO\Field\Profile( $field_id );
-			if ( $profile_field instanceof \PNO\Field\Profile && $profile_field->get_object_meta_key() === 'avatar' ) {
+			$profile_field = \PNO\Entities\Field\Profile::getFromID( $field_id );
+			if ( $profile_field instanceof \PNO\Entities\Field\Profile && $profile_field->getObjectMetaKey() === 'avatar' ) {
 				$disable_multiple_setting = true;
 			}
 		}
@@ -211,9 +211,9 @@ class Profile {
 
 		if ( $field_id ) {
 
-			$profile_field = new \PNO\Field\Profile( $field_id );
+			$profile_field = \PNO\Entities\Field\Profile::getFromID( $field_id );
 
-			if ( $profile_field instanceof \PNO\Field\Profile && $profile_field->get_object_meta_key() === 'avatar' ) {
+			if ( $profile_field instanceof \PNO\Entities\Field\Profile && $profile_field->getObjectMetaKey() === 'avatar' ) {
 				$disable_admin_only_setting = true;
 			}
 

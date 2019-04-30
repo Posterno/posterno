@@ -332,9 +332,9 @@ class Listing {
 		$meta     = false;
 
 		if ( $field_id ) {
-			$listing_field = new \PNO\Field\Listing( $field_id );
-			if ( $listing_field instanceof \PNO\Field\Listing ) {
-				$meta = $listing_field->get_object_meta_key();
+			$listing_field = \PNO\Entities\Field\Listing::getFromID( $field_id );
+			if ( $listing_field instanceof \PNO\Entities\Field\Listing ) {
+				$meta = $listing_field->getObjectMetaKey();
 			}
 		}
 
