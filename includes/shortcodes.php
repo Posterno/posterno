@@ -83,6 +83,23 @@ function pno_login_form() {
 add_shortcode( 'pno_login_form', 'pno_login_form' );
 
 /**
+ * Displays the registration form.
+ *
+ * @return string
+ */
+function pno_registration_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'registration' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_registration_form', 'pno_registration_form' );
+
+/**
  * Displays the dashboard for the listings.
  *
  * @return string
