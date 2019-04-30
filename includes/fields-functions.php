@@ -196,6 +196,7 @@ function pno_get_registration_fields() {
 			'type'       => 'select',
 			'required'   => true,
 			'values'     => pno_get_allowed_user_roles(),
+			'validators' => new PNO\Validator\KeyContained( pno_get_allowed_user_roles() ),
 			'priority'   => 99,
 			'value'      => get_option( 'default_role' ),
 			'attributes' => [
@@ -247,17 +248,25 @@ function pno_get_registration_fields() {
 		);
 	}
 
-	// Now inject fields data from the database and add new fields if any.
-	$fields_query_args = [
-		'post_type'              => 'pno_signup_fields',
-		'posts_per_page'         => 100,
-		'nopaging'               => true,
-		'no_found_rows'          => true,
-		'update_post_term_cache' => false,
-		'post_status'            => 'publish',
-		'fields'                 => 'ids',
-	];
+	// Add strong password validators.
+	if ( pno_get_option( 'strong_passwords' ) ) {
+		$error_message    = esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.', 'posterno' );
+		$contains_letter  = new Validator\RegEx( '/[A-Z]/', $error_message );
+		$contains_digit   = new Validator\RegEx( '/\d/', $error_message );
+		$contains_special = new Validator\RegEx( '/[^a-zA-Z\d]/', $error_message );
+		$lenght           = new Validator\LengthGreaterThanEqual( 8, $error_message );
 
+		if ( isset( $fields['password'] ) ) {
+			$fields['password']['validators'] = [
+				$contains_letter,
+				$contains_digit,
+				$contains_special,
+				$lenght,
+			];
+		}
+	}
+
+	// Now inject fields data from the database and add new fields if any.
 	$fields_query = new PNO\Database\Queries\Registration_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
@@ -311,16 +320,6 @@ function pno_get_registration_fields() {
 	if ( pno_get_option( 'disable_password' ) && isset( $fields['password'] ) ) {
 		unset( $fields['password'] );
 	}
-
-	/**
-	 * Allows developers to register or deregister fields for the registration form.
-	 * Fields here are yet to be formatted for the Form object.
-	 *
-	 * @since 0.1.0
-	 * @param array $fields array containing the list of fields for the registration form.
-	 * @return array the list of fields yet to be formatted.
-	 */
-	$fields = apply_filters( 'pno_registration_fields', $fields );
 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 

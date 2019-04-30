@@ -177,6 +177,102 @@ class Registration {
 
 			if ( $this->form->isValid() ) {
 
+				$email_address = $this->form->getFieldValue( 'email' );
+
+				// Verify if a username has been submitted.
+				// If no username has been supplied, use the email address.
+				$has_username = ! empty( $this->form->getFieldValue( 'username' ) ) ? true : false;
+				$username     = $email_address;
+
+				if ( $has_username ) {
+					$username = $this->form->getFieldValue( 'username' );
+				}
+
+				if ( pno_get_option( 'verify_password' ) && ! pno_get_option( 'disable_password' ) ) {
+					if ( $this->form->getFieldValue( 'password' ) !== $this->form->getFieldValue( 'password_confirm' ) ) {
+						throw new Exception( esc_html__( 'Passwords do not match.', 'posterno' ) );
+					}
+				}
+
+				// Verify if a password has been submitted.
+				// If no password has been supplied, generate a random one.
+				$has_password = ! empty( $this->form->getFieldValue( 'password' ) ) ? true : false;
+				$password     = wp_generate_password( 24, true, true );
+
+				if ( $has_password ) {
+					$password = $this->form->getFieldValue( 'password' );
+				}
+
+				/**
+				 * Allow developers to extend the signup process before actually
+				 * registering the new user.
+				 *
+				 * @param Form $form the form object.
+				 */
+				do_action( 'pno_before_registration', $this->form );
+
+				$new_user_id = wp_create_user( $username, $password, $email_address );
+
+				if ( is_wp_error( $new_user_id ) ) {
+					throw new Exception( $new_user_id->get_error_message(), $new_user_id->get_error_code() );
+				}
+
+				// Assign the role set into the registration form.
+				if ( pno_get_option( 'allowed_roles' ) && $this->form->getFieldValue( 'role' ) && in_array( $this->form->getFieldValue( 'role' ), pno_get_option( 'allowed_roles' ) ) ) {
+					$user = new \WP_User( $new_user_id );
+					$user->set_role( $this->form->getFieldValue( 'role' ) );
+				}
+
+				/**
+				 * Allow developers to extend the signup process before firing
+				 * the registration confirmation email.
+				 *
+				 * @param string $new_user_id the user id.
+				 * @param Form $form the form.
+				 */
+				do_action( 'pno_before_registration_end', $new_user_id, $this->form );
+
+				// Send registration confirmation emails.
+				pno_send_email(
+					'core_user_registration',
+					$email_address,
+					[
+						'user_id'             => $new_user_id,
+						'plain_text_password' => $password,
+					]
+				);
+
+				/**
+				 * Allow developers to extend the signup process after firing
+				 * the registration confirmation email and before showing the
+				 * success message/page.
+				 *
+				 * @param string $new_user_id the user id.
+				 * @param Form $form the form.
+				 */
+				do_action( 'pno_after_registration', $new_user_id, $this->form );
+
+				// Automatically log a user in if enabled.
+				if ( pno_get_option( 'login_after_registration' ) ) {
+					pno_log_user_in( $new_user_id );
+				}
+
+				if ( pno_get_registration_redirect() ) {
+					wp_safe_redirect( pno_get_registration_redirect() );
+					exit;
+				} else {
+
+					/**
+					 * Allow developers to customize the message displayed after successfull registration.
+					 *
+					 * @param string $message the message that appears after registration.
+					 */
+					$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.', 'posterno' ) );
+
+					$this->form->setSuccessMessage( $success_message );
+					$this->form->reset();
+					return;
+				}
 			}
 		} catch ( Exception $e ) {
 			$this->form->setProcessingError( $e->getMessage(), $e->getErrorCode() );
