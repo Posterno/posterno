@@ -117,6 +117,57 @@ function pno_password_recovery_form() {
 add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
 
 /**
+ * Displays the account delete form.
+ *
+ * @return string
+ */
+function pno_delete_account_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'deleteAccount' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_delete_account_form', 'pno_delete_account_form' );
+
+/**
+ * Displays the privacy data request form.
+ *
+ * @return string
+ */
+function pno_request_data_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'dataRequest' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_request_data_form', 'pno_request_data_form' );
+
+/**
+ * Displays the privacy data erasure form.
+ *
+ * @return string
+ */
+function pno_request_data_erasure_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'dataErasure' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_request_data_erasure_form', 'pno_request_data_erasure_form' );
+
+/**
  * Displays the dashboard for the listings.
  *
  * @return string

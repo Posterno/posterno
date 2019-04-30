@@ -34,13 +34,34 @@ class DataRequest {
 	 *
 	 * @var string
 	 */
-	public $form_name = 'data-request';
+	public $form_name = 'dataRequest';
+
+	/**
+	 * Stores static instance of class.
+	 *
+	 * @access protected
+	 * @var PNO_Form_Login The single instance of the class
+	 */
+	protected static $_instance = null;
+
+	/**
+	 * Returns static instance of class.
+	 *
+	 * @return self
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
 	/**
 	 * Get things started.
 	 */
 	public function __construct() {
 		$this->form = Form::createFromConfig( $this->getFields() );
+		$this->init();
 	}
 
 	/**
@@ -120,11 +141,9 @@ class DataRequest {
 	/**
 	 * Render the form.
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function render() {
-
-		ob_start();
 
 		if ( is_user_logged_in() ) {
 
@@ -152,8 +171,6 @@ class DataRequest {
 				->get_template_part( 'new-form' );
 
 		}
-
-		return ob_get_clean();
 
 	}
 
@@ -210,5 +227,3 @@ class DataRequest {
 	}
 
 }
-
-( new DataRequest() )->init();
