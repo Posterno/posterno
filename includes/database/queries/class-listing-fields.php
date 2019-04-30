@@ -81,7 +81,7 @@ class Listing_Fields extends Query {
 	 * @access public
 	 * @var mixed
 	 */
-	protected $item_shape = '\\PNO\\Field\\Listing';
+	protected $item_shape = '\\PNO\\Entities\\Field\\Listing';
 
 	/** Cache *****************************************************************/
 

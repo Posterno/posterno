@@ -53,7 +53,7 @@ class Listing {
 	public function init() {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
+		//add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
 
 	}
 

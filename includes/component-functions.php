@@ -116,10 +116,10 @@ function pno_setup_components() {
 		'registration_fields',
 		array(
 			'schema' => '\\PNO\\Database\\Schema\\Registration_Fields',
-			'table' => '\\PNO\\Database\\Tables\\Registration_Fields',
-			'query' => '\\PNO\\Database\\Queries\\Registration_Fields',
+			'table'  => '\\PNO\\Database\\Tables\\Registration_Fields',
+			'query'  => '\\PNO\\Database\\Queries\\Registration_Fields',
 			'object' => '\\PNO\\Entities\\Field\\Registration',
-			'meta' => false,
+			'meta'   => false,
 		)
 	);
 
@@ -129,7 +129,7 @@ function pno_setup_components() {
 			'schema' => '\\PNO\\Database\\Schema\\Listing_Fields',
 			'table'  => '\\PNO\\Database\\Tables\\Listing_Fields',
 			'query'  => '\\PNO\\Database\\Queries\\Listing_Fields',
-			'object' => '\\PNO\\Field\\Listing',
+			'object' => '\\PNO\\Entities\\Field\\Listing',
 			'meta'   => false,
 		)
 	);

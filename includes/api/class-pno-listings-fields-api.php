@@ -119,23 +119,21 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	 */
 	public function get_items( $request ) {
 
-		$args = [
-			'post_type'              => $this->post_type,
-			'posts_per_page'         => 100,
-			'nopaging'               => true,
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-		];
-
-		$fields = new WP_Query( $args );
+		$fields = [];
 		$data   = [];
+
+		$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
+
+		if ( ! empty( $fields_query->items ) && is_array( $fields_query->items ) ) {
+			$fields = $fields_query->items;
+		}
 
 		if ( empty( $fields ) ) {
 			return rest_ensure_response( $data );
 		}
 
-		if ( is_array( $fields->get_posts() ) && ! empty( $fields->get_posts() ) ) {
-			foreach ( $fields->get_posts() as $post ) {
+		if ( is_array( $fields ) && ! empty( $fields ) ) {
+			foreach ( $fields as $post ) {
 				$response = $this->prepare_item_for_response( $post, $request );
 				$data[]   = $this->prepare_response_for_collection( $response );
 			}
@@ -156,44 +154,27 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		$post_data = array();
 		$schema    = $this->get_item_schema();
 
-		if ( $post instanceof WP_Post ) {
-			$field = new PNO\Field\Listing( $post->ID );
-		} else {
-			$post  = get_post( $post );
-			$field = new PNO\Field\Listing( $post->ID );
-		}
+		$field = $post;
 
 		// We are also renaming the fields to more understandable names.
 		if ( isset( $schema['properties']['id'] ) ) {
-			$post_data['id'] = (int) $field->get_post_id();
+			$post_data['id'] = (int) $field->getPostID();
 		}
 		if ( isset( $schema['properties']['name'] ) ) {
-			$post_data['name'] = $field->get_name();
-		}
-		if ( isset( $schema['properties']['label'] ) ) {
-			$post_data['label'] = $field->get_label();
-		}
-		if ( isset( $schema['properties']['meta'] ) ) {
-			$post_data['meta'] = $field->get_object_meta_key();
+			$post_data['name'] = $field->getTitle();
 		}
 		if ( isset( $schema['properties']['priority'] ) ) {
-			$post_data['priority'] = (int) $field->get_priority();
+			$post_data['priority'] = (int) $field->getPriority();
 		}
 		if ( isset( $schema['properties']['default'] ) ) {
-			$post_data['default'] = (bool) ! $field->can_delete();
+			$post_data['default'] = (bool) ! $field->canDelete();
 		}
 		if ( isset( $schema['properties']['type'] ) ) {
-			$post_data['type']          = $field->get_type();
-			$post_data['type_nicename'] = $field->get_type_nicename();
-		}
-		if ( isset( $schema['properties']['description'] ) ) {
-			$post_data['description'] = $field->get_description();
-		}
-		if ( isset( $schema['properties']['placeholder'] ) ) {
-			$post_data['placeholder'] = $field->get_placeholder();
+			$post_data['type']          = $field->getType();
+			$post_data['type_nicename'] = $field->getTypeNicename();
 		}
 		if ( isset( $schema['properties']['required'] ) ) {
-			$post_data['required'] = (bool) $field->is_required();
+			$post_data['required'] = (bool) $field->isRequired();
 		}
 
 		$response = rest_ensure_response( $post_data );
@@ -212,7 +193,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 	protected function prepare_links( $object, $request ) {
 		$links = array(
 			'self'       => array(
-				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->get_post_id() ) ),
+				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $this->rest_base, $object->getPostID() ) ),
 			),
 			'collection' => array(
 				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ),
@@ -223,7 +204,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			$admin_url = admin_url( 'post.php' );
 			$admin_url = add_query_arg(
 				[
-					'post'   => $object->get_post_id(),
+					'post'   => $object->getPostID(),
 					'action' => 'edit',
 				],
 				$admin_url
@@ -249,9 +230,8 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_Error( 'posterno_rest_cannot_create_exists', __( 'Cannot create existing field.', 'posterno' ), array( 'status' => 400 ) );
 		}
 
-		$field_name       = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
-		$listing_field_id = isset( $request['listing_field_id'] ) ? sanitize_text_field( $request['listing_field_id'] ) : false;
-		$field_priority   = isset( $_POST['priority'] ) && ! empty( $_POST['priority'] ) ? absint( $_POST['priority'] ) : false;
+		$field_name     = isset( $request['name'] ) ? sanitize_text_field( $request['name'] ) : false;
+		$field_priority = isset( $_POST['priority'] ) && ! empty( $_POST['priority'] ) ? absint( $_POST['priority'] ) : false;
 
 		if ( ! $field_name ) {
 			return new WP_REST_Response( esc_html__( 'Please enter a name for the new field.', 'posterno' ), 422 );
@@ -264,9 +244,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Invalid field type.', 'posterno' ), 422 );
 		}
 
-		$field = new PNO\Field\Listing();
-
-		$new_field = $field->create(
+		$new_field = \PNO\Entities\Field\Listing::create(
 			[
 				'name'     => $field_name,
 				'priority' => $field_priority,
@@ -300,15 +278,13 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 		}
 
-		$field = new PNO\Field\Listing( $field_id );
+		$field       = new \PNO\Database\Queries\Listing_Fields();
+		$found_field = $field->get_item_by( 'post_id', $field_id );
 
-		if ( $field instanceof PNO\Field\Listing && $field->get_post_id() > 0 ) {
-
-			if ( $field->can_delete() ) {
-				$field->delete();
-			} else {
-				return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
-			}
+		if ( $found_field instanceof \PNO\Entities\Field\Listing && $found_field->getPostID() > 0 && $found_field->canDelete() ) {
+			$found_field::delete( $found_field->getPostID() );
+		} else {
+			return new WP_REST_Response( esc_html__( 'Something went wrong while deleting the field, please contact support.', 'posterno' ), 422 );
 		}
 
 		return rest_ensure_response( $field_id );
@@ -332,8 +308,11 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		foreach ( $fields as $key => $field ) {
 			$field_id = isset( $field['id'] ) ? absint( $field['id'] ) : false;
 			if ( $field_id ) {
-				$field = new PNO\Field\Listing( $field_id );
-				$field->update_priority( absint( $key ) + 1 );
+				$listing_field = new \PNO\Database\Queries\Listing_Fields();
+				$found_field   = $listing_field->get_item_by( 'post_id', $field_id );
+				if ( $found_field->getPostID() > 0 ) {
+					$found_field->setPriority( absint( $key ) + 1 );
+				}
 			}
 		}
 
