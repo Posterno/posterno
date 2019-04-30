@@ -100,6 +100,23 @@ function pno_registration_form() {
 add_shortcode( 'pno_registration_form', 'pno_registration_form' );
 
 /**
+ * Displays the password recovery form.
+ *
+ * @return string
+ */
+function pno_password_recovery_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'forgotPassword' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_password_recovery_form', 'pno_password_recovery_form' );
+
+/**
  * Displays the dashboard for the listings.
  *
  * @return string
