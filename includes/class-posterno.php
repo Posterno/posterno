@@ -110,7 +110,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->admin_notices = TDP\WP_Notice::instance();
 			self::$instance->templates     = new PNO_Templates();
 			self::$instance->emails        = new PNO_Emails();
-			// self::$instance->forms         = PNO_Forms::instance();
+			self::$instance->forms         = PNO_Forms::instance();
 			self::$instance->schema = new PNO\SchemaOrg\Component\SchemaComponent();
 
 			// Internal components init.
@@ -222,13 +222,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			$this->setup_functions();
 			$this->setup_objects();
 			$this->setup_api();
-
-			add_action(
-				'wp_loaded',
-				function () {
-					$this->setup_forms();
-				}
-			);
+			$this->setup_forms();
 
 			// Admin.
 			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
@@ -293,14 +287,14 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_forms() {
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-forms.php';
 
-			require_once PNO_PLUGIN_DIR . 'includes/forms/Login.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/ForgotPassword.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/ChangePassword.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/DeleteAccount.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/Registration.php';
-			require_once PNO_PLUGIN_DIR . 'includes/forms/Account.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/Login.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/ForgotPassword.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/ChangePassword.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/DeleteAccount.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/DataRequest.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/DataErasure.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/Registration.php';
+			//require_once PNO_PLUGIN_DIR . 'includes/forms/Account.php';
 
 		}
 

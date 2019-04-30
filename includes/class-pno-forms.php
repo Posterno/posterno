@@ -48,7 +48,7 @@ class PNO_Forms {
 	 */
 	public function load_posted_form() {
 		if ( ! empty( $_POST['pno_form'] ) ) {
-			$this->load_form_class( sanitize_title( $_POST['pno_form'] ) );
+			$this->load_form_class( ucfirst( sanitize_title( $_POST['pno_form'] ) ) );
 		}
 	}
 
@@ -59,13 +59,10 @@ class PNO_Forms {
 	 * @return string class name on success, false on failure.
 	 */
 	private function load_form_class( $form_name ) {
-		if ( ! class_exists( 'PNO_Form' ) ) {
-			include 'abstracts/abstract-pno-form.php';
-		}
 
 		// Now try to load the form_name.
-		$form_class = 'PNO_Form_' . str_replace( '-', '_', $form_name );
-		$form_file  = PNO_PLUGIN_DIR . '/includes/forms/class-pno-form-' . $form_name . '.php';
+		$form_class = '\\PNO\\Forms\\' . ucfirst( $form_name );
+		$form_file  = PNO_PLUGIN_DIR . 'includes/forms/' . ucfirst( $form_name ) . '.php';
 
 		if ( class_exists( $form_class ) ) {
 			return call_user_func( array( $form_class, 'instance' ) );
@@ -94,7 +91,7 @@ class PNO_Forms {
 		$form = $this->load_form_class( $form_name );
 		if ( $form ) {
 			ob_start();
-			$form->output( $atts );
+			$form->render( $atts );
 			return ob_get_clean();
 		}
 	}

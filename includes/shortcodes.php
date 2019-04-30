@@ -66,6 +66,23 @@ function pno_logout_link( $atts, $content = null ) {
 add_shortcode( 'pno_logout_link', 'pno_logout_link' );
 
 /**
+ * Displays login form.
+ *
+ * @return string
+ */
+function pno_login_form() {
+
+	ob_start();
+
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'login' );
+
+	return ob_get_clean();
+
+}
+add_shortcode( 'pno_login_form', 'pno_login_form' );
+
+/**
  * Displays the dashboard for the listings.
  *
  * @return string
