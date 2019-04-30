@@ -53,7 +53,7 @@ class Listing {
 	public function init() {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
-		//add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
+		add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
 
 	}
 
@@ -370,59 +370,55 @@ class Listing {
 
 				$listing_fields = new \PNO\Database\Queries\Listing_Fields( [ 'listing_meta_key__not_in' => pno_get_registered_default_meta_keys() ] );
 
-				$custom_fields_ids = [];
-
-				foreach ( $listing_fields->items as $field ) {
-					$custom_fields_ids[] = $field->get_post_id();
-				}
-
 				$admin_fields = [];
 
-				foreach ( $custom_fields_ids as $listing_field_id ) {
+				if ( isset( $listing_fields->items ) && ! empty( $listing_fields->items ) ) {
 
-					$custom_listing_field = new \PNO\Field\Listing( $listing_field_id );
+					foreach ( $listing_fields->items as $custom_listing_field ) {
 
-					if ( $custom_listing_field instanceof \PNO\Field\Listing && ! empty( $custom_listing_field->get_object_meta_key() ) ) {
+						if ( $custom_listing_field instanceof \PNO\Entities\Field\Listing && ! empty( $custom_listing_field->getObjectMetaKey() ) ) {
 
-						$type = $custom_listing_field->get_type();
+							$type = $custom_listing_field->getType();
 
-						switch ( $type ) {
-							case 'url':
-							case 'email':
-							case 'number':
-							case 'password':
-								$type = 'text';
-								break;
-							case 'multicheckbox':
-								$type = 'set';
-								break;
-							case 'editor':
-								$type = 'rich_text';
-								break;
-						}
-
-						if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select', 'term-chain-dropdown' ] ) ) {
-							continue;
-						}
-
-						if ( $type == 'set' || $type == 'multiselect' ) {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
-						} elseif ( $type == 'select' || $type == 'radio' ) {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->add_options( $custom_listing_field->get_options() );
-						} elseif ( $type == 'file' ) {
-							if ( $custom_listing_field->is_multiple() ) {
-								$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
-							} else {
-								$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+							switch ( $type ) {
+								case 'url':
+								case 'email':
+								case 'number':
+								case 'password':
+									$type = 'text';
+									break;
+								case 'multicheckbox':
+									$type = 'set';
+									break;
+								case 'editor':
+									$type = 'rich_text';
+									break;
 							}
-						} elseif ( $custom_listing_field->get_type() == 'number' ) {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'number' );
-						} elseif ( $custom_listing_field->get_type() == 'password' ) {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() )->set_attribute( 'type', 'password' );
-						} else {
-							$admin_fields[] = Field::make( $type, $custom_listing_field->get_object_meta_key(), $custom_listing_field->get_name() );
+
+							if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select', 'term-chain-dropdown' ] ) ) {
+								continue;
+							}
+
+							if ( $type == 'set' || $type == 'multiselect' ) {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->add_options( $custom_listing_field->getOptions() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
+							} elseif ( $type == 'select' || $type == 'radio' ) {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->add_options( $custom_listing_field->getOptions() );
+							} elseif ( $type == 'file' ) {
+								if ( $custom_listing_field->isMultiple() ) {
+									$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
+								} else {
+									$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
+								}
+							} elseif ( $custom_listing_field->getType() == 'number' ) {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_attribute( 'type', 'number' );
+							} elseif ( $custom_listing_field->getType() == 'password' ) {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_attribute( 'type', 'password' );
+							} else {
+								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
+							}
 						}
 					}
+
 				}
 
 				return $admin_fields;
