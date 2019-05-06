@@ -84,6 +84,12 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 				<?php endif; ?>
 
+				<?php if ( $field->getType() === 'file' && ! empty( $field->getMaxSize() ) ) : ?>
+					<small class="form-text text-muted">
+						<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $field->getMaxSize() ) ); ?>
+					</small>
+				<?php endif; ?>
+
 				<?php
 
 				// We move the position of the label only for some fields.

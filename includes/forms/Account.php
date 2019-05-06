@@ -136,6 +136,7 @@ class Account {
 	public function render() {
 
 		if ( is_user_logged_in() ) {
+
 			$this->form->prepareForView();
 
 			posterno()->templates
@@ -172,6 +173,9 @@ class Account {
 			$this->form->setFieldValues( $_POST );
 
 			if ( $this->form->isValid() ) {
+
+				print_r( $this->form->toArray() );
+				exit;
 
 				$user_id   = get_current_user_id();
 				$user_data = [
