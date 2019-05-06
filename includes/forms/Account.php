@@ -215,6 +215,27 @@ class Account {
 					throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
 				}
 
+				// Now update the custom fields that are not marked as default profile fields.
+				foreach ( $this->form->toArray() as $key => $value ) {
+					if ( ! empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
+
+						$field = $this->form->getField( $key );
+
+						if ( $field->getType() === 'file' ) {
+
+						} elseif ( $field->getType() === 'checkbox' ) {
+							if ( $value === '1' ) {
+								carbon_set_user_meta( $updated_user_id, $key, true );
+							}
+						} else {
+							carbon_set_user_meta( $updated_user_id, $key, $value );
+						}
+					} elseif ( empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
+						carbon_set_user_meta( $updated_user_id, $key, false );
+						delete_user_meta( $updated_user_id, '_' . $key );
+					}
+				}
+
 				/**
 				 * Action that fires after the user's account has been update,
 				 * all fields values have been processed and stored within the user's account.
