@@ -224,8 +224,10 @@ class Account {
 						if ( $field->getType() === 'file' ) {
 
 						} elseif ( $field->getType() === 'checkbox' ) {
-							if ( $value === '1' ) {
+							if ( $value === true ) {
 								carbon_set_user_meta( $updated_user_id, $key, true );
+							} else {
+								delete_user_meta( $updated_user_id, '_' . $key );
 							}
 						} else {
 							carbon_set_user_meta( $updated_user_id, $key, $value );
