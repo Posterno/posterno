@@ -435,11 +435,14 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 					'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
 				];
 
-				if ( $field->getType() === 'multicheckbox' ) {
+				if ( $field->getType() === 'multicheckbox' || $field->getType() === 'radio' ) {
 					unset( $attributes['class'] );
 				}
 				if ( $field->getType() === 'multiselect' ) {
 					$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
+				}
+				if ( $field->getType() === 'textarea' ) {
+					$attributes['rows'] = 3;
 				}
 
 				$fields[ $field->getObjectMetaKey() ] = [
