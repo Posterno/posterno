@@ -538,10 +538,9 @@ function pno_get_form_field_class( $field, $class = '' ) {
 	$classes[] = 'pno-field-' . $field->getType();
 	$classes[] = 'form-group';
 
-	/*
 	if ( $field->getType() === 'checkbox' ) {
 		$classes[] = 'custom-control custom-checkbox';
-	} */
+	}
 
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );
