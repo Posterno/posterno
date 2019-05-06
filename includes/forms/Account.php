@@ -173,9 +173,66 @@ class Account {
 
 			if ( $this->form->isValid() ) {
 
-				print_r( $this->form->toArray() );
-				exit;
+				$user_id   = get_current_user_id();
+				$user_data = [
+					'ID' => $user_id,
+				];
 
+				/**
+				 * Allow developers to customize the form data processed
+				 * before the user's account is updated.
+				 *
+				 * @param object $form the forms class.
+				 * @param string $user_id the current user's id.
+				 */
+				do_action( 'pno_before_user_update', $this->form, $user_id );
+
+				// Update first name and last name.
+				if ( $this->form->getFieldValue( 'first_name' ) ) {
+					$user_data['first_name'] = $this->form->getFieldValue( 'first_name' );
+				}
+				if ( $this->form->getFieldValue( 'last_name' ) ) {
+					$user_data['last_name'] = $this->form->getFieldValue( 'last_name' );
+				}
+
+				// Update email address.
+				if ( $this->form->getFieldValue( 'email' ) ) {
+					$user_data['user_email'] = $this->form->getFieldValue( 'email' );
+				}
+
+				// Update website.
+				if ( $this->form->getFieldValue( 'website' ) ) {
+					$user_data['user_url'] = $this->form->getFieldValue( 'website' );
+				}
+
+				if ( $this->form->getFieldValue( 'description' ) ) {
+					$user_data['description'] = $this->form->getFieldValue( 'description' );
+				}
+
+				$updated_user_id = wp_update_user( $user_data );
+
+				if ( is_wp_error( $updated_user_id ) ) {
+					throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
+				}
+
+				/**
+				 * Action that fires after the user's account has been update,
+				 * all fields values have been processed and stored within the user's account.
+				 *
+				 * @param object $form the form's object.
+				 * @param string $user_id the current user's id being processed.
+				 */
+				do_action( 'pno_after_user_update', $this->form, $updated_user_id );
+
+				/**
+				 * Allow developers to customize the message displayed after successfull account update.
+				 *
+				 * @param string $message the message that appears after account update.
+				 */
+				$message = apply_filters( 'pno_account_updated_message', esc_html__( 'Account details successfully updated.', 'posterno' ) );
+
+				$this->form->setSuccessMessage( $message );
+				return;
 			}
 		} catch ( Exception $e ) {
 			$this->form->setProcessingError( $e->getMessage(), $e->getErrorCode() );
