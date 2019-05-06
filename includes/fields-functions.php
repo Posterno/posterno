@@ -438,6 +438,9 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				if ( $field->getType() === 'multicheckbox' ) {
 					unset( $attributes['class'] );
 				}
+				if ( $field->getType() === 'multiselect' ) {
+					$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
+				}
 
 				$fields[ $field->getObjectMetaKey() ] = [
 					'label'      => $field->getTitle(),
