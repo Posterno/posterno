@@ -87,7 +87,7 @@ defined( 'ABSPATH' ) || exit;
 				<?php
 
 				// We move the position of the label only for some fields.
-				if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkboxx' ) :
+				if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
 					?>
 					<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-control-label"><?php echo wp_kses_post( $field->getLabel() ); ?></label>
 				<?php endif; ?>
