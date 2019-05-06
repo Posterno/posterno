@@ -430,6 +430,15 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				}
 
 				// The field does not exist so we now add it to the list of fields.
+				$attributes = [
+					'class'       => 'form-control',
+					'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
+				];
+
+				if ( $field->getType() === 'multicheckbox' ) {
+					unset( $attributes['class'] );
+				}
+
 				$fields[ $field->getObjectMetaKey() ] = [
 					'label'      => $field->getTitle(),
 					'type'       => $field->getType(),
@@ -437,10 +446,7 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 					'readonly'   => $field->isReadOnly(),
 					'required'   => $field->isRequired(),
 					'priority'   => $field->getPriority(),
-					'attributes' => [
-						'class'       => 'form-control',
-						'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
-					],
+					'attributes' => $attributes,
 				];
 
 				if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
@@ -526,9 +532,10 @@ function pno_get_form_field_class( $field, $class = '' ) {
 	$classes[] = 'pno-field-' . $field->getType();
 	$classes[] = 'form-group';
 
+	/*
 	if ( $field->getType() === 'checkbox' ) {
 		$classes[] = 'custom-control custom-checkbox';
-	}
+	} */
 
 	if ( isset( $class ) && ! empty( $class ) ) {
 		$classes[] = esc_attr( $class );
