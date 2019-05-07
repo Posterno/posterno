@@ -235,7 +235,7 @@ class Account {
 					}
 					$newValue    = isset( $avatar['url'] ) ? esc_url_raw( $avatar['url'] ) : $currently_uploaded_file;
 					$avatarField = $this->form->getField( 'avatar' );
-					$avatarField->setValue( $newValue );
+					$avatarField->setValue( wp_json_encode( $newValue ) );
 				}
 
 				// Now update the custom fields that are not marked as default profile fields.

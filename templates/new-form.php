@@ -97,28 +97,30 @@ defined( 'ABSPATH' ) || exit;
 
 					$files = json_decode( $field->getValue(), true );
 
-					if ( $field->isMultiple() ) {
-						foreach ( $files as $file ) {
+					if ( ! empty( $files ) ) {
+						if ( $field->isMultiple() && is_array( $files ) ) {
+							foreach ( $files as $file ) {
+								posterno()->templates
+									->set_template_data(
+										[
+											'key'   => $field->getName(),
+											'name'  => 'current_' . $field->getName() . '[]',
+											'value' => $file,
+										]
+									)
+									->get_template_part( 'form-fields/file', 'uploaded' );
+							}
+						} else {
 							posterno()->templates
 								->set_template_data(
 									[
 										'key'   => $field->getName(),
-										'name'  => 'current_' . $field->getName() . '[]',
-										'value' => $file,
+										'name'  => 'current_' . $field->getName(),
+										'value' => $files,
 									]
 								)
 								->get_template_part( 'form-fields/file', 'uploaded' );
 						}
-					} else {
-						posterno()->templates
-							->set_template_data(
-								[
-									'key'   => $field->getName(),
-									'name'  => 'current_' . $field->getName() . '[]',
-									'value' => $files,
-								]
-							)
-							->get_template_part( 'form-fields/file', 'uploaded' );
 					}
 				}
 
