@@ -92,6 +92,36 @@ defined( 'ABSPATH' ) || exit;
 
 				<?php
 
+				// Display files remover for file fields.
+				if ( $field->getType() === 'file' && ! empty( $field->getValue() ) ) {
+
+					$files = json_decode( $field->getValue(), true );
+
+					if ( $field->isMultiple() ) {
+						foreach ( $files as $file ) {
+							posterno()->templates
+								->set_template_data(
+									[
+										'key'   => $field->getName(),
+										'name'  => 'current_' . $field->getName() . '[]',
+										'value' => $file,
+									]
+								)
+								->get_template_part( 'form-fields/file', 'uploaded' );
+						}
+					} else {
+						posterno()->templates
+							->set_template_data(
+								[
+									'key'   => $field->getName(),
+									'name'  => 'current_' . $field->getName() . '[]',
+									'value' => $files,
+								]
+							)
+							->get_template_part( 'form-fields/file', 'uploaded' );
+					}
+				}
+
 				// We move the position of the label only for some fields.
 				if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
 					?>
