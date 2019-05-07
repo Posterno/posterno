@@ -174,9 +174,6 @@ class Account {
 
 			if ( $this->form->isValid() ) {
 
-				print_r( $this->form->toArray() );
-				exit;
-
 				$user_id   = get_current_user_id();
 				$user_data = [
 					'ID' => $user_id,
@@ -219,12 +216,34 @@ class Account {
 					throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
 				}
 
+				// Update the avatar.
+				if ( pno_get_option( 'allow_avatars' ) ) {
+					$avatar                    = $this->form->getFieldValue( 'avatar' );
+					$currently_uploaded_file   = isset( $_POST['current_avatar'] ) && ! empty( $_POST['current_avatar'] ) ? esc_url_raw( $_POST['current_avatar'] ) : false;
+					$existing_avatar_file_path = get_user_meta( $updated_user_id, 'current_user_avatar_path', true );
+					if ( $currently_uploaded_file && $existing_avatar_file_path && isset( $avatar['url'] ) && $avatar['url'] !== $currently_uploaded_file ) {
+						wp_delete_file( $existing_avatar_file_path );
+					}
+					if ( isset( $avatar['url'] ) && $currently_uploaded_file !== $avatar['url'] ) {
+						carbon_set_user_meta( $updated_user_id, 'current_user_avatar', $avatar['url'] );
+						update_user_meta( $updated_user_id, 'current_user_avatar_path', $avatar['path'] );
+					}
+					if ( ! $currently_uploaded_file && file_exists( $existing_avatar_file_path ) ) {
+						wp_delete_file( $existing_avatar_file_path );
+						carbon_set_user_meta( $updated_user_id, 'current_user_avatar', false );
+						delete_user_meta( $updated_user_id, 'current_user_avatar_path' );
+					}
+					$newValue    = isset( $avatar['url'] ) ? esc_url_raw( $avatar['url'] ) : $currently_uploaded_file;
+					$avatarField = $this->form->getField( 'avatar' );
+					$avatarField->setValue( $newValue );
+				}
+
 				// Now update the custom fields that are not marked as default profile fields.
 				foreach ( $this->form->toArray() as $key => $value ) {
+
+					$field = $this->form->getField( $key );
+
 					if ( ! empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
-
-						$field = $this->form->getField( $key );
-
 						if ( $field->getType() === 'file' ) {
 
 						} elseif ( $field->getType() === 'checkbox' ) {
@@ -237,7 +256,8 @@ class Account {
 							carbon_set_user_meta( $updated_user_id, $key, $value );
 						}
 					} elseif ( empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
-						carbon_set_user_meta( $updated_user_id, $key, false );
+						$fakeValue = $field->isMultiple() ? [] : false;
+						carbon_set_user_meta( $updated_user_id, $key, $fakeValue );
 						delete_user_meta( $updated_user_id, '_' . $key );
 					}
 				}
