@@ -799,68 +799,68 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 			$field = $listing_field;
 
-			if ( $field instanceof PNO\Field\Listing && ! empty( $field->get_object_meta_key() ) ) {
+			if ( $field instanceof \PNO\Entities\Field\Listing && ! empty( $field->getObjectMetaKey() ) ) {
 
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
-				if ( pno_is_default_field( $field->get_object_meta_key() ) ) {
+				if ( pno_is_default_field( $field->getObjectMetaKey() ) ) {
 
-					if ( $field->is_admin_only() === true && ! in_array( $field->get_object_meta_key(), [ 'listing_title' ] ) ) {
-						unset( $fields[ $field->get_object_meta_key() ] );
+					if ( $field->isAdminOnly() === true && ! in_array( $field->getObjectMetaKey(), [ 'listing_title' ] ) ) {
+						unset( $fields[ $field->getObjectMetaKey() ] );
 						continue;
 					}
 
-					$fields[ $field->get_object_meta_key() ]['label']       = $field->get_label();
-					$fields[ $field->get_object_meta_key() ]['description'] = $field->get_description();
-					$fields[ $field->get_object_meta_key() ]['placeholder'] = $field->get_placeholder();
-					$fields[ $field->get_object_meta_key() ]['readonly']    = $field->is_readonly();
+					$fields[ $field->getObjectMetaKey() ]['label']       = $field->getLabel();
+					$fields[ $field->getObjectMetaKey() ]['description'] = $field->getDescription();
+					$fields[ $field->getObjectMetaKey() ]['placeholder'] = $field->getPlaceholder();
+					$fields[ $field->getObjectMetaKey() ]['readonly']    = $field->isReadOnly();
 
-					if ( $field->get_object_meta_key() !== 'listing_title' ) {
-						$fields[ $field->get_object_meta_key() ]['required'] = $field->is_required();
+					if ( $field->getObjectMetaKey() !== 'listing_title' ) {
+						$fields[ $field->getObjectMetaKey() ]['required'] = $field->isRequired();
 					}
 				} else {
 
-					if ( $field->is_admin_only() === true ) {
+					if ( $field->isAdminOnly() === true ) {
 						continue;
 					}
 
 					// The field does not exist so we now add it to the list of fields.
-					$fields[ $field->get_object_meta_key() ] = [
-						'label'       => $field->get_label(),
-						'type'        => $field->get_type(),
-						'description' => $field->get_description(),
-						'placeholder' => $field->get_placeholder(),
-						'readonly'    => $field->is_readonly(),
-						'required'    => $field->is_required(),
-						'priority'    => $field->get_priority(),
+					$fields[ $field->getObjectMetaKey() ] = [
+						'label'       => $field->getLabel(),
+						'type'        => $field->getType(),
+						'description' => $field->getDescription(),
+						'placeholder' => $field->getPlaceholder(),
+						'readonly'    => $field->isReadOnly(),
+						'required'    => $field->isRequired(),
+						'priority'    => $field->getPriority(),
 					];
 
-					if ( in_array( $field->get_type(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->get_object_meta_key() ]['options'] = $field->get_options();
+					if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
+						$fields[ $field->getObjectMetaKey() ]['options'] = $field->getOptions();
 					}
 
-					if ( in_array( $field->get_type(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) && ! empty( $field->get_taxonomy() ) ) {
-						$fields[ $field->get_object_meta_key() ]['taxonomy'] = $field->get_taxonomy();
+					if ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) && ! empty( $field->getTaxonomy() ) ) {
+						$fields[ $field->getObjectMetaKey() ]['taxonomy'] = $field->getTaxonomy();
 					}
 				}
 
-				if ( $field->get_priority() ) {
-					$fields[ $field->get_object_meta_key() ]['priority'] = $field->get_priority();
+				if ( $field->getPriority() ) {
+					$fields[ $field->getObjectMetaKey() ]['priority'] = $field->getPriority();
 				}
 
-				if ( $field->get_type() === 'file' && ! empty( $field->get_allowed_mime_types() ) ) {
-					$fields[ $field->get_object_meta_key() ]['allowed_mime_types'] = $field->get_allowed_mime_types();
+				if ( $field->getType() === 'file' && ! empty( $field->getAllowedMimeTypes() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['allowed_mime_types'] = $field->getAllowedMimeTypes();
 				}
 
-				if ( $field->get_type() == 'file' && ! empty( $field->get_maxsize() ) ) {
-					$fields[ $field->get_object_meta_key() ]['max_size'] = $field->get_maxsize();
+				if ( $field->getType() == 'file' && ! empty( $field->getMaxSize() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['max_size'] = $field->getMaxSize();
 				}
 
-				$fields[ $field->get_object_meta_key() ]['multiple'] = $field->is_multiple();
+				$fields[ $field->getObjectMetaKey() ]['multiple'] = $field->isMultiple();
 
-				if ( $field->get_type() === 'term-chain-dropdown' ) {
-					$fields[ $field->get_object_meta_key() ]['disable_branch_nodes'] = $field->is_branch_nodes_disabled();
-				}
+				//if ( $field->getType() === 'term-chain-dropdown' ) {
+				//	$fields[ $field->getObjectMetaKey() ]['disable_branch_nodes'] = $field->is_branch_nodes_disabled();
+				//}
 			}
 		}
 	}

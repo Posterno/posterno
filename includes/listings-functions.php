@@ -1239,13 +1239,13 @@ function pno_get_public_listings_fields() {
 
 	if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 		foreach ( $listing_fields->items as $field ) {
-			$fields[ $field->get_object_meta_key() ] = [
-				'name'     => $field->get_name(),
-				'priority' => $field->get_priority(),
-				'meta_key' => $field->get_object_meta_key(),
-				'type'     => $field->get_type(),
-				'options'  => $field->get_options(),
-				'taxonomy' => $field->get_taxonomy(),
+			$fields[ $field->getObjectMetaKey() ] = [
+				'name'     => $field->getTitle(),
+				'priority' => $field->getPriority(),
+				'meta_key' => $field->getObjectMetaKey(),
+				'type'     => $field->getType(),
+				'options'  => $field->getOptions(),
+				'taxonomy' => $field->getTaxonomy(),
 			];
 		}
 	}

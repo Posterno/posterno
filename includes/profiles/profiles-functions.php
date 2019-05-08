@@ -303,12 +303,12 @@ function pno_get_public_profile_fields() {
 
 	if ( ! empty( $profile_fields ) && isset( $profile_fields->items ) && is_array( $profile_fields->items ) ) {
 		foreach ( $profile_fields->items as $field ) {
-			$fields[ $field->get_object_meta_key() ] = [
-				'name'     => $field->get_name(),
-				'priority' => $field->get_priority(),
-				'meta_key' => $field->get_object_meta_key(),
-				'type'     => $field->get_type(),
-				'options'  => $field->get_options(),
+			$fields[ $field->getObjectMetaKey() ] = [
+				'name'     => $field->getTitle(),
+				'priority' => $field->getPriority(),
+				'meta_key' => $field->getObjectMetaKey(),
+				'type'     => $field->getType(),
+				'options'  => $field->getOptions(),
 			];
 		}
 	}
