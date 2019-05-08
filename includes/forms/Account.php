@@ -235,15 +235,16 @@ class Account {
 					}
 					$newValue    = isset( $avatar['url'] ) ? esc_url_raw( $avatar['url'] ) : $currently_uploaded_file;
 					$avatarField = $this->form->getField( 'avatar' );
-					$avatarField->setValue( wp_json_encode( $newValue ) );
+					$avatarField->setValue( $newValue );
 				}
 
 				// Now update the custom fields that are not marked as default profile fields.
 				foreach ( $this->form->toArray() as $key => $value ) {
 
-					$field = $this->form->getField( $key );
+					if ( ! pno_is_default_field( $key ) ) {
 
-					if ( ! empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
+						$field = $this->form->getField( $key );
+
 						if ( $field->getType() === 'file' ) {
 
 							$is_multiple = $field->isMultiple();
@@ -294,8 +295,9 @@ class Account {
 
 								carbon_set_user_meta( $updated_user_id, $key, $current_attachments );
 
-							} else {
+								$field->setValue( maybe_serialize( $current_attachments ) );
 
+							} else {
 								$currently_uploaded_file = isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) ? esc_url_raw( $_POST[ "current_{$key}" ] ) : false;
 								$existing_file_path      = get_user_meta( $updated_user_id, "current_{$key}", true );
 
@@ -312,21 +314,31 @@ class Account {
 								if ( ! empty( $values['url'] ) && ! empty( $values['path'] ) ) {
 									carbon_set_user_meta( $updated_user_id, $key, $values['url'] );
 									update_user_meta( $updated_user_id, "current_{$key}", $values['path'] );
+									$field->setValue( $values['url'] );
+								} elseif ( ! empty( $currently_uploaded_file ) ) {
+									$field->setValue( $currently_uploaded_file );
 								}
 							}
-						} elseif ( $field->getType() === 'checkbox' ) {
-							if ( $value === true ) {
-								carbon_set_user_meta( $updated_user_id, $key, true );
-							} else {
-								delete_user_meta( $updated_user_id, '_' . $key );
-							}
 						} else {
-							carbon_set_user_meta( $updated_user_id, $key, $value );
+
+							if ( ! empty( $this->form->getFieldValue( $key ) ) ) {
+
+								if ( $field->getType() === 'checkbox' ) {
+									if ( $value === true ) {
+										carbon_set_user_meta( $updated_user_id, $key, true );
+									}
+								} else {
+									carbon_set_user_meta( $updated_user_id, $key, $value );
+								}
+
+							} elseif ( empty( $this->form->getFieldValue( $key ) ) ) {
+
+								$fakeValue = $field->isMultiple() ? [] : false;
+								carbon_set_user_meta( $updated_user_id, $key, $fakeValue );
+								delete_user_meta( $updated_user_id, '_' . $key );
+
+							}
 						}
-					} elseif ( empty( $this->form->getFieldValue( $key ) ) && ! pno_is_default_field( $key ) ) {
-						$fakeValue = $field->isMultiple() ? [] : false;
-						carbon_set_user_meta( $updated_user_id, $key, $fakeValue );
-						delete_user_meta( $updated_user_id, '_' . $key );
 					}
 				}
 

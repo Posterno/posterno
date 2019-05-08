@@ -95,7 +95,7 @@ defined( 'ABSPATH' ) || exit;
 				// Display files remover for file fields.
 				if ( $field->getType() === 'file' && ! empty( $field->getValue() ) ) {
 
-					$files = json_decode( $field->getValue(), true );
+					$files = $field->getValue();
 
 					if ( ! empty( $files ) ) {
 						if ( $field->isMultiple() && is_array( $files ) ) {
