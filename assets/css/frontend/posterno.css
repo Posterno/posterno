@@ -918,7 +918,7 @@ form.pno-form-has-errors .field-has-errors {
   height: 300px; }
 
 .pno-uploaded-files-list {
-  margin: 0 0 1em 0; }
+  margin: 1em 0 0 0; }
   .pno-uploaded-files-list img {
     height: 70px; }
 
