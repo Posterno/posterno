@@ -117,12 +117,12 @@ function pno_prefill_listings_contact_form( $fields ) {
 		$name  = pno_get_user_fullname( $user_id );
 		$email = pno_get_user_email( $user_id );
 
-		if ( isset( $fields['contact']['name'] ) ) {
-			$fields['contact']['name']['value'] = esc_html( $name );
+		if ( isset( $fields['name'] ) ) {
+			$fields['name']['value'] = esc_html( $name );
 		}
 
-		if ( isset( $fields['contact']['email'] ) ) {
-			$fields['contact']['email']['value'] = sanitize_email( $email );
+		if ( isset( $fields['email'] ) ) {
+			$fields['email']['value'] = sanitize_email( $email );
 		}
 	}
 

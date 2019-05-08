@@ -36,7 +36,8 @@ if ( $login_required && ! is_user_logged_in() ) {
 
 } else {
 
-	echo posterno()->forms->get_form( 'listing-contact' );
+	//phpcs:ignore
+	echo posterno()->forms->get_form( 'listingContact' );
 
 }
 
