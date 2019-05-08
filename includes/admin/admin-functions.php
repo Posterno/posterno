@@ -598,7 +598,7 @@ function pno_get_profile_fields_for_widget_association() {
 
 			if ( ! empty( $profile_fields ) && isset( $profile_fields->items ) && is_array( $profile_fields->items ) ) {
 				foreach ( $profile_fields->items as $field ) {
-					$found_fields[ $field->get_object_meta_key() ] = $field->get_name();
+					$found_fields[ $field->getObjectMetaKey() ] = $field->getTitle();
 				}
 			}
 
@@ -658,11 +658,11 @@ function pno_get_listings_fields_for_widget_association() {
 			if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 				foreach ( $listing_fields->items as $field ) {
 
-					if ( ! empty( $field->get_taxonomy() ) ) {
+					if ( ! empty( $field->getTaxonomy() ) ) {
 						continue;
 					}
 
-					$found_fields[ $field->get_object_meta_key() ] = $field->get_name();
+					$found_fields[ $field->getObjectMetaKey() ] = $field->getTitle();
 				}
 			}
 
