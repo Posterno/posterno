@@ -441,6 +441,9 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				if ( $field->getType() === 'checkbox' ) {
 					$attributes['class'] = 'custom-control-input';
 				}
+				if ( $field->getType() === 'select' ) {
+					$attributes['class'] = 'custom-select';
+				}
 				if ( $field->getType() === 'multiselect' ) {
 					$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
 				}
