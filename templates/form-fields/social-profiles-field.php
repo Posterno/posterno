@@ -52,7 +52,6 @@ $registered_networks = pno_get_registered_social_media();
 						<input
 							type="text"
 							class="form-control"
-							<?php echo $data->get_attributes(); //phpcs:ignore ?>
 							v-model="definedSocialProfiles[index].url"
 						>
 						<div class="input-group-append" v-if="index > 0">
@@ -72,10 +71,9 @@ $registered_networks = pno_get_registered_social_media();
 
 			<input
 				type="hidden"
-				<?php pno_form_field_input_class( $data ); ?>
-				name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-				id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-				value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+				name="<?php echo esc_attr( $data->field->getName() ); ?>"
+				id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
+				value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
 			>
 		</div>
 	</pno-social-profile-field>

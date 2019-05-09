@@ -730,14 +730,14 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				'class' => 'form-control',
 			],
 		],
-	/*	'listing_social_media_profiles' => [
+		'listing_social_media_profiles' => [
 			'label'         => esc_html__( 'Social media profiles', 'posterno' ),
 			'type'          => 'social-profiles',
 			'required'      => false,
 			'priority'      => 7,
 			'default_field' => true,
 		],
-		'listing_categories'            => [
+	/*	'listing_categories'            => [
 			'label'         => esc_html__( 'Listing category', 'posterno' ),
 			'type'          => 'listing-category',
 			'taxonomy'      => 'listings-categories',
