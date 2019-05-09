@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cb63b00ff3043099642210dd4eb5db6",
+    "content-hash": "8e4917397be439165ffaad0eda96e243",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -906,6 +906,52 @@
             }
         },
         {
+            "name": "posterno/posterno-submission-scripts",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-submission-scripts",
+                "reference": "55b1bd6dba5635d1ec84f5311bf60f0d592f448f",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "files": [
+                    "scripts-loader.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Collection of all the scripts used within the fronted listing submission form.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "posterno/posterno-third-party",
             "version": "dev-master",
             "dist": {
@@ -1273,7 +1319,8 @@
         "posterno/posterno-validator": 20,
         "posterno/posterno-forms": 20,
         "posterno/posterno-dom": 20,
-        "posterno/posterno-entities": 20
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-submission-scripts": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

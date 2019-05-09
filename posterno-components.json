@@ -7,6 +7,7 @@
     "posterno/posterno-entities",
     "posterno/posterno-forms",
     "posterno/posterno-validator",
-    "posterno/posterno-dom"
+    "posterno/posterno-dom",
+    "posterno/posterno-submission-scripts"
   ]
 }

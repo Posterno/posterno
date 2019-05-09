@@ -14,7 +14,8 @@
     "posterno/posterno-validator": "@dev",
     "posterno/posterno-forms": "@dev",
     "posterno/posterno-dom": "@dev",
-    "posterno/posterno-entities": "@dev"
+    "posterno/posterno-entities": "@dev",
+    "posterno/posterno-submission-scripts": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
@@ -72,6 +73,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../posterno-submission-scripts",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "extra": {
@@ -87,7 +95,8 @@
         "posterno/posterno-forms",
         "posterno/posterno-validator",
         "posterno/posterno-entities",
-        "posterno/posterno-dom"
+        "posterno/posterno-dom",
+        "posterno/posterno-submission-scripts"
       ]
     }
   }
