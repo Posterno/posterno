@@ -265,7 +265,7 @@ function pno_listing_submission_form() {
 	} else {
 
 		//phpcs:ignore
-		echo posterno()->forms->get_form( 'listing-submission' );
+		echo posterno()->forms->get_form( 'listingSubmission' );
 
 	}
 
