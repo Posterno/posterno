@@ -718,3 +718,21 @@ function pno_ends_with( $haystack, $needle ) {
 	}
 	return ( substr( $haystack, -$length ) === $needle );
 }
+
+/**
+ * Find the adjacent array key in an array.
+ *
+ * @param string $key the current key.
+ * @param array  $hash the full array.
+ * @param int    $increment +1 or -1 for next or prev.
+ * @return mixed
+ */
+function pno_get_adjacent_array_key( $key, $hash = array(), $increment ) {
+	$keys        = array_keys( $hash );
+	$found_index = array_search( $key, $keys );
+	if ( $found_index === false ) {
+		return false;
+	}
+	$newindex = $found_index + $increment;
+	return ( $newindex > 0 && $newindex < count( $hash ) ) ? $keys[ $newindex ] : false;
+}

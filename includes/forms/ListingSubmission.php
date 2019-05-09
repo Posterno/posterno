@@ -37,6 +37,20 @@ class ListingSubmission {
 	public $form_name = 'listingSubmission';
 
 	/**
+	 * List of steps for the submission.
+	 *
+	 * @var array
+	 */
+	public $steps = [];
+
+	/**
+	 * Currently active step for the submission.
+	 *
+	 * @var string
+	 */
+	public $currentStep = null;
+
+	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
@@ -60,7 +74,9 @@ class ListingSubmission {
 	 * Get things started.
 	 */
 	public function __construct() {
-		$this->form = Form::createFromConfig( $this->getFields() );
+		$this->form        = Form::createFromConfig( $this->getFields() );
+		$this->steps       = $this->getSteps();
+		$this->currentStep = $this->getCurrentlyActiveStep();
 		$this->init();
 	}
 
@@ -80,6 +96,68 @@ class ListingSubmission {
 	 */
 	public function hook() {
 		add_action( 'wp_loaded', [ $this, 'process' ] );
+		add_action( 'pno_listing_submission_form_step_listing-type', [ $this, 'selectListingType' ] );
+	}
+
+	/**
+	 * Retrieve the list of steps defined for the submission form.
+	 *
+	 * @return array
+	 */
+	public function getSteps() {
+
+		$steps = [
+			'listing-type'    => [
+				'name'     => esc_html__( 'Select a listing type', 'posterno' ),
+				'priority' => 1,
+			],
+			'listing-details' => [
+				'name'     => esc_html__( 'Listing details', 'posterno' ),
+				'priority' => 2,
+			],
+		];
+
+		/**
+		 * Filter: allows customization of the steps for the listing submission form.
+		 *
+		 * @param array $steps the list of steps.
+		 * @return array
+		 */
+		$steps = apply_filters( 'pno_listing_submission_form_steps', $steps );
+
+		uasort( $steps, 'pno_sort_array_by_priority' );
+
+		return $steps;
+
+	}
+
+	/**
+	 * Retrieve the currently active step.
+	 *
+	 * @return string
+	 */
+	public function getCurrentlyActiveStep() {
+
+		$step  = false;
+		$steps = $this->getSteps();
+
+		if ( is_page( pno_get_listing_submission_page_id() ) && isset( $_GET['submission_step'] ) && ! empty( $_GET['submission_step'] ) ) {
+			$step = sanitize_text_field( $_GET['submission_step'] );
+		} else {
+			$step = key( $steps );
+		}
+
+		return $step;
+
+	}
+
+	/**
+	 * Get the next available step.
+	 *
+	 * @return string|boolean
+	 */
+	public function getNextStep() {
+		return pno_get_adjacent_array_key( $this->getCurrentlyActiveStep(), $this->getSteps(), +1 );
 	}
 
 	/**
@@ -88,6 +166,11 @@ class ListingSubmission {
 	 * @return array
 	 */
 	protected function getFields() {
+
+		// Prevent extra queries when not needed.
+		if ( $this->getCurrentlyActiveStep() !== 'listing-details' ) {
+			return [];
+		}
 
 		$necessaryFields = [
 			/**
@@ -129,24 +212,55 @@ class ListingSubmission {
 	}
 
 	/**
+	 * Displays the content for the listing type selection step.
+	 *
+	 * @return void
+	 */
+	public function selectListingType() {
+
+		posterno()->templates
+			->set_template_data(
+				[
+					'action' => $this->form->getAction(),
+					'step'   => $this->getNextStep(),
+					'title'  => $this->steps[ $this->getCurrentlyActiveStep() ]['name'],
+				]
+			)
+			->get_template_part( 'forms/listing-type-selection' );
+
+	}
+
+	/**
 	 * Render the form.
 	 *
 	 * @return void
 	 */
 	public function render() {
 
-		$this->form->prepareForView();
+		if ( $this->getCurrentlyActiveStep() === 'listing-details' ) {
 
-		posterno()->templates
-			->set_template_data(
-				[
-					'form'      => $this->form,
-					'form_name' => $this->form_name,
-					'title' => esc_html__( 'Listing details', 'posterno' ),
-				]
-			)
-			->get_template_part( 'new-form' );
+			$this->form->prepareForView();
 
+			posterno()->templates
+				->set_template_data(
+					[
+						'form'      => $this->form,
+						'form_name' => $this->form_name,
+						'title'     => esc_html__( 'Listing details', 'posterno' ),
+					]
+				)
+				->get_template_part( 'new-form' );
+
+		} else {
+
+			$step = $this->getCurrentlyActiveStep();
+
+			/**
+			 * Hook: allow developers to display the content of custom listing submission steps.
+			 */
+			do_action( "pno_listing_submission_form_step_{$step}" );
+
+		}
 	}
 
 	/**

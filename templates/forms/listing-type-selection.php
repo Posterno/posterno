@@ -45,12 +45,9 @@ defined( 'ABSPATH' ) || exit;
 						</div>
 					<?php endif; ?>
 					<h5 class="card-title mt-3 mb-3"><?php echo esc_html( $type_name ); ?></h5>
-					<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data">
+					<form action="<?php echo esc_url( $data->action ); ?>" method="get" enctype="multipart/form-data">
 						<input type="hidden" name="listing_type_id" value="<?php echo absint( $type_id ); ?>">
-						<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>" />
-						<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-						<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
-						<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
+						<input type="hidden" name="submission_step" value="<?php echo esc_attr( $data->step ); ?>" />
 						<button type="submit" class="btn btn-primary mb-3">
 							<?php echo esc_html__( 'Select &rarr;', 'posterno' ); ?>
 						</button>
