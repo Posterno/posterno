@@ -676,6 +676,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 1,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_description'           => [
 			'label'         => esc_html__( 'Description', 'posterno' ),
@@ -683,6 +686,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 2,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_email_address'         => [
 			'label'         => esc_html__( 'Email address', 'posterno' ),
@@ -690,6 +696,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 3,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_phone_number'          => [
 			'label'         => esc_html__( 'Phone number', 'posterno' ),
@@ -697,6 +706,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 4,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_website'               => [
 			'label'         => esc_html__( 'Website', 'posterno' ),
@@ -704,6 +716,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 5,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_video'                 => [
 			'label'         => esc_html__( 'Video', 'posterno' ),
@@ -711,8 +726,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 6,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
-		'listing_social_media_profiles' => [
+	/*	'listing_social_media_profiles' => [
 			'label'         => esc_html__( 'Social media profiles', 'posterno' ),
 			'type'          => 'social-profiles',
 			'required'      => false,
@@ -750,13 +768,16 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 11,
 			'default_field' => true,
-		],
+		], */
 		'listing_featured_image'        => [
 			'label'         => esc_html__( 'Featured image', 'posterno' ),
 			'type'          => 'file',
 			'required'      => true,
 			'priority'      => 12,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_gallery'               => [
 			'label'         => esc_html__( 'Gallery images', 'posterno' ),
@@ -765,6 +786,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 13,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
 		'listing_zipcode'               => [
 			'label'         => esc_html__( 'Zipcode', 'posterno' ),
@@ -772,14 +796,17 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => false,
 			'priority'      => 14,
 			'default_field' => true,
+			'attributes'    => [
+				'class' => 'form-control',
+			],
 		],
-		'listing_location'              => [
+		/*'listing_location'              => [
 			'label'         => esc_html__( 'Location', 'posterno' ),
 			'type'          => 'listing-location',
 			'required'      => false,
 			'priority'      => 15,
 			'default_field' => true,
-		],
+		],*/
 	];
 
 	$counter = 0;
@@ -791,7 +818,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 	}
 
 	// Load fields from the database and merge it with the default settings.
-	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
+/*	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 
@@ -863,7 +890,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				//}
 			}
 		}
-	}
+	} */
 
 	// Load listings related values within the fields.
 	if ( $listing_id ) {
@@ -937,14 +964,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			}
 		}
 	}
-
-	/**
-	 * Allow developers to customize the listings submission form fields.
-	 *
-	 * @param array $fields the list of fields.
-	 * @return array $fields
-	 */
-	$fields = apply_filters( 'pno_listing_submission_fields', $fields, $listing_id );
 
 	uasort( $fields, 'pno_sort_array_by_priority' );
 

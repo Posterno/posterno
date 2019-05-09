@@ -51,6 +51,13 @@ class ListingSubmission {
 	public $currentStep = null;
 
 	/**
+	 * ID number of the selected listing type, if any.
+	 *
+	 * @var integer|boolean
+	 */
+	public $listingType = false;
+
+	/**
 	 * Stores static instance of class.
 	 *
 	 * @access protected
@@ -77,6 +84,7 @@ class ListingSubmission {
 		$this->form        = Form::createFromConfig( $this->getFields() );
 		$this->steps       = $this->getSteps();
 		$this->currentStep = $this->getCurrentlyActiveStep();
+		$this->listingType = $this->setListingType();
 		$this->init();
 	}
 
@@ -161,6 +169,24 @@ class ListingSubmission {
 	}
 
 	/**
+	 * Set a listing type id for the current submisison.
+	 *
+	 * @return void
+	 */
+	public function setListingType() {
+		$this->listingType = isset( $_GET['listing_type_id'] ) && ! empty( $_GET['listing_type_id'] ) ? absint( $_GET['listing_type_id'] ) : false;
+	}
+
+	/**
+	 * Get the currently set listing type id number.
+	 *
+	 * @return string|int|boolean
+	 */
+	public function getListingType() {
+		return absint( $this->listingType );
+	}
+
+	/**
 	 * Get fields for the form.
 	 *
 	 * @return array
@@ -183,7 +209,7 @@ class ListingSubmission {
 				'attributes' => [
 					'class' => 'form-control',
 				],
-				'priority'   => 4,
+				'priority'   => 99,
 			],
 			'submit'      => [
 				'type'       => 'button',
@@ -195,7 +221,7 @@ class ListingSubmission {
 			],
 		];
 
-		$fields = array_merge( [], $necessaryFields );
+		$fields = array_merge( pno_get_listing_submission_fields(), $necessaryFields );
 
 		/**
 		 * Filter: allows customization of the fields for the listing submission form.
