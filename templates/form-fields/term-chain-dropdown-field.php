@@ -49,7 +49,7 @@ if ( ! $data->field->isMultiple() ) {
 	<div>
 		<treeselect
 			v-model="value"
-			<?php if ( $data->isBranchDisabled() === true ) : ?>
+			<?php if ( $data->field->isBranchDisabled() === true ) : ?>
 			:disable-branch-nodes="true"
 			<?php endif; ?>
 			<?php if ( $data->field->isMultiple() ) : ?>

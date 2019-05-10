@@ -715,7 +715,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'priority'      => 7,
 			'default_field' => true,
 		],
-	/*	'listing_categories'            => [
+		'listing_categories'            => [
 			'label'         => esc_html__( 'Listing category', 'posterno' ),
 			'type'          => 'listing-category',
 			'taxonomy'      => 'listings-categories',
@@ -724,7 +724,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'search'        => true,
 			'default_field' => true,
 		],
-		'listing_tags'                  => [
+		/*'listing_tags'                  => [
 			'label'         => esc_html__( 'Listing tags', 'posterno' ),
 			'type'          => 'listing-tags',
 			'required'      => true,

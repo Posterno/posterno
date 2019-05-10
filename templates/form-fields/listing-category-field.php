@@ -37,15 +37,15 @@ $listings_categories_associated = pno_get_listings_categories_for_submission_sel
 			value-consists-of="ALL"
 			no-results-text="<?php esc_html_e( 'No results found', 'posterno' ); ?>"
 			no-options-text="<?php esc_html_e( 'No options available.', 'posterno' ); ?>"
-			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
+			placeholder="<?php echo esc_html( $data->field->getAttribute( 'placeholder' ) ); ?>"
 		/>
 	</div>
 </pno-listing-category-selector>
 
 <input
 	type="hidden"
-	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+	name="<?php echo esc_attr( $data->field->getName() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
 >
 
