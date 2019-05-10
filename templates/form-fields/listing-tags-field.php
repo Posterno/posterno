@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="tags-selector-wrapper">
 
-		<pno-select2 inline-template v-if="tagsAreAvailable() && ! loading" v-model="selectedTags" :options="availableTags" data-placeholder="<?php echo esc_html( $data->getAttribute( 'placeholder' ) ); ?>" data-emitterid="category-tags">
+		<pno-select2 inline-template v-if="tagsAreAvailable() && ! loading" v-model="selectedTags" :options="availableTags" data-placeholder="<?php echo esc_html( $data->field->getAttribute( 'placeholder' ) ); ?>" data-emitterid="category-tags">
 			<div class="pno-select2-wrapper">
 				<select class="form-control" multiple>
 				</select>
