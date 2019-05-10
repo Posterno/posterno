@@ -193,11 +193,6 @@ class ListingSubmission {
 	 */
 	protected function getFields() {
 
-		// Prevent extra queries when not needed.
-		if ( $this->getCurrentlyActiveStep() !== 'listing-details' ) {
-			return [];
-		}
-
 		$necessaryFields = [
 			/**
 			 * Honeypot field.
@@ -310,6 +305,9 @@ class ListingSubmission {
 			$this->form->setFieldValues( $_POST );
 
 			if ( $this->form->isValid() ) {
+
+				print_r( $this->form->toArray() );
+				exit;
 
 			}
 		} catch ( Exception $e ) {
