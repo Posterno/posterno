@@ -135,16 +135,6 @@ function pno_load_frontend_scripts() {
 	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/frontend/posterno.min.js', array( 'jquery' ), $version, true );
 
-	// Register vuejs related scripts.
-	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
-		//wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], $version, true );
-		//wp_register_script( 'pno-vue-listing-submission-form', 'http://localhost:8080/listing-submission-form.js', [], $version, true );
-	} else {
-		//wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue', [], $version, true );
-		//wp_register_script( 'pno-vue-vendors-chunk', PNO_PLUGIN_URL . 'dist/js/chunk-vendors.js', [], $version, true );
-		//wp_register_script( 'pno-vue-listing-submission-form', PNO_PLUGIN_URL . 'dist/js/listing-submission-form.js', [ 'pno-vue-vendors-chunk' ], $version, true );
-	}
-
 	wp_enqueue_script( 'jquery' );
 
 	// Load the required style only if enabled.
@@ -190,16 +180,6 @@ function pno_load_frontend_scripts() {
 		],
 	];
 	wp_localize_script( 'pno-general', 'pno_settings', $js_vars );
-
-	// Load vuejs scripts within the listing submission/editing page.
-	if ( is_page( pno_get_listing_submission_page_id() ) || is_page( pno_get_listing_editing_page_id() ) ) {
-		wp_enqueue_style( 'pno-select2-style' );
-		wp_enqueue_style( 'pno-flatpickr' );
-		wp_enqueue_script( 'pno-select2' );
-		wp_enqueue_script( 'pno-flatpickr' );
-		wp_enqueue_script( 'pno-vuejs' );
-		//wp_enqueue_script( 'pno-vue-listing-submission-form' );
-	}
 
 	// Js settings for the submission form.
 	//wp_localize_script( 'pno-vue-listing-submission-form', 'pno_submission', pno_get_listings_submission_form_js_vars() );
