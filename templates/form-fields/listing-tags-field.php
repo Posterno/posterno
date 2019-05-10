@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="tags-selector-wrapper">
 
-		<pno-select2 inline-template v-if="tagsAreAvailable() && ! loading" v-model="selectedTags" :options="availableTags" data-placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>" data-emitterid="category-tags">
+		<pno-select2 inline-template v-if="tagsAreAvailable() && ! loading" v-model="selectedTags" :options="availableTags" data-placeholder="<?php echo esc_html( $data->getAttribute( 'placeholder' ) ); ?>" data-emitterid="category-tags">
 			<div class="pno-select2-wrapper">
 				<select class="form-control" multiple>
 				</select>
@@ -46,9 +46,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <input
 	type="hidden"
-	<?php pno_form_field_input_class( $data ); ?>
-	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+	name="<?php echo esc_attr( $data->field->getName() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
 >
 

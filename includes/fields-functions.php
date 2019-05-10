@@ -724,13 +724,13 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'search'        => true,
 			'default_field' => true,
 		],
-		/*'listing_tags'                  => [
+		'listing_tags'                  => [
 			'label'         => esc_html__( 'Listing tags', 'posterno' ),
 			'type'          => 'listing-tags',
 			'required'      => true,
 			'priority'      => 9,
 			'default_field' => true,
-		],*/
+		],
 		'listing_regions'               => [
 			'label'         => esc_html__( 'Listing regions', 'posterno' ),
 			'type'          => 'term-chain-dropdown',
