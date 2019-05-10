@@ -137,12 +137,12 @@ function pno_load_frontend_scripts() {
 
 	// Register vuejs related scripts.
 	if ( defined( 'PNO_VUE_DEV' ) && PNO_VUE_DEV === true ) {
-		wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], $version, true );
-		wp_register_script( 'pno-vue-listing-submission-form', 'http://localhost:8080/listing-submission-form.js', [], $version, true );
+		//wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', [], $version, true );
+		//wp_register_script( 'pno-vue-listing-submission-form', 'http://localhost:8080/listing-submission-form.js', [], $version, true );
 	} else {
-		wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue', [], $version, true );
-		wp_register_script( 'pno-vue-vendors-chunk', PNO_PLUGIN_URL . 'dist/js/chunk-vendors.js', [], $version, true );
-		wp_register_script( 'pno-vue-listing-submission-form', PNO_PLUGIN_URL . 'dist/js/listing-submission-form.js', [ 'pno-vue-vendors-chunk' ], $version, true );
+		//wp_register_script( 'pno-vuejs', 'https://cdn.jsdelivr.net/npm/vue', [], $version, true );
+		//wp_register_script( 'pno-vue-vendors-chunk', PNO_PLUGIN_URL . 'dist/js/chunk-vendors.js', [], $version, true );
+		//wp_register_script( 'pno-vue-listing-submission-form', PNO_PLUGIN_URL . 'dist/js/listing-submission-form.js', [ 'pno-vue-vendors-chunk' ], $version, true );
 	}
 
 	wp_enqueue_script( 'jquery' );
@@ -198,11 +198,11 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-select2' );
 		wp_enqueue_script( 'pno-flatpickr' );
 		wp_enqueue_script( 'pno-vuejs' );
-		wp_enqueue_script( 'pno-vue-listing-submission-form' );
+		//wp_enqueue_script( 'pno-vue-listing-submission-form' );
 	}
 
 	// Js settings for the submission form.
-	wp_localize_script( 'pno-vue-listing-submission-form', 'pno_submission', pno_get_listings_submission_form_js_vars() );
+	//wp_localize_script( 'pno-vue-listing-submission-form', 'pno_submission', pno_get_listings_submission_form_js_vars() );
 
 }
 add_action( 'wp_enqueue_scripts', 'pno_load_frontend_scripts' );
