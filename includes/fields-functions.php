@@ -730,7 +730,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 9,
 			'default_field' => true,
-		],
+		],*/
 		'listing_regions'               => [
 			'label'         => esc_html__( 'Listing regions', 'posterno' ),
 			'type'          => 'term-chain-dropdown',
@@ -739,7 +739,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 10,
 			'default_field' => true,
-		],*/
+		],
 		'listing_opening_hours'         => [
 			'label'         => esc_html__( 'Hours of operation', 'posterno' ),
 			'type'          => 'listing-opening-hours',

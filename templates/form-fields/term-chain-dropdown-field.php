@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$terms = pno_get_taxonomy_hierarchy_for_chain_selector( $data->get_taxonomy() );
+$terms = pno_get_taxonomy_hierarchy_for_chain_selector( $data->field->getTaxonomy() );
 
 if ( empty( $terms ) ) {
 	return;
@@ -27,14 +27,14 @@ if ( empty( $terms ) ) {
 
 // If the field has been marked as non multple but the value is an array, we somehow
 // need to get a single value only, this is ugly and not a perfect way, but for now this will do it.
-$value = $data->get_value();
+$value = $data->field->getValue();
 
-if ( ! $data->is_multiple() ) {
+if ( ! $data->field->isMultiple() ) {
 	$decoded = json_decode( $value );
 	if ( is_array( $decoded ) ) {
 		$args         = [
 			'include'  => $decoded,
-			'taxonomy' => $data->get_taxonomy(),
+			'taxonomy' => $data->field->getTaxonomy(),
 		];
 		$unique_terms = get_terms( $args );
 		if ( ! empty( $unique_terms ) && is_array( $unique_terms ) ) {
@@ -45,29 +45,28 @@ if ( ! $data->is_multiple() ) {
 }
 
 ?>
-<pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->get_taxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
+<pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->field->getTaxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
 	<div>
 		<treeselect
 			v-model="value"
-			<?php if ( $data->is_branch_nodes_disabled() === true ) : ?>
+			<?php if ( $data->isBranchDisabled() === true ) : ?>
 			:disable-branch-nodes="true"
 			<?php endif; ?>
-			<?php if ( $data->is_multiple() ) : ?>
+			<?php if ( $data->field->isMultiple() ) : ?>
 			:multiple="true"
 			<?php endif; ?>
 			:options="options"
 			value-consists-of="ALL"
 			no-results-text="<?php esc_html_e( 'No results found', 'posterno' ); ?>"
 			no-options-text="<?php esc_html_e( 'No options available.', 'posterno' ); ?>"
-			placeholder="<?php echo esc_html( $data->get_placeholder() ); ?>"
+			placeholder="<?php echo esc_html( $data->field->getAttribute( 'placeholder' ) ); ?>"
 		/>
 	</div>
 </pno-term-chain-select-field>
 
 <input
 	type="hidden"
-	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	class="pno-chain-select-value-holder" <?php // Do not change. ?>
-	value="<?php echo ! empty( $value ) ? esc_attr( $value ) : ''; ?>"
+	name="<?php echo esc_attr( $data->field->getName() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
 >
