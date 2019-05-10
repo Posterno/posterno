@@ -796,7 +796,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 	}
 
 	// Load fields from the database and merge it with the default settings.
-/*	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
+	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 
@@ -815,7 +815,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						continue;
 					}
 
-					$fields[ $field->getObjectMetaKey() ]['label']       = $field->getLabel();
+					$fields[ $field->getObjectMetaKey() ]['label']       = $field->getTitle();
 					$fields[ $field->getObjectMetaKey() ]['description'] = $field->getDescription();
 					$fields[ $field->getObjectMetaKey() ]['placeholder'] = $field->getPlaceholder();
 					$fields[ $field->getObjectMetaKey() ]['readonly']    = $field->isReadOnly();
@@ -831,13 +831,16 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 					// The field does not exist so we now add it to the list of fields.
 					$fields[ $field->getObjectMetaKey() ] = [
-						'label'       => $field->getLabel(),
+						'label'       => $field->getTitle(),
 						'type'        => $field->getType(),
 						'description' => $field->getDescription(),
 						'placeholder' => $field->getPlaceholder(),
 						'readonly'    => $field->isReadOnly(),
 						'required'    => $field->isRequired(),
 						'priority'    => $field->getPriority(),
+						'attributes'  => [
+							'class' => 'form-control',
+						],
 					];
 
 					if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
@@ -863,12 +866,12 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 				$fields[ $field->getObjectMetaKey() ]['multiple'] = $field->isMultiple();
 
-				//if ( $field->getType() === 'term-chain-dropdown' ) {
-				//	$fields[ $field->getObjectMetaKey() ]['disable_branch_nodes'] = $field->is_branch_nodes_disabled();
-				//}
+				if ( $field->getType() === 'term-chain-dropdown' ) {
+					$fields[ $field->getObjectMetaKey() ]['disable_branch_nodes'] = $field->isBranchNodesDisabled();
+				}
 			}
 		}
-	} */
+	}
 
 	// Load listings related values within the fields.
 	if ( $listing_id ) {
