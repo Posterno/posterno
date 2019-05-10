@@ -739,14 +739,14 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'required'      => true,
 			'priority'      => 10,
 			'default_field' => true,
-		],
+		],*/
 		'listing_opening_hours'         => [
 			'label'         => esc_html__( 'Hours of operation', 'posterno' ),
 			'type'          => 'listing-opening-hours',
 			'required'      => false,
 			'priority'      => 11,
 			'default_field' => true,
-		], */
+		],
 		'listing_featured_image'        => [
 			'label'         => esc_html__( 'Featured image', 'posterno' ),
 			'type'          => 'file',
