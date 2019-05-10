@@ -319,14 +319,14 @@ function pno_set_listing_tags_selector_field_type( $fields ) {
 			}
 		}
 
-		$fields['listing_tags']['type']    = 'multiselect';
-		$fields['listing_tags']['options'] = $all_tags;
+		$fields['listing_tags']['type']   = 'multiselect';
+		$fields['listing_tags']['values'] = $all_tags;
 	}
 
 	return $fields;
 
 }
-//add_filter( 'pno_listing_submission_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
+add_filter( 'pno_listing_submission_form_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
 
 /**
  * Disable the listing type selection step during frontend submission
