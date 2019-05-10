@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<div class="input-group mb-3">
-			<input type="text" class="form-control" id="pno-address-autocomplete" v-on:keydown.enter.prevent v-model="address" <?php echo $data->get_attributes(); //phpcs:ignore ?>>
+			<input type="text" class="form-control" id="pno-address-autocomplete" v-on:keydown.enter.prevent v-model="address">
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<div class="pno-loading" v-if="geolocationLoading === true"></div>
@@ -89,8 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <input
 	type="hidden"
-	<?php pno_form_field_input_class( $data ); ?>
-	name="<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	id="pno-field-<?php echo esc_attr( $data->get_object_meta_key() ); ?>"
-	value="<?php echo ! empty( $data->get_value() ) ? esc_attr( $data->get_value() ) : ''; ?>"
+	name="<?php echo esc_attr( $data->field->getName() ); ?>"
+	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
 >

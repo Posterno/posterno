@@ -778,13 +778,13 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 				'class' => 'form-control',
 			],
 		],
-		/*'listing_location'              => [
+		'listing_location'              => [
 			'label'         => esc_html__( 'Location', 'posterno' ),
 			'type'          => 'listing-location',
 			'required'      => false,
 			'priority'      => 15,
 			'default_field' => true,
-		],*/
+		],
 	];
 
 	$counter = 0;
