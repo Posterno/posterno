@@ -805,7 +805,6 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			$field = $listing_field;
 
 			if ( $field instanceof \PNO\Entities\Field\Listing && ! empty( $field->getObjectMetaKey() ) ) {
-
 				// Determine if the field is a default one so we can just merge it
 				// to the existing default array.
 				if ( pno_is_default_field( $field->getObjectMetaKey() ) ) {
@@ -829,6 +828,27 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						continue;
 					}
 
+					$attributes = [
+						'class'       => 'form-control',
+						'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
+					];
+
+					if ( $field->getType() === 'multicheckbox' || $field->getType() === 'radio' ) {
+						unset( $attributes['class'] );
+					}
+					if ( $field->getType() === 'checkbox' || $field->getType() === 'term-checklist' ) {
+						$attributes['class'] = 'custom-control-input';
+					}
+					if ( $field->getType() === 'select' ) {
+						$attributes['class'] = 'custom-select';
+					}
+					if ( $field->getType() === 'multiselect' || $field->getType() === 'term-multiselect' ) {
+						$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
+					}
+					if ( $field->getType() === 'textarea' ) {
+						$attributes['rows'] = 3;
+					}
+
 					// The field does not exist so we now add it to the list of fields.
 					$fields[ $field->getObjectMetaKey() ] = [
 						'label'       => $field->getTitle(),
@@ -838,13 +858,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						'readonly'    => $field->isReadOnly(),
 						'required'    => $field->isRequired(),
 						'priority'    => $field->getPriority(),
-						'attributes'  => [
-							'class' => 'form-control',
-						],
+						'attributes'  => $attributes,
 					];
 
 					if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->getObjectMetaKey() ]['options'] = $field->getOptions();
+						$fields[ $field->getObjectMetaKey() ]['values'] = $field->getOptions();
 					}
 
 					if ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) && ! empty( $field->getTaxonomy() ) ) {
