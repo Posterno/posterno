@@ -436,13 +436,19 @@ function pno_hide_sidebar_for_expired_listings( $sidebars_widgets ) {
 }
 add_filter( 'sidebars_widgets', 'pno_hide_sidebar_for_expired_listings' );
 
+/**
+ * Restrict the amount of selectable terms for some fields.
+ *
+ * @param array $fields list of fields.
+ * @return array
+ */
 function pno_validate_amount_of_terms( $fields ) {
 
 	if ( isset( $fields['listing_categories'] ) && ! empty( pno_get_option( 'submission_categories_amount' ) ) ) {
 
 		$max_selection = pno_get_selectable_categories_count();
 		$message       = sprintf( esc_html__( 'The maximum amount of categories you are allowed to select is %1$s.', 'posterno' ), $max_selection );
-		$validator     = new PNO\Validator\LessThanEqual( $max_selection, $message, [ 'json' => true ] );
+		$validator     = new PNO\Validator\LessThanEqual( $max_selection, $message );
 
 		$fields['listing_categories']['validators'] = $validator;
 
