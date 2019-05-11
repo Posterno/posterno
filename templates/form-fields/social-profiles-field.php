@@ -24,6 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $enabled_networks    = pno_get_option( 'listings_social_profiles' );
 $registered_networks = pno_get_registered_social_media();
 
+$has_errors = $data->field->hasErrors() ? true : false;
+
 ?>
 
 <div class="pno-social-profiles-selector">
@@ -73,7 +75,10 @@ $registered_networks = pno_get_registered_social_media();
 				type="hidden"
 				name="<?php echo esc_attr( $data->field->getName() ); ?>"
 				id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
-				value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
+				<?php if ( $has_errors ) : ?>
+				class="form-control is-invalid"
+				<?php endif; ?>
+				value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->field->getValue() ) : ''; ?>"
 			>
 		</div>
 	</pno-social-profile-field>

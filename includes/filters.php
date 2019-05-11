@@ -355,6 +355,7 @@ add_filter( 'pno_listing_submission_form_steps', 'pno_disable_listing_type_submi
  * @param string  $form the name of form being processed.
  * @return boolean|WP_Error
  */
+/*
 function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $form ) {
 
 	$forms = [ 'listing-edit', 'listing-submission' ];
@@ -386,7 +387,7 @@ function pno_validate_amount_of_selected_categories( $pass, $fields, $values, $f
 	return $pass;
 
 }
-add_filter( 'pno_form_validate_fields', 'pno_validate_amount_of_selected_categories', 10, 4 );
+add_filter( 'pno_form_validate_fields', 'pno_validate_amount_of_selected_categories', 10, 4 );*/
 
 /**
  * Add custom classes to the body tag when viewing the single listing page.
@@ -434,3 +435,20 @@ function pno_hide_sidebar_for_expired_listings( $sidebars_widgets ) {
 
 }
 add_filter( 'sidebars_widgets', 'pno_hide_sidebar_for_expired_listings' );
+
+function pno_validate_amount_of_terms( $fields ) {
+
+	if ( isset( $fields['listing_categories'] ) && ! empty( pno_get_option( 'submission_categories_amount' ) ) ) {
+
+		$max_selection = pno_get_selectable_categories_count();
+		$message       = sprintf( esc_html__( 'The maximum amount of categories you are allowed to select is %1$s.', 'posterno' ), $max_selection );
+		$validator     = new PNO\Validator\LessThanEqual( $max_selection, $message, [ 'json' => true ] );
+
+		$fields['listing_categories']['validators'] = $validator;
+
+	}
+
+	return $fields;
+
+}
+add_filter( 'pno_listing_submission_form_fields', 'pno_validate_amount_of_terms' );

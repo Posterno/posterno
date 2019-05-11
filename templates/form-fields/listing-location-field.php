@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$has_errors = $data->field->hasErrors() ? true : false;
+
 ?>
 
 <pno-listing-location-selector inline-template>
@@ -91,5 +93,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	type="hidden"
 	name="<?php echo esc_attr( $data->field->getName() ); ?>"
 	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
-	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
+	<?php if ( $has_errors ) : ?>
+	class="form-control is-invalid"
+	<?php endif; ?>
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->field->getValue() ) : ''; ?>"
 >

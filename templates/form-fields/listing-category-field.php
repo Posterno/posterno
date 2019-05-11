@@ -25,6 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $listing_type_id                = pno_get_submission_queried_listing_type_id();
 $listings_categories_associated = pno_get_listings_categories_for_submission_selection( $listing_type_id );
 
+$has_errors = $data->field->hasErrors() ? true : false;
+
 ?>
 
 <pno-listing-category-selector inline-template emitterid="categories-changed" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $listings_categories_associated ) ) ); ?>">
@@ -46,6 +48,9 @@ $listings_categories_associated = pno_get_listings_categories_for_submission_sel
 	type="hidden"
 	name="<?php echo esc_attr( $data->field->getName() ); ?>"
 	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
-	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
+	<?php if ( $has_errors ) : ?>
+	class="form-control is-invalid"
+	<?php endif; ?>
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->field->getValue() ) : ''; ?>"
 >
 

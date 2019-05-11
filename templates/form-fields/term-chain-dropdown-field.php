@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$has_errors = $data->field->hasErrors() ? true : false;
+
 $terms = pno_get_taxonomy_hierarchy_for_chain_selector( $data->field->getTaxonomy() );
 
 if ( empty( $terms ) ) {
@@ -68,5 +70,8 @@ if ( ! $data->field->isMultiple() ) {
 	type="hidden"
 	name="<?php echo esc_attr( $data->field->getName() ); ?>"
 	id="pno-field-<?php echo esc_attr( $data->field->getName() ); ?>"
-	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->getValue() ) : ''; ?>"
+	<?php if ( $has_errors ) : ?>
+	class="form-control is-invalid"
+	<?php endif; ?>
+	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->field->getValue() ) : ''; ?>"
 >
