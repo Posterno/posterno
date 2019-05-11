@@ -454,6 +454,16 @@ function pno_validate_amount_of_terms( $fields ) {
 
 	}
 
+	if ( isset( $fields['listing_tags'] ) && ! empty( pno_get_option( 'submission_tags_amount' ) ) ) {
+
+		$max_selection = pno_get_selectable_tags_count();
+		$message       = sprintf( esc_html__( 'The maximum amount of tags you are allowed to select is %1$s.', 'posterno' ), $max_selection );
+		$validator     = new PNO\Validator\LessThanEqual( $max_selection, $message );
+
+		$fields['listing_tags']['validators'] = $validator;
+
+	}
+
 	return $fields;
 
 }
