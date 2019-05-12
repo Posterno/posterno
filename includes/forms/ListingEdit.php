@@ -79,7 +79,7 @@ class ListingEdit {
 	 * @return string|boolean
 	 */
 	public function getListingID() {
-		return isset( $_GET['listing_id'] ) && ! empty( $_GET['listing_id'] ) ? absint( $_GET['listing_id'] ) : false;
+		return pno_get_queried_listing_editable_id();
 	}
 
 	/**
