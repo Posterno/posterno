@@ -73,5 +73,5 @@ if ( ! $data->field->isMultiple() ) {
 	<?php if ( $has_errors ) : ?>
 	class="form-control is-invalid"
 	<?php endif; ?>
-	value="<?php echo ! empty( $data->field->getValue() ) ? esc_attr( $data->field->getValue() ) : ''; ?>"
+	value="<?php echo ! empty( $value ) ? esc_attr( $value ) : ''; ?>"
 >

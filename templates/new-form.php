@@ -98,6 +98,11 @@ defined( 'ABSPATH' ) || exit;
 					$files = $field->getValue();
 
 					if ( ! empty( $files ) ) {
+
+						if ( $field->isMultiple() && ! is_array( $files ) ) {
+							$files = json_decode( stripslashes( $files ) );
+						}
+
 						if ( $field->isMultiple() && is_array( $files ) ) {
 							foreach ( $files as $file ) {
 								posterno()->templates

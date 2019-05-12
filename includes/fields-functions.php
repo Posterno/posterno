@@ -945,7 +945,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 									$attachments[] = $image_id;
 								}
 							}
-							$value = $attachments;
+							$value = wp_json_encode( $attachments );
 							break;
 						case 'listing_zipcode':
 							$value = carbon_get_post_meta( $listing_id, 'listing_zipcode' );
