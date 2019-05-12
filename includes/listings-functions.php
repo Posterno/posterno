@@ -623,7 +623,7 @@ function pno_save_listing_social_profiles( $listing_id, $social_profiles ) {
 	}
 
 	if ( ! is_array( $social_profiles ) ) {
-		$social_profiles = json_decode( $social_profiles );
+		$social_profiles = json_decode( stripslashes( $social_profiles ) );
 	}
 
 	$profiles = [];
@@ -650,14 +650,14 @@ function pno_save_listing_social_profiles( $listing_id, $social_profiles ) {
  * @param array|string $opening_hours the opening hours to store within the listing.
  * @return void
  */
-function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours ) {
+function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours = [] ) {
 
 	if ( ! $opening_hours || ! $listing_id ) {
 		return;
 	}
 
 	if ( ! is_array( $opening_hours ) ) {
-		$opening_hours = json_decode( $opening_hours );
+		$opening_hours = json_decode( stripslashes( $opening_hours ) );
 	}
 
 	foreach ( $opening_hours as $day => $workday ) {

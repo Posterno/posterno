@@ -41,7 +41,7 @@ class PNO_Listings_Expiry {
 		add_action( 'expired_to_publish', [ $this, 'set_expiry' ] );
 
 		if ( ! pno_listing_submission_is_moderated() ) {
-			add_action( 'pno_after_listing_submission', [ $this, 'set_expiry_on_submission' ], 10, 3 );
+			add_action( 'pno_after_listing_submission', [ $this, 'set_expiry_on_submission' ], 10, 2 );
 		}
 
 	}
@@ -128,12 +128,11 @@ class PNO_Listings_Expiry {
 	 * Set expiration date to listings when no moderation is needed and listing
 	 * is submitted from the frontend.
 	 *
-	 * @param array  $values values submitted through the form.
-	 * @param string $new_listing_id the listing id.
 	 * @param object $form the form.
+	 * @param string $new_listing_id the listing id.
 	 * @return void
 	 */
-	public function set_expiry_on_submission( $values, $new_listing_id, $form ) {
+	public function set_expiry_on_submission( $form, $new_listing_id ) {
 
 		// See if it is already set.
 		if ( metadata_exists( 'post', $new_listing_id, '_listing_expires' ) ) {
