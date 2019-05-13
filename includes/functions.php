@@ -736,3 +736,18 @@ function pno_get_adjacent_array_key( $key, $hash = array(), $increment ) {
 	$newindex = $found_index + $increment;
 	return ( $newindex > 0 && $newindex < count( $hash ) ) ? $keys[ $newindex ] : false;
 }
+
+/**
+ * Helper function to recursively map a function to multidimensional array elements.
+ *
+ * @param string $f function name.
+ * @param array  $xs data to filter.
+ * @return array
+ */
+function pno_array_map_recursive( $f, $xs ) {
+	$out = [];
+	foreach ( $xs as $k => $x ) {
+		$out[ $k ] = ( is_array( $x ) ) ? pno_array_map_recursive( $f, $x ) : $f( $x );
+	}
+	return $out;
+}
