@@ -161,6 +161,7 @@ class DataRequest {
 				)
 			);
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			posterno()->templates

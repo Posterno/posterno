@@ -177,6 +177,7 @@ class Login {
 
 		} else {
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			posterno()->templates

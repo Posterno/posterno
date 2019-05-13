@@ -264,6 +264,7 @@ class ListingSubmission {
 
 		if ( $this->getCurrentlyActiveStep() === 'listing-details' ) {
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			posterno()->templates

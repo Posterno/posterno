@@ -159,6 +159,7 @@ class DeleteAccount {
 			 */
 			$message = apply_filters( 'pno_delete_account_form_message', esc_html__( 'The account will no longer be available, and all data in the account will be permanently deleted.', 'posterno' ) );
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			posterno()->templates

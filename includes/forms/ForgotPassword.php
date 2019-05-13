@@ -224,6 +224,7 @@ class ForgotPassword {
 
 		} else {
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			/**

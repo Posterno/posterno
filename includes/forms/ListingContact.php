@@ -165,6 +165,7 @@ class ListingContact {
 	 */
 	public function render() {
 
+		$this->form->filterValues();
 		$this->form->prepareForView();
 
 			posterno()->templates

@@ -160,6 +160,7 @@ class DataErasure {
 				)
 			);
 
+			$this->form->filterValues();
 			$this->form->prepareForView();
 
 			posterno()->templates
