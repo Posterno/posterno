@@ -327,6 +327,7 @@ function pno_set_listing_tags_selector_field_type( $fields ) {
 
 }
 add_filter( 'pno_listing_submission_form_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
+add_filter( 'pno_listing_editing_form_fields', 'pno_set_listing_tags_selector_field_type', 10, 2 );
 
 /**
  * Disable the listing type selection step during frontend submission
@@ -425,3 +426,4 @@ function pno_validate_amount_of_terms( $fields ) {
 
 }
 add_filter( 'pno_listing_submission_form_fields', 'pno_validate_amount_of_terms' );
+add_filter( 'pno_listing_editing_form_fields', 'pno_validate_amount_of_terms' );

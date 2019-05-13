@@ -13,6 +13,7 @@ namespace PNO\Forms;
 use PNO\Form\Form;
 use PNO\Validator;
 use PNO\Exception;
+use PNO\Form\DefaultSanitizer;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -21,6 +22,8 @@ defined( 'ABSPATH' ) || exit;
  * The class of the data request form.
  */
 class DataRequest {
+
+	use DefaultSanitizer;
 
 	/**
 	 * The form object containing all the details about the form.
@@ -61,6 +64,7 @@ class DataRequest {
 	 */
 	public function __construct() {
 		$this->form = Form::createFromConfig( $this->getFields() );
+		$this->addSanitizer( $this->form );
 		$this->init();
 	}
 

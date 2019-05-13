@@ -11,6 +11,7 @@
 namespace PNO\Forms;
 
 use PNO\Form\Form;
+use PNO\Form\DefaultSanitizer;
 use PNO\Validator;
 use PNO\Exception;
 
@@ -21,6 +22,8 @@ defined( 'ABSPATH' ) || exit;
  * The class of the listing edit form.
  */
 class ListingEdit {
+
+	use DefaultSanitizer;
 
 	/**
 	 * The form object containing all the details about the form.
@@ -67,7 +70,9 @@ class ListingEdit {
 	 * Get things started.
 	 */
 	public function __construct() {
-		$this->form    = Form::createFromConfig( $this->getFields() );
+
+		$this->form = Form::createFromConfig( $this->getFields() );
+		$this->addSanitizer( $this->form );
 		$this->user_id = get_current_user_id();
 		$this->init();
 	}
