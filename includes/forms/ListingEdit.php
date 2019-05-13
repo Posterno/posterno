@@ -262,7 +262,7 @@ class ListingEdit {
 					if ( isset( $values['listing_featured_image'] ) ) {
 
 						$attachment_url          = isset( $values['listing_featured_image']['url'] ) ? $values['listing_featured_image']['url'] : $values['listing_featured_image'];
-						$currently_uploaded_file = isset( $_POST['current_listing_featured_image'] ) && ! empty( $_POST['current_listing_featured_image'] ) ? absint( $_POST['current_listing_featured_image'] ) : false;
+						$currently_uploaded_file = isset( $_POST['current_listing_featured_image'] ) && ! empty( $_POST['current_listing_featured_image'] ) ? sanitize_text_field( $_POST['current_listing_featured_image'] ) : false;
 
 						if ( $attachment_url && ! is_numeric( $attachment_url ) ) {
 							// Because we're uploading a new picture, we're removing the old one.
@@ -272,6 +272,13 @@ class ListingEdit {
 								delete_post_thumbnail( $updated_listing_id );
 							}
 							$attachment_id = $this->form->createAttachment( $updated_listing_id, $attachment_url );
+							if ( $attachment_id ) {
+								set_post_thumbnail( $updated_listing_id, $attachment_id );
+							}
+						}
+
+						if ( ! empty( $currently_uploaded_file ) && ! is_numeric( $currently_uploaded_file ) && ! $attachment_url ) {
+							$attachment_id = $this->form->createAttachment( $updated_listing_id, $currently_uploaded_file );
 							if ( $attachment_id ) {
 								set_post_thumbnail( $updated_listing_id, $attachment_id );
 							}
