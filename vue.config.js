@@ -15,8 +15,5 @@ module.exports = {
 			.entry('listings-fields-editor')
 				.add('./src/editors/listings-fields/main.js')
 				.end()
-			.entry('listing-submission-form')
-				.add('./src/listing-submission-form/main.js')
-				.end()
 	}
 }
