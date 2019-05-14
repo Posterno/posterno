@@ -955,7 +955,20 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							break;
 					}
 				} else {
-					$value = carbon_get_post_meta( $listing_id, $key );
+					if ( isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ) {
+
+						$terms = wp_get_post_terms( $listing_id, $field['taxonomy'] );
+						$value = [];
+
+						if ( ! empty( $terms ) && is_array( $terms ) ) {
+							foreach ( $terms as $found_term ) {
+								$value[] = absint( $found_term->term_id );
+							}
+						}
+
+					} else {
+						$value = carbon_get_post_meta( $listing_id, $key );
+					}
 				}
 				if ( ! empty( $value ) ) {
 					$fields[ $key ]['value'] = $value;
