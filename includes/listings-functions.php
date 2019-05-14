@@ -1355,3 +1355,76 @@ function pno_is_map_enabled_for_taxonomy( $taxonomy ) {
 	return in_array( $taxonomy, $maps, true );
 
 }
+
+/**
+ * Get the number of published listings by a specific user.
+ *
+ * @param string $user_id the user to verify.
+ * @return string
+ */
+function pno_count_published_listings( $user_id ) {
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user_id = absint( $user_id );
+
+	return wp_cache_remember(
+		"user_count_published_listings_{$user_id}",
+		function () use ( $user_id ) {
+			return count_user_posts( $user_id, 'listings' );
+		}
+	);
+
+}
+
+/**
+ * Get the number of pending listings that belong to a specific user.
+ *
+ * @param string $user_id the user to verify.
+ * @return int
+ */
+function pno_count_pending_listings( $user_id ) {
+
+	global $wpdb;
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user_id = absint( $user_id );
+
+	return wp_cache_remember(
+		"user_count_pending_listings_{$user_id}",
+		function () use ( $wpdb, $user_id ) {
+			return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = %s AND post_status = 'pending' AND post_author = %s", 'listings', $user_id ) );
+		}
+	);
+
+}
+
+/**
+ * Get the number of expired listings that belong to a specific user.
+ *
+ * @param string $user_id the user to verify.
+ * @return int
+ */
+function pno_count_expired_listings( $user_id ) {
+
+	global $wpdb;
+
+	if ( ! $user_id ) {
+		return;
+	}
+
+	$user_id = absint( $user_id );
+
+	return wp_cache_remember(
+		"user_count_expired_listings_{$user_id}",
+		function () use ( $wpdb, $user_id ) {
+			return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = %s AND post_status = 'expired' AND post_author = %s", 'listings', $user_id ) );
+		}
+	);
+
+}

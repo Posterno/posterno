@@ -107,9 +107,17 @@ function pno_load_initial_dashboard_content() {
 		'user' => wp_get_current_user(),
 	];
 
-	posterno()->templates
-		->set_template_data( $data )
-		->get_template_part( 'logged-user' );
+	if ( pno_user_has_submitted_listings( get_current_user_id() ) ) {
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'dashboard/welcome' );
+	} else {
+
+		posterno()->templates
+			->set_template_data( $data )
+			->get_template_part( 'logged-user' );
+
+	}
 
 }
 add_action( 'pno_dashboard_tab_content_dashboard', 'pno_load_initial_dashboard_content' );

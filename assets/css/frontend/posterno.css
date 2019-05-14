@@ -963,6 +963,14 @@ nav .pno-pagination {
   background: #fcebeb;
   color: #dc3232; }
 
+.pno-dashboard-count-card .count-icon {
+  text-align: center; }
+.pno-dashboard-count-card .card-title {
+  font-size: 2.5rem;
+  font-weight: bold; }
+.pno-dashboard-count-card i {
+  font-size: 32px; }
+
 .pno-listing-card {
   background-color: #f9f9f9;
   border: none; }
