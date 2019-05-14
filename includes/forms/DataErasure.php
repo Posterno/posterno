@@ -172,7 +172,7 @@ class DataErasure {
 						'message'   => $message,
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 		}
 

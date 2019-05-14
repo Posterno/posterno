@@ -275,7 +275,7 @@ class ListingSubmission {
 						'title'     => esc_html__( 'Listing details', 'posterno' ),
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 		} else {
 

@@ -152,7 +152,7 @@ class Account {
 						'title'     => esc_html__( 'Account settings', 'posterno' ),
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 		}
 
 	}

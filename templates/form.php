@@ -14,22 +14,12 @@
  * @package posterno
  */
 
-namespace PNO;
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$message      = false;
-$message_type = false;
-
-if ( $data->form->is_successful() ) {
-	$message      = $data->form->get_success_message();
-	$message_type = 'success';
-}
-
 ?>
 
-<div class="pno-template pno-form">
+<div class="pno-form-container">
 
 	<?php if ( isset( $data->title ) && ! empty( $data->title ) ) : ?>
 		<h2><?php echo esc_html( $data->title ); ?></h2>
@@ -40,141 +30,128 @@ if ( $data->form->is_successful() ) {
 	<?php endif; ?>
 
 	<?php
+	if ( ! empty( $data->form->getAllErrors() ) || ! empty( $data->form->getProcessingError() ) ) {
 
-	/**
-	 * Action that fires before the markup of the form actually starts.
-	 *
-	 * @param string $form the name of the form.
-	 */
-	do_action( "pno_before_{$data->form->get_form_name()}_form", $data );
+		$error_message = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
 
-	// Display various messages if available.
-	if ( $message_type && $message ) {
+		if ( ! empty( $data->form->getProcessingError() ) ) {
+			$error_message = $data->form->getProcessingError();
+		}
+
 		posterno()->templates
 			->set_template_data(
 				[
-					'type'    => $message_type,
-					'message' => $message,
+					'type'    => 'danger',
+					'message' => wp_kses_post( $error_message ),
 				]
 			)
 			->get_template_part( 'message' );
 	}
 
-	// Display all errors found.
-	if ( $data->form->has_errors() ) {
-		foreach ( $data->form->get_errors() as $found_error ) {
-			posterno()->templates
-				->set_template_data(
-					[
-						'type'    => 'danger',
-						'message' => wp_kses_post( $found_error ),
-					]
-				)
-				->get_template_part( 'message' );
-		}
-	}
+	if ( ! empty( $data->form->getSuccessMessage() ) ) {
 
+		posterno()->templates
+			->set_template_data(
+				[
+					'type'    => 'success',
+					'message' => wp_kses_post( $data->form->getSuccessMessage() ),
+				]
+			)
+			->get_template_part( 'message' );
+
+	}
 	?>
 
-	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="pno-form-<?php echo esc_attr( strtolower( $data->form->get_form_name() ) ); ?>" enctype="multipart/form-data">
+	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="pno-form-<?php echo esc_attr( $data->form_name ); ?>" enctype="multipart/form-data">
 
-		<?php foreach ( $data->fields as $key => $field ) : ?>
+		<div class="form-row">
+		<?php foreach ( $data->form->getFields() as $field ) : ?>
 
-			<?php
+			<div <?php pno_form_field_wrapper_class( $field ); ?>>
+				<div <?php pno_form_field_class( $field ); ?>>
 
-			$field['key'] = $key;
-			$field_args   = $field;
+					<?php if ( ! empty( $field->getLabel() ) && $field->getType() !== 'checkbox' ) : ?>
+						<label for="<?php echo esc_attr( $field->getName() ); ?>"><?php echo esc_html( $field->getLabel() ); ?></label>
+					<?php endif; ?>
 
-			if ( isset( $data->form_type ) && $data->form_type === 'listing' ) {
-				$field = new Field\Listing( $field );
-			} else {
-				$field = new Field( $field );
-			}
+					<?php if ( ! $field->isRequired() && ! $field->isButton() && $field->getType() !== 'checkbox' ) : ?>
+						<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+					<?php endif; ?>
 
-			/**
-			 * Action that triggers before displaying a field within a form.
-			 *
-			 * @param string $key the id key of the current field.
-			 * @param array $field the settings of the current field.
-			 * @param string $form the name of the current form.
-			 * @param string $step the current step of the form.
-			 */
-			do_action( 'pno_form_before_field', $key, $field, $data->form->get_form_name(), $data->step );
+					<?php echo $field->render(); ?>
 
-			?>
+					<?php if ( $field->hasErrors() ) : ?>
+						<div class="invalid-feedback">
+							<?php echo esc_html( $field->getFirstErrorMessage() ); ?>
+						</div>
+					<?php endif; ?>
 
-			<div <?php pno_form_field_class( $field ); ?>>
+					<?php if ( $field->getType() === 'file' && ! empty( $field->getMaxSize() ) ) : ?>
+						<small class="form-text text-muted">
+							<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $field->getMaxSize() ) ); ?>
+						</small>
+					<?php endif; ?>
 
-				<?php if ( $field->get_type() !== 'checkbox' ) : ?>
-					<label for="pno-field-<?php echo esc_attr( $field->get_object_meta_key() ); ?>">
-						<?php echo esc_html( $field->get_label() ); ?>
-							<?php if ( ! $field->is_required() ) : ?>
-								<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
-							<?php endif; ?>
-					</label>
-				<?php endif; ?>
+					<?php
 
-				<?php
-					posterno()->templates
-						->set_template_data( $field )
-						->get_template_part( 'form-fields/' . $field->get_type(), 'field' );
-				?>
+					// Display files remover for file fields.
+					if ( $field->getType() === 'file' && ! empty( $field->getValue() ) ) {
 
-				<?php if ( ! empty( $field->get_description() ) ) : ?>
-					<small class="form-text text-muted">
-						<?php echo esc_html( $field->get_description() ); ?>
-					</small>
-				<?php endif; ?>
+						$files = $field->getValue();
 
-				<?php
+						if ( ! empty( $files ) ) {
 
-				if ( $field->get_type() === 'file' ) :
+							if ( $field->isMultiple() && ! is_array( $files ) ) {
+								$files = json_decode( stripslashes( $files ) );
+							}
 
-					$size = isset( $field_args['max_size'] ) ? $field_args['max_size'] : false;
+							if ( $field->isMultiple() && is_array( $files ) ) {
+								foreach ( $files as $file ) {
+									posterno()->templates
+										->set_template_data(
+											[
+												'key'   => $field->getName(),
+												'name'  => 'current_' . $field->getName() . '[]',
+												'value' => $file,
+											]
+										)
+										->get_template_part( 'form-fields/file', 'uploaded' );
+								}
+							} else {
+								posterno()->templates
+									->set_template_data(
+										[
+											'key'   => $field->getName(),
+											'name'  => 'current_' . $field->getName(),
+											'value' => $files,
+										]
+									)
+									->get_template_part( 'form-fields/file', 'uploaded' );
+							}
+						}
+					}
 
-					?>
-					<small class="form-text text-muted">
-					<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $size ) ); ?>
-					</small>
-				<?php endif; ?>
+					// We move the position of the label only for some fields.
+					if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
+						?>
+						<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-control-label"><?php echo wp_kses_post( $field->getLabel() ); ?></label>
+					<?php endif; ?>
 
+					<?php if ( ! empty( $field->getHint() ) ) : ?>
+						<small class="form-text text-muted">
+							<?php echo esc_html( $field->getHint() ); ?>
+						</small>
+					<?php endif; ?>
+
+				</div>
 			</div>
 
-			<?php
-				/**
-				 * Action that triggers after displaying a field within a form.
-				 *
-				 * @param string $key the id key of the current field.
-				 * @param array $field the settings of the current field.
-				 * @param string $form the name of the current form.
-				 * @param string $step the current step of the form.
-				 */
-				do_action( 'pno_form_after_field', $key, $field, $data->form->get_form_name(), $data->step );
-			?>
-
 		<?php endforeach; ?>
+		</div>
 
-		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>" />
-		<input type="hidden" name="listing_type_id" value="<?php echo esc_html( $data->form->get_submitted_listing_type_id() ); ?>">
-		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
-		<input type="hidden" name="submit_<?php echo esc_attr( $data->form->get_form_name() ); ?>" value="<?php echo esc_attr( $data->form->get_form_name() ); ?>">
-		<?php wp_nonce_field( 'verify_' . $data->form->get_form_name() . '_form', $data->form->get_form_name() . '_nonce' ); ?>
-
-		<button type="submit" class="btn btn-primary">
-			<?php echo esc_html( $data->submit_label ); ?>
-		</button>
+		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form_name ); ?>" />
+		<?php wp_nonce_field( 'verify_' . esc_attr( $data->form_name ) . '_form', esc_attr( $data->form_name ) . '_nonce' ); ?>
 
 	</form>
-
-	<?php
-
-	/**
-	 * Fires after the markup of the for is finished.
-	 *
-	 * @param string $form the name of the form.
-	 */
-	do_action( "pno_after_{$data->form->get_form_name()}_form", $data );
-
-	?>
 
 </div>

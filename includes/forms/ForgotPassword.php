@@ -253,7 +253,7 @@ class ForgotPassword {
 						'message'   => $message,
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 			$action_links = [
 				'login_link'    => pno_get_option( 'recovery_show_login_link' ),

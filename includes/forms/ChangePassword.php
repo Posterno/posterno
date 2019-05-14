@@ -199,7 +199,7 @@ class ChangePassword {
 						'title'     => esc_html__( 'Change password', 'posterno' ),
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 		}
 

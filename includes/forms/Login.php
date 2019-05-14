@@ -187,7 +187,7 @@ class Login {
 						'form_name' => $this->form_name,
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 			$action_links = [
 				'register_link' => pno_get_option( 'login_show_registration_link' ),

@@ -175,7 +175,7 @@ class ListingContact {
 						'form_name' => $this->form_name,
 					]
 				)
-				->get_template_part( 'new-form' );
+				->get_template_part( 'form' );
 
 	}
 
