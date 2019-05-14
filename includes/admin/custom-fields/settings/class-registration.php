@@ -97,6 +97,7 @@ class Registration {
 		$settings[] = Field::make( 'textarea', 'registration_field_description', esc_html__( 'Field description', 'posterno' ) )
 			->set_help_text( esc_html__( 'This is the text that appears as a description within the forms. Leave blank if not needed.', 'posterno' ) );
 
+		$settings[] = Field::make( 'text', 'registration_field_classes', esc_html__( 'Custom css classes', 'posterno' ) );
 		/**
 		 * Allow developers to customize the settings for the registration field post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "General" tab.

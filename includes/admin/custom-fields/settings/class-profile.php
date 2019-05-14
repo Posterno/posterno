@@ -299,6 +299,9 @@ class Profile {
 					Field::make( 'text', 'profile_field_meta_key', esc_html__( 'Unique meta key', 'posterno' ) )
 						->set_required( true )
 						->set_help_text( esc_html__( 'The key must be unique for each field and written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title. This will be used to store information about your users into the database of your website.', 'posterno' ) ),
+
+					Field::make( 'text', 'profile_field_classes', esc_html__( 'Custom css classes', 'posterno' ) ),
+
 				)
 			);
 
