@@ -12,17 +12,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Parses a form action string to create an ID for the form tag of a form.
- *
- * @param string $form form name.
- * @return string
- */
-function pno_get_form_id( $form ) {
-	$id = 'pno-form-' . $form;
-	return esc_attr( $id );
-}
-
-/**
  * Retrieve the correct label for the login form.
  *
  * @return string
