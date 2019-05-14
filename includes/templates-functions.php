@@ -723,6 +723,11 @@ function pno_get_placeholder_dashboard_menu() {
 	$dashboard_items = pno_get_dashboard_navigation_items();
 
 	foreach ( $dashboard_items as $key => $item ) {
+
+		if ( $key === 'listings' && ! pno_user_has_submitted_listings( get_current_user_id() ) ) {
+			continue;
+		}
+
 		$items[] = (object) [
 			'pno_identifier' => esc_attr( $key ),
 			'classes'        => [],
