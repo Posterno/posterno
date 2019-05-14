@@ -43,6 +43,8 @@ $i      = '';
 
 		if ( have_posts() ) {
 
+			posterno()->templates->get_template_part( 'listings/taxonomy', 'featured-image' );
+
 			/**
 			 * Hook: loads before the taxonomy & archive listings loop when listings are available.
 			 */
