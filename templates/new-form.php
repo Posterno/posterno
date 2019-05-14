@@ -67,7 +67,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="form-row">
 		<?php foreach ( $data->form->getFields() as $field ) : ?>
 
-			<div class="col-md-12">
+			<div <?php pno_form_field_wrapper_class( $field ); ?>>
 				<div <?php pno_form_field_class( $field ); ?>>
 
 					<?php if ( ! empty( $field->getLabel() ) && $field->getType() !== 'checkbox' ) : ?>

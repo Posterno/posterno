@@ -307,6 +307,10 @@ function pno_get_registration_fields() {
 
 				}
 			}
+
+			if ( ! empty( $field->getCssClasses() ) ) {
+				$fields[ $field->getObjectMetaKey() ]['classes'] = $field->getCssClasses();
+			}
 		}
 	}
 
@@ -480,6 +484,10 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				if ( $field->getType() === 'file' && $field->isMultiple() ) {
 					$fields[ $field->getObjectMetaKey() ]['multiple'] = true;
 				}
+
+				if ( ! empty( $field->getCssClasses() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['classes'] = $field->getCssClasses();
+				}
 			}
 		}
 	}
@@ -576,6 +584,48 @@ function pno_get_form_field_class( $field, $class = '' ) {
  */
 function pno_form_field_class( $field, $class = '' ) {
 	echo 'class="' . join( ' ', pno_get_form_field_class( $field, $class ) ) . '"'; //phpcs:ignore
+}
+
+/**
+ * Retrieve the classes for a given form field wrapper as an array.
+ *
+ * @param PNO\Form\Element $field field object.
+ * @param string           $class optional classes.
+ * @return array
+ */
+function pno_get_form_field_wrapper_class( $field, $class = '' ) {
+
+	$classes = [ 'col-md-12' ];
+
+	if ( ! empty( $field->getClasses() ) ) {
+		$string  = explode( ' ', $field->getClasses() );
+		$classes = $string;
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	/**
+	 * Filters the list of CSS classes for the current form field wrapper.
+	 *
+	 * @param array $classes the list of classes.
+	 * @param array $field the field being processed.
+	 * @param string $class additional classes if any.
+	 */
+	$classes = apply_filters( 'pno_form_field_wrapper_classes', $classes, $field, $class );
+
+	return array_unique( $classes );
+
+}
+
+/**
+ * Display the classes for a given form field.
+ *
+ * @param PNO\Form\Field $field field object.
+ * @param string         $class optional classes.
+ * @return void
+ */
+function pno_form_field_wrapper_class( $field, $class = '' ) {
+	echo 'class="' . join( ' ', pno_get_form_field_wrapper_class( $field, $class ) ) . '"'; //phpcs:ignore
 }
 
 /**
@@ -886,6 +936,10 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 				if ( $field->getType() === 'term-chain-dropdown' ) {
 					$fields[ $field->getObjectMetaKey() ]['disable_branch_nodes'] = $field->isBranchNodesDisabled();
+				}
+
+				if ( ! empty( $field->getCssClasses() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['classes'] = $field->getCssClasses();
 				}
 			}
 		}
