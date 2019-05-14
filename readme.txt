@@ -2,9 +2,9 @@
 Contributors: alessandro.tesoro, posterno
 Tags: business directory, listings, classifieds, directory, listing, local business directory, listings directory, link directory, member directory, staff directory, real estate, job listing, googlemap, profile, profiles, yelp clone, tripadvisor clone, yellow pages clone, car listings, auto listings, members, profile, community, user profile, user registration
 Requires at least: 4.9.6
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 5.5+
-Stable tag: 0.6.0
+Stable tag: 0.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -115,6 +115,36 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 0.7.0 Open beta release =
+
+- Added: new developers api to validate strings and values.
+- Added: entirely new forms api which helps for the introduction of ajax forms in the future.
+- Added: inline forms validation errors.
+- Added: new developers dom elements helper library.
+- Added: honeypot spam prevention to all forms.
+- Added: new developers hooks and filters to all forms and form fields.
+- Added: featured images of categories and types now display within their terms pages.
+- Added: new "Css classes" setting for all fields to customize the classes assigned to a field's wrapper element.
+- Added: display count of published, pending & expired listings within the member's frontend dashboard page.
+- Tweaked: rest api for fields creation & modification has been rewritten & improved and now does less queries.
+- Tweaked: api for retrieving information about custom fields has been rewritten and now does less queries.
+- Tweaked: removed obsolete code.
+- Tweaked: new dom attributes api for form elements.
+- Tweaked: updated javascript dependencies for the schema editor.
+- Tweaked: when uploading files through a form, validate files before uploading.
+- Tweaked: improved security validation of certain fields.
+- Tweaked: removed "profile cover" field.
+- Tweaked: removed old form fields template files.
+- Tweaked: reduced number of database queries when retrieving form fields.
+- Tweaked: removed some code redundancy from fields queries.
+- Fixed: "Manage listings" menu item ( from placeholder menu ) visible even when a user has not submitted listings.
+- Fixed: Featured image not uploading when a form had already been submitted and a validation error occured.
+- Fixed: taxonomies not loading within term fields.
+- Fixed: display of values coming from fields with multiple options on profile and listings pages.
+- Fixed: placeholder setting not displaying on some fields.
+- Fixed: an issue when removing featured images from an existing listing.
+- Fixed: php error in some cases when retireving listings schemas.
 
 = 0.6.0 Open beta release =
 
