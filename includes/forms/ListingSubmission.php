@@ -491,7 +491,7 @@ class ListingSubmission {
 							}
 
 						} elseif ( $field->getType() === 'checkbox' ) {
-							if ( $value === true ) {
+							if ( $value === true || $value === '1' ) {
 								carbon_set_post_meta( $new_listing_id, $key, true );
 							}
 						} else {

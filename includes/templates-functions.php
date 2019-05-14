@@ -483,9 +483,11 @@ function pno_display_field_multicheckbox_value( $value, $field ) {
 	$options = isset( $field['options'] ) ? array_map( 'esc_attr', $field['options'] ) : [];
 	$value   = is_array( $value ) ? $value : [];
 
-	foreach ( $value as $selected_option ) {
-		if ( array_key_exists( $selected_option['value'], $options ) ) {
-			$output[] = esc_html( $options[ $selected_option['value'] ] );
+	if ( ! empty( $options ) && ! empty( $value ) ) {
+		foreach ( $value as $selected_option ) {
+			if ( array_key_exists( $selected_option, $options ) ) {
+				$output[] = esc_html( $options[ $selected_option ] );
+			}
 		}
 	}
 

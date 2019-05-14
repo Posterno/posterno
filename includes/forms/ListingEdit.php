@@ -478,7 +478,7 @@ class ListingEdit {
 									$this->form->processTaxonomyField( $field, $updated_listing_id, $term_value );
 								}
 							} elseif ( $field->getType() === 'checkbox' ) {
-								if ( $value === true ) {
+								if ( $value === true || $value === '1' ) {
 									carbon_set_post_meta( $updated_listing_id, $key, true );
 								} else {
 									carbon_set_post_meta( $updated_listing_id, $key, false );

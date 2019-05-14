@@ -329,7 +329,7 @@ class Account {
 							if ( ! empty( $this->form->getFieldValue( $key ) ) ) {
 
 								if ( $field->getType() === 'checkbox' ) {
-									if ( $value === true ) {
+									if ( $value === true || $value === '1' ) {
 										carbon_set_user_meta( $updated_user_id, $key, true );
 									}
 								} else {

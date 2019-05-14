@@ -261,7 +261,7 @@ class Registration {
 						$field_type = $field->getType();
 
 						if ( $field_type === 'checkbox' ) {
-							if ( $value === '1' ) {
+							if ( $value === true || $value === '1' ) {
 								carbon_set_user_meta( $new_user_id, $key, true );
 							}
 						} else {
