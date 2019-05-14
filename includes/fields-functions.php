@@ -966,6 +966,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							}
 						}
 
+						if ( ! isset( $field['multiple'] ) || isset( $field['multiple'] ) && $field['multiple'] === false && ( is_array( $value ) ) ) {
+							$value = $value[0];
+						}
 					} else {
 						$value = carbon_get_post_meta( $listing_id, $key );
 					}
