@@ -82,8 +82,6 @@ class PNO_Avatars {
 				array(
 					Field::make( 'image', 'current_user_avatar', esc_html__( 'Custom user avatar', 'posterno' ) )
 						->set_value_type( 'url' ),
-					Field::make( 'image', 'user_cover', esc_html__( 'Custom profile cover image', 'posterno' ) )
-						->set_value_type( 'url' ),
 				)
 			);
 	}
