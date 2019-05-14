@@ -483,10 +483,18 @@ function pno_display_field_multicheckbox_value( $value, $field ) {
 	$options = isset( $field['options'] ) ? array_map( 'esc_attr', $field['options'] ) : [];
 	$value   = is_array( $value ) ? $value : [];
 
+	$is_listing_field = isset( $value[0]['value'] );
+
 	if ( ! empty( $options ) && ! empty( $value ) ) {
 		foreach ( $value as $selected_option ) {
-			if ( array_key_exists( $selected_option, $options ) ) {
-				$output[] = esc_html( $options[ $selected_option ] );
+			if ( $is_listing_field ) {
+				if ( array_key_exists( $selected_option['value'], $options ) ) {
+					$output[] = esc_html( $options[ $selected_option['value'] ] );
+				}
+			} else {
+				if ( array_key_exists( $selected_option, $options ) ) {
+					$output[] = esc_html( $options[ $selected_option ] );
+				}
 			}
 		}
 	}
