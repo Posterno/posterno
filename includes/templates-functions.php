@@ -437,7 +437,7 @@ function pno_display_field_email_value( $value ) {
  * @return string
  */
 function pno_display_field_checkbox_value( $value ) {
-	return $value === true ? esc_html__( 'Yes', 'posterno' ) : esc_html__( 'No', 'posterno' );
+	return $value === true || $value === '1' || $value === 'yes' ? esc_html__( 'Yes', 'posterno' ) : esc_html__( 'No', 'posterno' );
 }
 
 /**
