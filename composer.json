@@ -8,14 +8,14 @@
     "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
     "rarst/wpdatetime": "dev-master",
     "posterno/posterno-schema": "@dev",
-    "posterno/posterno-third-party": "@dev",
-    "posterno/posterno-maps": "@dev",
-    "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-validator": "@dev",
+    "posterno/posterno-entities": "@dev",
     "posterno/posterno-forms": "@dev",
     "posterno/posterno-dom": "@dev",
-    "posterno/posterno-entities": "@dev",
-    "posterno/posterno-submission-scripts": "@dev"
+    "posterno/posterno-maps": "@dev",
+    "posterno/posterno-third-party": "@dev",
+    "posterno/posterno-submission-scripts": "@dev",
+    "posterno/posterno-validator": "@dev",
+    "posterno/posterno-geocoder": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{

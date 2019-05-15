@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.6.0\n"
+"Project-Id-Version: Posterno 0.7.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-04-24 10:35:09+00:00\n"
+"POT-Creation-Date: 2019-05-15 08:20:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,11 +23,6 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n1.0.2\n"
-
-#: includes/abstracts/abstract-pno-field-object.php:140
-#: includes/fields/class-field.php:212
-msgid "Can't get property %s"
-msgstr ""
 
 #: includes/abstracts/abstract-pno-form.php:370
 #: includes/abstracts/abstract-pno-form.php:373
@@ -88,24 +83,24 @@ msgid ""
 "<a href=\"%2$s\">register</a>."
 msgstr ""
 
-#: includes/actions.php:153
+#: includes/actions.php:161
 msgid ""
 "Your request has been successfully confirmed, an administrator will send "
 "you an email with further details."
 msgstr ""
 
-#: includes/actions.php:225
+#: includes/actions.php:233
 msgid "Username or email address"
 msgstr ""
 
-#: includes/actions.php:228 includes/admin/admin-functions.php:232
-#: includes/emails/class-pno-emails.php:372 includes/fields-functions.php:165
-#: includes/templates-functions.php:32
+#: includes/actions.php:236 includes/admin/admin-functions.php:232
+#: includes/emails/class-pno-emails.php:372 includes/fields-functions.php:166
+#: includes/templates-functions.php:21
 msgid "Username"
 msgstr ""
 
-#: includes/actions.php:230 includes/post-types.php:619
-#: includes/post-types.php:634 includes/templates-functions.php:37
+#: includes/actions.php:238 includes/post-types.php:619
+#: includes/post-types.php:634 includes/templates-functions.php:26
 msgid "Email"
 msgstr ""
 
@@ -139,12 +134,12 @@ msgid "Listing editing form"
 msgstr ""
 
 #: includes/admin/admin-actions.php:52
-#: includes/admin/admin-privacy-export.php:76
-#: includes/templates-functions.php:440
+#: includes/admin/admin-privacy-export.php:64
+#: includes/templates-functions.php:429
 msgid "Yes"
 msgstr ""
 
-#: includes/admin/admin-actions.php:53 includes/templates-functions.php:440
+#: includes/admin/admin-actions.php:53 includes/templates-functions.php:429
 msgid "No"
 msgstr ""
 
@@ -183,8 +178,8 @@ msgstr ""
 
 #: includes/admin/admin-actions.php:71 includes/admin/admin-functions.php:795
 #: includes/admin/admin-options.php:59
-#: includes/fields/integration/class-listing.php:69
-#: includes/fields/integration/class-listing.php:143
+#: includes/admin/custom-fields/integration/class-listing.php:69
+#: includes/admin/custom-fields/integration/class-listing.php:143
 msgid "Profile"
 msgstr ""
 
@@ -253,11 +248,11 @@ msgstr ""
 msgid "All listings fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:305
+#: includes/admin/admin-actions.php:302
 msgid "Send approval notification"
 msgstr ""
 
-#: includes/admin/admin-actions.php:305
+#: includes/admin/admin-actions.php:302
 msgid "Enable the option to notify the author that the listing has been approved."
 msgstr ""
 
@@ -302,7 +297,7 @@ msgstr ""
 
 #: includes/admin/admin-dashboard-menu-editor.php:172
 #: includes/admin/admin-functions.php:711 includes/admin/admin-options.php:54
-#: includes/forms/class-pno-form-login.php:155 includes/shortcodes.php:27
+#: includes/forms/Login.php:139 includes/shortcodes.php:27
 msgid "Login"
 msgstr ""
 
@@ -331,164 +326,164 @@ msgstr ""
 msgid "Rate us"
 msgstr ""
 
-#: includes/admin/admin-filters.php:186
+#: includes/admin/admin-filters.php:188
 #: includes/emails/class-pno-emails-editor-settings.php:98
 msgid "Situations"
 msgstr ""
 
-#: includes/admin/admin-filters.php:202
+#: includes/admin/admin-filters.php:204
 msgid "%s listing updated."
 msgid_plural "%s listings updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:203
+#: includes/admin/admin-filters.php:205
 msgid "%s listing not updated, somebody is editing it."
 msgid_plural "%s listings not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:204
+#: includes/admin/admin-filters.php:206
 msgid "%s listing permanently deleted."
 msgid_plural "%s listings permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:205
+#: includes/admin/admin-filters.php:207
 msgid "%s listing moved to the trash."
 msgid_plural "%s listings moved to the trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:206
+#: includes/admin/admin-filters.php:208
 msgid "%s listing restored from the trash."
 msgid_plural "%s listings restored from the trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:210
+#: includes/admin/admin-filters.php:212
 msgid "%s email updated."
 msgid_plural "%s emails updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:211
+#: includes/admin/admin-filters.php:213
 msgid "%s email not updated, somebody is editing it."
 msgid_plural "%s emails not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:212
+#: includes/admin/admin-filters.php:214
 msgid "%s email permanently deleted."
 msgid_plural "%s emails permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:213
+#: includes/admin/admin-filters.php:215
 msgid "%s email moved to the trash."
 msgid_plural "%s emails moved to the trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:214
+#: includes/admin/admin-filters.php:216
 msgid "%s email restored from the trash."
 msgid_plural "%s emails restored from the trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/admin-filters.php:243
+#: includes/admin/admin-filters.php:245
 msgid "Type added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:244
+#: includes/admin/admin-filters.php:246
 msgid "Type deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:245
+#: includes/admin/admin-filters.php:247
 msgid "Type updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:246
+#: includes/admin/admin-filters.php:248
 msgid "Type not added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:247
+#: includes/admin/admin-filters.php:249
 msgid "Type not updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:248
+#: includes/admin/admin-filters.php:250
 msgid "Types deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:253
+#: includes/admin/admin-filters.php:255
 msgid "Category added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:254
+#: includes/admin/admin-filters.php:256
 msgid "Category deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:255
+#: includes/admin/admin-filters.php:257
 msgid "Category updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:256
+#: includes/admin/admin-filters.php:258
 msgid "Category not added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:257
+#: includes/admin/admin-filters.php:259
 msgid "Category not updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:258
+#: includes/admin/admin-filters.php:260
 msgid "Categories deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:263
+#: includes/admin/admin-filters.php:265
 msgid "Location added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:264
+#: includes/admin/admin-filters.php:266
 msgid "Location deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:265
+#: includes/admin/admin-filters.php:267
 msgid "Location updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:266
+#: includes/admin/admin-filters.php:268
 msgid "Location not added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:267
+#: includes/admin/admin-filters.php:269
 msgid "Location not updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:268
+#: includes/admin/admin-filters.php:270
 msgid "Locations deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:273
+#: includes/admin/admin-filters.php:275
 msgid "Tag added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:274
+#: includes/admin/admin-filters.php:276
 msgid "Tag deleted."
 msgstr ""
 
-#: includes/admin/admin-filters.php:275
+#: includes/admin/admin-filters.php:277
 msgid "Tag updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:276
+#: includes/admin/admin-filters.php:278
 msgid "Tag not added."
 msgstr ""
 
-#: includes/admin/admin-filters.php:277
+#: includes/admin/admin-filters.php:279
 msgid "Tag not updated."
 msgstr ""
 
-#: includes/admin/admin-filters.php:278
+#: includes/admin/admin-filters.php:280
 msgid "Tags deleted."
 msgstr ""
 
@@ -516,15 +511,14 @@ msgid "Username or Email"
 msgstr ""
 
 #: includes/admin/admin-functions.php:238
-#: includes/fields/integration/class-listing.php:159
-#: includes/fields-functions.php:94 includes/fields-functions.php:172
-#: includes/fields-functions.php:359 includes/fields-functions.php:711
+#: includes/admin/custom-fields/integration/class-listing.php:159
+#: includes/fields-functions.php:94 includes/fields-functions.php:175
+#: includes/fields-functions.php:381 includes/fields-functions.php:722
 msgid "Email address"
 msgstr ""
 
 #: includes/admin/admin-functions.php:244 includes/fields-functions.php:95
-#: includes/fields-functions.php:179
-#: includes/forms/class-pno-form-login.php:110
+#: includes/fields-functions.php:184 includes/forms/Login.php:108
 msgid "Password"
 msgstr ""
 
@@ -532,13 +526,12 @@ msgstr ""
 msgid "Forgot password"
 msgstr ""
 
-#: includes/admin/admin-functions.php:739
-#: includes/forms/class-pno-form-registration.php:181
+#: includes/admin/admin-functions.php:739 includes/forms/Registration.php:111
 msgid "Register"
 msgstr ""
 
 #: includes/admin/admin-functions.php:767
-#: includes/forms/class-pno-form-listing-submission.php:197
+#: includes/forms/ListingSubmission.php:215
 msgid "Submit listing"
 msgstr ""
 
@@ -682,9 +675,9 @@ msgid "Author has been notified."
 msgstr ""
 
 #: includes/admin/admin-options.php:22
-#: includes/fields/settings/class-listing.php:43
-#: includes/fields/settings/class-profile.php:43
-#: includes/fields/settings/class-registration.php:41
+#: includes/admin/custom-fields/settings/class-listing.php:43
+#: includes/admin/custom-fields/settings/class-profile.php:43
+#: includes/admin/custom-fields/settings/class-registration.php:41
 msgid "General"
 msgstr ""
 
@@ -693,8 +686,8 @@ msgid "Accounts"
 msgstr ""
 
 #: includes/admin/admin-options.php:24
-#: includes/fields/integration/class-listing.php:68
-#: includes/fields/integration/class-listing.php:142
+#: includes/admin/custom-fields/integration/class-listing.php:68
+#: includes/admin/custom-fields/integration/class-listing.php:142
 msgid "Profiles"
 msgstr ""
 
@@ -776,7 +769,7 @@ msgstr ""
 msgid "Additional account details"
 msgstr ""
 
-#: includes/admin/admin-privacy-erase.php:92
+#: includes/admin/admin-privacy-erase.php:78
 msgid "Your \"%s\" was unable to be removed at this time."
 msgstr ""
 
@@ -1806,6 +1799,352 @@ msgstr ""
 msgid "This is a reserved meta key, please select a different key."
 msgstr ""
 
+#: includes/admin/custom-fields/integration/class-listing.php:43
+msgid "Opening at:"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:44
+msgid "Closing at:"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:72
+msgid "Listing settings"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:117
+msgid "Details"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:118
+#: includes/admin/custom-fields/integration/class-listing.php:196
+#: includes/fields-functions.php:832
+#: includes/widgets/widget-listing-location-map.php:30
+msgid "Location"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:119
+msgid "Media"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:120
+msgid "Opening Hours"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:149
+msgid "Listing type"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:158
+#: includes/fields-functions.php:732
+msgid "Phone number"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:160
+#: includes/fields-functions.php:96 includes/fields-functions.php:391
+#: includes/fields-functions.php:742
+msgid "Website"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:162
+msgid "Social profiles"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:168
+msgid "Network"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:171
+msgid "Profile url"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:198
+msgid "Search an address or drag and drop the pin on the map to select location."
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:200
+#: includes/fields-functions.php:822
+msgid "Zipcode"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:223
+msgid "Images"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:227
+msgid "Embed"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:230
+msgid ""
+"Embed videos, images, tweets, audio, and other content into the listing by "
+"simply providing the url of the source. <a href=\"%s\" "
+"target=\"_blank\">View list of supported embeds.</a>"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:304
+msgid "Additional timings"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:430
+msgid "Additional settings"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-profile.php:80
+msgid "File url"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-profile.php:104
+msgid "Additional details"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:44
+#: includes/admin/custom-fields/settings/class-profile.php:44
+msgid "Validation"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:45
+#: includes/admin/custom-fields/settings/class-profile.php:45
+msgid "Permissions"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:71
+#: includes/admin/custom-fields/settings/class-profile.php:70
+msgid "Field type"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:74
+msgid ""
+"The selected field type determines how the field will look onto the listing "
+"submission forms."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:76
+msgid "Taxonomy ID"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:87
+msgid ""
+"Enter the name of the taxonomy which terms will be displayed within the "
+"dropdown."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:96
+#: includes/admin/custom-fields/settings/class-profile.php:89
+msgid "Field selectable options"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:108
+#: includes/admin/custom-fields/settings/class-profile.php:101
+msgid "Add options for this field type."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:111
+#: includes/admin/custom-fields/settings/class-profile.php:104
+msgid "Option title"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:111
+#: includes/admin/custom-fields/settings/class-profile.php:104
+msgid "Enter the title of this option."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:123
+#: includes/admin/custom-fields/settings/class-profile.php:119
+msgid "Allow multiple files"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:134
+#: includes/admin/custom-fields/settings/class-profile.php:130
+msgid ""
+"Enable this option to allow users to upload multiple files through this "
+"field."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:137
+msgid "Disable branch nodes"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:148
+msgid ""
+"Enable this option so that branch nodes (Parent terms) are collapsible and "
+"not selectable."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:150
+msgid "Allow multiple values"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:161
+msgid ""
+"Enable this option to allow multiple values to be selected through the "
+"dropdown."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:163
+#: includes/admin/custom-fields/settings/class-profile.php:133
+#: includes/admin/custom-fields/settings/class-registration.php:91
+msgid "Custom form label"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:164
+msgid ""
+"This text will be used as label within the listing submission forms. Leave "
+"blank to use the field title."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:166
+#: includes/admin/custom-fields/settings/class-profile.php:136
+#: includes/admin/custom-fields/settings/class-registration.php:94
+msgid "Placeholder"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:167
+#: includes/admin/custom-fields/settings/class-profile.php:137
+#: includes/admin/custom-fields/settings/class-registration.php:95
+msgid ""
+"This text will appear within the field when empty. Leave blank if not "
+"needed."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:169
+#: includes/admin/custom-fields/settings/class-profile.php:139
+#: includes/admin/custom-fields/settings/class-registration.php:97
+msgid "Field description"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:170
+#: includes/admin/custom-fields/settings/class-profile.php:140
+#: includes/admin/custom-fields/settings/class-registration.php:98
+msgid ""
+"This is the text that appears as a description within the forms. Leave "
+"blank if not needed."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:191
+#: includes/admin/custom-fields/settings/class-profile.php:160
+#: includes/admin/custom-fields/settings/class-registration.php:78
+msgid "Set as required"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:192
+#: includes/admin/custom-fields/settings/class-profile.php:161
+#: includes/admin/custom-fields/settings/class-registration.php:89
+msgid ""
+"Enable this option so the field must be filled before the form can be "
+"processed."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:194
+#: includes/admin/custom-fields/settings/class-profile.php:163
+msgid "Upload max size:"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:205
+#: includes/admin/custom-fields/settings/class-profile.php:174
+msgid ""
+"Enter the maximum file size (in bytes) allowed for uploads through this "
+"field. Leave blank to use server settings."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:207
+#: includes/admin/custom-fields/settings/class-profile.php:176
+msgid "Allowed file types:"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:219
+msgid ""
+"Specify which file types are supported by this field. Separate with comma "
+"to add multiple extensions. Eg: jpg, png."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:249
+#: includes/admin/custom-fields/settings/class-profile.php:223
+msgid "Admin only?"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:250
+msgid ""
+"Enable this option to allow only administrators to customize the field. "
+"Hidden fields will not visible within the listing submission form on the "
+"frontend."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:273
+#: includes/admin/custom-fields/settings/class-profile.php:260
+#: includes/admin/custom-fields/settings/class-registration.php:123
+msgid "Field settings"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:305
+#: includes/admin/custom-fields/settings/class-profile.php:292
+msgid "Advanced"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:312
+#: includes/admin/custom-fields/settings/class-profile.php:299
+msgid "Unique meta key"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:314
+msgid ""
+"The key must be unique for each field and written in lowercase with an "
+"underscore ( _ ) separating words e.g country_list or job_title. This will "
+"be used to store information about the listings into the database of your "
+"website."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-listing.php:316
+#: includes/admin/custom-fields/settings/class-profile.php:303
+#: includes/admin/custom-fields/settings/class-registration.php:100
+msgid "Custom css classes"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:87
+msgid ""
+"The selected field type determines how the field will look onto the account "
+"and registration forms."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:134
+msgid ""
+"This text will be used as label within the registration and account "
+"settings forms. Leave blank to use the field title."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:188
+msgid "Specify which file types are supported by this field."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:224
+msgid ""
+"Enable this option to allow only administrators to customize the field. "
+"Hidden fields will not be customizable from the account settings page."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:227
+msgid "Set as read only"
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:238
+msgid ""
+"Enable to prevent users from editing this field but still make it visible "
+"within the account settings page."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-profile.php:301
+msgid ""
+"The key must be unique for each field and written in lowercase with an "
+"underscore ( _ ) separating words e.g country_list or job_title. This will "
+"be used to store information about your users into the database of your "
+"website."
+msgstr ""
+
+#: includes/admin/custom-fields/settings/class-registration.php:92
+msgid ""
+"This text will be used as label within the registration forms. Leave blank "
+"to use the field title."
+msgstr ""
+
 #: includes/admin/views/getting-started.php:21
 msgid "Welcome to Posterno (Beta)"
 msgstr ""
@@ -1884,7 +2223,7 @@ msgid "Email address*"
 msgstr ""
 
 #: includes/admin/views/getting-started.php:93
-#: includes/fields-functions.php:343
+#: includes/fields-functions.php:361
 msgid "First name"
 msgstr ""
 
@@ -1919,10 +2258,10 @@ msgid "Field name."
 msgstr ""
 
 #: includes/api/class-pno-listings-fields-api.php:68
-#: includes/api/class-pno-listings-fields-api.php:390
+#: includes/api/class-pno-listings-fields-api.php:369
 #: includes/api/class-pno-profile-fields-api.php:70
-#: includes/api/class-pno-profile-fields-api.php:404
-#: includes/api/class-pno-registration-fields-api.php:380
+#: includes/api/class-pno-profile-fields-api.php:379
+#: includes/api/class-pno-registration-fields-api.php:357
 msgid "Field type."
 msgstr ""
 
@@ -1932,88 +2271,88 @@ msgstr ""
 msgid "Unique identifier for the resource."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:249
-#: includes/api/class-pno-profile-fields-api.php:264
-#: includes/api/class-pno-registration-fields-api.php:242
+#: includes/api/class-pno-listings-fields-api.php:230
+#: includes/api/class-pno-profile-fields-api.php:240
+#: includes/api/class-pno-registration-fields-api.php:227
 msgid "Cannot create existing field."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:257
-#: includes/api/class-pno-profile-fields-api.php:274
-#: includes/api/class-pno-registration-fields-api.php:250
+#: includes/api/class-pno-listings-fields-api.php:237
+#: includes/api/class-pno-profile-fields-api.php:250
+#: includes/api/class-pno-registration-fields-api.php:235
 msgid "Please enter a name for the new field."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:264
-#: includes/api/class-pno-profile-fields-api.php:278
+#: includes/api/class-pno-listings-fields-api.php:244
+#: includes/api/class-pno-profile-fields-api.php:254
 msgid "Invalid field type."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:300
-#: includes/api/class-pno-listings-fields-api.php:310
-#: includes/api/class-pno-profile-fields-api.php:314
-#: includes/api/class-pno-profile-fields-api.php:324
-#: includes/api/class-pno-registration-fields-api.php:288
-#: includes/api/class-pno-registration-fields-api.php:298
+#: includes/api/class-pno-listings-fields-api.php:278
+#: includes/api/class-pno-listings-fields-api.php:287
+#: includes/api/class-pno-profile-fields-api.php:288
+#: includes/api/class-pno-profile-fields-api.php:297
+#: includes/api/class-pno-registration-fields-api.php:265
+#: includes/api/class-pno-registration-fields-api.php:274
 msgid "Something went wrong while deleting the field, please contact support."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:329
-#: includes/api/class-pno-profile-fields-api.php:343
-#: includes/api/class-pno-registration-fields-api.php:318
+#: includes/api/class-pno-listings-fields-api.php:305
+#: includes/api/class-pno-profile-fields-api.php:315
+#: includes/api/class-pno-registration-fields-api.php:292
 msgid ""
 "Something went wrong while updating the order of the fields, please contact "
 "support."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:357
-#: includes/api/class-pno-profile-fields-api.php:372
-#: includes/api/class-pno-registration-fields-api.php:347
+#: includes/api/class-pno-listings-fields-api.php:336
+#: includes/api/class-pno-profile-fields-api.php:347
+#: includes/api/class-pno-registration-fields-api.php:324
 msgid "Unique identifier for the object."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:363
-#: includes/api/class-pno-registration-fields-api.php:353
+#: includes/api/class-pno-listings-fields-api.php:342
+#: includes/api/class-pno-registration-fields-api.php:330
 msgid "The name for the object."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:369
+#: includes/api/class-pno-listings-fields-api.php:348
 msgid "The optional label for the field used within forms."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:374
+#: includes/api/class-pno-listings-fields-api.php:353
 msgid "The meta key for the field used to store listing information."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:379
-#: includes/api/class-pno-profile-fields-api.php:393
-#: includes/api/class-pno-registration-fields-api.php:369
+#: includes/api/class-pno-listings-fields-api.php:358
+#: includes/api/class-pno-profile-fields-api.php:368
+#: includes/api/class-pno-registration-fields-api.php:346
 msgid ""
 "The priority number assigned to the field used to defined the order within "
 "forms."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:384
-#: includes/api/class-pno-profile-fields-api.php:398
-#: includes/api/class-pno-registration-fields-api.php:374
+#: includes/api/class-pno-listings-fields-api.php:363
+#: includes/api/class-pno-profile-fields-api.php:373
+#: includes/api/class-pno-registration-fields-api.php:351
 msgid "Flag to determine if the field is a default field."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:395
-#: includes/api/class-pno-profile-fields-api.php:409
-#: includes/api/class-pno-registration-fields-api.php:385
+#: includes/api/class-pno-listings-fields-api.php:374
+#: includes/api/class-pno-profile-fields-api.php:384
+#: includes/api/class-pno-registration-fields-api.php:362
 msgid "Field description."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:400
-#: includes/api/class-pno-profile-fields-api.php:414
-#: includes/api/class-pno-registration-fields-api.php:390
+#: includes/api/class-pno-listings-fields-api.php:379
+#: includes/api/class-pno-profile-fields-api.php:389
+#: includes/api/class-pno-registration-fields-api.php:367
 msgid "Field placeholder."
 msgstr ""
 
-#: includes/api/class-pno-listings-fields-api.php:405
-#: includes/api/class-pno-profile-fields-api.php:419
-#: includes/api/class-pno-registration-fields-api.php:395
+#: includes/api/class-pno-listings-fields-api.php:384
+#: includes/api/class-pno-profile-fields-api.php:394
+#: includes/api/class-pno-registration-fields-api.php:372
 msgid "Flag to determine if the field is required when displayed within forms."
 msgstr ""
 
@@ -2041,48 +2380,44 @@ msgstr ""
 msgid "Test email"
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:145
+#: includes/api/class-pno-profile-fields-api.php:142
 msgid "Cannot exclude fields. Parameter must be an array."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:378
+#: includes/api/class-pno-profile-fields-api.php:353
 msgid "The name for the profile field."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:383
-#: includes/api/class-pno-registration-fields-api.php:359
+#: includes/api/class-pno-profile-fields-api.php:358
+#: includes/api/class-pno-registration-fields-api.php:336
 msgid "The optional label for the profile field used within forms."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:388
-#: includes/api/class-pno-registration-fields-api.php:364
+#: includes/api/class-pno-profile-fields-api.php:363
+#: includes/api/class-pno-registration-fields-api.php:341
 msgid "The user meta key for the field used to store users information."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:425
+#: includes/api/class-pno-profile-fields-api.php:400
 msgid "Flag to determine if the field is read-only when displayed within forms."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:431
+#: includes/api/class-pno-profile-fields-api.php:406
 msgid "Flag to determine if the field is admin only and hidden from forms."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:437
+#: includes/api/class-pno-profile-fields-api.php:412
 msgid ""
 "Holds selectable options if the field needs them. Example: dropdown or "
 "multiselect fields."
 msgstr ""
 
-#: includes/api/class-pno-profile-fields-api.php:461
+#: includes/api/class-pno-profile-fields-api.php:436
 msgid "Limit results by excluding fields by meta key."
 msgstr ""
 
 #: includes/api/class-pno-registration-fields-api.php:68
 msgid "Profile field id to which the registration field is mapped to."
-msgstr ""
-
-#: includes/api/class-pno-registration-fields-api.php:258
-msgid "File fields cannot be added to registration forms."
 msgstr ""
 
 #: includes/class-pno-avatars.php:80
@@ -2093,12 +2428,36 @@ msgstr ""
 msgid "Custom user avatar"
 msgstr ""
 
-#: includes/class-pno-avatars.php:85
-msgid "Custom profile cover image"
-msgstr ""
-
 #: includes/class-posterno.php:139 includes/class-posterno.php:150
 msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/components/posterno-forms/src/Element/AbstractSelect.php:158
+msgid "This field is required."
+msgstr ""
+
+#: includes/components/posterno-forms/src/Element/CheckboxSet.php:291
+#: includes/components/posterno-forms/src/Element/Input/File.php:131
+#: includes/components/posterno-forms/src/Element/Input.php:143
+#: includes/components/posterno-forms/src/Element/RadioSet.php:292
+#: includes/components/posterno-forms/src/Element/Textarea.php:142
+msgid "%s is a required field."
+msgstr ""
+
+#: includes/components/posterno-forms/src/Fields.php:253
+msgid "Uploaded file exceeds the maximum file size of: %1$s"
+msgstr ""
+
+#: includes/components/posterno-forms/src/Fields.php:259
+msgid "\"%1$s\" needs to be one of the following file types: %2$s"
+msgstr ""
+
+#: includes/components/posterno-forms/src/Fields.php:266
+msgid "%s is an invalid term."
+msgstr ""
+
+#: includes/components/posterno-forms/src/Fields.php:273
+msgid "\"%1$s\" value is invalid."
 msgstr ""
 
 #: includes/components/posterno-schema/includes/Component/admin/admin-actions.php:26
@@ -2143,59 +2502,59 @@ msgstr ""
 msgid "Something went wrong: could not delete schema."
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:162
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:158
 msgid "Listing URL"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:167
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:163
 msgid "Listing latitude"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:172
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:168
 msgid "Listing longitude"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:177
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:173
 msgid "Listing street address"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:182
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:178
 msgid "Listing geocoded city"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:187
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:183
 msgid "Listing geocoded region"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:192
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:188
 msgid "Listing geocoded country"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:197
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:193
 msgid "Listing author name"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:202
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:198
 msgid "Listing author first name"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:207
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:203
 msgid "Listing author last name"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:212
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:208
 msgid "Listing publish date"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:217
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:213
 msgid "Listing last modified date"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:223
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:219
 msgid "Site title"
 msgstr ""
 
-#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:229
+#: includes/components/posterno-schema/includes/Component/admin/admin-functions.php:225
 msgid "Site URL"
 msgstr ""
 
@@ -2364,6 +2723,104 @@ msgstr ""
 msgid "Listing address"
 msgstr ""
 
+#: includes/components/posterno-validator/src/Alpha.php:36
+msgid "The value must only contain characters of the alphabet %s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/AlphaNumeric.php:36
+msgid "The value must only contain alphanumeric characters %s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/BeEmpty.php:36
+msgid "This field is for validation purposes and should be left unchanged."
+msgstr ""
+
+#: includes/components/posterno-validator/src/Contains.php:35
+msgid "Input not found in the specified value."
+msgstr ""
+
+#: includes/components/posterno-validator/src/Equal.php:36
+msgid "The value must be equal to %s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/GreaterThan.php:36
+msgid "The value must be greater than %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/GreaterThanEqual.php:36
+msgid "The value must be greater than or equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/KeyContained.php:36
+#: includes/components/posterno-validator/src/ValueContained.php:36
+msgid "Please select a valid value."
+msgstr ""
+
+#: includes/components/posterno-validator/src/Length.php:36
+msgid "The value length must be equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthBetween.php:41
+msgid "Value length must be between %1$s and %2$s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthBetweenEqual.php:41
+msgid "Value length must be between or equal to %1$s and %2$s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthGreaterThan.php:35
+msgid "Value length must be greater than %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthGreaterThanEqual.php:35
+msgid "Value length must be greater than or equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthLessThan.php:36
+msgid "The value length must be less than %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LengthLessThanEqual.php:36
+msgid "The value length must be less than or equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LessThan.php:36
+msgid "The value must be less than %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/LessThanEqual.php:36
+msgid "The value must be less than or equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/NotContains.php:35
+msgid "The input must be not contained in the value."
+msgstr ""
+
+#: includes/components/posterno-validator/src/NotEmpty.php:36
+msgid "Value must not be empty."
+msgstr ""
+
+#: includes/components/posterno-validator/src/NotEqual.php:36
+msgid "The value must not be equal to %s"
+msgstr ""
+
+#: includes/components/posterno-validator/src/Numeric.php:36
+msgid "Value must be numeric."
+msgstr ""
+
+#: includes/components/posterno-validator/src/RegEx.php:35
+msgid "The format is not correct."
+msgstr ""
+
+#: includes/components/posterno-validator/src/TermExists.php:39
+msgid "Submitted term is invalid."
+msgstr ""
+
+#: includes/components/posterno-validator/src/VerifyPassword.php:36
+#: includes/forms/ChangePassword.php:265
+msgid "The password you entered is incorrect."
+msgstr ""
+
 #: includes/emails/class-pno-emails-editor-settings.php:41
 msgid "Notification settings"
 msgstr ""
@@ -2480,7 +2937,7 @@ msgstr ""
 msgid "Display listing ID number."
 msgstr ""
 
-#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:697
+#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:702
 msgid "Listing title"
 msgstr ""
 
@@ -2569,358 +3026,6 @@ msgstr ""
 msgid "Listing author received an email."
 msgstr ""
 
-#: includes/fields/class-listing.php:175 includes/fields/class-profile.php:145
-#: includes/fields/class-registration.php:184
-#: includes/fields/class-registration.php:188
-msgid "Can't find property %s"
-msgstr ""
-
-#: includes/fields/class-listing.php:192 includes/fields/class-profile.php:162
-msgid ""
-"A field with the same meta key has been found. Please choose a different "
-"name."
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:43
-msgid "Opening at:"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:44
-msgid "Closing at:"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:72
-msgid "Listing settings"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:117
-msgid "Details"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:118
-#: includes/fields/integration/class-listing.php:196
-#: includes/fields-functions.php:800
-#: includes/widgets/widget-listing-location-map.php:30
-msgid "Location"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:119
-msgid "Media"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:120
-msgid "Opening Hours"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:149
-msgid "Listing type"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:158
-#: includes/fields-functions.php:718
-msgid "Phone number"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:160
-#: includes/fields-functions.php:96 includes/fields-functions.php:367
-#: includes/fields-functions.php:725
-msgid "Website"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:162
-msgid "Social profiles"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:168
-msgid "Network"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:171
-msgid "Profile url"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:198
-msgid "Search an address or drag and drop the pin on the map to select location."
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:200
-#: includes/fields-functions.php:793
-msgid "Zipcode"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:223
-msgid "Images"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:227
-msgid "Embed"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:230
-msgid ""
-"Embed videos, images, tweets, audio, and other content into the listing by "
-"simply providing the url of the source. <a href=\"%s\" "
-"target=\"_blank\">View list of supported embeds.</a>"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:304
-msgid "Additional timings"
-msgstr ""
-
-#: includes/fields/integration/class-listing.php:434
-msgid "Additional settings"
-msgstr ""
-
-#: includes/fields/integration/class-profile.php:87
-msgid "File url"
-msgstr ""
-
-#: includes/fields/integration/class-profile.php:110
-msgid "Additional details"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:44
-#: includes/fields/settings/class-profile.php:44
-msgid "Validation"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:45
-#: includes/fields/settings/class-profile.php:45
-msgid "Permissions"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:71
-#: includes/fields/settings/class-profile.php:70
-msgid "Field type"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:74
-msgid ""
-"The selected field type determines how the field will look onto the listing "
-"submission forms."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:76
-msgid "Taxonomy ID"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:87
-msgid ""
-"Enter the name of the taxonomy which terms will be displayed within the "
-"dropdown."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:96
-#: includes/fields/settings/class-profile.php:89
-msgid "Field selectable options"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:108
-#: includes/fields/settings/class-profile.php:101
-msgid "Add options for this field type."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:111
-#: includes/fields/settings/class-profile.php:104
-msgid "Option title"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:111
-#: includes/fields/settings/class-profile.php:104
-msgid "Enter the title of this option."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:123
-#: includes/fields/settings/class-profile.php:119
-msgid "Allow multiple files"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:134
-#: includes/fields/settings/class-profile.php:130
-msgid ""
-"Enable this option to allow users to upload multiple files through this "
-"field."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:137
-msgid "Disable branch nodes"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:148
-msgid ""
-"Enable this option so that branch nodes (Parent terms) are collapsible and "
-"not selectable."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:150
-msgid "Allow multiple values"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:161
-msgid ""
-"Enable this option to allow multiple values to be selected through the "
-"dropdown."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:163
-#: includes/fields/settings/class-profile.php:133
-#: includes/fields/settings/class-registration.php:91
-msgid "Custom form label"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:164
-msgid ""
-"This text will be used as label within the listing submission forms. Leave "
-"blank to use the field title."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:166
-#: includes/fields/settings/class-profile.php:136
-#: includes/fields/settings/class-registration.php:94
-msgid "Placeholder"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:167
-#: includes/fields/settings/class-profile.php:137
-#: includes/fields/settings/class-registration.php:95
-msgid ""
-"This text will appear within the field when empty. Leave blank if not "
-"needed."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:169
-#: includes/fields/settings/class-profile.php:139
-#: includes/fields/settings/class-registration.php:97
-msgid "Field description"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:170
-#: includes/fields/settings/class-profile.php:140
-#: includes/fields/settings/class-registration.php:98
-msgid ""
-"This is the text that appears as a description within the forms. Leave "
-"blank if not needed."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:191
-#: includes/fields/settings/class-profile.php:160
-#: includes/fields/settings/class-registration.php:78
-msgid "Set as required"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:192
-#: includes/fields/settings/class-profile.php:161
-#: includes/fields/settings/class-registration.php:89
-msgid ""
-"Enable this option so the field must be filled before the form can be "
-"processed."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:194
-#: includes/fields/settings/class-profile.php:163
-msgid "Upload max size:"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:205
-#: includes/fields/settings/class-profile.php:174
-msgid ""
-"Enter the maximum file size (in bytes) allowed for uploads through this "
-"field. Leave blank to use server settings."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:207
-#: includes/fields/settings/class-profile.php:176
-msgid "Allowed file types:"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:219
-msgid ""
-"Specify which file types are supported by this field. Separate with comma "
-"to add multiple extensions. Eg: jpg, png."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:249
-#: includes/fields/settings/class-profile.php:223
-msgid "Admin only?"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:250
-msgid ""
-"Enable this option to allow only administrators to customize the field. "
-"Hidden fields will not visible within the listing submission form on the "
-"frontend."
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:273
-#: includes/fields/settings/class-profile.php:260
-#: includes/fields/settings/class-registration.php:121
-msgid "Field settings"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:305
-#: includes/fields/settings/class-profile.php:292
-msgid "Advanced"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:312
-#: includes/fields/settings/class-profile.php:299
-msgid "Unique meta key"
-msgstr ""
-
-#: includes/fields/settings/class-listing.php:314
-msgid ""
-"The key must be unique for each field and written in lowercase with an "
-"underscore ( _ ) separating words e.g country_list or job_title. This will "
-"be used to store information about the listings into the database of your "
-"website."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:87
-msgid ""
-"The selected field type determines how the field will look onto the account "
-"and registration forms."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:134
-msgid ""
-"This text will be used as label within the registration and account "
-"settings forms. Leave blank to use the field title."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:188
-msgid "Specify which file types are supported by this field."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:224
-msgid ""
-"Enable this option to allow only administrators to customize the field. "
-"Hidden fields will not be customizable from the account settings page."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:227
-msgid "Set as read only"
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:238
-msgid ""
-"Enable to prevent users from editing this field but still make it visible "
-"within the account settings page."
-msgstr ""
-
-#: includes/fields/settings/class-profile.php:301
-msgid ""
-"The key must be unique for each field and written in lowercase with an "
-"underscore ( _ ) separating words e.g country_list or job_title. This will "
-"be used to store information about your users into the database of your "
-"website."
-msgstr ""
-
-#: includes/fields/settings/class-registration.php:92
-msgid ""
-"This text will be used as label within the registration forms. Leave blank "
-"to use the field title."
-msgstr ""
-
 #: includes/fields-functions.php:91
 msgid "Single text line"
 msgstr ""
@@ -2997,94 +3102,95 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: includes/fields-functions.php:188
+#: includes/fields-functions.php:195
 msgid "Register as:"
 msgstr ""
 
-#: includes/fields-functions.php:198
-#: includes/forms/class-pno-form-login.php:123
-msgid "If you're human leave this blank:"
-msgstr ""
-
-#: includes/fields-functions.php:210
+#: includes/fields-functions.php:214
 msgid ""
 "By registering to this website you agree to the <a href=\"%s\" "
 "target=\"_blank\">terms &amp; conditions</a>."
 msgstr ""
 
-#: includes/fields-functions.php:221
+#: includes/fields-functions.php:228
 msgid ""
 "I have read and accept the <a href=\"%1$s\" target=\"_blank\">privacy "
 "policy</a> and allow \"%2$s\" to collect and store the data I submit "
 "through this form."
 msgstr ""
 
-#: includes/fields-functions.php:231
+#: includes/fields-functions.php:241
 msgid "Confirm password"
 msgstr ""
 
-#: includes/fields-functions.php:329
+#: includes/fields-functions.php:253 includes/forms/ChangePassword.php:148
+msgid ""
+"Password must be at least 8 characters long and contain at least 1 number, "
+"1 uppercase letter and 1 special character."
+msgstr ""
+
+#: includes/fields-functions.php:345
 msgid "Profile picture"
 msgstr ""
 
-#: includes/fields-functions.php:351
+#: includes/fields-functions.php:371
 msgid "Last name"
 msgstr ""
 
-#: includes/fields-functions.php:375
+#: includes/fields-functions.php:401
 msgid "About me"
 msgstr ""
 
-#: includes/fields-functions.php:704
+#: includes/fields-functions.php:712
 msgid "Description"
 msgstr ""
 
-#: includes/fields-functions.php:732
+#: includes/fields-functions.php:752
 msgid "Video"
 msgstr ""
 
-#: includes/fields-functions.php:739
+#: includes/fields-functions.php:762
 msgid "Social media profiles"
 msgstr ""
 
-#: includes/fields-functions.php:746
+#: includes/fields-functions.php:769
 msgid "Listing category"
 msgstr ""
 
-#: includes/fields-functions.php:755 includes/post-types.php:539
+#: includes/fields-functions.php:778 includes/post-types.php:539
 msgid "Listing tags"
 msgstr ""
 
-#: includes/fields-functions.php:762
+#: includes/fields-functions.php:785
 msgid "Listing regions"
 msgstr ""
 
-#: includes/fields-functions.php:765
+#: includes/fields-functions.php:788
 msgid "Select a region"
 msgstr ""
 
-#: includes/fields-functions.php:771
+#: includes/fields-functions.php:794
 msgid "Hours of operation"
 msgstr ""
 
-#: includes/fields-functions.php:778
+#: includes/fields-functions.php:801
 #: includes/listings/class-pno-listings-terms-custom-fields.php:48
 msgid "Featured image"
 msgstr ""
 
-#: includes/fields-functions.php:785
+#: includes/fields-functions.php:811
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1063
+#: includes/fields-functions.php:1128
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1064
+#: includes/fields-functions.php:1129
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1065
+#: includes/fields-functions.php:1130
 msgid "Select Some Options"
 msgstr ""
 
@@ -3092,279 +3198,235 @@ msgstr ""
 msgid "Invalid email address or incorrect password."
 msgstr ""
 
-#: includes/filters.php:370
-msgid ""
-"The maximum amount of categories you are allowed to select is %1$s, you "
-"have selected %2$s."
+#: includes/filters.php:408
+msgid "The maximum amount of categories you are allowed to select is %1$s."
 msgstr ""
 
-#: includes/filters.php:382
-msgid ""
-"The maximum amount of tags you are allowed to select is %1$s, you have "
-"selected %2$s."
+#: includes/filters.php:418
+msgid "The maximum amount of tags you are allowed to select is %1$s."
 msgstr ""
 
-#: includes/forms/class-pno-form-account-delete.php:57
-msgid "Permanently account"
+#: includes/forms/Account.php:102 includes/forms/ChangePassword.php:129
+#: includes/forms/DataErasure.php:113 includes/forms/DataRequest.php:114
+#: includes/forms/DeleteAccount.php:113 includes/forms/ForgotPassword.php:110
+#: includes/forms/ListingContact.php:130 includes/forms/ListingEdit.php:120
+#: includes/forms/ListingSubmission.php:206 includes/forms/Login.php:130
+#: includes/forms/Registration.php:102
+msgid "If you're human leave this blank:"
 msgstr ""
 
-#: includes/forms/class-pno-form-account-delete.php:94
-#: includes/forms/class-pno-form-data-erasure.php:94
-#: includes/forms/class-pno-form-data-request.php:94
-#: includes/forms/class-pno-form-password-change.php:102
-msgid "Current password"
-msgstr ""
-
-#: includes/forms/class-pno-form-account-delete.php:95
-msgid "Enter your current password to confirm cancellation of your account."
-msgstr ""
-
-#: includes/forms/class-pno-form-account-delete.php:128
-msgid ""
-"The account will no longer be available, and all data in the account will "
-"be permanently deleted."
-msgstr ""
-
-#: includes/forms/class-pno-form-account-delete.php:137
-msgid "Delete account"
-msgstr ""
-
-#: includes/forms/class-pno-form-account-delete.php:194
-msgid "The password you entered is incorrect. Your account has not been deleted."
-msgstr ""
-
-#: includes/forms/class-pno-form-account.php:57
-#: includes/forms/class-pno-form-account.php:63
-msgid "Account settings"
-msgstr ""
-
-#: includes/forms/class-pno-form-account.php:124
-#: includes/forms/class-pno-form-listing-edit.php:149
+#: includes/forms/Account.php:111 includes/forms/ListingEdit.php:129
 msgid "Save changes"
 msgstr ""
 
-#: includes/forms/class-pno-form-account.php:338
+#: includes/forms/Account.php:152
+msgid "Account settings"
+msgstr ""
+
+#: includes/forms/Account.php:364
 msgid "Account details successfully updated."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:57
-msgid "Request cancellation of your data"
+#: includes/forms/ChangePassword.php:99 includes/forms/DataErasure.php:99
+#: includes/forms/DataRequest.php:100 includes/forms/DeleteAccount.php:99
+msgid "Current password"
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:95
+#: includes/forms/ChangePassword.php:108 includes/forms/ForgotPassword.php:177
+msgid "New password"
+msgstr ""
+
+#: includes/forms/ChangePassword.php:117
+msgid "Repeat new password"
+msgstr ""
+
+#: includes/forms/ChangePassword.php:138 includes/forms/ChangePassword.php:199
+#: includes/functions.php:193
+msgid "Change password"
+msgstr ""
+
+#: includes/forms/ChangePassword.php:235 includes/forms/ForgotPassword.php:339
+#: includes/forms/Registration.php:214
+msgid "Passwords do not match."
+msgstr ""
+
+#: includes/forms/ChangePassword.php:258
+msgid "Password successfully updated."
+msgstr ""
+
+#: includes/forms/DataErasure.php:100
 msgid "Enter your current password to confim erasure of your personal data."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:126
+#: includes/forms/DataErasure.php:122
+msgid "Request data cancellation"
+msgstr ""
+
+#: includes/forms/DataErasure.php:158
 msgid ""
 "You can request cancellation of the data that we have about you. You’ll get "
 "an email sent to %s with a link to confirm your request."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:138
-msgid "Request data cancellation"
+#: includes/forms/DataErasure.php:171
+msgid "Request cancellation of your data"
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:194
+#: includes/forms/DataErasure.php:212
 msgid ""
 "A confirmation email has been sent to %s. Click the link within the email "
 "to confirm your data erasure request."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-erasure.php:210
-#: includes/forms/class-pno-form-data-request.php:211
-#: includes/forms/class-pno-form-password-change.php:251
-msgid "The password you entered is incorrect."
-msgstr ""
-
-#: includes/forms/class-pno-form-data-request.php:57
-msgid "Download your data"
-msgstr ""
-
-#: includes/forms/class-pno-form-data-request.php:95
+#: includes/forms/DataRequest.php:101
 msgid "Enter your current password to confim export of your personal data."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-request.php:126
+#: includes/forms/DataRequest.php:123
+msgid "Request data"
+msgstr ""
+
+#: includes/forms/DataRequest.php:159
 msgid ""
 "You can request a file with the information that we believe is most "
 "relevant and useful to you. You’ll get an email sent to %s with a link when "
 "it’s ready to be downloaded."
 msgstr ""
 
-#: includes/forms/class-pno-form-data-request.php:138
-msgid "Request data"
+#: includes/forms/DataRequest.php:172
+msgid "Download your data"
 msgstr ""
 
-#: includes/forms/class-pno-form-data-request.php:194
+#: includes/forms/DataRequest.php:213
 msgid ""
 "A confirmation email has been sent to %s. Click the link within the email "
 "to confirm your export request."
 msgstr ""
 
-#: includes/forms/class-pno-form-listing-contact.php:59
-#: includes/forms/class-pno-form-login.php:67
-msgid "Submit Details"
+#: includes/forms/DeleteAccount.php:100
+msgid "Enter your current password to confirm cancellation of your account."
 msgstr ""
 
-#: includes/forms/class-pno-form-listing-contact.php:89
-msgid "Your name"
+#: includes/forms/DeleteAccount.php:122
+msgid "Delete account"
 msgstr ""
 
-#: includes/forms/class-pno-form-listing-contact.php:96
-msgid "Your email address"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-contact.php:103
-msgid "Message"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-contact.php:136
-msgid "Send email"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-contact.php:200
-msgid "Your message has been sent successfully."
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-contact.php:215
-msgid "Something went wrong while sending the message."
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-edit.php:73
-#: includes/forms/class-pno-form-listing-submission.php:75
-msgid "Listing details"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:69
-msgid "Select a listing type"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:81
-msgid "Listing successfully submitted."
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:140
-msgid "Continue"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:174
-#: includes/forms/class-pno-form-password-recovery.php:394
-msgid "Something went wrong."
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:502
-msgid "Listing successfully submitted. <a href=\"%s\">View your listing.</a>"
-msgstr ""
-
-#: includes/forms/class-pno-form-listing-submission.php:505
-msgid "Listing successfully submitted. Your listing will be visible once approved."
-msgstr ""
-
-#: includes/forms/class-pno-form-login.php:117
-msgid "Remember me"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-change.php:59
-#: includes/forms/class-pno-form-password-change.php:65
-#: includes/forms/class-pno-form-password-change.php:179
-#: includes/functions.php:193
-msgid "Change password"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-change.php:109
-#: includes/forms/class-pno-form-password-recovery.php:103
-msgid "New password"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-change.php:116
-msgid "Repeat new password"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-change.php:151
-#: includes/forms/class-pno-form-registration.php:111
+#: includes/forms/DeleteAccount.php:160
 msgid ""
-"Password must be at least 8 characters long and contain at least 1 number, "
-"1 uppercase letter and 1 special character."
+"The account will no longer be available, and all data in the account will "
+"be permanently deleted."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-change.php:159
-#: includes/forms/class-pno-form-password-recovery.php:267
-#: includes/forms/class-pno-form-registration.php:119
-msgid "Passwords do not match."
+#: includes/forms/DeleteAccount.php:170
+msgid "Permanently delete account"
 msgstr ""
 
-#: includes/forms/class-pno-form-password-change.php:243
-msgid "Password successfully updated."
+#: includes/forms/ForgotPassword.php:119
+msgid "Reset password"
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:57
-msgid "Password recovery details request"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-recovery.php:94
-#: includes/templates-functions.php:39
+#: includes/forms/ForgotPassword.php:154 includes/templates-functions.php:28
 msgid "Username or email"
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:110
+#: includes/forms/ForgotPassword.php:186
 msgid "Re-enter new password"
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:154
+#: includes/forms/ForgotPassword.php:235
 msgid ""
 "Lost your password? Please enter your username or email address. You will "
 "receive a link to create a new password via email."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:164
+#: includes/forms/ForgotPassword.php:245
 msgid "Create a new password for the account."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:174
-msgid "Reset password"
-msgstr ""
-
-#: includes/forms/class-pno-form-password-recovery.php:242
-#: includes/forms/class-pno-form-password-recovery.php:353
+#: includes/forms/ForgotPassword.php:314 includes/forms/ForgotPassword.php:417
 msgid "Password reset is not allowed for this user."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:256
+#: includes/forms/ForgotPassword.php:328
 msgid ""
 "The reset key is wrong or expired. Please check that you used the right "
 "reset link or request a new one."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:288
+#: includes/forms/ForgotPassword.php:360
 msgid "Password successfully reset."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:288
+#: includes/forms/ForgotPassword.php:360
 msgid "Login now &raquo;"
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:312
+#: includes/forms/ForgotPassword.php:382
 msgid ""
 "The link you followed may be broken. Please check that you used the right "
 "reset link or request a new one."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:330
+#: includes/forms/ForgotPassword.php:395
 msgid ""
 "A user with this username or email does not exist. Please check your entry "
 "and try again."
 msgstr ""
 
-#: includes/forms/class-pno-form-password-recovery.php:377
+#: includes/forms/ForgotPassword.php:437
 msgid "We've sent an email to %s with password reset instructions."
 msgstr ""
 
-#: includes/forms/class-pno-form-registration.php:144
-msgid "Select a valid role from the list."
+#: includes/forms/ForgotPassword.php:453
+msgid "Something went wrong."
 msgstr ""
 
-#: includes/forms/class-pno-form-registration.php:346
+#: includes/forms/ListingContact.php:99
+msgid "Your name"
+msgstr ""
+
+#: includes/forms/ListingContact.php:108
+msgid "Your email address"
+msgstr ""
+
+#: includes/forms/ListingContact.php:117
+msgid "Message"
+msgstr ""
+
+#: includes/forms/ListingContact.php:139
+msgid "Send email"
+msgstr ""
+
+#: includes/forms/ListingContact.php:227
+msgid "Your message has been sent successfully."
+msgstr ""
+
+#: includes/forms/ListingContact.php:240
+msgid "Something went wrong while sending the message."
+msgstr ""
+
+#: includes/forms/ListingEdit.php:182 includes/forms/ListingSubmission.php:127
+#: includes/forms/ListingSubmission.php:275
+msgid "Listing details"
+msgstr ""
+
+#: includes/forms/ListingSubmission.php:123
+msgid "Select a listing type"
+msgstr ""
+
+#: includes/forms/ListingSubmission.php:550
+msgid "Listing successfully submitted. <a href=\"%s\">View your listing.</a>"
+msgstr ""
+
+#: includes/forms/ListingSubmission.php:553
+msgid "Listing successfully submitted. Your listing will be visible once approved."
+msgstr ""
+
+#: includes/forms/Login.php:118
+msgid "Remember me"
+msgstr ""
+
+#: includes/forms/Registration.php:317
 msgid ""
 "Registration complete. We have sent you a confirmation email with your "
 "details."
@@ -4284,35 +4346,35 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: includes/scripts.php:185
+#: includes/scripts.php:175
 msgid "Find my location"
 msgstr ""
 
-#: includes/scripts.php:186
+#: includes/scripts.php:176
 msgid "You are here."
 msgstr ""
 
-#: includes/scripts.php:187
+#: includes/scripts.php:177
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:188
+#: includes/scripts.php:178
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:189
+#: includes/scripts.php:179
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 
-#: includes/shortcodes.php:307
+#: includes/shortcodes.php:254
 msgid "Access to this page is restricted."
 msgstr ""
 
-#: includes/shortcodes.php:354
+#: includes/shortcodes.php:301
 msgid "You are not authorized to access this page."
 msgstr ""
 
-#: includes/templates-functions.php:700
+#: includes/templates-functions.php:699
 msgid ""
 "This widget can only be used when within a sidebar for the sigle listing "
 "page."
@@ -4504,80 +4566,104 @@ msgstr ""
 msgid "Add listing"
 msgstr ""
 
+#: templates/dashboard/welcome.php:40
+msgid "Published listing"
+msgid_plural "Published listings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/dashboard/welcome.php:56
+msgid "Pending listing"
+msgid_plural "Pending listings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/dashboard/welcome.php:72
+msgid "Expired listing"
+msgid_plural "Expired listings"
+msgstr[0] ""
+msgstr[1] ""
+
 #: templates/form-fields/file-uploaded.php:40
 #: templates/form-fields/file-uploaded.php:51
 msgid "Remove"
 msgstr ""
 
-#: templates/form-fields/listing-category-field.php:38
-#: templates/form-fields/term-chain-dropdown-field.php:60
+#: templates/form-fields/listing-category-field.php:40
+#: templates/form-fields/term-chain-dropdown-field.php:62
 msgid "No results found"
 msgstr ""
 
-#: templates/form-fields/listing-category-field.php:39
-#: templates/form-fields/term-chain-dropdown-field.php:61
+#: templates/form-fields/listing-category-field.php:41
+#: templates/form-fields/term-chain-dropdown-field.php:63
 msgid "No options available."
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:49
-#: templates/form-fields/listing-location-field.php:50
+#: templates/form-fields/listing-location-field.php:51
+#: templates/form-fields/listing-location-field.php:52
 msgid "Latitude"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:53
-#: templates/form-fields/listing-location-field.php:54
+#: templates/form-fields/listing-location-field.php:55
+#: templates/form-fields/listing-location-field.php:56
 msgid "Longitude"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:57
+#: templates/form-fields/listing-location-field.php:59
 msgid "Save coordinates"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:65
+#: templates/form-fields/listing-location-field.php:67
 msgid "Unlock pin location"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:69
+#: templates/form-fields/listing-location-field.php:71
 msgid "Lock pin location"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:75
+#: templates/form-fields/listing-location-field.php:77
 msgid "Hide coordinates"
 msgstr ""
 
-#: templates/form-fields/listing-location-field.php:79
+#: templates/form-fields/listing-location-field.php:81
 msgid "Enter coordinates"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:72
+#: templates/form-fields/listing-opening-hours-field.php:73
 msgid "Opening time"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:80
+#: templates/form-fields/listing-opening-hours-field.php:81
 msgid "Closing time"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:92
+#: templates/form-fields/listing-opening-hours-field.php:93
 msgid "Add hours"
 msgstr ""
 
-#: templates/form-fields/listing-tags-field.php:40
+#: templates/form-fields/listing-tags-field.php:42
 msgid "Select a category to display related tags."
 msgstr ""
 
-#: templates/form-fields/social-profiles-field.php:36
+#: templates/form-fields/social-profiles-field.php:38
 msgid "Select network"
 msgstr ""
 
-#: templates/form-fields/social-profiles-field.php:69
+#: templates/form-fields/social-profiles-field.php:70
 msgid "Add new profile"
 msgstr ""
 
-#: templates/form.php:112
+#: templates/form.php:35
+msgid ""
+"There was a problem with your submission. Errors have been highlighted "
+"below."
+msgstr ""
+
+#: templates/form.php:89
 msgid "(optional)"
 msgstr ""
 
-#: templates/form.php:137
+#: templates/form.php:102
 msgid "Maximum file size: %s."
 msgstr ""
 
@@ -4593,16 +4679,8 @@ msgstr ""
 msgid "Lost your password?"
 msgstr ""
 
-#: templates/forms/listing-type-selection.php:55
+#: templates/forms/listing-type-selection.php:52
 msgid "Select &rarr;"
-msgstr ""
-
-#: templates/listing-submission.php:39
-msgid "Submit listing &rarr;"
-msgstr ""
-
-#: templates/listing-submission.php:51
-msgid "Continue &rarr;"
 msgstr ""
 
 #: templates/listings/business-hours.php:29
