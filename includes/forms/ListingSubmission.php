@@ -396,7 +396,7 @@ class ListingSubmission {
 				if ( ! empty( $this->form->getFieldValue( 'listing_regions' ) ) ) {
 					$listing_region  = json_decode( stripslashes( $this->form->getFieldValue( 'listing_regions' ) ) );
 					$ancestors       = get_ancestors( $listing_region, 'listings-locations', 'taxonomy' );
-					$listing_regions = [ $listing_region ];
+					$listing_regions = is_array( $listing_region ) ? $listing_region : [ $listing_region ];
 					if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
 						$listing_regions = array_merge( $listing_regions, $ancestors );
 					}
