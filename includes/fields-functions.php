@@ -300,13 +300,37 @@ function pno_get_registration_fields() {
 						$fields[ $field->getObjectMetaKey() ]['attributes']['placeholder'] = $field->getPlaceholder();
 					}
 					if ( in_array( $field->getType(), pno_get_multi_options_field_types() ) ) {
-						$fields[ $field->getObjectMetaKey() ]['values'] = $field->get_options();
+						$fields[ $field->getObjectMetaKey() ]['values'] = $field->getOptions();
 					}
 
 					$fields[ $field->getObjectMetaKey() ]['attributes']['class'] = 'form-control';
 
 				}
 			}
+
+			// The field does not exist so we now add it to the list of fields.
+			$attributes = [
+				'class'       => 'form-control',
+				'placeholder' => ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false,
+			];
+
+			if ( $field->getType() === 'multicheckbox' || $field->getType() === 'radio' ) {
+				unset( $attributes['class'] );
+			}
+			if ( $field->getType() === 'checkbox' ) {
+				$attributes['class'] = 'custom-control-input';
+			}
+			if ( $field->getType() === 'select' ) {
+				$attributes['class'] = 'custom-select';
+			}
+			if ( $field->getType() === 'multiselect' ) {
+				$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
+			}
+			if ( $field->getType() === 'textarea' ) {
+				$attributes['rows'] = 3;
+			}
+
+			$fields[ $field->getObjectMetaKey() ]['attributes'] = $attributes;
 
 			if ( ! empty( $field->getCssClasses() ) ) {
 				$fields[ $field->getObjectMetaKey() ]['classes'] = $field->getCssClasses();
