@@ -239,7 +239,7 @@ class Registration {
 				}
 
 				// Assign the role set into the registration form.
-				if ( pno_get_option( 'allowed_roles' ) && $this->form->getFieldValue( 'role' ) && in_array( $this->form->getFieldValue( 'role' ), pno_get_option( 'allowed_roles' ) ) ) {
+				if ( pno_get_option( 'allowed_roles' ) && $this->form->getFieldValue( 'role' ) && array_key_exists( $this->form->getFieldValue( 'role' ), pno_get_allowed_user_roles() ) && count( pno_get_allowed_user_roles() ) >= 2 ) {
 					$user = new \WP_User( $new_user_id );
 					$user->set_role( $this->form->getFieldValue( 'role' ) );
 				}
