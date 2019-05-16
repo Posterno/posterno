@@ -1045,7 +1045,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 						}
 
 						if ( ! isset( $field['multiple'] ) || isset( $field['multiple'] ) && $field['multiple'] === false && ( is_array( $value ) ) ) {
-							$value = $value[0];
+							$value = isset( $value[0] ) ? $value[0] : false;
 						}
 					} else {
 						$value = carbon_get_post_meta( $listing_id, $key );
