@@ -190,7 +190,7 @@ function pno_get_registration_fields() {
 		],
 	];
 
-	if ( pno_get_option( 'enable_role_selection' ) ) {
+	if ( pno_get_option( 'enable_role_selection' ) && count( pno_get_allowed_user_roles() ) >= 2 ) {
 		$fields['role'] = array(
 			'label'      => esc_html__( 'Register as:', 'posterno' ),
 			'type'       => 'select',
