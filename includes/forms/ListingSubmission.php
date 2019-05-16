@@ -216,7 +216,7 @@ class ListingSubmission {
 				'attributes' => [
 					'class' => 'btn btn-primary',
 				],
-				'priority'   => 100,
+				'priority'   => 900,
 			],
 		];
 
