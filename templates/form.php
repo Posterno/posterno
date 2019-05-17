@@ -146,6 +146,9 @@ defined( 'ABSPATH' ) || exit;
 					if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
 						?>
 						<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-control-label"><?php echo wp_kses_post( $field->getLabel() ); ?></label>
+						<?php if ( ! $field->isRequired() ) : ?>
+							<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+						<?php endif; ?>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $field->getHint() ) ) : ?>
