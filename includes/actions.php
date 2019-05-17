@@ -1,4 +1,6 @@
 <?php
+use function GuzzleHttp\json_decode;
+
 /**
  * List of actions that interact with WordPress.
  *
@@ -360,3 +362,42 @@ function pno_force_validation_of_fields_options( \PNO\Form\Form $form ) {
 	}
 }
 add_action( 'pno_before_listing_submission', 'pno_force_validation_of_fields_options' );
+add_action( 'pno_before_listing_editing', 'pno_force_validation_of_fields_options' );
+
+/**
+ * Make sure that a validation error appears when Vuejs fields are required and not filled.
+ *
+ * @param \PNO\Form\Form $form form's object.
+ * @throws \PNO\Exception When value does not match.
+ * @return void
+ */
+function pno_force_validation_of_vue_fields( \PNO\Form\Form $form ) {
+
+	$types = [
+		'listing-category',
+		'listing-tags',
+		'term-chain-dropdown',
+		'listing-opening-hours',
+		'listing-location',
+	];
+
+	foreach ( $form->getFields() as $key => $field ) {
+
+		$type = $field->getType();
+
+		if ( in_array( $type, $types ) && $field->isRequired() ) {
+
+			$value = $form->getFieldValue( $key );
+
+			if ( $type === 'listing-tags' ) {
+				$value = json_decode( $value );
+			}
+
+			if ( empty( $value ) ) {
+				throw new \PNO\Exception( sprintf( esc_html__( '"%s" is required.' ), $field->getLabel() ) );
+			}
+		}
+	}
+}
+add_action( 'pno_before_listing_submission', 'pno_force_validation_of_vue_fields' );
+add_action( 'pno_before_listing_editing', 'pno_force_validation_of_vue_fields' );
