@@ -348,13 +348,13 @@ function pno_force_validation_of_fields_options( \PNO\Form\Form $form ) {
 					foreach ( $submitted_value as $val ) {
 						if ( ! array_key_exists( $val, $available_options ) ) {
 							$field->setValue( false );
-							throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.' ), $field->getLabel() ) );
+							throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.', 'posterno' ), $field->getLabel() ) );
 						}
 					}
 				} else {
 					if ( ! array_key_exists( $submitted_value, $available_options ) ) {
 						$field->setValue( false );
-						throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.' ), $field->getLabel() ) );
+						throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.', 'posterno' ), $field->getLabel() ) );
 					}
 				}
 			}
@@ -394,7 +394,7 @@ function pno_force_validation_of_vue_fields( \PNO\Form\Form $form ) {
 			}
 
 			if ( empty( $value ) ) {
-				throw new \PNO\Exception( sprintf( esc_html__( '"%s" is required.' ), $field->getLabel() ) );
+				throw new \PNO\Exception( sprintf( esc_html__( '"%s" is required.', 'posterno' ), $field->getLabel() ) );
 			}
 		}
 	}

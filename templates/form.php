@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php
 	if ( ! empty( $data->form->getAllErrors() ) || ! empty( $data->form->getProcessingError() ) ) {
 
-		$error_message = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.' );
+		$error_message = esc_html__( 'There was a problem with your submission. Errors have been highlighted below.', 'posterno' );
 
 		if ( ! empty( $data->form->getProcessingError() ) ) {
 			$error_message = $data->form->getProcessingError();
