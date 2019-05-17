@@ -320,3 +320,43 @@ function pno_detect_privacy_action_request() {
 
 }
 add_action( 'init', 'pno_detect_privacy_action_request' );
+
+/**
+ * Make sure that values submitted for some fields, actually match the options assigned to the field.
+ *
+ * @param \PNO\Form\Form $form form's object.
+ * @throws \PNO\Exception When value does not match.
+ * @return void
+ */
+function pno_force_validation_of_fields_options( \PNO\Form\Form $form ) {
+
+	$types_to_validate = [ 'select', 'multiselect', 'multicheckbox', 'radio' ];
+
+	foreach ( $form->getFields() as $key => $field ) {
+
+		$type = $field->getType();
+
+		if ( in_array( $type, $types_to_validate ) ) {
+
+			$available_options = $field->getValues();
+			$submitted_value   = $form->getFieldValue( $key );
+
+			if ( ! empty( $submitted_value ) ) {
+				if ( is_array( $submitted_value ) ) {
+					foreach ( $submitted_value as $val ) {
+						if ( ! array_key_exists( $val, $available_options ) ) {
+							$field->setValue( false );
+							throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.' ), $field->getLabel() ) );
+						}
+					}
+				} else {
+					if ( ! array_key_exists( $submitted_value, $available_options ) ) {
+						$field->setValue( false );
+						throw new \PNO\Exception( sprintf( esc_html__( 'Value for the field "%s" is invalid.' ), $field->getLabel() ) );
+					}
+				}
+			}
+		}
+	}
+}
+add_action( 'pno_before_listing_submission', 'pno_force_validation_of_fields_options' );

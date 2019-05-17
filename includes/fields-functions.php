@@ -958,6 +958,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 
 				$fields[ $field->getObjectMetaKey() ]['multiple'] = $field->isMultiple();
 
+				if ( in_array( $field->getType(), [ 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) && ! empty( $field->getTaxonomy() ) ) {
+					$fields[ $field->getObjectMetaKey() ]['taxonomy'] = $field->getTaxonomy();
+					$fields[ $field->getObjectMetaKey() ]['multiple'] = true;
+				}
+
 				if ( $field->getType() === 'term-chain-dropdown' ) {
 					$fields[ $field->getObjectMetaKey() ]['disable_branch_nodes'] = $field->isBranchNodesDisabled();
 				}
