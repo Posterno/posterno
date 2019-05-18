@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fdb3bbe69e34e9c480d2e7c33150dd3b",
+    "content-hash": "5c081207f409a707f964b375efa93590",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -466,16 +466,16 @@
         },
         {
             "name": "htmlburger/carbon-fields",
-            "version": "2.2.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "f2e7e7b306f872b606b16909d2a2ee906381d5d1"
+                "reference": "65bd40b6e70ccbaeb9d0989c5589299f0983de04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/f2e7e7b306f872b606b16909d2a2ee906381d5d1",
-                "reference": "f2e7e7b306f872b606b16909d2a2ee906381d5d1",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/65bd40b6e70ccbaeb9d0989c5589299f0983de04",
+                "reference": "65bd40b6e70ccbaeb9d0989c5589299f0983de04",
                 "shasum": ""
             },
             "require": {
@@ -581,11 +581,21 @@
                     "name": "Viktor Vasilev",
                     "email": "liberalcho@gmail.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "Georgi Georgiev",
+                    "email": "george.georgiev96@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Atanas Vasilev",
+                    "email": "atanasvasilev91@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2018-03-16T09:06:14+00:00"
+            "time": "2019-04-11T09:46:37+00:00"
         },
         {
             "name": "nikic/fast-route",
