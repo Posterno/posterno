@@ -517,7 +517,7 @@ function pno_show_pending_listings_count_bubble() {
 
 	global $menu;
 
-	$pending_count = \PNO\Cache\Helper::get_listings_count();
+	$pending_count = \PNO\Cache\Helper::get_posts_count();
 
 	if ( empty( $pending_count ) ) {
 		return;

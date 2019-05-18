@@ -232,7 +232,7 @@ class Helper {
 	 *
 	 * @return int
 	 */
-	public static function get_listings_count( $post_type = 'listings', $status = 'pending', $force = false ) {
+	public static function get_posts_count( $post_type = 'listings', $status = 'pending', $force = false ) {
 
 		// Get user based cache transient.
 		$user_id   = get_current_user_id();
