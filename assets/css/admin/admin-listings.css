@@ -17,7 +17,7 @@
   margin-right: 1em;
   margin-bottom: 0; }
 
-.carbon-container-carbon_fields_container_situations div.carbon-set-list {
+.cf-container-carbon_fields_container_situations div.cf-field__body {
   min-height: 42px;
   max-height: 200px;
   overflow: auto;
