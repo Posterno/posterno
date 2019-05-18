@@ -46,6 +46,11 @@ if ( ! $data->field->isMultiple() ) {
 	}
 }
 
+if ( is_array( $value ) ) {
+	$value = array_map( 'absint', $value );
+	$value = wp_json_encode( $value );
+}
+
 ?>
 <pno-term-chain-select-field inline-template taxonomy="<?php echo esc_attr( $data->field->getTaxonomy() ); ?>" terms="<?php echo esc_attr( htmlspecialchars( wp_json_encode( $terms ) ) ); ?>">
 	<div>
@@ -65,15 +70,6 @@ if ( ! $data->field->isMultiple() ) {
 		/>
 	</div>
 </pno-term-chain-select-field>
-
-<?php
-
-if ( is_array( $value ) ) {
-	$value = array_map( 'absint', $value );
-	$value = wp_json_encode( $value );
-}
-
-?>
 
 <input
 	type="hidden"
