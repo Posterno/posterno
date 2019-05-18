@@ -31,11 +31,6 @@ if ( empty( $terms ) ) {
 // need to get a single value only, this is ugly and not a perfect way, but for now this will do it.
 $value = $data->field->getValue();
 
-if ( is_array( $value ) ) {
-	$value = array_map( 'absint', $value );
-	$value = wp_json_encode( $value );
-}
-
 if ( ! $data->field->isMultiple() ) {
 	$decoded = json_decode( $value );
 	if ( is_array( $decoded ) ) {
@@ -70,6 +65,15 @@ if ( ! $data->field->isMultiple() ) {
 		/>
 	</div>
 </pno-term-chain-select-field>
+
+<?php
+
+if ( is_array( $value ) ) {
+	$value = array_map( 'absint', $value );
+	$value = wp_json_encode( $value );
+}
+
+?>
 
 <input
 	type="hidden"
