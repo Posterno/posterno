@@ -427,3 +427,34 @@ function pno_validate_amount_of_terms( $fields ) {
 }
 add_filter( 'pno_listing_submission_form_fields', 'pno_validate_amount_of_terms' );
 add_filter( 'pno_listing_editing_form_fields', 'pno_validate_amount_of_terms' );
+
+/**
+ * Sanitize values sent to carbon fields before being saved.
+ * This is triggered on both frontend and backend panel.
+ *
+ * @param object $field carbon field's field object.
+ * @return object
+ */
+function pno_sanitize_carbonfields_storage( $field ) {
+
+	$type  = $field->get_type();
+	$value = $field->get_full_value();
+
+	switch ( $type ) {
+		case 'textarea':
+		case 'rich_text':
+			$sanitized_value = pno_array_map_recursive( 'wp_kses_post', $value );
+			break;
+		default:
+			$sanitized_value = pno_array_map_recursive( 'sanitize_text_field', $value );
+			break;
+	}
+
+	if ( $sanitized_value ) {
+		$field->set_value( $sanitized_value );
+	}
+
+	return $field;
+
+}
+add_filter( 'carbon_fields_before_field_save', 'pno_sanitize_carbonfields_storage' );
