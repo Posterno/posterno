@@ -103,18 +103,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->setup_files();
 			self::$instance->setup_application();
 
-			// Boot composer's classes.
-			Brain\Cortex::boot();
-
-			// Api's.
-			self::$instance->admin_notices = TDP\WP_Notice::instance();
-			self::$instance->templates     = new PNO_Templates();
-			self::$instance->emails        = new PNO_Emails();
-			self::$instance->forms         = PNO_Forms::instance();
-			self::$instance->schema = new PNO\SchemaOrg\Component\SchemaComponent();
-
-			// Internal components init.
-			self::$instance->schema->init();
+			// Hooks.
+			self::init_hooks();
 
 			self::maybe_schedule_cron_jobs();
 			register_deactivation_hook( PNO_PLUGIN_FILE, array( __CLASS__, 'unschedule_cron_jobs' ) );
@@ -321,7 +311,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
-			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}
 
 		/**
@@ -487,6 +476,39 @@ if ( ! class_exists( 'Posterno' ) ) :
 			wp_clear_scheduled_hook( 'posterno_check_for_expired_listings' );
 			wp_clear_scheduled_hook( 'posterno_email_daily_listings_expiring_notices' );
 			wp_clear_scheduled_hook( 'posterno_clear_expired_transients' );
+		}
+
+		/**
+		 * Hook into WordPress.
+		 *
+		 * @return void
+		 */
+		public static function init_hooks() {
+			add_action( 'plugins_loaded', array( __CLASS__, 'init' ), 0 );
+		}
+
+		/**
+		 * Initialize the plugin.
+		 *
+		 * @return void
+		 */
+		public static function init() {
+
+			// Boot composer's classes.
+			Brain\Cortex::boot();
+
+			// Api's.
+			self::$instance->admin_notices = TDP\WP_Notice::instance();
+			self::$instance->templates     = new PNO_Templates();
+			self::$instance->emails        = new PNO_Emails();
+			self::$instance->forms         = PNO_Forms::instance();
+			self::$instance->schema        = new PNO\SchemaOrg\Component\SchemaComponent();
+
+			// Internal components init.
+			self::$instance->schema->init();
+
+			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
+
 		}
 
 	}
