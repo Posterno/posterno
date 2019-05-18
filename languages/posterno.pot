@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.7.0\n"
+"Project-Id-Version: Posterno 0.7.1\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-05-15 08:20:26+00:00\n"
+"POT-Creation-Date: 2019-05-17 15:24:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,39 +69,47 @@ msgstr ""
 msgid "Sorry, you cannot work with batch resources."
 msgstr ""
 
-#: includes/actions.php:29
+#: includes/actions.php:31
 msgid "Posterno Dashboard Menu"
 msgstr ""
 
-#: includes/actions.php:30
+#: includes/actions.php:32
 msgid "Posterno Profile Menu"
 msgstr ""
 
-#: includes/actions.php:83
+#: includes/actions.php:85
 msgid ""
 "You need to be logged in to access the \"%1$s\" page. Please login below or "
 "<a href=\"%2$s\">register</a>."
 msgstr ""
 
-#: includes/actions.php:161
+#: includes/actions.php:163
 msgid ""
 "Your request has been successfully confirmed, an administrator will send "
 "you an email with further details."
 msgstr ""
 
-#: includes/actions.php:233
+#: includes/actions.php:235
 msgid "Username or email address"
 msgstr ""
 
-#: includes/actions.php:236 includes/admin/admin-functions.php:232
+#: includes/actions.php:238 includes/admin/admin-functions.php:232
 #: includes/emails/class-pno-emails.php:372 includes/fields-functions.php:166
 #: includes/templates-functions.php:21
 msgid "Username"
 msgstr ""
 
-#: includes/actions.php:238 includes/post-types.php:619
+#: includes/actions.php:240 includes/post-types.php:619
 #: includes/post-types.php:634 includes/templates-functions.php:26
 msgid "Email"
+msgstr ""
+
+#: includes/actions.php:351 includes/actions.php:357
+msgid "Value for the field \"%s\" is invalid."
+msgstr ""
+
+#: includes/actions.php:397
+msgid "\"%s\" is required."
 msgstr ""
 
 #: includes/admin/admin-actions.php:42
@@ -513,7 +521,7 @@ msgstr ""
 #: includes/admin/admin-functions.php:238
 #: includes/admin/custom-fields/integration/class-listing.php:159
 #: includes/fields-functions.php:94 includes/fields-functions.php:175
-#: includes/fields-functions.php:381 includes/fields-functions.php:722
+#: includes/fields-functions.php:405 includes/fields-functions.php:746
 msgid "Email address"
 msgstr ""
 
@@ -1817,7 +1825,7 @@ msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:118
 #: includes/admin/custom-fields/integration/class-listing.php:196
-#: includes/fields-functions.php:832
+#: includes/fields-functions.php:856
 #: includes/widgets/widget-listing-location-map.php:30
 msgid "Location"
 msgstr ""
@@ -1835,13 +1843,13 @@ msgid "Listing type"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:158
-#: includes/fields-functions.php:732
+#: includes/fields-functions.php:756
 msgid "Phone number"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:160
-#: includes/fields-functions.php:96 includes/fields-functions.php:391
-#: includes/fields-functions.php:742
+#: includes/fields-functions.php:96 includes/fields-functions.php:415
+#: includes/fields-functions.php:766
 msgid "Website"
 msgstr ""
 
@@ -1862,7 +1870,7 @@ msgid "Search an address or drag and drop the pin on the map to select location.
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:200
-#: includes/fields-functions.php:822
+#: includes/fields-functions.php:846
 msgid "Zipcode"
 msgstr ""
 
@@ -2223,7 +2231,7 @@ msgid "Email address*"
 msgstr ""
 
 #: includes/admin/views/getting-started.php:93
-#: includes/fields-functions.php:361
+#: includes/fields-functions.php:385
 msgid "First name"
 msgstr ""
 
@@ -2452,12 +2460,12 @@ msgstr ""
 msgid "\"%1$s\" needs to be one of the following file types: %2$s"
 msgstr ""
 
-#: includes/components/posterno-forms/src/Fields.php:266
-msgid "%s is an invalid term."
+#: includes/components/posterno-forms/src/Fields.php:267
+msgid "You can upload up to %1$s files"
 msgstr ""
 
-#: includes/components/posterno-forms/src/Fields.php:273
-msgid "\"%1$s\" value is invalid."
+#: includes/components/posterno-forms/src/Fields.php:275
+msgid "%s is an invalid term."
 msgstr ""
 
 #: includes/components/posterno-schema/includes/Component/admin/admin-actions.php:26
@@ -2735,6 +2743,14 @@ msgstr ""
 msgid "This field is for validation purposes and should be left unchanged."
 msgstr ""
 
+#: includes/components/posterno-validator/src/Between.php:43
+msgid "The value must be between %1$s and %2$s."
+msgstr ""
+
+#: includes/components/posterno-validator/src/BetweenInclude.php:43
+msgid "The value must be between or equal to %1$s and %2$s."
+msgstr ""
+
 #: includes/components/posterno-validator/src/Contains.php:35
 msgid "Input not found in the specified value."
 msgstr ""
@@ -2937,7 +2953,7 @@ msgstr ""
 msgid "Display listing ID number."
 msgstr ""
 
-#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:702
+#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:726
 msgid "Listing title"
 msgstr ""
 
@@ -3129,68 +3145,68 @@ msgid ""
 "1 uppercase letter and 1 special character."
 msgstr ""
 
-#: includes/fields-functions.php:345
+#: includes/fields-functions.php:369
 msgid "Profile picture"
 msgstr ""
 
-#: includes/fields-functions.php:371
+#: includes/fields-functions.php:395
 msgid "Last name"
 msgstr ""
 
-#: includes/fields-functions.php:401
+#: includes/fields-functions.php:425
 msgid "About me"
 msgstr ""
 
-#: includes/fields-functions.php:712
+#: includes/fields-functions.php:736
 msgid "Description"
 msgstr ""
 
-#: includes/fields-functions.php:752
+#: includes/fields-functions.php:776
 msgid "Video"
 msgstr ""
 
-#: includes/fields-functions.php:762
+#: includes/fields-functions.php:786
 msgid "Social media profiles"
 msgstr ""
 
-#: includes/fields-functions.php:769
+#: includes/fields-functions.php:793
 msgid "Listing category"
 msgstr ""
 
-#: includes/fields-functions.php:778 includes/post-types.php:539
+#: includes/fields-functions.php:802 includes/post-types.php:539
 msgid "Listing tags"
 msgstr ""
 
-#: includes/fields-functions.php:785
+#: includes/fields-functions.php:809
 msgid "Listing regions"
 msgstr ""
 
-#: includes/fields-functions.php:788
+#: includes/fields-functions.php:812
 msgid "Select a region"
 msgstr ""
 
-#: includes/fields-functions.php:794
+#: includes/fields-functions.php:818
 msgid "Hours of operation"
 msgstr ""
 
-#: includes/fields-functions.php:801
+#: includes/fields-functions.php:825
 #: includes/listings/class-pno-listings-terms-custom-fields.php:48
 msgid "Featured image"
 msgstr ""
 
-#: includes/fields-functions.php:811
+#: includes/fields-functions.php:835
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1128
+#: includes/fields-functions.php:1157
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1129
+#: includes/fields-functions.php:1158
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1130
+#: includes/fields-functions.php:1159
 msgid "Select Some Options"
 msgstr ""
 
@@ -4659,7 +4675,7 @@ msgid ""
 "below."
 msgstr ""
 
-#: templates/form.php:89
+#: templates/form.php:89 templates/form.php:150
 msgid "(optional)"
 msgstr ""
 
