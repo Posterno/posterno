@@ -190,5 +190,32 @@ class HealthTests extends Tests {
 
 	}
 
+	/**
+	 * Verify that all custom database tables from components are installed.
+	 *
+	 * @return array
+	 */
+	public function test__default_data_has_been_correctly_installed() {
+
+		$name = __FUNCTION__;
+
+		$components = posterno()->components;
+
+		foreach ( $components as $component ) {
+
+			$object = $component->get_interface( 'table' );
+
+			if ( $object instanceof \PNO\Database\Table && ! $object->exists() ) {
+				return self::failing_test( $name, esc_html__( 'Some default data is missing.' ), esc_html__( 'Please contact support.' ) );
+			} elseif ( $object instanceof \PNO\Database\Table && $object->exists() ) {
+				$result = self::passing_test( $name );
+			}
+
+		}
+
+		return $result;
+
+	}
+
 }
 
