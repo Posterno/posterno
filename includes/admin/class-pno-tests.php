@@ -13,17 +13,42 @@ namespace PNO;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Register new health tests and verify them.
+ */
 class Tests {
 
+	/**
+	 * List of tests.
+	 *
+	 * @var array
+	 */
 	protected $tests = [];
 
+	/**
+	 * Verification results.
+	 *
+	 * @var array
+	 */
 	protected $results = [];
 
+	/**
+	 * Get things started.
+	 */
 	public function __construct() {
 		$this->tests   = [];
 		$this->results = [];
 	}
 
+	/**
+	 * Add a new test.
+	 *
+	 * @param callable $callable Test to add to queue.
+	 * @param string   $name Unique name for the test.
+	 * @param string   $type   Optional. Core Site Health type: 'direct' if test can be run during initial load or 'async' if test should run async.
+	 * @param array    $groups Optional. Testing groups to add test to.
+	 * @return mixed
+	 */
 	public function add_test( $callable, $name, $type = 'direct', $groups = array( 'default' ) ) {
 		if ( array_key_exists( $name, $this->tests ) ) {
 			return new WP_Error( __( 'Test names must be unique.' ) );
@@ -41,6 +66,18 @@ class Tests {
 		return true;
 	}
 
+	/**
+	 * Run a specific test.
+	 *
+	 * @param string $name Name of test.
+	 *
+	 * @return mixed $result Test result array or WP_Error if invalid name. {
+	 * @type string $name Test name
+	 * @type mixed  $pass True if passed, false if failed, 'skipped' if skipped.
+	 * @type string $message Human-readable test result message.
+	 * @type string $resolution Human-readable resolution steps.
+	 * }
+	 */
 	public function run_test( $name ) {
 
 		if ( array_key_exists( $name, $this->tests ) ) {
@@ -50,6 +87,11 @@ class Tests {
 
 	}
 
+	/**
+	 * Run all tests.
+	 *
+	 * @return void
+	 */
 	public function run_tests() {
 
 		foreach ( $this->tests as $test ) {
@@ -64,6 +106,12 @@ class Tests {
 
 	}
 
+	/**
+	 * Mark a test as passing.
+	 *
+	 * @param string $name name of the test.
+	 * @return array
+	 */
 	public static function passing_test( $name = 'Unnamed' ) {
 		return array(
 			'name'       => $name,
@@ -74,6 +122,13 @@ class Tests {
 		);
 	}
 
+	/**
+	 * Mark a test as skipped.
+	 *
+	 * @param string  $name name of the test.
+	 * @param boolean $message message.
+	 * @return array
+	 */
 	public static function skipped_test( $name = 'Unnamed', $message = false ) {
 		return array(
 			'name'       => $name,
@@ -84,6 +139,17 @@ class Tests {
 		);
 	}
 
+	/**
+	 * Mark a test as failed.
+	 *
+	 * @param string $name Test name.
+	 * @param string $message Message detailing the failure.
+	 * @param string $resolution Optional. Steps to resolve.
+	 * @param string $action Optional. URL to direct users to self-resolve.
+	 * @param string $severity Optional. "critical" or "recommended" for failure stats. "good" for passing.
+	 *
+	 * @return array Test results.
+	 */
 	public static function failing_test( $name, $message, $resolution = false, $action = false, $severity = 'critical' ) {
 		return array(
 			'name'       => $name,
@@ -95,6 +161,13 @@ class Tests {
 		);
 	}
 
+	/**
+	 * Get list of all available tests.
+	 *
+	 * @param string $type the type of tests to get.
+	 * @param string $group from which group.
+	 * @return array
+	 */
 	public function list_tests( $type = 'all', $group = 'all' ) {
 		$tests = array();
 		foreach ( $this->tests as $name => $value ) {
