@@ -323,7 +323,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_admin() {
 
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-getting-started.php';
-			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-footer.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-pages.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/custom-fields/display-custom-fields.php';
@@ -335,6 +334,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-health-tests.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-notices.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-actions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';
 
 		}
 

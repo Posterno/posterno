@@ -284,3 +284,75 @@ function pno_updated_term_messages( $messages ) {
 
 }
 add_filter( 'term_updated_messages', 'pno_updated_term_messages' );
+
+/**
+ * Register all health tests.
+ *
+ * @param array $core_tests any core tests available.
+ * @return array
+ */
+function pno_register_health_tests( $core_tests ) {
+
+	$pno_tests = new \PNO\HealthTests();
+	$tests     = $pno_tests->list_tests( 'direct' );
+
+	if ( is_array( $tests ) && ! empty( $tests ) ) {
+		foreach ( $tests as $test ) {
+			$core_tests['direct'][ $test['name'] ] = array(
+				'label' => esc_html__( 'Posterno: ' ) . $test['name'],
+				'test'  =>
+				function() use ( $test, $pno_tests ) { // phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
+					$results = $pno_tests->run_test( $test['name'] );
+					// Test names are, by default, `test__some_string_of_text`. Let's convert to "Some String Of Text" for humans.
+					$label = ucwords(
+						str_replace(
+							'_',
+							' ',
+							str_replace( 'test__', '', $test['name'] )
+						)
+					);
+					$return = array(
+						'label'       => 'Posterno: ' . strtolower( $label ),
+						'status'      => 'good',
+						'badge'       => array(
+							'label' => __( 'Posterno' ),
+							'color' => 'purple',
+						),
+						'description' => sprintf(
+							'<p>%s</p>',
+							__( 'This test successfully passed.' )
+						),
+						'actions'     => '',
+						'test'        => 'posterno_' . $test['name'],
+					);
+			if ( is_wp_error( $results ) ) {
+				return;
+			}
+			if ( false === $results['pass'] ) {
+
+				$return['label'] = $results['message'];
+				$return['status']      = $results['severity'];
+				$return['description'] = sprintf(
+					'<p>%s</p>',
+					$results['resolution']
+				);
+				if ( ! empty( $results['action'] ) ) {
+					$return['actions'] = sprintf(
+						'<a class="button button-primary" href="%1$s" target="_blank" rel="noopener noreferrer">%2$s <span class="screen-reader-text">%3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
+						esc_url( $results['action'] ),
+						__( 'Resolve' ),
+						/* translators: accessibility text */
+						__( '(opens in a new tab)' )
+					);
+				}
+			}
+					return $return;
+				},
+			);
+		}
+	}
+
+	return $core_tests;
+
+}
+add_filter( 'site_status_tests', 'pno_register_health_tests' );

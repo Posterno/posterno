@@ -13,8 +13,14 @@ namespace PNO;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Handle all core tests of the plugin.
+ */
 class HealthTests extends Tests {
 
+	/**
+	 * Get things started.
+	 */
 	public function __construct() {
 
 		parent::__construct();
@@ -30,7 +36,12 @@ class HealthTests extends Tests {
 
 	}
 
-	public function test__check_permalink_setup() {
+	/**
+	 * Verify permalinks are properly setup.
+	 *
+	 * @return mixed
+	 */
+	public function test__verify_permalinks_have_been_properly_setup() {
 
 		$name = __FUNCTION__;
 
