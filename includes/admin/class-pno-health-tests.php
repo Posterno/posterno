@@ -62,7 +62,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__login_page_has_been_setup() {
+	public function test__login_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -81,7 +81,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__password_recovery_page_has_been_setup() {
+	public function test__password_recovery_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -100,7 +100,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__registration_page_has_been_setup() {
+	public function test__registration_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -119,7 +119,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__dashboard_page_has_been_setup() {
+	public function test__dashboard_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -138,7 +138,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__listing_submission_page_has_been_setup() {
+	public function test__listing_submission_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -157,7 +157,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__listing_editing_page_has_been_setup() {
+	public function test__listing_editing_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
@@ -176,7 +176,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__public_profile_page_has_been_setup() {
+	public function test__public_profile_page_has_been_created() {
 
 		$name = __FUNCTION__;
 
