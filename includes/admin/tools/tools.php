@@ -27,7 +27,7 @@ function pno_tools_page() {
 			<h2><?php esc_html_e( 'Posterno tools' ); ?></h2>
 			<ul class="title-links hidden-sm-and-down">
 				<li>
-					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action">Documentation</a>
+					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
 				</li>
 			</ul>
 		</div>
@@ -51,14 +51,14 @@ function pno_tools_page() {
 					),
 					$tab_url
 				);
-				$active  = $active_tab == $tab_id ? ' nav-tab-active' : '';
+				$active  = $active_tab === $tab_id ? ' nav-tab-active' : '';
 				echo '<a href="' . esc_url( $tab_url ) . '" class="nav-tab' . $active . '">' . esc_html( $tab_name ) . '</a>';
 			}
 			?>
 		</h2>
 
 		<div class="metabox-holder">
-
+			<?php do_action( "pno_tools_{$active_tab}" ); ?>
 		</div>
 
 	</div>
@@ -80,6 +80,12 @@ function pno_get_tools_tabs() {
 		'export' => esc_html__( 'Export' ),
 	];
 
+	/**
+	 * Filter: allows developers to adjust the tabs available for the tools page.
+	 *
+	 * @param array $tabs the list of tabs.
+	 * @return array
+	 */
 	return apply_filters( 'pno_tools_tabs', $tabs );
 
 }
