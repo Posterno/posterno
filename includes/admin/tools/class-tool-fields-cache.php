@@ -53,7 +53,7 @@ class FieldsCache {
 	public function getFields() {
 
 		$fields = [
-			'username' => [
+			'type'   => [
 				'type'       => 'select',
 				'label'      => esc_html__( 'Select which fields:' ),
 				'required'   => true,
@@ -67,7 +67,7 @@ class FieldsCache {
 					'class' => 'form-control',
 				],
 			],
-			'submit'   => [
+			'submit' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Clear cache', 'posterno' ),
 				'attributes' => [
@@ -87,6 +87,8 @@ class FieldsCache {
 	 */
 	public function init() {
 		add_action( 'pno_tools_cache', [ $this, 'page' ] );
+		add_action( 'admin_init', [ $this, 'process' ] );
+		add_action( 'admin_head', [ $this, 'notice' ] );
 	}
 
 	/**
@@ -125,6 +127,61 @@ class FieldsCache {
 			</div>
 		</div>
 		<?php
+
+	}
+
+	/**
+	 * Process cache invalidation.
+	 *
+	 * @return void
+	 */
+	public function process() {
+
+		//phpcs:ignore
+		if ( ! isset( $_POST[ 'pno_form' ] ) || isset( $_POST['pno_form'] ) && $_POST['pno_form'] !== $this->form_name ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST[ "{$this->form_name}_nonce" ], "verify_{$this->form_name}_form" ) ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$this->form->setFieldValues( $_POST );
+
+		if ( $this->form->isValid() ) {
+
+			$type = $this->form->getFieldValue( 'type' );
+
+			if ( $type === 'registration' ) {
+				\PNO\Cache\Helper::flush_fields_cache( 'registration' );
+			} elseif ( $type === 'profile' ) {
+				\PNO\Cache\Helper::flush_fields_cache( 'profile' );
+			} elseif ( $type === 'listings' ) {
+				\PNO\Cache\Helper::flush_fields_cache( 'listing' );
+			} elseif ( $type === 'all' ) {
+				\PNO\Cache\Helper::flush_all_fields_cache();
+			}
+
+			$url = add_query_arg( [ 'updated' => true ], admin_url( 'tools.php?page=posterno-tools&tab=cache' ) );
+
+			wp_safe_redirect( $url );
+			exit;
+		}
+	}
+
+	public function notice() {
+
+		if ( isset( $_GET['updated'] ) && $_GET['updated'] === '1' ) {
+
+			$message = esc_html__( 'Fields cache successfully flushed.' );
+
+			posterno()->admin_notices->register_notice( 'cache_flush', 'success', $message, [ 'dismissible' => false ] );
+
+		}
 
 	}
 

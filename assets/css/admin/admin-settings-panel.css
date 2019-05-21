@@ -6,9 +6,13 @@
   margin-bottom: 2em; }
   .pno-admin-title-area .wrap {
     margin: 0; }
-    .pno-admin-title-area .wrap h1, .pno-admin-title-area .wrap h2 {
+    .pno-admin-title-area .wrap h1, .pno-admin-title-area .wrap h2, .pno-admin-title-area .wrap h3 {
       display: inline-block;
-      padding: 0; }
+      padding: 0;
+      font-size: 23px;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.3; }
   .pno-admin-title-area .title-links {
     display: inline-block;
     margin: 10px 0 0 20px; }

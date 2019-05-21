@@ -24,7 +24,7 @@ function pno_tools_page() {
 
 	<div class="pno-admin-title-area">
 		<div class="wrap">
-			<h2><?php esc_html_e( 'Posterno tools' ); ?></h2>
+			<h3><?php esc_html_e( 'Posterno tools' ); ?></h3>
 			<ul class="title-links hidden-sm-and-down">
 				<li>
 					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
@@ -47,7 +47,7 @@ function pno_tools_page() {
 				);
 				$tab_url = remove_query_arg(
 					array(
-						'edd-message',
+						'updated',
 					),
 					$tab_url
 				);

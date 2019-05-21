@@ -24,9 +24,9 @@ class Helper {
 	 * @return void
 	 */
 	public static function init() {
-		add_action( 'save_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
-		add_action( 'delete_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
-		add_action( 'trash_post', array( __CLASS__, 'flush_user_has_submitted_listings' ) );
+		add_action( 'save_post', array( __CLASS__, 'flush_user_has_submitted_listings' ), 10, 2 );
+		add_action( 'delete_post', array( __CLASS__, 'flush_user_has_submitted_listings' ), 10, 2 );
+		add_action( 'trash_post', array( __CLASS__, 'flush_user_has_submitted_listings' ), 10, 2 );
 
 		add_action( 'save_post', array( __CLASS__, 'flush_fields_cache' ) );
 		add_action( 'delete_post', array( __CLASS__, 'flush_fields_cache' ) );
@@ -99,15 +99,16 @@ class Helper {
 	 * Flush the cache generated for the fields when updating fields in the database.
 	 *
 	 * @param string|int $post_id the id of the post being updated.
+	 * @param string     $type the type of fields to flush, bypassing the post_id requirement.
 	 * @return void
 	 */
-	public static function flush_fields_cache( $post_id ) {
-		if ( 'pno_signup_fields' === get_post_type( $post_id ) ) {
+	public static function flush_fields_cache( $post_id, $type = false ) {
+		if ( 'pno_signup_fields' === get_post_type( $post_id ) || $type === 'registration' ) {
 			forget_transient( 'pno_registration_fields' );
-		} elseif ( 'pno_users_fields' === get_post_type( $post_id ) ) {
+		} elseif ( 'pno_users_fields' === get_post_type( $post_id ) || $type === 'profile' ) {
 			forget_transient( 'pno_admin_custom_profile_fields' );
 			forget_transient( 'pno_profile_fields_list_for_widget_association' );
-		} elseif ( 'pno_listings_fields' === get_post_type( $post_id ) ) {
+		} elseif ( 'pno_listings_fields' === get_post_type( $post_id ) || $type === 'listing' ) {
 			forget_transient( 'pno_admin_custom_listing_fields' );
 			forget_transient( 'pno_listings_fields_list_for_widget_association' );
 			forget_transient( 'pno_get_listings_fields' );
