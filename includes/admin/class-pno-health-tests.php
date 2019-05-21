@@ -195,7 +195,7 @@ class HealthTests extends Tests {
 	 *
 	 * @return array
 	 */
-	public function test__default_data_has_been_correctly_installed() {
+	public function test__default_database_tables_are_installed() {
 
 		$name = __FUNCTION__;
 
@@ -206,12 +206,45 @@ class HealthTests extends Tests {
 			$object = $component->get_interface( 'table' );
 
 			if ( $object instanceof \PNO\Database\Table && ! $object->exists() ) {
-				return self::failing_test( $name, esc_html__( 'Some default data is missing.' ), esc_html__( 'Please contact support.' ) );
+				return self::failing_test( $name, esc_html__( 'Some default database tables are missing.' ), esc_html__( 'Please contact support.' ) );
 			} elseif ( $object instanceof \PNO\Database\Table && $object->exists() ) {
 				$result = self::passing_test( $name );
 			}
 
 		}
+
+		return $result;
+
+	}
+
+	/**
+	 * Verify that components tables are not empty.
+	 *
+	 * @return array
+	 */
+	public function test__default_data_has_been_installed() {
+
+		$name = __FUNCTION__;
+
+		$registration = new \PNO\Database\Queries\Registration_Fields( [ 'number' => 1 ] );
+
+		if ( ! isset( $registration->items ) || isset( $registration->items ) && empty( $registration->items ) ) {
+			return self::failing_test( $name, esc_html__( 'Some default data is missing.' ), esc_html__( 'Please contact support.' ) );
+		}
+
+		$listings = new \PNO\Database\Queries\Listing_Fields( [ 'number' => 1 ] );
+
+		if ( ! isset( $listings->items ) || isset( $listings->items ) && empty( $listings->items ) ) {
+			return self::failing_test( $name, esc_html__( 'Some default data is missing.' ), esc_html__( 'Please contact support.' ) );
+		}
+
+		$profile = new \PNO\Database\Queries\Profile_Fields( [ 'number' => 1 ] );
+
+		if ( ! isset( $profile->items ) || isset( $profile->items ) && empty( $profile->items ) ) {
+			return self::failing_test( $name, esc_html__( 'Some default data is missing.' ), esc_html__( 'Please contact support.' ) );
+		}
+
+		$result = self::passing_test( $name );
 
 		return $result;
 
