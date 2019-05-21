@@ -75,9 +75,10 @@ function pno_tools_page() {
 function pno_get_tools_tabs() {
 
 	$tabs = [
-		'cache'  => esc_html__( 'Cache' ),
-		'import' => esc_html__( 'Import' ),
-		'export' => esc_html__( 'Export' ),
+		'cache'    => esc_html__( 'Cache' ),
+		'import'   => esc_html__( 'Import' ),
+		'export'   => esc_html__( 'Export' ),
+		'database' => esc_html__( 'Database' ),
 	];
 
 	/**
