@@ -210,7 +210,6 @@ class HealthTests extends Tests {
 			} elseif ( $object instanceof \PNO\Database\Table && $object->exists() ) {
 				$result = self::passing_test( $name );
 			}
-
 		}
 
 		return $result;
@@ -247,6 +246,77 @@ class HealthTests extends Tests {
 		$result = self::passing_test( $name );
 
 		return $result;
+
+	}
+
+	/**
+	 * Test outdated template files.
+	 *
+	 * @return array
+	 */
+	public function test__verify_outdated_posterno_template_files_in_theme() {
+
+		$name = __FUNCTION__;
+
+		if ( \PNO\Admin\TemplatesCheck::theme_has_outdated_templates() ) {
+
+			$debug  = $this->get_outdated_template_files_table_list();
+			$result = self::failing_test( $name, esc_html__( 'Your theme contains outdated copies of some Posterno template files.' ), $debug );
+
+		} else {
+			$result = self::passing_test( $name );
+		}
+
+		return $result;
+
+	}
+
+	/**
+	 * Get markup list of outdated template files.
+	 *
+	 * @return string
+	 */
+	private function get_outdated_template_files_table_list() {
+
+		$files = \PNO\Admin\TemplatesCheck::get_outdated_template_files();
+
+		ob_start();
+
+		?>
+		<table class="widefat striped health-check-table" role="presentation">
+			<tbody>
+				<tr>
+					<td><?php esc_html_e( 'Outdated template files:' ); ?></td>
+					<td></td>
+				</tr>
+
+				<?php foreach ( $files as $file ) : ?>
+
+				<tr>
+					<td style="width:50%;">
+						<code style="font-size:11px;"><?php echo esc_html( $file['file'] ); ?></code>
+					</td>
+					<td>
+						<?php
+						if ( $file['core_version'] && ( empty( $file['version'] ) || version_compare( $file['version'], $file['core_version'], '<' ) ) ) {
+							$current_version = $file['version'] ? $file['version'] : '-';
+							printf(
+								/* Translators: %1$s: Template version, %2$s: Core version. */
+								esc_html__( 'Version %1$s is out of date. The core version is %2$s' ),
+								'<strong style="color:red">' . esc_html( $current_version ) . '</strong>',
+								esc_html( $file['core_version'] )
+							);
+						}
+						?>
+					</td>
+				</tr>
+
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php
+
+		return ob_get_clean();
 
 	}
 

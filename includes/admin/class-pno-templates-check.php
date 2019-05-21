@@ -81,12 +81,8 @@ class TemplatesCheck {
 
 		foreach ( $core_templates as $file ) {
 			$theme_file = false;
-			if ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
-				$theme_file = get_stylesheet_directory() . '/' . $file;
-			} elseif ( file_exists( get_stylesheet_directory() . '/' . 'posterno/' . $file ) ) {
+			if ( file_exists( get_stylesheet_directory() . '/' . 'posterno/' . $file ) ) {
 				$theme_file = get_stylesheet_directory() . '/' . 'posterno/' . $file;
-			} elseif ( file_exists( get_template_directory() . '/' . $file ) ) {
-				$theme_file = get_template_directory() . '/' . $file;
 			} elseif ( file_exists( get_template_directory() . '/' . 'posterno/' . $file ) ) {
 				$theme_file = get_template_directory() . '/' . 'posterno/' . $file;
 			}
@@ -97,6 +93,45 @@ class TemplatesCheck {
 					$outdated = true;
 					break;
 				}
+			}
+		}
+
+		return $outdated;
+
+	}
+
+	/**
+	 * Get list of outdated template files.
+	 *
+	 * @return array
+	 */
+	public static function get_outdated_template_files() {
+
+		$outdated           = [];
+		$outdated_templates = false;
+
+		$core_templates = self::scan_template_files( PNO_PLUGIN_DIR . '/templates' );
+
+		foreach ( $core_templates as $file ) {
+			$theme_file = false;
+			if ( file_exists( get_stylesheet_directory() . '/' . 'posterno/' . $file ) ) {
+				$theme_file = get_stylesheet_directory() . '/' . 'posterno/' . $file;
+			} elseif ( file_exists( get_template_directory() . '/' . 'posterno/' . $file ) ) {
+				$theme_file = get_template_directory() . '/' . 'posterno/' . $file;
+			}
+			if ( ! empty( $theme_file ) ) {
+				$core_version  = self::get_file_version( PNO_PLUGIN_DIR . '/templates/' . $file );
+				$theme_version = self::get_file_version( $theme_file );
+				if ( $core_version && ( empty( $theme_version ) || version_compare( $theme_version, $core_version, '<' ) ) ) {
+					if ( ! $outdated_templates ) {
+						$outdated_templates = true;
+					}
+				}
+				$outdated[] = array(
+					'file'         => str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ),
+					'version'      => $theme_version,
+					'core_version' => $core_version,
+				);
 			}
 		}
 

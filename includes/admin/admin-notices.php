@@ -243,7 +243,7 @@ add_action(
 				</ol>
 			</p>
 			<a class="button-primary" href="https://docs.posterno.com/article/545-templates-customization" target="_blank"><?php esc_html_e( 'Learn more about templates' ); ?></a>
-			<a class="button-primary" href="<?php echo esc_url( admin_url() ); ?>" target="_blank"><?php esc_html_e( 'View affected templates' ); ?></a>
+			<a class="button-primary" href="<?php echo esc_url( admin_url( 'site-health.php' ) ); ?>" target="_blank"><?php esc_html_e( 'View affected templates' ); ?></a>
 
 			<?php
 
