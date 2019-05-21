@@ -41,6 +41,7 @@ function pno_admin_rate_us( $footer_text ) {
 		'admin_page_posterno-options[emails]',
 		'admin_page_posterno-options[listings]',
 		'listings_page_posterno-listings-schema',
+		'tools_page_posterno-tools',
 	];
 
 	if ( in_array( $screen->id, $checks ) ) {
