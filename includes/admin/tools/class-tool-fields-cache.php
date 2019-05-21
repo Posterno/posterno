@@ -104,6 +104,7 @@ class FieldsCache {
 				<span><?php esc_html_e( 'Custom fields cache' ); ?></span>
 			</h2>
 			<div class="inside">
+				<p><?php esc_html_e( 'Use this tool to erase the cache of your fields.' ); ?></p>
 				<form action="<?php echo esc_url( $this->form->getAction() ); ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="pno_form" value="<?php echo esc_attr( $this->form_name ); ?>" />
 					<?php wp_nonce_field( 'verify_' . esc_attr( $this->form_name ) . '_form', esc_attr( $this->form_name ) . '_nonce' ); ?>
