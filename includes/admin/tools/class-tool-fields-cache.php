@@ -11,6 +11,7 @@
 namespace PNO\Admin\Tools;
 
 use PNO\Form\Form;
+use PNO\Form\DefaultSanitizer;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -20,6 +21,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class FieldsCache {
 
+	use DefaultSanitizer;
+
 	/**
 	 * Holds the form instance.
 	 *
@@ -28,10 +31,18 @@ class FieldsCache {
 	public $form;
 
 	/**
+	 * Holds the name of this form.
+	 *
+	 * @var string
+	 */
+	public $form_name = 'fields-cache';
+
+	/**
 	 * Get things started.
 	 */
 	public function __construct() {
 		$this->form = Form::createFromConfig( $this->getFields() );
+		$this->addSanitizer( $this->form );
 	}
 
 	/**
@@ -91,17 +102,25 @@ class FieldsCache {
 				<span><?php esc_html_e( 'Custom fields cache' ); ?></span>
 			</h2>
 			<div class="inside">
-
 				<form action="<?php echo esc_url( $this->form->getAction() ); ?>" method="post" enctype="multipart/form-data">
-					<?php foreach ( $this->form->getFields() as $field ) : ?>
-
-						<?php if ( ! empty( $field->getLabel() ) ) : ?>
-							<label for="<?php echo esc_attr( $field->getName() ); ?>"><?php echo esc_html( $field->getLabel() ); ?></label>
-						<?php endif; ?>
-
-						<?php echo $field->render(); ?>
-
-					<?php endforeach; ?>
+					<input type="hidden" name="pno_form" value="<?php echo esc_attr( $this->form_name ); ?>" />
+					<?php wp_nonce_field( 'verify_' . esc_attr( $this->form_name ) . '_form', esc_attr( $this->form_name ) . '_nonce' ); ?>
+					<table class="form-table">
+						<tbody>
+							<?php foreach ( $this->form->getFields() as $field ) : ?>
+							<tr>
+								<th scope="row">
+									<?php if ( ! empty( $field->getLabel() ) ) : ?>
+										<label for="<?php echo esc_attr( $field->getName() ); ?>"><?php echo esc_html( $field->getLabel() ); ?></label>
+									<?php endif; ?>
+								</th>
+								<td>
+									<?php echo $field->render(); ?>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 				</form>
 			</div>
 		</div>
