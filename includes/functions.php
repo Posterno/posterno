@@ -762,3 +762,42 @@ function pno_is_func_disabled( $function ) {
 	$disabled = explode( ',', ini_get( 'disable_functions' ) );
 	return in_array( $function, $disabled );
 }
+
+/**
+ * Get File Extension
+ *
+ * Returns the file extension of a filename.
+ *
+ * @param string $str File name.
+ * @return mixed File extension.
+ */
+function pno_get_file_extension( $str ) {
+	$parts = explode( '.', $str );
+	return end( $parts );
+}
+
+/**
+ * Given an object or array of objects, convert them to arrays
+ *
+ * @param object|array $object An object or an array of objects.
+ * @return array
+ */
+function pno_object_to_array( $object = array() ) {
+	if ( empty( $object ) || ( ! is_object( $object ) && ! is_array( $object ) ) ) {
+		return $object;
+	}
+	if ( is_array( $object ) ) {
+		$return = array();
+		foreach ( $object as $item ) {
+			$return[] = pno_object_to_array( $item );
+		}
+	} else {
+		$return = get_object_vars( $object );
+		// Now look at the items that came back and convert any nested objects to arrays.
+		foreach ( $return as $key => $value ) {
+			$value          = ( is_array( $value ) || is_object( $value ) ) ? pno_object_to_array( $value ) : $value;
+			$return[ $key ] = $value;
+		}
+	}
+	return $return;
+}

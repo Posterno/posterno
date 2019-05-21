@@ -339,6 +339,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			require_once PNO_PLUGIN_DIR . 'includes/admin/tools/class-tool-fields-cache.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/tools/class-tool-settings-export.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/tools/class-tool-settings-import.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/tools/tools.php';
 
 		}
