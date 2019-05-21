@@ -751,3 +751,14 @@ function pno_array_map_recursive( $f, $xs ) {
 	}
 	return $out;
 }
+
+/**
+ * Checks whether function is disabled.
+ *
+ * @param string $function Name of the function.
+ * @return bool Whether or not function is disabled.
+ */
+function pno_is_func_disabled( $function ) {
+	$disabled = explode( ',', ini_get( 'disable_functions' ) );
+	return in_array( $function, $disabled );
+}
