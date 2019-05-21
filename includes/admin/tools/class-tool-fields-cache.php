@@ -166,16 +166,21 @@ class FieldsCache {
 				\PNO\Cache\Helper::flush_all_fields_cache();
 			}
 
-			$url = add_query_arg( [ 'updated' => true ], admin_url( 'tools.php?page=posterno-tools&tab=cache' ) );
+			$url = add_query_arg( [ 'pno-tool-updated' => 'cache' ], admin_url( 'tools.php?page=posterno-tools&tab=cache' ) );
 
 			wp_safe_redirect( $url );
 			exit;
 		}
 	}
 
+	/**
+	 * Show success notice.
+	 *
+	 * @return void
+	 */
 	public function notice() {
 
-		if ( isset( $_GET['updated'] ) && $_GET['updated'] === '1' ) {
+		if ( isset( $_GET['pno-tool-updated'] ) && $_GET['pno-tool-updated'] === 'cache' ) {
 
 			$message = esc_html__( 'Fields cache successfully flushed.' );
 

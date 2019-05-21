@@ -47,7 +47,7 @@ function pno_tools_page() {
 				);
 				$tab_url = remove_query_arg(
 					array(
-						'updated',
+						'pno-tool-updated',
 					),
 					$tab_url
 				);
