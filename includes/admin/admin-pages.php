@@ -23,7 +23,7 @@ function pno_add_admin_pages() {
 	$pno_profile_fields_page      = add_users_page( __( 'Custom profile fields', 'posterno' ), __( 'Custom fields', 'posterno' ), 'manage_options', 'posterno-custom-profile-fields', 'pno_custom_profile_fields_page' );
 	$pno_registration_fields_page = add_users_page( __( 'Customize registration form', 'posterno' ), __( 'Registration form', 'posterno' ), 'manage_options', 'posterno-custom-registration-form', 'pno_custom_registration_fields_page' );
 	$pno_listings_fields_page     = add_submenu_page( 'edit.php?post_type=listings', __( 'Customize listings fields', 'posterno' ), __( 'Custom fields', 'posterno' ), 'manage_options', 'posterno-custom-listings-fields', 'pno_custom_listings_fields_page' );
-	$pno_tools_page               = add_management_page( esc_html__( 'Posterno tools' ), esc_html__( 'Posterno tools' ), 'manage_options', 'posterno-tools', 'd' );
+	$pno_tools_page               = add_management_page( esc_html__( 'Posterno tools' ), esc_html__( 'Posterno tools' ), 'manage_options', 'posterno-tools', 'pno_tools_page' );
 
 }
 add_action( 'admin_menu', 'pno_add_admin_pages', 10 );

@@ -6,7 +6,7 @@
   margin-bottom: 2em; }
   .pno-admin-title-area .wrap {
     margin: 0; }
-    .pno-admin-title-area .wrap h1 {
+    .pno-admin-title-area .wrap h1, .pno-admin-title-area .wrap h2 {
       display: inline-block;
       padding: 0; }
   .pno-admin-title-area .title-links {

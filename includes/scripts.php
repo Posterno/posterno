@@ -117,6 +117,11 @@ function pno_load_admin_scripts() {
 		wp_enqueue_style( 'posterno-cb-fixer', PNO_PLUGIN_URL . '/assets/css/admin/carbon.min.css', false, $version );
 	}
 
+	// Load styling for tools page.
+	if ( $screen->id === 'tools_page_posterno-tools' ) {
+		wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/admin/admin-settings-panel.min.css', false, PNO_VERSION );
+	}
+
 }
 add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
 

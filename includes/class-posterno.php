@@ -336,6 +336,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-notices.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';
+			require_once PNO_PLUGIN_DIR . 'includes/admin/tools/tools.php';
 
 		}
 
