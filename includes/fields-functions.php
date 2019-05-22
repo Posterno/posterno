@@ -1314,6 +1314,40 @@ function pno_reset_custom_fields_batch( $type = false, $offset = 0, $limit = 0 )
 			pno_install_profile_fields( true );
 		}
 
+	} elseif ( $type === 'registration' ) {
+
+		$fields = new \PNO\Database\Queries\Registration_Fields(
+			[
+				'number' => $limit,
+				'offset' => $offset,
+			]
+		);
+
+		if ( isset( $fields->items ) && ! empty( $fields->items ) ) {
+
+			foreach ( $fields->items as $found_field ) {
+				$found_field::delete( $found_field->getPostID(), true );
+			}
+
+			posterno()->queue->schedule_single(
+				time(),
+				'pno_reset_custom_fields_batch',
+				[
+					'type'   => $type,
+					'offset' => $offset + $limit,
+					'limit'  => $limit,
+				],
+				'pno_reset_custom_fields_batch'
+			);
+
+		}
+
+		if ( ! isset( $fields->items ) || isset( $fields->items ) && empty( $fields->items ) ) {
+			delete_option( 'pno_registration_fields_installed' );
+			delete_option( 'pno_background_custom_fields_generation' );
+			pno_install_registration_fields();
+		}
+
 	}
 
 }
