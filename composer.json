@@ -15,7 +15,8 @@
     "posterno/posterno-geocoder": "@dev",
     "posterno/posterno-submission-scripts": "@dev",
     "posterno/posterno-maps": "@dev",
-    "htmlburger/carbon-fields": "3.1.1"
+    "htmlburger/carbon-fields": "3.1.1",
+    "prospress/action-scheduler": "dev-master"
   },
   "minimum-stability": "dev",
   "repositories": [{
@@ -84,6 +85,9 @@
   ],
   "extra": {
     "installer-paths": {
+      "vendor/prospress/{$name}/": [
+        "prospress/action-scheduler"
+      ],
       "includes/utils/{$name}/": [
         "stevegrunwell/wp-cache-remember"
       ],

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c081207f409a707f964b375efa93590",
+    "content-hash": "c7b161ba16dc9b181d7e61394721d3bd",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -1085,6 +1085,31 @@
             "time": "2018-12-24T16:50:01+00:00"
         },
         {
+            "name": "prospress/action-scheduler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Prospress/action-scheduler.git",
+                "reference": "c9a9e8c95aca616046820e9a53f76190d2f7700c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/c9a9e8c95aca616046820e9a53f76190d2f7700c",
+                "reference": "c9a9e8c95aca616046820e9a53f76190d2f7700c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "wp-cli/wp-cli": "1.5.1"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "Action Scheduler for WordPress and WooCommerce",
+            "time": "2019-05-07T21:36:13+00:00"
+        },
+        {
             "name": "psr/http-message",
             "version": "dev-master",
             "source": {
@@ -1321,7 +1346,8 @@
         "posterno/posterno-entities": 20,
         "posterno/posterno-geocoder": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-maps": 20
+        "posterno/posterno-maps": 20,
+        "prospress/action-scheduler": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
