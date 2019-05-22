@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.2
 Requires PHP: 5.5+
-Stable tag: 0.7.1
+Stable tag: 0.8.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -115,6 +115,25 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 0.8.0 Open beta release =
+
+- Added: custom health tests for WordPress 5.2+
+- Added: outdated template files verification checks.
+- Added: new Posterno debug data to site health's debug info.
+- Added: new admin tools page for Posterno.
+- Added: tool to manually clear all field's cache.
+- Added: ability to import/export Posterno's settings.
+- Added: ability to restore all custom form fields back to default.
+- Added: background batch processing library.
+- Tweak: entities api, force cancellation of entities when parameter is set.
+- Tweak: adjusted plugin hooks firing sequence to resolve issues with third party plugins like Rank Math.
+- Tweak: updated carbon fields library to latest version.
+- Tweak: added custom styling to elements brought in by the carbon fields library.
+- Tweak: removed old code and obsolete files.
+- Tweak: sanitize all values submitted through carbon fields api before storing them into the database.
+- Fix: skip validation of terms submitted through a form when form's vue input is an empty array.
+- Fix: an issue with the term chain dropdown field not properly loading arrays as values.
 
 = 0.7.1 Open beta release =
 
