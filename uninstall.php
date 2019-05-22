@@ -91,6 +91,7 @@ if ( pno_get_option( 'uninstall_on_delete', false ) ) {
 		'wpdb_pno_listing_fields_version',
 		'wpdb_pno_profile_fields_version',
 		'wpdb_pno_registration_fields_version',
+		'pno_background_custom_fields_generation',
 	];
 
 	foreach ( $pno_options as $option ) {
