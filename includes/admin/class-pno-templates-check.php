@@ -139,4 +139,25 @@ class TemplatesCheck {
 
 	}
 
+	public static function get_replaced_template_files() {
+
+		$replaced          = [];
+		$core_templates = self::scan_template_files( PNO_PLUGIN_DIR . '/templates' );
+
+		foreach ( $core_templates as $file ) {
+			$theme_file = false;
+			if ( file_exists( get_stylesheet_directory() . '/' . 'posterno/' . $file ) ) {
+				$theme_file = get_stylesheet_directory() . '/' . 'posterno/' . $file;
+			} elseif ( file_exists( get_template_directory() . '/' . 'posterno/' . $file ) ) {
+				$theme_file = get_template_directory() . '/' . 'posterno/' . $file;
+			}
+			if ( ! empty( $theme_file ) && pno_get_file_extension( $theme_file ) === 'php' ) {
+				$replaced[] = str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file );
+			}
+		}
+
+		return $replaced;
+
+	}
+
 }
