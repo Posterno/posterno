@@ -255,3 +255,32 @@ add_action(
 
 	}
 );
+
+/**
+ * Display a notice when the custom fields are being regenerated in the background process.
+ *
+ * @return void
+ */
+add_action(
+	'admin_head',
+	function () {
+
+		if ( get_option( 'pno_background_custom_fields_generation' ) ) {
+
+			ob_start();
+
+			?>
+			<strong><?php esc_html_e( 'Posterno is regenerating custom fields data in the background.' ); ?></strong>
+			<br/>
+			<?php esc_html_e( 'Frontend forms may not be accurate until this finishes. It will take a few minutes and this notice will disappear when complete.' ); ?>
+			<a href="<?php echo esc_url( admin_url( 'tools.php?page=action-scheduler' ) ); ?>"><?php esc_html_e( 'View progress' ); ?> &rarr;</a>
+			<?php
+
+			$message = ob_get_clean();
+
+			posterno()->admin_notices->register_notice( 'background_custom_fields', 'info', $message, [ 'dismissible' => false ] );
+
+		}
+
+	}
+);

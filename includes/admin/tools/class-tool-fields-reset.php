@@ -156,6 +156,20 @@ class FieldsReset {
 
 			$type = $this->form->getFieldValue( 'type' );
 
+			// This toggles an admin notice.
+			update_option( 'pno_background_custom_fields_generation', true );
+
+			posterno()->queue->schedule_single(
+				time(),
+				'pno_reset_custom_fields_batch',
+				[
+					'type'   => $type,
+					'offset' => 0,
+					'limit'  => 30,
+				],
+				'pno_reset_custom_fields_batch'
+			);
+
 			$url = add_query_arg( [ 'pno-tool-updated' => 'fields-reset' ], admin_url( 'tools.php?page=posterno-tools&tab=database' ) );
 			wp_safe_redirect( $url );
 			exit;

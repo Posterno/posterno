@@ -1265,3 +1265,56 @@ function pno_get_listings_fields( $exclude = [] ) {
 	return $fields;
 
 }
+
+/**
+ * Delete custom fields and regenerate default ones.
+ *
+ * @param boolean $type the type of fields to regenerate.
+ * @param integer $offset query offset.
+ * @param integer $limit query number.
+ * @return void
+ */
+function pno_reset_custom_fields_batch( $type = false, $offset = 0, $limit = 0 ) {
+
+	if ( ! $type ) {
+		return;
+	}
+
+	if ( $type === 'profile' ) {
+
+		$fields = new \PNO\Database\Queries\Profile_Fields(
+			[
+				'number' => $limit,
+				'offset' => $offset,
+			]
+		);
+
+		if ( isset( $fields->items ) && ! empty( $fields->items ) ) {
+
+			foreach ( $fields->items as $found_field ) {
+				$found_field::delete( $found_field->getPostID(), true );
+			}
+
+			posterno()->queue->schedule_single(
+				time(),
+				'pno_reset_custom_fields_batch',
+				[
+					'type'   => $type,
+					'offset' => $offset + $limit,
+					'limit'  => $limit,
+				],
+				'pno_reset_custom_fields_batch'
+			);
+
+		}
+
+		if ( ! isset( $fields->items ) || isset( $fields->items ) && empty( $fields->items ) ) {
+			delete_option( 'pno_profile_fields_installed' );
+			delete_option( 'pno_background_custom_fields_generation' );
+			pno_install_profile_fields( true );
+		}
+
+	}
+
+}
+add_action( 'pno_reset_custom_fields_batch', 'pno_reset_custom_fields_batch', 10 );

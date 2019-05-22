@@ -508,7 +508,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 * @return void
 		 */
 		public static function init_hooks() {
-			add_action( 'plugins_loaded', array( __CLASS__, 'init' ), 0 );
+			add_action( 'plugins_loaded', array( __CLASS__, 'init' ), 10 );
 		}
 
 		/**
