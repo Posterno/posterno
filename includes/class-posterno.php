@@ -73,6 +73,13 @@ if ( ! class_exists( 'Posterno' ) ) :
 		public $components = array();
 
 		/**
+		 * Holds actions queue management utilities.
+		 *
+		 * @var object
+		 */
+		public $queue;
+
+		/**
 		 * Main Posterno Instance.
 		 *
 		 * Insures that only one instance of Posterno exists in memory at any one
@@ -406,6 +413,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function setup_objects() {
 
+			require_once PNO_PLUGIN_DIR . 'includes/class-pno-datetime.php';
+
 			// Templates.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-templates.php';
 
@@ -457,6 +466,11 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/crons/check-for-expired-listings.php';
 			require_once PNO_PLUGIN_DIR . 'includes/crons/notice-listings-soon-to-expire.php';
 			require_once PNO_PLUGIN_DIR . 'includes/crons/clear-expired-transients.php';
+
+			// Queue.
+			require_once PNO_PLUGIN_DIR . 'includes/queue/class-pno-queue-interface.php';
+			require_once PNO_PLUGIN_DIR . 'includes/queue/class-pno-action-queue.php';
+			require_once PNO_PLUGIN_DIR . 'includes/queue/class-pno-queue.php';
 
 		}
 
@@ -513,6 +527,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			self::$instance->emails        = new PNO_Emails();
 			self::$instance->forms         = PNO_Forms::instance();
 			self::$instance->schema        = new PNO\SchemaOrg\Component\SchemaComponent();
+			self::$instance->queue         = PNO_Queue::instance();
 
 			// Internal components init.
 			self::$instance->schema->init();
