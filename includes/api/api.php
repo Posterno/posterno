@@ -18,11 +18,6 @@ defined( 'ABSPATH' ) || exit;
  */
 function pno_register_rest_controllers() {
 
-	require_once PNO_PLUGIN_DIR . 'includes/api/class-pno-options-api.php';
-
-	$options = new PNO_Options_Api();
-	$options->register_routes();
-
 	// Include rest controller for main public api.
 	require_once PNO_PLUGIN_DIR . 'includes/abstracts/abstract-pno-rest-controller.php';
 
