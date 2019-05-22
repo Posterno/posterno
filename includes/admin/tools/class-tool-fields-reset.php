@@ -87,6 +87,7 @@ class FieldsReset {
 	public function init() {
 		add_action( 'pno_tools_database', [ $this, 'page' ] );
 		add_action( 'admin_init', [ $this, 'process' ] );
+		add_action( 'admin_head', [ $this, 'notice' ] );
 	}
 
 	/**
@@ -153,7 +154,29 @@ class FieldsReset {
 
 		if ( $this->form->isValid() ) {
 
+			$type = $this->form->getFieldValue( 'type' );
+
+			$url = add_query_arg( [ 'pno-tool-updated' => 'fields-reset' ], admin_url( 'tools.php?page=posterno-tools&tab=database' ) );
+			wp_safe_redirect( $url );
+			exit;
 		}
+	}
+
+	/**
+	 * Show success notice.
+	 *
+	 * @return void
+	 */
+	public function notice() {
+
+		if ( isset( $_GET['pno-tool-updated'] ) && $_GET['pno-tool-updated'] === 'fields-reset' ) {
+
+			$message = esc_html__( 'Fields are currently being reset in the background.' );
+
+			posterno()->admin_notices->register_notice( 'settings_imported', 'success', $message, [ 'dismissible' => false ] );
+
+		}
+
 	}
 
 }
