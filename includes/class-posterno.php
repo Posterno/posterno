@@ -107,8 +107,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Bootstrap.
 			self::$instance->setup_constants();
-			self::$instance->setup_files();
-			self::$instance->setup_application();
 
 			// Hooks.
 			self::init_hooks();
@@ -319,6 +317,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
+			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}
 
 		/**
@@ -519,6 +518,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		public static function init() {
 
+			self::$instance->setup_files();
+			self::$instance->setup_application();
+
 			// Boot composer's classes.
 			Brain\Cortex::boot();
 
@@ -532,8 +534,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			// Internal components init.
 			self::$instance->schema->init();
-
-			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 
 			do_action( 'pno_after_init' );
 
