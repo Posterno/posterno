@@ -86,10 +86,10 @@ class SettingsExport {
 		?>
 		<div class="postbox">
 			<h2 class="hndle ui-sortable-handle">
-				<span><?php esc_html_e( 'Export settings' ); ?></span>
+				<span><?php esc_html_e( 'Export settings', 'posterno' ); ?></span>
 			</h2>
 			<div class="inside">
-			<p><?php esc_html_e( 'Export the Posterno settings for this site as a .json file. This allows you to easily import the configuration into another site.' ); ?></p>
+			<p><?php esc_html_e( 'Export the Posterno settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'posterno' ); ?></p>
 				<form action="<?php echo esc_url( $this->form->getAction() ); ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="pno_form" value="<?php echo esc_attr( $this->form_name ); ?>" />
 					<?php wp_nonce_field( 'verify_' . esc_attr( $this->form_name ) . '_form', esc_attr( $this->form_name ) . '_nonce' ); ?>

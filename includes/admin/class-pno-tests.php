@@ -51,10 +51,10 @@ class Tests {
 	 */
 	public function add_test( $callable, $name, $type = 'direct', $groups = array( 'default' ) ) {
 		if ( array_key_exists( $name, $this->tests ) ) {
-			return new WP_Error( __( 'Test names must be unique.' ) );
+			return new WP_Error( __( 'Test names must be unique.', 'posterno' ) );
 		}
 		if ( ! is_callable( $callable ) ) {
-			return new WP_Error( __( 'Tests must be valid PHP callables.' ) );
+			return new WP_Error( __( 'Tests must be valid PHP callables.', 'posterno' ) );
 		}
 
 		$this->tests[ $name ] = array(
@@ -83,7 +83,7 @@ class Tests {
 		if ( array_key_exists( $name, $this->tests ) ) {
 			return call_user_func( $this->tests[ $name ]['test'] );
 		}
-		return new WP_Error( __( 'There is no test by that name: ' ) . $name );
+		return new WP_Error( __( 'There is no test by that name: ', 'posterno' ) . $name );
 
 	}
 
@@ -116,7 +116,7 @@ class Tests {
 		return array(
 			'name'       => $name,
 			'pass'       => true,
-			'message'    => __( 'Test Passed!' ),
+			'message'    => __( 'Test Passed!', 'posterno' ),
 			'resolution' => false,
 			'severity'   => false,
 		);

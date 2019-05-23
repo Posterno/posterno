@@ -87,11 +87,11 @@ class SettingsImport {
 		?>
 		<div class="postbox">
 			<h2 class="hndle ui-sortable-handle">
-				<span><?php esc_html_e( 'Import settings' ); ?></span>
+				<span><?php esc_html_e( 'Import settings', 'posterno' ); ?></span>
 			</h2>
 			<div class="inside">
 
-				<p><?php esc_html_e( 'Import the Posterno settings from a .json file. This file can be obtained by exporting the settings on another site using the form on the "export" tab.' ); ?></p>
+				<p><?php esc_html_e( 'Import the Posterno settings from a .json file. This file can be obtained by exporting the settings on another site using the form on the "export" tab.', 'posterno' ); ?></p>
 
 				<form action="<?php echo esc_url( $this->form->getAction() ); ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="pno_form" value="<?php echo esc_attr( $this->form_name ); ?>" />
@@ -130,12 +130,12 @@ class SettingsImport {
 		}
 
 		if ( pno_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
-			wp_die( esc_html__( 'Please upload a valid .json file' ), esc_html__( 'Error' ), array( 'response' => 400 ) );
+			wp_die( esc_html__( 'Please upload a valid .json file', 'posterno' ), esc_html__( 'Error', 'posterno' ), array( 'response' => 400 ) );
 		}
 
 		$import_file = $_FILES['import_file']['tmp_name'];
 		if ( empty( $import_file ) ) {
-			wp_die( esc_html__( 'Please upload a file to import' ), esc_html__( 'Error' ), array( 'response' => 400 ) );
+			wp_die( esc_html__( 'Please upload a file to import', 'posterno' ), esc_html__( 'Error', 'posterno' ), array( 'response' => 400 ) );
 		}
 
 		// Retrieve the settings from the file and convert the json object to an array.
@@ -160,7 +160,7 @@ class SettingsImport {
 
 		if ( isset( $_GET['pno-tool-updated'] ) && $_GET['pno-tool-updated'] === 'settings-import' ) {
 
-			$message = esc_html__( 'Settings successfully imported.' );
+			$message = esc_html__( 'Settings successfully imported.', 'posterno' );
 
 			posterno()->admin_notices->register_notice( 'settings_imported', 'success', $message, [ 'dismissible' => false ] );
 

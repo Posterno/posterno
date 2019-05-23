@@ -41,14 +41,14 @@ class DebugData {
 	public function register_debug_data( $data ) {
 
 		$data['posterno'] = array(
-			'label'  => esc_html__( 'Posterno' ),
+			'label'  => esc_html__( 'Posterno', 'posterno' ),
 			'fields' => [
 				'taxonomies' => [
-					'label' => esc_html__( 'Registered taxonomies' ),
+					'label' => esc_html__( 'Registered taxonomies', 'posterno' ),
 					'value' => implode( ', ', $this->get_taxonomies() ),
 				],
 				'templates'  => [
-					'label' => esc_html__( 'Replaced templates' ),
+					'label' => esc_html__( 'Replaced templates', 'posterno' ),
 					'value' => implode( ', ', $this->get_templates() ),
 				],
 			],

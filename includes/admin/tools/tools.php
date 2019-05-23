@@ -24,10 +24,10 @@ function pno_tools_page() {
 
 	<div class="pno-admin-title-area">
 		<div class="wrap">
-			<h3><?php esc_html_e( 'Posterno tools' ); ?></h3>
+			<h3><?php esc_html_e( 'Posterno tools', 'posterno' ); ?></h3>
 			<ul class="title-links hidden-sm-and-down">
 				<li>
-					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation' ); ?></a>
+					<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation', 'posterno' ); ?></a>
 				</li>
 			</ul>
 		</div>
@@ -35,7 +35,7 @@ function pno_tools_page() {
 
 	<div class="wrap">
 
-		<h1 class="screen-reader-text"><?php esc_html_e( 'Posterno tools' ); ?></h1>
+		<h1 class="screen-reader-text"><?php esc_html_e( 'Posterno tools', 'posterno' ); ?></h1>
 
 		<h2 class="nav-tab-wrapper">
 			<?php
@@ -75,10 +75,10 @@ function pno_tools_page() {
 function pno_get_tools_tabs() {
 
 	$tabs = [
-		'cache'    => esc_html__( 'Cache' ),
-		'import'   => esc_html__( 'Import' ),
-		'export'   => esc_html__( 'Export' ),
-		'database' => esc_html__( 'Database' ),
+		'cache'    => esc_html__( 'Cache', 'posterno' ),
+		'import'   => esc_html__( 'Import', 'posterno' ),
+		'export'   => esc_html__( 'Export', 'posterno' ),
+		'database' => esc_html__( 'Database', 'posterno' ),
 	];
 
 	/**

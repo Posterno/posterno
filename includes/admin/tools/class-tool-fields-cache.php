@@ -55,13 +55,13 @@ class FieldsCache {
 		$fields = [
 			'type'   => [
 				'type'       => 'select',
-				'label'      => esc_html__( 'Select which fields:' ),
+				'label'      => esc_html__( 'Select which fields:', 'posterno' ),
 				'required'   => true,
 				'values'     => [
-					'registration' => esc_html__( 'Registration fields' ),
-					'profile'      => esc_html__( 'Profile fields' ),
-					'listings'     => esc_html__( 'Listings fields' ),
-					'all'          => esc_html__( 'All fields' ),
+					'registration' => esc_html__( 'Registration fields', 'posterno' ),
+					'profile'      => esc_html__( 'Profile fields', 'posterno' ),
+					'listings'     => esc_html__( 'Listings fields', 'posterno' ),
+					'all'          => esc_html__( 'All fields', 'posterno' ),
 				],
 				'attributes' => [
 					'class' => 'form-control',
@@ -101,10 +101,10 @@ class FieldsCache {
 		?>
 		<div class="postbox">
 			<h2 class="hndle ui-sortable-handle">
-				<span><?php esc_html_e( 'Custom fields cache' ); ?></span>
+				<span><?php esc_html_e( 'Custom fields cache', 'posterno' ); ?></span>
 			</h2>
 			<div class="inside">
-				<p><?php esc_html_e( 'Use this tool to erase the cache of your fields.' ); ?></p>
+				<p><?php esc_html_e( 'Use this tool to erase the cache of your fields.', 'posterno' ); ?></p>
 				<form action="<?php echo esc_url( $this->form->getAction() ); ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="pno_form" value="<?php echo esc_attr( $this->form_name ); ?>" />
 					<?php wp_nonce_field( 'verify_' . esc_attr( $this->form_name ) . '_form', esc_attr( $this->form_name ) . '_nonce' ); ?>
@@ -183,7 +183,7 @@ class FieldsCache {
 
 		if ( isset( $_GET['pno-tool-updated'] ) && $_GET['pno-tool-updated'] === 'cache' ) {
 
-			$message = esc_html__( 'Fields cache successfully flushed.' );
+			$message = esc_html__( 'Fields cache successfully flushed.', 'posterno' );
 
 			posterno()->admin_notices->register_notice( 'cache_flush', 'success', $message, [ 'dismissible' => false ] );
 

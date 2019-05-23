@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7b161ba16dc9b181d7e61394721d3bd",
+    "content-hash": "357685c23aa77c5b1801a8beca3752a3",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -692,7 +692,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "9ee79527cfb2b25404d31d971a0ca9f9cbedc255",
+                "reference": "e84c137f1d217fbdca8f7ba5a52cd7004a60da79",
                 "shasum": null
             },
             "require": {
@@ -1009,7 +1009,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-validator",
-                "reference": "0bfb0e9f632cc037a227f4585c84a997933493c2",
+                "reference": "476eb54076fb474fcd2c7e999ec3a8be353d4c9b",
                 "shasum": null
             },
             "require": {
@@ -1338,16 +1338,16 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rarst/wpdatetime": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-dom": 20,
         "posterno/posterno-forms": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/posterno-schema": 20,
+        "prospress/action-scheduler": 20,
         "posterno/posterno-entities": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-third-party": 20,
         "posterno/posterno-maps": 20,
-        "prospress/action-scheduler": 20
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-schema": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

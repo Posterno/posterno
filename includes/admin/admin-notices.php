@@ -236,14 +236,14 @@ add_action(
 
 			<p>
 				<?php /* translators: %s: theme name */ ?>
-				<?php printf( __( '<strong>Your theme (%s) contains outdated copies of some Posterno template files.</strong> These files may need updating to ensure they are compatible with the current version of Posterno. Suggestions to fix this:' ), esc_html( $theme['Name'] ) ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
+				<?php printf( __( '<strong>Your theme (%s) contains outdated copies of some Posterno template files.</strong> These files may need updating to ensure they are compatible with the current version of Posterno. Suggestions to fix this:', 'posterno' ), esc_html( $theme['Name'] ) ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 				<ol>
-					<li><?php esc_html_e( 'Update your theme to the latest version. If no update is available contact your theme author asking about compatibility with the current Posterno version.' ); ?></li>
-					<li><?php esc_html_e( 'If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again.' ); ?></li>
+					<li><?php esc_html_e( 'Update your theme to the latest version. If no update is available contact your theme author asking about compatibility with the current Posterno version.', 'posterno' ); ?></li>
+					<li><?php esc_html_e( 'If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again.', 'posterno' ); ?></li>
 				</ol>
 			</p>
-			<a class="button-primary" href="https://docs.posterno.com/article/545-templates-customization" target="_blank"><?php esc_html_e( 'Learn more about templates' ); ?></a>
-			<a class="button-primary" href="<?php echo esc_url( admin_url( 'site-health.php' ) ); ?>" target="_blank"><?php esc_html_e( 'View affected templates' ); ?></a>
+			<a class="button-primary" href="https://docs.posterno.com/article/545-templates-customization" target="_blank"><?php esc_html_e( 'Learn more about templates', 'posterno' ); ?></a>
+			<a class="button-primary" href="<?php echo esc_url( admin_url( 'site-health.php' ) ); ?>" target="_blank"><?php esc_html_e( 'View affected templates', 'posterno' ); ?></a>
 
 			<?php
 
@@ -270,10 +270,10 @@ add_action(
 			ob_start();
 
 			?>
-			<strong><?php esc_html_e( 'Posterno is regenerating custom form fields data in the background.' ); ?></strong>
+			<strong><?php esc_html_e( 'Posterno is regenerating custom form fields data in the background.', 'posterno' ); ?></strong>
 			<br/>
-			<?php esc_html_e( 'Frontend forms may not be accurate until this finishes. It will take a few minutes and this notice will disappear when complete.' ); ?>
-			<a href="<?php echo esc_url( admin_url( 'tools.php?page=action-scheduler' ) ); ?>"><?php esc_html_e( 'View progress' ); ?> &rarr;</a>
+			<?php esc_html_e( 'Frontend forms may not be accurate until this finishes. It will take a few minutes and this notice will disappear when complete.', 'posterno' ); ?>
+			<a href="<?php echo esc_url( admin_url( 'tools.php?page=action-scheduler' ) ); ?>"><?php esc_html_e( 'View progress', 'posterno' ); ?> &rarr;</a>
 			<?php
 
 			$message = ob_get_clean();

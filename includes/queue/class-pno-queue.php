@@ -57,7 +57,7 @@ class PNO_Queue {
 	 */
 	protected static function get_class() {
 		if ( ! did_action( 'plugins_loaded' ) ) {
-			wc_doing_it_wrong( __FUNCTION__, __( 'This function should not be called before plugins_loaded.' ), '1.0.0' );
+			wc_doing_it_wrong( __FUNCTION__, __( 'This function should not be called before plugins_loaded.', 'posterno' ), '1.0.0' );
 		}
 
 		return apply_filters( 'posterno_queue_class', self::$default_cass );

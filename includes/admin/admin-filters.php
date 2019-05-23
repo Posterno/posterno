@@ -299,7 +299,7 @@ function pno_register_health_tests( $core_tests ) {
 	if ( is_array( $tests ) && ! empty( $tests ) ) {
 		foreach ( $tests as $test ) {
 			$core_tests['direct'][ $test['name'] ] = array(
-				'label' => esc_html__( 'Posterno: ' ) . $test['name'],
+				'label' => esc_html__( 'Posterno: ', 'posterno' ) . $test['name'],
 				'test'  =>
 				function() use ( $test, $pno_tests ) { // phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
 					$results = $pno_tests->run_test( $test['name'] );
@@ -315,12 +315,12 @@ function pno_register_health_tests( $core_tests ) {
 						'label'       => 'Posterno: ' . strtolower( $label ),
 						'status'      => 'good',
 						'badge'       => array(
-							'label' => __( 'Posterno' ),
+							'label' => __( 'Posterno', 'posterno' ),
 							'color' => 'purple',
 						),
 						'description' => sprintf(
 							'<p>%s</p>',
-							__( 'This test successfully passed.' )
+							__( 'This test successfully passed.', 'posterno' )
 						),
 						'actions'     => '',
 						'test'        => 'posterno_' . $test['name'],
@@ -340,9 +340,9 @@ function pno_register_health_tests( $core_tests ) {
 					$return['actions'] = sprintf(
 						'<a class="button button-primary" href="%1$s" target="_blank" rel="noopener noreferrer">%2$s <span class="screen-reader-text">%3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
 						esc_url( $results['action'] ),
-						__( 'Resolve' ),
+						__( 'Resolve', 'posterno' ),
 						/* translators: accessibility text */
-						__( '(opens in a new tab)' )
+						__( '(opens in a new tab)', 'posterno' )
 					);
 				}
 			}
