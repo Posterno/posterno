@@ -535,6 +535,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 
 			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 
+			do_action( 'pno_after_init' );
+
 		}
 
 	}
