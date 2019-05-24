@@ -113,11 +113,51 @@ final class PN_Requirements_Check {
 	 * @since 0.1.0
 	 */
 	private function load() {
-		require_once dirname( $this->file ) . '/includes/class-posterno.php';
-		if ( class_exists( 'Posterno' ) ) {
-			Posterno::instance( $this->file );
+
+		// Maybe include the bundled bootstrapper.
+		if ( ! class_exists( 'Posterno' ) ) {
+			require_once dirname( $this->file ) . '/includes/class-posterno.php';
 		}
+
+		// Maybe hook-in the bootstrapper.
+		if ( class_exists( 'Posterno' ) ) {
+
+			// Bootstrap to plugins_loaded before priority 10 to make sure
+			// add-ons are loaded after us.
+			add_action( 'plugins_loaded', array( $this, 'bootstrap' ), 4 );
+
+			// Register the activation hook.
+			register_activation_hook( $this->file, array( $this, 'install' ) );
+		}
+
 		do_action( 'posterno_loaded' );
+	}
+
+	/**
+	 * Install, usually on an activation hook.
+	 *
+	 * @return void
+	 */
+	public function install() {
+
+		// Bootstrap to include all of the necessary files.
+		$this->bootstrap();
+
+		// Network wide.
+		$network_wide = ! empty( $_GET['networkwide'] )
+			? (bool) $_GET['networkwide']
+			: false;
+		// Call the installer directly during the activation hook.
+		posterno_install( $network_wide );
+	}
+
+	/**
+	 * Bootstrap.
+	 *
+	 * @return void
+	 */
+	public function bootstrap() {
+		Posterno::instance( $this->file );
 	}
 
 	/**

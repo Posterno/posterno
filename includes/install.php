@@ -30,7 +30,6 @@ function posterno_install( $network_wide = false ) {
 		pno_run_install();
 	}
 }
-register_activation_hook( PNO_PLUGIN_FILE, 'posterno_install' );
 
 /**
  * Run the installation process of the plugin.

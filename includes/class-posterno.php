@@ -519,9 +519,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		public static function init() {
 
-			self::$instance->setup_files();
-			self::$instance->setup_application();
-
 			// Boot composer's classes.
 			Brain\Cortex::boot();
 

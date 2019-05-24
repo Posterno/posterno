@@ -8,15 +8,15 @@
     "rarst/wpdatetime": "dev-master",
     "htmlburger/carbon-fields": "3.1.1",
     "prospress/action-scheduler": "dev-master",
-    "posterno/posterno-submission-scripts": "@dev",
-    "posterno/posterno-entities": "@dev",
-    "posterno/posterno-validator": "@dev",
+    "posterno/posterno-maps": "@dev",
     "posterno/posterno-third-party": "@dev",
+    "posterno/posterno-forms": "@dev",
+    "posterno/posterno-submission-scripts": "@dev",
+    "posterno/posterno-validator": "@dev",
+    "posterno/posterno-dom": "@dev",
     "posterno/posterno-geocoder": "@dev",
     "posterno/posterno-schema": "@dev",
-    "posterno/posterno-forms": "@dev",
-    "posterno/posterno-maps": "@dev",
-    "posterno/posterno-dom": "@dev"
+    "posterno/posterno-entities": "@dev"
   },
   "minimum-stability": "dev",
   "repositories": [{
