@@ -290,6 +290,13 @@ class ForgotPassword {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the password recovery process.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_password_recovery', $this->form );
+
 				$username = $this->form->getFieldValue( 'username_email' );
 				$user     = false;
 

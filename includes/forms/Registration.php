@@ -198,6 +198,14 @@ class Registration {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Allow developers to extend the signup process before actually
+				 * registering the new user.
+				 *
+				 * @param Form $form the form object.
+				 */
+				do_action( 'pno_before_registration', $this->form );
+
 				$email_address = $this->form->getFieldValue( 'email' );
 
 				// Verify if a username has been submitted.
@@ -223,14 +231,6 @@ class Registration {
 				if ( $has_password ) {
 					$password = $this->form->getFieldValue( 'password' );
 				}
-
-				/**
-				 * Allow developers to extend the signup process before actually
-				 * registering the new user.
-				 *
-				 * @param Form $form the form object.
-				 */
-				do_action( 'pno_before_registration', $this->form );
 
 				$new_user_id = wp_create_user( $username, $password, $email_address );
 
