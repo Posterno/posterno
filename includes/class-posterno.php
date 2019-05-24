@@ -248,7 +248,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function autoload() {
 			require PNO_PLUGIN_DIR . '/vendor/autoload.php';
-			require_once PNO_PLUGIN_DIR . '/vendor/prospress/action-scheduler/action-scheduler.php';
+
 		}
 
 		/**

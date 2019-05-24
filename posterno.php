@@ -122,6 +122,8 @@ final class PN_Requirements_Check {
 		// Maybe hook-in the bootstrapper.
 		if ( class_exists( 'Posterno' ) ) {
 
+			require_once dirname( $this->file ) . '/vendor/prospress/action-scheduler/action-scheduler.php';
+
 			// Bootstrap to plugins_loaded before priority 10 to make sure
 			// add-ons are loaded after us.
 			add_action( 'plugins_loaded', array( $this, 'bootstrap' ), 4 );
