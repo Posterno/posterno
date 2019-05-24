@@ -134,7 +134,7 @@ class ListingContact {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Send email', 'posterno' ),
 				'attributes' => [

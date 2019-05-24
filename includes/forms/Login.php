@@ -134,7 +134,7 @@ class Login {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Login', 'posterno' ),
 				'attributes' => [

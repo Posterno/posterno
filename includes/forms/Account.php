@@ -106,7 +106,7 @@ class Account {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Save changes', 'posterno' ),
 				'attributes' => [
@@ -335,7 +335,6 @@ class Account {
 								} else {
 									carbon_set_user_meta( $updated_user_id, $key, $value );
 								}
-
 							} elseif ( empty( $this->form->getFieldValue( $key ) ) ) {
 
 								$fakeValue = $field->isMultiple() ? [] : false;

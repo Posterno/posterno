@@ -124,7 +124,7 @@ class ListingEdit {
 				],
 				'priority'   => 99,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Save changes', 'posterno' ),
 				'attributes' => [

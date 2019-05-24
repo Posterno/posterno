@@ -114,7 +114,7 @@ class ForgotPassword {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Reset password', 'posterno' ),
 				'attributes' => [

@@ -117,7 +117,7 @@ class DeleteAccount {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Delete account', 'posterno' ),
 				'attributes' => [

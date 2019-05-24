@@ -84,7 +84,7 @@ class ListingSubmission {
 	 * Get things started.
 	 */
 	public function __construct() {
-		$this->form        = Form::createFromConfig( $this->getFields() );
+		$this->form = Form::createFromConfig( $this->getFields() );
 		$this->addSanitizer( $this->form );
 		$this->steps       = $this->getSteps();
 		$this->currentStep = $this->getCurrentlyActiveStep();
@@ -210,7 +210,7 @@ class ListingSubmission {
 				],
 				'priority'   => 99,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Submit listing', 'posterno' ),
 				'attributes' => [
@@ -477,7 +477,6 @@ class ListingSubmission {
 									}
 								}
 							}
-
 						} elseif ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
 							$term_value = $value;
@@ -489,7 +488,6 @@ class ListingSubmission {
 							if ( ! empty( $term_value ) ) {
 								$this->form->processTaxonomyField( $field, $new_listing_id, $term_value );
 							}
-
 						} elseif ( $field->getType() === 'checkbox' ) {
 							if ( $value === true || $value === '1' ) {
 								carbon_set_post_meta( $new_listing_id, $key, true );

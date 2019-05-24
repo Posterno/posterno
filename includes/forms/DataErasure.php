@@ -117,7 +117,7 @@ class DataErasure {
 				],
 				'priority'   => 4,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Request data cancellation', 'posterno' ),
 				'attributes' => [
@@ -223,7 +223,6 @@ class DataErasure {
 					$this->form->reset();
 					return;
 				}
-
 			}
 		} catch ( Exception $e ) {
 			$this->form->setProcessingError( $e->getMessage(), $e->getErrorCode() );

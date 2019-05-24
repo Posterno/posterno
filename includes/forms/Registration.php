@@ -106,7 +106,7 @@ class Registration {
 				],
 				'priority'   => 99,
 			],
-			'submit'      => [
+			'submit-form' => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Register', 'posterno' ),
 				'attributes' => [

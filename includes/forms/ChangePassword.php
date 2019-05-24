@@ -133,7 +133,7 @@ class ChangePassword {
 				],
 				'priority'   => 4,
 			],
-			'submit'           => [
+			'submit-form'      => [
 				'type'       => 'button',
 				'value'      => esc_html__( 'Change password', 'posterno' ),
 				'attributes' => [
