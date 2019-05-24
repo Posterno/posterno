@@ -68,6 +68,17 @@ class OptionsPanel {
 	}
 
 	/**
+	 * Hook into WP.
+	 *
+	 * @return void
+	 */
+	public function hook() {
+
+		add_action( 'plugins_loaded', [ $this, 'init' ], 20 );
+
+	}
+
+	/**
 	 * Register the options panel.
 	 *
 	 * @return void
@@ -807,4 +818,4 @@ class OptionsPanel {
 
 }
 
-( new OptionsPanel() )->init();
+( new OptionsPanel() )->hook();
