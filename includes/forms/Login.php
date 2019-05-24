@@ -224,6 +224,13 @@ class Login {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the login form, before the user is actually logged in.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_user_login', $this->form );
+
 				$username    = $this->form->getFieldValue( 'username' );
 				$password    = $this->form->getFieldValue( 'password' );
 				$remember_me = $this->form->getFieldValue( 'remember' );
