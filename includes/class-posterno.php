@@ -248,7 +248,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 		 */
 		private function autoload() {
 			require PNO_PLUGIN_DIR . '/vendor/autoload.php';
-
 		}
 
 		/**
