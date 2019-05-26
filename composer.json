@@ -1,107 +1,116 @@
 {
-  "require": {
-    "gamajo/template-loader": "^1.3",
-    "brain/cortex": "~1.0.0",
-    "alessandrotesoro/wp-notices": "^1.0",
-    "stevegrunwell/wp-cache-remember": "^1.1",
-    "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
-    "rarst/wpdatetime": "dev-master",
-    "htmlburger/carbon-fields": "3.1.1",
-    "prospress/action-scheduler": "dev-master",
-    "posterno/posterno-maps": "@dev",
-    "posterno/posterno-third-party": "@dev",
-    "posterno/posterno-forms": "@dev",
-    "posterno/posterno-submission-scripts": "@dev",
-    "posterno/posterno-validator": "@dev",
-    "posterno/posterno-dom": "@dev",
-    "posterno/posterno-geocoder": "@dev",
-    "posterno/posterno-schema": "@dev",
-    "posterno/posterno-entities": "@dev"
-  },
-  "minimum-stability": "dev",
-  "repositories": [{
-      "type": "path",
-      "url": "../posterno-schema",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-geocoder",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-third-party",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-maps",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-forms",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-validator",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-dom",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-entities",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "../posterno-submission-scripts",
-      "options": {
-        "symlink": true
-      }
-    }
-  ],
-  "extra": {
-    "installer-paths": {
-      "vendor/prospress/{$name}/": [
-        "prospress/action-scheduler"
-      ],
-      "includes/utils/{$name}/": [
-        "stevegrunwell/wp-cache-remember"
-      ],
-      "includes/components/{$name}/": [
-        "posterno/posterno-schema",
-        "posterno/posterno-geocoder",
-        "posterno/posterno-third-party",
-        "posterno/posterno-maps",
-        "posterno/posterno-forms",
-        "posterno/posterno-validator",
-        "posterno/posterno-entities",
-        "posterno/posterno-dom",
-        "posterno/posterno-submission-scripts"
-      ]
-    }
-  }
+	"require": {
+		"gamajo/template-loader": "^1.3",
+		"brain/cortex": "~1.0.0",
+		"alessandrotesoro/wp-notices": "^1.0",
+		"stevegrunwell/wp-cache-remember": "^1.1",
+		"pressmodo/carbon-fields-custom-options-container": "^0.1.0",
+		"rarst/wpdatetime": "dev-master",
+		"htmlburger/carbon-fields": "3.1.1",
+		"prospress/action-scheduler": "dev-master",
+		"posterno/posterno-maps": "@dev",
+		"posterno/posterno-third-party": "@dev",
+		"posterno/posterno-forms": "@dev",
+		"posterno/posterno-submission-scripts": "@dev",
+		"posterno/posterno-validator": "@dev",
+		"posterno/posterno-dom": "@dev",
+		"posterno/posterno-geocoder": "@dev",
+		"posterno/posterno-schema": "@dev",
+		"posterno/posterno-entities": "@dev",
+		"posterno/posterno-fields-editor-validator": "dev-master"
+	},
+	"minimum-stability": "dev",
+	"repositories": [{
+			"type": "path",
+			"url": "../posterno-schema",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-geocoder",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-third-party",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-maps",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-forms",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-validator",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-dom",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-entities",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-submission-scripts",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../posterno-fields-editor-validator",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+	"extra": {
+		"installer-paths": {
+			"vendor/prospress/{$name}/": [
+				"prospress/action-scheduler"
+			],
+			"includes/utils/{$name}/": [
+				"stevegrunwell/wp-cache-remember"
+			],
+			"includes/components/{$name}/": [
+				"posterno/posterno-schema",
+				"posterno/posterno-geocoder",
+				"posterno/posterno-third-party",
+				"posterno/posterno-maps",
+				"posterno/posterno-forms",
+				"posterno/posterno-validator",
+				"posterno/posterno-entities",
+				"posterno/posterno-dom",
+				"posterno/posterno-submission-scripts",
+				"posterno/posterno-fields-editor-validator"
+			]
+		}
+	}
 }

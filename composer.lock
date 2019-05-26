@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43ce8352738f686d4471b0b0455602c9",
+    "content-hash": "5bc51ecf6af13ea3c91a2578ee345972",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -733,6 +733,52 @@
             }
         },
         {
+            "name": "posterno/posterno-fields-editor-validator",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../posterno-fields-editor-validator",
+                "reference": "3a05a589030db66cdb44122c897df8184247a26b",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "scripts-loader.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component that provides validation of settings for Carbon fields used within the fields editor.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "posterno/posterno-forms",
             "version": "dev-master",
             "dist": {
@@ -1347,7 +1393,8 @@
         "posterno/posterno-dom": 20,
         "posterno/posterno-geocoder": 20,
         "posterno/posterno-schema": 20,
-        "posterno/posterno-entities": 20
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-fields-editor-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

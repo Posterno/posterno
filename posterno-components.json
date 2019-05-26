@@ -8,6 +8,7 @@
     "posterno/posterno-forms",
     "posterno/posterno-validator",
     "posterno/posterno-dom",
-    "posterno/posterno-submission-scripts"
+    "posterno/posterno-submission-scripts",
+    "posterno/posterno-fields-editor-validator"
   ]
 }
