@@ -81,7 +81,7 @@ class Registration {
 					'relation' => 'AND',
 					array(
 						'field'   => 'registration_field_is_default',
-						'value'   => [ 'email' ],
+						'value'   => [ 'password', 'username', 'email' ],
 						'compare' => 'NOT IN',
 					),
 				)
