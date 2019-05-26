@@ -70,7 +70,7 @@ class Listing {
 
 		$settings[] = Field::make( 'select', 'listing_field_type', esc_html__( 'Field type', 'posterno' ) )
 			->set_required()
-			->add_options( pno_get_registered_field_types() )
+			->add_options( 'pno_get_registered_field_types' )
 			->set_help_text( esc_html__( 'The selected field type determines how the field will look onto the listing submission forms.', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'listing_field_taxonomy', esc_html__( 'Taxonomy ID', 'posterno' ) )
