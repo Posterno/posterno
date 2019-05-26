@@ -78,14 +78,10 @@ function pno_load_admin_scripts() {
 			wp_enqueue_style( 'pno-vendors-chunk' );
 		}
 		wp_enqueue_style( 'pno-editors-styling-post-type' );
-		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-profile-fields-settings-validation.min.js', [], $version, true );
-		wp_localize_script( 'pnocf-validation', 'pno_user_cf', pno_get_users_custom_fields_page_vars() );
 	}
 
 	if ( $screen->id === 'pno_listings_fields' ) {
 		wp_enqueue_style( 'pno-editors-styling-post-type' );
-		wp_enqueue_script( 'pnocf-validation', PNO_PLUGIN_URL . '/assets/js/admin/admin-listings-fields-settings-validation.min.js', [], $version, true );
-		wp_localize_script( 'pnocf-validation', 'pno_listing_cf', pno_get_listing_custom_fields_page_vars() );
 	}
 
 	if ( $screen->id === 'pno_signup_fields' ) {
