@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  * @return array
  */
 function pno_add_settings_link( $links ) {
-	$settings_link = '<a href="' . admin_url( 'edit.php?post_type=listings&page=posterno-settings' ) . '">' . esc_html__( 'Settings', 'posterno' ) . '</a>';
+	$settings_link = '<a href="' . admin_url( 'options-general.php?page=posterno-options' ) . '">' . esc_html__( 'Settings', 'posterno' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
