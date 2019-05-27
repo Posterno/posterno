@@ -76,6 +76,7 @@ class GettingStarted {
 			<a class="nav-tab <?php echo $selected === 'pno-getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'pno-getting-started' ), 'index.php' ) ) ); ?>">
 				<?php esc_html_e( 'Getting Started', 'posterno' ); ?>
 			</a>
+			<a href="<?php echo esc_url( 'edit.php?post_type=listings&page=posterno-addons' ); ?>" class="nav-tab"><?php esc_html_e( 'Extensions' ); ?></a>
 		</h2>
 		<?php
 	}
