@@ -8,16 +8,17 @@
 		"rarst/wpdatetime": "dev-master",
 		"htmlburger/carbon-fields": "3.1.1",
 		"prospress/action-scheduler": "dev-master",
-		"posterno/posterno-maps": "@dev",
-		"posterno/posterno-third-party": "@dev",
 		"posterno/posterno-forms": "@dev",
+		"posterno/posterno-schema": "@dev",
+		"posterno/posterno-dom": "@dev",
+		"posterno/posterno-fields-editor-validator": "@dev",
 		"posterno/posterno-submission-scripts": "@dev",
 		"posterno/posterno-validator": "@dev",
-		"posterno/posterno-dom": "@dev",
+		"posterno/posterno-maps": "@dev",
+		"posterno/posterno-third-party": "@dev",
 		"posterno/posterno-geocoder": "@dev",
-		"posterno/posterno-schema": "@dev",
 		"posterno/posterno-entities": "@dev",
-		"posterno/posterno-fields-editor-validator": "dev-master"
+		"posterno/addons": "@dev"
 	},
 	"minimum-stability": "dev",
 	"repositories": [{
@@ -86,6 +87,13 @@
 		{
 			"type": "path",
 			"url": "../posterno-fields-editor-validator",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../addons",
 			"options": {
 				"symlink": true
 			}

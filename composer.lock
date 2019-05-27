@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bc51ecf6af13ea3c91a2578ee345972",
+    "content-hash": "9aaf1ca88db0682904417d1a48f75895",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -399,12 +399,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "a346647434953deb5bd599d92922b2d225e25170"
+                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/a346647434953deb5bd599d92922b2d225e25170",
-                "reference": "a346647434953deb5bd599d92922b2d225e25170",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
+                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +462,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-04-01T06:40:32+00:00"
+            "time": "2019-05-26T12:43:51+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -641,6 +641,52 @@
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
+            "name": "posterno/addons",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../addons",
+                "reference": "3de89cd8a30c629ed49c60a84c09355ca8b84e71",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PosternoAddons\\": "includes/classes/"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component that provides support for the official addons.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "posterno/posterno-dom",
             "version": "dev-master",
             "dist": {
@@ -692,7 +738,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "e84c137f1d217fbdca8f7ba5a52cd7004a60da79",
+                "reference": "25e6204593acc67f97873879a4157d372016d3a9",
                 "shasum": null
             },
             "require": {
@@ -738,7 +784,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-fields-editor-validator",
-                "reference": "3a05a589030db66cdb44122c897df8184247a26b",
+                "reference": "2a1d647a02696bc49570c4e274605af9f24bcb32",
                 "shasum": null
             },
             "require": {
@@ -1385,16 +1431,17 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "prospress/action-scheduler": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-third-party": 20,
         "posterno/posterno-forms": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-submission-scripts": 20,
         "posterno/posterno-validator": 20,
-        "posterno/posterno-dom": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-third-party": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-schema": 20,
         "posterno/posterno-entities": 20,
-        "posterno/posterno-fields-editor-validator": 20
+        "posterno/addons": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
