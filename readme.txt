@@ -116,6 +116,20 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.8.2 Open beta release =
+
+- Added: introduced new way to prevent wrong configuration of custom fields.
+- Added: new hooks to the login form.
+- Added: new hooks to the password recovery form.
+- Added: new hooks to the registration form.
+- Fixed: pagination on listings page shortcode not working.
+- Fixed: loading sequence of some files.
+- Fixed: class namespace mismatch for entities when deleting an entity.
+- Tweak: changed activation of options panel hooks so that it's extensible by addons.
+- Tweak: changed submission buttons name for all forms.
+- Tweak: removed old carbon fields javascript validation scripts.
+- Tweak: hide required setting for the username, password and email registration form fields.
+
 = 0.8.1 Open beta release =
 
 - Fixed: folder missing from plugin.
