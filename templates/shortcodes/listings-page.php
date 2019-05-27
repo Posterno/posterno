@@ -18,12 +18,14 @@
 defined( 'ABSPATH' ) || exit;
 
 // Determine the currently active listings layout.
-$layout = pno_get_listings_results_active_layout();
-$i      = '';
+$layout  = pno_get_listings_results_active_layout();
+$i       = '';
+$ispaged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 $args = [
 	'post_type'         => 'listings',
 	'is_listings_query' => true,
+	'paged'             => $ispaged,
 ];
 
 $query = new WP_Query( $args );
@@ -79,7 +81,13 @@ do_action( 'pno_before_listings_page', $query, $data );
 				echo '</div>';
 			}
 
-			posterno()->templates->get_template_part( 'listings/results', 'footer' );
+			posterno()->templates
+				->set_template_data(
+					[
+						'query' => $query,
+					]
+				)
+				->get_template_part( 'listings/results', 'footer' );
 
 		} else {
 

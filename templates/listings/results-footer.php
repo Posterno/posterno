@@ -19,6 +19,12 @@ defined( 'ABSPATH' ) || exit;
 
 global $wp_query;
 
+$the_query = $wp_query;
+
+if ( isset( $data->query ) ) {
+	$the_query = $data->query;
+}
+
 ?>
 
 <div class="pno-results-footer mt-4">
@@ -39,7 +45,7 @@ global $wp_query;
 				posterno()->templates
 					->set_template_data(
 						[
-							'max_num_pages' => $wp_query->max_num_pages,
+							'max_num_pages' => $the_query->max_num_pages,
 							'layout'        => 'justify-content-end',
 						]
 					)
