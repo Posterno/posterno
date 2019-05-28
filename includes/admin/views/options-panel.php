@@ -31,6 +31,12 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 			<li>
 				<a href="https://docs.posterno.com/" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation', 'posterno' ); ?></a>
 			</li>
+			<li>
+				<a href="<?php echo esc_url( admin_url( 'tools.php?page=posterno-tools&tab=import#import-settings' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Import', 'posterno' ); ?></a>
+			</li>
+			<li>
+				<a href="<?php echo esc_url( admin_url( 'tools.php?page=posterno-tools&tab=export#export-settings' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Export', 'posterno' ); ?></a>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -98,6 +104,7 @@ $active_page        = isset( $_GET['page'] ) ? pno_get_string_between( esc_attr(
 						<div id="major-publishing-actions">
 
 							<div id="publishing-action">
+
 								<span class="spinner"></span>
 
 								<?php

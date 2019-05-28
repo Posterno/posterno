@@ -85,7 +85,7 @@ class SettingsImport {
 	public function page() {
 
 		?>
-		<div class="postbox">
+		<div class="postbox" id="import-settings">
 			<h2 class="hndle ui-sortable-handle">
 				<span><?php esc_html_e( 'Import settings', 'posterno' ); ?></span>
 			</h2>

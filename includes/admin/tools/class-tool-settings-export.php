@@ -84,7 +84,7 @@ class SettingsExport {
 	public function page() {
 
 		?>
-		<div class="postbox">
+		<div class="postbox" id="export-settings">
 			<h2 class="hndle ui-sortable-handle">
 				<span><?php esc_html_e( 'Export settings', 'posterno' ); ?></span>
 			</h2>
