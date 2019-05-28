@@ -48,6 +48,9 @@ function pno_tools_page() {
 				$tab_url = remove_query_arg(
 					array(
 						'pno-tool-updated',
+						'sl_activation',
+						'message',
+						'sl_deactivated',
 					),
 					$tab_url
 				);
