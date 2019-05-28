@@ -124,6 +124,10 @@ final class PN_Requirements_Check {
 
 			require_once dirname( $this->file ) . '/vendor/prospress/action-scheduler/action-scheduler.php';
 
+			if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+				require_once dirname( $this->file ) . '/includes/utils/EDD_SL_Plugin_Updater.php';
+			}
+
 			// Bootstrap to plugins_loaded before priority 10 to make sure
 			// add-ons are loaded after us.
 			add_action( 'plugins_loaded', array( $this, 'bootstrap' ), 4 );
