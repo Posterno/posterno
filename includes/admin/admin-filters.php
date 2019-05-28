@@ -42,7 +42,7 @@ function pno_plugin_row_meta( $plugin_meta, $plugin_file ) {
 
 	$new_meta_links = array(
 		sprintf(
-			'<a href="%1$s" target="_blank">%2$s</a>',
+			'<a href="%1$s" target="_blank" rel="nofollow">%2$s</a>',
 			esc_url(
 				add_query_arg(
 					array(

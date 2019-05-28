@@ -67,7 +67,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_login_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A login page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank">setup a login page.</a>', 'posterno' ), 'https://docs.posterno.com/article/460-login-page-setup' ) );
+			$result = self::failing_test( $name, esc_html__( 'A login page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank" rel="nofollow">setup a login page.</a>', 'posterno' ), 'https://docs.posterno.com/article/460-login-page-setup' ) );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -86,7 +86,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_password_recovery_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A password recovery page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank">setup a password recovery page.</a>', 'posterno' ), 'https://docs.posterno.com/article/461-password-recovery-page-setup' ) );
+			$result = self::failing_test( $name, esc_html__( 'A password recovery page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank" rel="nofollow">setup a password recovery page.</a>', 'posterno' ), 'https://docs.posterno.com/article/461-password-recovery-page-setup' ) );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -105,7 +105,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_registration_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A registration page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank">setup a registration page.</a>', 'posterno' ), 'https://docs.posterno.com/article/462-registration-page-setup' ) );
+			$result = self::failing_test( $name, esc_html__( 'A registration page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank" rel="nofollow">setup a registration page.</a>', 'posterno' ), 'https://docs.posterno.com/article/462-registration-page-setup' ) );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -124,7 +124,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_dashboard_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A dashboard page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank">setup a dashboard page.</a>', 'posterno' ), 'https://docs.posterno.com/article/463-dashboard-page-setup' ) );
+			$result = self::failing_test( $name, esc_html__( 'A dashboard page has not been created.', 'posterno' ), sprintf( __( 'You must <a href="%s" target="_blank" rel="nofollow">setup a dashboard page.</a>', 'posterno' ), 'https://docs.posterno.com/article/463-dashboard-page-setup' ) );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -143,7 +143,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_listing_submission_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A listing submission page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank">setup a listing submission page,</a> if you wish your members to submit listings from the frontend.', 'posterno' ), 'https://docs.posterno.com/article/464-listing-submission-page-setup' ), false, 'recommended' );
+			$result = self::failing_test( $name, esc_html__( 'A listing submission page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank" rel="nofollow">setup a listing submission page,</a> if you wish your members to submit listings from the frontend.', 'posterno' ), 'https://docs.posterno.com/article/464-listing-submission-page-setup' ), false, 'recommended' );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -162,7 +162,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_listing_editing_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A listing editing page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank">setup a listing editing page,</a> if you wish your members to edit listings from the frontend.', 'posterno' ), 'https://docs.posterno.com/article/465-listing-editing-page-setup' ), false, 'recommended' );
+			$result = self::failing_test( $name, esc_html__( 'A listing editing page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank" rel="nofollow">setup a listing editing page,</a> if you wish your members to edit listings from the frontend.', 'posterno' ), 'https://docs.posterno.com/article/465-listing-editing-page-setup' ), false, 'recommended' );
 		} else {
 			$result = self::passing_test( $name );
 		}
@@ -181,7 +181,7 @@ class HealthTests extends Tests {
 		$name = __FUNCTION__;
 
 		if ( ! pno_get_profile_page_id() ) {
-			$result = self::failing_test( $name, esc_html__( 'A public profile page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank">setup a public profile page</a>, If you wish your members to view profiles of other members on your site.', 'posterno' ), 'https://docs.posterno.com/article/466-public-profile-page-setup' ), false, 'recommended' );
+			$result = self::failing_test( $name, esc_html__( 'A public profile page has not been created.', 'posterno' ), sprintf( __( 'You should <a href="%s" target="_blank" rel="nofollow">setup a public profile page</a>, If you wish your members to view profiles of other members on your site.', 'posterno' ), 'https://docs.posterno.com/article/466-public-profile-page-setup' ), false, 'recommended' );
 		} else {
 			$result = self::passing_test( $name );
 		}

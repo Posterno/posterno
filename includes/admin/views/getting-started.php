@@ -22,7 +22,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 
 	<div class="about-text">
 
-		<?php echo sprintf( __( 'Posterno provides you the tools you need to create any kind of listings & classifieds directory. Check out the <a href="%1$s" target="_blank">plugin documentation</a> for a comprehensive introduction to your new plugin.', 'posterno' ), 'https://docs.posterno.com' ); ?>
+		<?php echo sprintf( __( 'Posterno provides you the tools you need to create any kind of listings & classifieds directory. Check out the <a href="%1$s" target="_blank" rel="nofollow">plugin documentation</a> for a comprehensive introduction to your new plugin.', 'posterno' ), 'https://docs.posterno.com' ); ?>
 
 	</div>
 
@@ -62,7 +62,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 				</div>
 				<div class="welcome-panel-column welcome-panel-last">
 					<h4><?php esc_html_e( 'Documentation', 'posterno' ); ?></h4>
-					<p class="welcome-icon welcome-learn-more"><?php echo sprintf( __( 'Looking for help? <a href="%s" target="_blank">Posterno documentation</a> has got you covered.', 'posterno' ), 'https://docs.posterno.com' ); ?> <br/><br/><a href="https://docs.posterno.com" class="button" target="_blank"><?php esc_html_e( 'Read documentation', 'posterno' ); ?></a></p>
+					<p class="welcome-icon welcome-learn-more"><?php echo sprintf( __( 'Looking for help? <a href="%s" target="_blank" rel="nofollow">Posterno documentation</a> has got you covered.', 'posterno' ), 'https://docs.posterno.com' ); ?> <br/><br/><a href="https://docs.posterno.com" class="button" target="_blank"><?php esc_html_e( 'Read documentation', 'posterno' ); ?></a></p>
 				</div>
 			</div>
 		</div>
@@ -74,7 +74,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 
 			<div class="col">
 				<h3><?php esc_html_e( 'Looking for help ?', 'posterno' ); ?></h3>
-				<p><?php echo sprintf( __( 'If you have a question, issue or bug with the Posterno please <a href="%1$s" target="_blank">open a topic in the support forum</a>. Make sure you <a href="%2$s" target="_blank">read the documentation</a> first. We also welcome your feedback and feature requests.', 'posterno' ), 'https://wordpress.org/support/plugin/posterno/', 'https://docs.posterno.com' ); ?></p>
+				<p><?php echo sprintf( __( 'If you have a question, issue or bug with the Posterno please <a href="%1$s" target="_blank">open a topic in the support forum</a>. Make sure you <a href="%2$s" target="_blank" rel="nofollow">read the documentation</a> first. We also welcome your feedback and feature requests.', 'posterno' ), 'https://wordpress.org/support/plugin/posterno/', 'https://docs.posterno.com' ); ?></p>
 			</div>
 
 			<div class="last-feature col">
@@ -117,7 +117,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 			<hr>
 
 			<div class="return-to-dashboard">
-				<a href="https://posterno.com" target="_blank"><?php esc_html_e( 'Visit the Posterno website to find out more', 'posterno' ); ?> &rarr;</a>
+				<a href="https://posterno.com" rel="nofollow" target="_blank"><?php esc_html_e( 'Visit the Posterno website to find out more', 'posterno' ); ?> &rarr;</a>
 			</div>
 
 		</div>

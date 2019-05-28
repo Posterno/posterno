@@ -242,7 +242,7 @@ add_action(
 					<li><?php esc_html_e( 'If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again.', 'posterno' ); ?></li>
 				</ol>
 			</p>
-			<a class="button-primary" href="https://docs.posterno.com/article/545-templates-customization" target="_blank"><?php esc_html_e( 'Learn more about templates', 'posterno' ); ?></a>
+			<a class="button-primary" rel="nofollow" href="https://docs.posterno.com/article/545-templates-customization" target="_blank"><?php esc_html_e( 'Learn more about templates', 'posterno' ); ?></a>
 			<a class="button-primary" href="<?php echo esc_url( admin_url( 'site-health.php' ) ); ?>" target="_blank"><?php esc_html_e( 'View affected templates', 'posterno' ); ?></a>
 
 			<?php
