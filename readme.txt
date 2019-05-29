@@ -116,6 +116,15 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.9.0 Open beta release =
+
+- Added: support for the new free [Posterno reCAPTCHA addon](https://wordpress.org/plugins/posterno-recaptcha/).
+- Added: automatic updates for future premium addons.
+- Added: extensions list in listings menu.
+- Added: new "licenses" tab to the tools page for premium extensions.
+- Added: buttons for import/export of settings within the options panel.
+- Fixed: settings link in plugin's page pointing to wrong url.
+
 = 0.8.2 Open beta release =
 
 - Added: introduced new way to prevent wrong configuration of custom fields.
