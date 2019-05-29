@@ -801,3 +801,19 @@ function pno_object_to_array( $object = array() ) {
 	}
 	return $return;
 }
+
+/**
+ * Abstraction for WordPress cron checking, to avoid code duplication.
+ *
+ * @return boolean
+ */
+function pno_doing_cron() {
+
+	if ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) {
+		return true;
+	} elseif ( defined( 'DOING_CRON' ) && ( true === DOING_CRON ) ) {
+		return true;
+	}
+
+	return false;
+}

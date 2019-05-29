@@ -501,6 +501,9 @@ if ( ! class_exists( 'Posterno' ) ) :
 			if ( ! wp_next_scheduled( 'posterno_clear_expired_transients' ) ) {
 				wp_schedule_event( time(), 'twicedaily', 'posterno_clear_expired_transients' );
 			}
+			if ( ! wp_next_scheduled( 'posterno_weekly_scheduled_events' ) ) {
+				wp_schedule_event( current_time( 'timestamp', true ), 'weekly', 'posterno_weekly_scheduled_events' );
+			}
 		}
 
 		/**
@@ -512,6 +515,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			wp_clear_scheduled_hook( 'posterno_check_for_expired_listings' );
 			wp_clear_scheduled_hook( 'posterno_email_daily_listings_expiring_notices' );
 			wp_clear_scheduled_hook( 'posterno_clear_expired_transients' );
+			wp_clear_scheduled_hook( 'posterno_weekly_scheduled_events' );
 		}
 
 	}

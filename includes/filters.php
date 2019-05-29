@@ -458,3 +458,19 @@ function pno_sanitize_carbonfields_storage( $field ) {
 
 }
 add_filter( 'carbon_fields_before_field_save', 'pno_sanitize_carbonfields_storage' );
+
+/**
+ * Registers new cron schedules.
+ *
+ * @param array $schedules list of schedules.
+ * @return array
+ */
+function pno_add_cron_schedules( $schedules = array() ) {
+	// Adds once weekly to the existing schedules.
+	$schedules['weekly'] = array(
+		'interval' => 604800,
+		'display'  => esc_html__( 'Once Weekly' ),
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'pno_add_cron_schedules' );
