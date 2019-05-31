@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.8.2\n"
+"Project-Id-Version: Posterno 0.9.0\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-05-27 09:13:27+00:00\n"
+"POT-Creation-Date: 2019-05-29 15:08:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -513,14 +513,14 @@ msgstr ""
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: includes/admin/admin-footer.php:50
+#: includes/admin/admin-footer.php:51
 #. translators: %s: Link to 5 star rating
 msgid ""
 "If you like <strong>Posterno</strong> please rate us on %s. It takes a "
 "minute and helps a lot. Thanks in advance!"
 msgstr ""
 
-#: includes/admin/admin-footer.php:51
+#: includes/admin/admin-footer.php:52
 msgid "Thanks :)"
 msgstr ""
 
@@ -915,6 +915,10 @@ msgstr ""
 msgid "Getting Started"
 msgstr ""
 
+#: includes/admin/class-pno-getting-started.php:79
+msgid "Extensions"
+msgstr ""
+
 #: includes/admin/class-pno-health-tests.php:51
 msgid "Update your permalink structure."
 msgstr ""
@@ -924,7 +928,9 @@ msgid "A login page has not been created."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:70
-msgid "You must <a href=\"%s\" target=\"_blank\">setup a login page.</a>"
+msgid ""
+"You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a login "
+"page.</a>"
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:89
@@ -933,8 +939,8 @@ msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:89
 msgid ""
-"You must <a href=\"%s\" target=\"_blank\">setup a password recovery "
-"page.</a>"
+"You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a password "
+"recovery page.</a>"
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:108
@@ -942,7 +948,9 @@ msgid "A registration page has not been created."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:108
-msgid "You must <a href=\"%s\" target=\"_blank\">setup a registration page.</a>"
+msgid ""
+"You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
+"registration page.</a>"
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:127
@@ -950,7 +958,9 @@ msgid "A dashboard page has not been created."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:127
-msgid "You must <a href=\"%s\" target=\"_blank\">setup a dashboard page.</a>"
+msgid ""
+"You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
+"dashboard page.</a>"
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:146
@@ -959,8 +969,9 @@ msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:146
 msgid ""
-"You should <a href=\"%s\" target=\"_blank\">setup a listing submission "
-"page,</a> if you wish your members to submit listings from the frontend."
+"You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
+"listing submission page,</a> if you wish your members to submit listings "
+"from the frontend."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:165
@@ -969,8 +980,9 @@ msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:165
 msgid ""
-"You should <a href=\"%s\" target=\"_blank\">setup a listing editing "
-"page,</a> if you wish your members to edit listings from the frontend."
+"You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
+"listing editing page,</a> if you wish your members to edit listings from "
+"the frontend."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:184
@@ -979,9 +991,9 @@ msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:184
 msgid ""
-"You should <a href=\"%s\" target=\"_blank\">setup a public profile "
-"page</a>, If you wish your members to view profiles of other members on "
-"your site."
+"You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a public "
+"profile page</a>, If you wish your members to view profiles of other "
+"members on your site."
 msgstr ""
 
 #: includes/admin/class-pno-health-tests.php:209
@@ -1925,7 +1937,7 @@ msgid "Editable"
 msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:88
-#: includes/admin/views/options-panel.php:96
+#: includes/admin/views/options-panel.php:102
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:102
 #: includes/listings/dashboard-functions.php:26
 msgid "Actions"
@@ -2417,6 +2429,7 @@ msgstr ""
 
 #: includes/admin/tools/class-tool-settings-import.php:133
 #: includes/admin/tools/class-tool-settings-import.php:138
+#: includes/utils/EDD_SL_Plugin_Updater.php:487
 msgid "Error"
 msgstr ""
 
@@ -2428,19 +2441,19 @@ msgstr ""
 msgid "Settings successfully imported."
 msgstr ""
 
-#: includes/admin/tools/tools.php:78
+#: includes/admin/tools/tools.php:81
 msgid "Cache"
 msgstr ""
 
-#: includes/admin/tools/tools.php:79
+#: includes/admin/tools/tools.php:82 includes/admin/views/options-panel.php:35
 msgid "Import"
 msgstr ""
 
-#: includes/admin/tools/tools.php:80
+#: includes/admin/tools/tools.php:83 includes/admin/views/options-panel.php:38
 msgid "Export"
 msgstr ""
 
-#: includes/admin/tools/tools.php:81
+#: includes/admin/tools/tools.php:84
 msgid "Database"
 msgstr ""
 
@@ -2451,8 +2464,8 @@ msgstr ""
 #: includes/admin/views/getting-started.php:25
 msgid ""
 "Posterno provides you the tools you need to create any kind of listings & "
-"classifieds directory. Check out the <a href=\"%1$s\" "
-"target=\"_blank\">plugin documentation</a> for a comprehensive introduction "
+"classifieds directory. Check out the <a href=\"%1$s\" target=\"_blank\" "
+"rel=\"nofollow\">plugin documentation</a> for a comprehensive introduction "
 "to your new plugin."
 msgstr ""
 
@@ -2486,8 +2499,8 @@ msgstr ""
 
 #: includes/admin/views/getting-started.php:65
 msgid ""
-"Looking for help? <a href=\"%s\" target=\"_blank\">Posterno "
-"documentation</a> has got you covered."
+"Looking for help? <a href=\"%s\" target=\"_blank\" "
+"rel=\"nofollow\">Posterno documentation</a> has got you covered."
 msgstr ""
 
 #: includes/admin/views/getting-started.php:65
@@ -2502,8 +2515,8 @@ msgstr ""
 msgid ""
 "If you have a question, issue or bug with the Posterno please <a "
 "href=\"%1$s\" target=\"_blank\">open a topic in the support forum</a>. Make "
-"sure you <a href=\"%2$s\" target=\"_blank\">read the documentation</a> "
-"first. We also welcome your feedback and feature requests."
+"sure you <a href=\"%2$s\" target=\"_blank\" rel=\"nofollow\">read the "
+"documentation</a> first. We also welcome your feedback and feature requests."
 msgstr ""
 
 #: includes/admin/views/getting-started.php:81
@@ -2542,7 +2555,7 @@ msgstr ""
 msgid "View Addons"
 msgstr ""
 
-#: includes/admin/views/options-panel.php:105
+#: includes/admin/views/options-panel.php:112
 msgid "Save Changes"
 msgstr ""
 
@@ -3487,6 +3500,10 @@ msgstr ""
 
 #: includes/filters.php:418
 msgid "The maximum amount of tags you are allowed to select is %1$s."
+msgstr ""
+
+#: includes/filters.php:472
+msgid "Once Weekly"
 msgstr ""
 
 #: includes/forms/Account.php:102 includes/forms/ChangePassword.php:129
@@ -4677,6 +4694,20 @@ msgstr ""
 msgid "Uploaded file \"%1$s\" needs to be one of the following file types: %2$s"
 msgstr ""
 
+#: includes/utils/EDD_SL_Plugin_Updater.php:236
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: includes/utils/EDD_SL_Plugin_Updater.php:244
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
+"or %5$supdate now%6$s."
+msgstr ""
+
+#: includes/utils/EDD_SL_Plugin_Updater.php:487
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
 #: includes/widgets/widget-featured-listings.php:27
 msgid "[Posterno] Featured listings"
 msgstr ""
@@ -4812,23 +4843,23 @@ msgstr ""
 msgid "Displays the most recent listings."
 msgstr ""
 
-#: posterno.php:182
+#: posterno.php:186
 msgid "This plugin is not fully active."
 msgstr ""
 
-#: posterno.php:192
+#: posterno.php:196
 msgid "Requires %1$s (%2$s), but (%3$s) is installed."
 msgstr ""
 
-#: posterno.php:202
+#: posterno.php:206
 msgid "Requires %1$s (%2$s), but it appears to be missing."
 msgstr ""
 
-#: posterno.php:212
+#: posterno.php:216
 msgid "Requirements"
 msgstr ""
 
-#: posterno.php:222
+#: posterno.php:226
 msgid "Posterno Requirements"
 msgstr ""
 
