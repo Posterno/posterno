@@ -124,12 +124,33 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Internal components init.
 			self::$instance->schema->init();
 
+			// Hook in other stuff that need to be loaded at a later point.
+			self::$instance->hook();
+
 			self::maybe_schedule_cron_jobs();
 			register_deactivation_hook( PNO_PLUGIN_FILE, array( __CLASS__, 'unschedule_cron_jobs' ) );
 
 			// Return the instance.
 			return self::$instance;
 
+		}
+
+		/**
+		 * Hook into WP.
+		 *
+		 * @return void
+		 */
+		public function hook() {
+			add_action( 'plugins_loaded', [ $this, 'shortcodes' ] );
+		}
+
+		/**
+		 * Load shortcodes at a later point.
+		 *
+		 * @return void
+		 */
+		public function shortcodes() {
+			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}
 
 		/**
@@ -329,7 +350,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
-			require_once PNO_PLUGIN_DIR . 'includes/shortcodes.php';
 		}
 
 		/**
