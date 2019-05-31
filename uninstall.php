@@ -18,6 +18,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 // Load the plugin back.
 require_once 'posterno.php';
+require_once dirname( __FILE__ ) . '/includes/admin/admin-options.php';
+require_once dirname( __FILE__ ) . '/includes/class-pno-cache-helper.php';
 
 global $wpdb;
 
