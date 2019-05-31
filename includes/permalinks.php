@@ -19,8 +19,9 @@ add_action(
 	function( RouteCollectionInterface $routes ) {
 
 		$dashboard_page_id = pno_get_dashboard_page_id();
+		$exists            = ( 'publish' === get_post_status( $dashboard_page_id ) ) ? true : false;
 
-		if ( $dashboard_page_id ) {
+		if ( $dashboard_page_id && $exists ) {
 
 			$page_slug = esc_attr( get_post_field( 'post_name', absint( $dashboard_page_id ) ) );
 			$hierarchy = pno_get_full_page_hierarchy( $dashboard_page_id );
@@ -67,8 +68,9 @@ add_action(
 	function( RouteCollectionInterface $routes ) {
 
 		$profile_page_id = pno_get_profile_page_id();
+		$exists          = ( 'publish' === get_post_status( $profile_page_id ) ) ? true : false;
 
-		if ( $profile_page_id ) {
+		if ( $profile_page_id && $exists ) {
 
 			$page_slug = esc_attr( get_post_field( 'post_name', absint( $profile_page_id ) ) );
 			$hierarchy = pno_get_full_page_hierarchy( $profile_page_id );
