@@ -116,6 +116,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.9.1 Open beta release =
+
+- Tweak: make sure pages are published before loading rewrite rules.
+- Fix: shortcodes loading sequence causing conflicts with plugins on plugin activation.
+- Fix: uninstall process could not complete.
+- Fix: unable to submit forms.
+
 = 0.9.0 Open beta release =
 
 - Added: support for the new free [Posterno reCAPTCHA addon](https://wordpress.org/plugins/posterno-recaptcha/).
