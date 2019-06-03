@@ -1020,12 +1020,11 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							$value             = $featured_image_id;
 							break;
 						case 'listing_gallery':
-							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images', true );
+							$gallery_images = get_post_meta( $listing_id, '_listing_gallery_images' );
 							$attachments    = [];
-							if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
-								foreach ( $gallery_images as $image_id ) {
-									$image_id      = $image_id['value'];
-									$attachments[] = $image_id;
+							if ( isset( $gallery_images[0] ) && ! empty( $gallery_images[0] ) && is_array( $gallery_images[0] ) ) {
+								foreach ( $gallery_images[0] as $image ) {
+									$attachments[] = $image['url'];
 								}
 							}
 							$value = wp_json_encode( $attachments );
