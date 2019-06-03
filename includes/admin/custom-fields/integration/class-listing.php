@@ -220,9 +220,14 @@ class Listing {
 
 		$settings = [];
 
-		$settings[] = Field::make( 'media_gallery', 'listing_gallery_images', esc_html__( 'Images', 'posterno' ) )
+		$settings[] = Field::make( 'complex', 'listing_gallery_images', esc_html__( 'Images', 'posterno' ) )
 			->set_datastore( new \PNO\Datastores\SerializeComplexField() )
-			->set_type( array( 'image' ) );
+			->add_fields(
+				array(
+					Field::make( 'text', 'url', esc_html__( 'File url', 'posterno' ) ),
+					Field::make( 'hidden', 'path' ),
+				)
+			);
 
 		$settings[] = Field::make( 'oembed', 'listing_media_embed', esc_html__( 'Embed', 'posterno' ) )
 			->set_help_text(
@@ -405,7 +410,12 @@ class Listing {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->add_options( $custom_listing_field->getOptions() );
 							} elseif ( $type == 'file' ) {
 								if ( $custom_listing_field->isMultiple() ) {
-									$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
+									$admin_fields[] = Field::make( 'media_gallery', $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_datastore( new \PNO\Datastores\SerializeComplexField() )->add_fields(
+										array(
+											Field::make( 'text', 'url', esc_html__( 'File url', 'posterno' ) ),
+											Field::make( 'hidden', 'path' ),
+										)
+									);
 								} else {
 									$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
 								}
@@ -418,7 +428,6 @@ class Listing {
 							}
 						}
 					}
-
 				}
 
 				return $admin_fields;
