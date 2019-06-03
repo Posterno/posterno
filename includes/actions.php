@@ -401,3 +401,27 @@ function pno_force_validation_of_vue_fields( \PNO\Form\Form $form ) {
 }
 add_action( 'pno_before_listing_submission', 'pno_force_validation_of_vue_fields' );
 add_action( 'pno_before_listing_editing', 'pno_force_validation_of_vue_fields' );
+
+/**
+ * Validate the amount of files submitted through the gallery images field.
+ *
+ * @param \PNO\Form\Form $form form's object.
+ * @throws \PNO\Exception When value does not match.
+ * @return void
+ */
+function pno_force_validation_gallery_amount( \PNO\Form\Form $form ) {
+
+	$max_amount = pno_get_option( 'submission_images_amount', false );
+
+	if ( $max_amount ) {
+		$images = $form->getFieldValue( 'listing_gallery' );
+		if ( ! empty( $images ) ) {
+			if ( absint( count( $images ) ) > absint( $max_amount ) ) {
+				throw new \PNO\Exception( sprintf( esc_html__( 'You can upload up to "%s" gallery images.', 'posterno' ), absint( $max_amount ) ) );
+			}
+		}
+	}
+
+}
+add_action( 'pno_before_listing_submission', 'pno_force_validation_gallery_amount' );
+add_action( 'pno_before_listing_editing', 'pno_force_validation_gallery_amount' );
