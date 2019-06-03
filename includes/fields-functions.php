@@ -1024,7 +1024,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							$attachments    = [];
 							if ( isset( $gallery_images[0] ) && ! empty( $gallery_images[0] ) && is_array( $gallery_images[0] ) ) {
 								foreach ( $gallery_images[0] as $image ) {
-									$attachments[] = $image['url'];
+									$attachments[] = esc_url( $image['url'] );
 								}
 							}
 							$value = wp_json_encode( $attachments );
