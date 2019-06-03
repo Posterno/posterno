@@ -817,3 +817,17 @@ function pno_doing_cron() {
 
 	return false;
 }
+
+/**
+ * Retrieve file path from url.
+ *
+ * @param string $url url.
+ * @return string
+ */
+function pno_content_url_to_local_path( $url ) {
+	preg_match( '/.*(\/wp\-content\/uploads\/\d+\/\d+\/.*)/', $url, $mat );
+	if ( count( $mat ) > 0 ) {
+		return ABSPATH . $mat[1];
+	}
+	return '';
+}
