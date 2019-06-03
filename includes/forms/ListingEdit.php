@@ -323,21 +323,27 @@ class ListingEdit {
 
 						$gallery_images = $values['listing_gallery'];
 
+						// Detect if there's images that need to be uploaded.
 						if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 							$images_list = [];
-							foreach ( $gallery_images as $uploaded_file ) {
-								$attachment_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
-								if ( $attachment_url && ! is_numeric( $attachment_url ) ) {
-									$uploaded_file_id = $this->form->createAttachment( $updated_listing_id, $attachment_url );
-									if ( $uploaded_file_id ) {
-										$images_list[] = $uploaded_file_id;
-									}
+							foreach ( $gallery_images as $maybe_upload_file ) {
+								$is_new = is_array( $maybe_upload_file ) && isset( $maybe_upload_file['url'] ) ? true : false;
+								if ( $is_new ) {
+									$images_list[] = [
+										'url'  => esc_url( $maybe_upload_file['url'] ),
+										'path' => isset( $maybe_upload_file['path'] ) ? wp_strip_all_tags( $maybe_upload_file['path'] ) : pno_content_url_to_local_path( esc_url( $maybe_upload_file['url'] ) ),
+									];
 								}
 							}
 							if ( ! empty( $images_list ) ) {
-								$current_attachments = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
-								$new_attachments     = array_merge( $current_attachments, $images_list );
-								carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $new_attachments );
+								$current_gallery_files = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+								$final_attachments     = array_merge( $current_gallery_files, $images_list );
+								foreach ( $final_attachments as $attkey => $att ) {
+									if ( isset( $final_attachments[ $attkey ]['_type'] ) ) {
+										unset( $final_attachments[ $attkey ]['_type'] );
+									}
+								}
+								carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $final_attachments );
 							}
 						}
 					}
