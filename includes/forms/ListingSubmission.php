@@ -383,7 +383,10 @@ class ListingSubmission {
 							$gallery_image_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
 							$uploaded_file_id  = $this->form->createAttachment( $new_listing_id, $gallery_image_url );
 							if ( $uploaded_file_id ) {
-								$images_list[] = $uploaded_file_id;
+								$images_list[] = [
+									'url'  => $gallery_image_url,
+									'path' => isset( $uploaded_file['path'] ) ? wp_strip_all_tags( $uploaded_file['path'] ) : pno_content_url_to_local_path( $gallery_image_url ),
+								];
 							}
 						}
 						if ( ! empty( $images_list ) ) {
@@ -460,7 +463,10 @@ class ListingSubmission {
 										if ( $new_attachment_url ) {
 											$uploaded_file_id = $this->form->createAttachment( $new_listing_id, $new_attachment_url );
 											if ( $uploaded_file_id ) {
-												$new_attachments_list[] = $uploaded_file_id;
+												$new_attachments_list[] = [
+													'url'  => $new_attachment_url,
+													'path' => isset( $uploaded_file['path'] ) ? wp_strip_all_tags( $uploaded_file['path'] ) : pno_content_url_to_local_path( $new_attachment_url ),
+												];
 											}
 										}
 									}
