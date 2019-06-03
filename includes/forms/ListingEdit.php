@@ -299,19 +299,26 @@ class ListingEdit {
 
 						// Verify images to remove.
 						if ( isset( $_POST['current_listing_gallery'] ) && ! empty( $_POST['current_listing_gallery'] ) && is_array( $_POST['current_listing_gallery'] ) ) {
-							$submitted_attachments_ids = $_POST['current_listing_gallery'];
-							$current_attachments_ids   = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
-							$submitted_attachments_ids = is_array( $submitted_attachments_ids ) ? array_map( 'absint', $submitted_attachments_ids ) : [];
-							$current_attachments_ids   = is_array( $current_attachments_ids ) ? array_map( 'absint', $current_attachments_ids ) : [];
-							$removed_attachments_ids   = array_diff( $current_attachments_ids, $submitted_attachments_ids );
-							if ( ! empty( $removed_attachments_ids ) && is_array( $removed_attachments_ids ) ) {
-								$removed_attachments_ids = array_map( 'absint', $removed_attachments_ids );
-								foreach ( $removed_attachments_ids as $removed_att_id ) {
-									wp_delete_attachment( $removed_att_id, true );
+							$submitted_attachments = $_POST['current_listing_gallery'];
+							$current_attachments   = carbon_get_post_meta( $updated_listing_id, 'listing_gallery_images' );
+							if ( ! empty( $current_attachments ) ) {
+								foreach ( $current_attachments as $file_key => $file_stored ) {
+									$url = isset( $file_stored['url'] ) ? esc_url( $file_stored['url'] ) : false;
+									if ( $url && ! in_array( $url, $submitted_attachments ) ) {
+										if ( isset( $file_stored['path'] ) && file_exists( $file_stored['path'] ) && pno_starts_with( $file_stored['path'], WP_CONTENT_DIR ) ) {
+											wp_delete_file( $file_stored['path'] );
+										}
+										unset( $current_attachments[ $file_key ] );
+									}
 								}
-								$updated_attachments_ids = array_diff( $current_attachments_ids, $removed_attachments_ids );
-								carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $updated_attachments_ids );
 							}
+							if ( ! empty( $current_attachments ) && is_array( $current_attachments ) ) {
+								foreach ( $current_attachments as $attkey => $att ) {
+									unset( $current_attachments[ $attkey ]['_type'] );
+								}
+								$current_attachments = array_values( $current_attachments );
+							}
+							carbon_set_post_meta( $updated_listing_id, 'listing_gallery_images', $current_attachments );
 						}
 
 						$gallery_images = $values['listing_gallery'];

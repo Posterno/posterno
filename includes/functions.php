@@ -825,9 +825,12 @@ function pno_doing_cron() {
  * @return string
  */
 function pno_content_url_to_local_path( $url ) {
-	preg_match( '/.*(\/wp\-content\/uploads\/\d+\/\d+\/.*)/', $url, $mat );
-	if ( count( $mat ) > 0 ) {
-		return ABSPATH . $mat[1];
+
+	$path = $_SERVER['DOCUMENT_ROOT'] . wp_parse_url( $url, PHP_URL_PATH );
+
+	if ( ! pno_starts_with( $path, WP_CONTENT_DIR ) ) {
+		return false;
 	}
-	return '';
+
+	return $path;
 }
