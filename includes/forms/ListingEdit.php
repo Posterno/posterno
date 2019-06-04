@@ -403,53 +403,55 @@ class ListingEdit {
 								if ( $is_multiple ) {
 
 									// Verify images to remove.
-									if ( isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) && is_array( $_POST[ "current_{$key}" ] ) ) {
-										$submitted_attachments_ids = $_POST[ "current_{$key}" ];
-										$current_attachments_ids   = carbon_get_post_meta( $updated_listing_id, $key );
-										$submitted_attachments_ids = is_array( $submitted_attachments_ids ) ? array_map( 'absint', $submitted_attachments_ids ) : [];
-										$current_attachments_ids   = is_array( $current_attachments_ids ) ? array_map( 'absint', $current_attachments_ids ) : [];
-										$removed_attachments_ids   = array_diff( $current_attachments_ids, $submitted_attachments_ids );
-										if ( ! empty( $removed_attachments_ids ) && is_array( $removed_attachments_ids ) ) {
-											$removed_attachments_ids = array_map( 'absint', $removed_attachments_ids );
-											foreach ( $removed_attachments_ids as $removed_att_id ) {
-												wp_delete_attachment( $removed_att_id, true );
-											}
-											$updated_attachments_ids = array_diff( $current_attachments_ids, $removed_attachments_ids );
-											carbon_set_post_meta( $updated_listing_id, $key, $updated_attachments_ids );
-										}
-									} elseif ( empty( $values[ $key ] ) ) {
-
-										$current_attachments_ids = carbon_get_post_meta( $updated_listing_id, $key );
-
-										if ( ! empty( $current_attachments_ids ) && is_array( $current_attachments_ids ) ) {
-											foreach ( $current_attachments_ids as $att_id ) {
-												wp_delete_attachment( $att_id, true );
+									if ( isset( $_POST["current_{$key}"] ) && ! empty( $_POST["current_{$key}"] ) && is_array( $_POST["current_{$key}"] ) ) {
+										$submitted_attachments = $_POST["current_{$key}"];
+										$current_attachments   = carbon_get_post_meta( $updated_listing_id, $key );
+										if ( ! empty( $current_attachments ) ) {
+											foreach ( $current_attachments as $file_key => $file_stored ) {
+												$url = isset( $file_stored['url'] ) ? esc_url( $file_stored['url'] ) : false;
+												if ( $url && ! in_array( $url, $submitted_attachments ) ) {
+													if ( isset( $file_stored['path'] ) && file_exists( $file_stored['path'] ) && pno_starts_with( $file_stored['path'], WP_CONTENT_DIR ) ) {
+														wp_delete_file( $file_stored['path'] );
+													}
+													unset( $current_attachments[ $file_key ] );
+												}
 											}
 										}
-
-										carbon_set_post_meta( $updated_listing_id, $key, [] );
-
+										if ( ! empty( $current_attachments ) && is_array( $current_attachments ) ) {
+											foreach ( $current_attachments as $attkey => $att ) {
+												unset( $current_attachments[ $attkey ]['_type'] );
+											}
+											$current_attachments = array_values( $current_attachments );
+										}
+										carbon_set_post_meta( $updated_listing_id, $key, $current_attachments );
 									}
 
 									$gallery_images = $values[ $key ];
 
+									// Detect if there's images that need to be uploaded.
 									if ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 										$images_list = [];
-										foreach ( $gallery_images as $uploaded_file ) {
-											$attachment_url = isset( $uploaded_file['url'] ) ? $uploaded_file['url'] : $uploaded_file;
-											if ( $attachment_url && ! is_numeric( $attachment_url ) ) {
-												$uploaded_file_id = $this->form->createAttachment( $updated_listing_id, $attachment_url );
-												if ( $uploaded_file_id ) {
-													$images_list[] = $uploaded_file_id;
-												}
+										foreach ( $gallery_images as $maybe_upload_file ) {
+											$is_new = is_array( $maybe_upload_file ) && isset( $maybe_upload_file['url'] ) ? true : false;
+											if ( $is_new ) {
+												$images_list[] = [
+													'url'  => esc_url( $maybe_upload_file['url'] ),
+													'path' => isset( $maybe_upload_file['path'] ) ? wp_strip_all_tags( $maybe_upload_file['path'] ) : pno_content_url_to_local_path( esc_url( $maybe_upload_file['url'] ) ),
+												];
 											}
 										}
 										if ( ! empty( $images_list ) ) {
-											$current_attachments = carbon_get_post_meta( $updated_listing_id, $key );
-											$new_attachments     = array_merge( $current_attachments, $images_list );
-											carbon_set_post_meta( $updated_listing_id, $key, $new_attachments );
+											$current_gallery_files = carbon_get_post_meta( $updated_listing_id, $key );
+											$final_attachments     = array_merge( $current_gallery_files, $images_list );
+											foreach ( $final_attachments as $attkey => $att ) {
+												if ( isset( $final_attachments[ $attkey ]['_type'] ) ) {
+													unset( $final_attachments[ $attkey ]['_type'] );
+												}
+											}
+											carbon_set_post_meta( $updated_listing_id, $key, $final_attachments );
 										}
 									}
+
 								} else {
 
 									$attachment_url = isset( $values[ $key ]['url'] ) ? $values[ $key ]['url'] : $values[ $key ];
@@ -478,7 +480,9 @@ class ListingEdit {
 											carbon_set_post_meta( $updated_listing_id, $key, false );
 										}
 									}
+
 								}
+
 							} elseif ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
 								$term_value = $value;
