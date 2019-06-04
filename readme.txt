@@ -116,6 +116,24 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 0.9.2 Open beta release =
+
+- Tweak: Set a default of max 2 uploadable images for the listings gallery field on install.
+- Tweak: validated amount of submitted images for the gallery field during form submission instead of validation.
+- Tweak: gallery field has been changed to a repeatable field.
+- Tweak: custom fields that support multiple uploads, have been changed to a repeatable field.
+- Tweak: changed storage process of files uploaded through forms.
+- Tweak: reworked storage and cancellation of files assigned to listings.
+- Tweak: persist files uploaded when a validation error stops the form from processing.
+- Fix: wrongly formatted terms array for listing regions field.
+- Fix: skip the "required" attribute for file fields.
+- Fix: load a value attribute for file fields.
+- Fix: removed "amount" validators support from file fields.
+- Fix: form would still process submissions even when a validation error would occur in some cases.
+- Fix: newly uploaded files would not be merged with existing files.
+- Fix: file fields wrongly marked as "required" even when files are already attached and no changes were applied to the field.
+- Fix: unable to make changes to default fields due to wrong validation errors triggering when not required.
+
 = 0.9.1 Open beta release =
 
 - Tweak: make sure pages are published before loading rewrite rules.
