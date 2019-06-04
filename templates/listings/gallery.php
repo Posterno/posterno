@@ -47,7 +47,7 @@ if ( empty( $images ) ) {
 	<div class="carousel-inner">
 		<?php foreach ( $images as $key => $image_url ) : ?>
 			<div class="carousel-item <?php if ( absint( $key ) === 0 ) : ?>active<?php endif; ?>">
-				<img src="<?php echo esc_url( $image_url ); ?>" class="d-block w-100" alt="...">
+				<img src="<?php echo esc_url( $image_url ); ?>" class="d-block w-100" alt="<?php the_title(); ?>">
 			</div>
 		<?php endforeach; ?>
 	</div>
