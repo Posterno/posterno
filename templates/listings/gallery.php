@@ -54,11 +54,11 @@ if ( empty( $images ) ) {
 
 	<a class="carousel-control-prev" href="#pno-single-listing-gallery" role="button" data-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
+		<span class="sr-only"><?php esc_html_e( 'Previous', 'posterno' ); ?></span>
 	</a>
 	<a class="carousel-control-next" href="#pno-single-listing-gallery" role="button" data-slide="next">
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
+		<span class="sr-only"><?php esc_html_e( 'Next', 'posterno' ); ?></span>
 	</a>
 
 </div>

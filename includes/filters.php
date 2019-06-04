@@ -469,7 +469,7 @@ function pno_add_cron_schedules( $schedules = array() ) {
 	// Adds once weekly to the existing schedules.
 	$schedules['weekly'] = array(
 		'interval' => 604800,
-		'display'  => esc_html__( 'Once Weekly' ),
+		'display'  => esc_html__( 'Once Weekly', 'posterno' ),
 	);
 	return $schedules;
 }
