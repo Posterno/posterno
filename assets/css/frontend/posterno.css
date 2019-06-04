@@ -943,6 +943,9 @@ form.pno-form-has-errors .field-has-errors {
   text-align: center;
   margin-right: 10px; }
 
+.pno-field-editor .invalid-feedback {
+  display: block; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0;

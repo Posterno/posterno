@@ -126,3 +126,9 @@ form.pno-form-has-errors {
 		}
 	}
 }
+
+.pno-field-editor {
+	.invalid-feedback {
+		display: block;
+	}
+}
