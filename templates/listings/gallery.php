@@ -21,12 +21,8 @@ $items  = $data->items;
 $images = [];
 
 foreach ( $items as $item_id ) {
-	$attachment_url = wp_get_attachment_url( $item_id );
-	if ( ! empty( $attachment_url ) ) {
-		$extension = substr( strrchr( $attachment_url, '.' ), 1 );
-		if ( 'image' === wp_ext2type( $extension ) ) {
-			$images[] = $attachment_url;
-		}
+	if ( is_array( $item_id ) && isset( $item_id['url'] ) ) {
+		$images[] = $item_id['url'];
 	}
 }
 
