@@ -352,11 +352,14 @@ class ListingEdit {
 					if ( ! empty( $this->form->getFieldValue( 'listing_regions' ) ) ) {
 						$listing_region  = json_decode( stripslashes( $this->form->getFieldValue( 'listing_regions' ) ) );
 						$ancestors       = get_ancestors( $listing_region, 'listings-locations', 'taxonomy' );
-						$listing_regions = [ $listing_region ];
+						$listing_regions = [];
+						if ( ! empty( $listing_region ) ) {
+							$listing_regions = [ $listing_region ];
+						}
 						if ( ! empty( $ancestors ) && is_array( $ancestors ) ) {
 							$listing_regions = array_merge( $listing_regions, $ancestors );
 						}
-						wp_set_object_terms( absint( $updated_listing_id ), $listing_regions, 'listings-locations', true );
+						wp_set_object_terms( absint( $updated_listing_id ), array_unique( $listing_regions ), 'listings-locations', true );
 					}
 
 					// Assign categories to the listing.
