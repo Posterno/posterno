@@ -406,8 +406,8 @@ class ListingEdit {
 								if ( $is_multiple ) {
 
 									// Verify images to remove.
-									if ( isset( $_POST["current_{$key}"] ) && ! empty( $_POST["current_{$key}"] ) && is_array( $_POST["current_{$key}"] ) ) {
-										$submitted_attachments = $_POST["current_{$key}"];
+									if ( isset( $_POST[ "current_{$key}" ] ) && ! empty( $_POST[ "current_{$key}" ] ) && is_array( $_POST[ "current_{$key}" ] ) ) {
+										$submitted_attachments = $_POST[ "current_{$key}" ];
 										$current_attachments   = carbon_get_post_meta( $updated_listing_id, $key );
 										if ( ! empty( $current_attachments ) ) {
 											foreach ( $current_attachments as $file_key => $file_stored ) {
@@ -454,7 +454,6 @@ class ListingEdit {
 											carbon_set_post_meta( $updated_listing_id, $key, $final_attachments );
 										}
 									}
-
 								} else {
 
 									$attachment_url = isset( $values[ $key ]['url'] ) ? $values[ $key ]['url'] : $values[ $key ];
@@ -483,9 +482,7 @@ class ListingEdit {
 											carbon_set_post_meta( $updated_listing_id, $key, false );
 										}
 									}
-
 								}
-
 							} elseif ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
 
 								$term_value = $value;
