@@ -254,6 +254,19 @@ class Helper {
 		return $status_count;
 	}
 
+	/**
+	 * Set constants to prevent caching by some plugins.
+	 *
+	 * @param  mixed $return Value to return. Previously hooked into a filter.
+	 * @return mixed
+	 */
+	public static function set_nocache_constants( $return = true ) {
+		pno_maybe_define_constant( 'DONOTCACHEPAGE', true );
+		pno_maybe_define_constant( 'DONOTCACHEOBJECT', true );
+		pno_maybe_define_constant( 'DONOTCACHEDB', true );
+		return $return;
+	}
+
 }
 
 Helper::init();

@@ -834,3 +834,36 @@ function pno_content_url_to_local_path( $url ) {
 
 	return $path;
 }
+
+/**
+ * Wrapper for set_time_limit to see if it is enabled.
+ *
+ * @param int $limit Time limit.
+ */
+function pno_set_time_limit( $limit = 0 ) {
+	if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ), 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) { // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.safe_modeDeprecatedRemoved
+		@set_time_limit( $limit ); // @codingStandardsIgnoreLine
+	}
+}
+
+/**
+ * Define a constant if it is not already defined.
+ *
+ * @param string $name  Constant name.
+ * @param mixed  $value Value.
+ */
+function pno_maybe_define_constant( $name, $value ) {
+	if ( ! defined( $name ) ) {
+		define( $name, $value );
+	}
+}
+
+/**
+ * Wrapper for nocache_headers which also disables page caching.
+ *
+ * @return void
+ */
+function pno_nocache_headers() {
+	\PNO\Cache\Helper::set_nocache_constants();
+	nocache_headers();
+}
