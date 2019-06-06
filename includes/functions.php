@@ -867,3 +867,18 @@ function pno_nocache_headers() {
 	\PNO\Cache\Helper::set_nocache_constants();
 	nocache_headers();
 }
+
+/**
+ * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+ * Non-scalar values are ignored.
+ *
+ * @param string|array $var Data to sanitize.
+ * @return string|array
+ */
+function pno_clean( $var ) {
+	if ( is_array( $var ) ) {
+		return array_map( 'pno_clean', $var );
+	} else {
+		return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
+	}
+}
