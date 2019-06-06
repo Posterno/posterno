@@ -53,7 +53,6 @@ class Listing {
 	public function init() {
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_listings_settings' ] );
-		add_action( 'carbon_fields_register_fields', [ $this, 'register_custom_fields' ] );
 
 	}
 
@@ -63,11 +62,6 @@ class Listing {
 	 * @return void
 	 */
 	public function register_listings_settings() {
-
-		$social_profiles_labels = array(
-			'plural_name'   => esc_html__( 'Profiles', 'posterno' ),
-			'singular_name' => esc_html__( 'Profile', 'posterno' ),
-		);
 
 		$container = Container::make( 'post_meta', esc_html__( 'Listing settings', 'posterno' ) )
 			->where( 'post_type', '=', 'listings' );
@@ -80,6 +74,7 @@ class Listing {
 				case 'details':
 				case 'location':
 				case 'media':
+				case 'cf':
 					$fields = $this->{"get_listing_{$key}_settings"}();
 					break;
 				case 'hours':
@@ -118,6 +113,7 @@ class Listing {
 			'location' => esc_html__( 'Location', 'posterno' ),
 			'media'    => esc_html__( 'Media', 'posterno' ),
 			'hours'    => esc_html__( 'Opening Hours', 'posterno' ),
+			'cf'       => esc_html__( 'Additional settings' ),
 		];
 
 		/**
@@ -365,9 +361,9 @@ class Listing {
 	/**
 	 * Register custom listings fields created through the editor.
 	 *
-	 * @return void
+	 * @return array
 	 */
-	public function register_custom_fields() {
+	public function get_listing_cf_settings() {
 
 		$admin_fields = remember_transient(
 			'pno_admin_custom_listing_fields',
@@ -435,11 +431,7 @@ class Listing {
 			}
 		);
 
-		if ( ! empty( $admin_fields ) ) {
-			Container::make( 'post_meta', esc_html__( 'Additional settings', 'posterno' ) )
-				->where( 'post_type', '=', 'listings' )
-				->add_fields( $admin_fields );
-		}
+		return $admin_fields;
 
 	}
 
