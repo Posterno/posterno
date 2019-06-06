@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 0.9.1\n"
+"Project-Id-Version: Posterno 0.9.2\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-05-31 18:44:12+00:00\n"
+"POT-Creation-Date: 2019-06-04 12:07:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -110,6 +110,10 @@ msgstr ""
 
 #: includes/actions.php:397
 msgid "\"%s\" is required."
+msgstr ""
+
+#: includes/actions.php:420
+msgid "You can upload up to \"%s\" gallery images."
 msgstr ""
 
 #: includes/admin/admin-actions.php:42
@@ -565,28 +569,28 @@ msgstr ""
 msgid "Edit listing"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1057
+#: includes/admin/admin-functions.php:1058
 msgid "Dashboard Menu"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1102
+#: includes/admin/admin-functions.php:1103
 msgid "Profile Menu"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1165
+#: includes/admin/admin-functions.php:1166
 #: includes/admin/custom-fields/display-custom-fields.php:85
 msgid "Default"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1166
+#: includes/admin/admin-functions.php:1167
 msgid "Category icon"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1167
+#: includes/admin/admin-functions.php:1168
 msgid "Image"
 msgstr ""
 
-#: includes/admin/admin-functions.php:1168
+#: includes/admin/admin-functions.php:1169
 msgid "Custom field (text)"
 msgstr ""
 
@@ -2075,26 +2079,28 @@ msgid "Images"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:227
+#: includes/admin/custom-fields/integration/class-listing.php:415
+#: includes/admin/custom-fields/integration/class-profile.php:80
+msgid "File url"
+msgstr ""
+
+#: includes/admin/custom-fields/integration/class-listing.php:232
 msgid "Embed"
 msgstr ""
 
-#: includes/admin/custom-fields/integration/class-listing.php:230
+#: includes/admin/custom-fields/integration/class-listing.php:235
 msgid ""
 "Embed videos, images, tweets, audio, and other content into the listing by "
 "simply providing the url of the source. <a href=\"%s\" "
 "target=\"_blank\">View list of supported embeds.</a>"
 msgstr ""
 
-#: includes/admin/custom-fields/integration/class-listing.php:304
+#: includes/admin/custom-fields/integration/class-listing.php:309
 msgid "Additional timings"
 msgstr ""
 
-#: includes/admin/custom-fields/integration/class-listing.php:430
+#: includes/admin/custom-fields/integration/class-listing.php:439
 msgid "Additional settings"
-msgstr ""
-
-#: includes/admin/custom-fields/integration/class-profile.php:80
-msgid "File url"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-profile.php:104
@@ -2725,7 +2731,7 @@ msgid "This field is required."
 msgstr ""
 
 #: includes/components/posterno-forms/src/Element/CheckboxSet.php:291
-#: includes/components/posterno-forms/src/Element/Input/File.php:131
+#: includes/components/posterno-forms/src/Element/Input/File.php:148
 #: includes/components/posterno-forms/src/Element/Input.php:143
 #: includes/components/posterno-forms/src/Element/RadioSet.php:292
 #: includes/components/posterno-forms/src/Element/Textarea.php:142
@@ -2740,11 +2746,7 @@ msgstr ""
 msgid "\"%1$s\" needs to be one of the following file types: %2$s"
 msgstr ""
 
-#: includes/components/posterno-forms/src/Fields.php:267
-msgid "You can upload up to %1$s files"
-msgstr ""
-
-#: includes/components/posterno-forms/src/Fields.php:275
+#: includes/components/posterno-forms/src/Fields.php:266
 msgid "%s is an invalid term."
 msgstr ""
 
@@ -3478,15 +3480,15 @@ msgstr ""
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1157
+#: includes/fields-functions.php:1156
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1158
+#: includes/fields-functions.php:1157
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1159
+#: includes/fields-functions.php:1158
 msgid "Select Some Options"
 msgstr ""
 
@@ -3714,11 +3716,11 @@ msgstr ""
 msgid "Select a listing type"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:548
+#: includes/forms/ListingSubmission.php:554
 msgid "Listing successfully submitted. <a href=\"%s\">View your listing.</a>"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:551
+#: includes/forms/ListingSubmission.php:557
 msgid "Listing successfully submitted. Your listing will be visible once approved."
 msgstr ""
 
@@ -5011,6 +5013,14 @@ msgstr ""
 msgid "Sorry, this listing is no longer available."
 msgstr ""
 
+#: templates/listings/gallery.php:53 templates/listings/pagination.php:62
+msgid "Previous"
+msgstr ""
+
+#: templates/listings/gallery.php:57 templates/listings/pagination.php:111
+msgid "Next"
+msgstr ""
+
 #: templates/listings/not-found.php:24
 msgid "No listings were found at this location."
 msgstr ""
@@ -5031,16 +5041,8 @@ msgstr ""
 msgid "First"
 msgstr ""
 
-#: templates/listings/pagination.php:62
-msgid "Previous"
-msgstr ""
-
 #: templates/listings/pagination.php:76
 msgid "(current)"
-msgstr ""
-
-#: templates/listings/pagination.php:111
-msgid "Next"
 msgstr ""
 
 #: templates/listings/results-count.php:26
