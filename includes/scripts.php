@@ -118,6 +118,9 @@ function pno_load_admin_scripts() {
 		wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/admin/admin-settings-panel.min.css', false, PNO_VERSION );
 	}
 
+	// Load font for the post type icon.
+	wp_enqueue_style( 'pno-font-icon', PNO_PLUGIN_URL . 'assets/css/admin/posterno.css', false, PNO_VERSION );
+
 }
 add_action( 'admin_enqueue_scripts', 'pno_load_admin_scripts', 100 );
 
