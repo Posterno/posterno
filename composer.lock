@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "819249f0cf8bfff7ee2c59aa29446b15",
+    "content-hash": "bf3b79a58d928c6fe4626cbdc32b15dd",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -399,12 +399,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5"
+                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
-                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
+                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +462,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-05-26T12:43:51+00:00"
+            "time": "2019-06-06T09:22:35+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -646,7 +646,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "1b7a10ef051805509fc1468be5e6be424343b5b7",
+                "reference": "34d7327f66afadc2c3cf45260d2b357267f608e1",
                 "shasum": null
             },
             "require": {
@@ -681,6 +681,55 @@
                 }
             ],
             "description": "Posterno component that provides support for the official addons.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "posterno/import-export",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../import-export",
+                "reference": "1dc1e88282cf15d99e3ad49a5160e93859573450",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PosternoImportExport\\": "includes/classes/"
+                },
+                "files": [
+                    "component-loader.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Component that provides the import and export functionalities for Posterno's content.",
             "homepage": "https://posterno.com",
             "keywords": [
                 "wordpress"
@@ -970,7 +1019,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "f6463bbb4ef4413b272eda0d16a09170599863e4",
+                "reference": "9680f42090027de69f345a9c0a956830a84dff2e",
                 "shasum": null
             },
             "require": {
@@ -1444,7 +1493,8 @@
         "posterno/addons": 20,
         "posterno/posterno-forms": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-maps": 20
+        "posterno/posterno-maps": 20,
+        "posterno/import-export": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
