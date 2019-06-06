@@ -89,10 +89,10 @@ export default {
 			labels:        pno_fields_editor.labels,
 			pages:         pno_fields_editor.pages,
 			adminLinks: [
-				/*{
+				{
 					title: pno_fields_editor.labels.addons,
 					url: 'https://posterno.com/addons'
-				},*/
+				},
 				{
 					title: pno_fields_editor.labels.documentation,
 					url: 'https://docs.posterno.com/'
