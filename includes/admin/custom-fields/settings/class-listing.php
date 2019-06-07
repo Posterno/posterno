@@ -302,7 +302,7 @@ class Listing {
 
 		}
 
-		Container::make( 'post_meta', esc_html__( 'Advanced', 'posterno' ) )
+		Container::make( 'post_meta', 'pno_listings_fields_advanced_settings', esc_html__( 'Advanced', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_listings_fields' )
 			->set_context( 'side' )
