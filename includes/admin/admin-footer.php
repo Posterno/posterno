@@ -44,6 +44,10 @@ function pno_admin_rate_us( $footer_text ) {
 		'tools_page_posterno-tools',
 		'listings_page_posterno-addons',
 		'listings_page_schemas_exporter',
+		'listings_page_emails_exporter',
+		'listings_page_listings_fields_exporter',
+		'listings_page_profile_fields_exporter',
+		'listings_page_registration_fields_exporter',
 	];
 
 	if ( in_array( $screen->id, $checks ) ) {
