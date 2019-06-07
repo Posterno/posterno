@@ -257,7 +257,7 @@ class Profile {
 		$datastore = new \PNO\Datastores\CustomFieldSettings();
 		$datastore->set_custom_field_type( 'profile' );
 
-		$container = Container::make( 'post_meta', esc_html__( 'Field settings', 'posterno' ) )
+		$container = Container::make( 'post_meta', 'pno_profile_fields_settings', esc_html__( 'Field settings', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_users_fields' );
 
@@ -289,7 +289,7 @@ class Profile {
 
 		}
 
-		Container::make( 'post_meta', esc_html__( 'Advanced', 'posterno' ) )
+		Container::make( 'post_meta', 'pno_profile_fields_advanced_settings', esc_html__( 'Advanced', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_users_fields' )
 			->set_context( 'side' )
