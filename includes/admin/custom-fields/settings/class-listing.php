@@ -270,7 +270,7 @@ class Listing {
 		$datastore = new \PNO\Datastores\CustomFieldSettings();
 		$datastore->set_custom_field_type( 'listing' );
 
-		$container = Container::make( 'post_meta', esc_html__( 'Field settings', 'posterno' ) )
+		$container = Container::make( 'post_meta', 'pno_listings_fields_settings', esc_html__( 'Field settings', 'posterno' ) )
 			->set_datastore( $datastore )
 			->where( 'post_type', '=', 'pno_listings_fields' );
 
