@@ -70,7 +70,7 @@ class PNO_Listing_Terms_Custom_Fields {
 
 		$fields = array_merge( $fields, $this->get_common_settings() );
 
-		Container::make( 'term_meta', esc_html__( 'Listing type settings', 'posterno' ) )
+		Container::make( 'term_meta', 'pno_term_settings_listings-types', esc_html__( 'Listing type settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-types' )
 			->add_fields( $fields );
 
@@ -97,7 +97,7 @@ class PNO_Listing_Terms_Custom_Fields {
 
 		$fields = array_merge( $fields, $this->get_common_settings() );
 
-		Container::make( 'term_meta', esc_html__( 'Listing categories settings', 'posterno' ) )
+		Container::make( 'term_meta', 'pno_term_settings_listings-categories', esc_html__( 'Listing categories settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-categories' )
 			->add_fields( $fields );
 
@@ -110,7 +110,7 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public function register_locations_settings() {
 
-		Container::make( 'term_meta', esc_html__( 'Listing location settings', 'posterno' ) )
+		Container::make( 'term_meta', 'pno_term_settings_listings-locations', esc_html__( 'Listing location settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-locations' )
 			->add_fields( $this->get_common_settings() );
 
@@ -123,7 +123,7 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public function register_tags_settings() {
 
-		Container::make( 'term_meta', esc_html__( 'Listing tag settings', 'posterno' ) )
+		Container::make( 'term_meta', 'pno_term_settings_listings-tags', esc_html__( 'Listing tag settings', 'posterno' ) )
 			->where( 'term_taxonomy', '=', 'listings-tags' )
 			->add_fields( $this->get_common_settings() );
 
