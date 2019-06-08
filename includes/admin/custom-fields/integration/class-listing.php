@@ -63,7 +63,7 @@ class Listing {
 	 */
 	public function register_listings_settings() {
 
-		$container = Container::make( 'post_meta', esc_html__( 'Listing settings', 'posterno' ) )
+		$container = Container::make( 'post_meta', 'pno_listings_settings', esc_html__( 'Listing settings', 'posterno' ) )
 			->where( 'post_type', '=', 'listings' );
 
 		foreach ( $this->get_listing_settings_tabs() as $key => $tab ) {
