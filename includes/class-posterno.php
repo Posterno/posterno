@@ -349,6 +349,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/templates-functions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/rest-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/permalinks.php';
 		}
 
