@@ -29,7 +29,7 @@ $files_to_display = isset( $data->files ) ? $data->files : $data->file_url;
 			<?php
 			foreach ( $files_to_display as $file ) :
 
-				$file_url = isset( $file['value'] ) ? $file['value'] : false;
+				$file_url = isset( $file['url'][0]['value'] ) ? $file['url'][0]['value'] : false;
 				$file_url = is_numeric( $file_url ) ? wp_get_attachment_url( $file_url ) : $file_url;
 
 				$extension = substr( strrchr( $file_url, '.' ), 1 );
