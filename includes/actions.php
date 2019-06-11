@@ -14,6 +14,110 @@ use function GuzzleHttp\json_decode;
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Hooks PNO actions, when present in the $_GET superglobal. Every pno_action
+ * present in $_GET is called using WordPress's do_action function. These
+ * functions are called on init.
+ *
+ * @return void
+ */
+function pno_get_actions() {
+	$key               = ! empty( $_GET['pno_action'] ) ? sanitize_key( $_GET['pno_action'] ) : false;
+	$is_delayed_action = pno_is_delayed_action( $key );
+	if ( $is_delayed_action ) {
+		return;
+	}
+	if ( ! empty( $key ) ) {
+		do_action( "pno_{$key}", $_GET );
+	}
+}
+add_action( 'init', 'pno_get_actions' );
+
+/**
+ * Hooks PNO actions, when present in the $_POST superglobal. Every pno_action
+ * present in $_POST is called using WordPress's do_action function. These
+ * functions are called on init.
+ *
+ * @return void
+ */
+function pno_post_actions() {
+	$key               = ! empty( $_POST['pno_action'] ) ? sanitize_key( $_POST['pno_action'] ) : false;
+	$is_delayed_action = pno_is_delayed_action( $key );
+	if ( $is_delayed_action ) {
+		return;
+	}
+	if ( ! empty( $key ) ) {
+		do_action( "pno_{$key}", $_POST );
+	}
+}
+add_action( 'init', 'pno_post_actions' );
+
+/**
+ * Call any actions that should have been delayed, in order to be sure that all necessary information
+ * has been loaded by WP Core.
+ *
+ * Hooks PNO actions, when present in the $_GET superglobal. Every pno_action
+ * present in $_POST is called using WordPress's do_action function. These
+ * functions are called on template_redirect.
+ *
+ * @return void
+ */
+function pno_delayed_get_actions() {
+	$key               = ! empty( $_GET['pno_action'] ) ? sanitize_key( $_GET['pno_action'] ) : false;
+	$is_delayed_action = pno_is_delayed_action( $key );
+	if ( ! $is_delayed_action ) {
+		return;
+	}
+	if ( ! empty( $key ) ) {
+		do_action( "pno_{$key}", $_GET );
+	}
+}
+add_action( 'template_redirect', 'pno_delayed_get_actions' );
+
+/**
+ * Call any actions that should have been delayed, in order to be sure that all necessary information
+ * has been loaded by WP Core.
+ *
+ * Hooks PNO actions, when present in the $_POST superglobal. Every pno_action
+ * present in $_POST is called using WordPress's do_action function. These
+ * functions are called on template_redirect.
+ *
+ * @return void
+ */
+function pno_delayed_post_actions() {
+	$key               = ! empty( $_POST['pno_action'] ) ? sanitize_key( $_POST['pno_action'] ) : false;
+	$is_delayed_action = pno_is_delayed_action( $key );
+	if ( ! $is_delayed_action ) {
+		return;
+	}
+	if ( ! empty( $key ) ) {
+		do_action( "pno_{$key}", $_POST );
+	}
+}
+add_action( 'template_redirect', 'pno_delayed_post_actions' );
+
+/**
+ * Get the list of actions that PNO has determined need to be delayed past init.
+ *
+ * @return array
+ */
+function pno_delayed_actions_list() {
+	return (array) apply_filters(
+		'pno_delayed_actions',
+		array()
+	);
+}
+
+/**
+ * Determine if the requested action needs to be delayed or not.
+ *
+ * @param string $action action.
+ * @return bool
+ */
+function pno_is_delayed_action( $action = '' ) {
+	return in_array( $action, pno_delayed_actions_list() );
+}
+
+/**
  * Load stuff after theme setup.
  *
  * @return void
