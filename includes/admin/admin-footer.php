@@ -52,6 +52,7 @@ function pno_admin_rate_us( $footer_text ) {
 		'listings_page_listings_exporter',
 		'listings_page_schema_importer',
 		'listings_page_listingsfield_importer',
+		'listings_page_email_importer',
 	];
 
 	if ( in_array( $screen->id, $checks ) ) {
