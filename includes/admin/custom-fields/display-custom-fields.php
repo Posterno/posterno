@@ -56,6 +56,8 @@ function pno_get_custom_fields_editor_js_vars() {
 		],
 		'import_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=listingsfield_importer' ) ),
 		'export_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=listings_fields_exporter' ) ),
+		'import_profiles_fields_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=profilesfield_importer' ) ),
+		'export_profiles_fields_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=profile_fields_exporter' ) ),
 		'labels'              => [
 			'documentation'       => esc_html__( 'Documentation', 'posterno' ),
 			'addons'              => esc_html__( 'Addons', 'posterno' ),

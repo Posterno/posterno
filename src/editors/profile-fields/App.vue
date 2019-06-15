@@ -97,6 +97,14 @@ export default {
 					url: 'https://posterno.com/addons'
 				},
 				{
+					title: pno_fields_editor.labels.import,
+					url: pno_fields_editor.import_profiles_fields_url
+				},
+				{
+					title: pno_fields_editor.labels.export,
+					url: pno_fields_editor.export_profiles_fields_url
+				},
+				{
 					title: pno_fields_editor.labels.documentation,
 					url: 'https://docs.posterno.com/'
 				}
