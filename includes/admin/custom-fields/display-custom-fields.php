@@ -19,13 +19,13 @@ defined( 'ABSPATH' ) || exit;
 function pno_get_custom_fields_editor_js_vars() {
 
 	$js_vars = [
-		'plugin_url'          => PNO_PLUGIN_URL,
-		'rest'                => esc_url_raw( rest_url() ),
-		'nonce'               => wp_create_nonce( 'wp_rest' ),
-		'create_field_nonce'  => wp_create_nonce( 'wp_rest' ),
-		'delete_field_nonce'  => wp_create_nonce( 'wp_rest' ),
-		'trashed'             => isset( $_GET['trashed'] ) ? true : false,
-		'field_types'         => pno_get_registered_field_types(
+		'plugin_url'                     => PNO_PLUGIN_URL,
+		'rest'                           => esc_url_raw( rest_url() ),
+		'nonce'                          => wp_create_nonce( 'wp_rest' ),
+		'create_field_nonce'             => wp_create_nonce( 'wp_rest' ),
+		'delete_field_nonce'             => wp_create_nonce( 'wp_rest' ),
+		'trashed'                        => isset( $_GET['trashed'] ) ? true : false,
+		'field_types'                    => pno_get_registered_field_types(
 			[
 				'social-profiles',
 				'listing-category',
@@ -38,7 +38,7 @@ function pno_get_custom_fields_editor_js_vars() {
 				'listing-location',
 			]
 		),
-		'listing_field_types' => pno_get_registered_field_types(
+		'listing_field_types'            => pno_get_registered_field_types(
 			[
 				'social-profiles',
 				'listing-category',
@@ -47,18 +47,20 @@ function pno_get_custom_fields_editor_js_vars() {
 				'listing-location',
 			]
 		),
-		'roles'               => pno_get_roles( true ),
-		'pages'               => [
+		'roles'                          => pno_get_roles( true ),
+		'pages'                          => [
 			'selector'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-fields' ),
 			'profile'      => admin_url( 'edit.php?post_type=listings&page=posterno-custom-profile-fields' ),
 			'registration' => admin_url( 'edit.php?post_type=listings&page=posterno-custom-registration-form' ),
 			'listings'     => admin_url( 'edit.php?post_type=listings&page=posterno-custom-listings-fields' ),
 		],
-		'import_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=listingsfield_importer' ) ),
-		'export_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=listings_fields_exporter' ) ),
-		'import_profiles_fields_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=profilesfield_importer' ) ),
-		'export_profiles_fields_url'          => esc_url( admin_url( 'edit.php?post_type=listings&page=profile_fields_exporter' ) ),
-		'labels'              => [
+		'import_url'                     => esc_url( admin_url( 'edit.php?post_type=listings&page=listingsfield_importer' ) ),
+		'export_url'                     => esc_url( admin_url( 'edit.php?post_type=listings&page=listings_fields_exporter' ) ),
+		'import_profiles_fields_url'     => esc_url( admin_url( 'edit.php?post_type=listings&page=profilesfield_importer' ) ),
+		'export_profiles_fields_url'     => esc_url( admin_url( 'edit.php?post_type=listings&page=profile_fields_exporter' ) ),
+		'import_registration_fields_url' => esc_url( admin_url( 'edit.php?post_type=listings&page=registrationfield_importer' ) ),
+		'export_registration_fields_url' => esc_url( admin_url( 'edit.php?post_type=listings&page=registration_fields_exporter' ) ),
+		'labels'                         => [
 			'documentation'       => esc_html__( 'Documentation', 'posterno' ),
 			'addons'              => esc_html__( 'Addons', 'posterno' ),
 			'title'               => esc_html__( 'Posterno custom fields', 'posterno' ),
