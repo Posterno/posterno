@@ -548,3 +548,29 @@ function pno_show_pending_listings_count_bubble() {
 	}
 }
 add_action( 'admin_menu', 'pno_show_pending_listings_count_bubble' );
+
+/**
+ * Show links to the taxonomy importers & exporters.
+ *
+ * @return void
+ */
+function pno_add_import_export_taxonomy_links() {
+
+	?>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomyterm_importer' ) ); ?>" class="page-title-action" style="margin-left:0;"><?php esc_html_e( 'Import' ); ?></a>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomy_exporter' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Export' ); ?></a>
+	<br/><br/>
+	<hr>
+	<?php
+
+}
+
+add_action(
+	'admin_init',
+	function() {
+		foreach ( pno_get_registered_listings_taxonomies() as $tax_id => $name ) {
+			add_action( "{$tax_id}_pre_add_form", 'pno_add_import_export_taxonomy_links' );
+		}
+	}
+);
+
