@@ -1291,6 +1291,45 @@ function pno_update_listing_address( $lat, $lng, $address, $listing_id ) {
 }
 
 /**
+ * Update listing's coordinates only and not the address.
+ *
+ * @param string $lat lat.
+ * @param string $lng lng.
+ * @param string $listing_id the listing id.
+ * @return void
+ */
+function pno_update_listing_coordinates( $lat, $lng, $listing_id ) {
+
+	if ( ! $lat || ! $lng || ! $listing_id ) {
+		return;
+	}
+
+	$coordinates = "{$lat},{$lng}";
+
+	update_post_meta( $listing_id, '_listing_location_coordinates', $coordinates );
+	update_post_meta( $listing_id, '_listing_location_lat', $lat );
+	update_post_meta( $listing_id, '_listing_location_lng', $lng );
+
+}
+
+/**
+ * Update listing's address only and not the coordinates.
+ *
+ * @param string $address the address.
+ * @param string $listing_id the listing id.
+ * @return void
+ */
+function pno_update_listing_address_only( $address, $listing_id ) {
+
+	if ( ! $address || ! $listing_id ) {
+		return;
+	}
+
+	update_post_meta( $listing_id, '_listing_location_address', $address );
+
+}
+
+/**
  * Retrieve the coordinates for a given listing.
  *
  * @param string $listing_id the listing for which we're going to get the coordinates.
