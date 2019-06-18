@@ -70,8 +70,8 @@ function pno_get_custom_fields_editor_js_vars() {
 			'custom_fields'       => esc_html__( 'Customize fields', 'posterno' ),
 			'custom_form'         => esc_html__( 'Customize form', 'posterno' ),
 			'purchase_extension'  => esc_html__( 'Purchase extension', 'posterno' ),
-			'import'              => esc_html__( 'Import' ),
-			'export'              => esc_html__( 'Export' ),
+			'import'              => esc_html__( 'Import', 'posterno' ),
+			'export'              => esc_html__( 'Export', 'posterno' ),
 			'profile'             => [
 				'title'            => esc_html__( 'Posterno profile fields editor', 'posterno' ),
 				'add_new'          => esc_html__( 'Add new field', 'posterno' ),

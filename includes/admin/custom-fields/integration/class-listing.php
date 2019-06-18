@@ -113,7 +113,7 @@ class Listing {
 			'location' => esc_html__( 'Location', 'posterno' ),
 			'media'    => esc_html__( 'Media', 'posterno' ),
 			'hours'    => esc_html__( 'Opening Hours', 'posterno' ),
-			'cf'       => esc_html__( 'Additional settings' ),
+			'cf'       => esc_html__( 'Additional settings', 'posterno' ),
 		];
 
 		/**

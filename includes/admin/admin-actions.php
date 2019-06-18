@@ -557,8 +557,8 @@ add_action( 'admin_menu', 'pno_show_pending_listings_count_bubble' );
 function pno_add_import_export_taxonomy_links() {
 
 	?>
-	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomyterm_importer' ) ); ?>" class="page-title-action" style="margin-left:0;"><?php esc_html_e( 'Import' ); ?></a>
-	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomy_exporter' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Export' ); ?></a>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomyterm_importer' ) ); ?>" class="page-title-action" style="margin-left:0;"><?php esc_html_e( 'Import', 'posterno' ); ?></a>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=listings&page=taxonomy_exporter' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Export', 'posterno' ); ?></a>
 	<br/><br/>
 	<hr>
 	<?php
