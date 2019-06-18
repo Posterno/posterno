@@ -17,11 +17,7 @@ Posterno is the #1 WordPress directory plugin that helps you create any kind of 
 
 With endless flexibility, Posterno allows you to create, manage and monetize a directory site for any purpose and showcase listings such as Cars, Hotels, Properties, Restaurants, Events, Travel Tours, etc. Your imagination is the only limit.
 
-[Website](https://posterno.com) | [Full features list](https://posterno.com/features) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/)
-
-**Please Note**: This is a beta testing version of this plugin. Therefore there may be some bugs that you come across. Please report any bugs through [the contact form here](https://posterno.com/contacts/).
-
-**Please avoid reviewing the plugin until we've reached the stable version 1.0.0 :) thank you.**
+[Website](https://posterno.com) | [Full features list](https://posterno.com/features) | [Documentation](http://docs.posterno.com/) | [Support](https://posterno.com/support/) | [Twitter](https://twitter.com/posternowp/) | [Facebook](https://www.facebook.com/posterno/)
 
 = Fully featured =
 
@@ -44,6 +40,14 @@ Members can register on your site to create user profiles. A user dashboard is p
 Posterno provides customizable email templates for each email that can be sent to users after a certain event/trigger happens. You also have access to merge tags for emails, they render bits of information about the website, the user or the listing.
 
 **Read more about our features on [posterno.com](https://posterno.com/features/)**
+
+= Add-ons =
+
+For more functionality check out [the add-ons page](https://posterno.com/addons/).
+
+= Free Extensions =
+
+- **[Google reCAPTCHA](https://posterno.com/addons/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
 = Built with developers in mind =
 
@@ -115,6 +119,36 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.0.0 First official release =
+
+**Beta phase is finished. This is the first officially stable release.**
+
+- Added: new section in tools page with all data importers available.
+- Added: new section in tools page with all data exporters available.
+- Added: Listings CSV export tool.
+- Added: Listings schemas CSV export tool.
+- Added: Listings custom fields CSV export tool.
+- Added: Profiles custom fields CSV export tool.
+- Added: Registration fields CSV export tool.
+- Added: Emails CSV export tool.
+- Added: Taxonomy terms CSV export tool.
+- Added: Listings CSV import tool.
+- Added: Listings schemas CSV import tool.
+- Added: Listings custom fields CSV import tool.
+- Added: Profiles custom fields CSV import tool.
+- Added: Registration fields CSV import tool.
+- Added: Emails CSV import tool.
+- Added: Taxonomy terms CSV import tool.
+- Added: links to import/export tools in each taxonomy and supported post type pages in the admin panel.
+- Tweak: changed icon of listings post type menu.
+- Tweak: moved listings custom fields to new tab in main metabox, in preparation for future conditional logic feature.
+- Tweak: upgraded js dependencies on some components.
+- Tweak: added some new helper functions for developers.
+- Tweak: majority of all carbon fields powered metaboxes now have a proper custom ID.
+- Tweak: switched text input for file fields to proper file picker from media library.
+- Tweak: cache listing types retrieval function.
+- Fix: files not loading properly for custom file fields.
 
 = 0.9.2 Open beta release =
 
