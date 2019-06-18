@@ -148,6 +148,7 @@ class Helper {
 	 * @param string     $taxonomy taxonomy name updated.
 	 */
 	public static function edited_term( $term_id = '', $tt_id = '', $taxonomy = '' ) {
+		forget_transient( 'pno_get_listings_types_for_association' );
 		self::get_transient_version( 'pno_get_' . sanitize_text_field( $taxonomy ), true );
 	}
 

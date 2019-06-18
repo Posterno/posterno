@@ -420,14 +420,19 @@ function pno_install_email_types() {
 function pno_get_listings_types_for_association() {
 	$types = [];
 
-	$terms = get_terms(
-		'listings-types',
-		array(
-			'hide_empty' => false,
-			'number'     => 999,
-			'orderby'    => 'name',
-			'order'      => 'ASC',
-		)
+	$terms = remember_transient(
+		'pno_get_listings_types_for_association',
+		function() {
+			return get_terms(
+				'listings-types',
+				array(
+					'hide_empty' => false,
+					'number'     => 999,
+					'orderby'    => 'name',
+					'order'      => 'ASC',
+				)
+			);
+		}
 	);
 
 	if ( ! empty( $terms ) ) {
