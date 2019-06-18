@@ -58,10 +58,7 @@ class FieldsCache {
 				'label'      => esc_html__( 'Select which fields:', 'posterno' ),
 				'required'   => true,
 				'values'     => [
-					'registration' => esc_html__( 'Registration fields', 'posterno' ),
-					'profile'      => esc_html__( 'Profile fields', 'posterno' ),
-					'listings'     => esc_html__( 'Listings fields', 'posterno' ),
-					'all'          => esc_html__( 'All fields', 'posterno' ),
+					'all' => esc_html__( 'All fields', 'posterno' ),
 				],
 				'attributes' => [
 					'class' => 'form-control',
@@ -157,13 +154,7 @@ class FieldsCache {
 
 			$type = $this->form->getFieldValue( 'type' );
 
-			if ( $type === 'registration' ) {
-				\PNO\Cache\Helper::flush_fields_cache( 'registration' );
-			} elseif ( $type === 'profile' ) {
-				\PNO\Cache\Helper::flush_fields_cache( 'profile' );
-			} elseif ( $type === 'listings' ) {
-				\PNO\Cache\Helper::flush_fields_cache( 'listing' );
-			} elseif ( $type === 'all' ) {
+			if ( $type === 'all' ) {
 				\PNO\Cache\Helper::flush_all_fields_cache();
 			}
 
