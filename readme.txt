@@ -124,6 +124,8 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 **Beta phase is finished. This is the first officially stable release.**
 
+[New documentation is available for the new features.](https://docs.posterno.com/category/581-import-export)
+
 - Added: new section in tools page with all data importers available.
 - Added: new section in tools page with all data exporters available.
 - Added: Listings CSV export tool.
