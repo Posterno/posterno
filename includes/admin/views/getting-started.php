@@ -18,7 +18,7 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 
 <div class="wrap about-wrap" id="pno-getting-started">
 
-	<h1><?php esc_html_e( 'Welcome to Posterno (Beta)', 'posterno' ); ?></h1>
+	<h1><?php esc_html_e( 'Welcome to Posterno', 'posterno' ); ?></h1>
 
 	<div class="about-text">
 
