@@ -435,7 +435,7 @@ function pno_get_listings_types_for_association() {
 		}
 	);
 
-	if ( ! empty( $terms ) ) {
+	if ( ! empty( $terms ) && is_array( $terms ) ) {
 		foreach ( $terms as $listing_type ) {
 			$types[ absint( $listing_type->term_id ) ] = esc_html( $listing_type->name );
 		}
