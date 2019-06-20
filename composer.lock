@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "859453b14d58eda8ec439be372eef5d9",
+    "content-hash": "1ba617d95296440f4f24de8059bdc150",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -348,19 +348,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a"
+                "reference": "e6d006f1ced100d81755966f09625d71ce6a7dca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/926eaa3ff73cde2becf652b785831bcb7618568a",
-                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/e6d006f1ced100d81755966f09625d71ce6a7dca",
+                "reference": "e6d006f1ced100d81755966f09625d71ce6a7dca",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.36"
+                "phpunit/phpunit": "^5.7.27 || ^7.5"
             },
             "type": "library",
             "extra": {
@@ -391,7 +391,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2018-10-30T00:20:04+00:00"
+            "time": "2019-06-11T17:44:31+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -399,12 +399,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a"
+                "reference": "e113254d23b24c548f0b4d8f671828c4eeb876d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
-                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/e113254d23b24c548f0b4d8f671828c4eeb876d2",
+                "reference": "e113254d23b24c548f0b4d8f671828c4eeb876d2",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -462,7 +462,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-06-06T09:22:35+00:00"
+            "time": "2019-06-17T23:10:01+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -701,7 +701,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "34d7327f66afadc2c3cf45260d2b357267f608e1",
+                "reference": "edfe5df2b67b63a5a96e04fa792e0e1a615c3ee5",
                 "shasum": null
             },
             "require": {
@@ -750,7 +750,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "1dc1e88282cf15d99e3ad49a5160e93859573450",
+                "reference": "a696ebc6ee1b01a1dafbb8c0a616c51913dd7bb5",
                 "shasum": null
             },
             "require": {
@@ -983,7 +983,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-geocoder",
-                "reference": "b2f769ed901913b2c85ca6f2a5d3d2896c462e25",
+                "reference": "da0a748c97ff3c35660b2f297af9b4f498142a6d",
                 "shasum": null
             },
             "require": {
@@ -1074,7 +1074,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "9680f42090027de69f345a9c0a956830a84dff2e",
+                "reference": "0f359f0615c9e5316096ae78ba9d0307bc5d7c93",
                 "shasum": null
             },
             "require": {
@@ -1289,12 +1289,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Prospress/action-scheduler.git",
-                "reference": "c9a9e8c95aca616046820e9a53f76190d2f7700c"
+                "reference": "2da1a169a5a80fc2f731b1bdbd7893a57cde6ada"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/c9a9e8c95aca616046820e9a53f76190d2f7700c",
-                "reference": "c9a9e8c95aca616046820e9a53f76190d2f7700c",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/2da1a169a5a80fc2f731b1bdbd7893a57cde6ada",
+                "reference": "2da1a169a5a80fc2f731b1bdbd7893a57cde6ada",
                 "shasum": ""
             },
             "require-dev": {
@@ -1306,7 +1306,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
-            "time": "2019-05-07T21:36:13+00:00"
+            "time": "2019-06-14T01:27:55+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1538,19 +1538,19 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "prospress/action-scheduler": 20,
-        "posterno/posterno-dom": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-maps": 20,
+        "parsecsv/php-parsecsv": 20,
         "posterno/import-export": 20,
-        "parsecsv/php-parsecsv": 20
+        "posterno/addons": 20,
+        "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-forms": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
