@@ -9,18 +9,18 @@
 		"htmlburger/carbon-fields": "3.1.1",
 		"prospress/action-scheduler": "dev-master",
 		"parsecsv/php-parsecsv": "^1.0@dev",
-		"posterno/import-export": "@dev",
-		"posterno/addons": "@dev",
-		"posterno/posterno-fields-editor-validator": "@dev",
 		"posterno/posterno-third-party": "@dev",
+		"posterno/posterno-fields-editor-validator": "@dev",
 		"posterno/posterno-maps": "@dev",
-		"posterno/posterno-validator": "@dev",
-		"posterno/posterno-geocoder": "@dev",
-		"posterno/posterno-dom": "@dev",
 		"posterno/posterno-schema": "@dev",
-		"posterno/posterno-entities": "@dev",
 		"posterno/posterno-submission-scripts": "@dev",
-		"posterno/posterno-forms": "@dev"
+		"posterno/posterno-entities": "@dev",
+		"posterno/addons": "@dev",
+		"posterno/posterno-geocoder": "@dev",
+		"posterno/posterno-validator": "@dev",
+		"posterno/posterno-dom": "@dev",
+		"posterno/posterno-forms": "@dev",
+		"posterno/import-export": "@dev"
 	},
 	"minimum-stability": "dev",
 	"repositories": [{
@@ -127,7 +127,8 @@
 				"posterno/posterno-dom",
 				"posterno/posterno-submission-scripts",
 				"posterno/posterno-fields-editor-validator",
-				"posterno/addons"
+				"posterno/addons",
+				"posterno/import-export"
 			]
 		}
 	}

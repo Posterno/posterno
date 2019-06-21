@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ba617d95296440f4f24de8059bdc150",
+    "content-hash": "be06d87ca95ff4dba14ec915327dad1b",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -750,7 +750,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "a696ebc6ee1b01a1dafbb8c0a616c51913dd7bb5",
+                "reference": "e98e28a9a1c3681743f165d0f33799a98feb838e",
                 "shasum": null
             },
             "require": {
@@ -761,7 +761,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
-            "type": "library",
+            "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
                     "PosternoImportExport\\": "includes/classes/"
@@ -1539,18 +1539,18 @@
         "rarst/wpdatetime": 20,
         "prospress/action-scheduler": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/import-export": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-third-party": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-maps": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-dom": 20,
         "posterno/posterno-schema": 20,
-        "posterno/posterno-entities": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-forms": 20
+        "posterno/posterno-entities": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/import-export": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
