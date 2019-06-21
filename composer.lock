@@ -750,7 +750,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "e98e28a9a1c3681743f165d0f33799a98feb838e",
+                "reference": "bfa841f704e4c589f1a3e165c6a03a201303504d",
                 "shasum": null
             },
             "require": {
@@ -761,7 +761,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
-            "type": "wordpress-plugin",
+            "type": "library",
             "autoload": {
                 "psr-4": {
                     "PosternoImportExport\\": "includes/classes/"
