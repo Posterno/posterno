@@ -120,6 +120,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.1 21st June 2019 =
+
+- Fix: fatal error when trying to load libraries on a server that uses case-sensitive file system.
+
 = 1.0.0 First official release =
 
 **Beta phase is finished. This is the first officially stable release.**
