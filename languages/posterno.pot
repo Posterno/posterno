@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.0\n"
+"Project-Id-Version: Posterno 1.0.1\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-06-21 09:58:03+00:00\n"
+"POT-Creation-Date: 2019-06-21 10:25:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,11 +99,8 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: includes/actions.php:344
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:41
-#: includes/post-types.php:619 includes/post-types.php:634
-#: includes/templates-functions.php:26
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:41
+#: includes/actions.php:344 includes/post-types.php:619
+#: includes/post-types.php:634 includes/templates-functions.php:26
 msgid "Email"
 msgstr ""
 
@@ -202,13 +199,8 @@ msgid "Recent listings page"
 msgstr ""
 
 #: includes/admin/admin-actions.php:92 includes/admin/admin-options.php:26
-#: includes/admin/admin-options.php:63
-#: includes/components/import-export/includes/classes/export/Admin.php:92
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:41
-#: includes/post-types.php:39 includes/post-types.php:44
-#: includes/profiles/profiles-functions.php:145
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:92
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:41
+#: includes/admin/admin-options.php:63 includes/post-types.php:39
+#: includes/post-types.php:44 includes/profiles/profiles-functions.php:145
 msgid "Listings"
 msgstr ""
 
@@ -278,20 +270,14 @@ msgstr ""
 #: includes/admin/admin-actions.php:560
 #: includes/admin/custom-fields/display-custom-fields.php:73
 #: includes/admin/tools/tools.php:85 includes/admin/views/options-panel.php:35
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:144
-#: includes/components/import-export/resources/views/import-tool.php:28
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:58
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:144
-#: wp-content/plugins/import-export/resources/views/import-tool.php:28
 msgid "Import"
 msgstr ""
 
 #: includes/admin/admin-actions.php:561
 #: includes/admin/custom-fields/display-custom-fields.php:74
 #: includes/admin/tools/tools.php:86 includes/admin/views/options-panel.php:38
-#: includes/components/import-export/resources/views/export-tool.php:28
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:59
-#: wp-content/plugins/import-export/resources/views/export-tool.php:28
 msgid "Export"
 msgstr ""
 
@@ -358,19 +344,7 @@ msgstr ""
 #: includes/admin/tools/tools.php:33
 #: includes/admin/views/getting-started.php:64
 #: includes/admin/views/options-panel.php:32
-#: includes/components/import-export/resources/views/html-csv-import-header.php:23
-#: includes/components/import-export/resources/views/html-listings-export.php:27
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:27
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:27
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:27
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:27
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:60
-#: wp-content/plugins/import-export/resources/views/html-csv-import-header.php:23
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:27
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:27
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:27
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:27
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:27
 msgid "Documentation"
 msgstr ""
 
@@ -379,13 +353,7 @@ msgid "Rate us"
 msgstr ""
 
 #: includes/admin/admin-filters.php:188
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:44
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:112
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:172
 #: includes/emails/class-pno-emails-editor-settings.php:98
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:44
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:112
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:172
 msgid "Situations"
 msgstr ""
 
@@ -809,10 +777,7 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: includes/admin/admin-options.php:25
-#: includes/components/import-export/includes/classes/export/Admin.php:57
-#: includes/post-types.php:618
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:57
+#: includes/admin/admin-options.php:25 includes/post-types.php:618
 msgid "Emails"
 msgstr ""
 
@@ -900,28 +865,16 @@ msgid "Your \"%s\" was unable to be removed at this time."
 msgstr ""
 
 #: includes/admin/class-pno-admin-listings-table.php:48
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:140
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:116
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:191
 #: includes/listings/dashboard-functions.php:25
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:140
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:116
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:191
 msgid "Status"
 msgstr ""
 
 #: includes/admin/class-pno-admin-listings-table.php:51
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:142
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:118
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:193
 #: includes/listings/class-pno-listings-featured.php:46
 #: templates/listings/card-grid.php:36 templates/listings/card-grid.php:72
 #: templates/listings/card-grid.php:87 templates/listings/card-list.php:36
 #: templates/listings/card-list.php:71 templates/listings/card-list.php:85
 #: templates/single.php:64
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:142
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:118
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:193
 msgid "Featured"
 msgstr ""
 
@@ -930,9 +883,7 @@ msgid "Posted"
 msgstr ""
 
 #: includes/admin/class-pno-admin-listings-table.php:57
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:141
 #: includes/listings/dashboard-functions.php:24
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:141
 msgid "Expires"
 msgstr ""
 
@@ -956,8 +907,6 @@ msgid "Active"
 msgstr ""
 
 #: includes/admin/class-pno-admin-listings-table.php:132
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:103
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:103
 msgid "Expired"
 msgstr ""
 
@@ -1572,10 +1521,6 @@ msgid "Enable the option to add these attributes to external links. "
 msgstr ""
 
 #: includes/admin/class-pno-options-panel.php:547
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:43
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:111
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:43
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:111
 msgid "Content"
 msgstr ""
 
@@ -1938,18 +1883,6 @@ msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:65
 #: includes/admin/tools/tools.php:30 includes/admin/views/options-panel.php:29
-#: includes/components/import-export/resources/views/html-csv-import-header.php:20
-#: includes/components/import-export/resources/views/html-listings-export.php:24
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:24
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:24
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:24
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:24
-#: wp-content/plugins/import-export/resources/views/html-csv-import-header.php:20
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:24
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:24
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:24
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:24
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:24
 msgid "Addons"
 msgstr ""
 
@@ -2007,12 +1940,6 @@ msgid "Posterno listings fields editor"
 msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:90
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:181
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:181
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:181
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:181
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:181
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:181
 msgid "Field title"
 msgstr ""
 
@@ -2797,1337 +2724,6 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: includes/components/import-export/includes/classes/export/Admin.php:50
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:50
-msgid "Listings schemas"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:64
-#: includes/post-types.php:122 includes/post-types.php:124
-#: includes/post-types.php:125 includes/post-types.php:126
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:64
-msgid "Listings custom fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:71
-#: includes/post-types.php:183 includes/post-types.php:185
-#: includes/post-types.php:186 includes/post-types.php:187
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:71
-msgid "Profile custom fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:78
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:78
-msgid "Registration custom fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:85
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:85
-msgid "Taxonomy terms"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:190
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:190
-msgid "Insufficient privileges to export products."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:269
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:269
-msgid "Insufficient privileges to export emails."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:348
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:348
-msgid "Insufficient privileges to export listings fields."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:427
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:427
-msgid "Insufficient privileges to export profile fields."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:506
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:506
-msgid "Insufficient privileges to export registration fields."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:585
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:585
-msgid "Insufficient privileges to export taxonomy."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/Admin.php:669
-#: wp-content/plugins/import-export/includes/classes/export/Admin.php:669
-msgid "Insufficient privileges to export listings."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:41
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:133
-#: includes/components/import-export/includes/classes/export/CsvListingsFieldsExporter.php:38
-#: includes/components/import-export/includes/classes/export/CsvProfileFieldsExporter.php:38
-#: includes/components/import-export/includes/classes/export/CsvRegistrationFieldsExporter.php:38
-#: includes/components/import-export/includes/classes/export/CsvSchemasExporter.php:41
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:98
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:109
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:169
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:109
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:184
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:110
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:180
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:110
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:180
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:110
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:180
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:109
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:166
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:110
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:171
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:41
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:133
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsFieldsExporter.php:38
-#: wp-content/plugins/import-export/includes/classes/export/CsvProfileFieldsExporter.php:38
-#: wp-content/plugins/import-export/includes/classes/export/CsvRegistrationFieldsExporter.php:38
-#: wp-content/plugins/import-export/includes/classes/export/CsvSchemasExporter.php:41
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:98
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:109
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:169
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:109
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:184
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:180
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:180
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:180
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:109
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:166
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:171
-msgid "ID"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:42
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:134
-#: includes/components/import-export/includes/classes/export/CsvListingsFieldsExporter.php:39
-#: includes/components/import-export/includes/classes/export/CsvProfileFieldsExporter.php:39
-#: includes/components/import-export/includes/classes/export/CsvRegistrationFieldsExporter.php:39
-#: includes/components/import-export/includes/classes/export/CsvSchemasExporter.php:42
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:110
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:111
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:111
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:111
-#: includes/components/import-export/resources/mappings/generic.php:21
-#: includes/widgets/widget-featured-listings.php:30
-#: includes/widgets/widget-listing-author.php:36
-#: includes/widgets/widget-listing-business-hours.php:30
-#: includes/widgets/widget-listing-contact.php:30
-#: includes/widgets/widget-listing-details.php:36
-#: includes/widgets/widget-listing-location-map.php:30
-#: includes/widgets/widget-listing-taxonomies.php:30
-#: includes/widgets/widget-listing-video.php:30
-#: includes/widgets/widget-recent-listings.php:30
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:42
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:134
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsFieldsExporter.php:39
-#: wp-content/plugins/import-export/includes/classes/export/CsvProfileFieldsExporter.php:39
-#: wp-content/plugins/import-export/includes/classes/export/CsvRegistrationFieldsExporter.php:39
-#: wp-content/plugins/import-export/includes/classes/export/CsvSchemasExporter.php:42
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:111
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:111
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:111
-#: wp-content/plugins/import-export/resources/mappings/generic.php:21
-msgid "Title"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:45
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:113
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:45
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:113
-msgid "Heading"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:46
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:114
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:174
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:46
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:114
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:174
-msgid "Notify admin"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:47
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:115
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:47
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:115
-msgid "Admin notification subject"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvEmailsExporter.php:48
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:116
-#: wp-content/plugins/import-export/includes/classes/export/CsvEmailsExporter.php:48
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:116
-msgid "Admin notification content"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:87
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:87
-msgid "Which columns should be exported?"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:91
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:91
-msgid "Leave empty to export all content"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:96
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:96
-msgid "Which statuses should be exported?"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:98
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:138
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:98
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:138
-msgid "Published"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:99
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:99
-msgid "Private"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:100
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:100
-msgid "Draft"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:101
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:101
-msgid "Future"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:102
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:102
-msgid "Pending"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:107
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:116
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:107
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:116
-msgid "Leave empty to export all listings"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:112
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:112
-msgid "Which listing category should be exported?"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:135
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:101
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:111
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:186
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:112
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:113
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:174
-#: includes/fields-functions.php:736
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:135
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:101
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:111
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:186
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:112
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:113
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:174
-msgid "Description"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:136
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:112
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:187
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:111
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:136
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:112
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:187
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:111
-msgid "Short description"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:137
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:113
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:188
-#: includes/fields-functions.php:825
-#: includes/listings/class-pno-listings-terms-custom-fields.php:48
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:137
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:113
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:188
-msgid "Featured image"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:139
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:115
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:190
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:139
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:115
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:190
-msgid "Last modified"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:143
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:119
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:194
-#: includes/fields-functions.php:111
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:143
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:119
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:194
-msgid "Opening hours"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:144
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:120
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:195
-#: templates/form-fields/listing-location-field.php:51
-#: templates/form-fields/listing-location-field.php:52
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:144
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:120
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:195
-msgid "Latitude"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:145
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:121
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:196
-#: templates/form-fields/listing-location-field.php:55
-#: templates/form-fields/listing-location-field.php:56
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:145
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:121
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:196
-msgid "Longitude"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:146
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:122
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:197
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:146
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:122
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:197
-msgid "Address"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:147
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:123
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:198
-#: includes/fields-functions.php:835
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:147
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:123
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:198
-msgid "Gallery images"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:148
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:124
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:199
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:148
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:124
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:199
-msgid "Author ID"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:149
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:125
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:200
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:149
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:125
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:200
-msgid "Author username"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvListingsExporter.php:150
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:126
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:201
-#: wp-content/plugins/import-export/includes/classes/export/CsvListingsExporter.php:150
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:126
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:201
-msgid "Author email"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvSchemasExporter.php:43
-#: wp-content/plugins/import-export/includes/classes/export/CsvSchemasExporter.php:43
-msgid "Mode"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvSchemasExporter.php:44
-#: wp-content/plugins/import-export/includes/classes/export/CsvSchemasExporter.php:44
-msgid "Code"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvSchemasExporter.php:45
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:170
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:105
-#: includes/post-types.php:389
-#: wp-content/plugins/import-export/includes/classes/export/CsvSchemasExporter.php:45
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:170
-msgid "Listing types"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:67
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:67
-msgid "Taxonomy to export:"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:99
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:111
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:172
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:99
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:111
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:172
-msgid "Term name"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:100
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:112
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:173
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:100
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:112
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:173
-msgid "Term slug"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:102
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:114
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:175
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:102
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:114
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:175
-msgid "Parent"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/export/CsvTaxonomyExporter.php:103
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:115
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:176
-#: wp-content/plugins/import-export/includes/classes/export/CsvTaxonomyExporter.php:103
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:115
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:176
-msgid "Taxonomy"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/AbstractImporter.php:272
-#: wp-content/plugins/import-export/includes/classes/import/AbstractImporter.php:272
-#. translators: %s: image URL
-msgid "Not able to attach \"%s\"."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/AbstractImporter.php:281
-#: wp-content/plugins/import-export/includes/classes/import/AbstractImporter.php:281
-#. translators: %s: image URL
-msgid "Unable to use image \"%s\"."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/AbstractImporter.php:393
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:376
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:412
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:427
-#: wp-content/plugins/import-export/includes/classes/import/AbstractImporter.php:393
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:376
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:412
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:427
-msgid "Invalid file type. The importer supports CSV and TXT file formats."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/AbstractImporter.php:841
-#: wp-content/plugins/import-export/includes/classes/import/AbstractImporter.php:841
-#. translators: %d: object ID
-msgid "ID %d"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:62
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:62
-msgid "Schema Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:69
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:69
-msgid "Email Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:76
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:76
-msgid "Listings fields Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:83
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:83
-msgid "Profiles fields Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:90
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:90
-msgid "Registration fields Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:97
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:97
-msgid "Taxonomy Terms Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:104
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:104
-msgid "Listings Import"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/Admin.php:237
-#: includes/components/import-export/includes/classes/import/Admin.php:325
-#: includes/components/import-export/includes/classes/import/Admin.php:389
-#: includes/components/import-export/includes/classes/import/Admin.php:457
-#: includes/components/import-export/includes/classes/import/Admin.php:525
-#: includes/components/import-export/includes/classes/import/Admin.php:593
-#: includes/components/import-export/includes/classes/import/Admin.php:657
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:237
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:325
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:389
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:457
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:525
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:593
-#: wp-content/plugins/import-export/includes/classes/import/Admin.php:657
-msgid "Insufficient privileges to import."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterEmail.php:149
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterEmail.php:149
-msgid "A email with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterEmail.php:161
-#: includes/components/import-export/includes/classes/import/CsvImporterListing.php:238
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:167
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:167
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:167
-#: includes/components/import-export/includes/classes/import/CsvImporterSchema.php:134
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterEmail.php:161
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListing.php:238
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:167
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:167
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:167
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterSchema.php:134
-msgid "ID found but post type not matching."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterEmail.php:173
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterEmail.php:173
-msgid "No matching email exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterEmail.php:188
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterEmail.php:188
-msgid "No matching email situation exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterEmail.php:267
-#: includes/components/import-export/includes/classes/import/CsvImporterListing.php:301
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:218
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:218
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:218
-#: includes/components/import-export/includes/classes/import/CsvImporterSchema.php:215
-#: includes/components/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:185
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterEmail.php:267
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListing.php:301
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:218
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:218
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:218
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterSchema.php:215
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:185
-msgid "No ID was found."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListing.php:226
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListing.php:226
-msgid "A listing with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListing.php:250
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListing.php:250
-msgid "No matching listing exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListing.php:384
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:248
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:248
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:260
-#: includes/components/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:222
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListing.php:384
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:248
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:248
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:260
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:222
-msgid "No title assigned for import."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:143
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:143
-msgid "A listings field with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:155
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:155
-msgid "No matching listings field exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:251
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:251
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:251
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:251
-msgid "No type assigned for import."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterListingsField.php:254
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:254
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterListingsField.php:254
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:254
-msgid "No meta key assigned for import."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:143
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:143
-msgid "A profiles field with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterProfilesField.php:155
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterProfilesField.php:155
-msgid "No matching profiles field exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:143
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:143
-msgid "A registration field with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:155
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:155
-msgid "No matching registration field exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterRegistrationField.php:243
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterRegistrationField.php:243
-msgid "Assigned profile field ID does not exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterSchema.php:122
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterSchema.php:122
-msgid "A schema with this ID already exists."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterSchema.php:146
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterSchema.php:146
-msgid "No matching schema exists to update."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:117
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:117
-msgid "Taxonomy not found."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:133
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:133
-msgid "Term with this ID not found."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:197
-#: wp-content/plugins/import-export/includes/classes/import/CsvImporterTaxonomyTerm.php:197
-msgid "No taxonomy assigned for import."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:134
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:134
-msgid "Upload CSV file"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:139
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:139
-msgid "Column mapping"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:149
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:149
-msgid "Done!"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:372
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:372
-msgid ""
-"File is empty. Please upload something more substantial. This error could "
-"also be caused by uploads being disabled in your php.ini or by "
-"post_max_size being defined as smaller than upload_max_filesize in php.ini."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:419
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:419
-msgid "Please upload or provide the link to a valid CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/BaseController.php:433
-#: wp-content/plugins/import-export/includes/classes/import/controllers/BaseController.php:433
-msgid "The file does not exist, please try again."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:36
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:36
-msgid "Import emails from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:37
-msgid ""
-"This tool allows you to import (or merge) email settings to your webiste "
-"from a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:38
-msgid "Update existing emails"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:39
-msgid ""
-"Existing emails that match by ID will be updated. Emails that do not exist "
-"will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:78
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:78
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:79
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:79
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:79
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:78
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:79
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:78
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:78
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:79
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:79
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:79
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:78
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:79
-msgid ""
-"The file is empty or using a different encoding than UTF-8, please try "
-"again with a new file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:82
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:82
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:83
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:83
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:83
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:82
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:83
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:82
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:82
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:83
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:83
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:83
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:82
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:83
-msgid "Upload a new file"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:126
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:141
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:137
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:137
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:137
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:123
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:125
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:126
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:141
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:137
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:137
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:137
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:123
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:125
-msgid "Meta: %s"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:170
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:170
-msgid "Email title"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:171
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:171
-msgid "Email content"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:173
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:173
-msgid "Heading title"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:175
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:175
-msgid "Admin email subject"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Email.php:176
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Email.php:176
-msgid "Admin email content"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:36
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:36
-msgid "Import listings from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:37
-msgid ""
-"This tool allows you to import (or merge) listings to your webiste from a "
-"CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:38
-msgid "Update existing listings"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:39
-msgid ""
-"Existing listings that match by ID will be updated. Listings that do not "
-"exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:110
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:185
-#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:726
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:185
-msgid "Listing title"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:114
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:189
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:114
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:189
-msgid "Publish date"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:117
-#: includes/components/import-export/includes/classes/import/controllers/Listing.php:192
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:117
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Listing.php:192
-msgid "Expiry date"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:37
-msgid "Import listings fields from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:38
-msgid ""
-"This tool allows you to import (or merge) listings fields to your webiste "
-"from a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:39
-msgid "Update existing listings fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:40
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:40
-msgid ""
-"Existing listings fields that match by ID will be updated. Listings Fields "
-"that do not exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ListingsField.php:42
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ListingsField.php:42
-msgid "Listings Field"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:37
-msgid "Import profiles fields from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:38
-msgid ""
-"This tool allows you to import (or merge) profiles fields to your webiste "
-"from a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:39
-msgid "Update existing profiles fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:40
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:40
-msgid ""
-"Existing profiles fields that match by ID will be updated. Profiles Fields "
-"that do not exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/ProfilesField.php:42
-#: wp-content/plugins/import-export/includes/classes/import/controllers/ProfilesField.php:42
-msgid "Profiles Field"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:37
-msgid "Import registration fields from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:38
-msgid ""
-"This tool allows you to import (or merge) registration fields to your "
-"webiste from a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:39
-msgid "Update existing registration fields"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:40
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:40
-msgid ""
-"Existing registration fields that match by ID will be updated. Registration "
-"Fields that do not exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/RegistrationField.php:42
-#: wp-content/plugins/import-export/includes/classes/import/controllers/RegistrationField.php:42
-msgid "Registration Field"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:36
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:36
-msgid "Import schemas from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:37
-msgid ""
-"This tool allows you to import (or merge) schema data to your webiste from "
-"a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:38
-msgid "Update existing schemas"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:39
-msgid ""
-"Existing schemas that match by ID will be updated. Schemas that do not "
-"exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:41
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:21
-#: includes/components/posterno-schema/includes/Component/post-type.php:22
-#: includes/components/posterno-schema/includes/Component/post-type.php:23
-#: includes/components/posterno-schema/includes/Component/post-type.php:24
-#: includes/components/posterno-schema/includes/Component/post-type.php:25
-#: includes/components/posterno-schema/includes/Component/post-type.php:26
-#: includes/components/posterno-schema/includes/Component/post-type.php:32
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:41
-msgid "Schema"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:110
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:110
-msgid "Name"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:113
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:113
-msgid "Position"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:167
-#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:103
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:167
-msgid "Schema name"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:168
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:168
-msgid "Schema mode"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Schema.php:169
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Schema.php:169
-msgid "Schema code"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:37
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:37
-msgid "Import taxonomy terms from a CSV File"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:38
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:38
-msgid ""
-"This tool allows you to import (or merge) taxonomy terms to your webiste "
-"from a CSV file."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:39
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:39
-msgid "Update existing taxonomy terms"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:40
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:40
-msgid ""
-"Existing taxonomy terms that match by ID will be updated. Taxonomy Terms "
-"that do not exist will be skipped."
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:42
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:42
-msgid "Taxonomy Term"
-msgstr ""
-
-#: includes/components/import-export/includes/classes/import/controllers/Taxonomy.php:177
-#: wp-content/plugins/import-export/includes/classes/import/controllers/Taxonomy.php:177
-msgid "Import as meta"
-msgstr ""
-
-#: includes/components/import-export/resources/mappings/generic.php:22
-#: wp-content/plugins/import-export/resources/mappings/generic.php:22
-msgid "Menu order"
-msgstr ""
-
-#: includes/components/import-export/resources/views/export-tool.php:18
-#: wp-content/plugins/import-export/resources/views/export-tool.php:18
-msgid "Export content"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:24
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:24
-#. translators: %d: items count
-msgid "%s item imported"
-msgid_plural "%s items imported"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:32
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:32
-#. translators: %d: items count
-msgid "%s item updated"
-msgid_plural "%s items updated"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:40
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:40
-#. translators: %d: items count
-msgid "%s item was skipped"
-msgid_plural "%s items were skipped"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:48
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:48
-#. translators: %d: items count
-msgid "Failed to import %s item"
-msgid_plural "Failed to import %s items"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:54
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:54
-msgid "View import log"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:58
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:58
-#. translators: %d: import results
-msgid "Import complete!"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:65
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:65
-msgid "Item"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:66
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:66
-msgid "Reason for failure"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:98
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:98
-msgid "View %s"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-done.php:99
-#: wp-content/plugins/import-export/resources/views/html-csv-import-done.php:99
-msgid "Start new import"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:26
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:26
-msgid "Choose a CSV file from your computer:"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:34
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:34
-msgid ""
-"Before you can upload your import file, you will need to fix the following "
-"error:"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:48
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:48
-#. translators: %s: maximum upload size
-msgid "Maximum size: %s"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:68
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:68
-msgid "Alternatively, enter the path to a CSV file on your server:"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:77
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:77
-msgid "CSV Delimiter"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:81
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:81
-msgid "Use previous column mapping preferences?"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:103
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:103
-msgid "Hide advanced options"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:103
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:103
-msgid "Show advanced options"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-form.php:104
-#: wp-content/plugins/import-export/resources/views/html-csv-import-form.php:104
-msgid "Continue"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-header.php:30
-#: wp-content/plugins/import-export/resources/views/html-csv-import-header.php:30
-msgid "Import data"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:17
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:17
-msgid "Map CSV fields"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:18
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:18
-msgid ""
-"Select fields from your CSV file to map against database fields, or to "
-"ignore during import."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:24
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:24
-msgid "Column name"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:25
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:25
-msgid "Map to field"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:35
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:35
-msgid "Sample:"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:41
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:41
-msgid "Do not import"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-mapping.php:62
-#: wp-content/plugins/import-export/resources/views/html-csv-import-mapping.php:62
-msgid "Run the importer"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-progress.php:18
-#: wp-content/plugins/import-export/resources/views/html-csv-import-progress.php:18
-msgid "Importing"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-csv-import-progress.php:19
-#: wp-content/plugins/import-export/resources/views/html-csv-import-progress.php:19
-msgid "Your data is now being imported..."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-emails-export.php:21
-#: includes/components/import-export/resources/views/html-emails-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-emails-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-emails-export.php:34
-msgid "Export emails"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-emails-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-emails-export.php:40
-msgid "Export emails to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-emails-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-emails-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all emails configured on the site."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-emails-export.php:47
-#: includes/components/import-export/resources/views/html-listings-export.php:65
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:47
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:47
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:47
-#: includes/components/import-export/resources/views/html-schemas-export.php:47
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:65
-#: wp-content/plugins/import-export/resources/views/html-emails-export.php:47
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:65
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:47
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:47
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:47
-#: wp-content/plugins/import-export/resources/views/html-schemas-export.php:47
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:65
-msgid "Generate CSV"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-export.php:21
-#: includes/components/import-export/resources/views/html-listings-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:34
-msgid "Export listings"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:40
-msgid "Export listings to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-listings-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all listings submitted on this website."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:21
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:34
-msgid "Export listings custom fields"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:40
-msgid "Export listings custom fields to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-listings-fields-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-listings-fields-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all listings custom fields configured on this website."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:21
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:34
-msgid "Export profile custom fields"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:40
-msgid "Export profile custom fields to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-profile-fields-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-profile-fields-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all profile custom fields configured on this website."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:21
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:34
-msgid "Export registration custom fields"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:40
-msgid "Export registration custom fields to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-registration-fields-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-registration-fields-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all registration custom fields configured on this website."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-schemas-export.php:21
-#: includes/components/import-export/resources/views/html-schemas-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-schemas-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-schemas-export.php:34
-msgid "Export listings schemas"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-schemas-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-schemas-export.php:40
-msgid "Export schemas to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-schemas-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-schemas-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all listings schemas on your site."
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:21
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:34
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:21
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:34
-msgid "Export taxonomy terms"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:40
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:40
-msgid "Export taxonomy terms to a CSV file"
-msgstr ""
-
-#: includes/components/import-export/resources/views/html-taxonomy-export.php:41
-#: wp-content/plugins/import-export/resources/views/html-taxonomy-export.php:41
-msgid ""
-"This tool allows you to generate and download a CSV file containing a list "
-"of all taxonomy terms created on this website."
-msgstr ""
-
-#: includes/components/import-export/resources/views/import-tool.php:18
-#: wp-content/plugins/import-export/resources/views/import-tool.php:18
-msgid "Import content"
-msgstr ""
-
 #: includes/components/posterno-forms/src/Element/AbstractSelect.php:158
 msgid "This field is required."
 msgstr ""
@@ -4254,6 +2850,16 @@ msgstr ""
 msgid "Listings Schema Settings"
 msgstr ""
 
+#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:21
+#: includes/components/posterno-schema/includes/Component/post-type.php:22
+#: includes/components/posterno-schema/includes/Component/post-type.php:23
+#: includes/components/posterno-schema/includes/Component/post-type.php:24
+#: includes/components/posterno-schema/includes/Component/post-type.php:25
+#: includes/components/posterno-schema/includes/Component/post-type.php:26
+#: includes/components/posterno-schema/includes/Component/post-type.php:32
+msgid "Schema"
+msgstr ""
+
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:61
 msgid "Add new schema"
 msgstr ""
@@ -4334,6 +2940,15 @@ msgstr ""
 msgid ""
 "No listing types have been found. Add a listing type first and then create "
 "the schema."
+msgstr ""
+
+#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:103
+msgid "Schema name"
+msgstr ""
+
+#: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:105
+#: includes/post-types.php:389
+msgid "Listing types"
 msgstr ""
 
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:107
@@ -4618,6 +3233,10 @@ msgstr ""
 msgid "Display listing ID number."
 msgstr ""
 
+#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:726
+msgid "Listing title"
+msgstr ""
+
 #: includes/emails/class-pno-emails.php:409
 msgid "Display listing title."
 msgstr ""
@@ -4771,6 +3390,10 @@ msgstr ""
 msgid "Taxonomy chain dropdown"
 msgstr ""
 
+#: includes/fields-functions.php:111
+msgid "Opening hours"
+msgstr ""
+
 #: includes/fields-functions.php:112
 msgid "Map"
 msgstr ""
@@ -4814,6 +3437,10 @@ msgstr ""
 msgid "About me"
 msgstr ""
 
+#: includes/fields-functions.php:736
+msgid "Description"
+msgstr ""
+
 #: includes/fields-functions.php:776
 msgid "Video"
 msgstr ""
@@ -4840,6 +3467,15 @@ msgstr ""
 
 #: includes/fields-functions.php:818
 msgid "Hours of operation"
+msgstr ""
+
+#: includes/fields-functions.php:825
+#: includes/listings/class-pno-listings-terms-custom-fields.php:48
+msgid "Featured image"
+msgstr ""
+
+#: includes/fields-functions.php:835
+msgid "Gallery images"
 msgstr ""
 
 #: includes/fields-functions.php:1156
@@ -5478,6 +4114,11 @@ msgid_plural "Expired <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/post-types.php:122 includes/post-types.php:124
+#: includes/post-types.php:125 includes/post-types.php:126
+msgid "Listings custom fields"
+msgstr ""
+
 #: includes/post-types.php:123 includes/post-types.php:151
 msgid "Listings custom field"
 msgstr ""
@@ -5543,6 +4184,11 @@ msgstr ""
 
 #: includes/post-types.php:148 includes/post-types.php:209
 msgid "Filter items list"
+msgstr ""
+
+#: includes/post-types.php:183 includes/post-types.php:185
+#: includes/post-types.php:186 includes/post-types.php:187
+msgid "Profile custom fields"
 msgstr ""
 
 #: includes/post-types.php:184
@@ -6090,6 +4736,18 @@ msgstr ""
 msgid "Displays the featured listings."
 msgstr ""
 
+#: includes/widgets/widget-featured-listings.php:30
+#: includes/widgets/widget-listing-author.php:36
+#: includes/widgets/widget-listing-business-hours.php:30
+#: includes/widgets/widget-listing-contact.php:30
+#: includes/widgets/widget-listing-details.php:36
+#: includes/widgets/widget-listing-location-map.php:30
+#: includes/widgets/widget-listing-taxonomies.php:30
+#: includes/widgets/widget-listing-video.php:30
+#: includes/widgets/widget-recent-listings.php:30
+msgid "Title"
+msgstr ""
+
 #: includes/widgets/widget-featured-listings.php:31
 #: includes/widgets/widget-recent-listings.php:31
 msgid "Limit"
@@ -6279,6 +4937,16 @@ msgstr ""
 #: templates/form-fields/listing-category-field.php:41
 #: templates/form-fields/term-chain-dropdown-field.php:68
 msgid "No options available."
+msgstr ""
+
+#: templates/form-fields/listing-location-field.php:51
+#: templates/form-fields/listing-location-field.php:52
+msgid "Latitude"
+msgstr ""
+
+#: templates/form-fields/listing-location-field.php:55
+#: templates/form-fields/listing-location-field.php:56
+msgid "Longitude"
 msgstr ""
 
 #: templates/form-fields/listing-location-field.php:59
@@ -6480,14 +5148,6 @@ msgstr ""
 
 #: templates/widgets/listing-video.php:29
 msgid "This listing does not have any video attached."
-msgstr ""
-
-#: wp-content/plugins/import-export/node_modules/node-wp-i18n/test/fixtures/makepot/nested-theme/include/include.php:2
-msgid "Include"
-msgstr ""
-
-#: wp-content/plugins/import-export/node_modules/node-wp-i18n/test/fixtures/makepot/nested-theme/subdir/index.php:2
-msgid "Index"
 msgstr ""
 
 #. Description of the plugin/theme
