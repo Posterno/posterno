@@ -120,6 +120,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.2 22nd June 2019 =
+
+- Fix: edge case when some forms would not properly submit.
+
 = 1.0.1 21st June 2019 =
 
 - Fix: fatal error when trying to load libraries on a server that uses case-sensitive file system.
