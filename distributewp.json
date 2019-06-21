@@ -1,5 +1,5 @@
 {
   "plugin_slug": "posterno",
-  "deployment_folder": "build/1.0.1",
+  "deployment_folder": "build/1.0.2",
   "deploy_assets": false
 }
