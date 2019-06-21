@@ -48,7 +48,7 @@ class PNO_Forms {
 	 */
 	public function load_posted_form() {
 		if ( ! empty( $_POST['pno_form'] ) ) {
-			$this->load_form_class( ucfirst( sanitize_title( $_POST['pno_form'] ) ) );
+			$this->load_form_class( ucfirst( sanitize_text_field( $_POST['pno_form'] ) ) );
 		}
 	}
 
