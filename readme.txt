@@ -43,8 +43,6 @@ Posterno provides customizable email templates for each email that can be sent t
 
 = Add-ons =
 
-For more functionality check out [the add-ons page](https://posterno.com/addons/).
-
 = Free Extensions =
 
 - **[Google reCAPTCHA](https://posterno.com/addons/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
