@@ -373,7 +373,8 @@ class ListingEdit {
 
 					// Assign tags to the listing.
 					if ( ! empty( $this->form->getFieldValue( 'listing_tags' ) ) ) {
-						$listing_tags = json_decode( stripslashes( $this->form->getFieldValue( 'listing_tags' ) ) );
+						$submitted_tags = is_array( $this->form->getFieldValue( 'listing_tags' ) ) ? $this->form->getFieldValue( 'listing_tags' ) : json_decode( stripslashes( $this->form->getFieldValue( 'listing_tags' ) ) );
+						$listing_tags   = pno_clean( $submitted_tags );
 						$tags         = [];
 						if ( is_array( $listing_tags ) ) {
 							foreach ( $listing_tags as $tag ) {
