@@ -118,6 +118,11 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.3 24th June 2019 =
+
+- Fix: array formatting issue when setting tags via listing submission and edit form.
+- Fix: gallery images field not working if listing updated from admin panel.
+
 = 1.0.2 22nd June 2019 =
 
 - Fix: edge case when some forms would not properly submit.
