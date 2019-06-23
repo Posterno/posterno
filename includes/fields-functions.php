@@ -1024,7 +1024,8 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 							$attachments    = [];
 							if ( isset( $gallery_images[0] ) && ! empty( $gallery_images[0] ) && is_array( $gallery_images[0] ) ) {
 								foreach ( $gallery_images[0] as $image ) {
-									$attachments[] = esc_url( $image['url'] );
+									$url           = isset( $image['url'][0]['value'] ) ? $image['url'][0]['value'] : $image['url'];
+									$attachments[] = esc_url( $url );
 								}
 							}
 							$value = wp_json_encode( $attachments );
@@ -1312,7 +1313,6 @@ function pno_reset_custom_fields_batch( $type = false, $offset = 0, $limit = 0 )
 			delete_option( 'pno_background_custom_fields_generation' );
 			pno_install_profile_fields( true );
 		}
-
 	} elseif ( $type === 'registration' ) {
 
 		$fields = new \PNO\Database\Queries\Registration_Fields(
@@ -1346,7 +1346,6 @@ function pno_reset_custom_fields_batch( $type = false, $offset = 0, $limit = 0 )
 			delete_option( 'pno_background_custom_fields_generation' );
 			pno_install_registration_fields();
 		}
-
 	} elseif ( $type === 'listings' ) {
 
 		$fields = new \PNO\Database\Queries\Listing_Fields(
@@ -1380,7 +1379,6 @@ function pno_reset_custom_fields_batch( $type = false, $offset = 0, $limit = 0 )
 			delete_option( 'pno_background_custom_fields_generation' );
 			pno_install_listings_fields();
 		}
-
 	}
 
 }
