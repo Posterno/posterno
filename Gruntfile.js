@@ -217,7 +217,7 @@ module.exports = function (grunt) {
 					'*.txt',
 					'*.png',
 				],
-				dest: 'build/<%= pkg.version %>/'
+				dest: 'build/posterno/'
 			}
 		},
 
