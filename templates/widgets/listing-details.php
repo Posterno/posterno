@@ -41,7 +41,7 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 		foreach ( $listing_fields->items as $field ) {
 			$additional_fields[ $field->getObjectMetaKey() ] = [
 				'type' => $field->getType(),
-				'name' => $field->getName(),
+				'name' => $field->getTitle(),
 			];
 		}
 	}
