@@ -122,6 +122,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 - Fix: array formatting issue when setting tags via listing submission and edit form.
 - Fix: gallery images field not working if listing updated from admin panel.
+- Fix: custom fields not loading in listings details widget.
 
 = 1.0.2 22nd June 2019 =
 
