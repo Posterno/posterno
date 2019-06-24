@@ -198,7 +198,7 @@ module.exports = function (grunt) {
 		// Clean up build directory
 		clean: {
 			main: ['build/**'],
-			composer: ['build/<%= pkg.version %>/vendor/nikic/fast-route/test']
+			composer: ['build/posterno/vendor/nikic/fast-route/test']
 		},
 
 		// Copy the plugin into the build directory
