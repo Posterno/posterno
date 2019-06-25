@@ -10,6 +10,8 @@
 
 namespace PNO;
 
+use WP_Error;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
