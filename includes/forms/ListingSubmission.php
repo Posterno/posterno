@@ -125,7 +125,7 @@ class ListingSubmission {
 			],
 			'listing-details' => [
 				'name'     => esc_html__( 'Listing details', 'posterno' ),
-				'priority' => 2,
+				'priority' => 100,
 			],
 		];
 
