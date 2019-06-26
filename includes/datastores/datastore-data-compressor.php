@@ -96,7 +96,14 @@ class DataCompressor extends Post_Meta_Datastore {
 
 		} else {
 			if ( isset( $field_settings[ $key ] ) && ! empty( $field_settings[ $key ] ) ) {
-				$value = esc_html( $field_settings[ $key ] );
+
+				$val = $field_settings[ $key ];
+
+				if ( is_array( $val ) ) {
+					$value = pno_clean( $val );
+				} else {
+					$value = esc_html( $field_settings[ $key ] );
+				}
 			}
 		}
 
@@ -139,6 +146,10 @@ class DataCompressor extends Post_Meta_Datastore {
 				}
 
 				$value = $formatted_options;
+
+			} elseif ( is_array( $value ) ) {
+
+				$value = pno_clean( $value );
 
 			} else {
 				$value = sanitize_text_field( $value );
