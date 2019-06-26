@@ -48,6 +48,7 @@ defined( 'ABSPATH' ) || exit;
 					<form action="<?php echo esc_url( $data->action ); ?>" method="get" enctype="multipart/form-data">
 						<input type="hidden" name="listing_type_id" value="<?php echo absint( $type_id ); ?>">
 						<input type="hidden" name="submission_step" value="<?php echo esc_attr( $data->step ); ?>" />
+						<?php pno_do_listing_form_submission_step_keys(); ?>
 						<button type="submit" class="btn btn-primary mb-3">
 							<?php echo esc_html__( 'Select &rarr;', 'posterno' ); ?>
 						</button>

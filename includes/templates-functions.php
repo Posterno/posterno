@@ -753,3 +753,27 @@ function pno_get_placeholder_profile_menu() {
 	return $items;
 
 }
+
+/**
+ * Generate the form's hidden keys to preserve options from multiple steps.
+ *
+ * @return void
+ */
+function pno_do_listing_form_submission_step_keys() {
+
+	$steps = [
+		'listing_type_id',
+	];
+
+	$steps = apply_filters( 'pno_listing_form_submission_step_hidden_keys', $steps );
+
+	if ( ! empty( $steps ) && is_array( $steps ) ) {
+		foreach ( $steps as $step_key ) {
+			$defined = isset( $_GET[ $step_key ] ) && ! empty( $_GET[ $step_key ] ) ? true : false;
+			if ( $defined ) {
+				echo '<input type="hidden" name="' . esc_attr( $step_key ) . '" value="' . esc_attr( $_GET[ $step_key ] ) . '" />';
+			}
+		}
+	}
+
+}
