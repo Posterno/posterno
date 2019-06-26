@@ -285,8 +285,9 @@ class ListingSubmission {
 			 * Hook: allow developers to display the content of custom listing submission steps.
 			 *
 			 * @param Form $form the form object.
+			 * @param string $next_step the name of the next step
 			 */
-			do_action( "pno_listing_submission_form_step_{$step}", $this->form );
+			do_action( "pno_listing_submission_form_step_{$step}", $this->form, $this->getNextStep() );
 
 		}
 	}
