@@ -534,13 +534,13 @@ class ListingSubmission {
 				}
 
 				/**
-				 * Allow developers to extend the listing submission process.
-				 * This action is fired after the listing has been created and emails have been sent..
+				 * Allow developers to extend customize the redirect process after submission.
+				 * This action is fired after the listing has been created and emails have been sent.
 				 *
 				 * @param object $form the class instance managing the form.
 				 * @param string $new_listing_id the id number of the newly created listing.
 				 */
-				do_action( 'pno_after_listing_submission_end', $this->form, $new_listing_id );
+				do_action( 'pno_before_listing_submission_redirect', $this->form, $new_listing_id );
 
 				// Redirect the user to a new page or display success message.
 				$redirect = pno_get_listing_success_redirect_page_id();
