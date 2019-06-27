@@ -630,10 +630,15 @@ function pno_listings_can_expire() {
 /**
  * Calculates and returns the listing expiry date.
  *
- * @param  int $listing_id the id of the listing.
+ * @param  int        $listing_id the id of the listing.
+ * @param string|int $custom_duration whether to use a custom duration or not.
  * @return string
  */
-function pno_calculate_listing_expiry( $listing_id = false ) {
+function pno_calculate_listing_expiry( $listing_id = false, $custom_duration = false ) {
+
+	if ( $custom_duration ) {
+		return date( get_option( 'date_format' ), strtotime( "+{$custom_duration} days", current_time( 'timestamp' ) ) );
+	}
 
 	// Get duration from the product if set...
 	$duration = get_post_meta( $listing_id, 'listing_duration', true );
