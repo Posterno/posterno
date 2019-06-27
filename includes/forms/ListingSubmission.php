@@ -331,7 +331,7 @@ class ListingSubmission {
 				$listing_data = [
 					'post_title'   => $listing_title,
 					'post_content' => $listing_description,
-					'post_status'  => $listing_status,
+					'post_status'  => apply_filters( 'pno_listing_submission_status', $listing_status ),
 					'post_author'  => $listing_author,
 					'post_type'    => 'listings',
 				];
