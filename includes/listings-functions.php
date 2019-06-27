@@ -1191,9 +1191,17 @@ function pno_listings_can_be_featured() {
  * @return boolean
  */
 function pno_listing_is_featured( $listing_id ) {
-
 	return (bool) get_post_meta( $listing_id, '_listing_is_featured', true );
+}
 
+/**
+ * Mark the listing as featured.
+ *
+ * @param string $listing_id listing id.
+ * @return void
+ */
+function pno_set_listing_as_featured( $listing_id ) {
+	carbon_set_post_meta( $listing_id, 'listing_is_featured', true );
 }
 
 /**
