@@ -682,6 +682,12 @@ class Query extends Base {
 	 * @return string
 	 */
 	private function get_table_name() {
+
+		if ( isset( $this->addon_table ) && $this->addon_table === true ) {
+			global $wpdb;
+			return $wpdb->prefix . $this->table_name;
+		}
+
 		return $this->get_db()->{$this->table_name};
 	}
 
