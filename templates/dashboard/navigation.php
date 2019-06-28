@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 // Exit if accessed directly.
@@ -47,6 +47,9 @@ if ( empty( $dashboard_tabs ) ) {
 					break;
 				case 'listings':
 					$icon = 'list-ul';
+					break;
+				case 'packages':
+					$icon = 'box-open';
 					break;
 			}
 		} else {
