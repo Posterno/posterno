@@ -181,22 +181,28 @@ function pno_get_dashboard_navigation_items() {
 
 	$items = [
 		'dashboard'    => [
-			'name' => esc_html__( 'Dashboard', 'posterno' ),
+			'name'     => esc_html__( 'Dashboard', 'posterno' ),
+			'priority' => 1,
 		],
 		'listings'     => [
-			'name' => esc_html__( 'Manage listings', 'posterno' ),
+			'name'     => esc_html__( 'Manage listings', 'posterno' ),
+			'priority' => 2,
 		],
 		'edit-account' => [
-			'name' => esc_html__( 'Account details', 'posterno' ),
+			'name'     => esc_html__( 'Account details', 'posterno' ),
+			'priority' => 3,
 		],
 		'password'     => [
-			'name' => esc_html__( 'Change password', 'posterno' ),
+			'name'     => esc_html__( 'Change password', 'posterno' ),
+			'priority' => 10,
 		],
 		'privacy'      => [
-			'name' => esc_html__( 'Privacy settings', 'posterno' ),
+			'name'     => esc_html__( 'Privacy settings', 'posterno' ),
+			'priority' => 11,
 		],
 		'logout'       => [
-			'name' => esc_html__( 'Logout', 'posterno' ),
+			'name'     => esc_html__( 'Logout', 'posterno' ),
+			'priority' => 100,
 		],
 	];
 
@@ -207,6 +213,8 @@ function pno_get_dashboard_navigation_items() {
 	 * @param array $items
 	 */
 	$items = apply_filters( 'pno_dashboard_navigation_items', $items );
+
+	uasort( $items, 'pno_sort_array_by_priority' );
 
 	$first                       = key( $items );
 	$items[ $first ]['is_first'] = true;
