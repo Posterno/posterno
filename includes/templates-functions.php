@@ -726,7 +726,7 @@ function pno_get_placeholder_dashboard_menu() {
 		];
 	}
 
-	return $items;
+	return apply_filters( 'pno_placeholder_dashboard_menu', $items );
 
 }
 
