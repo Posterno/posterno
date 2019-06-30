@@ -132,6 +132,8 @@ class ListingsTable {
 				echo '<div data-balloon="' . esc_html__( 'Expired', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-dismiss"></span></div>';
 			} elseif ( $status === 'pending' ) {
 				echo '<div data-balloon="' . esc_html__( 'Pending approval', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-clock"></span></div>';
+			} elseif ( $status === 'pending_payment' ) {
+					echo '<div data-balloon="' . esc_html__( 'Pending payment', 'posterno' ) . '" data-balloon-pos="right"><span class="dashicons dashicons-lock"></span></div>';
 			} else {
 				echo '–';
 			}
