@@ -138,6 +138,7 @@ function pno_hide_custom_fields_pt_settings() {
 		'pno_signup_fields',
 		'pno_emails',
 		'pno_listings_fields',
+		'listings-packages',
 	);
 
 	if ( in_array( $post_type, $post_types ) ) {
