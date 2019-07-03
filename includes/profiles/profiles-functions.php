@@ -87,6 +87,28 @@ function pno_get_user_first_name( $user_id_or_object = false ) {
 }
 
 /**
+ * Get the user's username by id.
+ *
+ * @param mixed $user_id_or_object the user's to analyze.
+ * @return string
+ */
+function pno_get_user_username( $user_id_or_object = false ) {
+
+	if ( ! $user_id_or_object ) {
+		return;
+	}
+
+	$user_info = $user_id_or_object instanceof WP_User ? $user_id_or_object : get_userdata( $user_id_or_object );
+
+	if ( $user_info->user_login ) {
+		return $user_info->user_login;
+	}
+
+	return $user_info->display_name;
+
+}
+
+/**
  * Get the user's last name only. Returns display name if no first name is found.
  *
  * @param mixed $user_id_or_object the user's to analyze.
