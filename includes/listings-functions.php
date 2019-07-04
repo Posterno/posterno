@@ -1205,6 +1205,16 @@ function pno_set_listing_as_featured( $listing_id ) {
 }
 
 /**
+ * Mark the listing as non featured.
+ *
+ * @param string $listing_id listing id.
+ * @return void
+ */
+function pno_set_listing_as_non_featured( $listing_id ) {
+	delete_post_meta( $listing_id, '_listing_is_featured' );
+}
+
+/**
  * Retrieve the list of media items assigned to a listing if any.
  *
  * @param string $listing_id the id of the listing to verify.
