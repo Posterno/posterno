@@ -286,7 +286,13 @@ function pno_the_listing_expire_date( $post = null ) {
 
 	$expires = pno_get_the_listing_expire_date( $post ) ? pno_get_the_listing_expire_date( $post ) : '&ndash;';
 
-	echo '<time datetime="' . esc_attr( $expires ) . '">' . wp_kses_post( $expires ) . '</time>';
+	$is_subscription = get_post_meta( $post, '_listing_package_is_subscription', true );
+
+	if ( $is_subscription && $expires === '&ndash;' ) {
+		echo esc_html__( 'Subscription' );
+	} else {
+		echo '<time datetime="' . esc_attr( $expires ) . '">' . wp_kses_post( $expires ) . '</time>';
+	}
 
 }
 
