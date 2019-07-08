@@ -974,6 +974,13 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 		}
 	}
 
+	/**
+	 * Filter: allows developers to hook at the time when the fields query has been performed.
+	 *
+	 * @return array $fields
+	 */
+	$fields = apply_filters( 'pno_get_listing_submission_fields_query', $fields, $fields_query );
+
 	// Load listings related values within the fields.
 	if ( $listing_id ) {
 		$listing = get_post( $listing_id );
