@@ -98,7 +98,7 @@ if ( empty( $actions ) ) {
 				 *
 				 * @param string $listing_id the id number of the current listing.
 				 */
-				do_action( "pno_listings_dashboard_table_column_{$action_id}", $data->id );
+				do_action( "pno_listings_dashboard_table_action_{$action_id}", $data->id );
 
 				?>
 
