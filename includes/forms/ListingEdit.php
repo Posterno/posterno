@@ -204,6 +204,16 @@ class ListingEdit {
 				return;
 			}
 
+			$listing_id = $this->getListingID();
+
+			if (
+				! $listing_id ||
+				! pno_is_user_owner_of_listing( $this->user_id, $listing_id ) ||
+				pno_is_listing_expired( $listing_id ) ||
+				( pno_is_listing_pending_approval( $listing_id ) && pno_is_user_owner_of_listing( $this->user_id, $listing_id ) && ! pno_pending_listings_can_be_edited() ) ) {
+					throw new Exception( esc_html__( 'You are not authorized to edit this listing.' ) );
+			}
+
 			$this->form->setFieldValues( $_POST );
 
 			if ( $this->form->isValid() ) {
