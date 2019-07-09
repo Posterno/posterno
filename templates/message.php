@@ -20,8 +20,8 @@ $type = isset( $data->type ) ? esc_attr( $data->type ) : 'info';
 
 ?>
 
-<div class="alert alert-<?php echo $type; ?>" role="alert">
-	<?php echo $data->message; ?>
+<div class="alert alert-<?php echo esc_attr( $type ); ?>" role="alert">
+	<?php echo wp_kses_post( $data->message ); ?>
 	<?php if ( isset( $data->dismiss ) && $data->dismiss === true ) : ?>
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
