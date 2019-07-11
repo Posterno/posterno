@@ -57,9 +57,12 @@ function pno_admin_rate_us( $footer_text ) {
 		'listings_page_registrationfield_importer',
 		'listings_page_taxonomyterm_importer',
 		'listings_page_listing_importer',
+		'edit-listings-packages',
+		'listings-packages',
+		'users_page_user-listings-packages',
 	];
 
-	if ( in_array( $screen->id, $checks ) ) {
+	if ( in_array( $screen->id, $checks, true ) ) {
 		$rate_text = sprintf(
 			/* translators: %s: Link to 5 star rating */
 			__( 'If you like <strong>Posterno</strong> please rate us on %s. It takes a minute and helps a lot. Thanks in advance!', 'posterno' ),
