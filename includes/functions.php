@@ -896,21 +896,22 @@ function pno_clean( $var ) {
 	}
 }
 
-function pno_array_flatten(array $array)
-{
-    $flat = array(); // initialize return array
-    $stack = array_values($array); // initialize stack
-    while($stack) // process stack until done
-    {
-        $value = array_shift($stack);
-        if (is_array($value)) // a value to further process
-        {
-            $stack = array_merge(array_values($value), $stack);
-        }
-        else // a value to take
-        {
-           $flat[] = $value;
-        }
-    }
-    return $flat;
+/**
+ * Flatten arrays.
+ *
+ * @param array $array array.
+ * @return array
+ */
+function pno_array_flatten( array $array ) {
+	$flat  = array();
+	$stack = array_values( $array );
+	while ( $stack ) {
+		$value = array_shift( $stack );
+		if ( is_array( $value ) ) {
+			$stack = array_merge( array_values( $value ), $stack );
+		} else {
+			$flat[] = $value;
+		}
+	}
+	return $flat;
 }
