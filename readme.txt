@@ -118,6 +118,25 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.4 11th July 2019 =
+
+- Added: compatibility with the new WC Paid Listings addon that will be released in a few weeks.
+- Added: new hook before redirect within the listing submission form.
+- Added: new utility function for developers to mark listings as featured.
+- Tweak: change priority of listing details submission step.
+- Tweak: compress array when using compressor datastore.
+- Tweak: send form object through submission steps hooks.
+- Tweak: send next step in submission form steps hooks.
+- Tweak: allow filtering of listing status during submission.
+- Tweak: prevent carbon fields from loading sidebars and extra db query.
+- Tweak: calculate expiry date helper function now supports custom duration.
+- Tweak: allow sorting by priority number of the dashboard menu when using the placeholder menu.
+- Tweak: developers can now filter the placeholder dashboard menu.
+- Tweak: added further permissions verifications when editing a listing.
+- Fix: Missing namespaced WP_Error class when running the diagnostic tests.
+- Fix: invalid arguments warning when no opening hours have been set.
+- Fix: flatten array when loading listing regions ancestors.
+
 = 1.0.3 24th June 2019 =
 
 - Fix: array formatting issue when setting tags via listing submission and edit form.
