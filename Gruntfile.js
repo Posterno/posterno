@@ -198,7 +198,13 @@ module.exports = function (grunt) {
 		// Clean up build directory
 		clean: {
 			main: ['build/**'],
-			composer: ['build/posterno/vendor/nikic/fast-route/test']
+			composer: [
+				'build/posterno/vendor/nikic/fast-route/test',
+				'build/posterno/vendor/guzzlehttp/guzzle/.git',
+				'build/posterno/vendor/guzzlehttp/guzzle/.github',
+				'build/posterno/vendor/guzzlehttp/promises/.git',
+				'build/posterno/vendor/guzzlehttp/psr7/.git',
+			]
 		},
 
 		// Copy the plugin into the build directory

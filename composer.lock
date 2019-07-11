@@ -348,12 +348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "e6d006f1ced100d81755966f09625d71ce6a7dca"
+                "reference": "17d36ed176c998839582c739ce0753381598edf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/e6d006f1ced100d81755966f09625d71ce6a7dca",
-                "reference": "e6d006f1ced100d81755966f09625d71ce6a7dca",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/17d36ed176c998839582c739ce0753381598edf0",
+                "reference": "17d36ed176c998839582c739ce0753381598edf0",
                 "shasum": ""
             },
             "require": {
@@ -391,20 +391,20 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2019-06-11T17:44:31+00:00"
+            "time": "2019-07-02T14:54:06+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "dev-master",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "e113254d23b24c548f0b4d8f671828c4eeb876d2"
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/e113254d23b24c548f0b4d8f671828c4eeb876d2",
-                "reference": "e113254d23b24c548f0b4d8f671828c4eeb876d2",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +462,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-06-17T23:10:01+00:00"
+            "time": "2019-07-01T23:21:34+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -701,8 +701,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "edfe5df2b67b63a5a96e04fa792e0e1a615c3ee5",
-                "shasum": null
+                "reference": "edfe5df2b67b63a5a96e04fa792e0e1a615c3ee5"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -750,8 +749,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "bfa841f704e4c589f1a3e165c6a03a201303504d",
-                "shasum": null
+                "reference": "cbe5b4cbfb207b1ecddf22486763f3e6be2cda7c"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -799,8 +797,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-dom",
-                "reference": "c245cd480325ecac52e859c885e70833aece4790",
-                "shasum": null
+                "reference": "c245cd480325ecac52e859c885e70833aece4790"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -845,8 +842,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "25e6204593acc67f97873879a4157d372016d3a9",
-                "shasum": null
+                "reference": "25e6204593acc67f97873879a4157d372016d3a9"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -891,8 +887,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-fields-editor-validator",
-                "reference": "2a19eac7b491ab90e172ac51256a73668c841329",
-                "shasum": null
+                "reference": "2a19eac7b491ab90e172ac51256a73668c841329"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -937,8 +932,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-forms",
-                "reference": "b9651011a37ae9111936867b856c0a3bebc244d1",
-                "shasum": null
+                "reference": "b9651011a37ae9111936867b856c0a3bebc244d1"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -983,8 +977,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-geocoder",
-                "reference": "da0a748c97ff3c35660b2f297af9b4f498142a6d",
-                "shasum": null
+                "reference": "da0a748c97ff3c35660b2f297af9b4f498142a6d"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1029,8 +1022,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-maps",
-                "reference": "4496e6fe7cd92ec096dc9dc917ef34090a9b07ae",
-                "shasum": null
+                "reference": "4496e6fe7cd92ec096dc9dc917ef34090a9b07ae"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1074,8 +1066,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "0f359f0615c9e5316096ae78ba9d0307bc5d7c93",
-                "shasum": null
+                "reference": "0f359f0615c9e5316096ae78ba9d0307bc5d7c93"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1120,8 +1111,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-submission-scripts",
-                "reference": "692755ff21cc26f25ebd7193321436c5bc6dcae2",
-                "shasum": null
+                "reference": "692755ff21cc26f25ebd7193321436c5bc6dcae2"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1166,8 +1156,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-third-party",
-                "reference": "47e1b4847d641872421f1004025dae46adf7146c",
-                "shasum": null
+                "reference": "47e1b4847d641872421f1004025dae46adf7146c"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1208,8 +1197,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-validator",
-                "reference": "476eb54076fb474fcd2c7e999ec3a8be353d4c9b",
-                "shasum": null
+                "reference": "476eb54076fb474fcd2c7e999ec3a8be353d4c9b"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1289,12 +1277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Prospress/action-scheduler.git",
-                "reference": "2da1a169a5a80fc2f731b1bdbd7893a57cde6ada"
+                "reference": "7f21571d62696f7d3f6f11356bf001e6f2aa4530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/2da1a169a5a80fc2f731b1bdbd7893a57cde6ada",
-                "reference": "2da1a169a5a80fc2f731b1bdbd7893a57cde6ada",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/7f21571d62696f7d3f6f11356bf001e6f2aa4530",
+                "reference": "7f21571d62696f7d3f6f11356bf001e6f2aa4530",
                 "shasum": ""
             },
             "require-dev": {
@@ -1306,7 +1294,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
-            "time": "2019-06-14T01:27:55+00:00"
+            "time": "2019-07-03T03:22:35+00:00"
         },
         {
             "name": "psr/http-message",
