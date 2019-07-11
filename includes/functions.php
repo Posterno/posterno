@@ -895,3 +895,22 @@ function pno_clean( $var ) {
 		return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
 	}
 }
+
+function pno_array_flatten(array $array)
+{
+    $flat = array(); // initialize return array
+    $stack = array_values($array); // initialize stack
+    while($stack) // process stack until done
+    {
+        $value = array_shift($stack);
+        if (is_array($value)) // a value to further process
+        {
+            $stack = array_merge(array_values($value), $stack);
+        }
+        else // a value to take
+        {
+           $flat[] = $value;
+        }
+    }
+    return $flat;
+}
