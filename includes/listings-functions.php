@@ -666,52 +666,54 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours =
 		$opening_hours = json_decode( stripslashes( $opening_hours ) );
 	}
 
-	foreach ( $opening_hours as $day => $workday ) {
-		if ( array_key_exists( $day, pno_get_days_of_the_week() ) ) {
+	if ( is_array( $opening_hours ) ) {
+		foreach ( $opening_hours as $day => $workday ) {
+			if ( array_key_exists( $day, pno_get_days_of_the_week() ) ) {
 
-			$slot_type  = sanitize_text_field( $workday->type );
-			$slot_hours = $workday->hours;
+				$slot_type  = sanitize_text_field( $workday->type );
+				$slot_hours = $workday->hours;
 
-			if ( ! empty( $slot_type ) ) {
-				pno_update_listing_hours_of_operation( $listing_id, $day, $slot_type );
-			}
-
-			if ( $slot_type === 'hours' && is_array( $slot_hours ) && ! empty( $slot_hours ) ) {
-
-				// Now grab the first set of hours.
-				// These are stored in a separate custom field.
-				$main_hours = $slot_hours[0];
-
-				$opening = isset( $main_hours->opening ) && ! empty( $main_hours->opening ) ? sanitize_text_field( $main_hours->opening ) : false;
-				$closing = isset( $main_hours->closing ) && ! empty( $main_hours->closing ) ? sanitize_text_field( $main_hours->closing ) : false;
-
-				if ( $opening ) {
-					pno_update_listing_opening_hours_by_day( $listing_id, $day, 'opening', $opening );
-				}
-				if ( $closing ) {
-					pno_update_listing_opening_hours_by_day( $listing_id, $day, 'closing', $closing );
+				if ( ! empty( $slot_type ) ) {
+					pno_update_listing_hours_of_operation( $listing_id, $day, $slot_type );
 				}
 
-				// Now remove the first set from the hours list because the first set is
-				// saved into a separate custom field.
-				unset( $slot_hours[0] );
+				if ( $slot_type === 'hours' && is_array( $slot_hours ) && ! empty( $slot_hours ) ) {
 
-				// Now store any other available timeslot into the carbon field's complex field.
-				if ( is_array( $slot_hours ) && ! empty( $slot_hours ) ) {
+					// Now grab the first set of hours.
+					// These are stored in a separate custom field.
+					$main_hours = $slot_hours[0];
 
-					$additional_times = [];
+					$opening = isset( $main_hours->opening ) && ! empty( $main_hours->opening ) ? sanitize_text_field( $main_hours->opening ) : false;
+					$closing = isset( $main_hours->closing ) && ! empty( $main_hours->closing ) ? sanitize_text_field( $main_hours->closing ) : false;
 
-					foreach ( $slot_hours as $other_hours ) {
-						$other_opening      = isset( $other_hours->opening ) && ! empty( $other_hours->opening ) ? sanitize_text_field( $other_hours->opening ) : false;
-						$other_closing      = isset( $other_hours->closing ) && ! empty( $other_hours->closing ) ? sanitize_text_field( $other_hours->closing ) : false;
-						$additional_times[] = [
-							'opening' => $other_opening,
-							'closing' => $other_closing,
-						];
+					if ( $opening ) {
+						pno_update_listing_opening_hours_by_day( $listing_id, $day, 'opening', $opening );
+					}
+					if ( $closing ) {
+						pno_update_listing_opening_hours_by_day( $listing_id, $day, 'closing', $closing );
 					}
 
-					if ( ! empty( $additional_times ) ) {
-						pno_update_listing_additional_opening_hours_by_day( $listing_id, $day, $additional_times );
+					// Now remove the first set from the hours list because the first set is
+					// saved into a separate custom field.
+					unset( $slot_hours[0] );
+
+					// Now store any other available timeslot into the carbon field's complex field.
+					if ( is_array( $slot_hours ) && ! empty( $slot_hours ) ) {
+
+						$additional_times = [];
+
+						foreach ( $slot_hours as $other_hours ) {
+							$other_opening      = isset( $other_hours->opening ) && ! empty( $other_hours->opening ) ? sanitize_text_field( $other_hours->opening ) : false;
+							$other_closing      = isset( $other_hours->closing ) && ! empty( $other_hours->closing ) ? sanitize_text_field( $other_hours->closing ) : false;
+							$additional_times[] = [
+								'opening' => $other_opening,
+								'closing' => $other_closing,
+							];
+						}
+
+						if ( ! empty( $additional_times ) ) {
+							pno_update_listing_additional_opening_hours_by_day( $listing_id, $day, $additional_times );
+						}
 					}
 				}
 			}
