@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.3\n"
+"Project-Id-Version: Posterno 1.0.4\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-06-24 09:32:39+00:00\n"
+"POT-Creation-Date: 2019-07-11 14:08:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,50 +69,50 @@ msgstr ""
 msgid "Sorry, you cannot work with batch resources."
 msgstr ""
 
-#: includes/actions.php:135
+#: includes/actions.php:136
 msgid "Posterno Dashboard Menu"
 msgstr ""
 
-#: includes/actions.php:136
+#: includes/actions.php:137
 msgid "Posterno Profile Menu"
 msgstr ""
 
-#: includes/actions.php:189
+#: includes/actions.php:190
 msgid ""
 "You need to be logged in to access the \"%1$s\" page. Please login below or "
 "<a href=\"%2$s\">register</a>."
 msgstr ""
 
-#: includes/actions.php:267
+#: includes/actions.php:268
 msgid ""
 "Your request has been successfully confirmed, an administrator will send "
 "you an email with further details."
 msgstr ""
 
-#: includes/actions.php:339
+#: includes/actions.php:340
 msgid "Username or email address"
 msgstr ""
 
-#: includes/actions.php:342 includes/admin/admin-functions.php:232
+#: includes/actions.php:343 includes/admin/admin-functions.php:232
 #: includes/emails/class-pno-emails.php:372 includes/fields-functions.php:166
 #: includes/templates-functions.php:21
 msgid "Username"
 msgstr ""
 
-#: includes/actions.php:344 includes/post-types.php:619
+#: includes/actions.php:345 includes/post-types.php:619
 #: includes/post-types.php:634 includes/templates-functions.php:26
 msgid "Email"
 msgstr ""
 
-#: includes/actions.php:455 includes/actions.php:461
+#: includes/actions.php:456 includes/actions.php:462
 msgid "Value for the field \"%s\" is invalid."
 msgstr ""
 
-#: includes/actions.php:501
+#: includes/actions.php:502
 msgid "\"%s\" is required."
 msgstr ""
 
-#: includes/actions.php:524
+#: includes/actions.php:525
 msgid "You can upload up to \"%s\" gallery images."
 msgstr ""
 
@@ -200,7 +200,7 @@ msgstr ""
 
 #: includes/admin/admin-actions.php:92 includes/admin/admin-options.php:26
 #: includes/admin/admin-options.php:63 includes/post-types.php:39
-#: includes/post-types.php:44 includes/profiles/profiles-functions.php:145
+#: includes/post-types.php:44 includes/profiles/profiles-functions.php:167
 msgid "Listings"
 msgstr ""
 
@@ -247,34 +247,34 @@ msgstr ""
 msgid "Enable map"
 msgstr ""
 
-#: includes/admin/admin-actions.php:177
+#: includes/admin/admin-actions.php:178
 msgid "All profile fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:182
+#: includes/admin/admin-actions.php:183
 msgid "All registration form fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:187
+#: includes/admin/admin-actions.php:188
 msgid "All listings fields"
 msgstr ""
 
-#: includes/admin/admin-actions.php:319
+#: includes/admin/admin-actions.php:320
 msgid "Send approval notification"
 msgstr ""
 
-#: includes/admin/admin-actions.php:319
+#: includes/admin/admin-actions.php:320
 msgid "Enable the option to notify the author that the listing has been approved."
 msgstr ""
 
-#: includes/admin/admin-actions.php:560
+#: includes/admin/admin-actions.php:561
 #: includes/admin/custom-fields/display-custom-fields.php:73
 #: includes/admin/tools/tools.php:85 includes/admin/views/options-panel.php:35
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:58
 msgid "Import"
 msgstr ""
 
-#: includes/admin/admin-actions.php:561
+#: includes/admin/admin-actions.php:562
 #: includes/admin/custom-fields/display-custom-fields.php:74
 #: includes/admin/tools/tools.php:86 includes/admin/views/options-panel.php:38
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:59
@@ -316,7 +316,7 @@ msgid "Add to Menu"
 msgstr ""
 
 #: includes/admin/admin-dashboard-menu-editor.php:131
-#: includes/functions.php:199 includes/shortcodes.php:55
+#: includes/functions.php:204 includes/shortcodes.php:55
 msgid "Logout"
 msgstr ""
 
@@ -530,14 +530,14 @@ msgstr ""
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: includes/admin/admin-footer.php:65
+#: includes/admin/admin-footer.php:68
 #. translators: %s: Link to 5 star rating
 msgid ""
 "If you like <strong>Posterno</strong> please rate us on %s. It takes a "
 "minute and helps a lot. Thanks in advance!"
 msgstr ""
 
-#: includes/admin/admin-footer.php:66
+#: includes/admin/admin-footer.php:69
 msgid "Thanks :)"
 msgstr ""
 
@@ -912,6 +912,10 @@ msgstr ""
 
 #: includes/admin/class-pno-admin-listings-table.php:134
 msgid "Pending approval"
+msgstr ""
+
+#: includes/admin/class-pno-admin-listings-table.php:136
+msgid "Pending payment"
 msgstr ""
 
 #: includes/admin/class-pno-debug-data.php:47
@@ -1865,19 +1869,19 @@ msgid ""
 "data when the plugin is deleted."
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:54
+#: includes/admin/class-pno-tests.php:56
 msgid "Test names must be unique."
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:57
+#: includes/admin/class-pno-tests.php:59
 msgid "Tests must be valid PHP callables."
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:86
+#: includes/admin/class-pno-tests.php:88
 msgid "There is no test by that name: "
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:119
+#: includes/admin/class-pno-tests.php:121
 msgid "Test Passed!"
 msgstr ""
 
@@ -1964,9 +1968,7 @@ msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:98
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:108
-#: includes/listings-functions.php:393
-#. translators: Placeholder %s is the relative, human readable time since the
-#. listing listing was posted.
+#: includes/listings-functions.php:399
 msgid "Edit"
 msgstr ""
 
@@ -1976,7 +1978,7 @@ msgstr ""
 
 #: includes/admin/custom-fields/display-custom-fields.php:100
 #: includes/components/posterno-schema/includes/Component/admin/admin-pages.php:109
-#: includes/listings-functions.php:401
+#: includes/listings-functions.php:407
 msgid "Delete"
 msgstr ""
 
@@ -3478,15 +3480,15 @@ msgstr ""
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1157
+#: includes/fields-functions.php:1164
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1158
+#: includes/fields-functions.php:1165
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1159
+#: includes/fields-functions.php:1166
 msgid "Select Some Options"
 msgstr ""
 
@@ -3541,7 +3543,7 @@ msgid "Repeat new password"
 msgstr ""
 
 #: includes/forms/ChangePassword.php:138 includes/forms/ChangePassword.php:199
-#: includes/functions.php:193
+#: includes/functions.php:196
 msgid "Change password"
 msgstr ""
 
@@ -3710,15 +3712,19 @@ msgstr ""
 msgid "Listing details"
 msgstr ""
 
+#: includes/forms/ListingEdit.php:214
+msgid "You are not authorized to edit this listing."
+msgstr ""
+
 #: includes/forms/ListingSubmission.php:123
 msgid "Select a listing type"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:555
+#: includes/forms/ListingSubmission.php:567
 msgid "Listing successfully submitted. <a href=\"%s\">View your listing.</a>"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:558
+#: includes/forms/ListingSubmission.php:570
 msgid "Listing successfully submitted. Your listing will be visible once approved."
 msgstr ""
 
@@ -3732,163 +3738,163 @@ msgid ""
 "details."
 msgstr ""
 
-#: includes/functions.php:187 templates/dashboard/manage-listings.php:23
+#: includes/functions.php:188 templates/dashboard/manage-listings.php:23
 msgid "Manage listings"
 msgstr ""
 
-#: includes/functions.php:190
+#: includes/functions.php:192
 msgid "Account details"
 msgstr ""
 
-#: includes/functions.php:196
+#: includes/functions.php:200
 msgid "Privacy settings"
 msgstr ""
 
-#: includes/functions.php:226
+#: includes/functions.php:234
 msgid "Facebook"
 msgstr ""
 
-#: includes/functions.php:227
+#: includes/functions.php:235
 msgid "Twitter"
 msgstr ""
 
-#: includes/functions.php:228
+#: includes/functions.php:236
 msgid "Google+"
 msgstr ""
 
-#: includes/functions.php:229
+#: includes/functions.php:237
 msgid "LinkedIn"
 msgstr ""
 
-#: includes/functions.php:230
+#: includes/functions.php:238
 msgid "Pinterest"
 msgstr ""
 
-#: includes/functions.php:231
+#: includes/functions.php:239
 msgid "Instagram"
 msgstr ""
 
-#: includes/functions.php:232
+#: includes/functions.php:240
 msgid "Tumblr"
 msgstr ""
 
-#: includes/functions.php:233
+#: includes/functions.php:241
 msgid "Flickr"
 msgstr ""
 
-#: includes/functions.php:234
+#: includes/functions.php:242
 msgid "Snapchat"
 msgstr ""
 
-#: includes/functions.php:235
+#: includes/functions.php:243
 msgid "Reddit"
 msgstr ""
 
-#: includes/functions.php:236
+#: includes/functions.php:244
 msgid "Youtube"
 msgstr ""
 
-#: includes/functions.php:237
+#: includes/functions.php:245
 msgid "Vimeo"
 msgstr ""
 
-#: includes/functions.php:238
+#: includes/functions.php:246
 msgid "Github"
 msgstr ""
 
-#: includes/functions.php:239
+#: includes/functions.php:247
 msgid "Dribbble"
 msgstr ""
 
-#: includes/functions.php:240
+#: includes/functions.php:248
 msgid "Behance"
 msgstr ""
 
-#: includes/functions.php:241
+#: includes/functions.php:249
 msgid "SoundCloud"
 msgstr ""
 
-#: includes/functions.php:242
+#: includes/functions.php:250
 msgid "Stack Overflow"
 msgstr ""
 
-#: includes/functions.php:243
+#: includes/functions.php:251
 msgid "Whatsapp"
 msgstr ""
 
-#: includes/functions.php:268
+#: includes/functions.php:276
 msgid "AM"
 msgstr ""
 
-#: includes/functions.php:269
+#: includes/functions.php:277
 msgid "PM"
 msgstr ""
 
-#: includes/functions.php:283
+#: includes/functions.php:291
 msgid "Monday"
 msgstr ""
 
-#: includes/functions.php:284
+#: includes/functions.php:292
 msgid "Tuesday"
 msgstr ""
 
-#: includes/functions.php:285
+#: includes/functions.php:293
 msgid "Wednesday"
 msgstr ""
 
-#: includes/functions.php:286
+#: includes/functions.php:294
 msgid "Thursday"
 msgstr ""
 
-#: includes/functions.php:287
+#: includes/functions.php:295
 msgid "Friday"
 msgstr ""
 
-#: includes/functions.php:288
+#: includes/functions.php:296
 msgid "Saturday"
 msgstr ""
 
-#: includes/functions.php:289
+#: includes/functions.php:297
 msgid "Sunday"
 msgstr ""
 
-#: includes/functions.php:304
+#: includes/functions.php:312
 msgid "Mon"
 msgstr ""
 
-#: includes/functions.php:305
+#: includes/functions.php:313
 msgid "Tue"
 msgstr ""
 
-#: includes/functions.php:306
+#: includes/functions.php:314
 msgid "Wed"
 msgstr ""
 
-#: includes/functions.php:307
+#: includes/functions.php:315
 msgid "Thu"
 msgstr ""
 
-#: includes/functions.php:308
+#: includes/functions.php:316
 msgid "Fri"
 msgstr ""
 
-#: includes/functions.php:309
+#: includes/functions.php:317
 msgid "Sat"
 msgstr ""
 
-#: includes/functions.php:310
+#: includes/functions.php:318
 msgid "Sun"
 msgstr ""
 
-#: includes/functions.php:466
+#: includes/functions.php:474
 msgid "Google maps"
 msgstr ""
 
-#: includes/functions.php:516
+#: includes/functions.php:524
 msgid "Listing successfully updated."
 msgstr ""
 
-#: includes/functions.php:519
+#: includes/functions.php:527
 msgid ""
 "Listing successfully updated. An administrator will review your submission "
 "and you'll receive an email notification once your listing is approved."
@@ -3970,51 +3976,57 @@ msgstr ""
 msgid "Date posted"
 msgstr ""
 
-#: includes/listings-functions.php:397
+#: includes/listings-functions.php:292
+#. translators: Placeholder %s is the relative, human readable time since the
+#. listing listing was posted.
+msgid "Subscription"
+msgstr ""
+
+#: includes/listings-functions.php:403
 msgid "View"
 msgstr ""
 
-#: includes/listings-functions.php:569
+#: includes/listings-functions.php:575
 msgid "Enter hours"
 msgstr ""
 
-#: includes/listings-functions.php:570
+#: includes/listings-functions.php:576
 msgid "Open all day"
 msgstr ""
 
-#: includes/listings-functions.php:571
+#: includes/listings-functions.php:577
 msgid "Closed all day"
 msgstr ""
 
-#: includes/listings-functions.php:572
+#: includes/listings-functions.php:578
 msgid "Appointment only"
 msgstr ""
 
-#: includes/listings-functions.php:812
+#: includes/listings-functions.php:820
 msgid "Newest first"
 msgstr ""
 
-#: includes/listings-functions.php:816
+#: includes/listings-functions.php:824
 msgid "Oldest first"
 msgstr ""
 
-#: includes/listings-functions.php:820
+#: includes/listings-functions.php:828
 msgid "Title A-Z"
 msgstr ""
 
-#: includes/listings-functions.php:824
+#: includes/listings-functions.php:832
 msgid "Title Z-A"
 msgstr ""
 
-#: includes/listings-functions.php:828
+#: includes/listings-functions.php:836
 msgid "Random"
 msgstr ""
 
-#: includes/listings-functions.php:897
+#: includes/listings-functions.php:905
 msgid "List layout"
 msgstr ""
 
-#: includes/listings-functions.php:902
+#: includes/listings-functions.php:910
 msgid "Grid layout"
 msgstr ""
 
@@ -4629,15 +4641,15 @@ msgstr ""
 msgid "Search emails"
 msgstr ""
 
-#: includes/profiles/profiles-functions.php:143
+#: includes/profiles/profiles-functions.php:165
 msgid "About"
 msgstr ""
 
-#: includes/profiles/profiles-functions.php:144
+#: includes/profiles/profiles-functions.php:166
 msgid "Posts"
 msgstr ""
 
-#: includes/profiles/profiles-functions.php:146
+#: includes/profiles/profiles-functions.php:168
 msgid "Comments"
 msgstr ""
 
@@ -5019,7 +5031,7 @@ msgstr ""
 msgid "Lost your password?"
 msgstr ""
 
-#: templates/forms/listing-type-selection.php:52
+#: templates/forms/listing-type-selection.php:53
 msgid "Select &rarr;"
 msgstr ""
 
