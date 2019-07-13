@@ -319,8 +319,10 @@ function pno_set_listing_tags_selector_field_type( $fields ) {
 			}
 		}
 
-		$fields['listing_tags']['type']   = 'multiselect';
-		$fields['listing_tags']['values'] = $all_tags;
+		if ( ! empty( $all_tags ) ) {
+			$fields['listing_tags']['type']   = 'multiselect';
+			$fields['listing_tags']['values'] = $all_tags;
+		}
 	}
 
 	return $fields;

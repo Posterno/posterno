@@ -107,7 +107,7 @@ class ListingSubmission {
 	 * @return void
 	 */
 	public function hook() {
-		add_action( 'wp_loaded', [ $this, 'process' ] );
+		add_action( 'wp', [ $this, 'process' ] );
 		add_action( 'pno_listing_submission_form_step_listing-type', [ $this, 'selectListingType' ] );
 	}
 
