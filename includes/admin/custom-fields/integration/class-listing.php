@@ -354,6 +354,7 @@ class Listing {
 
 		return [
 			'enableSeconds' => false,
+			'time_24hr'     => (bool) pno_get_option( 'business_hours_24h', false ),
 		];
 
 	}

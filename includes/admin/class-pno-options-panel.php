@@ -766,6 +766,9 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'business_hours_today_only', esc_html__( 'Show today only', 'posterno' ) )
 			->set_help_text( esc_html__( 'Enable this option to show only the opening times of the current day.', 'posterno' ) );
 
+		$settings[] = Field::make( 'checkbox', 'business_hours_24h', esc_html__( '24h format', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable this option to show timings with a 24h format.', 'posterno' ) );
+
 		return $settings;
 
 	}
