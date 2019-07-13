@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -23,6 +23,7 @@ $days_of_the_week = pno_get_days_of_the_week();
 $time_slots       = pno_get_listing_time_slots();
 $active_day       = key( $days_of_the_week );
 $has_errors       = $data->field->hasErrors() ? true : false;
+$format_24h       = (bool) pno_get_option( 'business_hours_24h', false ) ? 'true' : 'false';
 
 ?>
 
@@ -69,7 +70,7 @@ $has_errors       = $data->field->hasErrors() ? true : false;
 
 								<div class="col-sm-5">
 									<div class="form-group">
-										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].opening" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
+										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].opening" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i', time_24hr: <?php echo esc_attr( $format_24h ); ?>}">
 											<input type="text" class="form-control" name="pno_opening_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Opening time', 'posterno' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
@@ -77,7 +78,7 @@ $has_errors       = $data->field->hasErrors() ? true : false;
 
 								<div class="col-sm-5">
 									<div class="form-group">
-										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].closing" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i'}">
+										<pno-flatpickr inline-template v-model="timeslots[ '<?php echo esc_attr( $day ); ?>' ].hours[index].closing" :config="{enableTime: true, noCalendar: true, dateFormat: 'H:i', time_24hr: <?php echo esc_attr( $format_24h ); ?>}">
 											<input type="text" class="form-control" name="pno_closing_<?php echo esc_attr( $day ); ?>[]" placeholder="<?php esc_html_e( 'Closing time', 'posterno' ); ?>" @input="onInput" >
 										</pno-flatpickr>
 									</div>
