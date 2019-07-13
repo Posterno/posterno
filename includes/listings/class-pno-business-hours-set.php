@@ -160,6 +160,10 @@ class Set {
 			}
 		}
 
+		if ( pno_get_option( 'business_hours_24h' ) ) {
+			$format = 'H:i';
+		}
+
 		$start = $this->start->format( $format );
 		$end   = $this->end->format( $format );
 
