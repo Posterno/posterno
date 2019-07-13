@@ -34,6 +34,39 @@ class HealthTests extends Tests {
 			$this->add_test( array( $this, $method ), $method, 'direct' );
 		}
 
+		$addons = apply_filters( 'pno_registered_premium_addons', [] );
+
+		if ( ! empty( $addons ) ) {
+			foreach ( $addons as $addon ) {
+				$this->add_test( array( $this, 'addon_test' ), 'addon_test', 'direct', [ 'default' ], $addon );
+			}
+		}
+
+	}
+
+	/**
+	 * Verify the license for addons is valid.
+	 *
+	 * @param array $addon the addon definition.
+	 * @return array
+	 */
+	public function addon_test( $addon ) {
+
+		$name = isset( $addon['name'] ) ? $addon['name'] : false;
+		$data = isset( $addon['data'] ) ? $addon['data'] : false;
+
+		if ( ! $name ) {
+			return;
+		}
+
+		if ( ! isset( $data->license ) || ( isset( $data->license ) && $data->license !== 'valid' ) ) {
+			$result = self::failing_test( $name, sprintf( __( 'Cannot validate license for the "%s" addon.' ), $name ), sprintf( __( 'The license is either missing, invalid or expired. <a href="%s">Please validate your license</a> so that you are not missing out on updates and support.' ), admin_url( 'tools.php?page=posterno-tools&tab=licenses' ) ) );
+		} else {
+			$result = self::passing_test( $name );
+		}
+
+		return $result;
+
 	}
 
 	/**

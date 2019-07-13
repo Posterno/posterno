@@ -51,7 +51,7 @@ class Tests {
 	 * @param array    $groups Optional. Testing groups to add test to.
 	 * @return mixed
 	 */
-	public function add_test( $callable, $name, $type = 'direct', $groups = array( 'default' ) ) {
+	public function add_test( $callable, $name, $type = 'direct', $groups = array( 'default' ), $args = false ) {
 		if ( array_key_exists( $name, $this->tests ) ) {
 			return new WP_Error( __( 'Test names must be unique.', 'posterno' ) );
 		}
@@ -64,6 +64,7 @@ class Tests {
 			'test'  => $callable,
 			'group' => $groups,
 			'type'  => $type,
+			'args'  => $args,
 		);
 		return true;
 	}
@@ -83,7 +84,8 @@ class Tests {
 	public function run_test( $name ) {
 
 		if ( array_key_exists( $name, $this->tests ) ) {
-			return call_user_func( $this->tests[ $name ]['test'] );
+			$args = isset( $this->tests[ $name ]['args'] ) ? $this->tests[ $name ]['args'] : false;
+			return call_user_func( $this->tests[ $name ]['test'], $args );
 		}
 		return new WP_Error( __( 'There is no test by that name: ', 'posterno' ) . $name );
 
@@ -97,7 +99,8 @@ class Tests {
 	public function run_tests() {
 
 		foreach ( $this->tests as $test ) {
-			$result          = call_user_func( $test['test'] );
+			$args            = isset( $test['args'] ) ? $test['args'] : false;
+			$result          = call_user_func( $test['test'], $args );
 			$result['group'] = $test['group'];
 			$result['type']  = $test['type'];
 			$this->results[] = $result;
