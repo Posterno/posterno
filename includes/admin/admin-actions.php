@@ -317,7 +317,7 @@ function pno_trigger_administrator_approval_email( $post ) {
 		return;
 	}
 
-	$output = '<div class="carbon-field carbon-checkbox pno-publish-action"><div class="field-holder"><label><input type="checkbox" name="_listing_trigger_approval_email">' . esc_html__( 'Send approval notification', 'posterno' ) . '</label></div><em class="carbon-help-text">' . esc_html__( 'Enable the option to notify the author that the listing has been approved.', 'posterno' ) . '</em></div>';
+	$output = '<div class="carbon-field carbon-checkbox pno-publish-action" style="padding:15px 12px;"><div class="field-holder"><label><input type="checkbox" name="_listing_trigger_approval_email">' . esc_html__( 'Send approval notification', 'posterno' ) . '</label></div><em class="carbon-help-text">' . esc_html__( 'Enable the option to notify the author that the listing has been approved.', 'posterno' ) . '</em></div>';
 
 	echo $output; //phpcs:ignore
 
