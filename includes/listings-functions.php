@@ -666,7 +666,7 @@ function pno_save_submitted_listing_opening_hours( $listing_id, $opening_hours =
 		$opening_hours = json_decode( stripslashes( $opening_hours ) );
 	}
 
-	if ( is_array( $opening_hours ) ) {
+	if ( is_object( $opening_hours ) && ! empty( $opening_hours ) ) {
 		foreach ( $opening_hours as $day => $workday ) {
 			if ( array_key_exists( $day, pno_get_days_of_the_week() ) ) {
 
