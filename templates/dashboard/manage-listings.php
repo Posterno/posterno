@@ -45,7 +45,6 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	</div>
 
-	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -134,7 +133,6 @@ defined( 'ABSPATH' ) || exit;
 				<?php endif; ?>
 			</tbody>
 		</table>
-	</div>
 
 	<?php
 	// Display pagination.
