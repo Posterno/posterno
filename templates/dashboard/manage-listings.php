@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 // Exit if accessed directly.
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<div class="pno-template manage-listings">
+<div class="manage-listings">
 
 	<h2><?php esc_html_e( 'Manage listings', 'posterno' ); ?></h2>
 
