@@ -21,9 +21,10 @@ class PNO_Listings_Dashboard_Actions {
 	 *
 	 * @return void
 	 */
-	public static function init() {
-		add_action( 'init', [ __CLASS__, 'delete_listing' ] );
-		add_action( 'pno_before_manage_listings', [ __CLASS__, 'show_message' ] );
+	public function init() {
+		add_action( 'init', [ $this, 'delete_listing' ] );
+		add_action( 'pno_before_manage_listings', [ $this, 'show_message' ] );
+		add_action( 'pno_dashboard_tab_content_dashboard', [ $this, 'show_message' ] );
 	}
 
 	/**
@@ -31,7 +32,7 @@ class PNO_Listings_Dashboard_Actions {
 	 *
 	 * @return void
 	 */
-	public static function delete_listing() {
+	public function delete_listing() {
 
 		if ( ! is_user_logged_in() ) {
 			return;
@@ -69,6 +70,11 @@ class PNO_Listings_Dashboard_Actions {
 
 		// Redirect the user back to the listings management page.
 		$redirect = pno_get_dashboard_navigation_item_url( 'listings' );
+
+		if ( ! pno_user_has_submitted_listings( $user_id ) ) {
+			$redirect = get_permalink( pno_get_dashboard_page_id() );
+		}
+
 		$redirect = add_query_arg( [ 'message' => 'listing-deleted' ], $redirect );
 		wp_safe_redirect( $redirect );
 		exit;
@@ -80,7 +86,7 @@ class PNO_Listings_Dashboard_Actions {
 	 *
 	 * @return void
 	 */
-	public static function show_message() {
+	public function show_message() {
 
 		//phpcs:ignore
 		if ( ! isset( $_GET['message'] ) || isset( $_GET['message'] ) && empty( $_GET['message'] ) ) {
