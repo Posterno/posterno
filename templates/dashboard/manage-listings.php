@@ -45,94 +45,96 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	</div>
 
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
-					<th scope="col"><?php echo esc_html( $col_name ); ?></th>
-				<?php endforeach; ?>
-			</tr>
-		</thead>
-		<tbody>
-			<?php if ( $data->listings->have_posts() ) : ?>
-				<?php
-				$found_listings = $data->listings->get_posts();
-				if ( is_array( $found_listings ) && ! empty( $found_listings ) ) {
-					foreach ( $found_listings as $listing_id ) :
-						?>
-						<tr>
-							<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
-								<?php if ( $col_key == 'name' ) : ?>
-									<td>
-										<?php if ( pno_is_listing_pending_approval( $listing_id ) || pno_is_listing_expired( $listing_id ) ) : ?>
-											<?php pno_the_listing_title( $listing_id ); ?>
-										<?php else : ?>
-											<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
+						<th scope="col"><?php echo esc_html( $col_name ); ?></th>
+					<?php endforeach; ?>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if ( $data->listings->have_posts() ) : ?>
+					<?php
+					$found_listings = $data->listings->get_posts();
+					if ( is_array( $found_listings ) && ! empty( $found_listings ) ) {
+						foreach ( $found_listings as $listing_id ) :
+							?>
+							<tr>
+								<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
+									<?php if ( $col_key == 'name' ) : ?>
+										<td>
+											<?php if ( pno_is_listing_pending_approval( $listing_id ) || pno_is_listing_expired( $listing_id ) ) : ?>
 												<?php pno_the_listing_title( $listing_id ); ?>
-											</a>
-										<?php endif; ?>
-									</td>
-								<?php elseif ( $col_key == 'date' ) : ?>
-									<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
-								<?php elseif ( $col_key == 'expires' ) : ?>
-									<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
-								<?php elseif ( $col_key == 'status' ) : ?>
-									<td>
-										<?php
-										if ( array_key_exists( get_post_status( $listing_id ), pno_get_listing_post_statuses() ) ) :
+											<?php else : ?>
+												<a href="<?php echo esc_url( get_permalink( $listing_id ) ); ?>">
+													<?php pno_the_listing_title( $listing_id ); ?>
+												</a>
+											<?php endif; ?>
+										</td>
+									<?php elseif ( $col_key == 'date' ) : ?>
+										<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
+									<?php elseif ( $col_key == 'expires' ) : ?>
+										<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
+									<?php elseif ( $col_key == 'status' ) : ?>
+										<td>
+											<?php
+											if ( array_key_exists( get_post_status( $listing_id ), pno_get_listing_post_statuses() ) ) :
 
-											$statuses       = pno_get_listing_post_statuses();
-											$status_id      = get_post_status( $listing_id );
-											$current_status = $statuses[ $status_id ];
+												$statuses       = pno_get_listing_post_statuses();
+												$status_id      = get_post_status( $listing_id );
+												$current_status = $statuses[ $status_id ];
+
+												?>
+
+												<span class="badge badge-light pno-listing-status-<?php echo esc_attr( $status_id ); ?>">
+													<?php echo esc_html( $current_status ); ?>
+												</span>
+
+											<?php endif; ?>
+										</td>
+									<?php elseif ( $col_key == 'actions' ) : ?>
+										<td>
+											<?php
+												posterno()->templates
+													->set_template_data( [ 'id' => $listing_id ] )
+													->get_template_part( 'dashboard/actions', 'list' );
+											?>
+										</td>
+									<?php else : ?>
+										<td>
+											<?php
+
+											/**
+											 * Allow developers to display custom content within the dashboard listings management page.
+											 *
+											 * @param string $listing_id the id number of the current listing.
+											 */
+											do_action( "pno_listings_dashboard_table_column_{$col_key}", $listing_id );
 
 											?>
+										</td>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							</tr>
+							<?php
+							endforeach;
+					}
+					?>
 
-											<span class="badge badge-light pno-listing-status-<?php echo esc_attr( $status_id ); ?>">
-												<?php echo esc_html( $current_status ); ?>
-											</span>
+					<?php wp_reset_postdata(); ?>
 
-										<?php endif; ?>
-									</td>
-								<?php elseif ( $col_key == 'actions' ) : ?>
-									<td>
-										<?php
-											posterno()->templates
-												->set_template_data( [ 'id' => $listing_id ] )
-												->get_template_part( 'dashboard/actions', 'list' );
-										?>
-									</td>
-								<?php else : ?>
-									<td>
-										<?php
-
-										/**
-										 * Allow developers to display custom content within the dashboard listings management page.
-										 *
-										 * @param string $listing_id the id number of the current listing.
-										 */
-										do_action( "pno_listings_dashboard_table_column_{$col_key}", $listing_id );
-
-										?>
-									</td>
-								<?php endif; ?>
-							<?php endforeach; ?>
-						</tr>
-						<?php
-						endforeach;
-				}
-				?>
-
-				<?php wp_reset_postdata(); ?>
-
-			<?php else : ?>
-				<tr class="no-items">
-					<td class="colspanchange" colspan="<?php echo count( $data->columns ); ?>">
-						<?php esc_html_e( 'No listings found.', 'posterno' ); ?>
-					</td>
-				</tr>
-			<?php endif; ?>
-		</tbody>
-	</table>
+				<?php else : ?>
+					<tr class="no-items">
+						<td class="colspanchange" colspan="<?php echo count( $data->columns ); ?>">
+							<?php esc_html_e( 'No listings found.', 'posterno' ); ?>
+						</td>
+					</tr>
+				<?php endif; ?>
+			</tbody>
+		</table>
+	</div>
 
 	<?php
 	// Display pagination.
