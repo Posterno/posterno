@@ -1,20 +1,26 @@
-.pno-dashboard-status-filter {
-	font-weight: bold;
-}
+.manage-listings {
+	span.badge {
+		border:0;
+	}
 
-.pno-listing-status-publish {
-	background: #edf8ee;
-	color: #46b450;
-}
+	.pno-dashboard-status-filter {
+		font-weight: bold;
+	}
 
-.pno-listing-status-pending {
-	background: #fff8e6;
-	color: #ffb900;
-}
+	.pno-listing-status-publish {
+		background: #edf8ee;
+		color: #46b450;
+	}
 
-.pno-listing-status-expired {
-	background: #fcebeb;
-	color: #dc3232;
+	.pno-listing-status-pending {
+		background: #fff8e6;
+		color: #ffb900;
+	}
+
+	.pno-listing-status-expired {
+		background: #fcebeb;
+		color: #dc3232;
+	}
 }
 
 .pno-dashboard-count-card {

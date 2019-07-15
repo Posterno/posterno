@@ -7141,18 +7141,17 @@ nav .pno-pagination {
   border: 0;
   padding: 0; }
 
-.pno-dashboard-status-filter {
+.manage-listings span.badge {
+  border: 0; }
+.manage-listings .pno-dashboard-status-filter {
   font-weight: bold; }
-
-.pno-listing-status-publish {
+.manage-listings .pno-listing-status-publish {
   background: #edf8ee;
   color: #46b450; }
-
-.pno-listing-status-pending {
+.manage-listings .pno-listing-status-pending {
   background: #fff8e6;
   color: #ffb900; }
-
-.pno-listing-status-expired {
+.manage-listings .pno-listing-status-expired {
   background: #fcebeb;
   color: #dc3232; }
 
