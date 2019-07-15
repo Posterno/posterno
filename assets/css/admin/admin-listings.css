@@ -32,6 +32,8 @@
 .carbon-container-carbon_fields_container_expiry button.button {
   display: none; }
 
+body.post-type-listings .misc-pub-section.misc-pub-post-status {
+  display: none; }
 body.post-type-listings .wp-list-table .column-status,
 body.post-type-listings .wp-list-table .column-featured {
   width: 1em;
@@ -61,3 +63,13 @@ body.post-type-listings td.column-featured span.dashicons-star-filled {
   margin-top: 15px !important; }
   .pno-publish-action .field-holder {
     margin-bottom: 5px; }
+
+.pno-status-updater label {
+  font-weight: 700; }
+.pno-status-updater select {
+  display: block;
+  width: 100%; }
+.pno-status-updater .button {
+  margin: 1em 0;
+  display: block;
+  width: 100%; }
