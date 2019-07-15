@@ -44,4 +44,25 @@ class PNO_Templates extends Gamajo_Template_Loader {
 	 */
 	protected $plugin_template_directory = 'templates';
 
+	/**
+	 * Retrieve a template part.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $slug Template slug.
+	 * @param string $name Optional. Template variation name. Default null.
+	 * @param bool   $load Optional. Whether to load template. Default true.
+	 * @return string
+	 */
+	public function get_template_part( $slug, $name = null, $load = true ) {
+		echo '<div class="posterno-template">';
+		do_action( 'get_template_part_' . $slug, $slug, $name );
+		do_action( $this->filter_prefix . '_get_template_part_' . $slug, $slug, $name );
+		$templates = $this->get_template_file_names( $slug, $name );
+		$output    = $this->locate_template( $templates, $load, false );
+		echo '</div>';
+
+		return $output;
+	}
+
 }

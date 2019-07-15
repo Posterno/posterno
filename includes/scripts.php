@@ -134,7 +134,6 @@ function pno_load_frontend_scripts() {
 	$version = PNO_VERSION;
 
 	// Register the scripts.
-	wp_register_style( 'pno-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', [], $version );
 	wp_register_style( 'pno-fa', 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', [], $version );
 	wp_register_style( 'pno-select2-style', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false, $version );
 	wp_register_style( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css', [], $version );
@@ -150,7 +149,7 @@ function pno_load_frontend_scripts() {
 
 	// Load the required style only if enabled.
 	if ( pno_get_option( 'bootstrap_style' ) ) {
-		wp_enqueue_style( 'pno-bootstrap' );
+		wp_enqueue_style( 'pno' );
 		wp_enqueue_style( 'pno-fa' );
 	}
 
@@ -166,7 +165,6 @@ function pno_load_frontend_scripts() {
 	}
 
 	// Register pno's own stylesheet.
-	wp_enqueue_style( 'pno' );
 	wp_enqueue_script( 'pno-general' );
 
 	$js_vars = [
