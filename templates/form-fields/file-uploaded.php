@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -31,7 +31,7 @@ $extension = ! empty( $data->extension ) ? $data->extension : substr( strrchr( $
 
 ?>
 
-<div class="pno-uploaded-file">
+<div class="pno-uploaded-file mt-2">
 	<?php if ( 'image' === wp_ext2type( $extension ) ) : ?>
 		<ul class="list-group pno-uploaded-files-list">
 			<li class="list-group-item d-flex justify-content-between align-items-center">

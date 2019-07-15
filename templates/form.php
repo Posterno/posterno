@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -63,115 +63,130 @@ defined( 'ABSPATH' ) || exit;
 	?>
 
 	<form action="<?php echo esc_url( $data->form->getAction() ); ?>" method="post" id="pno-form-<?php echo esc_attr( $data->form_name ); ?>" enctype="multipart/form-data">
-
 		<div class="form-row">
-		<?php foreach ( $data->form->getFields() as $field ) : ?>
+			<?php foreach ( $data->form->getFields() as $field ) : ?>
 
-			<div <?php pno_form_field_wrapper_class( $field ); ?>>
-				<div <?php pno_form_field_class( $field ); ?>>
+				<div <?php pno_form_field_wrapper_class( $field ); ?>>
+					<div <?php pno_form_field_class( $field ); ?>>
 
-					<?php
+						<?php
 
-						/**
-						 * Hook: triggers before rendering a form field.
-						 *
-						 * @param PNO\Form\Field $field the field's object.
-						 */
-						do_action( 'pno_before_form_field', $field );
+							/**
+							 * Hook: triggers before rendering a form field.
+							 *
+							 * @param PNO\Form\Field $field the field's object.
+							 */
+							do_action( 'pno_before_form_field', $field );
 
-					?>
+						?>
 
-					<?php if ( ! empty( $field->getLabel() ) && $field->getType() !== 'checkbox' ) : ?>
-						<label for="<?php echo esc_attr( $field->getName() ); ?>"><?php echo esc_html( $field->getLabel() ); ?></label>
-					<?php endif; ?>
+						<?php if ( ! empty( $field->getLabel() ) && ! in_array( $field->getType(), [ 'checkbox', 'file' ], true ) ) : ?>
+							<label for="<?php echo esc_attr( $field->getName() ); ?>"><?php echo esc_html( $field->getLabel() ); ?></label>
+						<?php endif; ?>
 
-					<?php if ( ! $field->isRequired() && ! $field->isButton() && $field->getType() !== 'checkbox' ) : ?>
-						<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
-					<?php endif; ?>
+						<?php if ( ! $field->isRequired() && ! $field->isButton() && ! in_array( $field->getType(), [ 'checkbox', 'file' ], true ) ) : ?>
+							<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+						<?php endif; ?>
 
-					<?php echo $field->render(); ?>
+						<?php if ( $field->getType() === 'file' ) : ?>
 
-					<?php if ( $field->hasErrors() ) : ?>
-						<div class="invalid-feedback">
-							<?php echo esc_html( $field->getFirstErrorMessage() ); ?>
-						</div>
-					<?php endif; ?>
+							<div class="custom-file">
+								<?php echo $field->render(); ?>
+								<?php if ( ! empty( $field->getLabel() ) ) : ?>
+									<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-file-label">
+										<?php echo esc_html( $field->getLabel() ); ?>
+										<?php if ( ! $field->isRequired() ) : ?>
+											<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+										<?php endif; ?>
+									</label>
+								<?php endif; ?>
+							</div>
 
-					<?php if ( $field->getType() === 'file' && ! empty( $field->getMaxSize() ) ) : ?>
-						<small class="form-text text-muted">
-							<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $field->getMaxSize() ) ); ?>
-						</small>
-					<?php endif; ?>
+						<?php else : ?>
+							<?php echo $field->render(); ?>
+						<?php endif; ?>
 
-					<?php
+						<?php if ( $field->hasErrors() ) : ?>
+							<div class="invalid-feedback">
+								<?php echo esc_html( $field->getFirstErrorMessage() ); ?>
+							</div>
+						<?php endif; ?>
 
-					// Display files remover for file fields.
-					if ( $field->getType() === 'file' && ! empty( $field->getValue() ) ) {
+						<?php if ( $field->getType() === 'file' && ! empty( $field->getMaxSize() ) ) : ?>
+							<small class="form-text text-muted">
+								<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $field->getMaxSize() ) ); ?>
+							</small>
+						<?php endif; ?>
 
-						$files = $field->getValue();
+						<?php
 
-						if ( ! empty( $files ) ) {
+						// Display files remover for file fields.
+						if ( $field->getType() === 'file' && ! empty( $field->getValue() ) ) {
 
-							if ( $field->isMultiple() && ! is_array( $files ) ) {
-								$files = json_decode( stripslashes( $files ) );
-							}
+							$files = $field->getValue();
 
-							if ( $field->isMultiple() && is_array( $files ) ) {
-								foreach ( $files as $file ) {
+							if ( ! empty( $files ) ) {
+
+								if ( $field->isMultiple() && ! is_array( $files ) ) {
+									$files = json_decode( stripslashes( $files ) );
+								}
+
+								if ( $field->isMultiple() && is_array( $files ) ) {
+									foreach ( $files as $file ) {
+										posterno()->templates
+											->set_template_data(
+												[
+													'key'   => $field->getName(),
+													'name'  => 'current_' . $field->getName() . '[]',
+													'value' => $file,
+												]
+											)
+											->get_template_part( 'form-fields/file', 'uploaded' );
+									}
+								} else {
 									posterno()->templates
 										->set_template_data(
 											[
 												'key'   => $field->getName(),
-												'name'  => 'current_' . $field->getName() . '[]',
-												'value' => $file,
+												'name'  => 'current_' . $field->getName(),
+												'value' => $files,
 											]
 										)
 										->get_template_part( 'form-fields/file', 'uploaded' );
 								}
-							} else {
-								posterno()->templates
-									->set_template_data(
-										[
-											'key'   => $field->getName(),
-											'name'  => 'current_' . $field->getName(),
-											'value' => $files,
-										]
-									)
-									->get_template_part( 'form-fields/file', 'uploaded' );
 							}
 						}
-					}
 
-					// We move the position of the label only for some fields.
-					if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
-						?>
-						<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-control-label"><?php echo wp_kses_post( $field->getLabel() ); ?></label>
-						<?php if ( ! $field->isRequired() ) : ?>
-							<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+						// We move the position of the label only for some fields.
+						if ( ! empty( $field->getLabel() ) && $field->getType() === 'checkbox' ) :
+							?>
+							<label for="<?php echo esc_attr( $field->getName() ); ?>" class="custom-control-label"><?php echo wp_kses_post( $field->getLabel() ); ?></label>
+							<?php if ( ! $field->isRequired() ) : ?>
+								<span class="pno-optional"><?php esc_html_e( '(optional)', 'posterno' ); ?></span>
+							<?php endif; ?>
 						<?php endif; ?>
-					<?php endif; ?>
 
-					<?php if ( ! empty( $field->getHint() ) ) : ?>
-						<small class="form-text text-muted">
-							<?php echo esc_html( $field->getHint() ); ?>
-						</small>
-					<?php endif; ?>
+						<?php if ( ! empty( $field->getHint() ) ) : ?>
+							<small class="form-text text-muted">
+								<?php echo esc_html( $field->getHint() ); ?>
+							</small>
+						<?php endif; ?>
 
-					<?php
+						<?php
 
-						/**
-						 * Hook: triggers after rendering a form field.
-						 *
-						 * @param PNO\Form\Field $field the field's object.
-						 */
-						do_action( 'pno_after_form_field', $field );
+							/**
+							 * Hook: triggers after rendering a form field.
+							 *
+							 * @param PNO\Form\Field $field the field's object.
+							 */
+							do_action( 'pno_after_form_field', $field );
 
-					?>
+						?>
 
+					</div>
 				</div>
-			</div>
 
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 		</div>
 
 		<input type="hidden" name="pno_form" value="<?php echo esc_attr( $data->form_name ); ?>" />

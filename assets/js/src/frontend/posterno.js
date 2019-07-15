@@ -25,7 +25,14 @@
 	/**
 	 * Remove uploaded files from fields when clicking the remove button.
 	 */
-	window.Posterno.removeUploadedFiles = function () {
+	window.Posterno.handleFileInputs = function () {
+		$('.custom-file input').change(function (e) {
+			var files = [];
+			for (var i = 0; i < $(this)[0].files.length; i++) {
+				files.push($(this)[0].files[i].name);
+			}
+			$(this).next('.custom-file-label').html(files.join(', '));
+		});
 		$(document.body).on('click', '.pno-remove-uploaded-file', function () {
 			$(this).closest('.pno-uploaded-file').remove();
 			return false;
@@ -108,7 +115,7 @@
 	$(document).ready(function () {
 		window.Posterno.cacheSelectors()
 		window.Posterno.bootstrapTooltips()
-		window.Posterno.removeUploadedFiles()
+		window.Posterno.handleFileInputs()
 		window.Posterno.select2()
 		window.Posterno.openInternalLinksNewTab()
 		window.Posterno.openExternalLinksNewTab()

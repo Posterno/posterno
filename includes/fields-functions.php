@@ -323,6 +323,9 @@ function pno_get_registration_fields() {
 			if ( $field->getType() === 'select' ) {
 				$attributes['class'] = 'custom-select';
 			}
+			if ( $field->getType() === 'file' ) {
+				$attributes['class'] = 'custom-file-input';
+			}
 			if ( $field->getType() === 'multiselect' ) {
 				$attributes['data-placeholder'] = ! empty( $field->getPlaceholder() ) ? esc_attr( $field->getPlaceholder() ) : false;
 			}
@@ -477,6 +480,9 @@ function pno_get_account_fields( $user_id = false, $bypass = false ) {
 				}
 				if ( $field->getType() === 'textarea' ) {
 					$attributes['rows'] = 3;
+				}
+				if ( $field->getType() === 'file' ) {
+					$attributes['class'] = 'custom-file-input';
 				}
 
 				$fields[ $field->getObjectMetaKey() ] = [
@@ -828,7 +834,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'priority'      => 12,
 			'default_field' => true,
 			'attributes'    => [
-				'class' => 'form-control',
+				'class' => 'form-control custom-file-input',
 			],
 		],
 		'listing_gallery'               => [
@@ -839,7 +845,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 			'priority'      => 13,
 			'default_field' => true,
 			'attributes'    => [
-				'class' => 'form-control',
+				'class' => 'form-control custom-file-input',
 			],
 		],
 		'listing_zipcode'               => [
@@ -921,6 +927,9 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 					}
 					if ( $field->getType() === 'textarea' ) {
 						$attributes['rows'] = 3;
+					}
+					if ( $field->getType() === 'file' ) {
+						$attributes['class'] = 'custom-file-input';
 					}
 
 					// The field does not exist so we now add it to the list of fields.
