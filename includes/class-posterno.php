@@ -374,7 +374,6 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-tests.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-health-tests.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-debug-data.php';
-			require_once PNO_PLUGIN_DIR . 'includes/admin/class-pno-post-status-switcher.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-notices.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-actions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/admin/admin-filters.php';

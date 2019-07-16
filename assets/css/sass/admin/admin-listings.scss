@@ -52,9 +52,6 @@
 }
 
 body.post-type-listings {
-	.misc-pub-section.misc-pub-post-status {
-		display: none;
-	}
 	.wp-list-table {
 		.column-status,
 		.column-featured {
@@ -102,20 +99,5 @@ body.post-type-listings {
 	margin-top: 15px !important;
 	.field-holder {
 		margin-bottom: 5px;
-	}
-}
-
-.pno-status-updater {
-	label {
-		font-weight: 700;
-	}
-	select {
-		display: block;
-		width: 100%;
-	}
-	.button {
-		margin: 1em 0;
-		display: block;
-		width: 100%;
 	}
 }
