@@ -13,7 +13,7 @@ Posterno is a powerful, extendable directory plugin that helps you create any ki
 
 == Description ==
 
-Posterno is the #1 WordPress directory plugin that helps you create any kind of listings directory. Built to integrate seamlessly with WordPress, Posterno is designed to be easy to use, yet powerful enough to meet all your business needs as your online community grows.
+Posterno is a powerful, extendable directory plugin that helps you create any kind of listings directory. Built to integrate seamlessly with WordPress, Posterno is designed to be easy to use, yet powerful enough to meet all your business needs as your online community grows.
 
 With endless flexibility, Posterno allows you to create, manage and monetize a directory site for any purpose and showcase listings such as Cars, Hotels, Properties, Restaurants, Events, Travel Tours, etc. Your imagination is the only limit.
 
