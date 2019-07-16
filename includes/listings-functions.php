@@ -289,7 +289,7 @@ function pno_the_listing_expire_date( $post = null ) {
 	$is_subscription = get_post_meta( $post, '_listing_package_is_subscription', true );
 
 	if ( $is_subscription && $expires === '&ndash;' ) {
-		echo esc_html__( 'Subscription' );
+		echo esc_html__( 'Subscription', 'posterno' );
 	} else {
 		echo '<time datetime="' . esc_attr( $expires ) . '">' . wp_kses_post( $expires ) . '</time>';
 	}

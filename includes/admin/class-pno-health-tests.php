@@ -60,7 +60,7 @@ class HealthTests extends Tests {
 		}
 
 		if ( ! isset( $data->license ) || ( isset( $data->license ) && $data->license !== 'valid' ) ) {
-			$result = self::failing_test( $name, sprintf( __( 'Cannot validate license for the "%s" addon.' ), $name ), sprintf( __( 'The license is either missing, invalid or expired. <a href="%s">Please validate your license</a> so that you are not missing out on updates and support.' ), admin_url( 'tools.php?page=posterno-tools&tab=licenses' ) ) );
+			$result = self::failing_test( $name, sprintf( __( 'Cannot validate license for the "%s" addon.', 'posterno' ), $name ), sprintf( __( 'The license is either missing, invalid or expired. <a href="%s">Please validate your license</a> so that you are not missing out on updates and support.', 'posterno' ), admin_url( 'tools.php?page=posterno-tools&tab=licenses' ) ) );
 		} else {
 			$result = self::passing_test( $name );
 		}
