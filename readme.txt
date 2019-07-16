@@ -118,6 +118,22 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.5 16th July 2019 =
+
+- Added: support for 24H format for business hours.
+- Added: listings CSV exporter can now export all custom metadata added by third party plugins too.
+- Added: listings CSV importer can now import custom metadata values.
+- Tweak: disable tags and categories association option on plugin first installation.
+- Tweak: display a site health notice when license is missing from a paid addon.
+- Tweak: Bootstrap css now prefixed to improve compatibility with third party themes.
+- Tweak: properly apply bootstrap styling to file input field.
+- Tweak: improved security of csv importers.
+- Fix: php notice when role selection enabled on registration form but no role was selected by an admin.
+- Fix: minor layout issue with settings in listing post type publish box.
+- Fix: make sure tags exist before loading them into the field.
+- Fix: opening hours slot type not saving properly.
+- Fix: redirect to dashboard home when deleting last listing available within a user's account.
+
 = 1.0.4 11th July 2019 =
 
 - Added: compatibility with the new WC Paid Listings addon that will be released in a few weeks.
