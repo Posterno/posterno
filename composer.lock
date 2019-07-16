@@ -749,7 +749,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "cbe5b4cbfb207b1ecddf22486763f3e6be2cda7c"
+                "reference": "f938a142dc9a27801d6f5f6143c50d06e5e7aa0b"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1277,12 +1277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Prospress/action-scheduler.git",
-                "reference": "7f21571d62696f7d3f6f11356bf001e6f2aa4530"
+                "reference": "dcb66861905c7b15689d8bb2519b10cfbf7f8987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/7f21571d62696f7d3f6f11356bf001e6f2aa4530",
-                "reference": "7f21571d62696f7d3f6f11356bf001e6f2aa4530",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/dcb66861905c7b15689d8bb2519b10cfbf7f8987",
+                "reference": "dcb66861905c7b15689d8bb2519b10cfbf7f8987",
                 "shasum": ""
             },
             "require-dev": {
@@ -1294,7 +1294,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
-            "time": "2019-07-03T03:22:35+00:00"
+            "time": "2019-07-12T06:13:42+00:00"
         },
         {
             "name": "psr/http-message",
