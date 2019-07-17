@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.4\n"
+"Project-Id-Version: Posterno 1.0.5\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-07-11 14:08:14+00:00\n"
+"POT-Creation-Date: 2019-07-16 09:51:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,11 +147,11 @@ msgstr ""
 
 #: includes/admin/admin-actions.php:69
 #: includes/admin/admin-privacy-export.php:64
-#: includes/templates-functions.php:429
+#: includes/templates-functions.php:431
 msgid "Yes"
 msgstr ""
 
-#: includes/admin/admin-actions.php:70 includes/templates-functions.php:429
+#: includes/admin/admin-actions.php:70 includes/templates-functions.php:431
 msgid "No"
 msgstr ""
 
@@ -556,7 +556,7 @@ msgstr ""
 #: includes/admin/admin-functions.php:238
 #: includes/admin/custom-fields/integration/class-listing.php:155
 #: includes/fields-functions.php:94 includes/fields-functions.php:175
-#: includes/fields-functions.php:405 includes/fields-functions.php:746
+#: includes/fields-functions.php:408 includes/fields-functions.php:752
 msgid "Email address"
 msgstr ""
 
@@ -703,7 +703,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/admin-notices.php:165
-#: includes/admin/class-pno-health-tests.php:51
+#: includes/admin/class-pno-health-tests.php:84
 msgid ""
 "<strong>Posterno is almost ready</strong>. You must <a href=\"%s\">update "
 "your permalink structure</a> to something other than the default for it to "
@@ -939,109 +939,120 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:51
+#: includes/admin/class-pno-health-tests.php:63
+msgid "Cannot validate license for the \"%s\" addon."
+msgstr ""
+
+#: includes/admin/class-pno-health-tests.php:63
+msgid ""
+"The license is either missing, invalid or expired. <a href=\"%s\">Please "
+"validate your license</a> so that you are not missing out on updates and "
+"support."
+msgstr ""
+
+#: includes/admin/class-pno-health-tests.php:84
 msgid "Update your permalink structure."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:70
+#: includes/admin/class-pno-health-tests.php:103
 msgid "A login page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:70
+#: includes/admin/class-pno-health-tests.php:103
 msgid ""
 "You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a login "
 "page.</a>"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:89
+#: includes/admin/class-pno-health-tests.php:122
 msgid "A password recovery page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:89
+#: includes/admin/class-pno-health-tests.php:122
 msgid ""
 "You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a password "
 "recovery page.</a>"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:108
+#: includes/admin/class-pno-health-tests.php:141
 msgid "A registration page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:108
+#: includes/admin/class-pno-health-tests.php:141
 msgid ""
 "You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
 "registration page.</a>"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:127
+#: includes/admin/class-pno-health-tests.php:160
 msgid "A dashboard page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:127
+#: includes/admin/class-pno-health-tests.php:160
 msgid ""
 "You must <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
 "dashboard page.</a>"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:146
+#: includes/admin/class-pno-health-tests.php:179
 msgid "A listing submission page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:146
+#: includes/admin/class-pno-health-tests.php:179
 msgid ""
 "You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
 "listing submission page,</a> if you wish your members to submit listings "
 "from the frontend."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:165
+#: includes/admin/class-pno-health-tests.php:198
 msgid "A listing editing page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:165
+#: includes/admin/class-pno-health-tests.php:198
 msgid ""
 "You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a "
 "listing editing page,</a> if you wish your members to edit listings from "
 "the frontend."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:184
+#: includes/admin/class-pno-health-tests.php:217
 msgid "A public profile page has not been created."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:184
+#: includes/admin/class-pno-health-tests.php:217
 msgid ""
 "You should <a href=\"%s\" target=\"_blank\" rel=\"nofollow\">setup a public "
 "profile page</a>, If you wish your members to view profiles of other "
 "members on your site."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:209
+#: includes/admin/class-pno-health-tests.php:242
 msgid "Some default database tables are missing."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:209
-#: includes/admin/class-pno-health-tests.php:231
-#: includes/admin/class-pno-health-tests.php:237
-#: includes/admin/class-pno-health-tests.php:243
+#: includes/admin/class-pno-health-tests.php:242
+#: includes/admin/class-pno-health-tests.php:264
+#: includes/admin/class-pno-health-tests.php:270
+#: includes/admin/class-pno-health-tests.php:276
 msgid "Please contact support."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:231
-#: includes/admin/class-pno-health-tests.php:237
-#: includes/admin/class-pno-health-tests.php:243
+#: includes/admin/class-pno-health-tests.php:264
+#: includes/admin/class-pno-health-tests.php:270
+#: includes/admin/class-pno-health-tests.php:276
 msgid "Some default data is missing."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:264
+#: includes/admin/class-pno-health-tests.php:297
 msgid "Your theme contains outdated copies of some Posterno template files."
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:289
+#: includes/admin/class-pno-health-tests.php:322
 msgid "Outdated template files:"
 msgstr ""
 
-#: includes/admin/class-pno-health-tests.php:305
+#: includes/admin/class-pno-health-tests.php:338
 #. Translators: %1$s: Template version, %2$s: Core version.
 msgid "Version %1$s is out of date. The core version is %2$s"
 msgstr ""
@@ -1859,11 +1870,19 @@ msgstr ""
 msgid "Enable this option to show only the opening times of the current day."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:782
+#: includes/admin/class-pno-options-panel.php:769
+msgid "24h format"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:770
+msgid "Enable this option to show timings with a 24h format."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:785
 msgid "Remove data on uninstall?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:783
+#: includes/admin/class-pno-options-panel.php:786
 msgid ""
 "Check this box if you would like Posterno to completely remove all of its "
 "data when the plugin is deleted."
@@ -1877,11 +1896,11 @@ msgstr ""
 msgid "Tests must be valid PHP callables."
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:88
+#: includes/admin/class-pno-tests.php:90
 msgid "There is no test by that name: "
 msgstr ""
 
-#: includes/admin/class-pno-tests.php:121
+#: includes/admin/class-pno-tests.php:124
 msgid "Test Passed!"
 msgstr ""
 
@@ -2038,7 +2057,7 @@ msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:113
 #: includes/admin/custom-fields/integration/class-listing.php:192
-#: includes/fields-functions.php:856
+#: includes/fields-functions.php:862
 #: includes/widgets/widget-listing-location-map.php:30
 msgid "Location"
 msgstr ""
@@ -2060,13 +2079,13 @@ msgid "Listing type"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:154
-#: includes/fields-functions.php:756
+#: includes/fields-functions.php:762
 msgid "Phone number"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:156
-#: includes/fields-functions.php:96 includes/fields-functions.php:415
-#: includes/fields-functions.php:766
+#: includes/fields-functions.php:96 includes/fields-functions.php:418
+#: includes/fields-functions.php:772
 msgid "Website"
 msgstr ""
 
@@ -2087,7 +2106,7 @@ msgid "Search an address or drag and drop the pin on the map to select location.
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:196
-#: includes/fields-functions.php:846
+#: includes/fields-functions.php:852
 msgid "Zipcode"
 msgstr ""
 
@@ -2096,7 +2115,7 @@ msgid "Images"
 msgstr ""
 
 #: includes/admin/custom-fields/integration/class-listing.php:223
-#: includes/admin/custom-fields/integration/class-listing.php:411
+#: includes/admin/custom-fields/integration/class-listing.php:412
 #: includes/admin/custom-fields/integration/class-profile.php:80
 msgid "File url"
 msgstr ""
@@ -2545,7 +2564,7 @@ msgid "Email address*"
 msgstr ""
 
 #: includes/admin/views/getting-started.php:93
-#: includes/fields-functions.php:385
+#: includes/fields-functions.php:388
 msgid "First name"
 msgstr ""
 
@@ -3235,7 +3254,7 @@ msgstr ""
 msgid "Display listing ID number."
 msgstr ""
 
-#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:726
+#: includes/emails/class-pno-emails.php:408 includes/fields-functions.php:732
 msgid "Listing title"
 msgstr ""
 
@@ -3427,68 +3446,68 @@ msgid ""
 "1 uppercase letter and 1 special character."
 msgstr ""
 
-#: includes/fields-functions.php:369
+#: includes/fields-functions.php:372
 msgid "Profile picture"
 msgstr ""
 
-#: includes/fields-functions.php:395
+#: includes/fields-functions.php:398
 msgid "Last name"
 msgstr ""
 
-#: includes/fields-functions.php:425
+#: includes/fields-functions.php:428
 msgid "About me"
 msgstr ""
 
-#: includes/fields-functions.php:736
+#: includes/fields-functions.php:742
 msgid "Description"
 msgstr ""
 
-#: includes/fields-functions.php:776
+#: includes/fields-functions.php:782
 msgid "Video"
 msgstr ""
 
-#: includes/fields-functions.php:786
+#: includes/fields-functions.php:792
 msgid "Social media profiles"
 msgstr ""
 
-#: includes/fields-functions.php:793
+#: includes/fields-functions.php:799
 msgid "Listing category"
 msgstr ""
 
-#: includes/fields-functions.php:802 includes/post-types.php:539
+#: includes/fields-functions.php:808 includes/post-types.php:539
 msgid "Listing tags"
 msgstr ""
 
-#: includes/fields-functions.php:809
+#: includes/fields-functions.php:815
 msgid "Listing regions"
 msgstr ""
 
-#: includes/fields-functions.php:812
+#: includes/fields-functions.php:818
 msgid "Select a region"
 msgstr ""
 
-#: includes/fields-functions.php:818
+#: includes/fields-functions.php:824
 msgid "Hours of operation"
 msgstr ""
 
-#: includes/fields-functions.php:825
+#: includes/fields-functions.php:831
 #: includes/listings/class-pno-listings-terms-custom-fields.php:48
 msgid "Featured image"
 msgstr ""
 
-#: includes/fields-functions.php:835
+#: includes/fields-functions.php:841
 msgid "Gallery images"
 msgstr ""
 
-#: includes/fields-functions.php:1164
+#: includes/fields-functions.php:1173
 msgid "Choose a category&hellip;"
 msgstr ""
 
-#: includes/fields-functions.php:1165
+#: includes/fields-functions.php:1174
 msgid "No results match"
 msgstr ""
 
-#: includes/fields-functions.php:1166
+#: includes/fields-functions.php:1175
 msgid "Select Some Options"
 msgstr ""
 
@@ -3496,15 +3515,15 @@ msgstr ""
 msgid "Invalid email address or incorrect password."
 msgstr ""
 
-#: includes/filters.php:408
+#: includes/filters.php:410
 msgid "The maximum amount of categories you are allowed to select is %1$s."
 msgstr ""
 
-#: includes/filters.php:418
+#: includes/filters.php:420
 msgid "The maximum amount of tags you are allowed to select is %1$s."
 msgstr ""
 
-#: includes/filters.php:472
+#: includes/filters.php:474
 msgid "Once Weekly"
 msgstr ""
 
@@ -3904,7 +3923,7 @@ msgstr ""
 msgid "minute"
 msgstr ""
 
-#: includes/listings/class-pno-listings-dashboard-actions.php:95
+#: includes/listings/class-pno-listings-dashboard-actions.php:101
 msgid "Listing successfully deleted."
 msgstr ""
 
@@ -4684,23 +4703,23 @@ msgstr ""
 msgid "Invalid image: %s"
 msgstr ""
 
-#: includes/scripts.php:186
+#: includes/scripts.php:184
 msgid "Find my location"
 msgstr ""
 
-#: includes/scripts.php:187
+#: includes/scripts.php:185
 msgid "You are here."
 msgstr ""
 
-#: includes/scripts.php:188
+#: includes/scripts.php:186
 msgid "Address not found, please try again."
 msgstr ""
 
-#: includes/scripts.php:189
+#: includes/scripts.php:187
 msgid "The geolocation service failed or was disabled."
 msgstr ""
 
-#: includes/scripts.php:190
+#: includes/scripts.php:188
 msgid "Your browser doesn't support geolocation."
 msgstr ""
 
@@ -4712,7 +4731,7 @@ msgstr ""
 msgid "You are not authorized to access this page."
 msgstr ""
 
-#: includes/templates-functions.php:699
+#: includes/templates-functions.php:701
 msgid ""
 "This widget can only be used when within a sidebar for the sigle listing "
 "page."
@@ -4981,15 +5000,15 @@ msgstr ""
 msgid "Enter coordinates"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:73
+#: templates/form-fields/listing-opening-hours-field.php:74
 msgid "Opening time"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:81
+#: templates/form-fields/listing-opening-hours-field.php:82
 msgid "Closing time"
 msgstr ""
 
-#: templates/form-fields/listing-opening-hours-field.php:93
+#: templates/form-fields/listing-opening-hours-field.php:94
 msgid "Add hours"
 msgstr ""
 
@@ -5011,11 +5030,11 @@ msgid ""
 "below."
 msgstr ""
 
-#: templates/form.php:89 templates/form.php:150
+#: templates/form.php:88 templates/form.php:99 templates/form.php:165
 msgid "(optional)"
 msgstr ""
 
-#: templates/form.php:102
+#: templates/form.php:117
 msgid "Maximum file size: %s."
 msgstr ""
 
