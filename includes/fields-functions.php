@@ -251,10 +251,10 @@ function pno_get_registration_fields() {
 	// Add strong password validators.
 	if ( pno_get_option( 'strong_passwords' ) ) {
 		$error_message    = esc_html__( 'Password must be at least 8 characters long and contain at least 1 number, 1 uppercase letter and 1 special character.', 'posterno' );
-		$contains_letter  = new Validator\RegEx( '/[A-Z]/', $error_message );
-		$contains_digit   = new Validator\RegEx( '/\d/', $error_message );
-		$contains_special = new Validator\RegEx( '/[^a-zA-Z\d]/', $error_message );
-		$lenght           = new Validator\LengthGreaterThanEqual( 8, $error_message );
+		$contains_letter  = new \PNO\Validator\RegEx( '/[A-Z]/', $error_message );
+		$contains_digit   = new \PNO\Validator\RegEx( '/\d/', $error_message );
+		$contains_special = new \PNO\Validator\RegEx( '/[^a-zA-Z\d]/', $error_message );
+		$lenght           = new \PNO\Validator\LengthGreaterThanEqual( 8, $error_message );
 
 		if ( isset( $fields['password'] ) ) {
 			$fields['password']['validators'] = [
