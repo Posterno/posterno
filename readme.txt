@@ -118,6 +118,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.6 22nd July 2019 =
+
+- Tweak: set a fixed width to listings grid layout cards.
+- Tweak: entities class now has a default get_id() method.
+- Fix: RegEx validator class missing full namespace causing an issue on the registration form.
+
 = 1.0.5 16th July 2019 =
 
 - Added: support for 24H format for business hours.
