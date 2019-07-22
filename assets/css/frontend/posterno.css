@@ -7182,16 +7182,18 @@ nav .pno-pagination {
       width: 200px;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0; }
-  .pno-listing-card.grid-template .listing-img-wrapper {
-    height: 200px;
-    overflow: hidden;
-    position: relative; }
-    .pno-listing-card.grid-template .listing-img-wrapper img {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      object-fit: cover;
-      height: 100%;
-      width: 100%; }
+  .pno-listing-card.grid-template {
+    width: 18rem; }
+    .pno-listing-card.grid-template .listing-img-wrapper {
+      height: 200px;
+      overflow: hidden;
+      position: relative; }
+      .pno-listing-card.grid-template .listing-img-wrapper img {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 100%; }
   .pno-listing-card .listing-img-wrapper .featured-badge {
     position: absolute;
     top: 15px;
