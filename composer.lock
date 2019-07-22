@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6690e491bdd7f8f7a22bbd1a6b2616e",
+    "content-hash": "941baeade52f71c3c28baa4e9f5edb2b",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -842,7 +842,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "25e6204593acc67f97873879a4157d372016d3a9"
+                "reference": "5ceede2a86ea83ff9f484266ebbd0e396c944cce"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1277,12 +1277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Prospress/action-scheduler.git",
-                "reference": "dcb66861905c7b15689d8bb2519b10cfbf7f8987"
+                "reference": "e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/dcb66861905c7b15689d8bb2519b10cfbf7f8987",
-                "reference": "dcb66861905c7b15689d8bb2519b10cfbf7f8987",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26",
+                "reference": "e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26",
                 "shasum": ""
             },
             "require-dev": {
@@ -1294,7 +1294,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
-            "time": "2019-07-12T06:13:42+00:00"
+            "time": "2019-07-18T18:22:37+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1527,18 +1527,18 @@
         "rarst/wpdatetime": 20,
         "prospress/action-scheduler": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/addons": 20,
-        "posterno/import-export": 20,
-        "posterno/posterno-dom": 20,
         "posterno/posterno-maps": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/posterno-forms": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/import-export": 20,
         "posterno/posterno-entities": 20,
-        "posterno/posterno-schema": 20,
+        "posterno/addons": 20,
         "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-submission-scripts": 20
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-geocoder": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
