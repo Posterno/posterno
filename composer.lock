@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "941baeade52f71c3c28baa4e9f5edb2b",
+    "content-hash": "a652b4192783a7370883a33e14c70570",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -1273,16 +1273,16 @@
         },
         {
             "name": "prospress/action-scheduler",
-            "version": "dev-master",
+            "version": "2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Prospress/action-scheduler.git",
-                "reference": "e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26"
+                "reference": "fd7c6b76a7af27d6403ffe39b0963dbd8ce50488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26",
-                "reference": "e3fc1d7478c52cd2b1ef12388ebfe85281f5dd26",
+                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/fd7c6b76a7af27d6403ffe39b0963dbd8ce50488",
+                "reference": "fd7c6b76a7af27d6403ffe39b0963dbd8ce50488",
                 "shasum": ""
             },
             "require-dev": {
@@ -1294,7 +1294,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
-            "time": "2019-07-18T18:22:37+00:00"
+            "time": "2019-04-24T12:45:40+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1525,7 +1525,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rarst/wpdatetime": 20,
-        "prospress/action-scheduler": 20,
         "parsecsv/php-parsecsv": 20,
         "posterno/posterno-maps": 20,
         "posterno/posterno-submission-scripts": 20,

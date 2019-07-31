@@ -7,7 +7,6 @@
 		"pressmodo/carbon-fields-custom-options-container": "^0.1.0",
 		"rarst/wpdatetime": "dev-master",
 		"htmlburger/carbon-fields": "3.1.1",
-		"prospress/action-scheduler": "dev-master",
 		"parsecsv/php-parsecsv": "^1.0@dev",
 		"posterno/posterno-maps": "@dev",
 		"posterno/posterno-submission-scripts": "@dev",
@@ -20,7 +19,8 @@
 		"posterno/posterno-forms": "@dev",
 		"posterno/posterno-validator": "@dev",
 		"posterno/posterno-dom": "@dev",
-		"posterno/posterno-geocoder": "@dev"
+		"posterno/posterno-geocoder": "@dev",
+		"prospress/action-scheduler": "^2.2.5"
 	},
 	"minimum-stability": "dev",
 	"repositories": [{
