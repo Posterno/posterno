@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.6\n"
+"Project-Id-Version: Posterno 1.0.7\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-07-22 09:23:39+00:00\n"
+"POT-Creation-Date: 2019-08-05 11:44:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -530,14 +530,14 @@ msgstr ""
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: includes/admin/admin-footer.php:68
+#: includes/admin/admin-footer.php:69
 #. translators: %s: Link to 5 star rating
 msgid ""
 "If you like <strong>Posterno</strong> please rate us on %s. It takes a "
 "minute and helps a lot. Thanks in advance!"
 msgstr ""
 
-#: includes/admin/admin-footer.php:69
+#: includes/admin/admin-footer.php:70
 msgid "Thanks :)"
 msgstr ""
 

@@ -915,3 +915,12 @@ function pno_array_flatten( array $array ) {
 	}
 	return $flat;
 }
+
+/**
+ * Determine if bootstrap is enabled or if the theme declares custom support.
+ *
+ * @return bool
+ */
+function pno_is_layout_wrapper_required() {
+	return (bool) pno_get_option( 'bootstrap_style', false ) || ! current_theme_supports( 'posterno' );
+}

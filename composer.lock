@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a652b4192783a7370883a33e14c70570",
+    "content-hash": "0e20931eae6ea749150fda0253c29e57",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -701,7 +701,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "edfe5df2b67b63a5a96e04fa792e0e1a615c3ee5"
+                "reference": "3e4afe051985303322e613e7b53c226fd67b9941"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -797,7 +797,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-dom",
-                "reference": "c245cd480325ecac52e859c885e70833aece4790"
+                "reference": "bdb8410dcf29275db25c5d3c9be37ffbef67a3c6"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -932,7 +932,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-forms",
-                "reference": "b9651011a37ae9111936867b856c0a3bebc244d1"
+                "reference": "cce96fa4ea70e5ee9fee1af932c56105ee8e38df"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1526,18 +1526,18 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/import-export": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-schema": 20,
         "posterno/posterno-forms": 20,
-        "posterno/posterno-validator": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-entities": 20,
         "posterno/posterno-dom": 20,
-        "posterno/posterno-geocoder": 20
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/import-export": 20,
+        "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
