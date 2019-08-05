@@ -60,6 +60,7 @@ function pno_admin_rate_us( $footer_text ) {
 		'edit-listings-packages',
 		'listings-packages',
 		'users_page_user-listings-packages',
+		'listings_page_posterno-search-forms',
 	];
 
 	if ( in_array( $screen->id, $checks, true ) ) {
