@@ -55,12 +55,22 @@ class PNO_Templates extends Gamajo_Template_Loader {
 	 * @return string
 	 */
 	public function get_template_part( $slug, $name = null, $load = true ) {
-		echo '<div class="posterno-template">';
+
+		$supported = ! pno_get_option( 'bootstrap_style' ) || current_theme_supports( 'posterno' );
+
+		// Load the wrapper only when bootstrap is disabled or when the theme does not declares custom support.
+		if ( ! $supported ) {
+			echo '<div class="posterno-template">';
+		}
+
 		do_action( 'get_template_part_' . $slug, $slug, $name );
 		do_action( $this->filter_prefix . '_get_template_part_' . $slug, $slug, $name );
 		$templates = $this->get_template_file_names( $slug, $name );
 		$output    = $this->locate_template( $templates, $load, false );
-		echo '</div>';
+
+		if ( ! $supported ) {
+			echo '</div>';
+		}
 
 		return $output;
 	}
