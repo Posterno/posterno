@@ -118,6 +118,17 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.7 5th August 2019 =
+
+- Tweak: added support for the *Search Forms* addon soon to be released.
+- Tweak: highlighted the extensions link in the admin panel.
+- Tweak: load minified version of the post type icon in the admin panel.
+- Tweak: disable the template wrapper when bootstrap css is disabled or theme declares support for custom templates.
+- Tweak: action scheduler class version has been reinstated to latest officially released.
+- Tweak: Dom class attributes now support null attributes.
+- Fix: multiple checkboxes set field layout issues.
+- Fix: prefixed bootstrap compiler had invalid markup mixed in.
+
 = 1.0.6 22nd July 2019 =
 
 - Tweak: set a fixed width to listings grid layout cards.
