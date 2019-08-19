@@ -227,6 +227,13 @@ class ChangePassword {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the password change process.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_password_change', $this->form );
+
 				$current_password     = $this->form->getFieldValue( 'password_current' );
 				$new_password         = $this->form->getFieldValue( 'password' );
 				$new_password_confirm = $this->form->getFieldValue( 'password_confirm' );
@@ -238,12 +245,20 @@ class ChangePassword {
 				$user = wp_get_current_user();
 
 				if ( $user instanceof \WP_User && wp_check_password( $current_password, $user->data->user_pass, $user->ID ) && is_user_logged_in() ) {
+
 					$updated_user_id = wp_update_user(
 						[
 							'ID'        => $user->ID,
 							'user_pass' => $new_password,
 						]
 					);
+
+					/**
+					 * Hook: allow developers to hook into the password change process after the password has changed.
+					 *
+					 * @param Form $form
+					 */
+					do_action( 'pno_after_password_change', $this->form );
 
 					if ( is_wp_error( $updated_user_id ) ) {
 						throw new Exception( $updated_user_id->get_error_message(), $updated_user_id->get_error_code() );
