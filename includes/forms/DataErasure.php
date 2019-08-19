@@ -200,6 +200,13 @@ class DataErasure {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the data erasure process.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_data_erasure', $this->form );
+
 				$user = wp_get_current_user();
 
 				$request_id = wp_create_user_request( $user->data->user_email, 'remove_personal_data' );
