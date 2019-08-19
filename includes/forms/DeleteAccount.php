@@ -199,6 +199,13 @@ class DeleteAccount {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the account delete process.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_delete_account', $this->form );
+
 				$user = wp_get_current_user();
 
 				wp_logout();
