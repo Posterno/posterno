@@ -201,6 +201,13 @@ class DataRequest {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into the data request process.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_data_request', $this->form );
+
 				$user = wp_get_current_user();
 
 				$request_id = wp_create_user_request( $user->user_email, 'export_personal_data' );
