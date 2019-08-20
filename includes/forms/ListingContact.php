@@ -201,6 +201,13 @@ class ListingContact {
 
 			if ( $this->form->isValid() ) {
 
+				/**
+				 * Hook: allow developers to hook into listing contact form before the message is sent.
+				 *
+				 * @param Form $form
+				 */
+				do_action( 'pno_before_listing_contact', $this->form );
+
 				$listing              = get_queried_object();
 				$listing_id           = isset( $listing->ID ) ? absint( $listing->ID ) : false;
 				$listing_author_id    = isset( $listing->post_author ) ? absint( $listing->post_author ) : false;
@@ -223,6 +230,13 @@ class ListingContact {
 							'sender_message' => $sender_message,
 						]
 					);
+
+					/**
+					 * Hook: allow developers to hook into listing contact form after the message is sent.
+					 *
+					 * @param Form $form
+					 */
+					do_action( 'pno_after_listing_contact', $this->form );
 
 					$message = esc_html__( 'Your message has been sent successfully.', 'posterno' );
 
