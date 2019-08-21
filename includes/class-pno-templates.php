@@ -56,7 +56,7 @@ class PNO_Templates extends Gamajo_Template_Loader {
 	 */
 	public function get_template_part( $slug, $name = null, $load = true ) {
 
-		$wrapper_required = pno_is_layout_wrapper_required();
+		$wrapper_required = apply_filters( 'pno_load_bootstrap_wrapper', pno_is_layout_wrapper_required(), $slug, $name, $load );
 
 		// Load the wrapper only when bootstrap is disabled or when the theme does not declares custom support.
 		if ( $wrapper_required ) {
