@@ -118,6 +118,23 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.8 5th August 2019 =
+
+- Added: hooks into the change password form.
+- Added: hook for the data erasure form.
+- Added: hook for the data request form.
+- Added: hook for the delete account form.
+- Added: contact form hooks.
+- Added: form template before and after hooks.
+- Added: featured image now displays in single listing gallery too.
+- Tweak: sanitize username during registration.
+- Tweak: form labels are now bold.
+- Tweak: moved "optional" string within the form's label tag.
+- Tweak: added bootstrap wrapper verification filter.
+- Tweak: Disable the Posterno template wrapper DIV when using grid cards.
+- Fix: inline validation message may not display sometimes.
+- Fix: html entities encoded not visible into tree select fields.
+
 = 1.0.7 5th August 2019 =
 
 - Tweak: added support for the *Search Forms* addon soon to be released.
