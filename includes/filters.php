@@ -476,3 +476,22 @@ function pno_add_cron_schedules( $schedules = array() ) {
 	return $schedules;
 }
 add_filter( 'cron_schedules', 'pno_add_cron_schedules' );
+
+/**
+ * Disable the posterno template wrapper DIV when using grid cards.
+ *
+ * @param bool   $pass yes or no.
+ * @param string $slug template slug.
+ * @param string $name template name.
+ * @return bool
+ */
+function pno_disable_bootstrap_wrapper_for_grids( $pass, $slug, $name ) {
+
+	if ( $name === 'grid' ) {
+		return false;
+	}
+
+	return $pass;
+
+}
+add_filter( 'pno_load_bootstrap_wrapper', 'pno_disable_bootstrap_wrapper_for_grids', 10, 3 );
