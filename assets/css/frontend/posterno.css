@@ -7076,6 +7076,9 @@ form.pno-form-has-errors .field-has-errors {
 .pno-field > label {
   font-weight: bold; }
 
+.posterno-template .invalid-feedback {
+  display: block; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0;
