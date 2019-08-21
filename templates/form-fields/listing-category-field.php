@@ -12,7 +12,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -41,6 +41,10 @@ $has_errors = $data->field->hasErrors() ? true : false;
 			no-options-text="<?php esc_html_e( 'No options available.', 'posterno' ); ?>"
 			placeholder="<?php echo esc_html( $data->field->getAttribute( 'placeholder' ) ); ?>"
 		/>
+			<label slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }" :class="labelClassName">
+				<span v-html="node.label"></span>
+			</label>
+		</treeselect>
 	</div>
 </pno-listing-category-selector>
 
