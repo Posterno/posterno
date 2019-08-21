@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -102,7 +102,8 @@ do_action( 'pno_before_single_listing' );
 		posterno()->templates
 			->set_template_data(
 				[
-					'items' => $gallery,
+					'items'          => $gallery,
+					'featured_image' => get_the_post_thumbnail_url( get_the_id(), 'full' ),
 				]
 			)
 			->get_template_part( 'listings/gallery' );

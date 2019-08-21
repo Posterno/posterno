@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -28,6 +28,10 @@ foreach ( $items as $item_id ) {
 
 if ( empty( $images ) ) {
 	return;
+}
+
+if ( isset( $data->featured_image ) && ! empty( $data->featured_image ) ) {
+	array_unshift( $images, $data->featured_image );
 }
 
 ?>
