@@ -17,6 +17,14 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Hook: allow developers to hook into the form template file before
+ * the content of the form is displayed.
+ *
+ * @param object $data data sent through the template file
+ */
+do_action( 'pno_before_form', $data );
+
 ?>
 
 <div class="pno-form-container">
@@ -200,3 +208,13 @@ defined( 'ABSPATH' ) || exit;
 	</form>
 
 </div>
+
+<?php
+
+/**
+ * Hook: allow developers to hook into the form template file before
+ * the content of the form is displayed.
+ *
+ * @param object $data data sent through the template file
+ */
+do_action( 'pno_after_form', $data );
