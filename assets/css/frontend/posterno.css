@@ -7073,6 +7073,9 @@ form.pno-form-has-errors .field-has-errors {
 .pno-field-editor .invalid-feedback {
   display: block; }
 
+.pno-field label {
+  font-weight: bold; }
+
 nav .pno-pagination {
   margin: 0;
   border: 0;
