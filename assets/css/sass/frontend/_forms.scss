@@ -134,7 +134,7 @@ form.pno-form-has-errors {
 }
 
 .pno-field {
-	label {
+	> label {
 		font-weight: bold;
 	}
 }
