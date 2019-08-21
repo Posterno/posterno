@@ -214,7 +214,7 @@ class Registration {
 				$username     = $email_address;
 
 				if ( $has_username ) {
-					$username = $this->form->getFieldValue( 'username' );
+					$username = sanitize_user( $this->form->getFieldValue( 'username' ) );
 				}
 
 				if ( pno_get_option( 'verify_password' ) && ! pno_get_option( 'disable_password' ) ) {
