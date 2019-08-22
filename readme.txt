@@ -118,7 +118,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
-= 1.0.8 5th August 2019 =
+= 1.0.9 22nd August 2019 =
+
+- Fix: menu order parameter or featured listings not being set when programmatically setting listings as featured.
+- Fix: compatibility issue with featured listings and the upcoming WooCommerce Paid Listings add-on.
+
+= 1.0.8 21st August 2019 =
 
 - Added: hooks into the change password form.
 - Added: hook for the data erasure form.
