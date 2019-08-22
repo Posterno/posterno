@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e20931eae6ea749150fda0253c29e57",
+    "content-hash": "4c1795c8bccf524dd85c6a431795602c",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -105,16 +105,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+                "reference": "141b272484481432cda342727a427dc1e206bfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
+                "reference": "141b272484481432cda342727a427dc1e206bfa0",
                 "shasum": ""
             },
             "require": {
@@ -170,6 +170,7 @@
                 "RadPHP",
                 "SMF",
                 "Thelia",
+                "Whmcs",
                 "WolfCMS",
                 "agl",
                 "aimeos",
@@ -192,6 +193,7 @@
                 "installer",
                 "itop",
                 "joomla",
+                "known",
                 "kohana",
                 "laravel",
                 "lavalite",
@@ -221,7 +223,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27T06:10:37+00:00"
+            "time": "2019-08-12T15:00:31+00:00"
         },
         {
             "name": "gamajo/template-loader",
@@ -282,12 +284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "ca2892a8c2778c1821899fd2c79932e3b895f2ad"
+                "reference": "61494bf259393e972f60ff34476dd55ab90cb4a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ca2892a8c2778c1821899fd2c79932e3b895f2ad",
-                "reference": "ca2892a8c2778c1821899fd2c79932e3b895f2ad",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/61494bf259393e972f60ff34476dd55ab90cb4a8",
+                "reference": "61494bf259393e972f60ff34476dd55ab90cb4a8",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +342,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-05-12T12:35:22+00:00"
+            "time": "2019-08-13T11:06:12+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -399,12 +401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+                "reference": "2595b33c1c924889b474d324f3d719fa40b6954e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2595b33c1c924889b474d324f3d719fa40b6954e",
+                "reference": "2595b33c1c924889b474d324f3d719fa40b6954e",
                 "shasum": ""
             },
             "require": {
@@ -462,7 +464,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-07-01T23:21:34+00:00"
+            "time": "2019-08-13T16:05:52+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -701,7 +703,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "3e4afe051985303322e613e7b53c226fd67b9941"
+                "reference": "88ac30caffffff438e06ae0ec8b6c382d59617d9"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1111,7 +1113,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-submission-scripts",
-                "reference": "692755ff21cc26f25ebd7193321436c5bc6dcae2"
+                "reference": "02870b34b044a523aa2ef3541dcfe147bb3afa81"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1526,17 +1528,17 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-third-party": 20,
         "posterno/addons": 20,
-        "posterno/posterno-entities": 20,
         "posterno/posterno-dom": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/import-export": 20,
+        "posterno/posterno-geocoder": 20,
         "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/import-export": 20,
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-maps": 20,
         "posterno/posterno-validator": 20
     },
     "prefer-stable": false,

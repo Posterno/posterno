@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.7\n"
+"Project-Id-Version: Posterno 1.0.8\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-08-05 11:44:48+00:00\n"
+"POT-Creation-Date: 2019-08-21 15:17:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3134,7 +3134,7 @@ msgid "Submitted term is invalid."
 msgstr ""
 
 #: includes/components/posterno-validator/src/VerifyPassword.php:36
-#: includes/forms/ChangePassword.php:265
+#: includes/forms/ChangePassword.php:280
 msgid "The password you entered is incorrect."
 msgstr ""
 
@@ -3566,12 +3566,12 @@ msgstr ""
 msgid "Change password"
 msgstr ""
 
-#: includes/forms/ChangePassword.php:235 includes/forms/ForgotPassword.php:346
+#: includes/forms/ChangePassword.php:242 includes/forms/ForgotPassword.php:346
 #: includes/forms/Registration.php:222
 msgid "Passwords do not match."
 msgstr ""
 
-#: includes/forms/ChangePassword.php:258
+#: includes/forms/ChangePassword.php:273
 msgid "Password successfully updated."
 msgstr ""
 
@@ -3593,7 +3593,7 @@ msgstr ""
 msgid "Request cancellation of your data"
 msgstr ""
 
-#: includes/forms/DataErasure.php:212
+#: includes/forms/DataErasure.php:219
 msgid ""
 "A confirmation email has been sent to %s. Click the link within the email "
 "to confirm your data erasure request."
@@ -3618,7 +3618,7 @@ msgstr ""
 msgid "Download your data"
 msgstr ""
 
-#: includes/forms/DataRequest.php:213
+#: includes/forms/DataRequest.php:220
 msgid ""
 "A confirmation email has been sent to %s. Click the link within the email "
 "to confirm your export request."
@@ -3718,11 +3718,11 @@ msgstr ""
 msgid "Send email"
 msgstr ""
 
-#: includes/forms/ListingContact.php:227
+#: includes/forms/ListingContact.php:241
 msgid "Your message has been sent successfully."
 msgstr ""
 
-#: includes/forms/ListingContact.php:240
+#: includes/forms/ListingContact.php:254
 msgid "Something went wrong while sending the message."
 msgstr ""
 
@@ -5024,17 +5024,17 @@ msgstr ""
 msgid "Add new profile"
 msgstr ""
 
-#: templates/form.php:35
+#: templates/form.php:43
 msgid ""
 "There was a problem with your submission. Errors have been highlighted "
 "below."
 msgstr ""
 
-#: templates/form.php:88 templates/form.php:99 templates/form.php:165
+#: templates/form.php:96 templates/form.php:109 templates/form.php:177
 msgid "(optional)"
 msgstr ""
 
-#: templates/form.php:117
+#: templates/form.php:127
 msgid "Maximum file size: %s."
 msgstr ""
 
@@ -5062,11 +5062,11 @@ msgstr ""
 msgid "Sorry, this listing is no longer available."
 msgstr ""
 
-#: templates/listings/gallery.php:53 templates/listings/pagination.php:62
+#: templates/listings/gallery.php:57 templates/listings/pagination.php:62
 msgid "Previous"
 msgstr ""
 
-#: templates/listings/gallery.php:57 templates/listings/pagination.php:111
+#: templates/listings/gallery.php:61 templates/listings/pagination.php:111
 msgid "Next"
 msgstr ""
 
@@ -5158,11 +5158,11 @@ msgstr ""
 msgid "Browse listings"
 msgstr ""
 
-#: templates/single.php:128
+#: templates/single.php:129
 msgid "Contact information"
 msgstr ""
 
-#: templates/single.php:190
+#: templates/single.php:191
 msgid "Other information"
 msgstr ""
 

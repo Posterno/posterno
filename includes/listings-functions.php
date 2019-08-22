@@ -1210,6 +1210,8 @@ function pno_listing_is_featured( $listing_id ) {
  */
 function pno_set_listing_as_featured( $listing_id ) {
 	carbon_set_post_meta( $listing_id, 'listing_is_featured', true );
+
+	PNO_Listings_Featured::maybe_update_menu_order( $listing_id, true );
 }
 
 /**
@@ -1220,6 +1222,8 @@ function pno_set_listing_as_featured( $listing_id ) {
  */
 function pno_set_listing_as_non_featured( $listing_id ) {
 	delete_post_meta( $listing_id, '_listing_is_featured' );
+
+	PNO_Listings_Featured::maybe_update_menu_order( $listing_id, false );
 }
 
 /**
