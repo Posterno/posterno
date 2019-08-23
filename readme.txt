@@ -118,6 +118,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.10 23rd August 2019 =
+
+- Added: Listing submission page in Posterno menu manager items list.
+- Tweak: no longer automatically hide all links to the submission page when not logged in.
+- Tweak: automatically hide the listing submission page url only when using the menu item from the Posterno Menu manager list.
+- Fix: guests unable to view profiles when public profiles enabled.
+
 = 1.0.9 22nd August 2019 =
 
 - Fix: menu order parameter or featured listings not being set when programmatically setting listings as featured.
