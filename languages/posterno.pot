@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.9\n"
+"Project-Id-Version: Posterno 1.0.10\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-08-22 14:03:34+00:00\n"
+"POT-Creation-Date: 2019-08-23 14:15:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -315,22 +315,22 @@ msgstr ""
 msgid "Add to Menu"
 msgstr ""
 
-#: includes/admin/admin-dashboard-menu-editor.php:131
+#: includes/admin/admin-dashboard-menu-editor.php:139
 #: includes/functions.php:204 includes/shortcodes.php:55
 msgid "Logout"
 msgstr ""
 
-#: includes/admin/admin-dashboard-menu-editor.php:172
+#: includes/admin/admin-dashboard-menu-editor.php:180
 #: includes/admin/admin-functions.php:716 includes/admin/admin-options.php:54
 #: includes/forms/Login.php:139 includes/shortcodes.php:27
 msgid "Login"
 msgstr ""
 
-#: includes/admin/admin-dashboard-menu-editor.php:178
+#: includes/admin/admin-dashboard-menu-editor.php:186
 msgid "Lost password"
 msgstr ""
 
-#: includes/admin/admin-dashboard-menu-editor.php:184
+#: includes/admin/admin-dashboard-menu-editor.php:192
 #: includes/admin/admin-options.php:55
 msgid "Registration"
 msgstr ""
