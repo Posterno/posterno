@@ -240,6 +240,11 @@ function pno_setup_nav_menu_item( $menu_item ) {
 				$menu_item->url = pno_get_dashboard_navigation_item_url( $matches[1] );
 			}
 			break;
+		case 'submit-listing':
+			if ( ! pno_can_user_submit_listings() || ! is_user_logged_in() ) {
+				$menu_item->_invalid = true;
+			}
+			break;
 	}
 
 	$menu_item->pno_identifier = $matches[1];
