@@ -138,7 +138,7 @@ function pno_restrict_access_to_profiles_from_visitors() {
 		}
 	}
 
-	if ( ! empty( $profile_page_id ) && is_int( $profile_page_id ) && is_page( $profile_page_id ) && ! is_user_logged_in() && pno_get_queried_user_id < 1 ) {
+	if ( ! empty( $profile_page_id ) && is_int( $profile_page_id ) && is_page( $profile_page_id ) && ! is_user_logged_in() && pno_get_queried_user_id() < 1 ) {
 		if ( $login_page && is_int( $login_page ) ) {
 			wp_safe_redirect( get_permalink( $login_page ) );
 			exit;
