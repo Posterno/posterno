@@ -127,6 +127,14 @@ function pno_nav_menu_get_loggedin_pages() {
 		);
 	}
 
+	if ( pno_get_listing_submission_page_id() ) {
+		$menu_items[] = array(
+			'name' => get_the_title( pno_get_listing_submission_page_id() ),
+			'slug' => 'submit-listing',
+			'link' => esc_url( get_permalink( pno_get_listing_submission_page_id() ) ),
+		);
+	}
+
 	$menu_items[] = array(
 		'name' => esc_html__( 'Logout', 'posterno' ),
 		'slug' => 'logout',
