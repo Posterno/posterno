@@ -1,5 +1,6 @@
 {
   "plugin_slug": "posterno",
   "deployment_folder": "build/posterno",
-  "deploy_assets": false
+  "deploy_assets": true,
+  "assets_folder": "wp.org"
 }
