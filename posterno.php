@@ -23,7 +23,7 @@
  * along with Posterno. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package Posterno
- * @author Alessandro Tesoro, Pressmodo LLC.
+ * @author Alessandro Tesoro, Sematico LTD.
  */
 
 defined( 'ABSPATH' ) || exit;

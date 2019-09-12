@@ -3,7 +3,7 @@
  * Handles custom php exceptions, supports a custom error code that we'll use together with WP_Error.
  *
  * @package     posterno
- * @copyright   Copyright (c) 2018, Pressmodo, LLC
+ * @copyright   Copyright (c) 2018, Sematico LTD
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       0.1.0
  */
