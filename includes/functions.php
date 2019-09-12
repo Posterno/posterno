@@ -410,6 +410,10 @@ function pno_get_taxonomy_hierarchy_for_chain_selector( $taxonomy, $parent = 0, 
 
 	$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
 
+	if ( ! taxonomy_exists( $taxonomy ) ) {
+		return [];
+	}
+
 	$terms = get_terms(
 		$taxonomy,
 		[
