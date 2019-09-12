@@ -17,7 +17,7 @@ Posterno is a powerful, extendable directory plugin that helps you create any ki
 
 With endless flexibility, Posterno allows you to create, manage and monetize a directory site for any purpose and showcase listings such as Cars, Hotels, Properties, Restaurants, Events, Travel Tours, etc. Your imagination is the only limit.
 
-[Website](https://posterno.com) | [All features](https://posterno.com/features) | [Demo](https://demo.posterno.com/) | | [Docs](https://docs.posterno.com/) | [Roadmap](https://trello.com/b/bnAC8te8/posterno-wordpress-plugin-roadmap) | [Twitter](https://twitter.com/posternowp/) | [Facebook](https://www.facebook.com/posterno/)
+[Website](https://posterno.com) | [All features](https://posterno.com/features) | [Demo](https://demo.posterno.com/) | [Docs](https://docs.posterno.com/) | [Roadmap](https://trello.com/b/bnAC8te8/posterno-wordpress-plugin-roadmap) | [Twitter](https://twitter.com/posternowp/) | [Facebook](https://www.facebook.com/posterno/)
 
 = Fully featured =
 
@@ -43,9 +43,13 @@ Posterno provides customizable email templates for each email that can be sent t
 
 = Add-ons =
 
+= Premium Extensions =
+
+- **[WooCommerce Paid Listings](https://posterno.com/extensions/woocommerce-paid-listings/)**: Paid listing functionality powered by WooCommerce. Create custom packages which can be purchased or redeemed during listing submission. Setup individual packages limits like how many images members can submit through this package and how many tags and categories they can select and more. Generate recurring revenue with WooCommerce Subscriptions: the easy to use integration with WC Subscriptions allowing you to create recurring listing packages.
+
 = Free Extensions =
 
-- **[Google reCAPTCHA](https://posterno.com/addons/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
+- **[Google reCAPTCHA](https://posterno.com/extensions/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
 = Built with developers in mind =
 
