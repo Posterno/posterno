@@ -116,7 +116,7 @@
 			"includes/utils/{$name}/": [
 				"stevegrunwell/wp-cache-remember"
 			],
-			"includes/components/{$name}/": [
+			"vendor/posterno/{$name}/": [
 				"posterno/posterno-schema",
 				"posterno/posterno-geocoder",
 				"posterno/posterno-third-party",
