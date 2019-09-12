@@ -27,7 +27,7 @@ function pno_tools_page() {
 			<h3><?php esc_html_e( 'Posterno tools', 'posterno' ); ?></h3>
 			<ul class="title-links hidden-sm-and-down">
 				<li>
-					<a href="https://posterno.com/addons" rel="nofollow" target="_blank" class="page-title-action"><?php esc_html_e( 'Addons', 'posterno' ); ?></a>
+					<a href="https://posterno.com/extensions" rel="nofollow" target="_blank" class="page-title-action"><?php esc_html_e( 'Extensions', 'posterno' ); ?></a>
 				</li>
 				<li>
 					<a href="https://docs.posterno.com/" rel="nofollow" target="_blank" class="page-title-action"><?php esc_html_e( 'Documentation', 'posterno' ); ?></a>

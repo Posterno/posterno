@@ -62,7 +62,7 @@ function pno_get_custom_fields_editor_js_vars() {
 		'export_registration_fields_url' => esc_url( admin_url( 'edit.php?post_type=listings&page=registration_fields_exporter' ) ),
 		'labels'                         => [
 			'documentation'       => esc_html__( 'Documentation', 'posterno' ),
-			'addons'              => esc_html__( 'Addons', 'posterno' ),
+			'addons'              => esc_html__( 'Extensions', 'posterno' ),
 			'title'               => esc_html__( 'Posterno custom fields', 'posterno' ),
 			'custom_users'        => esc_html__( 'Profile fields', 'posterno' ),
 			'custom_listings'     => esc_html__( 'Listings fields', 'posterno' ),
