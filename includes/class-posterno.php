@@ -216,7 +216,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 		private function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'PNO_VERSION' ) ) {
-				define( 'PNO_VERSION', '1.0.10' );
+				define( 'PNO_VERSION', '1.0.11' );
 			}
 			// Plugin Root File.
 			if ( ! defined( 'PNO_PLUGIN_FILE' ) ) {
