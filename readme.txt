@@ -118,6 +118,14 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.11 12th September 2019 =
+
+- Tweak: moved all posterno components into the vendor folder.
+- Tweak: changed all static urls of resources to new vendor folder.
+- Tweak: changed copyright notice into the code.
+- Tweak: verify if a taxonomy exists before trying to load it's terms within the tree field.
+- Fix: html entities displaying as code within dropdown options for the tree field.
+
 = 1.0.10 23rd August 2019 =
 
 - Added: Listing submission page in Posterno menu manager items list.
