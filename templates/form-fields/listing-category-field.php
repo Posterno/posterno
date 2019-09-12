@@ -12,7 +12,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @package posterno
  */
 
@@ -44,6 +44,7 @@ $has_errors = $data->field->hasErrors() ? true : false;
 			<label slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }" :class="labelClassName">
 				<span v-html="node.label"></span>
 			</label>
+			<div slot="value-label" slot-scope="{ node }" v-html="node.label"></div>
 		</treeselect>
 	</div>
 </pno-listing-category-selector>
