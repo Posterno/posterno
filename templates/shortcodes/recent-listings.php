@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -24,6 +24,7 @@ $i      = '';
 $args = [
 	'post_type'      => 'listings',
 	'posts_per_page' => $max,
+	'pno_search'     => true,
 ];
 
 $recent_listings = new WP_Query( $args );
