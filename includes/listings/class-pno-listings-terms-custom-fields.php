@@ -83,10 +83,6 @@ class PNO_Listing_Terms_Custom_Fields {
 	 */
 	public function register_categories_settings() {
 
-		if ( ! pno_get_option( 'submission_tags_associated', false ) ) {
-			return;
-		}
-
 		$fields = [];
 
 		if ( pno_get_option( 'submission_tags_associated', false ) ) {
