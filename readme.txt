@@ -122,6 +122,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.0.12 19th September 2019 =
+
+- Added: compatibility with the search forms extension.
+- Tweak: expose queries to the search forms extension.
+- Fix: load google maps script only when needed.
+- Fix: common taxonomy settings not displaying when tags association is disabled.
+
 = 1.0.11 12th September 2019 =
 
 - Tweak: moved all posterno components into the vendor folder.
