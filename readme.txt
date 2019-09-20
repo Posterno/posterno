@@ -45,6 +45,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 = Premium Extensions =
 
+- **[Search forms](https://posterno.com/extensions/search-forms/)**: create unlimited faceted search forms for your listings directory. All listings custom fields that you create can be searched (except file fields), including all listings taxonomies. Each form is powered by ajax, this means no page refresh and almost instant search results.
+
 - **[WooCommerce Paid Listings](https://posterno.com/extensions/woocommerce-paid-listings/)**: Paid listing functionality powered by WooCommerce. Create custom packages which can be purchased or redeemed during listing submission. Setup individual packages limits like how many images members can submit through this package and how many tags and categories they can select and more. Generate recurring revenue with WooCommerce Subscriptions: the easy to use integration with WC Subscriptions allowing you to create recurring listing packages.
 
 = Free Extensions =

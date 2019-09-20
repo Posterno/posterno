@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.0.11\n"
+"Project-Id-Version: Posterno 1.0.12\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-09-12 14:23:34+00:00\n"
+"POT-Creation-Date: 2019-09-19 11:32:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -527,14 +527,14 @@ msgstr ""
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: includes/admin/admin-footer.php:69
+#: includes/admin/admin-footer.php:70
 #. translators: %s: Link to 5 star rating
 msgid ""
 "If you like <strong>Posterno</strong> please rate us on %s. It takes a "
 "minute and helps a lot. Thanks in advance!"
 msgstr ""
 
-#: includes/admin/admin-footer.php:70
+#: includes/admin/admin-footer.php:71
 msgid "Thanks :)"
 msgstr ""
 
@@ -3566,25 +3566,25 @@ msgstr ""
 msgid "Listing type settings"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:93
+#: includes/listings/class-pno-listings-terms-custom-fields.php:89
 msgid "Associated listing tags"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:94
+#: includes/listings/class-pno-listings-terms-custom-fields.php:90
 msgid ""
 "Select one or more listings tags that you wish to assign to this listing "
 "category."
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:100
+#: includes/listings/class-pno-listings-terms-custom-fields.php:96
 msgid "Listing categories settings"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:113
+#: includes/listings/class-pno-listings-terms-custom-fields.php:109
 msgid "Listing location settings"
 msgstr ""
 
-#: includes/listings/class-pno-listings-terms-custom-fields.php:126
+#: includes/listings/class-pno-listings-terms-custom-fields.php:122
 msgid "Listing tag settings"
 msgstr ""
 
@@ -4790,7 +4790,7 @@ msgid "Other information"
 msgstr ""
 
 #: templates/widgets/featured-listings.php:77
-#: templates/widgets/recent-listings.php:71
+#: templates/widgets/recent-listings.php:72
 msgid "No listings have been found."
 msgstr ""
 
