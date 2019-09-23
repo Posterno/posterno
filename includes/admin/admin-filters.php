@@ -325,27 +325,27 @@ function pno_register_health_tests( $core_tests ) {
 						'actions'     => '',
 						'test'        => 'posterno_' . $test['name'],
 					);
-			if ( is_wp_error( $results ) ) {
-				return;
-			}
-			if ( false === $results['pass'] ) {
+					if ( is_wp_error( $results ) ) {
+						return;
+					}
+					if ( false === $results['pass'] ) {
 
-				$return['label'] = $results['message'];
-				$return['status']      = $results['severity'];
-				$return['description'] = sprintf(
-					'<p>%s</p>',
-					$results['resolution']
-				);
-				if ( ! empty( $results['action'] ) ) {
-					$return['actions'] = sprintf(
-						'<a class="button button-primary" href="%1$s" target="_blank" rel="noopener noreferrer">%2$s <span class="screen-reader-text">%3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
-						esc_url( $results['action'] ),
-						__( 'Resolve', 'posterno' ),
-						/* translators: accessibility text */
-						__( '(opens in a new tab)', 'posterno' )
-					);
-				}
-			}
+						$return['label'] = $results['message'];
+						$return['status']      = $results['severity'];
+						$return['description'] = sprintf(
+							'<p>%s</p>',
+							$results['resolution']
+						);
+						if ( ! empty( $results['action'] ) ) {
+							$return['actions'] = sprintf(
+								'<a class="button button-primary" href="%1$s" target="_blank" rel="noopener noreferrer">%2$s <span class="screen-reader-text">%3$s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a>',
+								esc_url( $results['action'] ),
+								__( 'Resolve', 'posterno' ),
+								/* translators: accessibility text */
+								__( '(opens in a new tab)', 'posterno' )
+							);
+						}
+					}
 					return $return;
 				},
 			);
@@ -356,3 +356,80 @@ function pno_register_health_tests( $core_tests ) {
 
 }
 add_filter( 'site_status_tests', 'pno_register_health_tests' );
+
+/**
+ * Hide fields from the listings post type admin panel when they're marked as hidden.
+ *
+ * @param array $fields list of fields registered.
+ * @return array
+ */
+function pno_hide_admin_default_listings_fields( $fields ) {
+
+	$args = [
+		'number'               => 100,
+		'listing_meta_key__in' => [
+			'listing_phone_number',
+			'listing_email_address',
+			'listing_website',
+			'listing_social_media_profiles',
+			'listing_location',
+			'listing_zipcode',
+			'listing_gallery',
+			'listing_video',
+			'listing_opening_hours',
+		],
+	];
+
+	$listing_fields = new PNO\Database\Queries\Listing_Fields( $args );
+
+	// Hold ids of fields hidden from the admin panel.
+	$admin_hidden_fields = [];
+
+	if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
+		foreach ( $listing_fields->items as $index => $field ) {
+
+			if ( $field->isAdminOnly() === true && $field->isAdminHidden() === true ) {
+
+				$key = $field->getObjectMetaKey();
+
+				switch ( $key ) {
+					case 'listing_email_address':
+						$key = 'listing_email';
+						break;
+					case 'listing_social_media_profiles':
+						$key = 'listing_social_profiles';
+						break;
+					case 'listing_gallery':
+						$key = 'listing_gallery_images';
+						break;
+					case 'listing_video':
+						$key = 'listing_media_embed';
+						break;
+					case 'listing_opening_hours':
+						add_filter(
+							'pno_listing_opening_hours_settings',
+							function() {
+								return [];
+							}
+						);
+						break;
+				}
+
+				$admin_hidden_fields[] = $key;
+			}
+		}
+	}
+
+	// Now hide fields.
+	foreach ( $fields as $index => $carbonfield ) {
+		if ( in_array( $carbonfield->get_base_name(), $admin_hidden_fields, true ) ) {
+			unset( $fields[ $index ] );
+		}
+	}
+
+	return $fields;
+
+}
+add_filter( 'pno_listing_details_settings', 'pno_hide_admin_default_listings_fields' );
+add_filter( 'pno_listing_location_settings', 'pno_hide_admin_default_listings_fields' );
+add_filter( 'pno_listing_media_settings', 'pno_hide_admin_default_listings_fields' );

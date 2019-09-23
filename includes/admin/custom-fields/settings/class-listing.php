@@ -239,9 +239,9 @@ class Listing {
 
 		$disable_admin_only      = false;
 		$current_field           = $this->get_current_field();
-		$admin_only_disabled_for = [ 'listing_title' ];
+		$admin_only_disabled_for = [ 'listing_title', 'listing_description' ];
 
-		if ( in_array( $current_field, $admin_only_disabled_for ) ) {
+		if ( in_array( $current_field, $admin_only_disabled_for, true ) ) {
 			$disable_admin_only = true;
 		}
 
@@ -249,6 +249,19 @@ class Listing {
 			$settings[] = Field::make( 'checkbox', 'listing_field_is_admin_only', esc_html__( 'Admin only?', 'posterno' ) )
 				->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not visible within the listing submission form on the frontend.', 'posterno' ) );
 		}
+
+		$settings[] = Field::make( 'checkbox', 'listing_field_admin_hidden', esc_html__( 'Hide from admin panel', 'posterno' ) )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'listing_field_is_admin_only',
+						'value'   => true,
+						'compare' => '=',
+					),
+				)
+			)
+			->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel.', 'posterno' ) );
 
 		/**
 		 * Allow developers to customize the settings for the listings custom fields post type.
