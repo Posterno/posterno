@@ -88,7 +88,7 @@ function pno_adjust_listings_query( $query ) {
 			$sorters = apply_filters( 'pno_pre_get_posts_active_sorters', $sorters, $active_order );
 
 			if ( isset( $sorters ) && ! empty( $sorters ) ) {
-				if ( ! in_array( $active_order, $enabled_featuring_sorters ) ) {
+				if ( ! in_array( $active_order, $enabled_featuring_sorters, true ) && isset( $sorters['menu_order'] ) ) {
 					unset( $sorters['menu_order'] );
 				}
 				if ( ! $listings_can_be_featured && isset( $sorters['menu_order'] ) ) {
