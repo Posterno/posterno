@@ -381,6 +381,8 @@ function pno_mark_expired_listing_button( $post ) {
 		get_edit_post_link( $post->ID )
 	);
 
+	$url = wp_nonce_url( $url, 'mark_as_expired', 'set_as_expired_nonce' );
+
 	include PNO_PLUGIN_DIR . 'includes/admin/views/mark-as-expired-button.php';
 
 }
@@ -438,7 +440,7 @@ function pno_mark_listing_as_expired() {
 		return;
 	}
 
-	if ( $trigger && $post_id && is_admin() && current_user_can( 'edit_posts' ) ) {
+	if ( $trigger && $post_id && is_admin() && current_user_can( 'edit_posts' ) && wp_verify_nonce( $_GET['set_as_expired_nonce'], 'mark_as_expired' ) ) {
 
 		wp_update_post(
 			array(
