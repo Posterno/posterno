@@ -876,7 +876,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 	}
 
 	// Load fields from the database and merge it with the default settings.
-	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
+	$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 300 ] );
 
 	if ( isset( $fields_query->items ) && is_array( $fields_query->items ) ) {
 

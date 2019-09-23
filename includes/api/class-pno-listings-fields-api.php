@@ -122,7 +122,7 @@ class PNO_Listings_Fields_Api extends PNO_REST_Controller {
 		$fields = [];
 		$data   = [];
 
-		$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 100 ] );
+		$fields_query = new PNO\Database\Queries\Listing_Fields( [ 'number' => 300 ] );
 
 		if ( ! empty( $fields_query->items ) && is_array( $fields_query->items ) ) {
 			$fields = $fields_query->items;

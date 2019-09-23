@@ -31,7 +31,7 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 	}
 
 	$args = [
-		'number'               => 100,
+		'number'               => 300,
 		'listing_meta_key__in' => $fields_to_query,
 	];
 
