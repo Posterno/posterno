@@ -28,6 +28,14 @@ class Profile {
 	 */
 	public function init() {
 
+		global $pagenow;
+
+		$pid = isset( $_GET['post'] ) && ! empty( $_GET['post'] ) ? absint( $_GET['post'] ) : false;
+
+		if ( is_admin() && get_post_type( $pid ) === 'listings' ) {
+			return;
+		}
+
 		add_action( 'carbon_fields_register_fields', [ $this, 'register_settings' ] );
 
 	}
