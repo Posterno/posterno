@@ -218,13 +218,10 @@ class Profile {
 		$disable_admin_only_setting = false;
 
 		if ( $field_id ) {
-
 			$profile_field = \PNO\Entities\Field\Profile::getFromID( $field_id );
-
 			if ( $profile_field instanceof \PNO\Entities\Field\Profile && $profile_field->getObjectMetaKey() === 'avatar' ) {
 				$disable_admin_only_setting = true;
 			}
-
 		}
 
 		if ( ! $disable_admin_only_setting ) {
@@ -238,7 +235,7 @@ class Profile {
 					'relation' => 'AND',
 					array(
 						'field'   => 'profile_field_type',
-						'value'   => [ 'file', 'editor' ],
+						'value'   => [ 'file', 'editor', 'heading' ],
 						'compare' => 'NOT IN',
 					),
 				)
