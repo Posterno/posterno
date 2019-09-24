@@ -397,15 +397,15 @@ class Listing {
 									break;
 							}
 
-							if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select', 'term-chain-dropdown' ] ) ) {
+							if ( in_array( $type, [ 'term-checklist', 'term-multiselect', 'term-select', 'term-chain-dropdown', 'heading' ], true ) ) {
 								continue;
 							}
 
-							if ( $type == 'set' || $type == 'multiselect' ) {
+							if ( $type === 'set' || $type === 'multiselect' ) {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->add_options( $custom_listing_field->getOptions() )->set_datastore( new \PNO\Datastores\SerializeComplexField() );
-							} elseif ( $type == 'select' || $type == 'radio' ) {
+							} elseif ( $type === 'select' || $type === 'radio' ) {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->add_options( $custom_listing_field->getOptions() );
-							} elseif ( $type == 'file' ) {
+							} elseif ( $type === 'file' ) {
 								if ( $custom_listing_field->isMultiple() ) {
 									$admin_fields[] = Field::make( 'complex', $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_datastore( new \PNO\Datastores\SerializeComplexField() )->add_fields(
 										array(
@@ -416,9 +416,9 @@ class Listing {
 								} else {
 									$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
 								}
-							} elseif ( $custom_listing_field->getType() == 'number' ) {
+							} elseif ( $custom_listing_field->getType() === 'number' ) {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_attribute( 'type', 'number' );
-							} elseif ( $custom_listing_field->getType() == 'password' ) {
+							} elseif ( $custom_listing_field->getType() === 'password' ) {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_attribute( 'type', 'password' );
 							} else {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );

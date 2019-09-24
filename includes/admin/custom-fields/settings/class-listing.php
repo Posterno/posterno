@@ -115,7 +115,7 @@ class Listing {
 
 		$disable_multiple_setting      = false;
 		$multiple_setting_disabled_for = [ 'listing_featured_image' ];
-		if ( in_array( $current_field, $multiple_setting_disabled_for ) ) {
+		if ( in_array( $current_field, $multiple_setting_disabled_for, true ) ) {
 			$disable_multiple_setting = true;
 		}
 
@@ -367,6 +367,29 @@ class Listing {
 
 		return $meta;
 
+	}
+
+	/**
+	 * Get the current field type.
+	 *
+	 * @return string|bool
+	 */
+	private function get_current_field_type() {
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
+		$type     = false;
+
+		if ( $field_id ) {
+			$listing_field = \PNO\Entities\Field\Listing::getFromID( $field_id );
+			if ( $listing_field instanceof \PNO\Entities\Field\Listing ) {
+				$type = $listing_field->getType();
+			}
+		}
+
+		return $type;
 	}
 
 }

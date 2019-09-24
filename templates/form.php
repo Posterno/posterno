@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @package posterno
  */
 
@@ -88,7 +88,7 @@ do_action( 'pno_before_form', $data );
 
 						?>
 
-						<?php if ( ! empty( $field->getLabel() ) && ! in_array( $field->getType(), [ 'checkbox', 'file' ], true ) ) : ?>
+						<?php if ( ! empty( $field->getLabel() ) && ! in_array( $field->getType(), [ 'checkbox', 'file', 'heading' ], true ) ) : ?>
 							<label for="<?php echo esc_attr( $field->getName() ); ?>">
 								<?php echo esc_html( $field->getLabel() ); ?>
 

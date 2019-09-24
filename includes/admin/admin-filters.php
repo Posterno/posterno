@@ -438,3 +438,56 @@ function pno_hide_admin_default_listings_fields( $fields ) {
 add_filter( 'pno_listing_details_settings', 'pno_hide_admin_default_listings_fields' );
 add_filter( 'pno_listing_location_settings', 'pno_hide_admin_default_listings_fields' );
 add_filter( 'pno_listing_media_settings', 'pno_hide_admin_default_listings_fields' );
+
+/**
+ * Register conditional logic for heading field settings.
+ *
+ * @param array $fields list of fields registered.
+ * @return array
+ */
+function pno_set_conditional_logic_for_headings( $fields ) {
+
+	$field_id = isset( $_GET['post'] ) && is_admin() ? absint( $_GET['post'] ) : false; //phpcs:ignore
+	$type     = false;
+
+	if ( $field_id ) {
+		$listing_field = \PNO\Entities\Field\Listing::getFromID( $field_id );
+		if ( $listing_field instanceof \PNO\Entities\Field\Listing ) {
+			$type = $listing_field->getType();
+		}
+
+		if ( $type === 'heading' ) {
+
+			$hidden_fields = [
+				'listing_field_label',
+				'listing_field_placeholder',
+				'listing_field_description',
+				'listing_field_is_required',
+				'listing_field_is_admin_only',
+				'listing_field_visibility',
+			];
+
+			foreach ( $fields as $carbon ) {
+				if ( in_array( $carbon->get_base_name(), $hidden_fields, true ) ) {
+					$carbon->set_conditional_logic(
+						array(
+							'relation' => 'AND',
+							array(
+								'field'   => 'listing_field_type',
+								'value'   => 'heading',
+								'compare' => '!=',
+							),
+						)
+					);
+				}
+			}
+
+		}
+	}
+
+	return $fields;
+
+}
+add_filter( 'pno_listings_fields_general_settings', 'pno_set_conditional_logic_for_headings' );
+add_filter( 'pno_listings_fields_validation_settings', 'pno_set_conditional_logic_for_headings' );
+add_filter( 'pno_listings_fields_permissions_settings', 'pno_set_conditional_logic_for_headings' );
