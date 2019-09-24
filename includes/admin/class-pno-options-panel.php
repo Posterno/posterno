@@ -785,6 +785,38 @@ class OptionsPanel {
 		$settings[] = Field::make( 'checkbox', 'uninstall_on_delete', esc_html__( 'Remove data on uninstall?', 'posterno' ) )
 			->set_help_text( esc_html__( 'Check this box if you would like Posterno to completely remove all of its data when the plugin is deleted.', 'posterno' ) );
 
+		$settings[] = Field::make( 'select', 'pricing_currency', esc_html__( 'Pricing currency', 'posterno' ) )
+			->set_help_text( esc_html__( 'Select the currency you wish to use for pricing fields.', 'posterno' ) )
+			->add_options(
+				function() {
+					return \PNO\CurrencyHelper::get_currencies();
+				}
+			);
+
+		$settings[] = Field::make( 'select', 'pricing_currency_position', esc_html__( 'Pricing currency position', 'posterno' ) )
+			->set_help_text( esc_html__( 'This controls the position of the currency symbol.', 'posterno' ) )
+			->set_default_value( 'left' )
+			->add_options(
+				[
+					'left'        => esc_html__( 'Left' ),
+					'right'       => esc_html__( 'Right' ),
+					'left_space'  => esc_html__( 'Left with space' ),
+					'right_space' => esc_html__( 'Right with space' ),
+				]
+			);
+
+		$settings[] = Field::make( 'text', 'pricing_thousand_separator', esc_html__( 'Thousand separator', 'posterno' ) )
+			->set_default_value( ',' )
+			->set_help_text( esc_html__( 'This sets the thousand separator of displayed prices.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'pricing_decimal_separator', esc_html__( 'Decimal separator', 'posterno' ) )
+			->set_default_value( '.' )
+			->set_help_text( esc_html__( 'This sets the decimal separator of displayed prices.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'pricing_decimals_number', esc_html__( 'Number of decimals', 'posterno' ) )
+		->set_default_value( '2' )
+			->set_help_text( esc_html__( 'This sets the number of decimal points shown in displayed prices.', 'posterno' ) );
+
 		return $settings;
 
 	}
