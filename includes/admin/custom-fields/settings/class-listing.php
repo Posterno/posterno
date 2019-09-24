@@ -268,8 +268,8 @@ class Listing {
 			$settings[] = Field::make( 'select', 'listing_field_visibility', esc_html__( 'Visibility', 'posterno' ) )
 				->set_options(
 					[
-						'visible' => esc_html__( 'Visible' ),
-						'hidden'  => esc_html__( 'Hidden' ),
+						'visible' => esc_html__( 'Visible', 'posterno' ),
+						'hidden'  => esc_html__( 'Hidden', 'posterno' ),
 					]
 				)
 				->set_help_text( esc_html__( 'Set the frontend visibility for this field.', 'posterno' ) );
