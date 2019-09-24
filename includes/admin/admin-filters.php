@@ -380,7 +380,12 @@ function pno_hide_admin_default_listings_fields( $fields ) {
 		],
 	];
 
-	$listing_fields = new PNO\Database\Queries\Listing_Fields( $args );
+	$listing_fields = remember_transient(
+		'pno_admin_hidden_fields',
+		function() use ( $args ) {
+			return new PNO\Database\Queries\Listing_Fields( $args );
+		}
+	);
 
 	// Hold ids of fields hidden from the admin panel.
 	$admin_hidden_fields = [];
