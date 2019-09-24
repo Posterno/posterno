@@ -41,169 +41,169 @@ class CurrencyHelper {
 				apply_filters(
 					'pno_currencies',
 					array(
-						'AED' => __( 'United Arab Emirates dirham', 'woocommerce' ),
-						'AFN' => __( 'Afghan afghani', 'woocommerce' ),
-						'ALL' => __( 'Albanian lek', 'woocommerce' ),
-						'AMD' => __( 'Armenian dram', 'woocommerce' ),
-						'ANG' => __( 'Netherlands Antillean guilder', 'woocommerce' ),
-						'AOA' => __( 'Angolan kwanza', 'woocommerce' ),
-						'ARS' => __( 'Argentine peso', 'woocommerce' ),
-						'AUD' => __( 'Australian dollar', 'woocommerce' ),
-						'AWG' => __( 'Aruban florin', 'woocommerce' ),
-						'AZN' => __( 'Azerbaijani manat', 'woocommerce' ),
-						'BAM' => __( 'Bosnia and Herzegovina convertible mark', 'woocommerce' ),
-						'BBD' => __( 'Barbadian dollar', 'woocommerce' ),
-						'BDT' => __( 'Bangladeshi taka', 'woocommerce' ),
-						'BGN' => __( 'Bulgarian lev', 'woocommerce' ),
-						'BHD' => __( 'Bahraini dinar', 'woocommerce' ),
-						'BIF' => __( 'Burundian franc', 'woocommerce' ),
-						'BMD' => __( 'Bermudian dollar', 'woocommerce' ),
-						'BND' => __( 'Brunei dollar', 'woocommerce' ),
-						'BOB' => __( 'Bolivian boliviano', 'woocommerce' ),
-						'BRL' => __( 'Brazilian real', 'woocommerce' ),
-						'BSD' => __( 'Bahamian dollar', 'woocommerce' ),
-						'BTC' => __( 'Bitcoin', 'woocommerce' ),
-						'BTN' => __( 'Bhutanese ngultrum', 'woocommerce' ),
-						'BWP' => __( 'Botswana pula', 'woocommerce' ),
-						'BYR' => __( 'Belarusian ruble (old)', 'woocommerce' ),
-						'BYN' => __( 'Belarusian ruble', 'woocommerce' ),
-						'BZD' => __( 'Belize dollar', 'woocommerce' ),
-						'CAD' => __( 'Canadian dollar', 'woocommerce' ),
-						'CDF' => __( 'Congolese franc', 'woocommerce' ),
-						'CHF' => __( 'Swiss franc', 'woocommerce' ),
-						'CLP' => __( 'Chilean peso', 'woocommerce' ),
-						'CNY' => __( 'Chinese yuan', 'woocommerce' ),
-						'COP' => __( 'Colombian peso', 'woocommerce' ),
-						'CRC' => __( 'Costa Rican col&oacute;n', 'woocommerce' ),
-						'CUC' => __( 'Cuban convertible peso', 'woocommerce' ),
-						'CUP' => __( 'Cuban peso', 'woocommerce' ),
-						'CVE' => __( 'Cape Verdean escudo', 'woocommerce' ),
-						'CZK' => __( 'Czech koruna', 'woocommerce' ),
-						'DJF' => __( 'Djiboutian franc', 'woocommerce' ),
-						'DKK' => __( 'Danish krone', 'woocommerce' ),
-						'DOP' => __( 'Dominican peso', 'woocommerce' ),
-						'DZD' => __( 'Algerian dinar', 'woocommerce' ),
-						'EGP' => __( 'Egyptian pound', 'woocommerce' ),
-						'ERN' => __( 'Eritrean nakfa', 'woocommerce' ),
-						'ETB' => __( 'Ethiopian birr', 'woocommerce' ),
-						'EUR' => __( 'Euro', 'woocommerce' ),
-						'FJD' => __( 'Fijian dollar', 'woocommerce' ),
-						'FKP' => __( 'Falkland Islands pound', 'woocommerce' ),
-						'GBP' => __( 'Pound sterling', 'woocommerce' ),
-						'GEL' => __( 'Georgian lari', 'woocommerce' ),
-						'GGP' => __( 'Guernsey pound', 'woocommerce' ),
-						'GHS' => __( 'Ghana cedi', 'woocommerce' ),
-						'GIP' => __( 'Gibraltar pound', 'woocommerce' ),
-						'GMD' => __( 'Gambian dalasi', 'woocommerce' ),
-						'GNF' => __( 'Guinean franc', 'woocommerce' ),
-						'GTQ' => __( 'Guatemalan quetzal', 'woocommerce' ),
-						'GYD' => __( 'Guyanese dollar', 'woocommerce' ),
-						'HKD' => __( 'Hong Kong dollar', 'woocommerce' ),
-						'HNL' => __( 'Honduran lempira', 'woocommerce' ),
-						'HRK' => __( 'Croatian kuna', 'woocommerce' ),
-						'HTG' => __( 'Haitian gourde', 'woocommerce' ),
-						'HUF' => __( 'Hungarian forint', 'woocommerce' ),
-						'IDR' => __( 'Indonesian rupiah', 'woocommerce' ),
-						'ILS' => __( 'Israeli new shekel', 'woocommerce' ),
-						'IMP' => __( 'Manx pound', 'woocommerce' ),
-						'INR' => __( 'Indian rupee', 'woocommerce' ),
-						'IQD' => __( 'Iraqi dinar', 'woocommerce' ),
-						'IRR' => __( 'Iranian rial', 'woocommerce' ),
-						'IRT' => __( 'Iranian toman', 'woocommerce' ),
-						'ISK' => __( 'Icelandic kr&oacute;na', 'woocommerce' ),
-						'JEP' => __( 'Jersey pound', 'woocommerce' ),
-						'JMD' => __( 'Jamaican dollar', 'woocommerce' ),
-						'JOD' => __( 'Jordanian dinar', 'woocommerce' ),
-						'JPY' => __( 'Japanese yen', 'woocommerce' ),
-						'KES' => __( 'Kenyan shilling', 'woocommerce' ),
-						'KGS' => __( 'Kyrgyzstani som', 'woocommerce' ),
-						'KHR' => __( 'Cambodian riel', 'woocommerce' ),
-						'KMF' => __( 'Comorian franc', 'woocommerce' ),
-						'KPW' => __( 'North Korean won', 'woocommerce' ),
-						'KRW' => __( 'South Korean won', 'woocommerce' ),
-						'KWD' => __( 'Kuwaiti dinar', 'woocommerce' ),
-						'KYD' => __( 'Cayman Islands dollar', 'woocommerce' ),
-						'KZT' => __( 'Kazakhstani tenge', 'woocommerce' ),
-						'LAK' => __( 'Lao kip', 'woocommerce' ),
-						'LBP' => __( 'Lebanese pound', 'woocommerce' ),
-						'LKR' => __( 'Sri Lankan rupee', 'woocommerce' ),
-						'LRD' => __( 'Liberian dollar', 'woocommerce' ),
-						'LSL' => __( 'Lesotho loti', 'woocommerce' ),
-						'LYD' => __( 'Libyan dinar', 'woocommerce' ),
-						'MAD' => __( 'Moroccan dirham', 'woocommerce' ),
-						'MDL' => __( 'Moldovan leu', 'woocommerce' ),
-						'MGA' => __( 'Malagasy ariary', 'woocommerce' ),
-						'MKD' => __( 'Macedonian denar', 'woocommerce' ),
-						'MMK' => __( 'Burmese kyat', 'woocommerce' ),
-						'MNT' => __( 'Mongolian t&ouml;gr&ouml;g', 'woocommerce' ),
-						'MOP' => __( 'Macanese pataca', 'woocommerce' ),
-						'MRU' => __( 'Mauritanian ouguiya', 'woocommerce' ),
-						'MUR' => __( 'Mauritian rupee', 'woocommerce' ),
-						'MVR' => __( 'Maldivian rufiyaa', 'woocommerce' ),
-						'MWK' => __( 'Malawian kwacha', 'woocommerce' ),
-						'MXN' => __( 'Mexican peso', 'woocommerce' ),
-						'MYR' => __( 'Malaysian ringgit', 'woocommerce' ),
-						'MZN' => __( 'Mozambican metical', 'woocommerce' ),
-						'NAD' => __( 'Namibian dollar', 'woocommerce' ),
-						'NGN' => __( 'Nigerian naira', 'woocommerce' ),
-						'NIO' => __( 'Nicaraguan c&oacute;rdoba', 'woocommerce' ),
-						'NOK' => __( 'Norwegian krone', 'woocommerce' ),
-						'NPR' => __( 'Nepalese rupee', 'woocommerce' ),
-						'NZD' => __( 'New Zealand dollar', 'woocommerce' ),
-						'OMR' => __( 'Omani rial', 'woocommerce' ),
-						'PAB' => __( 'Panamanian balboa', 'woocommerce' ),
-						'PEN' => __( 'Sol', 'woocommerce' ),
-						'PGK' => __( 'Papua New Guinean kina', 'woocommerce' ),
-						'PHP' => __( 'Philippine peso', 'woocommerce' ),
-						'PKR' => __( 'Pakistani rupee', 'woocommerce' ),
-						'PLN' => __( 'Polish z&#x142;oty', 'woocommerce' ),
-						'PRB' => __( 'Transnistrian ruble', 'woocommerce' ),
-						'PYG' => __( 'Paraguayan guaran&iacute;', 'woocommerce' ),
-						'QAR' => __( 'Qatari riyal', 'woocommerce' ),
-						'RON' => __( 'Romanian leu', 'woocommerce' ),
-						'RSD' => __( 'Serbian dinar', 'woocommerce' ),
-						'RUB' => __( 'Russian ruble', 'woocommerce' ),
-						'RWF' => __( 'Rwandan franc', 'woocommerce' ),
-						'SAR' => __( 'Saudi riyal', 'woocommerce' ),
-						'SBD' => __( 'Solomon Islands dollar', 'woocommerce' ),
-						'SCR' => __( 'Seychellois rupee', 'woocommerce' ),
-						'SDG' => __( 'Sudanese pound', 'woocommerce' ),
-						'SEK' => __( 'Swedish krona', 'woocommerce' ),
-						'SGD' => __( 'Singapore dollar', 'woocommerce' ),
-						'SHP' => __( 'Saint Helena pound', 'woocommerce' ),
-						'SLL' => __( 'Sierra Leonean leone', 'woocommerce' ),
-						'SOS' => __( 'Somali shilling', 'woocommerce' ),
-						'SRD' => __( 'Surinamese dollar', 'woocommerce' ),
-						'SSP' => __( 'South Sudanese pound', 'woocommerce' ),
-						'STN' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'woocommerce' ),
-						'SYP' => __( 'Syrian pound', 'woocommerce' ),
-						'SZL' => __( 'Swazi lilangeni', 'woocommerce' ),
-						'THB' => __( 'Thai baht', 'woocommerce' ),
-						'TJS' => __( 'Tajikistani somoni', 'woocommerce' ),
-						'TMT' => __( 'Turkmenistan manat', 'woocommerce' ),
-						'TND' => __( 'Tunisian dinar', 'woocommerce' ),
-						'TOP' => __( 'Tongan pa&#x2bb;anga', 'woocommerce' ),
-						'TRY' => __( 'Turkish lira', 'woocommerce' ),
-						'TTD' => __( 'Trinidad and Tobago dollar', 'woocommerce' ),
-						'TWD' => __( 'New Taiwan dollar', 'woocommerce' ),
-						'TZS' => __( 'Tanzanian shilling', 'woocommerce' ),
-						'UAH' => __( 'Ukrainian hryvnia', 'woocommerce' ),
-						'UGX' => __( 'Ugandan shilling', 'woocommerce' ),
-						'USD' => __( 'United States (US) dollar', 'woocommerce' ),
-						'UYU' => __( 'Uruguayan peso', 'woocommerce' ),
-						'UZS' => __( 'Uzbekistani som', 'woocommerce' ),
-						'VEF' => __( 'Venezuelan bol&iacute;var', 'woocommerce' ),
-						'VES' => __( 'Bol&iacute;var soberano', 'woocommerce' ),
-						'VND' => __( 'Vietnamese &#x111;&#x1ed3;ng', 'woocommerce' ),
-						'VUV' => __( 'Vanuatu vatu', 'woocommerce' ),
-						'WST' => __( 'Samoan t&#x101;l&#x101;', 'woocommerce' ),
-						'XAF' => __( 'Central African CFA franc', 'woocommerce' ),
-						'XCD' => __( 'East Caribbean dollar', 'woocommerce' ),
-						'XOF' => __( 'West African CFA franc', 'woocommerce' ),
-						'XPF' => __( 'CFP franc', 'woocommerce' ),
-						'YER' => __( 'Yemeni rial', 'woocommerce' ),
-						'ZAR' => __( 'South African rand', 'woocommerce' ),
-						'ZMW' => __( 'Zambian kwacha', 'woocommerce' ),
+						'AED' => __( 'United Arab Emirates dirham', 'pno' ),
+						'AFN' => __( 'Afghan afghani', 'pno' ),
+						'ALL' => __( 'Albanian lek', 'pno' ),
+						'AMD' => __( 'Armenian dram', 'pno' ),
+						'ANG' => __( 'Netherlands Antillean guilder', 'pno' ),
+						'AOA' => __( 'Angolan kwanza', 'pno' ),
+						'ARS' => __( 'Argentine peso', 'pno' ),
+						'AUD' => __( 'Australian dollar', 'pno' ),
+						'AWG' => __( 'Aruban florin', 'pno' ),
+						'AZN' => __( 'Azerbaijani manat', 'pno' ),
+						'BAM' => __( 'Bosnia and Herzegovina convertible mark', 'pno' ),
+						'BBD' => __( 'Barbadian dollar', 'pno' ),
+						'BDT' => __( 'Bangladeshi taka', 'pno' ),
+						'BGN' => __( 'Bulgarian lev', 'pno' ),
+						'BHD' => __( 'Bahraini dinar', 'pno' ),
+						'BIF' => __( 'Burundian franc', 'pno' ),
+						'BMD' => __( 'Bermudian dollar', 'pno' ),
+						'BND' => __( 'Brunei dollar', 'pno' ),
+						'BOB' => __( 'Bolivian boliviano', 'pno' ),
+						'BRL' => __( 'Brazilian real', 'pno' ),
+						'BSD' => __( 'Bahamian dollar', 'pno' ),
+						'BTC' => __( 'Bitcoin', 'pno' ),
+						'BTN' => __( 'Bhutanese ngultrum', 'pno' ),
+						'BWP' => __( 'Botswana pula', 'pno' ),
+						'BYR' => __( 'Belarusian ruble (old)', 'pno' ),
+						'BYN' => __( 'Belarusian ruble', 'pno' ),
+						'BZD' => __( 'Belize dollar', 'pno' ),
+						'CAD' => __( 'Canadian dollar', 'pno' ),
+						'CDF' => __( 'Congolese franc', 'pno' ),
+						'CHF' => __( 'Swiss franc', 'pno' ),
+						'CLP' => __( 'Chilean peso', 'pno' ),
+						'CNY' => __( 'Chinese yuan', 'pno' ),
+						'COP' => __( 'Colombian peso', 'pno' ),
+						'CRC' => __( 'Costa Rican col&oacute;n', 'pno' ),
+						'CUC' => __( 'Cuban convertible peso', 'pno' ),
+						'CUP' => __( 'Cuban peso', 'pno' ),
+						'CVE' => __( 'Cape Verdean escudo', 'pno' ),
+						'CZK' => __( 'Czech koruna', 'pno' ),
+						'DJF' => __( 'Djiboutian franc', 'pno' ),
+						'DKK' => __( 'Danish krone', 'pno' ),
+						'DOP' => __( 'Dominican peso', 'pno' ),
+						'DZD' => __( 'Algerian dinar', 'pno' ),
+						'EGP' => __( 'Egyptian pound', 'pno' ),
+						'ERN' => __( 'Eritrean nakfa', 'pno' ),
+						'ETB' => __( 'Ethiopian birr', 'pno' ),
+						'EUR' => __( 'Euro', 'pno' ),
+						'FJD' => __( 'Fijian dollar', 'pno' ),
+						'FKP' => __( 'Falkland Islands pound', 'pno' ),
+						'GBP' => __( 'Pound sterling', 'pno' ),
+						'GEL' => __( 'Georgian lari', 'pno' ),
+						'GGP' => __( 'Guernsey pound', 'pno' ),
+						'GHS' => __( 'Ghana cedi', 'pno' ),
+						'GIP' => __( 'Gibraltar pound', 'pno' ),
+						'GMD' => __( 'Gambian dalasi', 'pno' ),
+						'GNF' => __( 'Guinean franc', 'pno' ),
+						'GTQ' => __( 'Guatemalan quetzal', 'pno' ),
+						'GYD' => __( 'Guyanese dollar', 'pno' ),
+						'HKD' => __( 'Hong Kong dollar', 'pno' ),
+						'HNL' => __( 'Honduran lempira', 'pno' ),
+						'HRK' => __( 'Croatian kuna', 'pno' ),
+						'HTG' => __( 'Haitian gourde', 'pno' ),
+						'HUF' => __( 'Hungarian forint', 'pno' ),
+						'IDR' => __( 'Indonesian rupiah', 'pno' ),
+						'ILS' => __( 'Israeli new shekel', 'pno' ),
+						'IMP' => __( 'Manx pound', 'pno' ),
+						'INR' => __( 'Indian rupee', 'pno' ),
+						'IQD' => __( 'Iraqi dinar', 'pno' ),
+						'IRR' => __( 'Iranian rial', 'pno' ),
+						'IRT' => __( 'Iranian toman', 'pno' ),
+						'ISK' => __( 'Icelandic kr&oacute;na', 'pno' ),
+						'JEP' => __( 'Jersey pound', 'pno' ),
+						'JMD' => __( 'Jamaican dollar', 'pno' ),
+						'JOD' => __( 'Jordanian dinar', 'pno' ),
+						'JPY' => __( 'Japanese yen', 'pno' ),
+						'KES' => __( 'Kenyan shilling', 'pno' ),
+						'KGS' => __( 'Kyrgyzstani som', 'pno' ),
+						'KHR' => __( 'Cambodian riel', 'pno' ),
+						'KMF' => __( 'Comorian franc', 'pno' ),
+						'KPW' => __( 'North Korean won', 'pno' ),
+						'KRW' => __( 'South Korean won', 'pno' ),
+						'KWD' => __( 'Kuwaiti dinar', 'pno' ),
+						'KYD' => __( 'Cayman Islands dollar', 'pno' ),
+						'KZT' => __( 'Kazakhstani tenge', 'pno' ),
+						'LAK' => __( 'Lao kip', 'pno' ),
+						'LBP' => __( 'Lebanese pound', 'pno' ),
+						'LKR' => __( 'Sri Lankan rupee', 'pno' ),
+						'LRD' => __( 'Liberian dollar', 'pno' ),
+						'LSL' => __( 'Lesotho loti', 'pno' ),
+						'LYD' => __( 'Libyan dinar', 'pno' ),
+						'MAD' => __( 'Moroccan dirham', 'pno' ),
+						'MDL' => __( 'Moldovan leu', 'pno' ),
+						'MGA' => __( 'Malagasy ariary', 'pno' ),
+						'MKD' => __( 'Macedonian denar', 'pno' ),
+						'MMK' => __( 'Burmese kyat', 'pno' ),
+						'MNT' => __( 'Mongolian t&ouml;gr&ouml;g', 'pno' ),
+						'MOP' => __( 'Macanese pataca', 'pno' ),
+						'MRU' => __( 'Mauritanian ouguiya', 'pno' ),
+						'MUR' => __( 'Mauritian rupee', 'pno' ),
+						'MVR' => __( 'Maldivian rufiyaa', 'pno' ),
+						'MWK' => __( 'Malawian kwacha', 'pno' ),
+						'MXN' => __( 'Mexican peso', 'pno' ),
+						'MYR' => __( 'Malaysian ringgit', 'pno' ),
+						'MZN' => __( 'Mozambican metical', 'pno' ),
+						'NAD' => __( 'Namibian dollar', 'pno' ),
+						'NGN' => __( 'Nigerian naira', 'pno' ),
+						'NIO' => __( 'Nicaraguan c&oacute;rdoba', 'pno' ),
+						'NOK' => __( 'Norwegian krone', 'pno' ),
+						'NPR' => __( 'Nepalese rupee', 'pno' ),
+						'NZD' => __( 'New Zealand dollar', 'pno' ),
+						'OMR' => __( 'Omani rial', 'pno' ),
+						'PAB' => __( 'Panamanian balboa', 'pno' ),
+						'PEN' => __( 'Sol', 'pno' ),
+						'PGK' => __( 'Papua New Guinean kina', 'pno' ),
+						'PHP' => __( 'Philippine peso', 'pno' ),
+						'PKR' => __( 'Pakistani rupee', 'pno' ),
+						'PLN' => __( 'Polish z&#x142;oty', 'pno' ),
+						'PRB' => __( 'Transnistrian ruble', 'pno' ),
+						'PYG' => __( 'Paraguayan guaran&iacute;', 'pno' ),
+						'QAR' => __( 'Qatari riyal', 'pno' ),
+						'RON' => __( 'Romanian leu', 'pno' ),
+						'RSD' => __( 'Serbian dinar', 'pno' ),
+						'RUB' => __( 'Russian ruble', 'pno' ),
+						'RWF' => __( 'Rwandan franc', 'pno' ),
+						'SAR' => __( 'Saudi riyal', 'pno' ),
+						'SBD' => __( 'Solomon Islands dollar', 'pno' ),
+						'SCR' => __( 'Seychellois rupee', 'pno' ),
+						'SDG' => __( 'Sudanese pound', 'pno' ),
+						'SEK' => __( 'Swedish krona', 'pno' ),
+						'SGD' => __( 'Singapore dollar', 'pno' ),
+						'SHP' => __( 'Saint Helena pound', 'pno' ),
+						'SLL' => __( 'Sierra Leonean leone', 'pno' ),
+						'SOS' => __( 'Somali shilling', 'pno' ),
+						'SRD' => __( 'Surinamese dollar', 'pno' ),
+						'SSP' => __( 'South Sudanese pound', 'pno' ),
+						'STN' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'pno' ),
+						'SYP' => __( 'Syrian pound', 'pno' ),
+						'SZL' => __( 'Swazi lilangeni', 'pno' ),
+						'THB' => __( 'Thai baht', 'pno' ),
+						'TJS' => __( 'Tajikistani somoni', 'pno' ),
+						'TMT' => __( 'Turkmenistan manat', 'pno' ),
+						'TND' => __( 'Tunisian dinar', 'pno' ),
+						'TOP' => __( 'Tongan pa&#x2bb;anga', 'pno' ),
+						'TRY' => __( 'Turkish lira', 'pno' ),
+						'TTD' => __( 'Trinidad and Tobago dollar', 'pno' ),
+						'TWD' => __( 'New Taiwan dollar', 'pno' ),
+						'TZS' => __( 'Tanzanian shilling', 'pno' ),
+						'UAH' => __( 'Ukrainian hryvnia', 'pno' ),
+						'UGX' => __( 'Ugandan shilling', 'pno' ),
+						'USD' => __( 'United States (US) dollar', 'pno' ),
+						'UYU' => __( 'Uruguayan peso', 'pno' ),
+						'UZS' => __( 'Uzbekistani som', 'pno' ),
+						'VEF' => __( 'Venezuelan bol&iacute;var', 'pno' ),
+						'VES' => __( 'Bol&iacute;var soberano', 'pno' ),
+						'VND' => __( 'Vietnamese &#x111;&#x1ed3;ng', 'pno' ),
+						'VUV' => __( 'Vanuatu vatu', 'pno' ),
+						'WST' => __( 'Samoan t&#x101;l&#x101;', 'pno' ),
+						'XAF' => __( 'Central African CFA franc', 'pno' ),
+						'XCD' => __( 'East Caribbean dollar', 'pno' ),
+						'XOF' => __( 'West African CFA franc', 'pno' ),
+						'XPF' => __( 'CFP franc', 'pno' ),
+						'YER' => __( 'Yemeni rial', 'pno' ),
+						'ZAR' => __( 'South African rand', 'pno' ),
+						'ZMW' => __( 'Zambian kwacha', 'pno' ),
 					)
 				)
 			);
@@ -226,7 +226,7 @@ class CurrencyHelper {
 		}
 
 		$symbols         = apply_filters(
-			'woocommerce_currency_symbols',
+			'pno_currency_symbols',
 			array(
 				'AED' => '&#x62f;.&#x625;',
 				'AFN' => '&#x60b;',
@@ -403,7 +403,130 @@ class CurrencyHelper {
 		 * @param string $currency the ID of the currency.
 		 * @return string
 		 */
-		return apply_filters( 'woocommerce_currency_symbol', $currency_symbol, $currency );
+		return apply_filters( 'pno_currency_symbol', $currency_symbol, $currency );
+
+	}
+
+	/**
+	 * Get the price format depending on the currency position.
+	 *
+	 * @return string
+	 */
+	public static function get_price_format() {
+
+		$currency_pos = pno_get_option( 'pricing_currency_position', 'left' );
+		$format       = '%1$s%2$s';
+
+		switch ( $currency_pos ) {
+			case 'left':
+				$format = '%1$s%2$s';
+				break;
+			case 'right':
+				$format = '%2$s%1$s';
+				break;
+			case 'left_space':
+				$format = '%1$s&nbsp;%2$s';
+				break;
+			case 'right_space':
+				$format = '%2$s&nbsp;%1$s';
+				break;
+		}
+
+		/**
+		 * Filter: adjust the currency position.
+		 *
+		 * @param string $format formatted.
+		 * @param string $currency_pos the position selected in the admin panel.
+		 * @return string
+		 */
+		return apply_filters( 'pno_price_format', $format, $currency_pos );
+
+	}
+
+	/**
+	 * Get the thousands separator.
+	 *
+	 * @return string
+	 */
+	public static function get_thousands_separator() {
+		return stripslashes( pno_get_option( 'pricing_thousand_separator', ',' ) );
+	}
+
+	/**
+	 * Get the decimal separator.
+	 *
+	 * @return string
+	 */
+	public static function get_decimal_separator() {
+		$separator = pno_get_option( 'pricing_decimal_separator', '.' );
+
+		return $separator ? stripslashes( $separator ) : '.';
+	}
+
+	/**
+	 * Get the decimals for the pricing.
+	 *
+	 * @return int
+	 */
+	public static function get_decimals() {
+		return absint( pno_get_option( 'pricing_decimals_number', '2' ) );
+	}
+
+	/**
+	 * Trim trailing zeros off prices.
+	 *
+	 * @param string $price price to trim.
+	 * @return string
+	 */
+	public static function trim_zeros( $price ) {
+		return preg_replace( '/' . preg_quote( self::get_decimal_separator(), '/' ) . '0++$/', '', $price );
+	}
+
+	/**
+	 * Format a price.
+	 *
+	 * @param string $price the price to format.
+	 * @param array $args arguments for the format.
+	 * @return string
+	 */
+	public static function price( $price, $args = [] ) {
+
+		$args = apply_filters(
+			'pno_price_args',
+			wp_parse_args(
+				$args,
+				array(
+					'ex_tax_label'       => false,
+					'currency'           => '',
+					'decimal_separator'  => self::get_decimal_separator(),
+					'thousand_separator' => self::get_thousands_separator(),
+					'decimals'           => self::get_decimals(),
+					'price_format'       => self::get_price_format(),
+				)
+			)
+		);
+
+		$unformatted_price = $price;
+		$negative          = $price < 0;
+		$price             = apply_filters( 'raw_pno_price', floatval( $negative ? $price * -1 : $price ) );
+		$price             = apply_filters( 'formatted_pno_price', number_format( $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] ), $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] );
+
+		if ( apply_filters( 'pno_price_trim_zeros', false ) && $args['decimals'] > 0 ) {
+			$price = self::trim_zeros( $price );
+		}
+
+		$formatted_price = ( $negative ? '-' : '' ) . sprintf( $args['price_format'], '<span class="pno-Price-currencySymbol">' . self::get_currency_symbol( $args['currency'] ) . '</span>', $price );
+		$return          = '<span class="pno-Price-amount amount">' . $formatted_price . '</span>';
+
+		/**
+		 * Filters the string of price markup.
+		 *
+		 * @param string $return            Price HTML markup.
+		 * @param string $price             Formatted price.
+		 * @param array  $args              Pass on the args.
+		 * @param float  $unformatted_price Price as float to allow plugins custom formatting. Since 3.2.0.
+		 */
+		return apply_filters( 'pno_price', $return, $price, $args, $unformatted_price );
 
 	}
 
