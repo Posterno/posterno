@@ -263,6 +263,18 @@ class Listing {
 			)
 			->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel.', 'posterno' ) );
 
+		// Option available only to non default fields.
+		if ( ! in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
+			$settings[] = Field::make( 'select', 'listing_field_visibility', esc_html__( 'Visibility', 'posterno' ) )
+				->set_options(
+					[
+						'visible' => esc_html__( 'Visible' ),
+						'hidden'  => esc_html__( 'Hidden' ),
+					]
+				)
+				->set_help_text( esc_html__( 'Set the frontend visibility for this field.', 'posterno' ) );
+		}
+
 		/**
 		 * Allow developers to customize the settings for the listings custom fields post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "Permissions" tab.

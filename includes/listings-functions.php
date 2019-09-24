@@ -1269,6 +1269,11 @@ function pno_get_public_listings_fields() {
 
 	if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 		foreach ( $listing_fields->items as $field ) {
+
+			if ( $field->getVisibility() === 'hidden' ) {
+				continue;
+			}
+
 			$fields[ $field->getObjectMetaKey() ] = [
 				'name'     => $field->getTitle(),
 				'priority' => $field->getPriority(),
