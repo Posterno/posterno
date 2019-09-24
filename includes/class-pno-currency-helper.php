@@ -1,0 +1,410 @@
+<?php
+/**
+ * Handles all the currency related functionalities.
+ *
+ * Majority of the functions in here have been taken from WooCommerce.
+ *
+ * @package     posterno
+ * @copyright   Copyright (c) 2018, Sematico LTD
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       0.1.0
+ */
+
+namespace PNO;
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * The currency helper class.
+ */
+class CurrencyHelper {
+
+	/**
+	 * Get list of currencies available.
+	 *
+	 * @return array
+	 */
+	public static function get_currencies() {
+
+		static $currencies;
+
+		if ( ! isset( $currencies ) ) {
+			$currencies = array_unique(
+
+				/**
+				 * Filter: allow developers to modify the list of currencies available within the plugin.
+				 *
+				 * @param array $currencies
+				 * @return array
+				 */
+				apply_filters(
+					'pno_currencies',
+					array(
+						'AED' => esc_html__( 'United Arab Emirates dirham', 'woocommerce' ),
+						'AFN' => esc_html__( 'Afghan afghani', 'woocommerce' ),
+						'ALL' => esc_html__( 'Albanian lek', 'woocommerce' ),
+						'AMD' => esc_html__( 'Armenian dram', 'woocommerce' ),
+						'ANG' => esc_html__( 'Netherlands Antillean guilder', 'woocommerce' ),
+						'AOA' => esc_html__( 'Angolan kwanza', 'woocommerce' ),
+						'ARS' => esc_html__( 'Argentine peso', 'woocommerce' ),
+						'AUD' => esc_html__( 'Australian dollar', 'woocommerce' ),
+						'AWG' => esc_html__( 'Aruban florin', 'woocommerce' ),
+						'AZN' => esc_html__( 'Azerbaijani manat', 'woocommerce' ),
+						'BAM' => esc_html__( 'Bosnia and Herzegovina convertible mark', 'woocommerce' ),
+						'BBD' => esc_html__( 'Barbadian dollar', 'woocommerce' ),
+						'BDT' => esc_html__( 'Bangladeshi taka', 'woocommerce' ),
+						'BGN' => esc_html__( 'Bulgarian lev', 'woocommerce' ),
+						'BHD' => esc_html__( 'Bahraini dinar', 'woocommerce' ),
+						'BIF' => esc_html__( 'Burundian franc', 'woocommerce' ),
+						'BMD' => esc_html__( 'Bermudian dollar', 'woocommerce' ),
+						'BND' => esc_html__( 'Brunei dollar', 'woocommerce' ),
+						'BOB' => esc_html__( 'Bolivian boliviano', 'woocommerce' ),
+						'BRL' => esc_html__( 'Brazilian real', 'woocommerce' ),
+						'BSD' => esc_html__( 'Bahamian dollar', 'woocommerce' ),
+						'BTC' => esc_html__( 'Bitcoin', 'woocommerce' ),
+						'BTN' => esc_html__( 'Bhutanese ngultrum', 'woocommerce' ),
+						'BWP' => esc_html__( 'Botswana pula', 'woocommerce' ),
+						'BYR' => esc_html__( 'Belarusian ruble (old)', 'woocommerce' ),
+						'BYN' => esc_html__( 'Belarusian ruble', 'woocommerce' ),
+						'BZD' => esc_html__( 'Belize dollar', 'woocommerce' ),
+						'CAD' => esc_html__( 'Canadian dollar', 'woocommerce' ),
+						'CDF' => esc_html__( 'Congolese franc', 'woocommerce' ),
+						'CHF' => esc_html__( 'Swiss franc', 'woocommerce' ),
+						'CLP' => esc_html__( 'Chilean peso', 'woocommerce' ),
+						'CNY' => esc_html__( 'Chinese yuan', 'woocommerce' ),
+						'COP' => esc_html__( 'Colombian peso', 'woocommerce' ),
+						'CRC' => esc_html__( 'Costa Rican col&oacute;n', 'woocommerce' ),
+						'CUC' => esc_html__( 'Cuban convertible peso', 'woocommerce' ),
+						'CUP' => esc_html__( 'Cuban peso', 'woocommerce' ),
+						'CVE' => esc_html__( 'Cape Verdean escudo', 'woocommerce' ),
+						'CZK' => esc_html__( 'Czech koruna', 'woocommerce' ),
+						'DJF' => esc_html__( 'Djiboutian franc', 'woocommerce' ),
+						'DKK' => esc_html__( 'Danish krone', 'woocommerce' ),
+						'DOP' => esc_html__( 'Dominican peso', 'woocommerce' ),
+						'DZD' => esc_html__( 'Algerian dinar', 'woocommerce' ),
+						'EGP' => esc_html__( 'Egyptian pound', 'woocommerce' ),
+						'ERN' => esc_html__( 'Eritrean nakfa', 'woocommerce' ),
+						'ETB' => esc_html__( 'Ethiopian birr', 'woocommerce' ),
+						'EUR' => esc_html__( 'Euro', 'woocommerce' ),
+						'FJD' => esc_html__( 'Fijian dollar', 'woocommerce' ),
+						'FKP' => esc_html__( 'Falkland Islands pound', 'woocommerce' ),
+						'GBP' => esc_html__( 'Pound sterling', 'woocommerce' ),
+						'GEL' => esc_html__( 'Georgian lari', 'woocommerce' ),
+						'GGP' => esc_html__( 'Guernsey pound', 'woocommerce' ),
+						'GHS' => esc_html__( 'Ghana cedi', 'woocommerce' ),
+						'GIP' => esc_html__( 'Gibraltar pound', 'woocommerce' ),
+						'GMD' => esc_html__( 'Gambian dalasi', 'woocommerce' ),
+						'GNF' => esc_html__( 'Guinean franc', 'woocommerce' ),
+						'GTQ' => esc_html__( 'Guatemalan quetzal', 'woocommerce' ),
+						'GYD' => esc_html__( 'Guyanese dollar', 'woocommerce' ),
+						'HKD' => esc_html__( 'Hong Kong dollar', 'woocommerce' ),
+						'HNL' => esc_html__( 'Honduran lempira', 'woocommerce' ),
+						'HRK' => esc_html__( 'Croatian kuna', 'woocommerce' ),
+						'HTG' => esc_html__( 'Haitian gourde', 'woocommerce' ),
+						'HUF' => esc_html__( 'Hungarian forint', 'woocommerce' ),
+						'IDR' => esc_html__( 'Indonesian rupiah', 'woocommerce' ),
+						'ILS' => esc_html__( 'Israeli new shekel', 'woocommerce' ),
+						'IMP' => esc_html__( 'Manx pound', 'woocommerce' ),
+						'INR' => esc_html__( 'Indian rupee', 'woocommerce' ),
+						'IQD' => esc_html__( 'Iraqi dinar', 'woocommerce' ),
+						'IRR' => esc_html__( 'Iranian rial', 'woocommerce' ),
+						'IRT' => esc_html__( 'Iranian toman', 'woocommerce' ),
+						'ISK' => esc_html__( 'Icelandic kr&oacute;na', 'woocommerce' ),
+						'JEP' => esc_html__( 'Jersey pound', 'woocommerce' ),
+						'JMD' => esc_html__( 'Jamaican dollar', 'woocommerce' ),
+						'JOD' => esc_html__( 'Jordanian dinar', 'woocommerce' ),
+						'JPY' => esc_html__( 'Japanese yen', 'woocommerce' ),
+						'KES' => esc_html__( 'Kenyan shilling', 'woocommerce' ),
+						'KGS' => esc_html__( 'Kyrgyzstani som', 'woocommerce' ),
+						'KHR' => esc_html__( 'Cambodian riel', 'woocommerce' ),
+						'KMF' => esc_html__( 'Comorian franc', 'woocommerce' ),
+						'KPW' => esc_html__( 'North Korean won', 'woocommerce' ),
+						'KRW' => esc_html__( 'South Korean won', 'woocommerce' ),
+						'KWD' => esc_html__( 'Kuwaiti dinar', 'woocommerce' ),
+						'KYD' => esc_html__( 'Cayman Islands dollar', 'woocommerce' ),
+						'KZT' => esc_html__( 'Kazakhstani tenge', 'woocommerce' ),
+						'LAK' => esc_html__( 'Lao kip', 'woocommerce' ),
+						'LBP' => esc_html__( 'Lebanese pound', 'woocommerce' ),
+						'LKR' => esc_html__( 'Sri Lankan rupee', 'woocommerce' ),
+						'LRD' => esc_html__( 'Liberian dollar', 'woocommerce' ),
+						'LSL' => esc_html__( 'Lesotho loti', 'woocommerce' ),
+						'LYD' => esc_html__( 'Libyan dinar', 'woocommerce' ),
+						'MAD' => esc_html__( 'Moroccan dirham', 'woocommerce' ),
+						'MDL' => esc_html__( 'Moldovan leu', 'woocommerce' ),
+						'MGA' => esc_html__( 'Malagasy ariary', 'woocommerce' ),
+						'MKD' => esc_html__( 'Macedonian denar', 'woocommerce' ),
+						'MMK' => esc_html__( 'Burmese kyat', 'woocommerce' ),
+						'MNT' => esc_html__( 'Mongolian t&ouml;gr&ouml;g', 'woocommerce' ),
+						'MOP' => esc_html__( 'Macanese pataca', 'woocommerce' ),
+						'MRU' => esc_html__( 'Mauritanian ouguiya', 'woocommerce' ),
+						'MUR' => esc_html__( 'Mauritian rupee', 'woocommerce' ),
+						'MVR' => esc_html__( 'Maldivian rufiyaa', 'woocommerce' ),
+						'MWK' => esc_html__( 'Malawian kwacha', 'woocommerce' ),
+						'MXN' => esc_html__( 'Mexican peso', 'woocommerce' ),
+						'MYR' => esc_html__( 'Malaysian ringgit', 'woocommerce' ),
+						'MZN' => esc_html__( 'Mozambican metical', 'woocommerce' ),
+						'NAD' => esc_html__( 'Namibian dollar', 'woocommerce' ),
+						'NGN' => esc_html__( 'Nigerian naira', 'woocommerce' ),
+						'NIO' => esc_html__( 'Nicaraguan c&oacute;rdoba', 'woocommerce' ),
+						'NOK' => esc_html__( 'Norwegian krone', 'woocommerce' ),
+						'NPR' => esc_html__( 'Nepalese rupee', 'woocommerce' ),
+						'NZD' => esc_html__( 'New Zealand dollar', 'woocommerce' ),
+						'OMR' => esc_html__( 'Omani rial', 'woocommerce' ),
+						'PAB' => esc_html__( 'Panamanian balboa', 'woocommerce' ),
+						'PEN' => esc_html__( 'Sol', 'woocommerce' ),
+						'PGK' => esc_html__( 'Papua New Guinean kina', 'woocommerce' ),
+						'PHP' => esc_html__( 'Philippine peso', 'woocommerce' ),
+						'PKR' => esc_html__( 'Pakistani rupee', 'woocommerce' ),
+						'PLN' => esc_html__( 'Polish z&#x142;oty', 'woocommerce' ),
+						'PRB' => esc_html__( 'Transnistrian ruble', 'woocommerce' ),
+						'PYG' => esc_html__( 'Paraguayan guaran&iacute;', 'woocommerce' ),
+						'QAR' => esc_html__( 'Qatari riyal', 'woocommerce' ),
+						'RON' => esc_html__( 'Romanian leu', 'woocommerce' ),
+						'RSD' => esc_html__( 'Serbian dinar', 'woocommerce' ),
+						'RUB' => esc_html__( 'Russian ruble', 'woocommerce' ),
+						'RWF' => esc_html__( 'Rwandan franc', 'woocommerce' ),
+						'SAR' => esc_html__( 'Saudi riyal', 'woocommerce' ),
+						'SBD' => esc_html__( 'Solomon Islands dollar', 'woocommerce' ),
+						'SCR' => esc_html__( 'Seychellois rupee', 'woocommerce' ),
+						'SDG' => esc_html__( 'Sudanese pound', 'woocommerce' ),
+						'SEK' => esc_html__( 'Swedish krona', 'woocommerce' ),
+						'SGD' => esc_html__( 'Singapore dollar', 'woocommerce' ),
+						'SHP' => esc_html__( 'Saint Helena pound', 'woocommerce' ),
+						'SLL' => esc_html__( 'Sierra Leonean leone', 'woocommerce' ),
+						'SOS' => esc_html__( 'Somali shilling', 'woocommerce' ),
+						'SRD' => esc_html__( 'Surinamese dollar', 'woocommerce' ),
+						'SSP' => esc_html__( 'South Sudanese pound', 'woocommerce' ),
+						'STN' => esc_html__( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'woocommerce' ),
+						'SYP' => esc_html__( 'Syrian pound', 'woocommerce' ),
+						'SZL' => esc_html__( 'Swazi lilangeni', 'woocommerce' ),
+						'THB' => esc_html__( 'Thai baht', 'woocommerce' ),
+						'TJS' => esc_html__( 'Tajikistani somoni', 'woocommerce' ),
+						'TMT' => esc_html__( 'Turkmenistan manat', 'woocommerce' ),
+						'TND' => esc_html__( 'Tunisian dinar', 'woocommerce' ),
+						'TOP' => esc_html__( 'Tongan pa&#x2bb;anga', 'woocommerce' ),
+						'TRY' => esc_html__( 'Turkish lira', 'woocommerce' ),
+						'TTD' => esc_html__( 'Trinidad and Tobago dollar', 'woocommerce' ),
+						'TWD' => esc_html__( 'New Taiwan dollar', 'woocommerce' ),
+						'TZS' => esc_html__( 'Tanzanian shilling', 'woocommerce' ),
+						'UAH' => esc_html__( 'Ukrainian hryvnia', 'woocommerce' ),
+						'UGX' => esc_html__( 'Ugandan shilling', 'woocommerce' ),
+						'USD' => esc_html__( 'United States (US) dollar', 'woocommerce' ),
+						'UYU' => esc_html__( 'Uruguayan peso', 'woocommerce' ),
+						'UZS' => esc_html__( 'Uzbekistani som', 'woocommerce' ),
+						'VEF' => esc_html__( 'Venezuelan bol&iacute;var', 'woocommerce' ),
+						'VES' => esc_html__( 'Bol&iacute;var soberano', 'woocommerce' ),
+						'VND' => esc_html__( 'Vietnamese &#x111;&#x1ed3;ng', 'woocommerce' ),
+						'VUV' => esc_html__( 'Vanuatu vatu', 'woocommerce' ),
+						'WST' => esc_html__( 'Samoan t&#x101;l&#x101;', 'woocommerce' ),
+						'XAF' => esc_html__( 'Central African CFA franc', 'woocommerce' ),
+						'XCD' => esc_html__( 'East Caribbean dollar', 'woocommerce' ),
+						'XOF' => esc_html__( 'West African CFA franc', 'woocommerce' ),
+						'XPF' => esc_html__( 'CFP franc', 'woocommerce' ),
+						'YER' => esc_html__( 'Yemeni rial', 'woocommerce' ),
+						'ZAR' => esc_html__( 'South African rand', 'woocommerce' ),
+						'ZMW' => esc_html__( 'Zambian kwacha', 'woocommerce' ),
+					)
+				)
+			);
+		}
+
+		return $currencies;
+
+	}
+
+	/**
+	 * Get the symbol of a currency.
+	 *
+	 * @param string $currency the currency to get.
+	 * @return string
+	 */
+	public static function get_currency_symbol( $currency = '' ) {
+
+		if ( ! $currency ) {
+			$currency = pno_get_option( 'pricing_currency' );
+		}
+
+		$symbols         = apply_filters(
+			'woocommerce_currency_symbols',
+			array(
+				'AED' => '&#x62f;.&#x625;',
+				'AFN' => '&#x60b;',
+				'ALL' => 'L',
+				'AMD' => 'AMD',
+				'ANG' => '&fnof;',
+				'AOA' => 'Kz',
+				'ARS' => '&#36;',
+				'AUD' => '&#36;',
+				'AWG' => 'Afl.',
+				'AZN' => 'AZN',
+				'BAM' => 'KM',
+				'BBD' => '&#36;',
+				'BDT' => '&#2547;&nbsp;',
+				'BGN' => '&#1083;&#1074;.',
+				'BHD' => '.&#x62f;.&#x628;',
+				'BIF' => 'Fr',
+				'BMD' => '&#36;',
+				'BND' => '&#36;',
+				'BOB' => 'Bs.',
+				'BRL' => '&#82;&#36;',
+				'BSD' => '&#36;',
+				'BTC' => '&#3647;',
+				'BTN' => 'Nu.',
+				'BWP' => 'P',
+				'BYR' => 'Br',
+				'BYN' => 'Br',
+				'BZD' => '&#36;',
+				'CAD' => '&#36;',
+				'CDF' => 'Fr',
+				'CHF' => '&#67;&#72;&#70;',
+				'CLP' => '&#36;',
+				'CNY' => '&yen;',
+				'COP' => '&#36;',
+				'CRC' => '&#x20a1;',
+				'CUC' => '&#36;',
+				'CUP' => '&#36;',
+				'CVE' => '&#36;',
+				'CZK' => '&#75;&#269;',
+				'DJF' => 'Fr',
+				'DKK' => 'DKK',
+				'DOP' => 'RD&#36;',
+				'DZD' => '&#x62f;.&#x62c;',
+				'EGP' => 'EGP',
+				'ERN' => 'Nfk',
+				'ETB' => 'Br',
+				'EUR' => '&euro;',
+				'FJD' => '&#36;',
+				'FKP' => '&pound;',
+				'GBP' => '&pound;',
+				'GEL' => '&#x20be;',
+				'GGP' => '&pound;',
+				'GHS' => '&#x20b5;',
+				'GIP' => '&pound;',
+				'GMD' => 'D',
+				'GNF' => 'Fr',
+				'GTQ' => 'Q',
+				'GYD' => '&#36;',
+				'HKD' => '&#36;',
+				'HNL' => 'L',
+				'HRK' => 'kn',
+				'HTG' => 'G',
+				'HUF' => '&#70;&#116;',
+				'IDR' => 'Rp',
+				'ILS' => '&#8362;',
+				'IMP' => '&pound;',
+				'INR' => '&#8377;',
+				'IQD' => '&#x639;.&#x62f;',
+				'IRR' => '&#xfdfc;',
+				'IRT' => '&#x062A;&#x0648;&#x0645;&#x0627;&#x0646;',
+				'ISK' => 'kr.',
+				'JEP' => '&pound;',
+				'JMD' => '&#36;',
+				'JOD' => '&#x62f;.&#x627;',
+				'JPY' => '&yen;',
+				'KES' => 'KSh',
+				'KGS' => '&#x441;&#x43e;&#x43c;',
+				'KHR' => '&#x17db;',
+				'KMF' => 'Fr',
+				'KPW' => '&#x20a9;',
+				'KRW' => '&#8361;',
+				'KWD' => '&#x62f;.&#x643;',
+				'KYD' => '&#36;',
+				'KZT' => 'KZT',
+				'LAK' => '&#8365;',
+				'LBP' => '&#x644;.&#x644;',
+				'LKR' => '&#xdbb;&#xdd4;',
+				'LRD' => '&#36;',
+				'LSL' => 'L',
+				'LYD' => '&#x644;.&#x62f;',
+				'MAD' => '&#x62f;.&#x645;.',
+				'MDL' => 'MDL',
+				'MGA' => 'Ar',
+				'MKD' => '&#x434;&#x435;&#x43d;',
+				'MMK' => 'Ks',
+				'MNT' => '&#x20ae;',
+				'MOP' => 'P',
+				'MRU' => 'UM',
+				'MUR' => '&#x20a8;',
+				'MVR' => '.&#x783;',
+				'MWK' => 'MK',
+				'MXN' => '&#36;',
+				'MYR' => '&#82;&#77;',
+				'MZN' => 'MT',
+				'NAD' => 'N&#36;',
+				'NGN' => '&#8358;',
+				'NIO' => 'C&#36;',
+				'NOK' => '&#107;&#114;',
+				'NPR' => '&#8360;',
+				'NZD' => '&#36;',
+				'OMR' => '&#x631;.&#x639;.',
+				'PAB' => 'B/.',
+				'PEN' => 'S/',
+				'PGK' => 'K',
+				'PHP' => '&#8369;',
+				'PKR' => '&#8360;',
+				'PLN' => '&#122;&#322;',
+				'PRB' => '&#x440;.',
+				'PYG' => '&#8370;',
+				'QAR' => '&#x631;.&#x642;',
+				'RMB' => '&yen;',
+				'RON' => 'lei',
+				'RSD' => '&#x434;&#x438;&#x43d;.',
+				'RUB' => '&#8381;',
+				'RWF' => 'Fr',
+				'SAR' => '&#x631;.&#x633;',
+				'SBD' => '&#36;',
+				'SCR' => '&#x20a8;',
+				'SDG' => '&#x62c;.&#x633;.',
+				'SEK' => '&#107;&#114;',
+				'SGD' => '&#36;',
+				'SHP' => '&pound;',
+				'SLL' => 'Le',
+				'SOS' => 'Sh',
+				'SRD' => '&#36;',
+				'SSP' => '&pound;',
+				'STN' => 'Db',
+				'SYP' => '&#x644;.&#x633;',
+				'SZL' => 'L',
+				'THB' => '&#3647;',
+				'TJS' => '&#x405;&#x41c;',
+				'TMT' => 'm',
+				'TND' => '&#x62f;.&#x62a;',
+				'TOP' => 'T&#36;',
+				'TRY' => '&#8378;',
+				'TTD' => '&#36;',
+				'TWD' => '&#78;&#84;&#36;',
+				'TZS' => 'Sh',
+				'UAH' => '&#8372;',
+				'UGX' => 'UGX',
+				'USD' => '&#36;',
+				'UYU' => '&#36;',
+				'UZS' => 'UZS',
+				'VEF' => 'Bs F',
+				'VES' => 'Bs.S',
+				'VND' => '&#8363;',
+				'VUV' => 'Vt',
+				'WST' => 'T',
+				'XAF' => 'CFA',
+				'XCD' => '&#36;',
+				'XOF' => 'CFA',
+				'XPF' => 'Fr',
+				'YER' => '&#xfdfc;',
+				'ZAR' => '&#82;',
+				'ZMW' => 'ZK',
+			)
+		);
+		$currency_symbol = isset( $symbols[ $currency ] ) ? $symbols[ $currency ] : '';
+
+		/**
+		 * Filter: allow developers to customize the symbols for currencies.
+		 *
+		 * @param string $currency_symbol the symbol found.
+		 * @param string $currency the ID of the currency.
+		 * @return string
+		 */
+		return apply_filters( 'woocommerce_currency_symbol', $currency_symbol, $currency );
+
+	}
+
+}
