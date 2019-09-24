@@ -54,6 +54,10 @@ class Profile {
 
 							$type = $custom_profile_field->getType();
 
+							if ( $type === 'heading' ) {
+								continue;
+							}
+
 							switch ( $type ) {
 								case 'url':
 								case 'email':
