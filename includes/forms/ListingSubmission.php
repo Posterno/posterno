@@ -487,7 +487,7 @@ class ListingSubmission {
 									}
 								}
 							}
-						} elseif ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ] ) ) {
+						} elseif ( in_array( $field->getType(), [ 'term-select', 'term-multiselect', 'term-checklist', 'term-chain-dropdown' ], true ) ) {
 
 							$term_value = $value;
 
