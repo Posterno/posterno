@@ -126,6 +126,8 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 = 1.1.0 25th September 2019 =
 
+Read the announcement to [learn more about the new features](https://posterno.com/version-1-1-0-released-new-field-types-and-visibility-options/).
+
 New documentation articles have been added.
 
 - [How to hide default listings fields from the admin panel](https://docs.posterno.com/article/623-how-to-hide-default-listings-fields-from-the-admin-panel)
