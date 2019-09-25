@@ -250,18 +250,21 @@ class Listing {
 				->set_help_text( esc_html__( 'Enable this option to allow only administrators to customize the field. Hidden fields will not visible within the listing submission form on the frontend.', 'posterno' ) );
 		}
 
-		$settings[] = Field::make( 'checkbox', 'listing_field_admin_hidden', esc_html__( 'Hide from admin panel', 'posterno' ) )
-			->set_conditional_logic(
-				array(
-					'relation' => 'AND',
+		// Option available only to non default fields.
+		if ( in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
+			$settings[] = Field::make( 'checkbox', 'listing_field_admin_hidden', esc_html__( 'Hide from admin panel', 'posterno' ) )
+				->set_conditional_logic(
 					array(
-						'field'   => 'listing_field_is_admin_only',
-						'value'   => true,
-						'compare' => '=',
-					),
+						'relation' => 'AND',
+						array(
+							'field'   => 'listing_field_is_admin_only',
+							'value'   => true,
+							'compare' => '=',
+						),
+					)
 				)
-			)
-			->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel.', 'posterno' ) );
+				->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel.', 'posterno' ) );
+		}
 
 		// Option available only to non default fields.
 		if ( ! in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
