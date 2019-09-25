@@ -110,8 +110,8 @@ function pno_get_registered_field_types( $exclude = [] ) {
 		'term-chain-dropdown'   => esc_html__( 'Taxonomy chain dropdown', 'posterno' ),
 		'listing-opening-hours' => esc_html__( 'Opening hours', 'posterno' ),
 		'listing-location'      => esc_html__( 'Map', 'posterno' ),
-		'heading'               => esc_html__( 'Heading title' ),
-		'pricing'               => esc_html__( 'Pricing' ),
+		'heading'               => esc_html__( 'Heading title', 'posterno' ),
+		'pricing'               => esc_html__( 'Pricing', 'posterno' ),
 	];
 
 	/**

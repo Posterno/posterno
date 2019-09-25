@@ -798,10 +798,10 @@ class OptionsPanel {
 			->set_default_value( 'left' )
 			->add_options(
 				[
-					'left'        => esc_html__( 'Left' ),
-					'right'       => esc_html__( 'Right' ),
-					'left_space'  => esc_html__( 'Left with space' ),
-					'right_space' => esc_html__( 'Right with space' ),
+					'left'        => esc_html__( 'Left', 'posterno' ),
+					'right'       => esc_html__( 'Right', 'posterno' ),
+					'left_space'  => esc_html__( 'Left with space', 'posterno' ),
+					'right_space' => esc_html__( 'Right with space', 'posterno' ),
 				]
 			);
 
