@@ -19,8 +19,8 @@ defined( 'ABSPATH' ) || exit;
 
 $range     = 4;
 $showitems = ( $range * 2 ) + 1;
-$paged     = get_query_var( 'paged' );
-$pages     = $data->max_num_pages;
+$paged     = absint( get_query_var( 'paged' ) );
+$pages     = absint( $data->max_num_pages );
 
 $pagination = paginate_links(
 	array(
@@ -67,7 +67,7 @@ $custom_class = isset( $data->layout ) ? sanitize_key( $data->layout ) : false;
 
 		for ( $i = 1; $i <= $pages; $i++ ) {
 
-			if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
+			if ( 1 !== $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
 
 				if ( $paged == $i ) :
 					?>
