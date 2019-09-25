@@ -124,6 +124,19 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.1.0 25th September 2019 =
+
+- Added: strong passwords support to password recovery form.
+- Added: ability to hide default custom fields from the listings admin panel.
+- Added: ability to set visibility rules of listings fields on the single listing page.
+- Added: new heading title field type for listings and profile custom fields.
+- Added: new pricing field type for listings and profile custom fields.
+- Tweak: apply nonce to mark as expired button in admin panel.
+- Tweak: avoid profile fields queries when editing listings.
+- Fix: fatal error when ordering fields by using the "random" option.
+- Fix: increase the amount of listings fields queried in forms.
+- Fix: non numeric value warning triggered within the listings page.
+
 = 1.0.12 19th September 2019 =
 
 - Added: compatibility with the search forms extension.
