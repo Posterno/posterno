@@ -486,7 +486,7 @@ class CurrencyHelper {
 	 * Format a price.
 	 *
 	 * @param string $price the price to format.
-	 * @param array $args arguments for the format.
+	 * @param array  $args arguments for the format.
 	 * @return string
 	 */
 	public static function price( $price, $args = [] ) {

@@ -63,6 +63,7 @@ class Profile {
 								case 'email':
 								case 'number':
 								case 'password':
+								case 'pricing':
 									$type = 'text';
 									break;
 								case 'multicheckbox':
