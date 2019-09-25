@@ -599,6 +599,16 @@ function pno_display_field_term_multiselect_value( $value, $field ) {
 }
 
 /**
+ * Display a pricing field's value.
+ *
+ * @param string $value the value to display.
+ * @return string
+ */
+function pno_display_field_pricing_value( $value ) {
+	return \PNO\CurrencyHelper::price( $value );
+}
+
+/**
  * Display the formatted content for the taxonomy field on the frontend.
  *
  * @param string $value the value to display.
