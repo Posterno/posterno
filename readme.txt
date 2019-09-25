@@ -126,6 +126,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 = 1.1.0 25th September 2019 =
 
+New documentation articles have been added.
+
+- [How to hide default listings fields from the admin panel](https://docs.posterno.com/article/623-how-to-hide-default-listings-fields-from-the-admin-panel)
+- [Custom fields visibility](https://docs.posterno.com/article/622-custom-fields-visibility)
+- [How to configure the pricing field type](https://docs.posterno.com/article/621-how-to-configure-the-pricing-field-type)
+
 - Added: strong passwords support to password recovery form.
 - Added: ability to hide default custom fields from the listings admin panel.
 - Added: ability to set visibility rules of listings fields on the single listing page.
