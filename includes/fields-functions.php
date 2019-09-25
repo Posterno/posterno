@@ -111,6 +111,7 @@ function pno_get_registered_field_types( $exclude = [] ) {
 		'listing-opening-hours' => esc_html__( 'Opening hours', 'posterno' ),
 		'listing-location'      => esc_html__( 'Map', 'posterno' ),
 		'heading'               => esc_html__( 'Heading title' ),
+		'pricing'               => esc_html__( 'Pricing' ),
 	];
 
 	/**
@@ -997,7 +998,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 		if ( $listing instanceof WP_Post && $listing->post_type === 'listings' ) {
 			foreach ( $fields as $key => $field ) {
 				$value = false;
-				if ( in_array( $key, pno_get_registered_default_meta_keys() ) ) {
+				if ( in_array( $key, pno_get_registered_default_meta_keys(), true ) ) {
 					switch ( $key ) {
 						case 'listing_title':
 							$value = $listing->post_title;
