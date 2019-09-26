@@ -214,7 +214,13 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Select the page where you have added the profile shortcode.', 'posterno' ) )
 			->add_options( 'pno_get_pages' );
 
-		return $settings;
+		/**
+		 * Filter: allow developers to register new page settings.
+		 *
+		 * @param array $settings list of settings.
+		 * @return array
+		 */
+		return apply_filters( 'pno_pages_settings', $settings );
 
 	}
 
