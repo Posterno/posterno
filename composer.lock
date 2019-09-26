@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e37558e4e0538d018d7045d91595a5a4",
+    "content-hash": "d0e2658f17deed1dbe31b057293e6c51",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -703,7 +703,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "b4dc47165ba79595bce334d96080529dff23e6c9"
+                "reference": "5a4819c8a2e7e791779fc01567ed7d406d316857"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -751,7 +751,7 @@
             "dist": {
                 "type": "path",
                 "url": "../import-export",
-                "reference": "2c3d6587db4d8e9b4624a211d575cfdc2ac39861"
+                "reference": "fcff5225aa30d60ef2d61c0a88b0d7f8d5abec9e"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -844,7 +844,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "5ceede2a86ea83ff9f484266ebbd0e396c944cce"
+                "reference": "60d72f1d12e9dfb635048c2e7e7b075df05f7efd"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -934,7 +934,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-forms",
-                "reference": "cce96fa4ea70e5ee9fee1af932c56105ee8e38df"
+                "reference": "04ceefaf1ceb1dc47b196ed4bed4d22d951cfdd6"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1024,7 +1024,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-maps",
-                "reference": "79e2968388be805c57c99de8b61aea01c3d13f77"
+                "reference": "7f9dff62778666a757fadc2a4bcd04a5c0f4da45"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1068,7 +1068,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "2aa0ec3672af0cb97d82f57993d8cd28146e0a69"
+                "reference": "8769246b1196b974112fc0f794216d7b9cb13acf"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1113,7 +1113,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-submission-scripts",
-                "reference": "49151827d8b70bd169b8fdd73804894dcae51e12"
+                "reference": "ff69891d33427e474d753b56d91f18b30871a793"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1528,18 +1528,18 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-third-party": 20,
         "posterno/posterno-maps": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/import-export": 20,
         "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-dom": 20
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/import-export": 20,
+        "posterno/posterno-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

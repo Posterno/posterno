@@ -275,7 +275,13 @@ function pno_email_get_type_schema() {
 		],
 	);
 
-	return $types;
+	/**
+	 * Filter: allow developers to register or deregister emails from the system.
+	 *
+	 * @param array $types email types.
+	 * @return array
+	 */
+	return apply_filters( 'pno_email_schemas', $types );
 }
 
 /**
