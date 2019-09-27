@@ -200,7 +200,7 @@ function pno_display_restricted_access_message( $form ) {
 		->get_template_part( 'message' );
 
 }
-add_action( 'pno_before_login_form', 'pno_display_restricted_access_message', 10 );
+add_action( 'pno_before_form', 'pno_display_restricted_access_message', 10 );
 
 /**
  * Loads the content for the dashboard tab called "dashboard".
