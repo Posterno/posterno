@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.3
+ * @version 1.0.4
  * @package posterno
  */
 
@@ -122,7 +122,7 @@ do_action( 'pno_before_form', $data );
 							</div>
 						<?php endif; ?>
 
-						<?php if ( $field->getType() === 'file' && ! empty( $field->getMaxSize() ) ) : ?>
+						<?php if ( $field->getType() === 'file' ) : ?>
 							<small class="form-text text-muted">
 								<?php printf( esc_html__( 'Maximum file size: %s.', 'posterno' ), pno_max_upload_size( $field->getMaxSize() ) ); ?>
 							</small>
