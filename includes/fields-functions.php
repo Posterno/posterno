@@ -897,7 +897,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 					}
 
 					$fields[ $field->getObjectMetaKey() ]['label']       = $field->getTitle();
-					$fields[ $field->getObjectMetaKey() ]['description'] = $field->getDescription();
+					$fields[ $field->getObjectMetaKey() ]['hint']        = $field->getDescription();
 					$fields[ $field->getObjectMetaKey() ]['placeholder'] = $field->getPlaceholder();
 					$fields[ $field->getObjectMetaKey() ]['readonly']    = $field->isReadOnly();
 
@@ -938,7 +938,7 @@ function pno_get_listing_submission_fields( $listing_id = false ) {
 					$fields[ $field->getObjectMetaKey() ] = [
 						'label'       => $field->getTitle(),
 						'type'        => $field->getType(),
-						'description' => $field->getDescription(),
+						'hint'        => $field->getDescription(),
 						'placeholder' => $field->getPlaceholder(),
 						'readonly'    => $field->isReadOnly(),
 						'required'    => $field->isRequired(),
