@@ -345,6 +345,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/fields-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/listings-actions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/listings/listings-filters.php';
 			require_once PNO_PLUGIN_DIR . 'includes/listings/dashboard-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-functions.php';
 			require_once PNO_PLUGIN_DIR . 'includes/profiles/profiles-actions.php';

@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @package posterno
  */
 
@@ -42,6 +42,9 @@ $custom_fields = pno_get_public_listings_fields();
 // Are maps disabled?
 $maps_disabled = current_theme_supports( 'posterno_disable_maps' );
 
+// Get details list items.
+$details_items = apply_filters( 'pno_single_listing_details_list', [] );
+
 /**
  * Hook: triggers before the content of the single listing page is displayed.
  */
@@ -60,8 +63,12 @@ do_action( 'pno_before_single_listing' );
 
 	?>
 
-	<?php if ( pno_listing_is_featured( $listing_id ) ) : ?>
-		<span class="badge badge-pill badge-warning featured-badge mb-3"><?php esc_html_e( 'Featured', 'posterno' ); ?></span>
+	<?php if ( ! empty( $details_items ) && is_array( $details_items ) ) : ?>
+		<ul class="list-inline ml-0 mt-0">
+			<?php foreach ( $details_items as $list_item ) : ?>
+				<li class="list-inline-item"><?php echo $list_item; //phpcs:ignore ?></li>
+			<?php endforeach; ?>
+		</ul>
 	<?php endif; ?>
 
 	<?php if ( ! empty( $categories ) && is_array( $categories ) ) : ?>
