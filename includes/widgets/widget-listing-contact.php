@@ -26,12 +26,31 @@ class ListingContact extends Widget {
 			'pno_listing_contact_widget',
 			esc_html__( '[Posterno] Listing contact form', 'posterno' ),
 			esc_html__( 'Displays a contact form through which members can send emails to the author of the listing.', 'posterno' ),
-			array(
-				Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) ),
-				Field::make( 'checkbox', 'require_login', esc_html__( 'Login required', 'posterno' ) )->set_help_text( esc_html__( 'Require visitors to be logged in to contact the author.', 'posterno' ) ),
-			),
+			$this->get_widget_settings(),
 			'pno-widget-listing-contact'
 		);
+	}
+
+	/**
+	 * Get settings list for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_widget_settings() {
+
+		$settings = [];
+
+		$settings[] = Field::make( 'text', 'title', esc_html__( 'Title', 'posterno' ) );
+		$settings[] = Field::make( 'checkbox', 'require_login', esc_html__( 'Login required', 'posterno' ) )->set_help_text( esc_html__( 'Require visitors to be logged in to contact the author.', 'posterno' ) );
+
+		/**
+		 * Filter: allow developers to register or deregister settings for the listing contact form widget.
+		 *
+		 * @param array $settings carbon fields settings list.
+		 * @return $array
+		 */
+		return apply_filters( 'pno_listing_contact_widget_settings', $settings );
+
 	}
 
 	/**
