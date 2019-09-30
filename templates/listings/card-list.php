@@ -25,6 +25,9 @@ $tags         = pno_get_listing_tags();
 
 $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 
+// Get card details.
+$card_items = apply_filters( 'pno_listing_card_details', [] );
+
 ?>
 
 <?php if ( $featured_img ) : ?>
@@ -45,12 +48,13 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			</h4>
 			<div class="card-text">
-				<?php
-					/**
-					 * Hook: used to add additional content after the listing title in cards.
-					 */
-					do_action( 'pno_after_card_title' );
-				?>
+				<?php if ( ! empty( $card_items ) && is_array( $card_items ) ) : ?>
+					<ul class="list-inline">
+						<?php foreach ( $card_items as $card_item ) : ?>
+							<li class="list-inline-item"><?php echo $card_item; //phpcs:ignore ?></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
 				<?php if ( is_array( $tags ) && ! empty( $tags ) ) : ?>
 					<?php foreach ( $tags as $listing_tag ) : ?>
 						<a href="<?php echo esc_url( get_term_link( $listing_tag ) ); ?>" class="mb-2 mr-2 badge badge-secondary"><?php echo esc_html( $listing_tag->name ); ?></a>
@@ -86,12 +90,13 @@ $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			</h4>
 			<div class="card-text">
-				<?php
-					/**
-					 * Hook: used to add additional content after the listing title in cards.
-					 */
-					do_action( 'pno_after_card_title' );
-				?>
+				<?php if ( ! empty( $card_items ) && is_array( $card_items ) ) : ?>
+					<ul class="list-inline">
+						<?php foreach ( $card_items as $card_item ) : ?>
+							<li class="list-inline-item"><?php echo $card_item; //phpcs:ignore ?></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
 				<?php if ( ! $placeholder_enabled && pno_listing_is_featured( get_the_id() ) ) : ?>
 					<span class="badge badge-pill badge-warning featured-badge"><?php esc_html_e( 'Featured', 'posterno' ); ?></span>
 				<?php endif; ?>
