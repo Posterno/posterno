@@ -62,6 +62,7 @@ function pno_admin_rate_us( $footer_text ) {
 		'users_page_user-listings-packages',
 		'listings_page_posterno-search-forms',
 		'listings_page_posterno-search-forms-logic',
+		'listings_page_posterno-claims',
 	];
 
 	if ( in_array( $screen->id, $checks, true ) ) {
