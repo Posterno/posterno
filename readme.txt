@@ -49,6 +49,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 - **[WooCommerce Paid Listings](https://posterno.com/extensions/woocommerce-paid-listings/)**: Paid listing functionality powered by WooCommerce. Create custom packages which can be purchased or redeemed during listing submission. Setup individual packages limits like how many images members can submit through this package and how many tags and categories they can select and more. Generate recurring revenue with WooCommerce Subscriptions: the easy to use integration with WC Subscriptions allowing you to create recurring listing packages.
 
+- **[Claim listings](https://posterno.com/extensions/claim-listings/)**: Start generating passive revenue with the claim listings add-on. Business owners can identify themselves as the owner and get verified. Additionally, a verified listing badge is displayed after listings are claimed ensuring site visitors your businesses’ information is up to date, accurate, and relevant.
+
 = Free Extensions =
 
 - **[Google reCAPTCHA](https://posterno.com/extensions/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
@@ -123,6 +125,17 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.1.1 3rd October 2019 =
+
+- Added: support for the new [claim listings extension](https://posterno.com/extensions/claim-listings/).
+- Added: filter to register new email schemas.
+- Added: filter to register new pages settings.
+- Added: filter to register listing contact form widget settings.
+- Tweak: modified the way the single listing page and listings cards display badges.
+- Tweak: always display max upload size.
+- Fix: restricted access message not displaying.
+- Fix: description not displaying for the listing submission form fields.
 
 = 1.1.0 25th September 2019 =
 
