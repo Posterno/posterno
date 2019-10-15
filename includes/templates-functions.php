@@ -388,7 +388,7 @@ function pno_display_field_text_value( $value ) {
  * @return string
  */
 function pno_display_field_url_value( $value ) {
-	return '<a href="' . esc_url( $value ) . '" rel="nofollow" class="pno-user-field-link">' . esc_url( $value ) . '</a>';
+	return '<a href="' . esc_url( $value ) . '" rel="nofollow ugc" class="pno-user-field-link">' . esc_url( $value ) . '</a>';
 }
 
 /**
