@@ -928,3 +928,26 @@ function pno_array_flatten( array $array ) {
 function pno_is_layout_wrapper_required() {
 	return (bool) pno_get_option( 'bootstrap_style', false ) || ! current_theme_supports( 'posterno' );
 }
+
+/**
+ * Add a nofollow attribute to external links.
+ *
+ * @param array $matches regex result.
+ * @return string
+ */
+function pno_add_rel_nofollow_callback( $matches ) {
+	$text      = $matches[1];
+	$site_link = home_url();
+
+	// If this is an internal link, don't touch it.
+	if ( strpos( $text, $site_link ) ) {
+		return "<a $text>";
+	}
+
+	// If this doesn't have the rel attribute, append the nofollow.
+	if ( strpos( $text, 'rel' ) === false ) {
+		$text = preg_replace( "%(href=S(?!$site_link))%i", 'rel="nofollow" $1', $text );
+	}
+
+	return "<a $text rel=\"nofollow\">";
+}

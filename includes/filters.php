@@ -495,3 +495,20 @@ function pno_disable_bootstrap_wrapper_for_grids( $pass, $slug, $name ) {
 
 }
 add_filter( 'pno_load_bootstrap_wrapper', 'pno_disable_bootstrap_wrapper_for_grids', 10, 3 );
+
+/**
+ * Modify links into the listing's description and add a nofollow rel attribute to external links.
+ *
+ * @param string $text content.
+ * @return string
+ */
+function pno_listings_content_add_rel_nofollow( $text ) {
+
+	if ( is_single() && in_the_loop() && is_main_query() && pno_get_option( 'listing_external_rel_attributes', false ) && is_singular( 'listings' ) ) {
+		$text = stripslashes( $text );
+		$text = preg_replace_callback( '|<a (.+?)>|i', 'pno_add_rel_nofollow_callback', $text );
+	}
+
+	return $text;
+}
+add_filter( 'the_content', 'pno_listings_content_add_rel_nofollow' );
