@@ -176,18 +176,25 @@ add_action( 'template_redirect', 'pno_restrict_dashboard_access' );
  */
 function pno_display_restricted_access_message( $form ) {
 
-	$page_id    = isset( $_GET['rpage_id'] ) ? absint( $_GET['rpage_id'] ) : false;
-	$restricted = isset( $_GET['restricted'] ) ? true : false;
+	$page_id    = isset( $_GET['rpage_id'] ) ? absint( $_GET['rpage_id'] ) : false; //phpcs:ignore
+	$restricted = isset( $_GET['restricted'] ) ? true : false; //phpcs:ignore
 
 	if ( ! $page_id || ! $restricted ) {
 		return;
 	}
 
 	$page_title = get_post_field( 'post_title', $page_id );
+	$url        = add_query_arg( [ 'redirect_to' => get_permalink( $page_id ) ], get_permalink( pno_get_registration_page_id() ) );
 
+	/**
+	 * Filter: modify the restricted access message.
+	 *
+	 * @param string $message
+	 * @return string
+	 */
 	$message = apply_filters(
 		'pno_login_form_restricted_message',
-		sprintf( __( 'You need to be logged in to access the "%1$s" page. Please login below or <a href="%2$s">register</a>.', 'posterno' ), $page_title, get_permalink( pno_get_registration_page_id() ) )
+		sprintf( __( 'You need to be logged in to access the "%1$s" page. Please login below or <a href="%2$s">register</a>.', 'posterno' ), $page_title, $url )
 	);
 
 	$data = [
