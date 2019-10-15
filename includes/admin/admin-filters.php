@@ -520,3 +520,33 @@ function pno_set_conditional_logic_for_headings_profiles( $fields ) {
 add_filter( 'pno_profile_general_settings', 'pno_set_conditional_logic_for_headings_profiles' );
 add_filter( 'pno_profile_validation_settings', 'pno_set_conditional_logic_for_headings_profiles' );
 add_filter( 'pno_profile_permissions_settings', 'pno_set_conditional_logic_for_headings_profiles' );
+
+/**
+ * Display the number of pending listings within the at a glance dashboard widget.
+ *
+ * @param array $items items list.
+ * @return array
+ */
+function pno_dashboard_glance_pending_listings( $items ) {
+
+	$pending_count = \PNO\Cache\Helper::get_posts_count();
+
+	if ( empty( $pending_count ) ) {
+		return;
+	}
+
+	if ( current_user_can( 'manage_options' ) ) {
+
+		$count = absint( $pending_count );
+		$text  = sprintf( _n( '%s pending listing', '%s pending listings', $count ), number_format_i18n( $count ) );
+		$text  = '<a class="pno-listings-pending-number" href="' . esc_url( admin_url( 'edit.php?post_type=listings' ) ) . '">' . $text . '</a>';
+
+		if ( $count > 0 ) {
+			$items[] = $text . "\n";
+		}
+	}
+
+	return $items;
+
+}
+add_filter( 'dashboard_glance_items', 'pno_dashboard_glance_pending_listings' );

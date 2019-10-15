@@ -568,11 +568,44 @@ function pno_add_import_export_taxonomy_links() {
 
 }
 
+/**
+ * Add link to import and export tools into the taxonomy edit screens.
+ */
 add_action(
 	'admin_init',
 	function() {
 		foreach ( pno_get_registered_listings_taxonomies() as $tax_id => $name ) {
 			add_action( "{$tax_id}_pre_add_form", 'pno_add_import_export_taxonomy_links' );
 		}
+	}
+);
+
+/**
+ * Custom icon for the at a glance pending listings count item.
+ */
+add_action(
+	'admin_head',
+	function() {
+
+		$screen = get_current_screen();
+
+		if ( $screen->id !== 'dashboard' ) {
+			return;
+		}
+
+		?>
+
+		<style>
+		#dashboard_right_now a.pno-listings-pending-number:before {
+			font-family: posterno;
+			content: '\e800';
+			color:#ca4a1f;
+		}
+		#dashboard_right_now a.pno-listings-pending-number {
+			color:#ca4a1f;
+		}
+		</style>
+
+		<?php
 	}
 );
