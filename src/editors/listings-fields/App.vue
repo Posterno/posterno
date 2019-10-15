@@ -29,7 +29,7 @@
 							<th scope="col">{{labels.table.actions}}</th>
 						</tr>
 					</thead>
-					<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="updateFieldsPriority()">
+					<draggable v-model="fields" :tag="'tbody'" handle=".order-anchor" v-bind="draggableOptions()" @end="updateFieldsPriority()">
 						<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
 							<td class="order-anchor align-middle">
 								<span class="dashicons dashicons-menu"></span>
@@ -131,6 +131,15 @@ export default {
 
 	},
 	methods: {
+
+		/**
+		 * Draggable options for the table.
+		 */
+		draggableOptions() {
+			return {
+				animation:150
+			}
+		},
 
 		/**
 		 * Determine if the field is a required one or not.

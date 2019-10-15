@@ -29,7 +29,7 @@
 								<th scope="col">{{labels.table.actions}}</th>
 							</tr>
 						</thead>
-						<draggable v-model="fields" :element="'tbody'" :options="{handle:'.order-anchor', animation:150}" @end="onSortingEnd">
+						<draggable v-model="fields" :tag="'tbody'" handle=".order-anchor" v-bind="draggableOptions()" @end="onSortingEnd">
 							<tr v-if="fields && !loading" v-for="(field, id) in fields" :key="id">
 								<td class="order-anchor align-middle hidden-xs-only">
 									<span class="dashicons dashicons-menu"></span>
@@ -126,6 +126,15 @@ export default {
 		}
 	},
 	methods: {
+
+		/**
+		 * Draggable options for the table.
+		 */
+		draggableOptions() {
+			return {
+				animation:150
+			}
+		},
 
 		/*
 		 * Load registration fields from the post type.
