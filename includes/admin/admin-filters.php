@@ -538,7 +538,7 @@ function pno_dashboard_glance_pending_listings( $items ) {
 	if ( current_user_can( 'manage_options' ) ) {
 
 		$count = absint( $pending_count );
-		$text  = sprintf( _n( '%s pending listing', '%s pending listings', $count ), number_format_i18n( $count ) );
+		$text  = sprintf( _n( '%s pending listing', '%s pending listings', $count, 'posterno' ), number_format_i18n( $count ) );
 		$text  = '<a class="pno-listings-pending-number" href="' . esc_url( admin_url( 'edit.php?post_type=listings' ) ) . '">' . $text . '</a>';
 
 		if ( $count > 0 ) {
