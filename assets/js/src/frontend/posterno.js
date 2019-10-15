@@ -112,6 +112,23 @@
 		});
 	}
 
+	/**
+	 * Format the pricing field within the frontend forms.
+	 */
+	window.Posterno.doPricingFields = function () {
+
+		if ( typeof AutoNumeric !== "undefined" ) {
+			new AutoNumeric( '.pno-field-pricing input', {
+				currencySymbol : '',
+				decimalCharacter : pno_settings.currency_thousands_separator,
+				digitGroupSeparator : pno_settings.currency_decimal_separator,
+				decimalPlaces: pno_settings.currency_decimals_number,
+				unformatOnSubmit: true,
+			});
+		}
+
+	}
+
 	$(document).ready(function () {
 		window.Posterno.cacheSelectors()
 		window.Posterno.bootstrapTooltips()
@@ -119,6 +136,7 @@
 		window.Posterno.select2()
 		window.Posterno.openInternalLinksNewTab()
 		window.Posterno.openExternalLinksNewTab()
+		window.Posterno.doPricingFields()
 	});
 
 })(jQuery);

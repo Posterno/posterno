@@ -8,6 +8,8 @@
  * @since       0.1.0
  */
 
+use PNO\CurrencyHelper;
+
 // Exit if accessed directly..
 defined( 'ABSPATH' ) || exit;
 
@@ -143,6 +145,7 @@ function pno_load_frontend_scripts() {
 	wp_register_script( 'pno-bootstrap-script-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', [ 'jquery' ], $version, true );
 	wp_register_script( 'pno-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), $version, true );
 	wp_register_script( 'pno-flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', false, $version, true );
+	wp_register_script( 'pno-autonumeric', 'https://unpkg.com/autonumeric', false, $version, true );
 	wp_register_script( 'pno-general', PNO_PLUGIN_URL . 'assets/js/frontend/posterno.min.js', array( 'jquery' ), $version, true );
 
 	wp_enqueue_script( 'jquery' );
@@ -164,6 +167,10 @@ function pno_load_frontend_scripts() {
 		wp_enqueue_script( 'pno-select2' );
 	}
 
+	if ( is_page( pno_get_dashboard_page_id() ) || is_page( pno_get_registration_page_id() ) || is_page( pno_get_listing_submission_page_id() ) || is_page( pno_get_listing_editing_page_id() ) ) {
+		wp_enqueue_script( 'pno-autonumeric' );
+	}
+
 	// Register pno's own stylesheet.
 	wp_enqueue_script( 'pno-general' );
 
@@ -180,6 +187,10 @@ function pno_load_frontend_scripts() {
 		'external_links_new_tab'           => (bool) pno_get_option( 'listing_external_open_new_tab', false ),
 		'external_links_rel_attributes'    => (bool) pno_get_option( 'listing_external_rel_attributes', false ),
 		'external_links_new_tab_selectors' => pno_get_external_listing_links_selectors(),
+		'currency'                         => CurrencyHelper::get_currency_symbol(),
+		'currency_thousands_separator'     => CurrencyHelper::get_thousands_separator(),
+		'currency_decimal_separator'       => CurrencyHelper::get_decimal_separator(),
+		'currency_decimals_number'         => CurrencyHelper::get_decimals(),
 		'labels'                           => [
 			'requestGeolocation'      => esc_html__( 'Find my location', 'posterno' ),
 			'youHere'                 => esc_html__( 'You are here.', 'posterno' ),
