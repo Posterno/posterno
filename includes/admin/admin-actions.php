@@ -12,23 +12,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Processes all PNO actions sent via POST and GET by looking for the 'pno-action'
- * request and running do_action() to call the function
- *
- * @since 1.0
- * @return void
- */
-function pno_process_actions() {
-	if ( isset( $_POST['pno-action'] ) ) {
-		do_action( 'pno_' . sanitize_text_field( $_POST['pno-action'] ), $_POST );
-	}
-	if ( isset( $_GET['pno-action'] ) ) {
-		do_action( 'pno_' . sanitize_text_field( $_GET['pno-action'] ), $_GET );
-	}
-}
-add_action( 'admin_init', 'pno_process_actions' );
-
-/**
  * Determines when the custom shortcodes editor can be loaded.
  *
  * @access public
