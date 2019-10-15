@@ -946,8 +946,8 @@ function pno_add_rel_nofollow_callback( $matches ) {
 
 	// If this doesn't have the rel attribute, append the nofollow.
 	if ( strpos( $text, 'rel' ) === false ) {
-		$text = preg_replace( "%(href=S(?!$site_link))%i", 'rel="nofollow" $1', $text );
+		$text = preg_replace( "%(href=S(?!$site_link))%i", 'rel="nofollow ugc" $1', $text );
 	}
 
-	return "<a $text rel=\"nofollow\">";
+	return "<a $text rel=\"nofollow ugc\">";
 }
