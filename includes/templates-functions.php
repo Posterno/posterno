@@ -708,7 +708,7 @@ function pno_get_listing_class( $class = '', $post_id = null ) {
  * @return string
  */
 function pno_get_widget_singular_restriction_message() {
-	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page.', 'posterno' );
+	return esc_html__( 'This widget can only be used when within a sidebar for the sigle listing page. Because it displays data related to the listing that is currently being viewed.', 'posterno' );
 }
 
 /**
