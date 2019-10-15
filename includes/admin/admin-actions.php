@@ -24,7 +24,7 @@ function pno_shortcodes_add_mce_button() {
 		return;
 	}
 
-	if ( 'true' == get_user_option( 'rich_editing' ) ) {
+	if ( 'true' === get_user_option( 'rich_editing' ) ) {
 		add_filter( 'mce_external_plugins', 'pno_shortcodes_add_tinymce_plugin' );
 		add_filter( 'mce_buttons', 'pno_shortcodes_register_mce_button' );
 	}
