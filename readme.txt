@@ -51,6 +51,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 - **[Claim listings](https://posterno.com/extensions/claim-listings/)**: Start generating passive revenue with the claim listings add-on. Business owners can identify themselves as the owner and get verified. Additionally, a verified listing badge is displayed after listings are claimed ensuring site visitors your businesses’ information is up to date, accurate, and relevant.
 
+- **[Google Analytics](https://posterno.com/extensions/google-analytics/)**: Provide your users statistics on total views, unique visitor counts, average time on page, top browsers and top platforms for 3 defined periods ( 7 days, 14 days, 30 days ). All of these statistics are grabbed directly from your own Google Analytics account and then displayed into the dashboard page.
+
 = Free Extensions =
 
 - **[Google reCAPTCHA](https://posterno.com/extensions/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
