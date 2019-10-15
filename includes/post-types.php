@@ -20,6 +20,10 @@ function pno_setup_post_types() {
 
 	$slug = defined( 'PNO_LISTINGS_SLUG' ) ? PNO_LISTINGS_SLUG : 'listing';
 
+	if ( pno_get_option( 'listings_slug', false ) ) {
+		$slug = pno_get_option( 'listings_slug' );
+	}
+
 	$rewrite = array(
 		'slug'       => $slug,
 		'with_front' => true,
@@ -286,18 +290,18 @@ add_action( 'init', 'pno_setup_registration_fields_post_type', 0 );
 /**
  * Change default "Enter title here" input for the profile fields post type.
  *
- * @param string $title
+ * @param string $title title.
  * @return string
  */
 function pno_user_fields_change_default_title( $title ) {
 
 	$screen = get_current_screen();
 
-	if ( 'pno_users_fields' == $screen->post_type ) {
+	if ( 'pno_users_fields' === $screen->post_type ) {
 		$title = esc_html__( 'Enter profile field title here', 'posterno' );
-	} elseif ( 'pno_signup_fields' == $screen->post_type ) {
+	} elseif ( 'pno_signup_fields' === $screen->post_type ) {
 		$title = esc_html__( 'Enter registration field title here', 'posterno' );
-	} elseif ( 'pno_emails' == $screen->post_type ) {
+	} elseif ( 'pno_emails' === $screen->post_type ) {
 		$title = esc_html__( 'Enter email subject', 'posterno' );
 	}
 
@@ -407,6 +411,8 @@ function pno_register_listings_taxonomies() {
 		'back_to_items'              => esc_html__( '&larr; Back to types', 'posterno' ),
 	);
 
+	$slug = pno_get_option( 'listings_slug', false ) ? pno_get_option( 'listings_type_slug', false ) : 'listing-type';
+
 	/**
 	 * Filter: allows modification of the rewrite rules of the listings types taxonomy.
 	 *
@@ -416,7 +422,7 @@ function pno_register_listings_taxonomies() {
 	$rewrite = apply_filters(
 		'pno_listing_type_taxonomy_rewrite',
 		array(
-			'slug'         => 'listing-type',
+			'slug'         => $slug,
 			'with_front'   => true,
 			'hierarchical' => false,
 		)
@@ -459,6 +465,8 @@ function pno_register_listings_taxonomies() {
 		'back_to_items'              => esc_html__( '&larr; Back to categories', 'posterno' ),
 	);
 
+	$categories_slug = pno_get_option( 'listings_categories_slug', false ) ? pno_get_option( 'listings_categories_slug', false ) : 'listing-category';
+
 	/**
 	 * Filter: allows modification of the rewrite rules of the listings categories taxonomy.
 	 *
@@ -468,7 +476,7 @@ function pno_register_listings_taxonomies() {
 	$rewrite = apply_filters(
 		'pno_listing_category_taxonomy_rewrite',
 		array(
-			'slug'         => 'listing-category',
+			'slug'         => $categories_slug,
 			'with_front'   => true,
 			'hierarchical' => true,
 		)
@@ -508,6 +516,8 @@ function pno_register_listings_taxonomies() {
 		'back_to_items'              => esc_html__( '&larr; Back to locations', 'posterno' ),
 	);
 
+	$locations_slug = pno_get_option( 'listings_locations_slug', false ) ? pno_get_option( 'listings_locations_slug', false ) : 'listing-location';
+
 	/**
 	 * Filter: allows modification of the rewrite rules of the listings locations taxonomy.
 	 *
@@ -517,7 +527,7 @@ function pno_register_listings_taxonomies() {
 	$rewrite = apply_filters(
 		'pno_listing_location_taxonomy_rewrite',
 		array(
-			'slug'         => 'listing-location',
+			'slug'         => $locations_slug,
 			'with_front'   => true,
 			'hierarchical' => true,
 		)
@@ -557,6 +567,8 @@ function pno_register_listings_taxonomies() {
 		'back_to_items'              => esc_html__( '&larr; Back to tags', 'posterno' ),
 	);
 
+	$tags_slug = pno_get_option( 'listings_tags_slug', false ) ? pno_get_option( 'listings_tags_slug', false ) : 'listing-tag';
+
 	/**
 	 * Filter: allows modification of the rewrite rules of the listings tags taxonomy.
 	 *
@@ -566,7 +578,7 @@ function pno_register_listings_taxonomies() {
 	$rewrite = apply_filters(
 		'pno_listing_location_taxonomy_rewrite',
 		array(
-			'slug'         => 'listing-tag',
+			'slug'         => $tags_slug,
 			'with_front'   => true,
 			'hierarchical' => false,
 		)

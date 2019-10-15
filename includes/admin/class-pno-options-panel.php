@@ -487,6 +487,23 @@ class OptionsPanel {
 				]
 			);
 
+		$settings[] = Field::make( 'separator', 'hpermalinks', esc_html__( 'Permalink settings', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'listings_slug', esc_html__( 'Listings slug', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enter a custom listings permalink slug if needed. Leave blank to use the default one. Permalinks settings refresh required after changing this setting.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'listings_type_slug', esc_html__( 'Listing types taxonomy slug', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enter a custom permalink slug if needed. Leave blank to use the default one. Permalinks settings refresh required after changing this setting.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'listings_categories_slug', esc_html__( 'Listing categories taxonomy slug', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enter a custom permalink slug if needed. Leave blank to use the default one. Permalinks settings refresh required after changing this setting.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'listings_locations_slug', esc_html__( 'Listing locations taxonomy slug', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enter a custom permalink slug if needed. Leave blank to use the default one. Permalinks settings refresh required after changing this setting.', 'posterno' ) );
+
+		$settings[] = Field::make( 'text', 'listings_tags_slug', esc_html__( 'Listing tags taxonomy slug', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enter a custom permalink slug if needed. Leave blank to use the default one. Permalinks settings refresh required after changing this setting.', 'posterno' ) );
+
 		$settings[] = Field::make( 'separator', 'h1', esc_html__( 'Layout', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'listings_per_page', esc_html__( 'Listings per page', 'posterno' ) )
