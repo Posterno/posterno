@@ -246,7 +246,7 @@ class Registration {
 
 				// Now process all other custom fields.
 				foreach ( $this->form->toArray() as $key => $value ) {
-					if ( in_array( $key, $this->fieldsToSkip() ) ) {
+					if ( in_array( $key, $this->fieldsToSkip(), true ) ) {
 						continue;
 					}
 					if ( pno_is_default_field( $key ) ) {
