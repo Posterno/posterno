@@ -279,15 +279,16 @@ class Registration {
 				 */
 				do_action( 'pno_before_registration_end', $new_user_id, $this->form );
 
-				// Send registration confirmation emails.
-				pno_send_email(
-					'core_user_registration',
-					$email_address,
-					[
-						'user_id'             => $new_user_id,
-						'plain_text_password' => $password,
-					]
-				);
+				/**
+				 * Hook: triggers right after all data has been stored into the database so it's
+				 * the right moment to send emails.
+				 *
+				 * @param string $new_user_id the user id.
+				 * @param Form $form the form.
+				 * @param string $email_address the address.
+				 * @param string $password password.
+				 */
+				do_action( 'pno_do_registration_email', $new_user_id, $this->form, $email_address, $password );
 
 				/**
 				 * Allow developers to extend the signup process after firing

@@ -467,6 +467,7 @@ if ( ! class_exists( 'Posterno' ) ) :
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails-editor-settings.php';
 			require_once PNO_PLUGIN_DIR . 'includes/emails/class-pno-emails.php';
 			require_once PNO_PLUGIN_DIR . 'includes/emails/emails-functions.php';
+			require_once PNO_PLUGIN_DIR . 'includes/emails/emails-actions.php';
 
 			// Avatars.
 			require_once PNO_PLUGIN_DIR . 'includes/class-pno-avatars.php';
