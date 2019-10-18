@@ -128,6 +128,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.1.3 18th October 2019 =
+
+- Added: support for the new user [registrations moderation extension](https://posterno.com/extensions/registration-moderation).
+- Tweak: moved registration emails trigger to a hook.
+- Tweak: added new parameter to registration success message filter.
+
 = 1.1.2 15th October 2019 =
 
 - Added: pending listings count into the "at glance" dashboard widget.
