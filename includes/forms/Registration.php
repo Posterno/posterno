@@ -314,8 +314,9 @@ class Registration {
 					 * Allow developers to customize the message displayed after successfull registration.
 					 *
 					 * @param string $message the message that appears after registration.
+					 * @param string $new_user_id id number of the new user.
 					 */
-					$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.', 'posterno' ) );
+					$success_message = apply_filters( 'pno_registration_success_message', esc_html__( 'Registration complete. We have sent you a confirmation email with your details.', 'posterno' ), $new_user_id );
 
 					$this->form->setSuccessMessage( $success_message );
 					$this->form->reset();
