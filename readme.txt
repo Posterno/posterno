@@ -53,6 +53,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 - **[Google Analytics](https://posterno.com/extensions/google-analytics/)**: Provide your users statistics on total views, unique visitor counts, average time on page, top browsers and top platforms for 3 defined periods ( 7 days, 14 days, 30 days ). All of these statistics are grabbed directly from your own Google Analytics account and then displayed into the dashboard page.
 
+- **[Registration moderation](https://posterno.com/extensions/registration-moderation/)**: Protect your website from spam user and require users to verify their account by sending a verification link via email upon registration or manually approve users before they can login.
+
 = Free Extensions =
 
 - **[Google reCAPTCHA](https://posterno.com/extensions/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
