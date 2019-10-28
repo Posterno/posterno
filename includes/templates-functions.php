@@ -353,6 +353,14 @@ function pno_display_field_value( $type, $value, $field = false, $return = false
 	$output = false;
 	$type   = strtolower( str_replace( '-', '_', $type ) );
 
+	/**
+	 * Filter: modify the function used to display the output of a field.
+	 *
+	 * @param string $type the field type.
+	 * @param mixed $value the value loaded for the field.
+	 * @param object $field field's details.
+	 * @return string the name of the function used to call the field.
+	 */
 	$function_name = apply_filters( 'pno_display_field_value_func_name', "pno_display_field_{$type}_value", $type, $value, $field );
 
 	if ( function_exists( $function_name ) ) {
