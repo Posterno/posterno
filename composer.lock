@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7406bbe84739676b32348e7c1ca6a7d",
+    "content-hash": "057411d57e38a7a22820df66b42e55f3",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -280,16 +280,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "dev-master",
+            "version": "6.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "2b1dfedd8d59a521832c0837be045b83cd746fa0"
+                "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2b1dfedd8d59a521832c0837be045b83cd746fa0",
-                "reference": "2b1dfedd8d59a521832c0837be045b83cd746fa0",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
+                "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
                 "shasum": ""
             },
             "require": {
@@ -342,7 +342,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-18T12:00:04+00:00"
+            "time": "2019-10-23T15:58:00+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -737,6 +737,54 @@
                 }
             ],
             "description": "Posterno component that provides support for the official addons.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "posterno/blocks",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../blocks",
+                "reference": "c6437d792c688325f558efd6bd2b130db66c135b"
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PosternoBlocks\\": "includes/classes/"
+                },
+                "files": [
+                    "blocks-loader.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "phpcs ."
+                ],
+                "lint-fix": [
+                    "phpcbf ."
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Posterno component that registers custom Gutenberg blocks.",
             "homepage": "https://posterno.com",
             "keywords": [
                 "wordpress"
@@ -1539,7 +1587,8 @@
         "posterno/import-export": 20,
         "posterno/posterno-validator": 20,
         "posterno/posterno-forms": 20,
-        "posterno/posterno-third-party": 20
+        "posterno/posterno-third-party": 20,
+        "posterno/blocks": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -20,7 +20,8 @@
 		"posterno/import-export": "@dev",
 		"posterno/posterno-validator": "@dev",
 		"posterno/posterno-forms": "@dev",
-		"posterno/posterno-third-party": "@dev"
+		"posterno/posterno-third-party": "@dev",
+		"posterno/blocks": "@dev"
 	},
 	"minimum-stability": "dev",
 	"repositories": [{
@@ -106,6 +107,13 @@
 			"options": {
 				"symlink": true
 			}
+		},
+		{
+			"type": "path",
+			"url": "../blocks",
+			"options": {
+				"symlink": true
+			}
 		}
 	],
 	"extra": {
@@ -128,7 +136,8 @@
 				"posterno/posterno-submission-scripts",
 				"posterno/posterno-fields-editor-validator",
 				"posterno/addons",
-				"posterno/import-export"
+				"posterno/import-export",
+				"posterno/blocks"
 			]
 		}
 	}

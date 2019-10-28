@@ -11,6 +11,7 @@
     "posterno/posterno-submission-scripts",
     "posterno/posterno-fields-editor-validator",
 	"posterno/addons",
-	"posterno/import-export"
+	"posterno/import-export",
+	"posterno/blocks"
   ]
 }
