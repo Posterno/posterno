@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8bf2d81794b9902b7459c6390508580",
+    "content-hash": "f7406bbe84739676b32348e7c1ca6a7d",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -284,18 +284,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "bcbb52f6f8b28de44b7515519e3d2d9c640d40ab"
+                "reference": "2b1dfedd8d59a521832c0837be045b83cd746fa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/bcbb52f6f8b28de44b7515519e3d2d9c640d40ab",
-                "reference": "bcbb52f6f8b28de44b7515519e3d2d9c640d40ab",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2b1dfedd8d59a521832c0837be045b83cd746fa0",
+                "reference": "2b1dfedd8d59a521832c0837be045b83cd746fa0",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.4",
+                "guzzlehttp/psr7": "^1.6.1",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -342,7 +342,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-14T09:23:25+00:00"
+            "time": "2019-10-18T12:00:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1528,18 +1528,18 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-validator": 20,
         "posterno/posterno-dom": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/import-export": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/addons": 20,
         "posterno/posterno-schema": 20,
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-maps": 20
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/import-export": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-third-party": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
