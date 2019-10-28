@@ -953,7 +953,7 @@ function pno_get_listings_results_per_page_options() {
 
 	$options = [ '5', '10', '15', '20' ];
 
-	if ( $default && ! in_array( (string) $default, $options ) ) {
+	if ( $default && ! in_array( (string) $default, $options, true ) ) {
 		$options[] = $default;
 	}
 
