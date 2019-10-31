@@ -505,6 +505,35 @@ function pno_get_listings_tags_for_association() {
 }
 
 /**
+ * Retrieve a list of listings locations.
+ * This function is used only within the admin panel.
+ *
+ * @return array
+ */
+function pno_get_listings_locations_for_association() {
+	$tags = [];
+
+	$terms = get_terms(
+		'listings-locations',
+		array(
+			'hide_empty' => false,
+			'number'     => 999,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( ! empty( $terms ) ) {
+		foreach ( $terms as $tag ) {
+			$tags[ absint( $tag->term_id ) ] = esc_html( $tag->name );
+		}
+	}
+
+	return $tags;
+
+}
+
+/**
  * Get email situations in an ordered list.
  *
  * @return array
