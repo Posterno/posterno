@@ -21,7 +21,7 @@ print_r( $data );
 $posts_per_page = isset( $data->number ) ? absint( $data->number ) : absint( pno_get_listings_results_per_page_options() );
 $featured       = isset( $data->show_featured_only ) && $data->show_featured_only === true;
 $pagination     = isset( $data->pagination ) && $data->pagination === true;
-$layout         = pno_get_listings_results_active_layout();
+$layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_layout() : ( isset( $data->layout ) && array_key_exists( $data->layout, pno_get_listings_layout_options() ) ? $data->layout : pno_get_listings_results_active_layout() );
 $display_sorter = isset( $data->sorter ) && $data->sorter === true;
 $sort_method    = isset( $data->sort ) ? $data->sort : false;
 $sort_by        = isset( $data->sort_by ) ? $data->sort_by : false;
