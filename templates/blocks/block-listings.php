@@ -25,6 +25,7 @@ $layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_lay
 $display_sorter = isset( $data->sorter ) && $data->sorter === true;
 $sort_method    = isset( $data->sort ) ? $data->sort : false;
 $sort_by        = isset( $data->sort_by ) ? $data->sort_by : false;
+$author_id = isset( $data->user_id ) ? absint( $data->user_id ) : false;
 
 $args = [
 	'post_type'         => 'listings',
@@ -46,6 +47,11 @@ if ( $featured ) {
 			'value' => 'yes',
 		],
 	];
+}
+
+// Add specific author support to the query.
+if ( $author_id ) {
+	$args['author'] = $author_id;
 }
 
 $i = '';
