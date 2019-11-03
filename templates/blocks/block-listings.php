@@ -38,6 +38,16 @@ if ( $pagination ) {
 	$args['paged'] = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 }
 
+// Add featured listings only support to the query.
+if ( $featured ) {
+	$args['meta_query'] = [
+		[
+			'key'   => '_listing_is_featured',
+			'value' => 'yes',
+		],
+	];
+}
+
 $i = '';
 
 $query = new WP_Query( $args );
