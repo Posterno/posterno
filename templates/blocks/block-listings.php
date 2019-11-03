@@ -110,14 +110,6 @@ $query = new WP_Query( $args );
 
 	if ( $query->have_posts() ) {
 
-		posterno()->templates
-			->set_template_data(
-				[
-					'custom_query' => $query,
-				]
-			)
-			->get_template_part( 'listings/results', 'bar' );
-
 		// Start opening the grid's container.
 		if ( $layout === 'grid' ) {
 			echo '<div class="card-deck">';
