@@ -16,9 +16,15 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$posts_per_page = isset( $data->number ) ? absint( $data->number ) : absint( pno_get_listings_results_per_page_options() );
+print_r( $data );
 
-$layout = pno_get_listings_results_active_layout();
+$posts_per_page = isset( $data->number ) ? absint( $data->number ) : absint( pno_get_listings_results_per_page_options() );
+$featured       = isset( $data->show_featured_only ) && $data->show_featured_only === true;
+$pagination     = isset( $data->pagination ) && $data->pagination === true;
+$layout         = pno_get_listings_results_active_layout();
+$display_sorter = isset( $data->sorter ) && $data->sorter === true;
+$sort_method    = isset( $data->sort ) ? $data->sort : false;
+$sort_by        = isset( $data->sort_by ) ? $data->sort_by : false;
 
 $args = [
 	'post_type'         => 'listings',
@@ -26,6 +32,11 @@ $args = [
 	'pno_search'        => true,
 	'posts_per_page'    => $posts_per_page,
 ];
+
+// Add pagination support.
+if ( $pagination ) {
+	$args['paged'] = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+}
 
 $i = '';
 
@@ -71,13 +82,15 @@ $query = new WP_Query( $args );
 			echo '</div>';
 		}
 
-		posterno()->templates
-			->set_template_data(
-				[
-					'query' => $query,
-				]
-			)
-			->get_template_part( 'listings/results', 'footer' );
+		if ( $pagination ) {
+			posterno()->templates
+				->set_template_data(
+					[
+						'query' => $query,
+					]
+				)
+				->get_template_part( 'listings/results', 'footer' );
+		}
 
 	} else {
 
