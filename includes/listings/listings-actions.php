@@ -29,7 +29,7 @@ function pno_adjust_listings_query( $query ) {
 		$is_listing_page = true;
 	} elseif ( $query->is_tax() ) {
 		$current_tax = get_queried_object();
-		if ( $current_tax instanceof WP_Term && isset( $current_tax->taxonomy ) && in_array( $current_tax->taxonomy, $listings_taxonomies ) ) {
+		if ( $current_tax instanceof WP_Term && isset( $current_tax->taxonomy ) && in_array( $current_tax->taxonomy, $listings_taxonomies, true ) ) {
 			$is_listing_page = true;
 		}
 	}
