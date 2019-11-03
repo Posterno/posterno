@@ -24,14 +24,12 @@ $pagination     = isset( $data->pagination ) && $data->pagination === true;
 $layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_layout() : ( isset( $data->layout ) && array_key_exists( $data->layout, pno_get_listings_layout_options() ) ? $data->layout : pno_get_listings_results_active_layout() );
 $display_sorter = isset( $data->sorter ) && $data->sorter === true;
 $sort_method    = isset( $data->sort ) ? $data->sort : false;
-$sort_by        = isset( $data->sort_by ) ? $data->sort_by : false;
 $author_id      = isset( $data->user_id ) ? absint( $data->user_id ) : false;
 
 $args = [
-	'post_type'         => 'listings',
-	'is_listings_query' => true,
-	'pno_search'        => true,
-	'posts_per_page'    => $posts_per_page,
+	'post_type'      => 'listings',
+	'pno_search'     => true,
+	'posts_per_page' => $posts_per_page,
 ];
 
 // Add pagination support.
@@ -52,6 +50,53 @@ if ( $featured ) {
 // Add specific author support to the query.
 if ( $author_id ) {
 	$args['author'] = $author_id;
+}
+
+if ( $sort_method ) {
+
+	$sorters                   = '';
+	$enabled_featuring_sorters = pno_get_option( 'listings_featured_in_sorters', [] );
+	$listings_can_be_featured  = pno_listings_can_be_featured();
+
+	switch ( $sort_method ) {
+		case 'newest':
+			$sorters = [
+				'menu_order' => 'ASC',
+				'date'       => 'DESC',
+			];
+			break;
+		case 'oldest':
+			$sorters = [
+				'menu_order' => 'ASC',
+				'date'       => 'ASC',
+			];
+			break;
+		case 'title':
+			$sorters = [
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			];
+			break;
+		case 'title_za':
+			$sorters = [
+				'menu_order' => 'ASC',
+				'title'      => 'DESC',
+			];
+			break;
+		case 'random':
+			$sorters = 'rand';
+			break;
+	}
+
+	if ( isset( $sorters ) && ! empty( $sorters ) ) {
+		if ( ! in_array( $sort_method, $enabled_featuring_sorters, true ) && isset( $sorters['menu_order'] ) ) {
+			unset( $sorters['menu_order'] );
+		}
+		if ( ! $listings_can_be_featured && isset( $sorters['menu_order'] ) ) {
+			unset( $sorters['menu_order'] );
+		}
+		$args['orderby'] = $sorters;
+	}
 }
 
 $i = '';
