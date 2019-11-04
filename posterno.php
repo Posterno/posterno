@@ -7,7 +7,7 @@
  * Author URI:      https://posterno.com
  * Text Domain:     posterno
  * Domain Path:     /languages
- * Version:         1.1.3
+ * Version:         1.2.0
  *
  * Posterno is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
