@@ -92,19 +92,18 @@ export default {
 				}
 			})
 			.then( response => {
-
 				// Convert the object retrieved from the api,
 				// to an array so it can be made sortable by the script.
 				if ( typeof response.data === 'object' ) {
 					let new_fields = []
 					var result = Object.keys(response.data).map( function(key) {
-						new_fields.push( response.data[key] )
+						if ( response.data[key].type !== 'heading' ) {
+							new_fields.push( response.data[key] )
+						}
 					})
 					this.fields = new_fields
 				}
-
 				this.loading = false
-
 			})
 			.catch( e => {
 
