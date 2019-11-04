@@ -242,6 +242,15 @@ class Profile {
 			)
 			->set_help_text( esc_html__( 'Enable to prevent users from editing this field but still make it visible within the account settings page.', 'posterno' ) );
 
+		$settings[] = Field::make( 'select', 'profile_field_visibility', esc_html__( 'Visibility', 'posterno' ) )
+			->set_options(
+				[
+					'visible' => esc_html__( 'Visible', 'posterno' ),
+					'hidden'  => esc_html__( 'Hidden', 'posterno' ),
+				]
+			)
+			->set_help_text( esc_html__( 'Set the frontend visibility for this field.', 'posterno' ) );
+
 		/**
 		 * Allow developers to customize the settings for the profile field post type.
 		 * Settings are powered by Carbon Fields and will be displayed within the "Permissions" tab.

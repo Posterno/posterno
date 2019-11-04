@@ -325,6 +325,11 @@ function pno_get_public_profile_fields() {
 
 	if ( ! empty( $profile_fields ) && isset( $profile_fields->items ) && is_array( $profile_fields->items ) ) {
 		foreach ( $profile_fields->items as $field ) {
+
+			if ( $field->getVisibility() === 'hidden' ) {
+				continue;
+			}
+
 			$fields[ $field->getObjectMetaKey() ] = [
 				'name'     => $field->getTitle(),
 				'priority' => $field->getPriority(),
