@@ -54,4 +54,26 @@
 		}
 	}
 
+	.upgrade {
+		border: 3px solid #e1e1e1;
+		background:#fff;
+		padding: 2em;
+
+		h3 {
+			margin-top: 0;
+		}
+
+		span {
+			color:#5163ba;
+		}
+
+		pre {
+			border: 3px dashed#82878c;
+			background: #fff9c5;
+			padding: 1.2em;
+			text-align: center;
+		}
+
+	}
+
 }

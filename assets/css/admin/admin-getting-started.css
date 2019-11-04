@@ -34,3 +34,16 @@
   width: 100%; }
 #pno-getting-started .social-links li {
   display: inline-block; }
+#pno-getting-started .upgrade {
+  border: 3px solid #e1e1e1;
+  background: #fff;
+  padding: 2em; }
+  #pno-getting-started .upgrade h3 {
+    margin-top: 0; }
+  #pno-getting-started .upgrade span {
+    color: #5163ba; }
+  #pno-getting-started .upgrade pre {
+    border: 3px dashed #82878c;
+    background: #fff9c5;
+    padding: 1.2em;
+    text-align: center; }
