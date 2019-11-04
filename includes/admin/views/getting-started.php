@@ -134,13 +134,13 @@ $first_name    = pno_get_user_first_name( get_current_user_id() );
 
 			<div id="postbox-container-1" class="postbox-container">
 				<div class="upgrade">
-					<h3><span class="dashicons dashicons-star-filled"></span> <?php esc_html_e( 'Premium extensions discount' ); ?></h3>
-					<p><?php esc_html_e( 'Gain access to all of our premium extensions with a single purchase and save hundreds compared to buying extensions individually.' ); ?></p>
+					<h3><span class="dashicons dashicons-star-filled"></span> <?php esc_html_e( 'Premium extensions discount', 'posterno' ); ?></h3>
+					<p><?php esc_html_e( 'Gain access to all of our premium extensions with a single purchase and save hundreds compared to buying extensions individually.', 'posterno' ); ?></p>
 
-					<p><?php esc_html_e( 'Use the coupon code below for a 10% off discount on all our bundles.' ); ?></p>
+					<p><?php esc_html_e( 'Use the coupon code below for a 10% off discount on all our bundles.', 'posterno' ); ?></p>
 					<pre>GETSTARTED</pre>
 
-					<a class="button button-primary" target="_blank" href="https://posterno.com/pricing"><?php esc_html_e( 'Get the bundle now' ); ?> &raquo;</a>
+					<a class="button button-primary" target="_blank" href="https://posterno.com/pricing"><?php esc_html_e( 'Get the bundle now', 'posterno' ); ?> &raquo;</a>
 				</div>
 			</div>
 
