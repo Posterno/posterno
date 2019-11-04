@@ -2,7 +2,7 @@
 Contributors: alessandro.tesoro, posterno, sematico
 Tags: business directory, listings, classifieds, directory, listing, local business directory, listings directory, link directory, member directory, staff directory, real estate, job listing, googlemap, profile, profiles, yelp clone, tripadvisor clone, yellow pages clone, car listings, auto listings, members, profile, community, user profile, user registration
 Requires at least: 4.9.6
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.5+
 Stable tag: 1.2.0
 License: GPLv3
@@ -54,6 +54,12 @@ Posterno provides customizable email templates for each email that can be sent t
 - **[Google Analytics](https://posterno.com/extensions/google-analytics/)**: Provide your users statistics on total views, unique visitor counts, average time on page, top browsers and top platforms for 3 defined periods ( 7 days, 14 days, 30 days ). All of these statistics are grabbed directly from your own Google Analytics account and then displayed into the dashboard page.
 
 - **[Registration moderation](https://posterno.com/extensions/registration-moderation/)**: Protect your website from spam user and require users to verify their account by sending a verification link via email upon registration or manually approve users before they can login.
+
+- **[Social login](https://posterno.com/extensions/social-login/)**: Allows users to easily register and login to your website using Facebook, Twitter, Google, or LinkedIn.
+
+= Premium Extensions Bundle =
+
+Gain access to all of our extensions with a single purchase and save hundreds compared to buying extensions individually. [View bundle](https://posterno.com/pricing/).
 
 = Free Extensions =
 
@@ -129,6 +135,16 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.2.0 4th November 2019 =
+
+- Added: new listings query Gutenberg block.
+- Added: [new documentation article on how to use the listings Gutenberg block](https://docs.posterno.com/article/658-gutenberg-listings-query-block).
+- Added: bundle discount information in getting started page.
+- Added: bundle discount information in extensions page.
+- Added: ability to set visibility of profile fields on the frontend public profile page.
+- Tweak: prevent heading fields to be added to the registration form.
+- Tweak: pre_get_posts posts_per_page query attribute should only be set if the query does not set one by itself.
 
 = 1.1.3 18th October 2019 =
 
