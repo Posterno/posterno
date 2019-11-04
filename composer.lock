@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "057411d57e38a7a22820df66b42e55f3",
+    "content-hash": "c6fca8cbf5edea085d8d2ff57c18531c",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -280,16 +280,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.4.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
+                "reference": "df36d8dae3979cf927d5bbbed6f0427f39aadfec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/df36d8dae3979cf927d5bbbed6f0427f39aadfec",
+                "reference": "df36d8dae3979cf927d5bbbed6f0427f39aadfec",
                 "shasum": ""
             },
             "require": {
@@ -309,7 +309,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.3-dev"
+                    "dev-master": "6.5-dev"
                 }
             },
             "autoload": {
@@ -342,7 +342,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-23T15:58:00+00:00"
+            "time": "2019-10-30T11:22:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -703,7 +703,7 @@
             "dist": {
                 "type": "path",
                 "url": "../addons",
-                "reference": "67052c1c40bcaa84123a47f7795246632821a367"
+                "reference": "c550703e12ac5416e6f0ed466a37aeed0327f855"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -751,7 +751,7 @@
             "dist": {
                 "type": "path",
                 "url": "../blocks",
-                "reference": "c6437d792c688325f558efd6bd2b130db66c135b"
+                "reference": "9062477ca9fd9aa471a056e6493af95c42ca2fc2"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -892,7 +892,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-entities",
-                "reference": "60d72f1d12e9dfb635048c2e7e7b075df05f7efd"
+                "reference": "a14c2980e8364ab97da29a710f8accb7e5b58baf"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1576,19 +1576,19 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-dom": 20,
         "posterno/posterno-maps": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/import-export": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-validator": 20,
         "posterno/posterno-forms": 20,
+        "posterno/import-export": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-entities": 20,
+        "posterno/blocks": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-submission-scripts": 20,
         "posterno/posterno-third-party": 20,
-        "posterno/blocks": 20
+        "posterno/posterno-dom": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

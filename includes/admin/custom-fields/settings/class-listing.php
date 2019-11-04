@@ -216,7 +216,7 @@ class Listing {
 					),
 				)
 			)
-			->set_help_text( esc_html__( 'Specify which file types are supported by this field. Separate with comma to add multiple extensions. Eg: jpg, png.', 'posterno' ) );
+			->set_help_text( esc_html__( 'Specify which file types are supported by this field.', 'posterno' ) );
 
 		/**
 		 * Allow developers to customize the settings for the listings custom fields post type.
