@@ -102,7 +102,7 @@ function pno_get_roles( $force = false, $admin = false ) {
 	$available_roles = $wp_roles->get_names();
 
 	foreach ( $available_roles as $role_id => $role ) {
-		if ( $role_id == 'administrator' && ! $admin ) {
+		if ( $role_id === 'administrator' && ! $admin ) {
 			continue;
 		}
 		$roles[ esc_attr( $role_id ) ] = esc_html( $role );
