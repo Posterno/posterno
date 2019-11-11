@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 // Exit if accessed directly.
@@ -20,7 +20,7 @@ $type = isset( $data->type ) ? esc_attr( $data->type ) : 'info';
 
 ?>
 
-<div class="alert alert-<?php echo esc_attr( $type ); ?>" role="alert">
+<div class="alert alert-<?php echo esc_attr( $type ); ?>" role="alert" <?php if ( isset( $data->id ) ) : ?>id="<?php echo esc_attr( $data->id ); ?>"<?php endif; ?>>
 	<?php echo wp_kses_post( $data->message ); ?>
 	<?php if ( isset( $data->dismiss ) && $data->dismiss === true ) : ?>
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
