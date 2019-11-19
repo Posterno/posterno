@@ -104,14 +104,14 @@ function pno_load_admin_scripts() {
 		'pno_emails',
 	];
 
-	if ( in_array( $screen->id, $admin_style_screens ) ) {
+	if ( in_array( $screen->id, $admin_style_screens, true ) ) {
 		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . 'assets/css/admin/admin-listings.min.css', [], $version );
 	}
 
 	// Load carbon fields style fixer.
 	$is_options_page = pno_starts_with( $screen->id, 'admin_page_posterno-options' ) || pno_starts_with( $screen->id, 'settings_page_posterno' ) || pno_starts_with( $screen->id, 'pno_' );
 
-	if ( $is_options_page || in_array( $screen->id, $admin_style_screens ) ) {
+	if ( $is_options_page || in_array( $screen->id, $admin_style_screens, true ) ) {
 		wp_enqueue_style( 'posterno-cb-fixer', PNO_PLUGIN_URL . 'assets/css/admin/carbon.min.css', false, $version );
 	}
 
