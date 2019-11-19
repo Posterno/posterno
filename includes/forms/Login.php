@@ -246,6 +246,15 @@ class Login {
 				if ( is_wp_error( $user ) ) {
 					throw new Exception( $user->get_error_message(), $user->get_error_code() );
 				} else {
+
+					/**
+					 * Hook: allow developers to hook into the login form, after the user is actually logged in.
+					 *
+					 * @param Form $form
+					 * @param \WP_User $user
+					 */
+					do_action( 'pno_after_user_login', $this->form, $user );
+
 					wp_safe_redirect( pno_get_login_redirect() );
 					exit;
 				}
