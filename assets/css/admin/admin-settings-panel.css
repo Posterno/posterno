@@ -90,3 +90,7 @@
   .posterno-options-panel .carbon-separator h3 {
     font-size: 16px !important;
     font-weight: 600; }
+.posterno-options-panel .cf-multiselect__control {
+  flex-wrap: initial !important; }
+.posterno-options-panel .cf-select__input {
+  max-width: initial; }

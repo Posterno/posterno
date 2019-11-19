@@ -142,4 +142,12 @@
 			font-weight: 600;
 		}
 	}
+
+	.cf-multiselect__control {
+		flex-wrap: initial !important;
+	}
+
+	.cf-select__input {
+		max-width: initial;
+	}
 }
