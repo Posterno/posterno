@@ -138,6 +138,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 = 1.2.2 19th November 2019 =
 
+- Fix: pricing field preventing form submission when left empty and not required.
+
+= 1.2.1 19th November 2019 =
+
 - Added: new hook after the user has logged in through the login form.
 - Tweak: added support for a css class used by addons.
 - Tweak: allow custom id attribute to be set when using the "message" template file.
