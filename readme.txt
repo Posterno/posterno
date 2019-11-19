@@ -136,6 +136,25 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.1 19th November 2019 =
+
+- Added: new hook after the user has logged in through the login form.
+- Tweak: added support for a css class used by addons.
+- Tweak: allow custom id attribute to be set when using the "message" template file.
+- Tweak: Modify the registration page url output and automatically append redirect_to parameter when available.
+- Fix: description of file extension setting is wrong.
+- Fix: do strict comparison when searching array values.
+- Fix: decode html entities when retrieving the redirect_to url parameter for redirects.
+- Fix: bootstrap tooltip styling not working properly.
+- Fix: reset global post variable after gutenberg block query.
+- Fix: select inputs display issue within the settings panel after WP 5.3 update.
+- Fix: select inputs display issue within the custom fields editor after WP 5.3 update.
+- Fix: select inputs display issue within the taxonomies editors after WP 5.3 update.
+- Fix: extra slash in resource urls when loading custom css in certain admin screens.
+- Fix: extra dashicon displaying in custom fields editor modals after WP 5.3 update.
+- Fix: select inputs styling in custom fields editors modals.
+- Fix: custom dropdowns and checkboxes fields not displaying values within the "Listings details" widget.
+
 = 1.2.0 4th November 2019 =
 
 - Added: new listings query Gutenberg block.
