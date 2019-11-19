@@ -105,19 +105,19 @@ function pno_load_admin_scripts() {
 	];
 
 	if ( in_array( $screen->id, $admin_style_screens ) ) {
-		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . '/assets/css/admin/admin-listings.min.css', [], $version );
+		wp_enqueue_style( 'pno-admin-style', PNO_PLUGIN_URL . 'assets/css/admin/admin-listings.min.css', [], $version );
 	}
 
 	// Load carbon fields style fixer.
 	$is_options_page = pno_starts_with( $screen->id, 'admin_page_posterno-options' ) || pno_starts_with( $screen->id, 'settings_page_posterno' ) || pno_starts_with( $screen->id, 'pno_' );
 
 	if ( $is_options_page || in_array( $screen->id, $admin_style_screens ) ) {
-		wp_enqueue_style( 'posterno-cb-fixer', PNO_PLUGIN_URL . '/assets/css/admin/carbon.min.css', false, $version );
+		wp_enqueue_style( 'posterno-cb-fixer', PNO_PLUGIN_URL . 'assets/css/admin/carbon.min.css', false, $version );
 	}
 
 	// Load styling for tools page.
 	if ( $screen->id === 'tools_page_posterno-tools' ) {
-		wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . '/assets/css/admin/admin-settings-panel.min.css', false, PNO_VERSION );
+		wp_enqueue_style( 'pno-options-panel', PNO_PLUGIN_URL . 'assets/css/admin/admin-settings-panel.min.css', false, PNO_VERSION );
 	}
 
 	// Load font for the post type icon.
