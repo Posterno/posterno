@@ -9,7 +9,7 @@
 		<div class="media-modal-content">
 			<div class="media-frame mode-select wp-core-ui hide-menu" id="__wp-uploader-id-0">
 				<div class="media-frame-title">
-					<h1>{{ labels[type].add_new }}<span class="dashicons dashicons-arrow-down"></span></h1>
+					<h1>{{ labels[type].add_new }}</h1>
 				</div>
 
 				<div class="media-frame-content">
