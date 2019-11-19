@@ -48,7 +48,7 @@ function pno_get_login_redirect() {
 	}
 
 	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) ) {
-		$url = esc_url_raw( $_GET['redirect_to'] );
+		$url = esc_url_raw( html_entity_decode( urldecode( $_GET['redirect_to'] ) ) );
 	}
 
 	/**
