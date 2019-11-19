@@ -61,3 +61,9 @@ body.post-type-listings td.column-featured span.dashicons-star-filled {
   margin-top: 15px !important; }
   .pno-publish-action .field-holder {
     margin-bottom: 5px; }
+
+.cf-multiselect__control {
+  flex-wrap: initial !important; }
+
+.cf-select__input {
+  max-width: initial; }

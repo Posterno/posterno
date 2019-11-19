@@ -101,3 +101,11 @@ body.post-type-listings {
 		margin-bottom: 5px;
 	}
 }
+
+.cf-multiselect__control {
+	flex-wrap: initial !important;
+}
+
+.cf-select__input {
+	max-width: initial;
+}
