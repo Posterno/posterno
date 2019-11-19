@@ -124,6 +124,9 @@ $query = new WP_Query( $args );
 				)
 				->get_template_part( 'listings/results', 'footer' );
 		}
+
+		wp_reset_postdata();
+
 	} else {
 
 		posterno()->templates->get_template_part( 'listings/not-found' );
