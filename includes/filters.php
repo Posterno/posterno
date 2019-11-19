@@ -512,3 +512,27 @@ function pno_listings_content_add_rel_nofollow( $text ) {
 	return $text;
 }
 add_filter( 'the_content', 'pno_listings_content_add_rel_nofollow' );
+
+/**
+ * Modify the registration page url output and append redirect parameter when available.
+ *
+ * @param string $link page link.
+ * @param string $post_id post id.
+ * @param string $sample sample link.
+ * @return string
+ */
+function pno_set_redirect_registration_permalink( $link, $post_id, $sample ) {
+
+	//phpcs:ignore
+	if ( isset( $_GET['redirect_to'] ) && ! empty( $_GET['redirect_to'] ) && absint( $post_id ) === absint( pno_get_registration_page_id() ) ) {
+
+		$redirect_url = esc_url_raw( html_entity_decode( urldecode( $_GET['redirect_to'] ) ) ); //phpcs:ignore
+
+		$link = add_query_arg( [ 'redirect_to' => rawurlencode( $redirect_url ) ], $link );
+
+	}
+
+	return $link;
+
+}
+add_filter( 'page_link', 'pno_set_redirect_registration_permalink', 10, 3 );
