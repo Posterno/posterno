@@ -203,6 +203,11 @@ body.listings_page_posterno-listings-schema #wpcontent {
 			margin-bottom: 15px;
 			font-size: 13px !important;
 		}
+
+		select {
+			max-width: 100%;
+		}
+
 	}
 
 	.spinner {

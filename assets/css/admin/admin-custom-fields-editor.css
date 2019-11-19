@@ -129,6 +129,8 @@ body.listings_page_posterno-listings-schema #wpcontent {
     width: 100%;
     margin-bottom: 15px;
     font-size: 13px !important; }
+  .pno-modal .media-frame-content select {
+    max-width: 100%; }
 .pno-modal .spinner {
   margin-top: 20px; }
 
