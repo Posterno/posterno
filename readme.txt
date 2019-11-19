@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.3
 Requires PHP: 5.5+
-Stable tag: 1.2.2
+Stable tag: 1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -136,10 +136,6 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
-= 1.2.2 19th November 2019 =
-
-- Fix: pricing field preventing form submission when left empty and not required.
-
 = 1.2.1 19th November 2019 =
 
 - Added: new hook after the user has logged in through the login form.
@@ -158,6 +154,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Fix: extra dashicon displaying in custom fields editor modals after WP 5.3 update.
 - Fix: select inputs styling in custom fields editors modals.
 - Fix: custom dropdowns and checkboxes fields not displaying values within the "Listings details" widget.
+- Fix: pricing field preventing form submission when left empty and not required.
 
 = 1.2.0 4th November 2019 =
 

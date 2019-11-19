@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6fca8cbf5edea085d8d2ff57c18531c",
+    "content-hash": "662d33a8d40558e2194c07b1288b6b82",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -751,7 +751,7 @@
             "dist": {
                 "type": "path",
                 "url": "../blocks",
-                "reference": "9062477ca9fd9aa471a056e6493af95c42ca2fc2"
+                "reference": "f37430d1c981da669cd7d0ab6cd10d7c4c9374b6"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1247,7 +1247,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-validator",
-                "reference": "476eb54076fb474fcd2c7e999ec3a8be353d4c9b"
+                "reference": "8eb18b38dcb17bb71a0c2cc5b2d1995d1a8e9c1b"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1442,12 +1442,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/wpdatetime.git",
-                "reference": "7a04d056dc9a1f5761480d9f020c60ac92c72811"
+                "reference": "ac0db30b0de3834aee87ed6edf5609c2f8771723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/wpdatetime/zipball/7a04d056dc9a1f5761480d9f020c60ac92c72811",
-                "reference": "7a04d056dc9a1f5761480d9f020c60ac92c72811",
+                "url": "https://api.github.com/repos/Rarst/wpdatetime/zipball/ac0db30b0de3834aee87ed6edf5609c2f8771723",
+                "reference": "ac0db30b0de3834aee87ed6edf5609c2f8771723",
                 "shasum": ""
             },
             "require": {
@@ -1480,7 +1480,7 @@
                 "timezone",
                 "wordpress"
             ],
-            "time": "2019-05-27T11:32:59+00:00"
+            "time": "2019-11-19T12:27:38+00:00"
         },
         {
             "name": "stevegrunwell/wp-cache-remember",
@@ -1576,19 +1576,19 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-validator": 20,
         "posterno/posterno-forms": 20,
-        "posterno/import-export": 20,
-        "posterno/addons": 20,
+        "posterno/posterno-dom": 20,
         "posterno/posterno-entities": 20,
+        "posterno/posterno-third-party": 20,
         "posterno/blocks": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-maps": 20,
         "posterno/posterno-schema": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-dom": 20
+        "posterno/import-export": 20,
+        "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/addons": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

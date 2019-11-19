@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.2.0\n"
+"Project-Id-Version: Posterno 1.2.2\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-11-04 16:37:30+00:00\n"
+"POT-Creation-Date: 2019-11-19 17:33:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2386,9 +2386,8 @@ msgid "Allowed file types:"
 msgstr ""
 
 #: includes/admin/custom-fields/settings/class-listing.php:219
-msgid ""
-"Specify which file types are supported by this field. Separate with comma "
-"to add multiple extensions. Eg: jpg, png."
+#: includes/admin/custom-fields/settings/class-profile.php:196
+msgid "Specify which file types are supported by this field."
 msgstr ""
 
 #: includes/admin/custom-fields/settings/class-listing.php:249
@@ -2471,10 +2470,6 @@ msgstr ""
 msgid ""
 "This text will be used as label within the registration and account "
 "settings forms. Leave blank to use the field title."
-msgstr ""
-
-#: includes/admin/custom-fields/settings/class-profile.php:196
-msgid "Specify which file types are supported by this field."
 msgstr ""
 
 #: includes/admin/custom-fields/settings/class-profile.php:229
