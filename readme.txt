@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 4.9.6
 Tested up to: 5.3
 Requires PHP: 5.5+
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -136,7 +136,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
-= 1.2.1 19th November 2019 =
+= 1.2.2 19th November 2019 =
 
 - Added: new hook after the user has logged in through the login form.
 - Tweak: added support for a css class used by addons.
