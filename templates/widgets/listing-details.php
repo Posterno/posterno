@@ -40,8 +40,9 @@ if ( isset( $data->additional_fields ) && ! empty( $data->additional_fields ) ) 
 	if ( ! empty( $listing_fields ) && isset( $listing_fields->items ) && is_array( $listing_fields->items ) ) {
 		foreach ( $listing_fields->items as $field ) {
 			$additional_fields[ $field->getObjectMetaKey() ] = [
-				'type' => $field->getType(),
-				'name' => $field->getTitle(),
+				'type'    => $field->getType(),
+				'name'    => $field->getTitle(),
+				'options' => $field->getOptions(),
 			];
 		}
 	}
