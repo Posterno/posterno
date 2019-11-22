@@ -7416,6 +7416,15 @@ nav .pno-pagination {
   .modal-backdrop.show {
     opacity: .5; }
 
+.pno-listing-card .rating-summary i {
+  color: #EDB867;
+  margin-right: -4px; }
+  .pno-listing-card .rating-summary i.blank-star {
+    color: #d2d2d2; }
+
+.pno-listing-card .rating-summary.mb-4 {
+  margin-bottom: 0 !important; }
+
 .tooltip {
   position: absolute;
   z-index: 1070;
