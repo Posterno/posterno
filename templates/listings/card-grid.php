@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @package posterno
  */
 
@@ -25,8 +25,14 @@ $tags         = pno_get_listing_tags();
 
 $placeholder_enabled = pno_is_listing_placeholder_image_enabled();
 
-// Get card details.
-$card_items = apply_filters( 'pno_listing_card_details', [] );
+/**
+ * Filter: allow developers to inject a list of additional details within the listing's card layout.
+ *
+ * @param array $items list of items.
+ * @param string $listing_id id number of the listing.
+ * @param string $layout the card layout currently being used.
+ */
+$card_items = apply_filters( 'pno_listing_card_details', [], get_the_id(), 'grid' );
 
 ?>
 
