@@ -610,7 +610,6 @@ function pno_can_user_submit_listings() {
 	} else {
 
 		$user           = wp_get_current_user();
-		$role           = (array) $user->roles;
 		$roles_selected = [ 'administrator' ];
 
 		foreach ( $roles_required as $single_role ) {
