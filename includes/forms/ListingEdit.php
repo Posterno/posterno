@@ -376,6 +376,9 @@ class ListingEdit {
 					// Assign categories to the listing.
 					if ( ! empty( $this->form->getFieldValue( 'listing_categories' ) ) ) {
 						$listing_categories = json_decode( stripslashes( $this->form->getFieldValue( 'listing_categories' ) ) );
+						if ( ! is_array( $listing_categories ) ) {
+							$listing_categories = [ $listing_categories ];
+						}
 						$listing_categories = array_map( 'absint', $listing_categories );
 						if ( ! empty( $listing_categories ) ) {
 							wp_set_object_terms( absint( $updated_listing_id ), array_unique( $listing_categories ), 'listings-categories' );
