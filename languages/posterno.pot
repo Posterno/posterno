@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.2.1\n"
+"Project-Id-Version: Posterno 1.2.2\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-11-19 17:45:04+00:00\n"
+"POT-Creation-Date: 2019-11-25 16:31:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -875,9 +875,9 @@ msgstr ""
 #: includes/admin/class-pno-admin-listings-table.php:51
 #: includes/listings/class-pno-listings-featured.php:46
 #: includes/listings/listings-filters.php:23
-#: templates/listings/card-grid.php:39 templates/listings/card-grid.php:82
-#: templates/listings/card-grid.php:103 templates/listings/card-list.php:39
-#: templates/listings/card-list.php:81 templates/listings/card-list.php:101
+#: templates/listings/card-grid.php:45 templates/listings/card-grid.php:88
+#: templates/listings/card-grid.php:109 templates/listings/card-list.php:45
+#: templates/listings/card-list.php:87 templates/listings/card-list.php:107
 msgid "Featured"
 msgstr ""
 
@@ -1880,111 +1880,122 @@ msgstr ""
 msgid "Select which fields's content should be displayed within the marker."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:780
-msgid "Abbreviate days"
+#: includes/admin/class-pno-options-panel.php:767
+msgid "Display a request for consent before loading maps"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:781
-msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
+#: includes/admin/class-pno-options-panel.php:768
+msgid ""
+"Enable this option to prevent the map from automatically loading by "
+"requesting consent from the user first. Useful if you need to meet GDPR "
+"requirements."
 msgstr ""
 
 #: includes/admin/class-pno-options-panel.php:783
-msgid "Remove zeroes from time format"
+msgid "Abbreviate days"
 msgstr ""
 
 #: includes/admin/class-pno-options-panel.php:784
+msgid "Enable this option to abbreviate the days (Monday becomes Mon)."
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:786
+msgid "Remove zeroes from time format"
+msgstr ""
+
+#: includes/admin/class-pno-options-panel.php:787
 msgid ""
 "Enable this option to remove trailing zeroes from the time format: 9:00 AM "
 "becomes 9 AM."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:786
+#: includes/admin/class-pno-options-panel.php:789
 msgid "Start on Sunday"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:787
+#: includes/admin/class-pno-options-panel.php:790
 msgid "Enable this option so that the week starts on Sunday (as opposed to Monday)."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:789
+#: includes/admin/class-pno-options-panel.php:792
 msgid "Show today only"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:790
+#: includes/admin/class-pno-options-panel.php:793
 msgid "Enable this option to show only the opening times of the current day."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:792
+#: includes/admin/class-pno-options-panel.php:795
 msgid "24h format"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:793
+#: includes/admin/class-pno-options-panel.php:796
 msgid "Enable this option to show timings with a 24h format."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:808
+#: includes/admin/class-pno-options-panel.php:811
 msgid "Remove data on uninstall?"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:809
+#: includes/admin/class-pno-options-panel.php:812
 msgid ""
 "Check this box if you would like Posterno to completely remove all of its "
 "data when the plugin is deleted."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:811
+#: includes/admin/class-pno-options-panel.php:814
 msgid "Pricing currency"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:812
+#: includes/admin/class-pno-options-panel.php:815
 msgid "Select the currency you wish to use for pricing fields."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:819
+#: includes/admin/class-pno-options-panel.php:822
 msgid "Pricing currency position"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:820
+#: includes/admin/class-pno-options-panel.php:823
 msgid "This controls the position of the currency symbol."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:824
+#: includes/admin/class-pno-options-panel.php:827
 msgid "Left"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:825
+#: includes/admin/class-pno-options-panel.php:828
 msgid "Right"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:826
+#: includes/admin/class-pno-options-panel.php:829
 msgid "Left with space"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:827
+#: includes/admin/class-pno-options-panel.php:830
 msgid "Right with space"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:831
+#: includes/admin/class-pno-options-panel.php:834
 msgid "Thousand separator"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:833
+#: includes/admin/class-pno-options-panel.php:836
 msgid "This sets the thousand separator of displayed prices."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:835
+#: includes/admin/class-pno-options-panel.php:838
 msgid "Decimal separator"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:837
+#: includes/admin/class-pno-options-panel.php:840
 msgid "This sets the decimal separator of displayed prices."
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:839
+#: includes/admin/class-pno-options-panel.php:842
 msgid "Number of decimals"
 msgstr ""
 
-#: includes/admin/class-pno-options-panel.php:841
+#: includes/admin/class-pno-options-panel.php:844
 msgid "This sets the number of decimal points shown in displayed prices."
 msgstr ""
 
@@ -4144,11 +4155,11 @@ msgstr ""
 msgid "Select a listing type"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:567
+#: includes/forms/ListingSubmission.php:570
 msgid "Listing successfully submitted. <a href=\"%s\">View your listing.</a>"
 msgstr ""
 
-#: includes/forms/ListingSubmission.php:570
+#: includes/forms/ListingSubmission.php:573
 msgid "Listing successfully submitted. Your listing will be visible once approved."
 msgstr ""
 
@@ -5454,11 +5465,11 @@ msgid ""
 "below."
 msgstr ""
 
-#: templates/form.php:96 templates/form.php:109 templates/form.php:177
+#: templates/form.php:109 templates/form.php:122 templates/form.php:190
 msgid "(optional)"
 msgstr ""
 
-#: templates/form.php:127
+#: templates/form.php:140
 msgid "Maximum file size: %s."
 msgstr ""
 
@@ -5558,6 +5569,16 @@ msgid ""
 "and <a href=\"%2$s\">customize your account details</a>."
 msgstr ""
 
+#: templates/maps/consent-message.php:20
+msgid ""
+"The embedded map on our site uses third party cookies by <a href=\"%s\" "
+"target=\"_blank\">Google Maps</a>. Please give consent to view the map."
+msgstr ""
+
+#: templates/maps/consent-message.php:28
+msgid "Give consent"
+msgstr ""
+
 #: templates/profile/comments.php:57
 msgid "%s has not made any comment yet."
 msgstr ""
@@ -5590,7 +5611,7 @@ msgstr ""
 msgid "Contact information"
 msgstr ""
 
-#: templates/single.php:198
+#: templates/single.php:205
 msgid "Other information"
 msgstr ""
 

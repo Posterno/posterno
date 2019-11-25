@@ -17,7 +17,13 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-$message = apply_filters( 'pno_map_cookie_message', sprintf( __( 'The embedded map on our site uses third party cookies by <a href="%s" target="_blank">Google Maps</a>. Please give consent to view the map.' ), 'https://policies.google.com/privacy' ) );
+/**
+ * Filter: allow developers to modify the consent request message for maps.
+ *
+ * @param string $message
+ * @return string
+ */
+$message = apply_filters( 'pno_map_cookie_message', sprintf( __( 'The embedded map on our site uses third party cookies by <a href="%s" target="_blank">Google Maps</a>. Please give consent to view the map.', 'posterno' ), 'https://policies.google.com/privacy' ) );
 
 ?>
 
@@ -25,6 +31,6 @@ $message = apply_filters( 'pno_map_cookie_message', sprintf( __( 'The embedded m
 	<form action="<?php echo esc_url( pno_get_full_page_url() ); ?>" method="GET">
 		<p><?php echo wp_kses_post( $message ); ?></p>
 		<?php wp_nonce_field( 'pno_give_map_consent', 'map_consent_nonce' ); ?>
-		<input type="submit" name="pno-map-consent-form" class="btn btn-primary" value="<?php esc_html_e( 'Give consent' ); ?>">
+		<input type="submit" name="pno-map-consent-form" class="btn btn-primary" value="<?php esc_html_e( 'Give consent', 'posterno' ); ?>">
 	</form>
 </div>
