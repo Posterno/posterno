@@ -63,7 +63,7 @@ Gain access to all of our extensions with a single purchase and save hundreds co
 
 = Free Extensions =
 
-- **[Google reCAPTCHA](https://posterno.com/extensions/recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
+- **[Google reCAPTCHA](https://posterno.com/extensions/google-recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
 = Built with developers in mind =
 
