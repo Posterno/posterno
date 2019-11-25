@@ -764,6 +764,9 @@ class OptionsPanel {
 			->set_help_text( esc_html__( 'Select which fields\'s content should be displayed within the marker.', 'posterno' ) )
 			->add_options( 'pno_get_marker_text_fields' );
 
+		$settings[] = Field::make( 'checkbox', 'map_gdpr', esc_html__( 'Display a request for consent before loading maps', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable this option to prevent the map from automatically loading by requesting consent from the user first.', 'posterno' ) );
+
 		return $settings;
 
 	}

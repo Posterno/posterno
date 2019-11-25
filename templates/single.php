@@ -182,8 +182,15 @@ do_action( 'pno_before_single_listing' );
 
 			<?php if ( ! $maps_disabled ) : ?>
 			<div class="col-md-6">
-				<?php if ( $address_lat && $address_lng ) : ?>
-					<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $address_lat ); ?>" data-lng="<?php echo esc_attr( $address_lng ); ?>" data-zoom="12"></div>
+
+				<?php if ( pno_get_option( 'map_gdpr', false ) && ! pno_map_was_given_consent() ) : ?>
+
+					<?php posterno()->templates->get_template_part( 'maps/consent-message' ); ?>
+
+				<?php else : ?>
+					<?php if ( $address_lat && $address_lng ) : ?>
+						<div class="pno-single-listing-map" data-lat="<?php echo esc_attr( $address_lat ); ?>" data-lng="<?php echo esc_attr( $address_lng ); ?>" data-zoom="12"></div>
+					<?php endif; ?>
 				<?php endif; ?>
 			</div>
 			<?php endif; ?>

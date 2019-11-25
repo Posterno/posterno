@@ -950,3 +950,35 @@ function pno_add_rel_nofollow_callback( $matches ) {
 
 	return "<a $text rel=\"nofollow ugc\">";
 }
+
+/**
+ * Determine if consent was given for the maps to be displayed.
+ *
+ * @return bool
+ */
+function pno_map_was_given_consent() {
+
+	$pass = false;
+
+	if ( isset( $_COOKIE['pno_map_consent'] ) ) {
+		$pass = true;
+	}
+
+	return $pass;
+
+}
+
+/**
+ * Enable the cookie that gives consent to display maps.
+ *
+ * @return void
+ */
+function pno_map_give_consent() {
+
+	setcookie(
+		'pno_map_consent',
+		'yes',
+		time() + ( 10 * 365 * 24 * 60 * 60 )
+	);
+
+}

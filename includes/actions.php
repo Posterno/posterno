@@ -537,3 +537,25 @@ function pno_force_validation_gallery_amount( \PNO\Form\Form $form ) {
 }
 add_action( 'pno_before_listing_submission', 'pno_force_validation_gallery_amount' );
 add_action( 'pno_before_listing_editing', 'pno_force_validation_gallery_amount' );
+
+/**
+ * Detect when the request to enable map consent is triggered and set the appropriate cookies.
+ *
+ * @return void
+ */
+function pno_detect_map_consent() {
+
+	$enabled = pno_get_option( 'map_gdpr', false );
+
+	if ( ! $enabled ) {
+		return;
+	}
+
+	if ( ! isset( $_GET['map_consent_nonce'] ) || ! wp_verify_nonce( $_GET['map_consent_nonce'], 'pno_give_map_consent' ) ) {
+		return;
+	}
+
+	pno_map_give_consent();
+
+}
+add_action( 'init', 'pno_detect_map_consent' );

@@ -7405,6 +7405,11 @@ nav .pno-pagination {
   line-height: 40px;
   text-align: center; }
 
+#pno-map-consent-message {
+  text-align: center; }
+  #pno-map-consent-message form {
+    margin: 0; }
+
 .modal-backdrop {
   position: fixed;
   top: 0;
