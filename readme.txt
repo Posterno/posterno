@@ -136,6 +136,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.2 25th November 2019 =
+
+- Added: ability to require user's consent before loading Google Maps. Please review the instructions here [https://docs.posterno.com/article/659-maps-gdpr](https://docs.posterno.com/article/659-maps-gdpr).
+- Fix: listing category not automatically selected in forms when multiple categories are disabled at the moment the submission form triggers an error.
+- Fix: listing category not stored upon listing submission when multiple categories are disabled.
+- Fix: infinite loop when climbing up the terms hierarchy within the submission forms and term has no parent term.
+
 = 1.2.1 19th November 2019 =
 
 - Added: new hook after the user has logged in through the login form.
