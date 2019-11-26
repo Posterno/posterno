@@ -532,7 +532,7 @@ function pno_dashboard_glance_pending_listings( $items ) {
 	$pending_count = \PNO\Cache\Helper::get_posts_count();
 
 	if ( empty( $pending_count ) ) {
-		return;
+		return $items;
 	}
 
 	if ( current_user_can( 'manage_options' ) ) {
