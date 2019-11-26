@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posterno 1.2.2\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2019-11-25 16:31:42+00:00\n"
+"POT-Creation-Date: 2019-11-25 16:33:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5569,13 +5569,13 @@ msgid ""
 "and <a href=\"%2$s\">customize your account details</a>."
 msgstr ""
 
-#: templates/maps/consent-message.php:20
+#: templates/maps/consent-message.php:26
 msgid ""
 "The embedded map on our site uses third party cookies by <a href=\"%s\" "
 "target=\"_blank\">Google Maps</a>. Please give consent to view the map."
 msgstr ""
 
-#: templates/maps/consent-message.php:28
+#: templates/maps/consent-message.php:34
 msgid "Give consent"
 msgstr ""
 
