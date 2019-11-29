@@ -375,6 +375,14 @@ function pno_send_email( $email_type, $to, $args = [] ) {
 
 		if ( $has_admin_notification ) {
 
+			if ( ! empty( $args ) ) {
+				foreach ( $args as $key => $value ) {
+					if ( $value ) {
+						posterno()->emails->__set( $key, $value );
+					}
+				}
+			}
+
 			$admin_to           = get_option( 'admin_email' );
 			$admin_notification = isset( $email_settings['_administrator_notification'] ) ? wpautop( $email_settings['_administrator_notification'] ) : false;
 			$admin_subject      = isset( $email_settings['_administrator_notification_subject'] ) ? $email_settings['_administrator_notification_subject'] : false;
