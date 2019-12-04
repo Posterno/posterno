@@ -62,7 +62,7 @@ defined( 'ABSPATH' ) || exit;
 							?>
 							<tr>
 								<?php foreach ( $data->columns as $col_key => $col_name ) : ?>
-									<?php if ( $col_key == 'name' ) : ?>
+									<?php if ( $col_key === 'name' ) : ?>
 										<td>
 											<?php if ( pno_is_listing_pending_approval( $listing_id ) || pno_is_listing_expired( $listing_id ) ) : ?>
 												<?php pno_the_listing_title( $listing_id ); ?>
@@ -72,11 +72,11 @@ defined( 'ABSPATH' ) || exit;
 												</a>
 											<?php endif; ?>
 										</td>
-									<?php elseif ( $col_key == 'date' ) : ?>
+									<?php elseif ( $col_key === 'date' ) : ?>
 										<td><?php pno_the_listing_publish_date( $listing_id ); ?></td>
-									<?php elseif ( $col_key == 'expires' ) : ?>
+									<?php elseif ( $col_key === 'expires' ) : ?>
 										<td><?php pno_the_listing_expire_date( $listing_id ); ?></td>
-									<?php elseif ( $col_key == 'status' ) : ?>
+									<?php elseif ( $col_key === 'status' ) : ?>
 										<td>
 											<?php
 											if ( array_key_exists( get_post_status( $listing_id ), pno_get_listing_post_statuses() ) ) :
