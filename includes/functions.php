@@ -982,3 +982,27 @@ function pno_map_give_consent() {
 	);
 
 }
+
+/**
+ * Inserts a new key/value before the key in the array.
+ *
+ * @param string $key The key to insert before.
+ * @param array  $array An array to insert in to.
+ * @param string $new_key The key to insert.
+ * @param mixed  $new_value An value to insert.
+ *
+ * @return array new array if the key exists, FALSE otherwise.
+ */
+function pno_array_insert_before( $key, array &$array, $new_key, $new_value ) {
+	if ( array_key_exists( $key, $array ) ) {
+		$new = array();
+		foreach ( $array as $k => $value ) {
+			if ( $k === $key ) {
+				$new[ $new_key ] = $new_value;
+			}
+			$new[ $k ] = $value;
+		}
+		return $new;
+	}
+	return false;
+}
