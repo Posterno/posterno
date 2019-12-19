@@ -70,7 +70,7 @@ class BusinessHours {
 
 		$this->listing_id                    = absint( $listing_id );
 		$this->opening_hours                 = $this->find_opening_hours();
-		$this->timezone                      = WpDateTimeZone::getWpTimezone()->getName();
+		$this->timezone                      = wp_timezone()->getName();
 		$this->week_starts_on_sunday         = pno_get_option( 'business_hours_sunday_start', false );
 		$days_of_the_week                    = pno_get_days_of_the_week();
 		$this->days_of_the_week_sunday_first = array( 'sunday' => $days_of_the_week['sunday'] ) + $days_of_the_week;
@@ -412,7 +412,7 @@ class BusinessHours {
 
 		$day_as_number = array_search( $day_of_week, $this->week_starts_on_sunday ? array_keys( $this->days_of_the_week_sunday_first ) : array_keys( pno_get_days_of_the_week() ) ) + 1;
 		$offset        = ( $day_as_number - $today ) + ( $offset_in_weeks * 7 );
-		$zone          = WpDateTimeZone::getWpTimezone();
+		$zone          = wp_timezone();
 
 		$date_time = new \DateTime( $time, $zone );
 
@@ -455,7 +455,7 @@ class BusinessHours {
 	 */
 	public function get_day_month_to_date( $day, $month ) {
 
-		$zone = WpDateTimeZone::getWpTimezone();
+		$zone = wp_timezone();
 
 		return new \DateTime( sprintf( '%s %s', $day, $month ), $zone );
 
@@ -472,7 +472,7 @@ class BusinessHours {
 	 */
 	public function get_day_month_to_datetime( $day, $month, $time, $time_indication ) {
 
-		$zone = WpDateTimeZone::getWpTimezone();
+		$zone = wp_timezone();
 
 		return \DateTime::createFromFormat( 'M-j h:i a', $month . '-' . $day . ' ' . $time . ' ' . strtolower( $time_indication ), $zone );
 
@@ -489,7 +489,7 @@ class BusinessHours {
 	 */
 	public function to_datetime( $day, $month, $time, $time_indication = 'AM' ) {
 
-		$zone = WpDateTimeZone::getWpTimezone();
+		$zone = wp_timezone();
 
 		return new \DateTime(
 			sprintf(
