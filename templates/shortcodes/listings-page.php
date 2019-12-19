@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @package posterno
  */
 
@@ -95,6 +95,8 @@ do_action( 'pno_before_listings_page', $query, $data );
 			posterno()->templates->get_template_part( 'listings/not-found' );
 
 		}
+
+		wp_reset_postdata();
 
 		?>
 
