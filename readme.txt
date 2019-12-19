@@ -136,6 +136,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.4 19th December 2019 =
+
+- Tweak: use facets pagination when search forms addon is enabled.
+- Tweak: adjust pagination layout when using faceted one.
+- Fix: listings page shortcode not resetting query post data.
+- Fix: use of deprecated function for the business hours widget.
+
 = 1.2.3 19th December 2019 =
 
 - Tweak: added compatibility with the new reviews addon.
