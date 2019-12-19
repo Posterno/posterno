@@ -136,6 +136,13 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.3 19th December 2019 =
+
+- Tweak: added compatibility with the new reviews addon.
+- Fix: added missing textdomain to some strings.
+- Fix: additional existing admin dashboard "at glance" items not displaying in some occasions.
+- Fix: admin email notifications would not have all the extra parameters set for merge tags identification.
+
 = 1.2.2 25th November 2019 =
 
 - Added: ability to require user's consent before loading Google Maps. Please review the instructions here [https://docs.posterno.com/article/659-maps-gdpr](https://docs.posterno.com/article/659-maps-gdpr).

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31a127061c3b5df9b9b2066a38cd475c",
+    "content-hash": "11893101f91cc2f5d4425e46652df420",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -280,16 +280,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "dev-master",
+            "version": "6.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "df36d8dae3979cf927d5bbbed6f0427f39aadfec"
+                "reference": "2eda2b9c75906ce8e52b3d87d96d5e4299445723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/df36d8dae3979cf927d5bbbed6f0427f39aadfec",
-                "reference": "df36d8dae3979cf927d5bbbed6f0427f39aadfec",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2eda2b9c75906ce8e52b3d87d96d5e4299445723",
+                "reference": "2eda2b9c75906ce8e52b3d87d96d5e4299445723",
                 "shasum": ""
             },
             "require": {
@@ -304,6 +304,7 @@
                 "psr/log": "^1.1"
             },
             "suggest": {
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
@@ -342,7 +343,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-30T11:22:04+00:00"
+            "time": "2019-12-18T13:24:05+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -350,12 +351,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "17d36ed176c998839582c739ce0753381598edf0"
+                "reference": "ac2529fc650684c5cd687e2b462d046cdbed556e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/17d36ed176c998839582c739ce0753381598edf0",
-                "reference": "17d36ed176c998839582c739ce0753381598edf0",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/ac2529fc650684c5cd687e2b462d046cdbed556e",
+                "reference": "ac2529fc650684c5cd687e2b462d046cdbed556e",
                 "shasum": ""
             },
             "require": {
@@ -393,7 +394,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2019-07-02T14:54:06+00:00"
+            "time": "2019-12-17T17:19:17+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1116,7 +1117,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-schema",
-                "reference": "8769246b1196b974112fc0f794216d7b9cb13acf"
+                "reference": "0fd03681ce3467f31594285be85c8a4da94cd30c"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1161,7 +1162,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-submission-scripts",
-                "reference": "756cdb830cf2c0b9602c8d4a74ed97380e7ac57f"
+                "reference": "0c042de92a9da4617399e4032c2e9b9d0a008751"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1576,19 +1577,19 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-maps": 20,
         "posterno/import-export": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-submission-scripts": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/blocks": 20,
         "posterno/posterno-dom": 20,
-        "posterno/posterno-fields-editor-validator": 20
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/blocks": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-entities": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
