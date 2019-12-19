@@ -1,10 +1,10 @@
 === Posterno - Listings Directory & Classifieds ===
 Contributors: alessandro.tesoro, posterno, sematico
 Tags: business directory, listings, classifieds, directory, listing, local business directory, listings directory, link directory, member directory, staff directory, real estate, job listing, googlemap, profile, profiles, yelp clone, tripadvisor clone, yellow pages clone, car listings, auto listings, members, profile, community, user profile, user registration
-Requires at least: 4.9.6
+Requires at least: 5.3
 Tested up to: 5.3
 Requires PHP: 5.5+
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
