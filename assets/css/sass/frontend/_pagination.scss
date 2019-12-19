@@ -3,3 +3,12 @@ nav .pno-pagination {
 	border: 0;
 	padding: 0;
 }
+
+.pno-results-footer {
+	ul.pagination {
+		justify-content: flex-end !important;
+		padding: 0;
+		margin: 0;
+		border:none;
+	}
+}
