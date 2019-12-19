@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @package posterno
  */
 
@@ -42,15 +42,20 @@ if ( isset( $data->query ) ) {
 				<?php
 
 				// Display pagination.
-				posterno()->templates
-					->set_template_data(
-						[
-							'max_num_pages' => $the_query->max_num_pages,
-							'layout'        => 'justify-content-end',
-						]
-					)
-					->get_template_part( 'listings/pagination' );
+				if ( class_exists( '\Posterno\Search\Plugin' ) ) {
 
+					echo do_shortcode( '[pno-search-pagination]' );
+
+				} else {
+					posterno()->templates
+						->set_template_data(
+							[
+								'max_num_pages' => $the_query->max_num_pages,
+								'layout'        => 'justify-content-end',
+							]
+						)
+						->get_template_part( 'listings/pagination' );
+				}
 				?>
 
 			</div>
