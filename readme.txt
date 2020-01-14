@@ -67,6 +67,8 @@ Gain access to all of our extensions with a single purchase and save hundreds co
 
 - **[Google reCAPTCHA](https://posterno.com/extensions/google-recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
+- **[Favourites](https://posterno.com/extensions/favourites)**: Allows users to keep a list of favorite listings. See and manage favorites from the frontend dashboard page.
+
 = Built with developers in mind =
 
 Developers have access to a large collection of actions and filters ready to be used to customize and extend Posterno. The integrated templating system that allows developers to easily customize all the templates of the plugin.
