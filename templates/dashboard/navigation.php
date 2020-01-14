@@ -10,7 +10,8 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.0.2
+ * @package posterno
  */
 
 // Exit if accessed directly.
@@ -50,6 +51,9 @@ if ( empty( $dashboard_tabs ) ) {
 					break;
 				case 'packages':
 					$icon = 'box-open';
+					break;
+				case 'favourites':
+					$icon = 'heart';
 					break;
 			}
 		} else {
