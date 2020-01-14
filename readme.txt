@@ -138,6 +138,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.5 14th January 2019 =
+
+- Added: support for the Favourites addon.
+
 = 1.2.4 19th December 2019 =
 
 - Tweak: use facets pagination when search forms addon is enabled.
