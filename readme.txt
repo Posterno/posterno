@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 5.3
 Tested up to: 5.3
 Requires PHP: 5.5+
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
