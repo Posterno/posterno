@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "657fb7f697436673044ba451a99f1c8b",
+    "content-hash": "48aa6ec5c7e2da16ab5e6daeea2a9897",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -284,12 +284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "2eda2b9c75906ce8e52b3d87d96d5e4299445723"
+                "reference": "400cefd25a23a3098486bfb52685b5367a464171"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2eda2b9c75906ce8e52b3d87d96d5e4299445723",
-                "reference": "2eda2b9c75906ce8e52b3d87d96d5e4299445723",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/400cefd25a23a3098486bfb52685b5367a464171",
+                "reference": "400cefd25a23a3098486bfb52685b5367a464171",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +343,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-12-18T13:24:05+00:00"
+            "time": "2019-12-30T04:52:42+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -402,12 +402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "2595b33c1c924889b474d324f3d719fa40b6954e"
+                "reference": "c291e45d40e638815990004e5f7ee367c2b752e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2595b33c1c924889b474d324f3d719fa40b6954e",
-                "reference": "2595b33c1c924889b474d324f3d719fa40b6954e",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c291e45d40e638815990004e5f7ee367c2b752e9",
+                "reference": "c291e45d40e638815990004e5f7ee367c2b752e9",
                 "shasum": ""
             },
             "require": {
@@ -465,7 +465,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-08-13T16:05:52+00:00"
+            "time": "2019-12-21T15:35:40+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -645,16 +645,16 @@
         },
         {
             "name": "parsecsv/php-parsecsv",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/parsecsv/parsecsv-for-php.git",
-                "reference": "65566adcd3383da4820cd3bca27e51fe3fbaf15c"
+                "reference": "548a9fe551f47c24c15453458df25005df90f23f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/parsecsv/parsecsv-for-php/zipball/65566adcd3383da4820cd3bca27e51fe3fbaf15c",
-                "reference": "65566adcd3383da4820cd3bca27e51fe3fbaf15c",
+                "url": "https://api.github.com/repos/parsecsv/parsecsv-for-php/zipball/548a9fe551f47c24c15453458df25005df90f23f",
+                "reference": "548a9fe551f47c24c15453458df25005df90f23f",
                 "shasum": ""
             },
             "require": {
@@ -667,10 +667,14 @@
                 "illuminate/support": "Fluent array interface for map functions"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "ParseCsv\\": "src",
-                    "ParseCsv\\extensions\\": "src\\extensions"
+                    "ParseCsv\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -696,7 +700,7 @@
                 }
             ],
             "description": "CSV data parser for PHP",
-            "time": "2019-02-02T19:40:45+00:00"
+            "time": "2020-01-07T08:32:12+00:00"
         },
         {
             "name": "posterno/addons",
@@ -1327,12 +1331,12 @@
             "version": "2.2.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Prospress/action-scheduler.git",
+                "url": "https://github.com/woocommerce/action-scheduler.git",
                 "reference": "fd7c6b76a7af27d6403ffe39b0963dbd8ce50488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Prospress/action-scheduler/zipball/fd7c6b76a7af27d6403ffe39b0963dbd8ce50488",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/fd7c6b76a7af27d6403ffe39b0963dbd8ce50488",
                 "reference": "fd7c6b76a7af27d6403ffe39b0963dbd8ce50488",
                 "shasum": ""
             },
@@ -1345,6 +1349,7 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
+            "abandoned": "woocommerce/action-scheduler",
             "time": "2019-04-24T12:45:40+00:00"
         },
         {
@@ -1577,17 +1582,17 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/import-export": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/blocks": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/addons": 20,
         "posterno/posterno-geocoder": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-dom": 20,
         "posterno/posterno-entities": 20,
         "posterno/posterno-maps": 20,
         "posterno/posterno-validator": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/addons": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/import-export": 20,
+        "posterno/blocks": 20,
         "posterno/posterno-submission-scripts": 20,
         "posterno/posterno-fields-editor-validator": 20
     },
