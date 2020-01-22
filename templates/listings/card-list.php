@@ -10,12 +10,25 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @package posterno
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * Allow addons to bypass the output of card's layout.
+ *
+ * @param bool $bypass whether or not the output should be stopped.
+ * @param string $layout the type of card layout being processed.
+ * @return bool
+ */
+$bypass_layout = apply_filters( 'pno_bypass_card_layout', false, 'list' );
+
+if ( $bypass_layout ) {
+	return;
+}
 
 $featured_img = get_the_post_thumbnail_url( get_the_id(), false );
 
