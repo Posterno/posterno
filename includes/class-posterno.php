@@ -124,6 +124,8 @@ if ( ! class_exists( 'Posterno' ) ) :
 			// Internal components init.
 			self::$instance->schema->init();
 
+			\Posterno\MapsProvider\Loader::get_instance();
+
 			// Hook in other stuff that need to be loaded at a later point.
 			self::$instance->hook();
 

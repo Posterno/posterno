@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48aa6ec5c7e2da16ab5e6daeea2a9897",
+    "content-hash": "24c9860fa4f20b752baaa88738ea9708",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -1086,11 +1086,8 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "PNO\\MapsProvider\\": "includes"
-                },
-                "files": [
-                    "component-loader.php"
-                ]
+                    "Posterno\\MapsProvider\\": "includes"
+                }
             },
             "scripts": {
                 "lint": [
@@ -1584,7 +1581,6 @@
         "parsecsv/php-parsecsv": 20,
         "posterno/posterno-geocoder": 20,
         "posterno/posterno-entities": 20,
-        "posterno/posterno-maps": 20,
         "posterno/posterno-validator": 20,
         "posterno/posterno-dom": 20,
         "posterno/addons": 20,
@@ -1594,7 +1590,8 @@
         "posterno/import-export": 20,
         "posterno/blocks": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-fields-editor-validator": 20
+        "posterno/posterno-fields-editor-validator": 20,
+        "posterno/posterno-maps": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -11,7 +11,6 @@
 		"prospress/action-scheduler": "^2.2.5",
 		"posterno/posterno-geocoder": "@dev",
 		"posterno/posterno-entities": "@dev",
-		"posterno/posterno-maps": "@dev",
 		"posterno/posterno-validator": "@dev",
 		"posterno/posterno-dom": "@dev",
 		"posterno/addons": "@dev",
@@ -21,7 +20,8 @@
 		"posterno/import-export": "@dev",
 		"posterno/blocks": "@dev",
 		"posterno/posterno-submission-scripts": "@dev",
-		"posterno/posterno-fields-editor-validator": "@dev"
+		"posterno/posterno-fields-editor-validator": "@dev",
+		"posterno/posterno-maps": "dev-master"
 	},
 	"minimum-stability": "dev",
 	"repositories": [{
