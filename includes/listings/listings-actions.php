@@ -36,6 +36,8 @@ function pno_adjust_listings_query( $query ) {
 
 	if ( ! is_admin() && $query->is_main_query() && $is_listing_page || ( ! is_admin() && isset( $query->query['is_listings_query'] ) && $query->query['is_listings_query'] === true ) ) {
 
+		$query->set( 'post_status', 'publish' );
+
 		// Set posts per page.
 		if ( ! isset( $query->query['posts_per_page'] ) ) {
 			$query->set( 'posts_per_page', pno_get_listings_results_per_page_active_option() );
