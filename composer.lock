@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24c9860fa4f20b752baaa88738ea9708",
+    "content-hash": "918509a2c8bd6f84ce2ca9655abbd12f",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -402,12 +402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "c291e45d40e638815990004e5f7ee367c2b752e9"
+                "reference": "c54ea426638a0d70a0b90fd05e8631575ec3695f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c291e45d40e638815990004e5f7ee367c2b752e9",
-                "reference": "c291e45d40e638815990004e5f7ee367c2b752e9",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c54ea426638a0d70a0b90fd05e8631575ec3695f",
+                "reference": "c54ea426638a0d70a0b90fd05e8631575ec3695f",
                 "shasum": ""
             },
             "require": {
@@ -465,20 +465,20 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-12-21T15:35:40+00:00"
+            "time": "2020-01-29T13:47:55+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
-            "version": "v3.1.1",
+            "version": "v3.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "65bd40b6e70ccbaeb9d0989c5589299f0983de04"
+                "reference": "7e77390b5c9aa76df9db05caa555cb9ee4d0c826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/65bd40b6e70ccbaeb9d0989c5589299f0983de04",
-                "reference": "65bd40b6e70ccbaeb9d0989c5589299f0983de04",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/7e77390b5c9aa76df9db05caa555cb9ee4d0c826",
+                "reference": "7e77390b5c9aa76df9db05caa555cb9ee4d0c826",
                 "shasum": ""
             },
             "require": {
@@ -506,6 +506,32 @@
                     "role": "Developer"
                 },
                 {
+                    "name": "Miroslav Mitev",
+                    "email": "mmitev.2create@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Atanas Angelov",
+                    "email": "atanas.angelov.dev@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Georgi Stoyanov",
+                    "email": "stoyanov.gs@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Plamen Kostadinov",
+                    "email": "pkostadinov.2create@gmail.com",
+                    "homepage": "http://plasmen.info/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Stanimir Panchev",
+                    "email": "Stan4omir@gmail.com",
+                    "role": "Developer"
+                },
+                {
                     "name": "Marin Atanasov",
                     "email": "contact@marinatanasov.com",
                     "homepage": "http://marinatanasov.com/",
@@ -517,29 +543,19 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Georgi Stoyanov",
-                    "email": "stoyanov.gs@gmail.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Stanimir Panchev",
-                    "email": "Stan4omir@gmail.com",
-                    "role": "Developer"
-                },
-                {
                     "name": "Peter Petrov",
                     "email": "peter.petrov89@gmail.com",
                     "role": "Developer"
                 },
                 {
-                    "name": "Plamen Kostadinov",
-                    "email": "pkostadinov.2create@gmail.com",
-                    "homepage": "http://plasmen.info/",
+                    "name": "Stanimir Stoyanov",
+                    "email": "stanimir.k.stoyanov@gmail.com",
                     "role": "Developer"
                 },
                 {
-                    "name": "Stanimir Stoyanov",
-                    "email": "stanimir.k.stoyanov@gmail.com",
+                    "name": "Kaloyan Ivanov",
+                    "email": "kaloyanxivanov@gmail.com",
+                    "homepage": "http://vilepixels.com/",
                     "role": "Developer"
                 },
                 {
@@ -556,22 +572,6 @@
                     "name": "Rashko Petrov",
                     "email": "brutalenemy666@gmail.com",
                     "homepage": "http://errorfactory.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Miroslav Mitev",
-                    "email": "mmitev.2create@gmail.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Kaloyan Ivanov",
-                    "email": "kaloyanxivanov@gmail.com",
-                    "homepage": "http://vilepixels.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Atanas Angelov",
-                    "email": "atanas.angelov.dev@gmail.com",
                     "role": "Developer"
                 },
                 {
@@ -598,7 +598,7 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2019-04-11T09:46:37+00:00"
+            "time": "2020-01-23T14:01:49+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1077,7 +1077,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-maps",
-                "reference": "740f87fb7ff8a912885da384fc2845a17a085a8b"
+                "reference": "f49657d136dbbfc514453977165291e2f22c60f7"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1086,7 +1086,7 @@
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
-                    "Posterno\\MapsProvider\\": "includes"
+                    "Posterno\\MapsProvider\\": "includes/"
                 }
             },
             "scripts": {
