@@ -65,6 +65,8 @@ Gain access to all of our extensions with a single purchase and save hundreds co
 
 = Free Extensions =
 
+- **[Elementor page builder integration](https://posterno.com/extensions/elementor)**: Visually build your listings directory website with Posterno and Elementor.
+
 - **[Google reCAPTCHA](https://posterno.com/extensions/google-recaptcha)**: Add Google’s invisible reCAPTCHA to your website and protect your site from spam registrations and logins. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
 - **[Favourites](https://posterno.com/extensions/favourites)**: Allows users to keep a list of favorite listings. See and manage favorites from the frontend dashboard page.
@@ -139,6 +141,15 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.2.6 31st January 2019 =
+
+- Added: compatibility with the new Elementor integration extension.
+- Fix: js conflict with Yoast SEO preventing the display of some pages in the admin panel.
+- Fix: an issue where listings pending payment would still display on the frontend.
+- Tweak: maps component has been rebuilt from scratch to be more flexible and extensible for when there'll be support for more maps providers in the future.
+- Tweak: added new filter to bypass output of listings cards layout.
+- Tweak: updated carbon fields library to latest version.
 
 = 1.2.5 14th January 2019 =
 
