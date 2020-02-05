@@ -53,6 +53,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 - **[Claim listings](https://posterno.com/extensions/claim-listings/)**: Start generating passive revenue with the claim listings add-on. Business owners can identify themselves as the owner and get verified. Additionally, a verified listing badge is displayed after listings are claimed ensuring site visitors your businesses’ information is up to date, accurate, and relevant.
 
+- **[Reports tool](https://posterno.com/extensions/reports-tool/)**: The reports tool extension lets your members report listings with inappropriate or inaccurate content. Reports are then displayed within your administration panel so that they can be reviewed and if necessary, actions can be taken.
+
 - **[Google Analytics](https://posterno.com/extensions/google-analytics/)**: Provide your users statistics on total views, unique visitor counts, average time on page, top browsers and top platforms for 3 defined periods ( 7 days, 14 days, 30 days ). All of these statistics are grabbed directly from your own Google Analytics account and then displayed into the dashboard page.
 
 - **[Registration moderation](https://posterno.com/extensions/registration-moderation/)**: Protect your website from spam user and require users to verify their account by sending a verification link via email upon registration or manually approve users before they can login.
@@ -142,7 +144,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
-= 1.2.6 31st January 2019 =
+= 1.2.7 5th Februrary 2020 =
+
+- Fix: javascript error when no price field is available within the frontend submission form.
+- Fix: when multiple price fields are available within the submission form, only one would auto format.
+
+= 1.2.6 31st January 2020 =
 
 - Added: compatibility with the new Elementor integration extension.
 - Fix: js conflict with Yoast SEO preventing the display of some pages in the admin panel.
@@ -151,7 +158,7 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Tweak: added new filter to bypass output of listings cards layout.
 - Tweak: updated carbon fields library to latest version.
 
-= 1.2.5 14th January 2019 =
+= 1.2.5 14th January 2020 =
 
 - Added: support for the Favourites addon.
 
