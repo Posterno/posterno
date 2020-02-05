@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Posterno package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Posterno 1.2.5\n"
+"Project-Id-Version: Posterno 1.2.6\n"
 "Report-Msgid-Bugs-To: https://posterno.com/\n"
-"POT-Creation-Date: 2020-01-19 13:43:55+00:00\n"
+"POT-Creation-Date: 2020-01-31 11:23:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -875,9 +875,9 @@ msgstr ""
 #: includes/admin/class-pno-admin-listings-table.php:51
 #: includes/listings/class-pno-listings-featured.php:46
 #: includes/listings/listings-filters.php:23
-#: templates/listings/card-grid.php:45 templates/listings/card-grid.php:88
-#: templates/listings/card-grid.php:109 templates/listings/card-list.php:45
-#: templates/listings/card-list.php:87 templates/listings/card-list.php:107
+#: templates/listings/card-grid.php:58 templates/listings/card-grid.php:101
+#: templates/listings/card-grid.php:122 templates/listings/card-list.php:58
+#: templates/listings/card-list.php:100 templates/listings/card-list.php:120
 msgid "Featured"
 msgstr ""
 
@@ -3537,7 +3537,7 @@ msgstr ""
 msgid "Zambian kwacha"
 msgstr ""
 
-#: includes/class-posterno.php:168 includes/class-posterno.php:179
+#: includes/class-posterno.php:170 includes/class-posterno.php:181
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 

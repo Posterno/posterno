@@ -117,13 +117,16 @@
 	 */
 	window.Posterno.doPricingFields = function () {
 
-		if ( typeof AutoNumeric !== "undefined" ) {
-			new AutoNumeric( '.pno-field-pricing input', {
-				currencySymbol : '',
-				decimalCharacter : pno_settings.currency_thousands_separator,
-				digitGroupSeparator : pno_settings.currency_decimal_separator,
-				decimalPlaces: pno_settings.currency_decimals_number,
-				unformatOnSubmit: true,
+		if ( typeof AutoNumeric !== "undefined" && $( '.pno-field-pricing input' ).length ) {
+
+			$( '.pno-field-pricing input' ).each( function( index, item ) {
+				new AutoNumeric( item, {
+					currencySymbol : '',
+					decimalCharacter : pno_settings.currency_thousands_separator,
+					digitGroupSeparator : pno_settings.currency_decimal_separator,
+					decimalPlaces: pno_settings.currency_decimals_number,
+					unformatOnSubmit: true,
+				});
 			});
 		}
 
