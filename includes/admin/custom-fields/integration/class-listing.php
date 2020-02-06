@@ -422,7 +422,36 @@ class Listing {
 							} elseif ( $custom_listing_field->getType() === 'password' ) {
 								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() )->set_attribute( 'type', 'password' );
 							} else {
-								$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
+
+								/**
+								 * Filter: allow addons to trigger a custom field definition.
+								 *
+								 * @param bool $pass whether or not there's a custom definition for fields.
+								 * @param string $type the type of field being currently verified.
+								 *
+								 * @return bool
+								 */
+								$has_custom_field = apply_filters( 'pno_custom_listings_carbon_field_type', false, $type );
+
+								if ( $has_custom_field ) {
+
+									/**
+									 * Filter: allow addons to generate a custom carbonfields field definition.
+									 *
+									 * @param Field|bool $definition whether or not there's a custom field definition. Return an instance of Field to load a custom configuration.
+									 * @param string $type the type of field identified.
+									 * @param object $field the field entity.
+									 *
+									 * @return Field|bool
+									 */
+									$custom_definition = apply_filters( 'pno_custom_listings_carbon_field_type_definition', false, $type, $custom_listing_field );
+
+									if ( $custom_definition !== false ) {
+										$admin_fields[] = $custom_definition;
+									}
+								} else {
+									$admin_fields[] = Field::make( $type, $custom_listing_field->getObjectMetaKey(), $custom_listing_field->getTitle() );
+								}
 							}
 						}
 					}
