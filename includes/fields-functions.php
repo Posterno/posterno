@@ -1274,7 +1274,7 @@ function pno_get_listings_fields( $exclude = [] ) {
 
 	if ( ! empty( $exclude ) && is_array( $exclude ) ) {
 		foreach ( $fields as $key => $field ) {
-			if ( in_array( $field['meta'], $exclude ) ) {
+			if ( in_array( $field['meta'], $exclude, true ) ) {
 				unset( $fields[ $key ] );
 			}
 		}
