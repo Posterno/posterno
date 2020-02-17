@@ -55,6 +55,8 @@ Posterno provides customizable email templates for each email that can be sent t
 
 - **[Reports tool](https://posterno.com/extensions/reports-tool/)**: The reports tool extension lets your members report listings with inappropriate or inaccurate content. Reports are then displayed within your administration panel so that they can be reviewed and if necessary, actions can be taken.
 
+- **[Local analytics](https://posterno.com/extensions/local-analytics/)**: Provide your users statistics on total views, unique visitor counts and what kind of devices are being used to view listings. No external services are used. Any data about your visitors never leaves your site and no personally identifiable information is tracked.
+
 - **[Google Analytics](https://posterno.com/extensions/google-analytics/)**: Provide your users statistics on total views, unique visitor counts, average time on page, top browsers and top platforms for 3 defined periods ( 7 days, 14 days, 30 days ). All of these statistics are grabbed directly from your own Google Analytics account and then displayed into the dashboard page.
 
 - **[Registration moderation](https://posterno.com/extensions/registration-moderation/)**: Protect your website from spam user and require users to verify their account by sending a verification link via email upon registration or manually approve users before they can login.
@@ -143,6 +145,14 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.2.8 17th Februrary 2020 =
+
+- Added: compatibility with upcoming restaurants menu free extension.
+- Tweak: new filter to load custom fields' configuration for CarbonFields library.
+- Tweak: removed underlines when forced by themes.
+- Tweak: minor code cleanup.
+- Fix: logout url in dashboard page not printing correct url when using default menu.
 
 = 1.2.7 5th Februrary 2020 =
 
