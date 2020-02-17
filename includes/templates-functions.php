@@ -202,6 +202,8 @@ function pno_get_dashboard_navigation_item_url( $key, $item = [] ) {
 
 	if ( $key === 'dashboard' ) {
 		return $base_url;
+	} elseif ( $key === 'logout' ) {
+		return wp_logout_url();
 	}
 
 	// We use information stored in the CSS class to determine what kind of
