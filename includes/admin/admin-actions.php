@@ -124,7 +124,7 @@ function pno_hide_custom_fields_pt_settings() {
 		'listings-packages',
 	);
 
-	if ( in_array( $post_type, $post_types ) ) {
+	if ( in_array( $post_type, $post_types, true ) ) {
 		echo '
 		<style type="text/css">
 			#post-preview, #view-post-btn,
