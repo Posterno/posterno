@@ -250,6 +250,8 @@ function pno_get_dashboard_navigation_item_class( $key, $item, $class = '' ) {
 		$classes[] = 'active';
 	}
 
+	$classes[] = 'text-decoration-none';
+
 	$classes = array_map( 'esc_attr', $classes );
 
 	/**
