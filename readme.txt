@@ -75,6 +75,9 @@ Gain access to all of our extensions with a single purchase and save hundreds co
 
 - **[Favourites](https://posterno.com/extensions/favourites)**: Allows users to keep a list of favorite listings. See and manage favorites from the frontend dashboard page.
 
+- **[Restaurants menuhttps://posterno.com/extensions/restaurant-menus/)**: Allows listings owners to create a restaurant menu for their listings.
+
+
 = Built with developers in mind =
 
 Developers have access to a large collection of actions and filters ready to be used to customize and extend Posterno. The integrated templating system that allows developers to easily customize all the templates of the plugin.
