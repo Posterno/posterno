@@ -129,9 +129,9 @@ function pno_get_option( $key = '', $default = false ) {
  * @global                $pno_options Array of all the Posterno Options.
  * @return boolean True if updated, false if not.
  */
-function pno_update_option( $key = '', $value = false ) {
+function pno_update_option( $key = '', $value = false, $bypass_cap = false ) {
 
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( 'manage_options' ) && ! $bypass_cap ) {
 		return;
 	}
 
