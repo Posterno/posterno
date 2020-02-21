@@ -149,6 +149,11 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.9 21st Februrary 2020 =
+
+- Added: compatibility with the permalinks manager extension released today.
+- Fix: the listing category selection field on the submission form, would sometimes display "false(uknown)" as prefilled value in some occasions.
+
 = 1.2.8 17th Februrary 2020 =
 
 - Added: compatibility with upcoming restaurants menu free extension.
