@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b784c378c63ef64647ed5b53a3f21a44",
+    "content-hash": "d9220adab3e65051bbbd732cb0dd170d",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -471,16 +471,16 @@
         },
         {
             "name": "htmlburger/carbon-fields",
-            "version": "v3.1.13",
+            "version": "v3.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "7e77390b5c9aa76df9db05caa555cb9ee4d0c826"
+                "reference": "ca5d111b7f8202446619e866e04be3b0f20ef7de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/7e77390b5c9aa76df9db05caa555cb9ee4d0c826",
-                "reference": "7e77390b5c9aa76df9db05caa555cb9ee4d0c826",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/ca5d111b7f8202446619e866e04be3b0f20ef7de",
+                "reference": "ca5d111b7f8202446619e866e04be3b0f20ef7de",
                 "shasum": ""
             },
             "require": {
@@ -600,7 +600,7 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2020-01-23T14:01:49+00:00"
+            "time": "2020-02-10T13:53:53+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1165,7 +1165,7 @@
             "dist": {
                 "type": "path",
                 "url": "../posterno-submission-scripts",
-                "reference": "0c042de92a9da4617399e4032c2e9b9d0a008751"
+                "reference": "d6043543d2f1c5c73b6073021bf134d9295d6b23"
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1581,19 +1581,19 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
+        "posterno/blocks": 20,
         "posterno/posterno-third-party": 20,
-        "posterno/posterno-dom": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-geocoder": 20,
-        "posterno/posterno-validator": 20,
-        "posterno/import-export": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/posterno-schema": 20,
         "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/addons": 20,
         "posterno/posterno-fields-editor-validator": 20,
-        "posterno/blocks": 20
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/import-export": 20,
+        "posterno/addons": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
