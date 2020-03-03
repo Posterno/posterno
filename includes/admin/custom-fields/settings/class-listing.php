@@ -251,7 +251,7 @@ class Listing {
 		}
 
 		// Option available only to non default fields.
-		if ( in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
+		//if ( in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
 			$settings[] = Field::make( 'checkbox', 'listing_field_admin_hidden', esc_html__( 'Hide from admin panel', 'posterno' ) )
 				->set_conditional_logic(
 					array(
@@ -263,8 +263,8 @@ class Listing {
 						),
 					)
 				)
-				->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel.', 'posterno' ) );
-		}
+				->set_help_text( esc_html__( 'Enable this option to hide this field from the admin panel. This setting applies to default fields only.', 'posterno' ) );
+		//}
 
 		// Option available only to non default fields.
 		if ( ! in_array( $current_field, pno_get_registered_default_meta_keys(), true ) ) {
