@@ -37,7 +37,7 @@
     "grunt-wp-i18n": "^1.0.2",
     "load-grunt-tasks": "^3.5.2",
     "makepot": "^0.3.0",
-    "node-sass": "^4.9.1",
+    "node-sass": "^4.13.1",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-url": "^7.3.2",
