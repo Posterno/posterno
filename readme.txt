@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 5.3
 Tested up to: 5.5
 Requires PHP: 5.5+
-Stable tag: 1.2.10
+Stable tag: 1.2.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -148,6 +148,11 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.2.11 9th November 2020 =
+
+- Added: editor field type on forms replaced with a new script.
+- Tweak: updated all scripts dependencies on the submission and editing forms.
 
 = 1.2.10 3rd March 2020 =
 
