@@ -9,113 +9,21 @@
 		"parsecsv/php-parsecsv": "^1.0@dev",
 		"prospress/action-scheduler": "^2.2.5",
 		"htmlburger/carbon-fields": "3.1.14",
-		"posterno/blocks": "@dev",
-		"posterno/posterno-third-party": "@dev",
-		"posterno/posterno-submission-scripts": "@dev",
-		"posterno/posterno-fields-editor-validator": "@dev",
 		"posterno/posterno-entities": "@dev",
-		"posterno/posterno-maps": "@dev",
-		"posterno/posterno-schema": "@dev",
-		"posterno/posterno-validator": "@dev",
+		"posterno/posterno-fields-editor-validator": "@dev",
 		"posterno/posterno-dom": "@dev",
 		"posterno/posterno-forms": "@dev",
-		"posterno/posterno-geocoder": "@dev",
 		"posterno/import-export": "@dev",
-		"posterno/addons": "@dev"
+		"posterno/addons": "@dev",
+		"posterno/posterno-maps": "@dev",
+		"posterno/blocks": "@dev",
+		"posterno/posterno-schema": "@dev",
+		"posterno/posterno-submission-scripts": "@dev",
+		"posterno/posterno-validator": "@dev",
+		"posterno/posterno-third-party": "@dev",
+		"posterno/posterno-geocoder": "@dev"
 	},
 	"minimum-stability": "dev",
-	"repositories": [{
-			"type": "path",
-			"url": "../posterno-schema",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-geocoder",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-third-party",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-maps",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-forms",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-validator",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-dom",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-entities",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-submission-scripts",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../posterno-fields-editor-validator",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../addons",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../import-export",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../blocks",
-			"options": {
-				"symlink": true
-			}
-		}
-	],
 	"extra": {
 		"installer-paths": {
 			"vendor/prospress/{$name}/": [

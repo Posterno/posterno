@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9220adab3e65051bbbd732cb0dd170d",
+    "content-hash": "95abbcc5f0fe5bfd606df34e3ef4b240",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -46,6 +46,7 @@
                 "notices",
                 "wordpress"
             ],
+            "abandoned": true,
             "time": "2019-05-29T11:24:20+00:00"
         },
         {
@@ -105,28 +106,31 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3"
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
-                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0"
             },
             "replace": {
                 "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "^4.8.36"
+                "composer/composer": "1.6.* || 2.0.*@dev",
+                "composer/semver": "1.0.* || 2.0.*@dev",
+                "phpunit/phpunit": "^4.8.36",
+                "sebastian/comparator": "^1.2.4",
+                "symfony/process": "^2.3"
             },
             "type": "composer-plugin",
             "extra": {
@@ -225,7 +229,17 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2020-02-07T10:39:20+00:00"
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-04-07T06:57:05+00:00"
         },
         {
             "name": "gamajo/template-loader",
@@ -286,19 +300,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "400cefd25a23a3098486bfb52685b5367a464171"
+                "reference": "e8ed4dbf49b260ff129ff0e0400718c3269971bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/400cefd25a23a3098486bfb52685b5367a464171",
-                "reference": "400cefd25a23a3098486bfb52685b5367a464171",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/e8ed4dbf49b260ff129ff0e0400718c3269971bf",
+                "reference": "e8ed4dbf49b260ff129ff0e0400718c3269971bf",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.6.1",
-                "php": ">=5.5"
+                "php": ">=5.5",
+                "symfony/polyfill-intl-idn": "^1.17.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -306,7 +321,6 @@
                 "psr/log": "^1.1"
             },
             "suggest": {
-                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
@@ -345,7 +359,29 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-12-30T04:52:42+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/alexeyshockov",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/gmponos",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/sagikazarmark",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-07-02T06:52:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -353,19 +389,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "89b1a76b7fda5853401297dc4b2a093cba1fda23"
+                "reference": "ddfeedfff2a52661429437da0702979f708e6ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/89b1a76b7fda5853401297dc4b2a093cba1fda23",
-                "reference": "89b1a76b7fda5853401297dc4b2a093cba1fda23",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/ddfeedfff2a52661429437da0702979f708e6ac6",
+                "reference": "ddfeedfff2a52661429437da0702979f708e6ac6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.27 || ^7.5"
+                "symfony/phpunit-bridge": "^4.4 || ^5.1"
             },
             "type": "library",
             "extra": {
@@ -396,7 +432,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2020-02-15T23:33:03+00:00"
+            "time": "2020-10-19T16:50:15+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -404,12 +440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "c73b502efd02beb2602500aa36793fb405e383ac"
+                "reference": "25f7f893f0b52b7b14e244a16679d72b1f0088de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c73b502efd02beb2602500aa36793fb405e383ac",
-                "reference": "c73b502efd02beb2602500aa36793fb405e383ac",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/25f7f893f0b52b7b14e244a16679d72b1f0088de",
+                "reference": "25f7f893f0b52b7b14e244a16679d72b1f0088de",
                 "shasum": ""
             },
             "require": {
@@ -422,7 +458,7 @@
             },
             "require-dev": {
                 "ext-zlib": "*",
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.10"
             },
             "suggest": {
                 "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
@@ -430,7 +466,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -467,7 +503,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2020-02-12T23:13:46+00:00"
+            "time": "2020-10-22T07:42:05+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -647,23 +683,24 @@
         },
         {
             "name": "parsecsv/php-parsecsv",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/parsecsv/parsecsv-for-php.git",
-                "reference": "548a9fe551f47c24c15453458df25005df90f23f"
+                "reference": "947b1c0866cc0a8162692d42c814a6ce07caf319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/parsecsv/parsecsv-for-php/zipball/548a9fe551f47c24c15453458df25005df90f23f",
-                "reference": "548a9fe551f47c24c15453458df25005df90f23f",
+                "url": "https://api.github.com/repos/parsecsv/parsecsv-for-php/zipball/947b1c0866cc0a8162692d42c814a6ce07caf319",
+                "reference": "947b1c0866cc0a8162692d42c814a6ce07caf319",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.1.*"
+                "phpunit/phpunit": "^6",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "suggest": {
                 "illuminate/support": "Fluent array interface for map functions"
@@ -702,15 +739,21 @@
                 }
             ],
             "description": "CSV data parser for PHP",
-            "time": "2020-01-07T08:32:12+00:00"
+            "time": "2020-04-25T17:17:04+00:00"
         },
         {
             "name": "posterno/addons",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../addons",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/addons.git",
                 "reference": "c550703e12ac5416e6f0ed466a37aeed0327f855"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/addons/zipball/c550703e12ac5416e6f0ed466a37aeed0327f855",
+                "reference": "c550703e12ac5416e6f0ed466a37aeed0327f855",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -729,14 +772,7 @@
                     "addons-loader.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -748,17 +784,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-11-04T15:44:44+00:00"
         },
         {
             "name": "posterno/blocks",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../blocks",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/blocks.git",
                 "reference": "f37430d1c981da669cd7d0ab6cd10d7c4c9374b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/blocks/zipball/f37430d1c981da669cd7d0ab6cd10d7c4c9374b6",
+                "reference": "f37430d1c981da669cd7d0ab6cd10d7c4c9374b6",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -777,14 +817,7 @@
                     "blocks-loader.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -796,17 +829,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-11-04T16:38:32+00:00"
         },
         {
             "name": "posterno/import-export",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../import-export",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/import-export.git",
                 "reference": "fcff5225aa30d60ef2d61c0a88b0d7f8d5abec9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/import-export/zipball/fcff5225aa30d60ef2d61c0a88b0d7f8d5abec9e",
+                "reference": "fcff5225aa30d60ef2d61c0a88b0d7f8d5abec9e",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -825,14 +862,7 @@
                     "component-loader.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -844,17 +874,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-09-23T10:12:05+00:00"
         },
         {
             "name": "posterno/posterno-dom",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-dom",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-dom.git",
                 "reference": "bdb8410dcf29275db25c5d3c9be37ffbef67a3c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-dom/zipball/bdb8410dcf29275db25c5d3c9be37ffbef67a3c6",
+                "reference": "bdb8410dcf29275db25c5d3c9be37ffbef67a3c6",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -870,14 +904,7 @@
                     "PNO\\Dom\\": "src/"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -889,17 +916,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-07-31T18:08:38+00:00"
         },
         {
             "name": "posterno/posterno-entities",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-entities",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-entities.git",
                 "reference": "a14c2980e8364ab97da29a710f8accb7e5b58baf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-entities/zipball/a14c2980e8364ab97da29a710f8accb7e5b58baf",
+                "reference": "a14c2980e8364ab97da29a710f8accb7e5b58baf",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -915,14 +946,7 @@
                     "PNO\\Entities\\": "src/"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -934,17 +958,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-11-04T13:23:06+00:00"
         },
         {
             "name": "posterno/posterno-fields-editor-validator",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-fields-editor-validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-fields-editor-validator.git",
                 "reference": "2a19eac7b491ab90e172ac51256a73668c841329"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-fields-editor-validator/zipball/2a19eac7b491ab90e172ac51256a73668c841329",
+                "reference": "2a19eac7b491ab90e172ac51256a73668c841329",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -960,14 +988,7 @@
                     "scripts-loader.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -979,17 +1000,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-06-01T15:15:38+00:00"
         },
         {
             "name": "posterno/posterno-forms",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-forms.git",
+                "reference": "d6725b9c8035d98dd9a1810f65f183c7c66595c6"
+            },
             "dist": {
-                "type": "path",
-                "url": "../posterno-forms",
-                "reference": "04ceefaf1ceb1dc47b196ed4bed4d22d951cfdd6"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-forms/zipball/d6725b9c8035d98dd9a1810f65f183c7c66595c6",
+                "reference": "d6725b9c8035d98dd9a1810f65f183c7c66595c6",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1005,14 +1030,7 @@
                     "PNO\\Form\\": "src/"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1024,40 +1042,48 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-11-09T12:42:15+00:00"
         },
         {
             "name": "posterno/posterno-geocoder",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-geocoder.git",
+                "reference": "b07330708a3a6ebf070943b6fc998a3206fb0ced"
+            },
             "dist": {
-                "type": "path",
-                "url": "../posterno-geocoder",
-                "reference": "da0a748c97ff3c35660b2f297af9b4f498142a6d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-geocoder/zipball/b07330708a3a6ebf070943b6fc998a3206fb0ced",
+                "reference": "b07330708a3a6ebf070943b6fc998a3206fb0ced",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
                 "php": ">=5.6",
                 "yidas/google-maps-services": "^1.0"
             },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "franzl/studio": "^0.13.0",
+                "phpunit/phpunit": "^7.0",
+                "symfony/var-dumper": "^5.1",
+                "wp-coding-standards/wpcs": "dev-master"
+            },
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
                     "PNO\\Geocoder\\": "includes"
                 },
+                "classmap": [
+                    "dependencies/vendor/"
+                ],
                 "files": [
                     "geocoder.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1069,17 +1095,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-09-17T10:52:37+00:00"
         },
         {
             "name": "posterno/posterno-maps",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-maps",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-maps.git",
                 "reference": "f49657d136dbbfc514453977165291e2f22c60f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-maps/zipball/f49657d136dbbfc514453977165291e2f22c60f7",
+                "reference": "f49657d136dbbfc514453977165291e2f22c60f7",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1091,14 +1121,7 @@
                     "Posterno\\MapsProvider\\": "includes/"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1110,17 +1133,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-01-25T13:40:06+00:00"
         },
         {
             "name": "posterno/posterno-schema",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-schema",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-schema.git",
                 "reference": "0fd03681ce3467f31594285be85c8a4da94cd30c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-schema/zipball/0fd03681ce3467f31594285be85c8a4da94cd30c",
+                "reference": "0fd03681ce3467f31594285be85c8a4da94cd30c",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1136,14 +1163,7 @@
                     "PNO\\SchemaOrg\\": "includes"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1155,17 +1175,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-12-06T16:32:08+00:00"
         },
         {
             "name": "posterno/posterno-submission-scripts",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-submission-scripts.git",
+                "reference": "f76b227cc71a559ac895d4d2ea61d66aebee3c02"
+            },
             "dist": {
-                "type": "path",
-                "url": "../posterno-submission-scripts",
-                "reference": "d6043543d2f1c5c73b6073021bf134d9295d6b23"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-submission-scripts/zipball/f76b227cc71a559ac895d4d2ea61d66aebee3c02",
+                "reference": "f76b227cc71a559ac895d4d2ea61d66aebee3c02",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1181,14 +1205,7 @@
                     "scripts-loader.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1200,17 +1217,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-11-09T12:46:14+00:00"
         },
         {
             "name": "posterno/posterno-third-party",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-third-party",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-third-party.git",
                 "reference": "459194abc712aa143a1598668ec27b60a0ab19ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-third-party/zipball/459194abc712aa143a1598668ec27b60a0ab19ed",
+                "reference": "459194abc712aa143a1598668ec27b60a0ab19ed",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1222,14 +1243,7 @@
                     "3rd-party.php"
                 ]
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1241,17 +1255,21 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-09-12T11:58:43+00:00"
         },
         {
             "name": "posterno/posterno-validator",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../posterno-validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/posterno-validator.git",
                 "reference": "8eb18b38dcb17bb71a0c2cc5b2d1995d1a8e9c1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/posterno-validator/zipball/8eb18b38dcb17bb71a0c2cc5b2d1995d1a8e9c1b",
+                "reference": "8eb18b38dcb17bb71a0c2cc5b2d1995d1a8e9c1b",
+                "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
@@ -1267,14 +1285,7 @@
                     "PNO\\Validator\\": "src/"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs ."
-                ],
-                "lint-fix": [
-                    "phpcbf ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Posterno",
@@ -1286,9 +1297,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2019-11-07T12:18:24+00:00"
         },
         {
             "name": "pressmodo/carbon-fields-custom-options-container",
@@ -1323,6 +1332,7 @@
                 "wordpress",
                 "wordpress-plugin"
             ],
+            "abandoned": true,
             "time": "2018-12-24T16:50:01+00:00"
         },
         {
@@ -1447,12 +1457,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/wpdatetime.git",
-                "reference": "ac0db30b0de3834aee87ed6edf5609c2f8771723"
+                "reference": "14910bfb265cc4e1de97a552ecdb61f461af626b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/wpdatetime/zipball/ac0db30b0de3834aee87ed6edf5609c2f8771723",
-                "reference": "ac0db30b0de3834aee87ed6edf5609c2f8771723",
+                "url": "https://api.github.com/repos/Rarst/wpdatetime/zipball/14910bfb265cc4e1de97a552ecdb61f461af626b",
+                "reference": "14910bfb265cc4e1de97a552ecdb61f461af626b",
                 "shasum": ""
             },
             "require": {
@@ -1485,7 +1495,8 @@
                 "timezone",
                 "wordpress"
             ],
-            "time": "2019-11-19T12:27:38+00:00"
+            "abandoned": true,
+            "time": "2020-08-12T09:56:05+00:00"
         },
         {
             "name": "stevegrunwell/wp-cache-remember",
@@ -1537,6 +1548,244 @@
             "time": "2018-06-14T05:10:34+00:00"
         },
         {
+            "name": "symfony/polyfill-intl-idn",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-idn.git",
+                "reference": "4c489fd2bc812f64494645354e0fb68d355ce3c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/4c489fd2bc812f64494645354e0fb68d355ce3c7",
+                "reference": "4c489fd2bc812f64494645354e0fb68d355ce3c7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "symfony/polyfill-intl-normalizer": "^1.10",
+                "symfony/polyfill-php72": "^1.10"
+            },
+            "suggest": {
+                "ext-intl": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.21-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laurent Bassin",
+                    "email": "laurent@bassin.info"
+                },
+                {
+                    "name": "Trevor Rowbotham",
+                    "email": "trevor.rowbotham@pm.me"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "idn",
+                "intl",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-26T13:35:45+00:00"
+        },
+        {
+            "name": "symfony/polyfill-intl-normalizer",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
+                "reference": "69609f9f06790591b4b13a45ee117e7bab6395aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/69609f9f06790591b4b13a45ee117e7bab6395aa",
+                "reference": "69609f9f06790591b4b13a45ee117e7bab6395aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "suggest": {
+                "ext-intl": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.21-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's Normalizer class and related functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "intl",
+                "normalizer",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-26T13:35:45+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php72",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php72.git",
+                "reference": "4a4465f57b476085b62e74087f74ae2e753ff633"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/4a4465f57b476085b62e74087f74ae2e753ff633",
+                "reference": "4a4465f57b476085b62e74087f74ae2e753ff633",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.21-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-26T13:35:45+00:00"
+        },
+        {
             "name": "yidas/google-maps-services",
             "version": "1.0.0",
             "source": {
@@ -1581,22 +1830,23 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/blocks": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-submission-scripts": 20,
-        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-entities": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/posterno-schema": 20,
-        "posterno/posterno-validator": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-dom": 20,
         "posterno/posterno-forms": 20,
-        "posterno/posterno-geocoder": 20,
         "posterno/import-export": 20,
-        "posterno/addons": 20
+        "posterno/addons": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/blocks": 20,
+        "posterno/posterno-schema": 20,
+        "posterno/posterno-submission-scripts": 20,
+        "posterno/posterno-validator": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-geocoder": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
