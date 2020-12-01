@@ -135,7 +135,7 @@ class PNO_Theme_Integration {
 
 		// Prepare everything for rendering.
 		setup_postdata( $post );
-		remove_all_filters( 'the_content' );
+		remove_filter( 'the_content', 'wpautop' );
 		remove_all_filters( 'the_excerpt' );
 
 		add_filter( 'template_include', array( __CLASS__, 'force_single_template_filter' ) );
