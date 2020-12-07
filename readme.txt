@@ -4,7 +4,7 @@ Tags: business directory, listings, classifieds, directory, listing, local busin
 Requires at least: 5.3
 Tested up to: 5.5
 Requires PHP: 5.5+
-Stable tag: 1.2.12
+Stable tag: 1.2.13
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Plugin URI: https://posterno.com
@@ -148,6 +148,10 @@ Please refer to the [official documentation for gdpr compliance](https://docs.po
 Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno gives you general information and tools, but is NOT meant to serve as complete compliance package. As the owner of your website, it is your responsibility to ensure that your site is compliant with the regulations. Please always contact an attorney for accurate information, we are not responsible for your website GDPR compliance and we can’t be held accountable for any legal issues.
 
 == Changelog ==
+
+= 1.2.13 4th December 2020 =
+
+- Fix: taxonomy layout template compatibility with some themes.
 
 = 1.2.12 12th November 2020 =
 
