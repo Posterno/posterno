@@ -124,7 +124,7 @@ function pno_update_listing_hours_of_operation( $listing_id, $day, $operation ) 
 	$existing_timings = get_post_meta( $listing_id, '_listing_opening_hours', true );
 
 	if ( empty( $existing_timings ) || ! is_array( $existing_timings ) ) {
-		return;
+		$existing_timings = [];
 	}
 
 	$existing_timings[ $day ]['operation'] = sanitize_text_field( $operation );
