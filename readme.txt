@@ -149,6 +149,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
+= 1.2.15 25 January 2021 =
+
+- Tweak: added 2 filters to the templates override logic - needed for compatibility with the Elementor addon.
+
 = 1.2.14 9th December 2020 =
 
 - Fix: opening hours not saving when creating a listing from the admin panel under specific conditions.
