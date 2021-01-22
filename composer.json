@@ -1,52 +1,52 @@
 {
-	"require": {
-		"gamajo/template-loader": "^1.3",
-		"brain/cortex": "~1.0.0",
-		"alessandrotesoro/wp-notices": "^1.0",
-		"stevegrunwell/wp-cache-remember": "^1.1",
-		"pressmodo/carbon-fields-custom-options-container": "^0.1.0",
-		"rarst/wpdatetime": "dev-master",
-		"parsecsv/php-parsecsv": "^1.0@dev",
-		"prospress/action-scheduler": "^2.2.5",
-		"htmlburger/carbon-fields": "3.1.14",
-		"posterno/posterno-entities": "@dev",
-		"posterno/posterno-fields-editor-validator": "@dev",
-		"posterno/posterno-dom": "@dev",
-		"posterno/posterno-forms": "@dev",
-		"posterno/import-export": "@dev",
-		"posterno/addons": "@dev",
-		"posterno/posterno-maps": "@dev",
-		"posterno/blocks": "@dev",
-		"posterno/posterno-schema": "@dev",
-		"posterno/posterno-submission-scripts": "@dev",
-		"posterno/posterno-validator": "@dev",
-		"posterno/posterno-third-party": "@dev",
-		"posterno/posterno-geocoder": "@dev"
-	},
-	"minimum-stability": "dev",
-	"extra": {
-		"installer-paths": {
-			"vendor/prospress/{$name}/": [
-				"prospress/action-scheduler"
-			],
-			"includes/utils/{$name}/": [
-				"stevegrunwell/wp-cache-remember"
-			],
-			"vendor/posterno/{$name}/": [
-				"posterno/posterno-schema",
-				"posterno/posterno-geocoder",
-				"posterno/posterno-third-party",
-				"posterno/posterno-maps",
-				"posterno/posterno-forms",
-				"posterno/posterno-validator",
-				"posterno/posterno-entities",
-				"posterno/posterno-dom",
-				"posterno/posterno-submission-scripts",
-				"posterno/posterno-fields-editor-validator",
-				"posterno/addons",
-				"posterno/import-export",
-				"posterno/blocks"
-			]
-		}
-	}
+    "require": {
+        "gamajo/template-loader": "^1.3",
+        "brain/cortex": "~1.0.0",
+        "alessandrotesoro/wp-notices": "^1.0",
+        "stevegrunwell/wp-cache-remember": "^1.1",
+        "pressmodo/carbon-fields-custom-options-container": "^0.1.0",
+        "rarst/wpdatetime": "dev-master",
+        "parsecsv/php-parsecsv": "^1.0@dev",
+        "prospress/action-scheduler": "^2.2.5",
+        "htmlburger/carbon-fields": "3.1.14",
+        "posterno/posterno-schema": "@dev",
+        "posterno/posterno-entities": "@dev",
+        "posterno/posterno-geocoder": "@dev",
+        "posterno/posterno-maps": "@dev",
+        "posterno/posterno-dom": "@dev",
+        "posterno/posterno-third-party": "@dev",
+        "posterno/posterno-forms": "@dev",
+        "posterno/addons": "@dev",
+        "posterno/import-export": "@dev",
+        "posterno/posterno-fields-editor-validator": "@dev",
+        "posterno/posterno-submission-scripts": "@dev",
+        "posterno/posterno-validator": "@dev",
+        "posterno/blocks": "@dev"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "installer-paths": {
+            "vendor/prospress/{$name}/": [
+                "prospress/action-scheduler"
+            ],
+            "includes/utils/{$name}/": [
+                "stevegrunwell/wp-cache-remember"
+            ],
+            "vendor/posterno/{$name}/": [
+                "posterno/posterno-schema",
+                "posterno/posterno-geocoder",
+                "posterno/posterno-third-party",
+                "posterno/posterno-maps",
+                "posterno/posterno-forms",
+                "posterno/posterno-validator",
+                "posterno/posterno-entities",
+                "posterno/posterno-dom",
+                "posterno/posterno-submission-scripts",
+                "posterno/posterno-fields-editor-validator",
+                "posterno/addons",
+                "posterno/import-export",
+                "posterno/blocks"
+            ]
+        }
+    }
 }

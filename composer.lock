@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95abbcc5f0fe5bfd606df34e3ef4b240",
+    "content-hash": "0ae414d1aa27e65d0dd9db6eee2e01f7",
     "packages": [
         {
             "name": "alessandrotesoro/wp-notices",
@@ -46,6 +46,10 @@
                 "notices",
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/alessandrotesoro/wp-notices/issues/",
+                "source": "https://github.com/alessandrotesoro/wp-notices/tree/master"
+            },
             "abandoned": true,
             "time": "2019-05-29T11:24:20+00:00"
         },
@@ -102,20 +106,24 @@
                 "routing",
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Brain-WP/Cortex/issues",
+                "source": "https://github.com/Brain-WP/Cortex"
+            },
             "time": "2016-07-14T19:53:27+00:00"
         },
         {
             "name": "composer/installers",
-            "version": "v1.9.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
+                "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "url": "https://api.github.com/repos/composer/installers/zipball/1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
+                "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
                 "shasum": ""
             },
             "require": {
@@ -126,17 +134,19 @@
                 "shama/baton": "*"
             },
             "require-dev": {
-                "composer/composer": "1.6.* || 2.0.*@dev",
-                "composer/semver": "1.0.* || 2.0.*@dev",
-                "phpunit/phpunit": "^4.8.36",
-                "sebastian/comparator": "^1.2.4",
+                "composer/composer": "1.6.* || ^2.0",
+                "composer/semver": "^1 || ^3",
+                "phpstan/phpstan": "^0.12.55",
+                "phpstan/phpstan-phpunit": "^0.12.16",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
                 "symfony/process": "^2.3"
             },
+            "default-branch": true,
             "type": "composer-plugin",
             "extra": {
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-main": "1.x-dev"
                 }
             },
             "autoload": {
@@ -174,6 +184,7 @@
                 "Porto",
                 "RadPHP",
                 "SMF",
+                "Starbug",
                 "Thelia",
                 "Whmcs",
                 "WolfCMS",
@@ -214,6 +225,7 @@
                 "phpbb",
                 "piwik",
                 "ppi",
+                "processwire",
                 "puppet",
                 "pxcms",
                 "reindex",
@@ -229,17 +241,25 @@
                 "zend",
                 "zikula"
             ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.10.0"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
                     "type": "custom"
                 },
                 {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/composer/composer",
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-04-07T06:57:05+00:00"
+            "time": "2021-01-14T11:07:16+00:00"
         },
         {
             "name": "gamajo/template-loader",
@@ -292,6 +312,10 @@
                 "templates",
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/GaryJones/Gamajo-Template-Loader/issues",
+                "source": "https://github.com/GaryJones/Gamajo-Template-Loader/tree/develop"
+            },
             "time": "2018-09-24T10:23:49+00:00"
         },
         {
@@ -359,6 +383,10 @@
                 "rest",
                 "web service"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/guzzle/issues",
+                "source": "https://github.com/guzzle/guzzle/tree/6.5"
+            },
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -403,6 +431,7 @@
             "require-dev": {
                 "symfony/phpunit-bridge": "^4.4 || ^5.1"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -432,6 +461,10 @@
             "keywords": [
                 "promise"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/promises/issues",
+                "source": "https://github.com/guzzle/promises/tree/master"
+            },
             "time": "2020-10-19T16:50:15+00:00"
         },
         {
@@ -440,12 +473,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "25f7f893f0b52b7b14e244a16679d72b1f0088de"
+                "reference": "f47ece9e6e8ce74e3be04bef47f46061dc18c095"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/25f7f893f0b52b7b14e244a16679d72b1f0088de",
-                "reference": "25f7f893f0b52b7b14e244a16679d72b1f0088de",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f47ece9e6e8ce74e3be04bef47f46061dc18c095",
+                "reference": "f47ece9e6e8ce74e3be04bef47f46061dc18c095",
                 "shasum": ""
             },
             "require": {
@@ -503,7 +536,11 @@
                 "uri",
                 "url"
             ],
-            "time": "2020-10-22T07:42:05+00:00"
+            "support": {
+                "issues": "https://github.com/guzzle/psr7/issues",
+                "source": "https://github.com/guzzle/psr7/tree/1.x"
+            },
+            "time": "2020-12-08T11:45:39+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -636,6 +673,12 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
+            "support": {
+                "docs": "http://carbonfields.net/docs/",
+                "email": "wordpress@htmlburger.com",
+                "issues": "https://github.com/htmlburger/carbon-fields/issues",
+                "source": "https://github.com/htmlburger/carbon-fields"
+            },
             "time": "2020-02-10T13:53:53+00:00"
         },
         {
@@ -679,6 +722,10 @@
                 "router",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/nikic/FastRoute/issues",
+                "source": "https://github.com/nikic/FastRoute/tree/master"
+            },
             "time": "2015-12-20T19:50:12+00:00"
         },
         {
@@ -739,6 +786,10 @@
                 }
             ],
             "description": "CSV data parser for PHP",
+            "support": {
+                "issues": "https://github.com/parsecsv/parsecsv-for-php/issues",
+                "source": "https://github.com/parsecsv/parsecsv-for-php"
+            },
             "time": "2020-04-25T17:17:04+00:00"
         },
         {
@@ -763,6 +814,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -784,6 +836,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/addons/issues",
+                "source": "https://github.com/Posterno/addons/tree/0.1.8"
+            },
             "time": "2019-11-04T15:44:44+00:00"
         },
         {
@@ -808,6 +864,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -829,6 +886,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/blocks/issues",
+                "source": "https://github.com/Posterno/blocks/tree/0.1.2"
+            },
             "time": "2019-11-04T16:38:32+00:00"
         },
         {
@@ -853,6 +914,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -874,6 +936,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/import-export/issues",
+                "source": "https://github.com/Posterno/import-export/tree/0.1.8"
+            },
             "time": "2019-09-23T10:12:05+00:00"
         },
         {
@@ -898,6 +964,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -916,6 +983,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-dom/issues",
+                "source": "https://github.com/Posterno/posterno-dom/tree/0.1.3"
+            },
             "time": "2019-07-31T18:08:38+00:00"
         },
         {
@@ -940,6 +1011,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -958,6 +1030,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-entities/issues",
+                "source": "https://github.com/Posterno/posterno-entities/tree/0.1.5"
+            },
             "time": "2019-11-04T13:23:06+00:00"
         },
         {
@@ -982,6 +1058,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -1000,6 +1077,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-fields-editor-validator/issues",
+                "source": "https://github.com/Posterno/posterno-fields-editor-validator/tree/0.1.1"
+            },
             "time": "2019-06-01T15:15:38+00:00"
         },
         {
@@ -1024,6 +1105,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -1042,6 +1124,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-forms/issues",
+                "source": "https://github.com/Posterno/posterno-forms/tree/0.1.6"
+            },
             "time": "2020-11-09T12:42:15+00:00"
         },
         {
@@ -1050,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Posterno/posterno-geocoder.git",
-                "reference": "b07330708a3a6ebf070943b6fc998a3206fb0ced"
+                "reference": "008c068b8e7a91814ab21246fd90748e2e6264a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Posterno/posterno-geocoder/zipball/b07330708a3a6ebf070943b6fc998a3206fb0ced",
-                "reference": "b07330708a3a6ebf070943b6fc998a3206fb0ced",
+                "url": "https://api.github.com/repos/Posterno/posterno-geocoder/zipball/008c068b8e7a91814ab21246fd90748e2e6264a6",
+                "reference": "008c068b8e7a91814ab21246fd90748e2e6264a6",
                 "shasum": ""
             },
             "require": {
@@ -1065,12 +1151,12 @@
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.4",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "franzl/studio": "^0.13.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "phpunit/phpunit": "^7.0",
                 "symfony/var-dumper": "^5.1",
                 "wp-coding-standards/wpcs": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -1095,7 +1181,11 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-09-17T10:52:37+00:00"
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-geocoder/issues",
+                "source": "https://github.com/Posterno/posterno-geocoder/tree/0.1.8"
+            },
+            "time": "2021-01-14T11:10:54+00:00"
         },
         {
             "name": "posterno/posterno-maps",
@@ -1115,6 +1205,7 @@
                 "composer/installers": "~1.0",
                 "php": ">=5.6"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -1133,6 +1224,9 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "source": "https://github.com/Posterno/posterno-maps/tree/0.1.6"
+            },
             "time": "2020-01-25T13:40:06+00:00"
         },
         {
@@ -1157,6 +1251,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -1175,6 +1270,9 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "source": "https://github.com/Posterno/posterno-schema/tree/0.2.0"
+            },
             "time": "2019-12-06T16:32:08+00:00"
         },
         {
@@ -1199,6 +1297,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "files": [
@@ -1217,6 +1316,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-submission-scripts/issues",
+                "source": "https://github.com/Posterno/posterno-submission-scripts/tree/0.1.7"
+            },
             "time": "2020-11-09T12:46:14+00:00"
         },
         {
@@ -1237,6 +1340,7 @@
                 "composer/installers": "~1.0",
                 "php": ">=5.6"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "files": [
@@ -1255,6 +1359,9 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "source": "https://github.com/Posterno/posterno-third-party/tree/0.1.2"
+            },
             "time": "2019-09-12T11:58:43+00:00"
         },
         {
@@ -1279,6 +1386,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
                 "pressmodo/phpcs-config": "dev-master"
             },
+            "default-branch": true,
             "type": "wordpress-plugin",
             "autoload": {
                 "psr-4": {
@@ -1297,6 +1405,10 @@
             "keywords": [
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Posterno/posterno-validator/issues",
+                "source": "https://github.com/Posterno/posterno-validator/tree/0.1.3"
+            },
             "time": "2019-11-07T12:18:24+00:00"
         },
         {
@@ -1332,6 +1444,10 @@
                 "wordpress",
                 "wordpress-plugin"
             ],
+            "support": {
+                "issues": "https://github.com/Pressmodo/carbon-fields-custom-options-container/issues",
+                "source": "https://github.com/Pressmodo/carbon-fields-custom-options-container"
+            },
             "abandoned": true,
             "time": "2018-12-24T16:50:01+00:00"
         },
@@ -1358,6 +1474,10 @@
                 "GPL-3.0"
             ],
             "description": "Action Scheduler for WordPress and WooCommerce",
+            "support": {
+                "issues": "https://github.com/woocommerce/action-scheduler/issues",
+                "source": "https://github.com/woocommerce/action-scheduler/tree/2.2.5"
+            },
             "abandoned": "woocommerce/action-scheduler",
             "time": "2019-04-24T12:45:40+00:00"
         },
@@ -1378,6 +1498,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1409,6 +1530,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2019-08-29T13:16:46+00:00"
         },
         {
@@ -1449,6 +1573,10 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
@@ -1472,6 +1600,7 @@
                 "brain/monkey": "^2.1",
                 "pds/skeleton": "^1.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1495,6 +1624,10 @@
                 "timezone",
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/Rarst/wpdatetime/issues",
+                "source": "https://github.com/Rarst/wpdatetime/tree/master"
+            },
             "abandoned": true,
             "time": "2020-08-12T09:56:05+00:00"
         },
@@ -1545,6 +1678,10 @@
                 "wordpress-plugin",
                 "wordpress-transients"
             ],
+            "support": {
+                "issues": "https://github.com/stevegrunwell/wp-cache-remember/issues",
+                "source": "https://github.com/stevegrunwell/wp-cache-remember"
+            },
             "time": "2018-06-14T05:10:34+00:00"
         },
         {
@@ -1553,12 +1690,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "4c489fd2bc812f64494645354e0fb68d355ce3c7"
+                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/4c489fd2bc812f64494645354e0fb68d355ce3c7",
-                "reference": "4c489fd2bc812f64494645354e0fb68d355ce3c7",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
+                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
                 "shasum": ""
             },
             "require": {
@@ -1569,10 +1706,11 @@
             "suggest": {
                 "ext-intl": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.21-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1615,6 +1753,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.22.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -1629,7 +1770,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-26T13:35:45+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -1637,12 +1778,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "69609f9f06790591b4b13a45ee117e7bab6395aa"
+                "reference": "6e971c891537eb617a00bb07a43d182a6915faba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/69609f9f06790591b4b13a45ee117e7bab6395aa",
-                "reference": "69609f9f06790591b4b13a45ee117e7bab6395aa",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/6e971c891537eb617a00bb07a43d182a6915faba",
+                "reference": "6e971c891537eb617a00bb07a43d182a6915faba",
                 "shasum": ""
             },
             "require": {
@@ -1651,10 +1792,11 @@
             "suggest": {
                 "ext-intl": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.21-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1696,6 +1838,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.22.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -1710,7 +1855,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-26T13:35:45+00:00"
+            "time": "2021-01-07T17:09:11+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -1718,21 +1863,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "4a4465f57b476085b62e74087f74ae2e753ff633"
+                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/4a4465f57b476085b62e74087f74ae2e753ff633",
-                "reference": "4a4465f57b476085b62e74087f74ae2e753ff633",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
+                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.21-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1769,6 +1915,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.22.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -1783,7 +1932,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-26T13:35:45+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "yidas/google-maps-services",
@@ -1821,6 +1970,10 @@
                 "sdk",
                 "services"
             ],
+            "support": {
+                "issues": "https://github.com/yidas/google-maps-services-php/issues",
+                "source": "https://github.com/yidas/google-maps-services-php"
+            },
             "time": "2018-08-18T07:27:28+00:00"
         }
     ],
@@ -1830,23 +1983,23 @@
     "stability-flags": {
         "rarst/wpdatetime": 20,
         "parsecsv/php-parsecsv": 20,
-        "posterno/posterno-entities": 20,
-        "posterno/posterno-fields-editor-validator": 20,
-        "posterno/posterno-dom": 20,
-        "posterno/posterno-forms": 20,
-        "posterno/import-export": 20,
-        "posterno/addons": 20,
-        "posterno/posterno-maps": 20,
-        "posterno/blocks": 20,
         "posterno/posterno-schema": 20,
+        "posterno/posterno-entities": 20,
+        "posterno/posterno-geocoder": 20,
+        "posterno/posterno-maps": 20,
+        "posterno/posterno-dom": 20,
+        "posterno/posterno-third-party": 20,
+        "posterno/posterno-forms": 20,
+        "posterno/addons": 20,
+        "posterno/import-export": 20,
+        "posterno/posterno-fields-editor-validator": 20,
         "posterno/posterno-submission-scripts": 20,
         "posterno/posterno-validator": 20,
-        "posterno/posterno-third-party": 20,
-        "posterno/posterno-geocoder": 20
+        "posterno/blocks": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

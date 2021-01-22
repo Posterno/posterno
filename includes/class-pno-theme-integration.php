@@ -69,9 +69,19 @@ class PNO_Theme_Integration {
 	public static function unsupported_theme_init() {
 		if ( 0 < self::$login_page_id ) {
 			if ( pno_is_listing_taxonomy() ) {
-				self::unsupported_theme_tax_archive_init();
+				// Used by the Elementor Pro addon to disable overrides when needed, for compatibility with the theme builder.
+				$override_taxonomy = apply_filters( 'pno_should_override_taxonomy_template', true );
+
+				if ( $override_taxonomy ) {
+					self::unsupported_theme_tax_archive_init();
+				}
 			} elseif ( is_singular( 'listings' ) ) {
-				self::unsupported_single_listing_page_init();
+				// Used by the Elementor Pro addon to disable overrides when needed, for compatibility with the theme builder.
+				$override_single = apply_filters( 'pno_should_override_single_template', true );
+
+				if ( $override_single ) {
+					self::unsupported_single_listing_page_init();
+				}
 			}
 		}
 	}
