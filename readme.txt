@@ -151,10 +151,16 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 = 1.2.15 26 January 2021 =
 
+- Added: option to disable built-in listings sorter dropdown
+- Added: option to disable built-in cards layout switcher
+- Added: option to disable built-in results amount dropdown
+- Added: option to disable built-in results counter
 - Added: 2 filters to the templates override logic - needed for compatibility with the Elementor addon.
 - Tweak: reworked listing "list" card template
 - Tweak: reworked taxonomy cards loop
 - Fix: grid card template now uses proper bootstrap classes
+
+Please note: several template files have been updated for compatibility with the new features.
 
 = 1.2.14 9th December 2020 =
 
