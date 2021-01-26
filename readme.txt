@@ -156,9 +156,11 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 - Added: option to disable built-in results amount dropdown
 - Added: option to disable built-in results counter
 - Added: 2 filters to the templates override logic - needed for compatibility with the Elementor addon.
-- Tweak: reworked listing "list" card template
-- Tweak: reworked taxonomy cards loop
-- Fix: grid card template now uses proper bootstrap classes
+- Tweaked: reworked listing "list" card template
+- Tweaked: reworked taxonomy cards loop
+- Fixed: grid card template now uses proper bootstrap classes
+- Fixed: scoped geocoder dependencies to avoid conflicts with third party plugins using the same library
+- Updated: language files
 
 Please note: several template files have been updated for compatibility with the new features.
 
