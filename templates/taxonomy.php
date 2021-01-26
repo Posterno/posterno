@@ -52,9 +52,8 @@ $i      = '';
 
 			posterno()->templates->get_template_part( 'listings/results', 'bar' );
 
-			// Start opening the grid's container.
 			if ( $layout === 'grid' ) {
-				echo '<div class="card-deck">';
+				echo '<div class="row">';
 			}
 
 			while ( have_posts() ) {
@@ -68,14 +67,6 @@ $i      = '';
 
 				posterno()->templates->get_template_part( 'listings/card', $layout );
 
-				// Continue the loop of grids containers.
-				if ( $layout === 'grid' ) {
-					$i++;
-					if ( $i % 3 == 0 ) {
-						echo '</div><div class="card-deck">';
-					}
-				}
-
 				/**
 				 * Hook: loads after the content of a single listing is loaded within the loop.
 				 */
@@ -83,7 +74,6 @@ $i      = '';
 
 			}
 
-			// Close grid's container.
 			if ( $layout === 'grid' ) {
 				echo '</div>';
 			}
