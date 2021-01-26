@@ -149,9 +149,12 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 == Changelog ==
 
-= 1.2.15 25 January 2021 =
+= 1.2.15 26 January 2021 =
 
-- Tweak: added 2 filters to the templates override logic - needed for compatibility with the Elementor addon.
+- Added: 2 filters to the templates override logic - needed for compatibility with the Elementor addon.
+- Tweak: reworked listing "list" card template
+- Tweak: reworked taxonomy cards loop
+- Fix: grid card template now uses proper bootstrap classes
 
 = 1.2.14 9th December 2020 =
 
