@@ -10,12 +10,16 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @package posterno
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
+
+if ( pno_get_option( 'disable_results_counter' ) ) {
+	return;
+}
 
 ?>
 

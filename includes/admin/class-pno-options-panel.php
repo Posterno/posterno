@@ -520,6 +520,18 @@ class OptionsPanel {
 			->set_width( '33.33' )
 			->set_options( 'pno_get_listings_layout_available_options' );
 
+		$settings[] = Field::make( 'checkbox', 'disable_sorter', esc_html__( 'Disable built-in listings sorter dropdown', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable the option to hide the listings sorting dropdown', 'posterno' ) );
+
+		$settings[] = Field::make( 'checkbox', 'disable_layout_switcher', esc_html__( 'Disable built-in cards layout switcher', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable the option to hide the listings card layout switcher', 'posterno' ) );
+
+		$settings[] = Field::make( 'checkbox', 'disable_results_dropdown', esc_html__( 'Disable built-in results amount dropdown', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable the option to hide the listings results amount dropdown', 'posterno' ) );
+
+		$settings[] = Field::make( 'checkbox', 'disable_results_counter', esc_html__( 'Disable built-in results counter', 'posterno' ) )
+			->set_help_text( esc_html__( 'Enable the option to hide the listings results count', 'posterno' ) );
+
 		$settings[] = Field::make( 'separator', 'h2', esc_html__( 'Expiration', 'posterno' ) );
 
 		$settings[] = Field::make( 'text', 'listings_duration', esc_html__( 'Listings duration', 'posterno' ) )

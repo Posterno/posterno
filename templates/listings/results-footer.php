@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.1
+ * @version 1.1.0
  * @package posterno
  */
 
@@ -33,9 +33,11 @@ if ( isset( $data->query ) ) {
 
 		<div class="row justify-content-between">
 
-			<div class="col-12 col-md-4">
-				<?php posterno()->templates->get_template_part( 'listings/results', 'listings-per-page' ); ?>
-			</div>
+			<?php if ( ! pno_get_option( 'disable_results_dropdown' ) ) : ?>
+				<div class="col-12 col-md-4">
+					<?php posterno()->templates->get_template_part( 'listings/results', 'listings-per-page' ); ?>
+				</div>
+			<?php endif; ?>
 
 			<div class="col-12 col-md-6 text-md-right">
 

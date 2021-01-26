@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @package posterno
  */
 
@@ -52,12 +52,16 @@ if ( isset( $data->custom_query ) && ! empty( $data->custom_query ) ) {
 			<div class="col-12 col-md-6 text-md-right">
 
 				<div class="row">
+					<?php if ( ! pno_get_option( 'disable_layout_switcher' ) ) : ?>
 					<div class="col">
 						<?php posterno()->templates->get_template_part( 'listings/results', 'grid-filter' ); ?>
 					</div>
+					<?php endif; ?>
+					<?php if ( ! pno_get_option( 'disable_sorter' ) ) : ?>
 					<div class="col">
 						<?php posterno()->templates->get_template_part( 'listings/results', 'order-filter' ); ?>
 					</div>
+					<?php endif; ?>
 				</div>
 
 			</div>
