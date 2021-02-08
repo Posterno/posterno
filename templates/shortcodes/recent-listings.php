@@ -40,6 +40,11 @@ if ( $recent_listings->have_posts() ) {
 
 		$recent_listings->the_post();
 
+		/**
+		 * Hook: loads before the content of a single listing is loaded within the loop.
+		 */
+		do_action( 'pno_before_listing_in_loop' );
+
 		posterno()->templates->get_template_part( 'listings/card', $layout );
 
 		// Continue the loop of grids containers.
