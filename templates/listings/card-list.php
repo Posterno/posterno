@@ -58,7 +58,7 @@ $card_items = apply_filters('pno_listing_card_details', [], get_the_id(), 'list'
 					<span class="badge badge-pill badge-warning featured-badge position-absolute ml-3 mt-3"><?php esc_html_e( 'Featured', 'posterno' ); ?></span>
 				<?php endif; ?>
 				<?php the_post_thumbnail( 'full', [ 'class' => 'card-img h-100 w-100' ] ); ?>
-				<a href="#" class="stretched-link"></a>
+				<a href="<?php the_permalink(); ?>" class="stretched-link"></a>
 			<?php else : ?>
 				<img src="<?php echo esc_url(pno_get_listing_placeholder_image()); ?>" class="card-img h-100 w-100">
 			<?php endif; ?>
