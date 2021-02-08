@@ -151,7 +151,10 @@ Please note that using Posterno does NOT guarantee compliance to GDPR. Posterno 
 
 = 1.2.16 8th January 2021 =
 
-- Fix: listing card "list" layout featured image hyperlink not linking properly
+- Fixed: listing card "list" layout featured image hyperlink not linking properly
+- Fixed: listings page shortcode loop missing a hook for compatibility with Elementor addon.
+- Fixed: recent listings shortcode loop missing a hook for compatibility with Elementor addon.
+- Fixed: featured listings shortcode loop missing a hook for compatibility with Elementor addon.
 
 = 1.2.15 26 January 2021 =
 
